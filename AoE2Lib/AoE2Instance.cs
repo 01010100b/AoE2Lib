@@ -37,6 +37,11 @@ namespace AoE2Lib
         {
             AoE2Process = process;
             ProcessHandle = OpenProcess(0x001F0FFF, false, AoE2Process.Id);
+
+            if (ProcessHandle == IntPtr.Zero)
+            {
+                throw new IOException("Failed to create handle to process.");
+            }
         }
 
         public abstract int[] GetGoals(int player);
@@ -49,9 +54,9 @@ namespace AoE2Lib
 
         protected byte[] ReadByteArray(IntPtr addr, uint size)
         {
-            if (HasExited || ProcessHandle == IntPtr.Zero)
+            if (HasExited)
             {
-                throw new IOException("Failed to connect to process.");
+                throw new IOException("Process has exited.");
             }
 
             VirtualProtectEx(ProcessHandle, addr, (UIntPtr)size, 0x40 /* rw */, out uint protect);
@@ -66,9 +71,9 @@ namespace AoE2Lib
 
         protected bool WriteByteArray(IntPtr addr, byte[] bytes)
         {
-            if (HasExited || ProcessHandle == IntPtr.Zero)
+            if (HasExited)
             {
-                throw new IOException("Failed to connect to process.");
+                throw new IOException("Process has exited.");
             }
 
             VirtualProtectEx(ProcessHandle, addr, (UIntPtr)bytes.Length, 0x40 /* rw */, out uint protect);
