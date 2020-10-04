@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AoE2Lib
 {
-    public class AoCInstance : AoE2Instance
+    public class AoCInstance : GameInstance
     {
         public AoCInstance(Process process) : base(process) { }
 

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace AoE2Lib
 {
-    public abstract class AoE2Instance : IDisposable
+    public abstract class GameInstance : IDisposable
     {
         [DllImport("kernel32.dll", SetLastError = true)]
         private static extern bool ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, uint dwSize, uint lpNumberOfBytesRead);
@@ -19,28 +19,26 @@ namespace AoE2Lib
         private static extern IntPtr OpenProcess(uint dwDesiredAccess, bool bInheritHandle, int dwProcessId);
 
         [DllImport("kernel32.dll")]
-        private static extern bool GetExitCodeProcess(IntPtr hObject, out uint lpExitCode);
-
-        [DllImport("kernel32.dll")]
         private static extern bool CloseHandle(IntPtr hObject);
 
         [DllImport("kernel32.dll")]
         private static extern bool VirtualProtectEx(IntPtr hProcess, IntPtr lpAddress, UIntPtr dwSize, uint flNewProtect, out uint lpflOldProtect);
 
-        public bool HasExited => AoE2Process.HasExited;
+        public bool HasExited => Process.HasExited;
+        public bool IsGameRunning => GetGoals(1) != null;
 
-        private readonly Process AoE2Process;
+        private readonly Process Process;
         private readonly IntPtr ProcessHandle;
         private bool DisposedValue;
 
-        public AoE2Instance(Process process)
+        public GameInstance(Process process)
         {
-            AoE2Process = process;
-            ProcessHandle = OpenProcess(0x001F0FFF, false, AoE2Process.Id);
+            Process = process;
+            ProcessHandle = OpenProcess(0x001F0FFF, false, Process.Id);
 
             if (ProcessHandle == IntPtr.Zero)
             {
-                throw new IOException("Failed to create handle to process.");
+                throw new IOException("Failed to get handle to process.");
             }
         }
 
@@ -51,6 +49,11 @@ namespace AoE2Lib
         public abstract int[] GetStrategicNumbers(int player);
         public abstract bool SetStrategicNumber(int player, int index, int value);
         public abstract bool SetStrategicNumbers(int player, int start_index, params int[] values);
+
+        public bool IsPlayerInGame(int player)
+        {
+            return GetGoals(player) != null;
+        }
 
         protected byte[] ReadByteArray(IntPtr addr, uint size)
         {
@@ -117,7 +120,7 @@ namespace AoE2Lib
         }
 
         // // TODO: override finalizer only if 'Dispose(bool disposing)' has code to free unmanaged resources
-        ~AoE2Instance()
+        ~GameInstance()
         {
             // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
             Dispose(disposing: false);
