@@ -10,6 +10,11 @@ namespace AoE2Lib
 {
     public abstract class Bot
     {
+        protected enum UnitSearchType
+        {
+            MILITARY, CIVILIAN, WOOD, FOOD, GOLD, STONE
+        }
+
         private const int SYNC_GOAL1 = 511;
         private const int SYNC_GOAL2 = 512;
 
@@ -31,6 +36,12 @@ namespace AoE2Lib
         private readonly Dictionary<Position, Tile> _Map = new Dictionary<Position, Tile>();
         protected IReadOnlyDictionary<int, Unit> Units => _Units;
         private readonly Dictionary<int, Unit> _Units = new Dictionary<int, Unit>();
+
+        private readonly List<Position> TilesToCheck = new List<Position>();
+        private int UnitSearchPlayer { get; set; } = -1;
+        private Position UnitSearchPosition { get; set; } = new Position(-1, -1);
+        private int UnitSearchRadius { get; set; } = -1;
+        private UnitSearchType UnitSearchNextType { get; set; } = UnitSearchType.CIVILIAN;
 
         private Thread BotThread { get; set; } = null;
         private GameInstance Instance { get; set; } = null;
@@ -63,6 +74,19 @@ namespace AoE2Lib
         protected abstract void StartGame();
 
         protected abstract void Update(int tick);
+
+        protected void CheckTile(Position position)
+        {
+            TilesToCheck.Add(position);
+        }
+
+        protected void SearchForUnits(int player, Position position, int radius, UnitSearchType type)
+        {
+            UnitSearchPlayer = player;
+            UnitSearchPosition = position;
+            UnitSearchRadius = radius;
+            UnitSearchNextType = type;
+        }
 
         private void Run()
         {
