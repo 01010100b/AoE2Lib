@@ -85,14 +85,14 @@ namespace AoE2Lib
             return flag;
         }
 
-        protected int ReadInt(IntPtr addr)
+        protected int ReadInt32(IntPtr addr)
         {
             var bytes = ReadByteArray(addr, sizeof(int));
 
             return BitConverter.ToInt32(bytes, 0);
         }
 
-        protected bool WriteInt(IntPtr addr, int value)
+        protected bool WriteInt32(IntPtr addr, int value)
         {
             var bytes = BitConverter.GetBytes(value);
 
