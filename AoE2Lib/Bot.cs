@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AoE2Lib.Bots;
+using AoE2Lib.Utils;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
@@ -11,11 +13,26 @@ namespace AoE2Lib
         private const int SYNC_GOAL1 = 511;
         private const int SYNC_GOAL2 = 512;
 
+        public abstract string Name { get; }
+        public abstract int Id { get; }
+        public virtual string Author => "";
+        public virtual string Email => "";
+        public virtual string Url => "";
+
         public bool Running { get; private set; } = false;
         public int PlayerNumber { get; private set; } = -1;
 
         protected readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.Ticks.GetHashCode());
+        protected Position MyPosition { get; private set; } = new Position(-1, -1);
+        protected int MapWidthHeight { get; private set; } = -1;
+        protected IReadOnlyDictionary<int, Player> Players => _Players;
+        private readonly Dictionary<int, Player> _Players = new Dictionary<int, Player>();
+        protected IReadOnlyDictionary<Position, Tile> Map => _Map;
+        private readonly Dictionary<Position, Tile> _Map = new Dictionary<Position, Tile>();
+        protected IReadOnlyDictionary<int, Unit> Units => _Units;
+        private readonly Dictionary<int, Unit> _Units = new Dictionary<int, Unit>();
 
+        private Thread BotThread { get; set; } = null;
         private GameInstance Instance { get; set; } = null;
         private int[] Goals { get; set; } = null;
         private int[] StrategicNumbers { get; set; } = null;
@@ -24,12 +41,23 @@ namespace AoE2Lib
 
         public void Start(GameInstance instance, int player)
         {
+            Stopping = true;
+            BotThread?.Join();
 
+            Instance = instance;
+            PlayerNumber = player;
+
+            Running = true;
+            Stopping = false;
+
+            BotThread = new Thread(() => Run());
+            BotThread.IsBackground = true;
+            BotThread.Start();
         }
 
         public void Stop()
         {
-
+            Stopping = true;
         }
 
         protected abstract void StartGame();
@@ -51,7 +79,7 @@ namespace AoE2Lib
                 }
 
                 var sleep = 100 - (int)frametime.ElapsedMilliseconds;
-                if (sleep > 10)
+                if (sleep > 1)
                 {
                     Thread.Sleep(sleep);
                 }
@@ -59,8 +87,9 @@ namespace AoE2Lib
 
             frametime.Stop();
 
-            PlayerNumber = 0;
             Running = false;
+            Stopping = false;
+            PlayerNumber = -1;
         }
 
         private bool TryUpdate()
@@ -96,11 +125,16 @@ namespace AoE2Lib
 
             Goals = goals;
             StrategicNumbers = sns;
-            
 
+            UpdateGameState();
             Update(Goals[SYNC_GOAL1 - 1]);
 
             return true;
+        }
+
+        private void UpdateGameState()
+        {
+
         }
 
         private int GetGoal(int id)

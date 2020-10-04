@@ -17,6 +17,6 @@ namespace AoE2Lib.Bots
         public int CivilianPopulation { get; internal set; } = -1;
         public int MilitaryPopulation { get; internal set; } = -1;
         public int Stance { get; internal set; } = -1;
-        public Point Position { get; internal set; } = new Point(-1, -1);
+        public Position Position { get; internal set; } = new Position(-1, -1);
     }
 }

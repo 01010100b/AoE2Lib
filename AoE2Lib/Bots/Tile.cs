@@ -10,7 +10,7 @@ namespace AoE2Lib.Bots
         public TimeSpan TimeSinceLastUpdate => DateTime.UtcNow - LastUpdate;
         public DateTime LastUpdate { get; internal set; } = DateTime.MinValue;
 
-        public Point Position { get; internal set; } = new Point(-1, -1);
+        public Position Position { get; internal set; } = new Position(-1, -1);
         public int Elevation { get; internal set; } = -1;
         public int TerrainId { get; internal set; } = -1;
         public bool Explored { get; internal set; } = false;

@@ -4,18 +4,18 @@ using System.Text;
 
 namespace AoE2Lib.Utils
 {
-    public struct Point
+    public struct Position
     {
         public readonly int X;
         public readonly int Y;
 
-        public Point(int x, int y)
+        public Position(int x, int y)
         {
             X = x;
             Y = y;
         }
 
-        public double DistanceTo(Point other)
+        public double DistanceTo(Position other)
         {
             var dx = (double)(X - other.X);
             var dy = (double)(Y - other.Y);
