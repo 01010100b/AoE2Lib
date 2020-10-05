@@ -27,6 +27,7 @@ namespace AoE2Lib
         public bool Running { get; private set; } = false;
         public int PlayerNumber { get; private set; } = -1;
 
+        // game state
         protected readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.Ticks.GetHashCode());
         protected Position MyPosition { get; private set; } = new Position(-1, -1);
         protected int MapWidthHeight { get; private set; } = -1;
@@ -37,12 +38,14 @@ namespace AoE2Lib
         protected IReadOnlyDictionary<int, Unit> Units => _Units;
         private readonly Dictionary<int, Unit> _Units = new Dictionary<int, Unit>();
 
+        // commands
         private readonly List<Position> TilesToCheck = new List<Position>();
         private int UnitSearchPlayer { get; set; } = -1;
         private Position UnitSearchPosition { get; set; } = new Position(-1, -1);
         private int UnitSearchRadius { get; set; } = -1;
         private UnitSearchType UnitSearchNextType { get; set; } = UnitSearchType.CIVILIAN;
 
+        // utils
         private Thread BotThread { get; set; } = null;
         private GameInstance Instance { get; set; } = null;
         private int[] Goals { get; set; } = null;
