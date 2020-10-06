@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AoE2Lib.Bots
 {
-    public class UnitInfo : GameElement
+    public class UnitTypeInfo : GameElement
     {
         public int PlayerNumber { get; private set; } = -1; // 10
         public int TypeId { get; private set; } = -1; // 2000
@@ -14,10 +14,10 @@ namespace AoE2Lib.Bots
         public int MeleeAttack { get; private set; } = -1; // 250
         public int PierceAttack { get; private set; } = -1; // 250
         public int MeleeArmor { get; private set; } = 0; // 250
-        public TimeSpan ReloadTime { get; private set; } = TimeSpan.MinValue; // 50
         public int PierceArmor { get; private set; } = 0; // 250
+        public TimeSpan ReloadTime { get; private set; } = TimeSpan.MinValue; // 50
 
-        public UnitInfo(int player, int type)
+        public UnitTypeInfo(int player, int type)
         {
             PlayerNumber = player;
             TypeId = type;
@@ -53,10 +53,10 @@ namespace AoE2Lib.Bots
             goal1 /= 250;
             MeleeArmor = (goal1 % 250);
 
-            var timer = (goal2 % 50) - 1;
-            goal2 /= 50;
-            ReloadTime = TimeSpan.FromSeconds(timer / 5d);
             PierceArmor = (goal2 % 250);
+            goal2 /= 250;
+            var timer = (goal2 % 50) - 1;
+            ReloadTime = TimeSpan.FromSeconds(timer / 5d);
 
             ElementUpdated();
         }

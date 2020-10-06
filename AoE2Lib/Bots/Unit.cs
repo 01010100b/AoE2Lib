@@ -7,11 +7,16 @@ namespace AoE2Lib.Bots
 {
     public class Unit : GameElement
     {
-        public enum Order
+        public enum UnitOrder
         {
             NONE = -1, ATTACK, DEFEND, BUILD, HEAL, CONVERT, EXPLORE, STOP,
             RUNAWAY, RETREAT, GATHER, MOVE, PATROL, FOLLOW, HUNT, TRANSPORT,
             TRADE, EVADE, ENTER, REPAIR, TRAIN, RESEARCH, UNLOAD, RELIC = 31
+        }
+
+        public enum UnitStance
+        {
+            AGGRESSIVE, DEFENSIVE, STAND_GROUND, NO_ATTACK
         }
 
         public int Id { get; private set; } = -1; // 45000
@@ -20,8 +25,9 @@ namespace AoE2Lib.Bots
         public int TypeId { get; private set; } = -1; // 2000
         public int PlayerNumber { get; private set; } = -1; // 10
         public int Hitpoints { get; private set; } = -1; // 1000
-        public Order CurrentOrder { get; private set; } = Order.NONE; // 40
+        public UnitOrder Order { get; private set; } = UnitOrder.NONE; // 40
         public DateTime NextAttack { get; private set; } = DateTime.UtcNow; // 20
+        public UnitStance Stance { get; private set; } = UnitStance.AGGRESSIVE; // 4
 
         public Unit(int id)
         {
@@ -51,10 +57,12 @@ namespace AoE2Lib.Bots
             goal2 /= 10;
             Hitpoints = (goal2 % 1000) - 1;
             goal2 /= 1000;
-            CurrentOrder = (Order)((goal2 % 40) - 1);
+            Order = (UnitOrder)((goal2 % 40) - 1);
             goal2 /= 40;
             var timer = (goal2 % 20) - 1;
+            goal2 /= 20;
             NextAttack = DateTime.UtcNow + TimeSpan.FromSeconds(timer / 5d);
+            Stance = (UnitStance)(goal2 % 4);
 
             ElementUpdated();
         }

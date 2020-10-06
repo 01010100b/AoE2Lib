@@ -12,7 +12,7 @@ namespace AoE2Lib
     {
         protected enum UnitSearchType
         {
-            MILITARY, CIVILIAN, WOOD, FOOD, GOLD, STONE
+            ALL, MILITARY, CIVILIAN, RESOURCE
         }
 
         private const int SYNC_GOAL1 = 511;
@@ -43,11 +43,11 @@ namespace AoE2Lib
         private int UnitSearch1Player { get; set; } = -1;
         private Position UnitSearch1Position { get; set; } = new Position(-1, -1);
         private int UnitSearch1Radius { get; set; } = -1;
-        private UnitSearchType UnitSearch1Type { get; set; } = UnitSearchType.CIVILIAN;
+        private UnitSearchType UnitSearch1Type { get; set; } = UnitSearchType.ALL;
         private int UnitSearch2Player { get; set; } = -1;
         private Position UnitSearch2Position { get; set; } = new Position(-1, -1);
         private int UnitSearch2Radius { get; set; } = -1;
-        private UnitSearchType UnitSearch2Type { get; set; } = UnitSearchType.CIVILIAN;
+        private UnitSearchType UnitSearch2Type { get; set; } = UnitSearchType.ALL;
 
         // utils
         private Thread BotThread { get; set; } = null;
@@ -164,14 +164,20 @@ namespace AoE2Lib
 
             Goals = goals;
             StrategicNumbers = sns;
-            UpdateGameState();
 
+            UpdateGameState();
             Update(Goals[SYNC_GOAL1 - 1]);
+            GiveCommands();
 
             return true;
         }
 
         private void UpdateGameState()
+        {
+
+        }
+
+        private void GiveCommands()
         {
 
         }
