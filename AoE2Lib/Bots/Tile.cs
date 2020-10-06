@@ -13,7 +13,7 @@ namespace AoE2Lib.Bots
         public DateTime LastUpdate { get; private set; } = DateTime.MinValue;
 
         public Position Position { get; private set; } = new Position(-1, -1); // 500 x 500
-        public int UnitId { get; private set; } = -1; // 4000
+        public int UnitId { get; private set; } = -1; // 45000
         public int Elevation { get; private set; } = -1; // 64
         public int TerrainId { get; private set; } = -1; // 64
         public bool Explored { get; private set; } = false; // 2
@@ -22,20 +22,22 @@ namespace AoE2Lib.Bots
         {
             var data = goal0;
 
-            var y = (data % 500) - 1;
-            data /= 500;
             var x = (data % 500) - 1;
+            data /= 500;
+            var y = (data % 500) - 1;
             Position = new Position(x, y);
 
             data = goal1;
 
-            UnitId = (data % 4000) - 1;
-            data /= 4000;
+            UnitId = (data % 45000) - 1;
+            data /= 45000;
             Elevation = (data % 64) - 1;
             data /= 64;
             TerrainId = (data % 64) - 1;
             data /= 64;
             Explored = (data % 2) == 1;
+
+            LastUpdate = DateTime.UtcNow;
         }
     }
 }

@@ -17,12 +17,12 @@ namespace AoE2Lib.Bots
         public TimeSpan TimeSinceLastUpdate => DateTime.UtcNow - LastUpdate;
         public DateTime LastUpdate { get; private set; } = DateTime.MinValue;
 
-        public int Id { get; private set; } = -1; // 4000
+        public int Id { get; private set; } = -1; // 45000
         public Position Position { get; private set; } = new Position(-1, -1); // 500 x 500
         public int PlayerNumber { get; private set; } = -1; // 10
         public int TypeId { get; private set; } = -1; // 2000
         public int Hitpoints { get; private set; } = -1; // 1000
         public Order CurrentOrder { get; private set; } = Order.NONE; // 40
-        public int TargetId { get; private set; } = -1; // 4000
+        public int TargetId { get; private set; } = -1; // 45000
     }
 }
