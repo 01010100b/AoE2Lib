@@ -22,7 +22,7 @@ namespace AoE2Lib.Bots
         public int PlayerNumber { get; private set; } = -1; // 10
         public int TypeId { get; private set; } = -1; // 2000
         public int Hitpoints { get; private set; } = -1; // 1000
-        public int TargetId { get; private set; } = -1; // 4000
         public Order CurrentOrder { get; private set; } = Order.NONE; // 40
+        public int TargetId { get; private set; } = -1; // 4000
     }
 }
