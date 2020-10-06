@@ -164,8 +164,8 @@ namespace AoE2Lib
 
             Goals = goals;
             StrategicNumbers = sns;
-
             UpdateGameState();
+
             Update(Goals[SYNC_GOAL1 - 1]);
 
             return true;

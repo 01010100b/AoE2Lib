@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AoE2Lib.Bots
 {
-    public class Unit
+    public class Unit : GameElement
     {
         public enum Order
         {
@@ -14,15 +14,49 @@ namespace AoE2Lib.Bots
             TRADE, EVADE, ENTER, REPAIR, TRAIN, RESEARCH, UNLOAD, RELIC = 31
         }
 
-        public TimeSpan TimeSinceLastUpdate => DateTime.UtcNow - LastUpdate;
-        public DateTime LastUpdate { get; private set; } = DateTime.MinValue;
-
         public int Id { get; private set; } = -1; // 45000
+        public int TargetId { get; private set; } = -1; // 45000
         public Position Position { get; private set; } = new Position(-1, -1); // 500 x 500
-        public int PlayerNumber { get; private set; } = -1; // 10
         public int TypeId { get; private set; } = -1; // 2000
+        public int PlayerNumber { get; private set; } = -1; // 10
         public int Hitpoints { get; private set; } = -1; // 1000
         public Order CurrentOrder { get; private set; } = Order.NONE; // 40
-        public int TargetId { get; private set; } = -1; // 45000
+        public DateTime NextAttack { get; private set; } = DateTime.UtcNow; // 20
+
+        public Unit(int id)
+        {
+            Id = id;
+        }
+
+        internal void Update(int goal0, int goal1, int goal2)
+        {
+            var id = (goal0 % 45000) - 1;
+            goal0 /= 45000;
+
+            if (id != Id)
+            {
+                throw new ArgumentException("Incorrect unit id:" + id);
+            }
+
+            TargetId = (goal0 % 45000) - 1;
+
+            var x = (goal1 % 500) - 1;
+            goal1 /= 500;
+            var y = (goal1 % 500) - 1;
+            goal1 /= 500;
+            Position = new Position(x, y);
+            TypeId = (goal1 % 2000) - 1;
+
+            PlayerNumber = (goal2 % 10) - 1;
+            goal2 /= 10;
+            Hitpoints = (goal2 % 1000) - 1;
+            goal2 /= 1000;
+            CurrentOrder = (Order)((goal2 % 40) - 1);
+            goal2 /= 40;
+            var timer = (goal2 % 20) - 1;
+            NextAttack = DateTime.UtcNow + TimeSpan.FromSeconds(timer / 5d);
+
+            ElementUpdated();
+        }
     }
 }

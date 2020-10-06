@@ -6,11 +6,8 @@ using System.Text;
 
 namespace AoE2Lib.Bots
 {
-    public class Player
+    public class Player : GameElement
     {
-        public TimeSpan TimeSinceLastUpdate => DateTime.UtcNow - LastUpdate;
-        public DateTime LastUpdate { get; private set; } = DateTime.MinValue;
-
         public int PlayerNumber { get; private set; } = -1; // 10
         public int Civilization { get; private set; } = -1; // 100
         public int Score { get; private set; } = -1; // 100000
@@ -19,7 +16,12 @@ namespace AoE2Lib.Bots
         public int MilitaryPopulation { get; private set; } = -1; // 1000
         public int Stance { get; private set; } = -1; // 10
 
-        public void Update(int goal0, int goal1)
+        public Player(int player)
+        {
+            PlayerNumber = player;
+        }
+
+        internal void Update(int goal0, int goal1)
         {
             var number = (goal0 % 10) - 1;
             goal0 /= 10;
@@ -41,7 +43,7 @@ namespace AoE2Lib.Bots
             goal1 /= 1000;
             Stance = (goal1 % 10) - 1;
 
-            LastUpdate = DateTime.UtcNow;
+            ElementUpdated();
         }
     }
 }
