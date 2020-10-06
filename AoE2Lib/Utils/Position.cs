@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Text;
 
 namespace AoE2Lib.Utils
@@ -21,6 +22,38 @@ namespace AoE2Lib.Utils
             var dy = (double)(Y - other.Y);
 
             return Math.Sqrt((dx * dx) + (dy * dy));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Position pos)
+            {
+                return X == pos.X && Y == pos.Y;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return X + "," + Y;
+        }
+
+        public static bool operator ==(Position a, Position b)
+        {
+            return a.Equals(b);
+        }
+
+        public static bool operator !=(Position a, Position b)
+        {
+            return !a.Equals(b);
         }
     }
 }

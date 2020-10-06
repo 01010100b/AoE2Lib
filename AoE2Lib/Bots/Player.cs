@@ -21,23 +21,25 @@ namespace AoE2Lib.Bots
 
         public void Update(int goal0, int goal1)
         {
-            var data = goal0;
+            var number = (goal0 % 10) - 1;
+            goal0 /= 10;
 
-            PlayerNumber = (data % 10) - 1;
-            data /= 10;
-            Civilization = (data % 100) - 1;
-            data /= 100;
-            Score = (data % 100000) - 1;
-            data /= 100000;
-            Age = (data % 10) - 1;
+            if (number != PlayerNumber)
+            {
+                throw new ArgumentException("Incorrect player number: " + number);
+            }
 
-            data = goal1;
+            Civilization = (goal0 % 100) - 1;
+            goal0 /= 100;
+            Score = (goal0 % 100000) - 1;
+            goal0 /= 100000;
+            Age = (goal0 % 10) - 1;
 
-            CivilianPopulation = (data % 1000) - 1;
-            data /= 1000;
-            MilitaryPopulation = (data % 1000) - 1;
-            data /= 1000;
-            Stance = (data % 10) - 1;
+            CivilianPopulation = (goal1 % 1000) - 1;
+            goal1 /= 1000;
+            MilitaryPopulation = (goal1 % 1000) - 1;
+            goal1 /= 1000;
+            Stance = (goal1 % 10) - 1;
 
             LastUpdate = DateTime.UtcNow;
         }

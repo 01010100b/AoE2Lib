@@ -20,22 +20,23 @@ namespace AoE2Lib.Bots
 
         public void Update(int goal0, int goal1)
         {
-            var data = goal0;
+            var x = (goal0 % 500) - 1;
+            goal0 /= 500;
+            var y = (goal0 % 500) - 1;
+            var position = new Position(x, y);
 
-            var x = (data % 500) - 1;
-            data /= 500;
-            var y = (data % 500) - 1;
-            Position = new Position(x, y);
+            if (position != Position)
+            {
+                throw new ArgumentException("Incorrect tile position: " + position);
+            }
 
-            data = goal1;
-
-            UnitId = (data % 45000) - 1;
-            data /= 45000;
-            Elevation = (data % 64) - 1;
-            data /= 64;
-            TerrainId = (data % 64) - 1;
-            data /= 64;
-            Explored = (data % 2) == 1;
+            UnitId = (goal1 % 45000) - 1;
+            goal1 /= 45000;
+            Elevation = (goal1 % 64) - 1;
+            goal1 /= 64;
+            TerrainId = (goal1 % 64) - 1;
+            goal1 /= 64;
+            Explored = (goal1 % 2) == 1;
 
             LastUpdate = DateTime.UtcNow;
         }
