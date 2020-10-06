@@ -8,13 +8,18 @@ namespace AoE2Lib.Bots
 {
     public class Player : GameElement
     {
+        public enum PlayerStance
+        {
+            NONE = -1, ALLY, NEUTRAL, ENEMY
+        }
+
         public int PlayerNumber { get; private set; } = -1; // 10
         public int Civilization { get; private set; } = -1; // 100
         public int Score { get; private set; } = -1; // 100000
         public int Age { get; private set; } = -1; // 10
         public int CivilianPopulation { get; private set; } = -1; // 1000
         public int MilitaryPopulation { get; private set; } = -1; // 1000
-        public int Stance { get; private set; } = -1; // 10
+        public PlayerStance Stance { get; private set; } = PlayerStance.NONE; // 4
 
         public Player(int player)
         {
@@ -41,7 +46,7 @@ namespace AoE2Lib.Bots
             goal1 /= 1000;
             MilitaryPopulation = (goal1 % 1000) - 1;
             goal1 /= 1000;
-            Stance = (goal1 % 10) - 1;
+            Stance = (PlayerStance)(goal1 % 4) - 1;
 
             ElementUpdated();
         }

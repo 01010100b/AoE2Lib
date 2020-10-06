@@ -10,11 +10,6 @@ namespace AoE2Lib
 {
     public abstract class Bot
     {
-        protected enum UnitSearchType
-        {
-            ALL, MILITARY, CIVILIAN, RESOURCE
-        }
-
         private const int SYNC_GOAL1 = 511;
         private const int SYNC_GOAL2 = 512;
 
@@ -37,17 +32,8 @@ namespace AoE2Lib
         private readonly Dictionary<Position, Tile> _Map = new Dictionary<Position, Tile>();
         protected IReadOnlyDictionary<int, Unit> Units => _Units;
         private readonly Dictionary<int, Unit> _Units = new Dictionary<int, Unit>();
-
-        // commands
-        private readonly List<Position> TilesToCheck = new List<Position>();
-        private int UnitSearch1Player { get; set; } = -1;
-        private Position UnitSearch1Position { get; set; } = new Position(-1, -1);
-        private int UnitSearch1Radius { get; set; } = -1;
-        private UnitSearchType UnitSearch1Type { get; set; } = UnitSearchType.ALL;
-        private int UnitSearch2Player { get; set; } = -1;
-        private Position UnitSearch2Position { get; set; } = new Position(-1, -1);
-        private int UnitSearch2Radius { get; set; } = -1;
-        private UnitSearchType UnitSearch2Type { get; set; } = UnitSearchType.ALL;
+        protected IReadOnlyList<UnitTypeInfo> UnitTypeInfos => _UnitTypeInfos;
+        private readonly List<UnitTypeInfo> _UnitTypeInfos = new List<UnitTypeInfo>();
 
         // utils
         private Thread BotThread { get; set; } = null;
@@ -81,27 +67,6 @@ namespace AoE2Lib
         protected abstract void StartGame();
 
         protected abstract void Update(int tick);
-
-        protected void CheckTile(Position position)
-        {
-            TilesToCheck.Add(position);
-        }
-
-        protected void SearchForUnits1(int player, Position position, int radius, UnitSearchType type)
-        {
-            UnitSearch1Player = player;
-            UnitSearch1Position = position;
-            UnitSearch1Radius = radius;
-            UnitSearch1Type = type;
-        }
-
-        protected void SearchForUnits2(int player, Position position, int radius, UnitSearchType type)
-        {
-            UnitSearch2Player = player;
-            UnitSearch2Position = position;
-            UnitSearch2Radius = radius;
-            UnitSearch2Type = type;
-        }
 
         private void Run()
         {
