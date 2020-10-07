@@ -12,17 +12,17 @@ namespace AoE2Lib.Bots
             ALL, MILITARY, CIVILIAN, RESOURCE
         }
 
-        private readonly List<Position> TilesToCheck = new List<Position>();
-        private int UnitSearch1Player { get; set; } = -1;
-        private Position UnitSearch1Position { get; set; } = new Position(-1, -1);
-        private int UnitSearch1Radius { get; set; } = -1;
-        private UnitSearchType UnitSearch1Type { get; set; } = UnitSearchType.ALL;
-        private int UnitSearch2Player { get; set; } = -1;
-        private Position UnitSearch2Position { get; set; } = new Position(-1, -1);
-        private int UnitSearch2Radius { get; set; } = -1;
-        private UnitSearchType UnitSearch2Type { get; set; } = UnitSearchType.ALL;
-        private int UnitTypeInfoPlayer { get; set; } = -1;
-        private int UnitTypeInfoType { get; set; } = -1;
+        internal readonly List<Position> TilesToCheck = new List<Position>();
+        internal int UnitSearch1Player { get; private set; } = -1;
+        internal Position UnitSearch1Position { get; private set; } = new Position(-1, -1);
+        internal int UnitSearch1Radius { get; private set; } = -1;
+        internal UnitSearchType UnitSearch1Type { get; private set; } = UnitSearchType.ALL;
+        internal int UnitSearch2Player { get; private set; } = -1;
+        internal Position UnitSearch2Position { get; private set; } = new Position(-1, -1);
+        internal int UnitSearch2Radius { get; private set; } = -1;
+        internal UnitSearchType UnitSearch2Type { get; private set; } = UnitSearchType.ALL;
+        internal int UnitTypeInfoPlayer { get; private set; } = -1;
+        internal int UnitTypeInfoType { get; private set; } = -1;
 
         public void CheckTile(Position position)
         {
@@ -43,6 +43,12 @@ namespace AoE2Lib.Bots
             UnitSearch2Position = position;
             UnitSearch2Radius = radius;
             UnitSearch2Type = type;
+        }
+
+        public void GetUnitTypeInfo(int player, int type)
+        {
+            UnitTypeInfoPlayer = player;
+            UnitTypeInfoType = type;
         }
     }
 }

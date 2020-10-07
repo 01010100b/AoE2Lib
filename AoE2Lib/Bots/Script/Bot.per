@@ -1,0 +1,106 @@
+; set this number to your bot's unique id
+(defconst BOT-ID 27613)
+
+; ==== do not edit beyond this point
+
+; goals
+
+; 1-50 general game info
+; 51-90 map tiles
+; 91-100 reserved
+; 101-280 units
+; 281-300 reserved
+; 301-400 reserved
+; 401-450 reserved
+; 451-500 utils
+; 501-512 special
+
+(defconst gl-cost-food 451)
+(defconst gl-cost-wood 452)
+(defconst gl-cost-stone 453)
+(defconst gl-cost-gold 454)
+(defconst gl-cost 451)
+
+(defconst gl-point1-x 455)
+(defconst gl-point1-y 456)
+(defconst gl-point1 455)
+
+(defconst gl-point2-x 457)
+(defconst gl-point2-y 458)
+(defconst gl-point2 457)
+
+(defconst gl-point3-x 459)
+(defconst gl-point3-y 460)
+(defconst gl-point3 459)
+
+(defconst gl-temp1 461)
+(defconst gl-temp2 462)
+(defconst gl-temp3 463)
+(defconst gl-temp4 464)
+(defconst gl-temp5 465)
+(defconst gl-temp6 466)
+(defconst gl-temp7 467)
+(defconst gl-temp8 468)
+(defconst gl-temp9 469)
+(defconst gl-temp10 470)
+(defconst gl-temp11 471)
+(defconst gl-temp12 472)
+(defconst gl-temp13 473)
+(defconst gl-temp14 474)
+(defconst gl-temp15 475)
+(defconst gl-temp16 476)
+(defconst gl-temp17 477)
+(defconst gl-temp18 478)
+(defconst gl-temp19 479)
+(defconst gl-temp20 480)
+
+(defconst SYNC-GOAL1 511)
+(defconst SYNC-GOAL2 512)
+
+; strategic numbers
+
+; 351-370 check tiles
+
+(defconst sn-tile1 351)
+(defconst sn-tile2 352)
+(defconst sn-tile3 353)
+(defconst sn-tile4 354)
+(defconst sn-tile5 355)
+(defconst sn-tile6 356)
+(defconst sn-tile7 357)
+(defconst sn-tile8 358)
+(defconst sn-tile9 359)
+(defconst sn-tile10 360)
+(defconst sn-tile11 361)
+(defconst sn-tile12 362)
+(defconst sn-tile13 363)
+(defconst sn-tile14 364)
+(defconst sn-tile15 365)
+(defconst sn-tile16 366)
+(defconst sn-tile17 367)
+(defconst sn-tile18 368)
+(defconst sn-tile19 369)
+(defconst sn-tile20 370)
+
+(defrule
+	(true)
+=>
+	(set-goal 420 BOT-ID)
+	(set-goal SYNC-GOAL1 0)
+	(set-goal SYNC-GOAL2 0)
+	(disable-self)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal SYNC-GOAL1 c:+ 1)
+)
+
+; load bot here
+
+(defrule
+	(true)
+=>
+	(up-modify-goal SYNC-GOAL2 c:+ 1)
+)

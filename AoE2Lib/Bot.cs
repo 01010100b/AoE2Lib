@@ -12,6 +12,7 @@ namespace AoE2Lib
     {
         private const int SYNC_GOAL1 = 511;
         private const int SYNC_GOAL2 = 512;
+        private const int FREE_SN = 350;
 
         public abstract string Name { get; }
         public abstract int Id { get; }
@@ -26,8 +27,8 @@ namespace AoE2Lib
         // game state
         protected Position MyPosition { get; private set; } = new Position(-1, -1);
         protected int MapWidthHeight { get; private set; } = -1;
-        protected IReadOnlyDictionary<int, Player> Players => _Players;
-        private readonly Dictionary<int, Player> _Players = new Dictionary<int, Player>();
+        protected IReadOnlyList<Player> Players => _Players;
+        private readonly List<Player> _Players = new List<Player>();
         protected IReadOnlyDictionary<Position, Tile> Map => _Map;
         private readonly Dictionary<Position, Tile> _Map = new Dictionary<Position, Tile>();
         protected IReadOnlyDictionary<int, Unit> Units => _Units;
@@ -51,6 +52,8 @@ namespace AoE2Lib
             Instance = instance;
             PlayerNumber = player;
 
+            // TODO reset game state
+
             Running = true;
             Stopping = false;
 
@@ -66,7 +69,7 @@ namespace AoE2Lib
 
         protected abstract void StartGame();
 
-        protected abstract void Update(int tick);
+        protected abstract Command Tick(int tick);
 
         private void Run()
         {
@@ -131,20 +134,20 @@ namespace AoE2Lib
             StrategicNumbers = sns;
 
             UpdateGameState();
-            Update(Goals[SYNC_GOAL1 - 1]);
-            GiveCommands();
+            var command = Tick(Goals[SYNC_GOAL1 - 1]);
+            GiveCommand(command);
 
             return true;
         }
 
         private void UpdateGameState()
         {
-
+            throw new NotImplementedException();
         }
 
-        private void GiveCommands()
+        private void GiveCommand(Command command)
         {
-
+            throw new NotImplementedException();
         }
 
         private int GetGoal(int id)
