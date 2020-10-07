@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime;
 using System.Text;
 using System.Threading;
+using static AoE2Lib.Bots.Command;
 
 namespace AoE2Lib
 {
@@ -232,10 +234,56 @@ namespace AoE2Lib
 
             if (command.UnitSearch1Player < 0 || command.UnitSearch2Player < 0 || command.UnitSearch3Player < 0)
             {
-                var explored = Tiles.Values.Where(t => t.Explored).ToList();
+                var explored = Tiles.Values.Where(t => t.Explored).Select(t => t.Position).ToList();
+                if (explored.Count == 0)
+                {
+                    explored.Add(MyPosition);
+                }
 
-                throw new NotImplementedException();
+                var player = PlayerNumber;
+                if (RNG.NextDouble() < 0.5)
+                {
+                    player = 0;
+
+                    if (RNG.NextDouble() < 0.5)
+                    {
+                        player = RNG.Next(9);
+                    }
+                }
+                
+                var type = UnitSearchType.CIVILIAN;
+                if (RNG.NextDouble() < 0.5)
+                {
+                    type = UnitSearchType.MILITARY;
+                }
+
+                if (player == 0)
+                {
+                    type = UnitSearchType.RESOURCE;
+
+                    if (RNG.NextDouble() < 0.1)
+                    {
+                        type = UnitSearchType.ALL;
+                    }
+                }
+
+                if (command.UnitSearch1Player < 0)
+                {
+                    command.SearchForUnits1(player, explored[RNG.Next(explored.Count)], 20, type);
+                }
+
+                if (command.UnitSearch2Player < 0)
+                {
+                    command.SearchForUnits2(player, explored[RNG.Next(explored.Count)], 20, type);
+                }
+
+                if (command.UnitSearch3Player < 0)
+                {
+                    command.SearchForUnits3(player, explored[RNG.Next(explored.Count)], 20, type);
+                }
             }
+
+            throw new NotImplementedException();
         }
 
         private int GetGoal(int id)
