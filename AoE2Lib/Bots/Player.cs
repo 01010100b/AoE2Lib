@@ -13,7 +13,7 @@ namespace AoE2Lib.Bots
             NONE = -1, ALLY, NEUTRAL, ENEMY
         }
 
-        public int PlayerNumber { get; private set; } = -1; // 10
+        public readonly int PlayerNumber; // 10
         public int Civilization { get; private set; } = -1; // 100
         public int Score { get; private set; } = -1; // 100000
         public int Age { get; private set; } = -1; // 10

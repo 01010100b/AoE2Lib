@@ -9,7 +9,7 @@ namespace AoE2Lib.Bots
 {
     public class Tile : GameElement
     {
-        public Position Position { get; private set; } = new Position(-1, -1); // 500 x 500
+        public readonly Position Position; // 500 x 500
         public int UnitId { get; private set; } = -1; // 45000
         public int Elevation { get; private set; } = -1; // 64
         public int TerrainId { get; private set; } = -1; // 64

@@ -6,8 +6,8 @@ namespace AoE2Lib.Bots
 {
     public class UnitTypeInfo : GameElement
     {
-        public int PlayerNumber { get; private set; } = -1; // 10
-        public int TypeId { get; private set; } = -1; // 2000
+        public readonly int PlayerNumber; // 10
+        public readonly int TypeId; // 2000
         public int MaxHitpoints { get; private set; } = -1; // 1000
         public int Range { get; private set; } = -1; // 25
         public double Speed { get; private set; } = -1; // 130

@@ -19,7 +19,7 @@ namespace AoE2Lib.Bots
             AGGRESSIVE, DEFENSIVE, STAND_GROUND, NO_ATTACK
         }
 
-        public int Id { get; private set; } = -1; // 45000
+        public readonly int Id; // 45000
         public int TargetId { get; private set; } = -1; // 45000
         public Position Position { get; private set; } = new Position(-1, -1); // 500 x 500
         public int TypeId { get; private set; } = -1; // 2000
