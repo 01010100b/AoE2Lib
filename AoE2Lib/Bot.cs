@@ -3,6 +3,7 @@ using AoE2Lib.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using System.Threading;
 
@@ -29,8 +30,8 @@ namespace AoE2Lib
         protected int MapWidthHeight { get; private set; } = -1;
         protected IReadOnlyList<Player> Players => _Players;
         private readonly List<Player> _Players = new List<Player>();
-        protected IReadOnlyDictionary<Position, Tile> Map => _Map;
-        private readonly Dictionary<Position, Tile> _Map = new Dictionary<Position, Tile>();
+        protected IReadOnlyDictionary<Position, Tile> Tiles => _Tiles;
+        private readonly Dictionary<Position, Tile> _Tiles = new Dictionary<Position, Tile>();
         protected IReadOnlyDictionary<int, Unit> Units => _Units;
         private readonly Dictionary<int, Unit> _Units = new Dictionary<int, Unit>();
         protected IReadOnlyList<UnitTypeInfo> UnitTypeInfos => _UnitTypeInfos;
@@ -73,21 +74,21 @@ namespace AoE2Lib
 
         protected IEnumerable<Tile> GetTilesBydistance(Position position)
         {
+            yield return Tiles[position];
+
             for (int r = 1; r < MapWidthHeight; r++)
             {
-                var x = 0;
-                var y = 0;
+                int x, y;
 
                 x = position.X - r;
                 for (int dy = -r; dy <= r; dy++)
                 {
                     y = position.Y + dy;
-
                     var pos = new Position(x, y);
 
-                    if (OnMap(pos))
+                    if (pos.OnMap(MapWidthHeight))
                     {
-                        yield return Map[pos];
+                        yield return Tiles[pos];
                     }
                 }
 
@@ -95,12 +96,11 @@ namespace AoE2Lib
                 for (int dy = -r; dy <= r; dy++)
                 {
                     y = position.Y + dy;
-
                     var pos = new Position(x, y);
 
-                    if (OnMap(pos))
+                    if (pos.OnMap(MapWidthHeight))
                     {
-                        yield return Map[pos];
+                        yield return Tiles[pos];
                     }
                 }
 
@@ -108,12 +108,11 @@ namespace AoE2Lib
                 for (int dx = -r + 1; dx <= r - 1; dx++)
                 {
                     x = position.X + dx;
-
                     var pos = new Position(x, y);
 
-                    if (OnMap(pos))
+                    if (pos.OnMap(MapWidthHeight))
                     {
-                        yield return Map[pos];
+                        yield return Tiles[pos];
                     }
                 }
 
@@ -121,20 +120,14 @@ namespace AoE2Lib
                 for (int dx = -r + 1; dx <= r - 1; dx++)
                 {
                     x = position.X + dx;
-
                     var pos = new Position(x, y);
 
-                    if (OnMap(pos))
+                    if (pos.OnMap(MapWidthHeight))
                     {
-                        yield return Map[pos];
+                        yield return Tiles[pos];
                     }
                 }
             }
-        }
-
-        protected bool OnMap(Position position)
-        {
-            return (position.X >= 0) && (position.Y >= 0) && (position.X < MapWidthHeight) && (position.Y < MapWidthHeight);
         }
 
         private void Run()
@@ -213,7 +206,36 @@ namespace AoE2Lib
 
         private void GiveCommand(Command command)
         {
+            CheckCommand(command);
+
             throw new NotImplementedException();
+        }
+
+        private void CheckCommand(Command command)
+        {
+            if (command.TilesToCheck.Count < 10)
+            {
+                var tile_timer = TimeSpan.FromMinutes(2);
+
+                foreach (var tile in GetTilesBydistance(MyPosition).Where(t => t.TimeSinceLastUpdate > tile_timer && !t.Explored))
+                {
+                    if (command.TilesToCheck.Count < 10)
+                    {
+                        command.TilesToCheck.Add(tile.Position);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+
+            if (command.UnitSearch1Player < 0 || command.UnitSearch2Player < 0 || command.UnitSearch3Player < 0)
+            {
+                var explored = Tiles.Values.Where(t => t.Explored).ToList();
+
+                throw new NotImplementedException();
+            }
         }
 
         private int GetGoal(int id)

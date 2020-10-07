@@ -12,7 +12,7 @@ namespace AoE2Lib.Bots
             ALL, MILITARY, CIVILIAN, RESOURCE
         }
 
-        internal readonly List<Position> TilesToCheck = new List<Position>();
+        internal readonly HashSet<Position> TilesToCheck = new HashSet<Position>();
         internal int UnitSearch1Player { get; private set; } = -1;
         internal Position UnitSearch1Position { get; private set; } = new Position(-1, -1);
         internal int UnitSearch1Radius { get; private set; } = -1;
@@ -21,6 +21,10 @@ namespace AoE2Lib.Bots
         internal Position UnitSearch2Position { get; private set; } = new Position(-1, -1);
         internal int UnitSearch2Radius { get; private set; } = -1;
         internal UnitSearchType UnitSearch2Type { get; private set; } = UnitSearchType.ALL;
+        internal int UnitSearch3Player { get; private set; } = -1;
+        internal Position UnitSearch3Position { get; private set; } = new Position(-1, -1);
+        internal int UnitSearch3Radius { get; private set; } = -1;
+        internal UnitSearchType UnitSearch3Type { get; private set; } = UnitSearchType.ALL;
         internal int UnitTypeInfoPlayer { get; private set; } = -1;
         internal int UnitTypeInfoType { get; private set; } = -1;
 
@@ -43,6 +47,14 @@ namespace AoE2Lib.Bots
             UnitSearch2Position = position;
             UnitSearch2Radius = radius;
             UnitSearch2Type = type;
+        }
+
+        public void SearchForUnits3(int player, Position position, int radius, UnitSearchType type)
+        {
+            UnitSearch3Player = player;
+            UnitSearch3Position = position;
+            UnitSearch3Radius = radius;
+            UnitSearch3Type = type;
         }
 
         public void GetUnitTypeInfo(int player, int type)

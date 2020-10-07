@@ -16,6 +16,11 @@ namespace AoE2Lib.Utils
             Y = y;
         }
 
+        public bool OnMap(int map_size)
+        {
+            return (X >= 0) && (X < map_size) && (Y >= 0) && (Y < map_size);
+        }
+
         public double DistanceTo(Position other)
         {
             var dx = (double)(X - other.X);
