@@ -72,7 +72,7 @@ namespace AoE2Lib
 
         protected abstract void StartGame();
 
-        protected abstract Command Tick(int tick);
+        protected abstract Command Update(int tick);
 
         protected IEnumerable<Tile> GetTilesBydistance(Position position)
         {
@@ -83,50 +83,62 @@ namespace AoE2Lib
                 int x, y;
 
                 x = position.X - r;
-                for (int dy = -r; dy <= r; dy++)
+                if (x >= 0)
                 {
-                    y = position.Y + dy;
-                    var pos = new Position(x, y);
-
-                    if (pos.OnMap(MapWidthHeight))
+                    for (int dy = -r; dy <= r; dy++)
                     {
-                        yield return Tiles[pos];
+                        y = position.Y + dy;
+                        var pos = new Position(x, y);
+
+                        if (pos.OnMap(MapWidthHeight))
+                        {
+                            yield return Tiles[pos];
+                        }
                     }
                 }
-
+                
                 x = position.X + r;
-                for (int dy = -r; dy <= r; dy++)
+                if (x < MapWidthHeight)
                 {
-                    y = position.Y + dy;
-                    var pos = new Position(x, y);
-
-                    if (pos.OnMap(MapWidthHeight))
+                    for (int dy = -r; dy <= r; dy++)
                     {
-                        yield return Tiles[pos];
+                        y = position.Y + dy;
+                        var pos = new Position(x, y);
+
+                        if (pos.OnMap(MapWidthHeight))
+                        {
+                            yield return Tiles[pos];
+                        }
                     }
                 }
-
+                
                 y = position.Y - r;
-                for (int dx = -r + 1; dx <= r - 1; dx++)
+                if (y >= 0)
                 {
-                    x = position.X + dx;
-                    var pos = new Position(x, y);
-
-                    if (pos.OnMap(MapWidthHeight))
+                    for (int dx = -r + 1; dx <= r - 1; dx++)
                     {
-                        yield return Tiles[pos];
+                        x = position.X + dx;
+                        var pos = new Position(x, y);
+
+                        if (pos.OnMap(MapWidthHeight))
+                        {
+                            yield return Tiles[pos];
+                        }
                     }
                 }
-
+                
                 y = position.Y + r;
-                for (int dx = -r + 1; dx <= r - 1; dx++)
+                if (y < MapWidthHeight)
                 {
-                    x = position.X + dx;
-                    var pos = new Position(x, y);
-
-                    if (pos.OnMap(MapWidthHeight))
+                    for (int dx = -r + 1; dx <= r - 1; dx++)
                     {
-                        yield return Tiles[pos];
+                        x = position.X + dx;
+                        var pos = new Position(x, y);
+
+                        if (pos.OnMap(MapWidthHeight))
+                        {
+                            yield return Tiles[pos];
+                        }
                     }
                 }
             }
@@ -195,7 +207,7 @@ namespace AoE2Lib
             StrategicNumbers = sns;
 
             UpdateGameState();
-            var command = Tick(Goals[SYNC_GOAL1 - 1]);
+            var command = Update(Goals[SYNC_GOAL1 - 1]);
             GiveCommand(command);
 
             return true;
@@ -217,9 +229,9 @@ namespace AoE2Lib
         {
             if (command.TilesToCheck.Count < 10)
             {
-                var tile_timer = TimeSpan.FromMinutes(2);
+                var tile_time = DateTime.UtcNow - TimeSpan.FromMinutes(2);
 
-                foreach (var tile in GetTilesBydistance(MyPosition).Where(t => t.TimeSinceLastUpdate > tile_timer && !t.Explored))
+                foreach (var tile in GetTilesBydistance(MyPosition).Where(t => t.LastUpdate < tile_time && !t.Explored))
                 {
                     if (command.TilesToCheck.Count < 10)
                     {
