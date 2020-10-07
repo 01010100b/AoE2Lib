@@ -74,7 +74,7 @@ namespace AoE2Lib
 
         protected abstract Command Update(int tick);
 
-        protected IEnumerable<Tile> GetTilesBydistance(Position position)
+        protected IEnumerable<Tile> GetTilesByDistance(Position position)
         {
             yield return Tiles[position];
 
@@ -231,7 +231,7 @@ namespace AoE2Lib
             {
                 var tile_time = DateTime.UtcNow - TimeSpan.FromMinutes(2);
 
-                foreach (var tile in GetTilesBydistance(MyPosition).Where(t => t.LastUpdate < tile_time && !t.Explored))
+                foreach (var tile in GetTilesByDistance(MyPosition).Where(t => t.LastUpdate < tile_time && !t.Explored))
                 {
                     if (command.TilesToCheck.Count < 10)
                     {
