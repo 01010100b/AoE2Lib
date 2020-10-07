@@ -71,6 +71,72 @@ namespace AoE2Lib
 
         protected abstract Command Tick(int tick);
 
+        protected IEnumerable<Tile> GetTilesBydistance(Position position)
+        {
+            for (int r = 1; r < MapWidthHeight; r++)
+            {
+                var x = 0;
+                var y = 0;
+
+                x = position.X - r;
+                for (int dy = -r; dy <= r; dy++)
+                {
+                    y = position.Y + dy;
+
+                    var pos = new Position(x, y);
+
+                    if (OnMap(pos))
+                    {
+                        yield return Map[pos];
+                    }
+                }
+
+                x = position.X + r;
+                for (int dy = -r; dy <= r; dy++)
+                {
+                    y = position.Y + dy;
+
+                    var pos = new Position(x, y);
+
+                    if (OnMap(pos))
+                    {
+                        yield return Map[pos];
+                    }
+                }
+
+                y = position.Y - r;
+                for (int dx = -r + 1; dx <= r - 1; dx++)
+                {
+                    x = position.X + dx;
+
+                    var pos = new Position(x, y);
+
+                    if (OnMap(pos))
+                    {
+                        yield return Map[pos];
+                    }
+                }
+
+                y = position.Y + r;
+                for (int dx = -r + 1; dx <= r - 1; dx++)
+                {
+                    x = position.X + dx;
+
+                    var pos = new Position(x, y);
+
+                    if (OnMap(pos))
+                    {
+                        yield return Map[pos];
+                    }
+                }
+            }
+        }
+
+        protected bool OnMap(Position position)
+        {
+            return (position.X >= 0) && (position.Y >= 0) && (position.X < MapWidthHeight) && (position.Y < MapWidthHeight);
+        }
+
         private void Run()
         {
             StartGame();

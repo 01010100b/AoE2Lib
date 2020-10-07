@@ -6,12 +6,9 @@
 ; goals
 
 ; 1-50 general game info
-; 51-90 map tiles
-; 91-100 reserved
-; 101-280 units
-; 281-300 reserved
-; 301-400 reserved
-; 401-450 reserved
+; 51-100 map
+; 101-350 units
+; 351-450 reserved
 ; 451-500 utils
 ; 501-512 special
 
@@ -58,6 +55,8 @@
 (defconst SYNC-GOAL2 512)
 
 ; strategic numbers
+
+(defconst sn-random 350) ; random number between 10k and 30k, changes each tick
 
 ; 351-370 check tiles
 
