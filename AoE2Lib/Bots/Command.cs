@@ -2,18 +2,19 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static AoE2Lib.Bots.Command.UnitSearchCommand;
 
 namespace AoE2Lib.Bots
 {
     public class Command
     {
-        public enum UnitSearchType
+        public struct UnitSearchCommand
         {
-            MILITARY, CIVILIAN, BUILDING, WOOD, FOOD, GOLD, STONE
-        }
+            public enum UnitSearchType
+            {
+                MILITARY, CIVILIAN, BUILDING, WOOD, FOOD, GOLD, STONE
+            }
 
-        internal struct UnitSearchCommand
-        {
             public readonly int Player;
             public readonly Position Position;
             public readonly int Radius;
@@ -38,9 +39,9 @@ namespace AoE2Lib.Bots
             TilesToCheck.Add(position);
         }
 
-        public void SearchForUnits(int player, Position position, int radius, UnitSearchType type)
+        public void SearchForUnits(UnitSearchCommand search)
         {
-            UnitSearchCommands.Add(new UnitSearchCommand(player, position, radius, type));
+            UnitSearchCommands.Add(search);
         }
 
         public void GetUnitTypeInfo(int player, int type)

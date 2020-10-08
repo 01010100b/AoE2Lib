@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static AoE2Lib.Bots.Command;
+using static AoE2Lib.Bots.Command.UnitSearchCommand;
 using static AoE2Lib.Bots.UnitTypeInfo;
 
 namespace Quaternary
@@ -136,7 +137,7 @@ namespace Quaternary
                 var position = explored[RNG.Next(explored.Count)];
                 var radius = 20;
 
-                command.SearchForUnits(player, position, radius, type);
+                command.SearchForUnits(new UnitSearchCommand(player, position, radius, type));
             }
         }
 

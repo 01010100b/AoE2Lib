@@ -147,11 +147,13 @@ namespace AoE2Lib
             const int SN_RANDOM = 350;
             const int SN_TILE_START = 351;
             const int SN_TILE_END = 370;
-            const int SN_UNITSEARCH1 = 401;
-            const int SN_UNITSEARCH2 = 402;
-            const int SN_UNITSEARCH3 = 403;
+            const int SN_UNITSEARCH_START = 401;
+            const int SN_UNITSEARCH_END = 403;
+            const int SN_UNITTYPEINFO = 411;
 
             SetStrategicNumber(SN_RANDOM, RNG.Next(10000, 30000));
+
+            // tiles
 
             var offset = SN_TILE_START;
             int sn;
@@ -176,8 +178,50 @@ namespace AoE2Lib
                 offset++;
             }
 
+            // unit search
 
-            throw new NotImplementedException();
+            offset = SN_UNITSEARCH_START;
+            foreach (var search in command.UnitSearchCommands.Where(s => s.Player >= 0 && s.Player <= 8 && s.Position.OnMap(GameState.MapWidthHeight)))
+            {
+                sn = search.Player;
+                sn *= 500;
+                sn += search.Position.X;
+                sn *= 500;
+                sn += search.Position.Y;
+                sn *= 100;
+                sn += Math.Max(1, Math.Min(99, search.Radius));
+                sn *= 7;
+                sn += (int)search.SearchType;
+
+                SetStrategicNumber(offset, sn);
+                offset++;
+
+                if (offset > SN_UNITSEARCH_END)
+                {
+                    break;
+                }
+            }
+
+            while (offset <= SN_UNITSEARCH_END)
+            {
+                SetStrategicNumber(offset, -1);
+                offset++;
+            }
+
+            // unit type info
+
+            if (command.UnitTypeInfoPlayer >= 0 && command.UnitTypeInfoPlayer <= 8)
+            {
+                sn = command.UnitTypeInfoPlayer;
+                sn *= 2000;
+                sn += command.UnitTypeInfoType;
+            }
+            else
+            {
+                sn = -1;
+            }
+
+            SetStrategicNumber(SN_UNITTYPEINFO, sn);
         }
 
         private int GetGoal(int id)
