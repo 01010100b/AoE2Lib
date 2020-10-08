@@ -100,8 +100,8 @@ namespace AoE2Lib
 
         private bool TryUpdate()
         {
-            const int SYNC_GOAL1 = 1;
-            const int SYNC_GOAL2 = 512;
+            const int SYNC_GOAL1 = 512;
+            const int SYNC_GOAL2 = 1;
 
             var goals = Instance.GetGoals(PlayerNumber);
 
@@ -127,7 +127,7 @@ namespace AoE2Lib
                 return true;
             }
 
-            if (Goals[SYNC_GOAL1 - 1] == goals[SYNC_GOAL1 - 1])
+            if (Goals != null && Goals[SYNC_GOAL1 - 1] == goals[SYNC_GOAL1 - 1])
             {
                 return true;
             }
@@ -135,11 +135,35 @@ namespace AoE2Lib
             Goals = goals;
             StrategicNumbers = sns;
 
-            GameState.Update(Goals, StrategicNumbers);
+            UpdateGameState();
             var command = GetNextCommand();
             GiveCommand(command);
 
             return true;
+        }
+
+        private void UpdateGameState()
+        {
+            UpdateGameInfo();
+        }
+
+        private void UpdateGameInfo()
+        {
+            const int GL_GAMETIME = 11;
+            const int GL_WOOD = 21;
+            const int GL_FOOD = 22;
+            const int GL_GOLD = 23;
+            const int GL_STONE = 24;
+            const int GL_POPULATION_HEADROOM = 25;
+            const int GL_HOUSING_HEADROOM = 26;
+
+            GameState.GameTime = TimeSpan.FromSeconds(GetGoal(GL_GAMETIME));
+            GameState.WoodAmount = GetGoal(GL_WOOD);
+            GameState.FoodAmount = GetGoal(GL_FOOD);
+            GameState.GoldAmount = GetGoal(GL_GOLD);
+            GameState.StoneAmount = GetGoal(GL_STONE);
+            GameState.PopulationHeadroom = GetGoal(GL_POPULATION_HEADROOM);
+            GameState.HousingHeadroom = GetGoal(GL_HOUSING_HEADROOM);
         }
 
         private void GiveCommand(Command command)

@@ -8,20 +8,35 @@ namespace AoE2Lib.Bots
 {
     public class GameState
     {
-        public Position MyPosition { get; private set; } = new Position(-1, -1);
-        public int MapWidthHeight { get; private set; } = -1;
+        public TimeSpan GameTime { get; internal set; } = TimeSpan.Zero;
+        public int WoodAmount { get; internal set; } = -1;
+        public int FoodAmount { get; internal set; } = -1;
+        public int GoldAmount { get; internal set; } = -1;
+        public int StoneAmount { get; internal set; } = -1;
+        public int PopulationHeadroom { get; internal set; } = -1;
+        public int HousingHeadroom { get; internal set; } = -1;
+        public Position MyPosition { get; internal set; } = new Position(-1, -1);
+        public int MapWidthHeight { get; internal set; } = -1;
         public IReadOnlyList<Player> Players => _Players;
-        private readonly List<Player> _Players = new List<Player>();
+        internal readonly List<Player> _Players = new List<Player>();
         public IReadOnlyDictionary<Position, Tile> Tiles => _Tiles;
-        private readonly Dictionary<Position, Tile> _Tiles = new Dictionary<Position, Tile>();
+        internal readonly Dictionary<Position, Tile> _Tiles = new Dictionary<Position, Tile>();
         public IReadOnlyDictionary<int, Unit> Units => _Units;
-        private readonly Dictionary<int, Unit> _Units = new Dictionary<int, Unit>();
+        internal readonly Dictionary<int, Unit> _Units = new Dictionary<int, Unit>();
         public IReadOnlyDictionary<UnitTypeKey, UnitTypeInfo> UnitTypeInfos => _UnitTypeInfos;
-        private readonly Dictionary<UnitTypeKey, UnitTypeInfo> _UnitTypeInfos = new Dictionary<UnitTypeKey, UnitTypeInfo>();
+        internal readonly Dictionary<UnitTypeKey, UnitTypeInfo> _UnitTypeInfos = new Dictionary<UnitTypeKey, UnitTypeInfo>();
 
-        internal void Update(int[] goals, int[] sns)
+        public override string ToString()
         {
+            var sb = new StringBuilder();
+            
+            sb.AppendLine("--- CURRENT STATE ---");
+            sb.AppendLine();
 
+            sb.AppendLine($"game time: {GameTime}");
+            sb.AppendLine($"Wod {WoodAmount} Food {FoodAmount} Gold {GoldAmount} Stone {StoneAmount} Population Headroom {PopulationHeadroom} Housing Headroom {HousingHeadroom}");
+
+            return sb.ToString();
         }
     }
 }

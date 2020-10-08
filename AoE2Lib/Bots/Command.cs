@@ -44,7 +44,7 @@ namespace AoE2Lib.Bots
             UnitSearchCommands.Add(search);
         }
 
-        public void GetUnitTypeInfo(int player, int type)
+        public void CheckUnitTypeInfo(int player, int type)
         {
             UnitTypeInfoPlayer = player;
             UnitTypeInfoType = type;

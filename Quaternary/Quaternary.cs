@@ -2,6 +2,7 @@
 using AoE2Lib.Bots;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,8 @@ namespace Quaternary
             CheckTiles(command);
             CheckUnits(command);
             CheckUnitTypeInfo(command);
+
+            LogState();
 
             return command;
         }
@@ -75,7 +78,7 @@ namespace Quaternary
                 }
             });
             
-            for (int i = 0; i < TILES_PER_COMMAND; i++)
+            for (int i = 0; i < Math.Min(tiles.Count, TILES_PER_COMMAND); i++)
             {
                 command.CheckTile(tiles[i].Position);
             }
@@ -83,13 +86,15 @@ namespace Quaternary
 
         private void CheckUnits(Command command)
         {
+            const int UNIT_SEARCHES_PER_TICK = 3;
+
             var explored = GameState.Tiles.Values.Where(t => t.Explored).Select(t => t.Position).ToList();
             if (explored.Count == 0)
             {
                 explored.Add(GameState.MyPosition);
             }
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < UNIT_SEARCHES_PER_TICK; i++)
             {
                 var player = PlayerNumber;
                 if (RNG.NextDouble() < 0.5)
@@ -157,7 +162,12 @@ namespace Quaternary
                 }
             }
 
-            command.GetUnitTypeInfo(player, type);
+            command.CheckUnitTypeInfo(player, type);
+        }
+
+        private void LogState()
+        {
+            Log.Debug(GameState);
         }
     }
 }

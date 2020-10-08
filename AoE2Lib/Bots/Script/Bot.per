@@ -14,7 +14,7 @@
 ; 451-500 utils
 ; 501-512 special
 
-(defconst SYNC-GOAL1 1)
+(defconst SYNC-GOAL2 1)
 
 (defconst gl-cost-food 451)
 (defconst gl-cost-wood 452)
@@ -56,34 +56,13 @@
 (defconst gl-temp20 480)
 
 (defconst IDENTITY-GOAL 511)
-(defconst SYNC-GOAL2 512)
+(defconst SYNC-GOAL1 512)
 
 ; strategic numbers
 
 (defconst sn-random 350) ; random number between 10k and 30k, changes each tick
 
 ; 351-370 check tiles
-
-(defconst sn-tile1 351)
-(defconst sn-tile2 352)
-(defconst sn-tile3 353)
-(defconst sn-tile4 354)
-(defconst sn-tile5 355)
-(defconst sn-tile6 356)
-(defconst sn-tile7 357)
-(defconst sn-tile8 358)
-(defconst sn-tile9 359)
-(defconst sn-tile10 360)
-(defconst sn-tile11 361)
-(defconst sn-tile12 362)
-(defconst sn-tile13 363)
-(defconst sn-tile14 364)
-(defconst sn-tile15 365)
-(defconst sn-tile16 366)
-(defconst sn-tile17 367)
-(defconst sn-tile18 368)
-(defconst sn-tile19 369)
-(defconst sn-tile20 370)
 
 (defrule
 	(true)
@@ -100,7 +79,12 @@
 	(up-modify-goal SYNC-GOAL1 c:+ 1)
 )
 
-; load bot here
+; start bot
+
+(load "Bot\UserPatchConst")
+(load "Bot\Info")
+
+; end bot
 
 (defrule
 	(true)

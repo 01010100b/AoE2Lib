@@ -1,0 +1,24 @@
+; 11-50 general info
+
+(defconst gl-info-gametime 11)
+
+(defconst gl-info-wood 21)
+(defconst gl-info-food 22)
+(defconst gl-info-gold 23)
+(defconst gl-info-stone 24)
+(defconst gl-info-poproom 25)
+(defconst gl-info-houseroom 26)
+
+
+(defrule
+	(true)
+=>
+	(up-get-fact game-time 0 gl-info-gametime)
+	
+	(up-get-fact wood-amount 0 gl-info-wood)
+	(up-get-fact food-amount 0 gl-info-food)
+	(up-get-fact gold-amount 0 gl-info-gold)
+	(up-get-fact stone-amount 0 gl-info-stone)
+	(up-get-fact population-headroom 0 gl-info-poproom)
+	(up-get-fact housing-headroom 0 gl-info-houseroom)
+)
