@@ -13,10 +13,6 @@ namespace AoE2Lib
 {
     public abstract class Bot
     {
-        private const int SYNC_GOAL1 = 511;
-        private const int SYNC_GOAL2 = 512;
-        private const int FREE_SN = 350;
-
         public abstract string Name { get; }
         public abstract int Id { get; }
         public virtual string Author => "";
@@ -25,25 +21,15 @@ namespace AoE2Lib
 
         public bool Running { get; private set; } = false;
         public int PlayerNumber { get; private set; } = -1;
+        
         protected readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.Ticks.GetHashCode());
+        protected GameState GameState { get; private set; } = null;
 
-        // game state
-        protected Position MyPosition { get; private set; } = new Position(-1, -1);
-        protected int MapWidthHeight { get; private set; } = -1;
-        protected IReadOnlyList<Player> Players => _Players;
-        private readonly List<Player> _Players = new List<Player>();
-        protected IReadOnlyDictionary<Position, Tile> Tiles => _Tiles;
-        private readonly Dictionary<Position, Tile> _Tiles = new Dictionary<Position, Tile>();
-        protected IReadOnlyDictionary<int, Unit> Units => _Units;
-        private readonly Dictionary<int, Unit> _Units = new Dictionary<int, Unit>();
-        protected IReadOnlyList<UnitTypeInfo> UnitTypeInfos => _UnitTypeInfos;
-        private readonly List<UnitTypeInfo> _UnitTypeInfos = new List<UnitTypeInfo>();
-
-        // utils
         private Thread BotThread { get; set; } = null;
         private GameInstance Instance { get; set; } = null;
         private int[] Goals { get; set; } = null;
         private int[] StrategicNumbers { get; set; } = null;
+        
 
         private volatile bool Stopping = false;
 
@@ -55,7 +41,7 @@ namespace AoE2Lib
             Instance = instance;
             PlayerNumber = player;
 
-            // TODO reset game state
+            GameState = new GameState();
 
             Running = true;
             Stopping = false;
@@ -72,76 +58,16 @@ namespace AoE2Lib
 
         protected abstract void StartGame();
 
-        protected abstract Command Update(int tick);
+        protected abstract Command GetNextCommand();
 
-        protected IEnumerable<Tile> GetTilesByDistance(Position position)
+        protected int GetStrategicNumber(StrategicNumber number)
         {
-            yield return Tiles[position];
+            return GetStrategicNumber((int)number);
+        }
 
-            for (int r = 1; r < MapWidthHeight; r++)
-            {
-                int x, y;
-
-                x = position.X - r;
-                if (x >= 0)
-                {
-                    for (int dy = -r; dy <= r; dy++)
-                    {
-                        y = position.Y + dy;
-                        var pos = new Position(x, y);
-
-                        if (pos.OnMap(MapWidthHeight))
-                        {
-                            yield return Tiles[pos];
-                        }
-                    }
-                }
-                
-                x = position.X + r;
-                if (x < MapWidthHeight)
-                {
-                    for (int dy = -r; dy <= r; dy++)
-                    {
-                        y = position.Y + dy;
-                        var pos = new Position(x, y);
-
-                        if (pos.OnMap(MapWidthHeight))
-                        {
-                            yield return Tiles[pos];
-                        }
-                    }
-                }
-                
-                y = position.Y - r;
-                if (y >= 0)
-                {
-                    for (int dx = -r + 1; dx <= r - 1; dx++)
-                    {
-                        x = position.X + dx;
-                        var pos = new Position(x, y);
-
-                        if (pos.OnMap(MapWidthHeight))
-                        {
-                            yield return Tiles[pos];
-                        }
-                    }
-                }
-                
-                y = position.Y + r;
-                if (y < MapWidthHeight)
-                {
-                    for (int dx = -r + 1; dx <= r - 1; dx++)
-                    {
-                        x = position.X + dx;
-                        var pos = new Position(x, y);
-
-                        if (pos.OnMap(MapWidthHeight))
-                        {
-                            yield return Tiles[pos];
-                        }
-                    }
-                }
-            }
+        protected bool SetStrategicNumber(StrategicNumber number, int value)
+        {
+            return SetStrategicNumber((int)number, value);
         }
 
         private void Run()
@@ -174,6 +100,9 @@ namespace AoE2Lib
 
         private bool TryUpdate()
         {
+            const int SYNC_GOAL1 = 1;
+            const int SYNC_GOAL2 = 512;
+
             var goals = Instance.GetGoals(PlayerNumber);
 
             if (goals == null)
@@ -206,94 +135,47 @@ namespace AoE2Lib
             Goals = goals;
             StrategicNumbers = sns;
 
-            UpdateGameState();
-            var command = Update(Goals[SYNC_GOAL1 - 1]);
+            GameState.Update(Goals, StrategicNumbers);
+            var command = GetNextCommand();
             GiveCommand(command);
 
             return true;
         }
 
-        private void UpdateGameState()
-        {
-            throw new NotImplementedException();
-        }
-
         private void GiveCommand(Command command)
         {
-            CheckCommand(command);
+            const int SN_RANDOM = 350;
+            const int SN_TILE_START = 351;
+            const int SN_TILE_END = 370;
+            const int SN_UNITSEARCH1 = 401;
+            const int SN_UNITSEARCH2 = 402;
+            const int SN_UNITSEARCH3 = 403;
 
-            throw new NotImplementedException();
-        }
+            SetStrategicNumber(SN_RANDOM, RNG.Next(10000, 30000));
 
-        private void CheckCommand(Command command)
-        {
-            if (command.TilesToCheck.Count < 10)
+            var offset = SN_TILE_START;
+            int sn;
+            foreach (var pos in command.TilesToCheck.Where(p => p.OnMap(GameState.MapWidthHeight)).Distinct())
             {
-                var tile_time = DateTime.UtcNow - TimeSpan.FromMinutes(2);
+                sn = pos.X;
+                sn *= 500;
+                sn += pos.Y;
 
-                foreach (var tile in GetTilesByDistance(MyPosition).Where(t => t.LastUpdate < tile_time && !t.Explored))
+                SetStrategicNumber(offset, sn);
+                offset++;
+
+                if (offset > SN_TILE_END)
                 {
-                    if (command.TilesToCheck.Count < 10)
-                    {
-                        command.TilesToCheck.Add(tile.Position);
-                    }
-                    else
-                    {
-                        break;
-                    }
+                    break;
                 }
             }
 
-            if (command.UnitSearch1Player < 0 || command.UnitSearch2Player < 0 || command.UnitSearch3Player < 0)
+            while (offset <= SN_TILE_END)
             {
-                var explored = Tiles.Values.Where(t => t.Explored).Select(t => t.Position).ToList();
-                if (explored.Count == 0)
-                {
-                    explored.Add(MyPosition);
-                }
-
-                var player = PlayerNumber;
-                if (RNG.NextDouble() < 0.5)
-                {
-                    player = 0;
-
-                    if (RNG.NextDouble() < 0.5)
-                    {
-                        player = RNG.Next(9);
-                    }
-                }
-                
-                var type = UnitSearchType.CIVILIAN;
-                if (RNG.NextDouble() < 0.5)
-                {
-                    type = UnitSearchType.MILITARY;
-                }
-
-                if (player == 0)
-                {
-                    type = UnitSearchType.RESOURCE;
-
-                    if (RNG.NextDouble() < 0.1)
-                    {
-                        type = UnitSearchType.ALL;
-                    }
-                }
-
-                if (command.UnitSearch1Player < 0)
-                {
-                    command.SearchForUnits1(player, explored[RNG.Next(explored.Count)], 20, type);
-                }
-
-                if (command.UnitSearch2Player < 0)
-                {
-                    command.SearchForUnits2(player, explored[RNG.Next(explored.Count)], 20, type);
-                }
-
-                if (command.UnitSearch3Player < 0)
-                {
-                    command.SearchForUnits3(player, explored[RNG.Next(explored.Count)], 20, type);
-                }
+                SetStrategicNumber(offset, -1);
+                offset++;
             }
+
 
             throw new NotImplementedException();
         }

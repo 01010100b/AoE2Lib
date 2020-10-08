@@ -5,12 +5,16 @@
 
 ; goals
 
-; 1-50 general game info
+; 1-10 special
+; 11-50 general info
 ; 51-100 map
-; 101-350 units
-; 351-450 reserved
+; 101-150 reserved
+; 151-400 units
+; 401-450 reserved
 ; 451-500 utils
 ; 501-512 special
+
+(defconst SYNC-GOAL1 1)
 
 (defconst gl-cost-food 451)
 (defconst gl-cost-wood 452)
@@ -51,7 +55,7 @@
 (defconst gl-temp19 479)
 (defconst gl-temp20 480)
 
-(defconst SYNC-GOAL1 511)
+(defconst IDENTITY-GOAL 511)
 (defconst SYNC-GOAL2 512)
 
 ; strategic numbers
@@ -84,7 +88,7 @@
 (defrule
 	(true)
 =>
-	(set-goal 420 BOT-ID)
+	(set-goal IDENTITY-GOAL BOT-ID)
 	(set-goal SYNC-GOAL1 0)
 	(set-goal SYNC-GOAL2 0)
 	(disable-self)

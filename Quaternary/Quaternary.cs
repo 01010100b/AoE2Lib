@@ -1,0 +1,162 @@
+﻿using AoE2Lib;
+using AoE2Lib.Bots;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static AoE2Lib.Bots.Command;
+using static AoE2Lib.Bots.UnitTypeInfo;
+
+namespace Quaternary
+{
+    class Quaternary : Bot
+    {
+        public override string Name => "Quaternary";
+        public override int Id => 27613;
+
+        private int Ticks { get; set; } = 0;
+
+        protected override void StartGame()
+        {
+            Ticks = 0;
+        }
+
+        protected override Command GetNextCommand()
+        {
+            Ticks++;
+
+            var command = new Command();
+
+            CheckTiles(command);
+            CheckUnits(command);
+            CheckUnitTypeInfo(command);
+
+            return command;
+        }
+
+        private void CheckTiles(Command command)
+        {
+            const int TILES_PER_COMMAND = 20;
+
+            var tile_time = DateTime.UtcNow - TimeSpan.FromMinutes(3);
+            var tiles = GameState.Tiles.Values.ToList();
+            tiles.Sort((a, b) =>
+            {
+                var ca = a.LastUpdate < tile_time;
+                var cb = b.LastUpdate < tile_time;
+
+                if (ca && !cb)
+                {
+                    return -1;
+                }
+                else if (cb && !ca)
+                {
+                    return 1;
+                }
+                else
+                {
+                    if (b.Explored && !a.Explored)
+                    {
+                        return -1;
+                    }
+                    else if (a.Explored && !b.Explored)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        var da = a.Position.DistanceTo(GameState.MyPosition);
+                        var db = b.Position.DistanceTo(GameState.MyPosition);
+
+                        return da.CompareTo(db);
+                    }
+                }
+            });
+            
+            for (int i = 0; i < TILES_PER_COMMAND; i++)
+            {
+                command.CheckTile(tiles[i].Position);
+            }
+        }
+
+        private void CheckUnits(Command command)
+        {
+            var explored = GameState.Tiles.Values.Where(t => t.Explored).Select(t => t.Position).ToList();
+            if (explored.Count == 0)
+            {
+                explored.Add(GameState.MyPosition);
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                var player = PlayerNumber;
+                if (RNG.NextDouble() < 0.5)
+                {
+                    player = 0;
+
+                    if (RNG.NextDouble() < 0.5)
+                    {
+                        player = RNG.Next(9);
+                    }
+                }
+
+                var type = UnitSearchType.MILITARY;
+
+                if (RNG.NextDouble() < 0.5)
+                {
+                    type = UnitSearchType.CIVILIAN;
+
+                    if (RNG.NextDouble() < 0.5)
+                    {
+                        type = UnitSearchType.BUILDING;
+                    }
+                }
+
+                if (player == 0)
+                {
+                    type = UnitSearchType.WOOD;
+
+                    if (RNG.NextDouble() < 0.5)
+                    {
+                        type = UnitSearchType.FOOD;
+
+                        if (RNG.NextDouble() < 0.5)
+                        {
+                            type = UnitSearchType.GOLD;
+
+                            if (RNG.NextDouble() < 0.5)
+                            {
+                                type = UnitSearchType.STONE;
+                            }
+                        }
+                    }
+                }
+
+                var position = explored[RNG.Next(explored.Count)];
+                var radius = 20;
+
+                command.SearchForUnits(player, position, radius, type);
+            }
+        }
+
+        private void CheckUnitTypeInfo(Command command)
+        {
+            var player = -1;
+            var type = -1;
+            var lastupdate = DateTime.MaxValue;
+
+            foreach (var kvp in GameState.UnitTypeInfos)
+            {
+                if (kvp.Value.LastUpdate < lastupdate)
+                {
+                    player = kvp.Key.Player;
+                    type = kvp.Key.TypeId;
+                    lastupdate = kvp.Value.LastUpdate;
+                }
+            }
+
+            command.GetUnitTypeInfo(player, type);
+        }
+    }
+}

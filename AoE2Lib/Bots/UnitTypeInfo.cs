@@ -6,8 +6,22 @@ namespace AoE2Lib.Bots
 {
     public class UnitTypeInfo : GameElement
     {
+        public struct UnitTypeKey
+        {
+            public readonly int Player;
+            public readonly int TypeId;
+
+            public UnitTypeKey(int player, int type)
+            {
+                Player = player;
+                TypeId = type;
+            }
+        }
+
+        public UnitTypeKey UnitType => new UnitTypeKey(PlayerNumber, TypeId);
         public readonly int PlayerNumber; // 10
         public readonly int TypeId; // 2000
+
         public int MaxHitpoints { get; private set; } = -1; // 1000
         public int Range { get; private set; } = -1; // 25
         public double Speed { get; private set; } = -1; // 130
