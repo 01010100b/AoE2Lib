@@ -255,7 +255,12 @@ namespace AoE2Lib
 
         private bool SetGoal(int id, int value)
         {
-            return Instance.SetGoal(PlayerNumber, id - 1, value);
+            if (GetGoal(id) != value)
+            {
+                return Instance.SetGoal(PlayerNumber, id - 1, value);
+            }
+
+            return true;
         }
 
         private bool SetGoals(int start_id, int[] values)
@@ -270,7 +275,12 @@ namespace AoE2Lib
 
         private bool SetStrategicNumber(int id, int value)
         {
-            return Instance.SetStrategicNumber(PlayerNumber, id, value);
+            if (GetStrategicNumber(id) != value)
+            {
+                return Instance.SetStrategicNumber(PlayerNumber, id, value);
+            }
+
+            return true;
         }
 
         private bool SetStrategicNumbers(int start_id, params int[] values)

@@ -28,6 +28,8 @@ namespace Quaternary
         {
             Ticks++;
 
+            SetStrategicNumbers();
+
             var command = new Command();
 
             CheckTiles(command);
@@ -37,6 +39,47 @@ namespace Quaternary
             LogState();
 
             return command;
+        }
+
+        private void SetStrategicNumbers()
+        {
+            SetStrategicNumber(StrategicNumber.PERCENT_CIVILIAN_EXPLORERS, 0);
+            SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_EXPLORERS, 0);
+            SetStrategicNumber(StrategicNumber.TOTAL_NUMBER_EXPLORERS, 1);
+            SetStrategicNumber(StrategicNumber.NUMBER_EXPLORE_GROUPS, 1);
+
+            SetStrategicNumber(StrategicNumber.PERCENT_ENEMY_SIGHTED_RESPONSE, 100);
+            SetStrategicNumber(StrategicNumber.ENEMY_SIGHTED_RESPONSE_DISTANCE, 100);
+            SetStrategicNumber(StrategicNumber.ZERO_PRIORITY_DISTANCE, 100);
+            SetStrategicNumber(StrategicNumber.ENABLE_OFFENSIVE_PRIORITY, 1);
+            SetStrategicNumber(StrategicNumber.ENABLE_PATROL_ATTACK, 1);
+            SetStrategicNumber(StrategicNumber.MINIMUM_ATTACK_GROUP_SIZE, 1);
+            SetStrategicNumber(StrategicNumber.MAXIMUM_ATTACK_GROUP_SIZE, 1);
+            SetStrategicNumber(StrategicNumber.DISABLE_DEFEND_GROUPS, 8);
+            SetStrategicNumber(StrategicNumber.CONSECUTIVE_IDLE_UNIT_LIMIT, 0);
+            SetStrategicNumber(StrategicNumber.WALL_TARGETING_MODE, 1);
+
+            SetStrategicNumber(StrategicNumber.TOWN_CENTER_PLACEMENT, 584);
+            SetStrategicNumber(StrategicNumber.ENABLE_NEW_BUILDING_SYSTEM, 1);
+            SetStrategicNumber(StrategicNumber.PERCENT_BUILDING_CANCELLATION, 0);
+            SetStrategicNumber(StrategicNumber.DISABLE_BUILDER_ASSISTANCE, 1);
+            SetStrategicNumber(StrategicNumber.DEFER_DROPSITE_UPDATE, 1);
+            SetStrategicNumber(StrategicNumber.DROPSITE_SEPARATION_DISTANCE, 4);
+            SetStrategicNumber(StrategicNumber.MILL_MAX_DISTANCE, 20);
+            SetStrategicNumber(StrategicNumber.CAMP_MAX_DISTANCE, 20);
+            SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, 4);
+
+            SetStrategicNumber(StrategicNumber.INTELLIGENT_GATHERING, 1);
+            SetStrategicNumber(StrategicNumber.USE_BY_TYPE_MAX_GATHERING, 1);
+            SetStrategicNumber(StrategicNumber.MAXIMUM_WOOD_DROP_DISTANCE, 7);
+            SetStrategicNumber(StrategicNumber.MAXIMUM_GOLD_DROP_DISTANCE, 7);
+            SetStrategicNumber(StrategicNumber.MAXIMUM_STONE_DROP_DISTANCE, 7);
+            SetStrategicNumber(StrategicNumber.MAXIMUM_FOOD_DROP_DISTANCE, 8);
+            SetStrategicNumber(StrategicNumber.MAXIMUM_HUNT_DROP_DISTANCE, 8);
+            SetStrategicNumber(StrategicNumber.ENABLE_BOAR_HUNTING, 0);
+            SetStrategicNumber(StrategicNumber.LIVESTOCK_TO_TOWN_CENTER, 1);
+
+            SetStrategicNumber(StrategicNumber.HOME_EXPLORATION_TIME, 600);
         }
 
         private void CheckTiles(Command command)
