@@ -187,14 +187,3 @@
 	(up-modify-goal gl-tiles-temp g:+ gl-tiles-unit)
 	(up-modify-goal 52 g:= gl-tiles-temp)
 )
-
-(defrule
-	(up-compare-goal gl-tiles-command c:>= 0)
-=>
-	(up-chat-data-to-self "x %d" g: gl-tiles-x)
-	(up-chat-data-to-self "y %d" g: gl-tiles-y)
-	(up-chat-data-to-self "explored %d" g: gl-tiles-explored)
-	(up-chat-data-to-self "terrain %d" g: gl-tiles-terrain)
-	(up-chat-data-to-self "elevation %d" g: gl-tiles-elevation)
-	(up-chat-data-to-self "unit %d" g: gl-tiles-unit)
-)
