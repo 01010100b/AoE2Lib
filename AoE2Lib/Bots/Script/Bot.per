@@ -63,6 +63,10 @@
 (defconst sn-random 350) ; random number between 10k and 30k, changes each tick
 
 ; 351-370 check tiles
+; 401-410 unit search
+; 411-420 unit info
+; 421-430 train units
+; 431-440 build buildings
 
 (defrule
 	(true)
@@ -82,7 +86,12 @@
 ; start bot
 
 (load "Bot\UserPatchConst")
+
 (load "Bot\Info")
+(load "Bot\Tiles")
+
+(load "Bot\Training")
+(load "Bot\Building")
 
 ; end bot
 

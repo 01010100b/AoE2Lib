@@ -144,36 +144,77 @@ namespace AoE2Lib
 
         private void UpdateGameState()
         {
-            UpdateGameInfo();
+            UpdateInfo();
+            UpdateTiles();
         }
 
-        private void UpdateGameInfo()
+        private void UpdateInfo()
         {
             const int GL_GAMETIME = 11;
+            const int GL_MAPSIZE = 12;
+
             const int GL_WOOD = 21;
             const int GL_FOOD = 22;
             const int GL_GOLD = 23;
             const int GL_STONE = 24;
             const int GL_POPULATION_HEADROOM = 25;
             const int GL_HOUSING_HEADROOM = 26;
+            const int GL_X = 27;
+            const int GL_Y = 28;
 
             GameState.GameTime = TimeSpan.FromSeconds(GetGoal(GL_GAMETIME));
+            GameState.MapWidthHeight = GetGoal(GL_MAPSIZE);
+            
             GameState.WoodAmount = GetGoal(GL_WOOD);
             GameState.FoodAmount = GetGoal(GL_FOOD);
             GameState.GoldAmount = GetGoal(GL_GOLD);
             GameState.StoneAmount = GetGoal(GL_STONE);
             GameState.PopulationHeadroom = GetGoal(GL_POPULATION_HEADROOM);
             GameState.HousingHeadroom = GetGoal(GL_HOUSING_HEADROOM);
+            GameState.MyPosition = new Position(GetGoal(GL_X), GetGoal(GL_Y));
+        }
+
+        private void UpdateTiles()
+        {
+            const int GL_TILES_START = 51;
+            const int GL_TILES_END = 90;
+
+            var offset = GL_TILES_START;
+            while (offset <= GL_TILES_END)
+            {
+                var goal0 = GetGoal(offset);
+                offset++;
+                var goal1 = GetGoal(offset);
+                offset++;
+
+                if (goal0 >= 0)
+                {
+                    var x = goal0 / 500;
+                    var y = goal0 % 500;
+                    var position = new Position(x, y);
+
+                    GameState.Tiles[position].Update(goal0, goal1);
+                }
+            }
         }
 
         private void GiveCommand(Command command)
         {
             const int SN_RANDOM = 350;
+
             const int SN_TILE_START = 351;
             const int SN_TILE_END = 370;
+
             const int SN_UNITSEARCH_START = 401;
             const int SN_UNITSEARCH_END = 403;
+
             const int SN_UNITTYPEINFO = 411;
+
+            const int SN_TRAINING_START = 421;
+            const int SN_TRAINING_END = 430;
+
+            const int SN_BUILDING_START = 431;
+            const int SN_BUILDING_END = 440;
 
             SetStrategicNumber(SN_RANDOM, RNG.Next(10000, 30000));
 
@@ -246,6 +287,46 @@ namespace AoE2Lib
             }
 
             SetStrategicNumber(SN_UNITTYPEINFO, sn);
+
+            // training
+
+            offset = SN_TRAINING_START;
+            foreach (var goal in command.Training)
+            {
+                SetStrategicNumber(offset, goal);
+                offset++;
+
+                if (offset > SN_TRAINING_END)
+                {
+                    break;
+                }
+            }
+
+            while (offset < SN_TRAINING_END)
+            {
+                SetStrategicNumber(offset, -1);
+                offset++;
+            }
+
+            // building
+
+            offset = SN_BUILDING_START;
+            foreach (var goal in command.Building)
+            {
+                SetStrategicNumber(offset, goal);
+                offset++;
+
+                if (offset > SN_BUILDING_END)
+                {
+                    break;
+                }
+            }
+
+            while (offset < SN_BUILDING_END)
+            {
+                SetStrategicNumber(offset, -1);
+                offset++;
+            }
         }
 
         private int GetGoal(int id)

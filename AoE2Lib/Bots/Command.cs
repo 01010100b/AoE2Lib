@@ -33,6 +33,8 @@ namespace AoE2Lib.Bots
         internal readonly List<UnitSearchCommand> UnitSearchCommands = new List<UnitSearchCommand>();
         internal int UnitTypeInfoPlayer { get; private set; } = -1;
         internal int UnitTypeInfoType { get; private set; } = -1;
+        internal readonly List<int> Training = new List<int>();
+        internal readonly List<int> Building = new List<int>();
 
         public void CheckTile(Position position)
         {
@@ -48,6 +50,28 @@ namespace AoE2Lib.Bots
         {
             UnitTypeInfoPlayer = player;
             UnitTypeInfoType = type;
+        }
+
+        public void Train(int unit, int max_pending = 0)
+        {
+            var goal = Math.Max(0, Math.Min(unit, 1999));
+            goal *= 100;
+            goal += Math.Max(-1, Math.Min(max_pending, 98)) + 1;
+
+            Training.Add(goal);
+        }
+
+        public void Build(int building, Position position, int max_pending = 0)
+        {
+            var goal = Math.Max(0, Math.Min(building, 1999));
+            goal *= 500;
+            goal += Math.Max(0, Math.Min(position.X, 499));
+            goal *= 500;
+            goal += Math.Max(0, Math.Min(position.Y, 499));
+            goal *= 4;
+            goal += Math.Max(-1, Math.Min(max_pending, 2)) + 1;
+
+            Building.Add(goal);
         }
     }
 }

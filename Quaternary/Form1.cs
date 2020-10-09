@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -84,6 +85,38 @@ namespace Quaternary
 
                 bots.Clear();
                 Log.Debug("game finished");
+            }
+        }
+
+        private void ButtonCopy_Click(object sender, EventArgs e)
+        {
+            var from = @"C:\Users\Tim\source\repos\AoE2Lib\AoE2Lib\Bots\Script";
+            var to = @"C:\Users\Tim\AppData\Roaming\Microsoft Games\Age of Empires ii\Voobly Mods\AOC\Data Mods\WololoKingdoms\Script.Ai";
+
+            var queue = new Queue<string>();
+            queue.Enqueue(from);
+
+            while (queue.Count > 0)
+            {
+                var f = queue.Dequeue();
+                var rel = f.Replace(from, "");
+                var t = to + rel;
+
+                if (!Directory.Exists(t))
+                {
+                    Directory.CreateDirectory(t);
+                }
+                
+                foreach (var file in Directory.EnumerateFiles(f))
+                {
+                    var ofile = Path.Combine(t, Path.GetFileName(file));
+                    File.Copy(file, ofile, true);
+                }
+
+                foreach (var dir in Directory.EnumerateDirectories(f))
+                {
+                    queue.Enqueue(dir);
+                }
             }
         }
     }

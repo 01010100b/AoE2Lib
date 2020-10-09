@@ -1,6 +1,83 @@
 ; 11-50 general info
 
 (defconst gl-info-gametime 11)
+(defconst gl-info-mapsize 12)
+
+(defrule
+	(true)
+=>
+	(up-get-fact game-time 0 gl-info-gametime)
+)
+
+#load-if-defined TINY-MAP
+
+(defrule
+	(true)
+=>
+	(set-goal gl-info-mapsize 120)
+)
+
+#end-if
+
+#load-if-defined SMALL-MAP
+
+(defrule
+	(true)
+=>
+	(set-goal gl-info-mapsize 144)
+)
+
+#end-if
+
+#load-if-defined MEDIUM-MAP
+
+(defrule
+	(true)
+=>
+	(set-goal gl-info-mapsize 168)
+)
+
+#end-if
+
+#load-if-defined NORMAL-MAP
+
+(defrule
+	(true)
+=>
+	(set-goal gl-info-mapsize 200)
+)
+
+#end-if
+
+#load-if-defined LARGE-MAP
+
+(defrule
+	(true)
+=>
+	(set-goal gl-info-mapsize 220)
+)
+
+#end-if
+
+#load-if-defined GIANT-MAP
+
+(defrule
+	(true)
+=>
+	(set-goal gl-info-mapsize 240)
+)
+
+#end-if
+
+#load-if-defined LUDIKRIS-MAP
+
+(defrule
+	(true)
+=>
+	(set-goal gl-info-mapsize 480)
+)
+
+#end-if
 
 (defconst gl-info-wood 21)
 (defconst gl-info-food 22)
@@ -8,17 +85,19 @@
 (defconst gl-info-stone 24)
 (defconst gl-info-poproom 25)
 (defconst gl-info-houseroom 26)
-
+(defconst gl-info-x 27)
+(defconst gl-info-y 28)
 
 (defrule
 	(true)
 =>
-	(up-get-fact game-time 0 gl-info-gametime)
-	
 	(up-get-fact wood-amount 0 gl-info-wood)
 	(up-get-fact food-amount 0 gl-info-food)
 	(up-get-fact gold-amount 0 gl-info-gold)
 	(up-get-fact stone-amount 0 gl-info-stone)
 	(up-get-fact population-headroom 0 gl-info-poproom)
 	(up-get-fact housing-headroom 0 gl-info-houseroom)
+	(up-get-point position-self gl-point1)
+	(up-modify-goal gl-info-x g:= gl-point1-x)
+	(up-modify-goal gl-info-y g:= gl-point1-y)
 )

@@ -22,9 +22,8 @@ namespace AoE2Lib.Bots
 
         internal void Update(int goal0, int goal1)
         {
-            var x = (goal0 % 500) - 1;
-            goal0 /= 500;
-            var y = (goal0 % 500) - 1;
+            var x = goal0 / 500;
+            var y = goal0 % 500;
             var position = new Position(x, y);
 
             if (position != Position)
@@ -39,6 +38,13 @@ namespace AoE2Lib.Bots
             TerrainId = (goal1 % 64) - 1;
             goal1 /= 64;
             Explored = (goal1 % 2) == 1;
+
+            if (!Explored)
+            {
+                UnitId = -1;
+                Elevation = -1;
+                TerrainId = -1;
+            }
 
             ElementUpdated();
         }

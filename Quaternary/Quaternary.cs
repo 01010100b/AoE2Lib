@@ -32,11 +32,17 @@ namespace Quaternary
 
             var command = new Command();
 
+            Economy(command);
+
             CheckTiles(command);
             CheckUnits(command);
             CheckUnitTypeInfo(command);
 
-            LogState();
+            if (Ticks % 20 == 0)
+            {
+                LogState();
+            }
+            
 
             return command;
         }
@@ -80,6 +86,29 @@ namespace Quaternary
             SetStrategicNumber(StrategicNumber.LIVESTOCK_TO_TOWN_CENTER, 1);
 
             SetStrategicNumber(StrategicNumber.HOME_EXPLORATION_TIME, 600);
+
+            SetStrategicNumber(StrategicNumber.FOOD_GATHERER_PERCENTAGE, 80);
+            SetStrategicNumber(StrategicNumber.WOOD_GATHERER_PERCENTAGE, 20);
+            SetStrategicNumber(StrategicNumber.GOLD_GATHERER_PERCENTAGE, 0);
+            SetStrategicNumber(StrategicNumber.STONE_GATHERER_PERCENTAGE, 0);
+        }
+
+        private void Economy(Command command)
+        {
+            const int VILLAGER = 83;
+            const int HOUSE = 70;
+
+            var me = GameState.Players.FirstOrDefault(p => p.PlayerNumber == PlayerNumber);
+
+            if (me == null || me.CivilianPopulation < 120)
+            {
+                command.Train(VILLAGER, -1);
+            }
+
+            if (GameState.HousingHeadroom < 5 && GameState.PopulationHeadroom > 0)
+            {
+                command.Build(HOUSE, GameState.MyPosition, 1);
+            }
         }
 
         private void CheckTiles(Command command)

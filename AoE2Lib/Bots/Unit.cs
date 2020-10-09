@@ -46,20 +46,20 @@ namespace AoE2Lib.Bots
 
             TargetId = (goal0 % 45000) - 1;
 
-            var x = (goal1 % 500) - 1;
+            var x = goal1 % 500;
             goal1 /= 500;
-            var y = (goal1 % 500) - 1;
+            var y = goal1 % 500;
             goal1 /= 500;
             Position = new Position(x, y);
-            TypeId = (goal1 % 2000) - 1;
+            TypeId = goal1 % 2000;
 
-            PlayerNumber = (goal2 % 10) - 1;
+            PlayerNumber = goal2 % 10;
             goal2 /= 10;
-            Hitpoints = (goal2 % 1000) - 1;
+            Hitpoints = goal2 % 1000;
             goal2 /= 1000;
             Order = (UnitOrder)((goal2 % 40) - 1);
             goal2 /= 40;
-            var timer = (goal2 % 20) - 1;
+            var timer = goal2 % 20;
             goal2 /= 20;
             NextAttack = DateTime.UtcNow + TimeSpan.FromSeconds(timer / 5d);
             Stance = (UnitStance)(goal2 % 4);

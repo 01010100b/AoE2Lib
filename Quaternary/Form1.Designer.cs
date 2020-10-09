@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.ButtonTest = new System.Windows.Forms.Button();
+            this.ButtonCopy = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ButtonTest
@@ -41,11 +42,22 @@
             this.ButtonTest.UseVisualStyleBackColor = true;
             this.ButtonTest.Click += new System.EventHandler(this.ButtonTest_Click);
             // 
+            // ButtonCopy
+            // 
+            this.ButtonCopy.Location = new System.Drawing.Point(51, 264);
+            this.ButtonCopy.Name = "ButtonCopy";
+            this.ButtonCopy.Size = new System.Drawing.Size(297, 84);
+            this.ButtonCopy.TabIndex = 1;
+            this.ButtonCopy.Text = "Copy";
+            this.ButtonCopy.UseVisualStyleBackColor = true;
+            this.ButtonCopy.Click += new System.EventHandler(this.ButtonCopy_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ButtonCopy);
             this.Controls.Add(this.ButtonTest);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -56,6 +68,7 @@
         #endregion
 
         private System.Windows.Forms.Button ButtonTest;
+        private System.Windows.Forms.Button ButtonCopy;
     }
 }
 
