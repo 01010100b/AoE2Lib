@@ -27,6 +27,7 @@ public bool HasExited
 public bool IsGameRunning
 public bool IsPlayerInGame(int player)
 ~~~~
+Note that read/write access to the goal/sn arrays is not synchronized in any way.
 
 - ### Having an easy object-oriented API for AI development
 
