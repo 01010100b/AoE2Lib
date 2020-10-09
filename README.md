@@ -1,6 +1,6 @@
 # AoE2Lib
 
-A .NET standard 2.0 library for programmatically interacting with Age of Empires 2.
+A .NET standard 2.0 library for programmatically interacting with Age of Empires 2. Check the [releases](https://github.com/01010100b/AoE2Lib/releases) page to download the latest release.
 
 ## Features
 
@@ -27,6 +27,7 @@ public bool HasExited
 public bool IsGameRunning
 public bool IsPlayerInGame(int player)
 ~~~~
+Note that read/write access to the goal/sn arrays is not synchronized in any way.
 
 - ### Having an easy object-oriented API for AI development
 
