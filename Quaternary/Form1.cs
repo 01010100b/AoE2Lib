@@ -36,7 +36,7 @@ namespace Quaternary
             const int IDENTITY_GOAL = 511;
 
             var process = Process.GetProcessesByName("WK")[0];
-            var instance = new AoCInstance(process);
+            var instance = new WKInstance(process);
 
             Log.Debug($"connected to process {process.Id}");
 

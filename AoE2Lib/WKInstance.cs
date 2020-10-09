@@ -5,9 +5,9 @@ using System.Text;
 
 namespace AoE2Lib
 {
-    public class AoCInstance : GameInstance
+    public class WKInstance : GameInstance
     {
-        public AoCInstance(Process process) : base(process) { }
+        public WKInstance(Process process) : base(process) { }
 
         public override int[] GetGoals(int player)
         {
