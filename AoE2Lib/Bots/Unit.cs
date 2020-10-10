@@ -29,7 +29,7 @@ namespace AoE2Lib.Bots
         public DateTime NextAttack { get; private set; } = DateTime.UtcNow; // 20
         public UnitStance Stance { get; private set; } = UnitStance.AGGRESSIVE; // 4
 
-        public Unit(int id)
+        public Unit(int id) : base()
         {
             Id = id;
         }

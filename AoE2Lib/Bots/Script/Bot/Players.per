@@ -1,0 +1,334 @@
+; goals 41-50
+
+(defconst gl-players-goal0 41)
+(defconst gl-players-goal1 42)
+
+(defconst gl-players-number gl-temp1)
+(defconst gl-players-civ gl-temp2)
+(defconst gl-players-score gl-temp3)
+(defconst gl-players-age gl-temp4)
+(defconst gl-players-civpop gl-temp5)
+(defconst gl-players-milpop gl-temp6)
+(defconst gl-players-stance gl-temp7)
+(defconst gl-players-temp gl-temp8)
+(defconst gl-players-jump-forward gl-temp9)
+
+(defrule
+	(true)
+=>
+	(set-goal gl-players-goal0 -1)
+	(set-goal gl-players-goal1 -1)
+	(set-goal gl-players-number -1)
+	(up-modify-goal gl-players-temp g:= SYNC-GOAL1)
+	(up-modify-goal gl-players-temp c:mod 8)
+	(up-modify-goal gl-players-jump-forward c:= 7)
+	(up-modify-goal gl-players-jump-forward g:- gl-players-temp)
+	(up-modify-goal gl-players-temp c:* 4) ; rules per player
+	(up-modify-goal gl-players-jump-forward c:* 4)
+	(up-jump-dynamic g: gl-players-temp)
+)
+
+;region get player data
+
+(defrule
+	(player-in-game 1)
+=>
+	(set-goal gl-players-number 1)
+	(up-get-player-fact 1 civilization 0 gl-players-civ)
+	(up-get-player-fact 1 current-score 0 gl-players-score)
+	(up-get-player-fact 1 current-age 0 gl-players-age)
+	(up-get-player-fact 1 civilian-population 0 gl-players-civpop)
+	(up-get-player-fact 1 military-population 0 gl-players-milpop)
+	(set-goal gl-players-stance 0)
+)
+
+(defrule
+	(player-in-game 1)
+	(stance-toward 1 1)
+=>
+	(set-goal gl-players-stance 1)
+)
+
+(defrule
+	(player-in-game 1)
+	(stance-toward 1 3)
+=>
+	(set-goal gl-players-stance 3)
+)
+
+(defrule
+	(true)
+=>
+	(up-jump-dynamic g: gl-players-jump-forward)
+)
+
+(defrule
+	(player-in-game 2)
+=>
+	(set-goal gl-players-number 2)
+	(up-get-player-fact 2 civilization 0 gl-players-civ)
+	(up-get-player-fact 2 current-score 0 gl-players-score)
+	(up-get-player-fact 2 current-age 0 gl-players-age)
+	(up-get-player-fact 2 civilian-population 0 gl-players-civpop)
+	(up-get-player-fact 2 military-population 0 gl-players-milpop)
+	(set-goal gl-players-stance 0)
+)
+
+(defrule
+	(player-in-game 2)
+	(stance-toward 2 1)
+=>
+	(set-goal gl-players-stance 1)
+)
+
+(defrule
+	(player-in-game 2)
+	(stance-toward 2 3)
+=>
+	(set-goal gl-players-stance 3)
+)
+
+(defrule
+	(true)
+=>
+	(up-jump-dynamic g: gl-players-jump-forward)
+)
+
+(defrule
+	(player-in-game 3)
+=>
+	(set-goal gl-players-number 3)
+	(up-get-player-fact 3 civilization 0 gl-players-civ)
+	(up-get-player-fact 3 current-score 0 gl-players-score)
+	(up-get-player-fact 3 current-age 0 gl-players-age)
+	(up-get-player-fact 3 civilian-population 0 gl-players-civpop)
+	(up-get-player-fact 3 military-population 0 gl-players-milpop)
+	(set-goal gl-players-stance 0)
+)
+
+(defrule
+	(player-in-game 3)
+	(stance-toward 3 1)
+=>
+	(set-goal gl-players-stance 1)
+)
+
+(defrule
+	(player-in-game 3)
+	(stance-toward 3 3)
+=>
+	(set-goal gl-players-stance 3)
+)
+
+(defrule
+	(true)
+=>
+	(up-jump-dynamic g: gl-players-jump-forward)
+)
+
+(defrule
+	(player-in-game 4)
+=>
+	(set-goal gl-players-number 4)
+	(up-get-player-fact 4 civilization 0 gl-players-civ)
+	(up-get-player-fact 4 current-score 0 gl-players-score)
+	(up-get-player-fact 4 current-age 0 gl-players-age)
+	(up-get-player-fact 4 civilian-population 0 gl-players-civpop)
+	(up-get-player-fact 4 military-population 0 gl-players-milpop)
+	(set-goal gl-players-stance 0)
+)
+
+(defrule
+	(player-in-game 4)
+	(stance-toward 4 1)
+=>
+	(set-goal gl-players-stance 1)
+)
+
+(defrule
+	(player-in-game 4)
+	(stance-toward 4 3)
+=>
+	(set-goal gl-players-stance 3)
+)
+
+(defrule
+	(true)
+=>
+	(up-jump-dynamic g: gl-players-jump-forward)
+)
+
+(defrule
+	(player-in-game 5)
+=>
+	(set-goal gl-players-number 5)
+	(up-get-player-fact 5 civilization 0 gl-players-civ)
+	(up-get-player-fact 5 current-score 0 gl-players-score)
+	(up-get-player-fact 5 current-age 0 gl-players-age)
+	(up-get-player-fact 5 civilian-population 0 gl-players-civpop)
+	(up-get-player-fact 5 military-population 0 gl-players-milpop)
+	(set-goal gl-players-stance 0)
+)
+
+(defrule
+	(player-in-game 5)
+	(stance-toward 5 1)
+=>
+	(set-goal gl-players-stance 1)
+)
+
+(defrule
+	(player-in-game 5)
+	(stance-toward 5 3)
+=>
+	(set-goal gl-players-stance 3)
+)
+
+(defrule
+	(true)
+=>
+	(up-jump-dynamic g: gl-players-jump-forward)
+)
+
+(defrule
+	(player-in-game 6)
+=>
+	(set-goal gl-players-number 6)
+	(up-get-player-fact 6 civilization 0 gl-players-civ)
+	(up-get-player-fact 6 current-score 0 gl-players-score)
+	(up-get-player-fact 6 current-age 0 gl-players-age)
+	(up-get-player-fact 6 civilian-population 0 gl-players-civpop)
+	(up-get-player-fact 6 military-population 0 gl-players-milpop)
+	(set-goal gl-players-stance 0)
+)
+
+(defrule
+	(player-in-game 6)
+	(stance-toward 6 1)
+=>
+	(set-goal gl-players-stance 1)
+)
+
+(defrule
+	(player-in-game 6)
+	(stance-toward 6 3)
+=>
+	(set-goal gl-players-stance 3)
+)
+
+(defrule
+	(true)
+=>
+	(up-jump-dynamic g: gl-players-jump-forward)
+)
+
+(defrule
+	(player-in-game 7)
+=>
+	(set-goal gl-players-number 7)
+	(up-get-player-fact 7 civilization 0 gl-players-civ)
+	(up-get-player-fact 7 current-score 0 gl-players-score)
+	(up-get-player-fact 7 current-age 0 gl-players-age)
+	(up-get-player-fact 7 civilian-population 0 gl-players-civpop)
+	(up-get-player-fact 7 military-population 0 gl-players-milpop)
+	(set-goal gl-players-stance 0)
+)
+
+(defrule
+	(player-in-game 7)
+	(stance-toward 7 1)
+=>
+	(set-goal gl-players-stance 1)
+)
+
+(defrule
+	(player-in-game 7)
+	(stance-toward 7 3)
+=>
+	(set-goal gl-players-stance 3)
+)
+
+(defrule
+	(true)
+=>
+	(up-jump-dynamic g: gl-players-jump-forward)
+)
+
+(defrule
+	(player-in-game 8)
+=>
+	(set-goal gl-players-number 8)
+	(up-get-player-fact 8 civilization 0 gl-players-civ)
+	(up-get-player-fact 8 current-score 0 gl-players-score)
+	(up-get-player-fact 8 current-age 0 gl-players-age)
+	(up-get-player-fact 8 civilian-population 0 gl-players-civpop)
+	(up-get-player-fact 8 military-population 0 gl-players-milpop)
+	(set-goal gl-players-stance 0)
+)
+
+(defrule
+	(player-in-game 8)
+	(stance-toward 8 1)
+=>
+	(set-goal gl-players-stance 1)
+)
+
+(defrule
+	(player-in-game 8)
+	(stance-toward 8 3)
+=>
+	(set-goal gl-players-stance 3)
+)
+
+(defrule
+	(true)
+=>
+	(up-jump-dynamic g: gl-players-jump-forward)
+)
+
+;endregion
+
+(defrule
+	(up-compare-goal gl-players-number c:>= 0)
+=>
+	(up-modify-goal gl-players-age c:max 0)
+	(up-modify-goal gl-players-age c:min 9)
+	(up-modify-goal gl-players-temp g:= gl-players-age)
+	
+	(up-modify-goal gl-players-temp c:* 100000)
+	(up-modify-goal gl-players-score c:max 0)
+	(up-modify-goal gl-players-score c:min 99999)
+	(up-modify-goal gl-players-temp g:+ gl-players-score)
+	
+	(up-modify-goal gl-players-temp c:* 100)
+	(up-modify-goal gl-players-civ c:max 0)
+	(up-modify-goal gl-players-civ c:min 99)
+	(up-modify-goal gl-players-temp g:+ gl-players-civ)
+	
+	(up-modify-goal gl-players-temp c:* 10)
+	(up-modify-goal gl-players-number c:max 0)
+	(up-modify-goal gl-players-number c:min 9)
+	(up-modify-goal gl-players-temp g:+ gl-players-number)
+)
+
+(defrule
+	(up-compare-goal gl-players-number c:>= 0)
+=>
+	(up-modify-goal gl-players-goal0 g:= gl-players-temp)
+	
+	(up-modify-goal gl-players-stance c:max 0)
+	(up-modify-goal gl-players-stance c:min 3)
+	(up-modify-goal gl-players-temp g:= gl-players-stance)
+	
+	(up-modify-goal gl-players-temp c:* 1000)
+	(up-modify-goal gl-players-milpop c:max 0)
+	(up-modify-goal gl-players-milpop c:min 999)
+	(up-modify-goal gl-players-temp g:+ gl-players-milpop)
+	
+	(up-modify-goal gl-players-temp c:* 1000)
+	(up-modify-goal gl-players-civpop c:max 0)
+	(up-modify-goal gl-players-civpop c:min 999)
+	(up-modify-goal gl-players-temp g:+ gl-players-civpop)
+	
+	(up-modify-goal gl-players-goal1 g:= gl-players-temp)
+)

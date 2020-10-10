@@ -8,6 +8,7 @@ using System.Runtime;
 using System.Text;
 using System.Threading;
 using static AoE2Lib.Bots.Command;
+using static AoE2Lib.Bots.UnitTypeInfo;
 
 namespace AoE2Lib
 {
@@ -24,6 +25,7 @@ namespace AoE2Lib
         
         protected readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.Ticks.GetHashCode());
         protected GameState GameState { get; private set; } = null;
+        protected int Tick { get; private set; } = 0;
 
         private Thread BotThread { get; set; } = null;
         private GameInstance Instance { get; set; } = null;
@@ -40,8 +42,8 @@ namespace AoE2Lib
 
             Instance = instance;
             PlayerNumber = player;
-
             GameState = new GameState();
+            Tick = 0;
 
             Running = true;
             Stopping = false;
@@ -135,6 +137,8 @@ namespace AoE2Lib
             Goals = goals;
             StrategicNumbers = sns;
 
+            Tick = Goals[SYNC_GOAL1 - 1];
+
             UpdateGameState();
             var command = GetNextCommand();
             GiveCommand(command);
@@ -145,6 +149,7 @@ namespace AoE2Lib
         private void UpdateGameState()
         {
             UpdateInfo();
+            UpdatePlayers();
             UpdateTiles();
             UpdateUnits();
         }
@@ -173,6 +178,27 @@ namespace AoE2Lib
             GameState.PopulationHeadroom = GetGoal(GL_POPULATION_HEADROOM);
             GameState.HousingHeadroom = GetGoal(GL_HOUSING_HEADROOM);
             GameState.MyPosition = new Position(GetGoal(GL_X), GetGoal(GL_Y));
+        }
+
+        private void UpdatePlayers()
+        {
+            const int GL_PLAYER_GOAL0 = 41;
+            const int GL_PLAYER_GOAL1 = 42;
+
+            var goal0 = GetGoal(GL_PLAYER_GOAL0);
+            var goal1 = GetGoal(GL_PLAYER_GOAL1);
+
+            if (goal0 >= 0)
+            {
+                var player = goal0 % 10;
+
+                if (!GameState.Players.ContainsKey(player))
+                {
+                    GameState._Players.Add(player, new Player(player));
+                }
+
+                GameState.Players[player].Update(goal0, goal1);
+            }
         }
 
         private void UpdateTiles()
@@ -223,7 +249,14 @@ namespace AoE2Lib
                         GameState._Units.Add(id, new Unit(id));
                     }
 
-                    GameState.Units[id].Update(goal0, goal1, goal2);
+                    var unit = GameState.Units[id];
+                    unit.Update(goal0, goal1, goal2);
+
+                    var key = new UnitTypeInfoKey(unit.PlayerNumber, unit.TypeId);
+                    if (!GameState.UnitTypeInfos.ContainsKey(key))
+                    {
+                        GameState._UnitTypeInfos.Add(key, new UnitTypeInfo(key));
+                    }
                 }
             }
         }

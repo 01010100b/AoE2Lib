@@ -15,7 +15,7 @@ namespace AoE2Lib.Bots
         public int TerrainId { get; private set; } = -1; // 64
         public bool Explored { get; private set; } = false; // 2
 
-        public Tile(Position position)
+        public Tile(Position position) : base()
         {
             Position = position;
         }

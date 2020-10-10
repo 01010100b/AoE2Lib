@@ -83,6 +83,11 @@ namespace Quaternary
                     Thread.Sleep(1000);
                 }
 
+                foreach (var bot in bots.Values)
+                {
+                    bot.Stop();
+                }
+
                 bots.Clear();
                 Log.Debug("game finished");
             }

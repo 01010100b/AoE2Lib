@@ -6,21 +6,19 @@ namespace AoE2Lib.Bots
 {
     public class UnitTypeInfo : GameElement
     {
-        public struct UnitTypeKey
+        public struct UnitTypeInfoKey
         {
             public readonly int Player;
             public readonly int TypeId;
 
-            public UnitTypeKey(int player, int type)
+            public UnitTypeInfoKey(int player, int type)
             {
                 Player = player;
                 TypeId = type;
             }
         }
 
-        public UnitTypeKey UnitType => new UnitTypeKey(PlayerNumber, TypeId);
-        public readonly int PlayerNumber; // 10
-        public readonly int TypeId; // 2000
+        public readonly UnitTypeInfoKey Key;
 
         public int MaxHitpoints { get; private set; } = -1; // 1000
         public int Range { get; private set; } = -1; // 25
@@ -38,10 +36,9 @@ namespace AoE2Lib.Bots
         public bool Theocracy { get; private set; } = false; // 2
         public bool Ballistics { get; private set; } = false; // 2
 
-        public UnitTypeInfo(int player, int type)
+        public UnitTypeInfo(UnitTypeInfoKey key) : base()
         {
-            PlayerNumber = player;
-            TypeId = type;
+            Key = key;
         }
 
         internal void Update(int goal0, int goal1, int goal2)
@@ -49,7 +46,7 @@ namespace AoE2Lib.Bots
             var player = (goal0 % 10) - 1;
             goal0 /= 10;
 
-            if (player != PlayerNumber)
+            if (player != Key.Player)
             {
                 throw new ArgumentException("Incorrect player: " + player);
             }
@@ -57,7 +54,7 @@ namespace AoE2Lib.Bots
             var type = (goal0 % 2000) - 1;
             goal0 /= 2000;
 
-            if (type != TypeId)
+            if (type != Key.TypeId)
             {
                 throw new ArgumentException("Incorrect type id: " + type);
             }

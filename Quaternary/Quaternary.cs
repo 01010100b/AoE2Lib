@@ -17,17 +17,13 @@ namespace Quaternary
         public override string Name => "Quaternary";
         public override int Id => 27613;
 
-        private int Ticks { get; set; } = 0;
-
         protected override void StartGame()
         {
-            Ticks = 0;
+
         }
 
         protected override Command GetNextCommand()
         {
-            Ticks++;
-
             SetStrategicNumbers();
 
             var command = new Command();
@@ -38,11 +34,10 @@ namespace Quaternary
             CheckUnits(command);
             CheckUnitTypeInfo(command);
 
-            if (Ticks % 20 == 0)
+            if (Tick % 20 == 0)
             {
                 LogState();
             }
-            
 
             return command;
         }
@@ -98,9 +93,13 @@ namespace Quaternary
             const int VILLAGER = 83;
             const int HOUSE = 70;
 
-            var me = GameState.Players.FirstOrDefault(p => p.PlayerNumber == PlayerNumber);
+            var civ = 0;
+            if (GameState.Players.TryGetValue(PlayerNumber, out Player me))
+            {
+                civ = me.CivilianPopulation;
+            }
 
-            if (me == null || me.CivilianPopulation < 120)
+            if (civ < 120)
             {
                 command.Train(VILLAGER, -1);
             }

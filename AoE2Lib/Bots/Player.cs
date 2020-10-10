@@ -10,7 +10,7 @@ namespace AoE2Lib.Bots
     {
         public enum PlayerStance
         {
-            NONE = -1, ALLY, NEUTRAL, ENEMY
+            ALLY, NEUTRAL, ALL, ENEMY
         }
 
         public readonly int PlayerNumber; // 10
@@ -19,16 +19,16 @@ namespace AoE2Lib.Bots
         public int Age { get; private set; } = -1; // 10
         public int CivilianPopulation { get; private set; } = -1; // 1000
         public int MilitaryPopulation { get; private set; } = -1; // 1000
-        public PlayerStance Stance { get; private set; } = PlayerStance.NONE; // 4
+        public PlayerStance Stance { get; private set; } = PlayerStance.NEUTRAL; // 4
 
-        public Player(int player)
+        public Player(int player) : base()
         {
             PlayerNumber = player;
         }
 
         internal void Update(int goal0, int goal1)
         {
-            var number = (goal0 % 10) - 1;
+            var number = goal0 % 10;
             goal0 /= 10;
 
             if (number != PlayerNumber)
@@ -36,17 +36,17 @@ namespace AoE2Lib.Bots
                 throw new ArgumentException("Incorrect player number: " + number);
             }
 
-            Civilization = (goal0 % 100) - 1;
+            Civilization = goal0 % 100;
             goal0 /= 100;
-            Score = (goal0 % 100000) - 1;
+            Score = goal0 % 100000;
             goal0 /= 100000;
-            Age = (goal0 % 10) - 1;
+            Age = goal0 % 10;
 
-            CivilianPopulation = (goal1 % 1000) - 1;
+            CivilianPopulation = goal1 % 1000;
             goal1 /= 1000;
-            MilitaryPopulation = (goal1 % 1000) - 1;
+            MilitaryPopulation = goal1 % 1000;
             goal1 /= 1000;
-            Stance = (PlayerStance)(goal1 % 4) - 1;
+            Stance = (PlayerStance)(goal1 % 4);
 
             ElementUpdated();
         }

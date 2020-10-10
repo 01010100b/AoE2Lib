@@ -45,14 +45,14 @@ namespace AoE2Lib.Bots
             }
         }
         private int _MapWidthHeight { get; set; } = -1;
-        public IReadOnlyList<Player> Players => _Players;
-        internal readonly List<Player> _Players = new List<Player>();
+        public IReadOnlyDictionary<int, Player> Players => _Players;
+        internal readonly Dictionary<int, Player> _Players = new Dictionary<int, Player>();
         public IReadOnlyDictionary<Position, Tile> Tiles => _Tiles;
         internal readonly Dictionary<Position, Tile> _Tiles = new Dictionary<Position, Tile>();
         public IReadOnlyDictionary<int, Unit> Units => _Units;
         internal readonly Dictionary<int, Unit> _Units = new Dictionary<int, Unit>();
-        public IReadOnlyDictionary<UnitTypeKey, UnitTypeInfo> UnitTypeInfos => _UnitTypeInfos;
-        internal readonly Dictionary<UnitTypeKey, UnitTypeInfo> _UnitTypeInfos = new Dictionary<UnitTypeKey, UnitTypeInfo>();
+        public IReadOnlyDictionary<UnitTypeInfoKey, UnitTypeInfo> UnitTypeInfos => _UnitTypeInfos;
+        internal readonly Dictionary<UnitTypeInfoKey, UnitTypeInfo> _UnitTypeInfos = new Dictionary<UnitTypeInfoKey, UnitTypeInfo>();
 
         public override string ToString()
         {
@@ -76,7 +76,10 @@ namespace AoE2Lib.Bots
 
             for (int i = 0; i < units.Length; i++)
             {
-                sb.AppendLine($"Player {i} with {units[i]} known units");
+                if (Players.ContainsKey(i))
+                {
+                    sb.AppendLine($"Player {i} with {units[i]} known units");
+                }
             }
 
             return sb.ToString();
