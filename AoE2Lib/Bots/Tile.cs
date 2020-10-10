@@ -31,13 +31,13 @@ namespace AoE2Lib.Bots
                 throw new ArgumentException("Incorrect tile position: " + position);
             }
 
-            UnitId = (goal1 % 45000) - 1;
+            UnitId = goal1 % 45000;
             goal1 /= 45000;
-            Elevation = (goal1 % 64) - 1;
+            Elevation = goal1 % 64;
             goal1 /= 64;
-            TerrainId = (goal1 % 64) - 1;
+            TerrainId = goal1 % 64;
             goal1 /= 64;
-            Explored = (goal1 % 2) == 1;
+            Explored = goal1 % 2 == 1;
 
             if (!Explored)
             {

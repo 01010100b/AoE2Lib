@@ -116,6 +116,15 @@ namespace Quaternary
             const int TILES_PER_COMMAND = 20;
 
             var tile_time = DateTime.UtcNow - TimeSpan.FromMinutes(3);
+            if (GameState.GameTime < TimeSpan.FromMinutes(5))
+            {
+                tile_time = DateTime.UtcNow - TimeSpan.FromMinutes(0.5);
+            }
+            else if (GameState.GameTime < TimeSpan.FromMinutes(15))
+            {
+                tile_time = DateTime.UtcNow - TimeSpan.FromMinutes(1);
+            }
+
             var tiles = GameState.Tiles.Values.ToList();
             tiles.Sort((a, b) =>
             {

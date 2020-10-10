@@ -9,11 +9,17 @@
 (defconst gl-tiles-terrain gl-temp6)
 (defconst gl-tiles-explored gl-temp7)
 (defconst gl-tiles-temp gl-temp8)
+(defconst gl-tiles-func-pointer gl-temp9)
+(defconst gl-tiles-return-addr gl-temp10)
+(defconst gl-tiles-data-pointer gl-temp11)
+
+; reset
 
 (defrule
 	(true)
 =>
-	(set-goal gl-tiles-temp 51)
+	(set-goal gl-tiles-data-pointer 51)
+	(up-modify-goal gl-tiles-temp g:= gl-tiles-data-pointer)
 )
 
 (defrule
@@ -24,16 +30,25 @@
 	(up-jump-rule -1)
 )
 
+; tile function
+
 (defrule
 	(true)
 =>
-	(up-modify-goal gl-tiles-command s:= 351)
+	(up-get-rule-id gl-tiles-func-pointer)
+	(up-modify-goal gl-tiles-func-pointer c:+ 1)
+	(up-jump-rule 15)
+)
+
+(defrule
+	(true)
+=>
 	(set-goal gl-tiles-x -1)
 	(set-goal gl-tiles-y -1)
-	(set-goal gl-tiles-unit -1)
-	(set-goal gl-tiles-elevation -1)
-	(set-goal gl-tiles-terrain -1)
-	(set-goal gl-tiles-explored -1)
+	(set-goal gl-tiles-unit 0)
+	(set-goal gl-tiles-elevation 0)
+	(set-goal gl-tiles-terrain 0)
+	(set-goal gl-tiles-explored 0)
 )
 
 (defrule
@@ -176,7 +191,8 @@
 	(up-modify-goal gl-tiles-temp g:= gl-tiles-x)
 	(up-modify-goal gl-tiles-temp c:* 500)
 	(up-modify-goal gl-tiles-temp g:+ gl-tiles-y)
-	(up-modify-goal 51 g:= gl-tiles-temp)
+	(up-set-indirect-goal g: gl-tiles-data-pointer g:= gl-tiles-temp)
+	(up-modify-goal gl-tiles-data-pointer c:+ 1)
 	
 	(up-modify-goal gl-tiles-temp g:= gl-tiles-explored)
 	(up-modify-goal gl-tiles-temp c:* 64)
@@ -185,5 +201,190 @@
 	(up-modify-goal gl-tiles-temp g:+ gl-tiles-elevation)
 	(up-modify-goal gl-tiles-temp c:* 45000)
 	(up-modify-goal gl-tiles-temp g:+ gl-tiles-unit)
-	(up-modify-goal 52 g:= gl-tiles-temp)
+	(up-set-indirect-goal g: gl-tiles-data-pointer g:= gl-tiles-temp)
+	(up-modify-goal gl-tiles-data-pointer c:+ 1)
+	
+	(up-jump-direct g: gl-tiles-return-addr)
+)
+
+; check 20 tiles
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-tiles-command s:= 351)
+	(up-get-rule-id gl-tiles-return-addr)
+	(up-modify-goal gl-tiles-return-addr c:+ 1)
+	(up-jump-direct g: gl-tiles-func-pointer)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-tiles-command s:= 352)
+	(up-get-rule-id gl-tiles-return-addr)
+	(up-modify-goal gl-tiles-return-addr c:+ 1)
+	(up-jump-direct g: gl-tiles-func-pointer)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-tiles-command s:= 353)
+	(up-get-rule-id gl-tiles-return-addr)
+	(up-modify-goal gl-tiles-return-addr c:+ 1)
+	(up-jump-direct g: gl-tiles-func-pointer)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-tiles-command s:= 354)
+	(up-get-rule-id gl-tiles-return-addr)
+	(up-modify-goal gl-tiles-return-addr c:+ 1)
+	(up-jump-direct g: gl-tiles-func-pointer)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-tiles-command s:= 355)
+	(up-get-rule-id gl-tiles-return-addr)
+	(up-modify-goal gl-tiles-return-addr c:+ 1)
+	(up-jump-direct g: gl-tiles-func-pointer)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-tiles-command s:= 356)
+	(up-get-rule-id gl-tiles-return-addr)
+	(up-modify-goal gl-tiles-return-addr c:+ 1)
+	(up-jump-direct g: gl-tiles-func-pointer)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-tiles-command s:= 357)
+	(up-get-rule-id gl-tiles-return-addr)
+	(up-modify-goal gl-tiles-return-addr c:+ 1)
+	(up-jump-direct g: gl-tiles-func-pointer)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-tiles-command s:= 358)
+	(up-get-rule-id gl-tiles-return-addr)
+	(up-modify-goal gl-tiles-return-addr c:+ 1)
+	(up-jump-direct g: gl-tiles-func-pointer)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-tiles-command s:= 359)
+	(up-get-rule-id gl-tiles-return-addr)
+	(up-modify-goal gl-tiles-return-addr c:+ 1)
+	(up-jump-direct g: gl-tiles-func-pointer)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-tiles-command s:= 360)
+	(up-get-rule-id gl-tiles-return-addr)
+	(up-modify-goal gl-tiles-return-addr c:+ 1)
+	(up-jump-direct g: gl-tiles-func-pointer)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-tiles-command s:= 361)
+	(up-get-rule-id gl-tiles-return-addr)
+	(up-modify-goal gl-tiles-return-addr c:+ 1)
+	(up-jump-direct g: gl-tiles-func-pointer)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-tiles-command s:= 362)
+	(up-get-rule-id gl-tiles-return-addr)
+	(up-modify-goal gl-tiles-return-addr c:+ 1)
+	(up-jump-direct g: gl-tiles-func-pointer)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-tiles-command s:= 363)
+	(up-get-rule-id gl-tiles-return-addr)
+	(up-modify-goal gl-tiles-return-addr c:+ 1)
+	(up-jump-direct g: gl-tiles-func-pointer)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-tiles-command s:= 364)
+	(up-get-rule-id gl-tiles-return-addr)
+	(up-modify-goal gl-tiles-return-addr c:+ 1)
+	(up-jump-direct g: gl-tiles-func-pointer)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-tiles-command s:= 365)
+	(up-get-rule-id gl-tiles-return-addr)
+	(up-modify-goal gl-tiles-return-addr c:+ 1)
+	(up-jump-direct g: gl-tiles-func-pointer)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-tiles-command s:= 366)
+	(up-get-rule-id gl-tiles-return-addr)
+	(up-modify-goal gl-tiles-return-addr c:+ 1)
+	(up-jump-direct g: gl-tiles-func-pointer)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-tiles-command s:= 367)
+	(up-get-rule-id gl-tiles-return-addr)
+	(up-modify-goal gl-tiles-return-addr c:+ 1)
+	(up-jump-direct g: gl-tiles-func-pointer)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-tiles-command s:= 368)
+	(up-get-rule-id gl-tiles-return-addr)
+	(up-modify-goal gl-tiles-return-addr c:+ 1)
+	(up-jump-direct g: gl-tiles-func-pointer)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-tiles-command s:= 369)
+	(up-get-rule-id gl-tiles-return-addr)
+	(up-modify-goal gl-tiles-return-addr c:+ 1)
+	(up-jump-direct g: gl-tiles-func-pointer)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-tiles-command s:= 370)
+	(up-get-rule-id gl-tiles-return-addr)
+	(up-modify-goal gl-tiles-return-addr c:+ 1)
+	(up-jump-direct g: gl-tiles-func-pointer)
 )
