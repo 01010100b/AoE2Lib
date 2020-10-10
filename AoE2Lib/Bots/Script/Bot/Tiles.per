@@ -37,7 +37,7 @@
 =>
 	(up-get-rule-id gl-tiles-func-pointer)
 	(up-modify-goal gl-tiles-func-pointer c:+ 1)
-	(up-jump-rule 15)
+	(up-jump-rule 16)
 )
 
 (defrule
@@ -205,6 +205,12 @@
 	(up-modify-goal gl-tiles-data-pointer c:+ 1)
 	
 	(up-jump-direct g: gl-tiles-return-addr)
+)
+
+(defrule
+	(up-compare-goal gl-tiles-command c:< 0)
+=>
+	(up-modify-goal gl-tiles-data-pointer c:+ 2)
 )
 
 ; check 20 tiles

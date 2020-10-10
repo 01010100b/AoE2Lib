@@ -20,19 +20,19 @@
 (defconst gl-cost-wood 452)
 (defconst gl-cost-stone 453)
 (defconst gl-cost-gold 454)
-(defconst gl-cost 451)
+(defconst gl-cost gl-cost-food)
 
 (defconst gl-point1-x 455)
 (defconst gl-point1-y 456)
-(defconst gl-point1 455)
+(defconst gl-point1 gl-point1-x)
 
 (defconst gl-point2-x 457)
 (defconst gl-point2-y 458)
-(defconst gl-point2 457)
+(defconst gl-point2 gl-point2-x)
 
 (defconst gl-point3-x 459)
 (defconst gl-point3-y 460)
-(defconst gl-point3 459)
+(defconst gl-point3 gl-point3-x)
 
 (defconst gl-temp1 461)
 (defconst gl-temp2 462)
@@ -54,6 +54,23 @@
 (defconst gl-temp18 478)
 (defconst gl-temp19 479)
 (defconst gl-temp20 480)
+
+(defconst gl-local-total 481)
+(defconst gl-local-last 482)
+(defconst gl-remote-total 483)
+(defconst gl-remote-last 484)
+(defconst gl-search-state gl-local-total)
+
+(defconst gl-temp21 491)
+(defconst gl-temp22 492)
+(defconst gl-temp23 493)
+(defconst gl-temp24 494)
+(defconst gl-temp25 495)
+(defconst gl-temp26 496)
+(defconst gl-temp27 497)
+(defconst gl-temp28 498)
+(defconst gl-temp29 499)
+(defconst gl-temp30 500)
 
 (defconst IDENTITY-GOAL 511)
 (defconst SYNC-GOAL1 512)
@@ -89,6 +106,7 @@
 
 (load "Bot\Info")
 (load "Bot\Tiles")
+(load "Bot\Units")
 
 (load "Bot\Training")
 (load "Bot\Building")

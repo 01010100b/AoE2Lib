@@ -12,7 +12,7 @@ namespace AoE2Lib.Bots
         {
             public enum UnitSearchType
             {
-                MILITARY, CIVILIAN, BUILDING, WOOD, FOOD, GOLD, STONE
+                MILITARY, CIVILIAN, BUILDING, WOOD, FOOD, GOLD, STONE, ALL
             }
 
             public readonly int Player;
@@ -22,9 +22,11 @@ namespace AoE2Lib.Bots
 
             public UnitSearchCommand(int player, Position position, int radius, UnitSearchType type)
             {
-                Player = player;
-                Position = position;
-                Radius = radius;
+                Player = Math.Max(0, Math.Min(8, player));
+                var x = Math.Max(0, Math.Min(499, position.X));
+                var y = Math.Max(0, Math.Min(499, position.Y));
+                Position = new Position(x, y);
+                Radius = Math.Max(0, Math.Min(99, radius));
                 SearchType = type;
             }
         }
@@ -38,7 +40,10 @@ namespace AoE2Lib.Bots
 
         public void CheckTile(Position position)
         {
-            TilesToCheck.Add(position);
+            var x = Math.Max(0, Math.Min(499, position.X));
+            var y = Math.Max(0, Math.Min(499, position.Y));
+
+            TilesToCheck.Add(new Position(x, y));
         }
 
         public void SearchForUnits(UnitSearchCommand search)
@@ -48,8 +53,8 @@ namespace AoE2Lib.Bots
 
         public void CheckUnitTypeInfo(int player, int type)
         {
-            UnitTypeInfoPlayer = player;
-            UnitTypeInfoType = type;
+            UnitTypeInfoPlayer = Math.Max(0, Math.Min(8, player));
+            UnitTypeInfoType = Math.Max(0, Math.Min(1999, type));
         }
 
         public void Train(int unit, int max_pending = 0)

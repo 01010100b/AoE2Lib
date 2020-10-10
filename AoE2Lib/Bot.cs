@@ -146,6 +146,7 @@ namespace AoE2Lib
         {
             UpdateInfo();
             UpdateTiles();
+            UpdateUnits();
         }
 
         private void UpdateInfo()
@@ -198,6 +199,35 @@ namespace AoE2Lib
             }
         }
 
+        private void UpdateUnits()
+        {
+            const int GL_UNITS_START = 151;
+            const int GL_UNITS_END = 390;
+
+            var offset = GL_UNITS_START;
+            while (offset <= GL_UNITS_END)
+            {
+                var goal0 = GetGoal(offset);
+                offset++;
+                var goal1 = GetGoal(offset);
+                offset++;
+                var goal2 = GetGoal(offset);
+                offset++;
+
+                if (goal0 >= 0)
+                {
+                    var id = goal0 % 45000;
+
+                    if (!GameState.Units.ContainsKey(id))
+                    {
+                        GameState._Units.Add(id, new Unit(id));
+                    }
+
+                    GameState.Units[id].Update(goal0, goal1, goal2);
+                }
+            }
+        }
+
         private void GiveCommand(Command command)
         {
             const int SN_RANDOM = 350;
@@ -206,7 +236,7 @@ namespace AoE2Lib
             const int SN_TILE_END = 370;
 
             const int SN_UNITSEARCH_START = 401;
-            const int SN_UNITSEARCH_END = 403;
+            const int SN_UNITSEARCH_END = 404;
 
             const int SN_UNITTYPEINFO = 411;
 
@@ -222,7 +252,7 @@ namespace AoE2Lib
 
             var offset = SN_TILE_START;
             int sn;
-            foreach (var pos in command.TilesToCheck.Where(p => p.OnMap(GameState.MapWidthHeight)).Distinct())
+            foreach (var pos in command.TilesToCheck)
             {
                 sn = pos.X;
                 sn *= 500;
@@ -246,7 +276,7 @@ namespace AoE2Lib
             // unit search
 
             offset = SN_UNITSEARCH_START;
-            foreach (var search in command.UnitSearchCommands.Where(s => s.Player >= 0 && s.Player <= 8 && s.Position.OnMap(GameState.MapWidthHeight)))
+            foreach (var search in command.UnitSearchCommands)
             {
                 sn = search.Player;
                 sn *= 500;
@@ -255,7 +285,7 @@ namespace AoE2Lib
                 sn += search.Position.Y;
                 sn *= 100;
                 sn += Math.Max(1, Math.Min(99, search.Radius));
-                sn *= 7;
+                sn *= 8;
                 sn += (int)search.SearchType;
 
                 SetStrategicNumber(offset, sn);

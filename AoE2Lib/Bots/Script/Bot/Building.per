@@ -50,9 +50,3 @@
 =>
 	(up-build place-normal 0 g: gl-building-unit)
 )
-
-(defrule
-	(up-compare-goal gl-building-command c:>= 0)
-=>
-	(up-chat-data-to-self "build %d" g: gl-building-unit)
-)

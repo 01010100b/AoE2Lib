@@ -167,7 +167,7 @@ namespace Quaternary
 
         private void CheckUnits(Command command)
         {
-            const int UNIT_SEARCHES_PER_TICK = 3;
+            const int UNIT_SEARCHES_PER_TICK = 5;
 
             var explored = GameState.Tiles.Values.Where(t => t.Explored).Select(t => t.Position).ToList();
             if (explored.Count == 0)

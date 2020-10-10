@@ -36,7 +36,7 @@ namespace AoE2Lib.Bots
 
         internal void Update(int goal0, int goal1, int goal2)
         {
-            var id = (goal0 % 45000) - 1;
+            var id = goal0 % 45000;
             goal0 /= 45000;
 
             if (id != Id)
@@ -44,7 +44,7 @@ namespace AoE2Lib.Bots
                 throw new ArgumentException("Incorrect unit id:" + id);
             }
 
-            TargetId = (goal0 % 45000) - 1;
+            TargetId = goal0 % 45000;
 
             var x = goal1 % 500;
             goal1 /= 500;

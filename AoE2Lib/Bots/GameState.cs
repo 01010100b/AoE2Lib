@@ -56,6 +56,12 @@ namespace AoE2Lib.Bots
 
         public override string ToString()
         {
+            var units = new int[9];
+            foreach (var unit in Units.Values)
+            {
+                units[unit.PlayerNumber]++;
+            }
+
             var sb = new StringBuilder();
             
             sb.AppendLine("--- CURRENT STATE ---");
@@ -66,11 +72,14 @@ namespace AoE2Lib.Bots
 
             var explored = Tiles.Count(t => t.Value.Explored);
             sb.AppendLine($"Map tiles {Tiles.Count} explored {explored} ({(explored / (double)Tiles.Count):P})");
+            sb.AppendLine();
 
-            sb.AppendLine($"tiles with unit: {Tiles.Count(t => t.Value.UnitId > 0)}");
+            for (int i = 0; i < units.Length; i++)
+            {
+                sb.AppendLine($"Player {i} with {units[i]} known units");
+            }
+
             return sb.ToString();
         }
-
-
     }
 }
