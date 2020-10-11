@@ -116,29 +116,10 @@
 ; start bot
 
 (load "Bot\UserPatchConst")
+
 (load "Bot\Functions\ObjectTypeCountTotal")
 (load "Bot\Functions\TargetObject")
 (load "Bot\Functions\TargetPoint")
-
-; send scout to tc position with action-move and stance-defensive
-(defrule
-	(true)
-=>
-	(up-full-reset-search)
-	(up-find-local c: scout-cavalry c: 40)
-	(up-get-point position-self gl-point1)
-	(up-set-target-point gl-point1)
-)
-
-(defrule
-	(true)
-=>
-	(up-modify-goal gl-func-param1 c:= action-move)
-	(up-modify-goal gl-func-param2 c:= stance-defensive)
-	(up-get-rule-id gl-func-return-addr)
-	(up-modify-goal gl-func-return-addr c:+ 1)
-	(up-jump-direct g: gl-func-pointer-targetpoint)
-)
 
 (load "Bot\Info")
 (load "Bot\Players")
