@@ -27,6 +27,16 @@
       <DependentUpon>TargetObject.tt</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Bots\Script\Bot\Functions\TargetPoint.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TargetPoint.per</LastGenOutput>
+    </None>
+    <None Update="Bots\Script\Bot\Functions\TargetPoint.per">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TargetPoint.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Bots\Script\Bot\Info.per">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

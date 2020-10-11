@@ -84,6 +84,7 @@
 
 (defconst gl-func-pointer-objecttypecounttotal 501)
 (defconst gl-func-pointer-targetobject 502)
+(defconst gl-func-pointer-targetpoint 503)
 (defconst IDENTITY-GOAL 511)
 (defconst SYNC-GOAL1 512)
 
@@ -117,18 +118,16 @@
 (load "Bot\UserPatchConst")
 (load "Bot\Functions\ObjectTypeCountTotal")
 (load "Bot\Functions\TargetObject")
+(load "Bot\Functions\TargetPoint")
 
+; send scout to tc position with action-move and stance-defensive
 (defrule
 	(true)
 =>
 	(up-full-reset-search)
 	(up-find-local c: scout-cavalry c: 40)
-	(set-strategic-number sn-focus-player-number my-player-number)
-	(up-find-remote c: town-center c: 40)
-	(up-get-search-state gl-search-state)
-	(up-chat-data-to-self "found %d" g: gl-remote-total)
-	(up-set-target-object search-remote c: 0)
-	(disable-self)
+	(up-get-point position-self gl-point1)
+	(up-set-target-point gl-point1)
 )
 
 (defrule
@@ -138,8 +137,7 @@
 	(up-modify-goal gl-func-param2 c:= stance-defensive)
 	(up-get-rule-id gl-func-return-addr)
 	(up-modify-goal gl-func-return-addr c:+ 1)
-	(up-jump-direct g: gl-func-pointer-targetobject)
-	(disable-self)
+	(up-jump-direct g: gl-func-pointer-targetpoint)
 )
 
 (load "Bot\Info")

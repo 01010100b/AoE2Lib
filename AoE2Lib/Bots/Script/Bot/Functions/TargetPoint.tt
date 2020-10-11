@@ -1,0 +1,62 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".per" encoding="UTF-8" #>
+<#
+const int MIN_ACTION = 0;
+const int MAX_ACTION = 18;
+const int MIN_STANCE = -1;
+const int MAX_STANCE = 3;
+
+const int ACTIONS = MAX_ACTION - MIN_ACTION + 1;
+const int STANCES = MAX_STANCE - MIN_STANCE + 1;
+const int OPTIONS = ACTIONS * STANCES;
+#>
+; func TargetPoint
+; param1 = TargetAction
+; param2 = AttackStance
+
+(defconst glx-targetpoint-action gl-func-param1)
+(defconst glx-targetpoint-stance gl-func-param2)
+(defconst glx-targetpoint-pointer gl-func-reg1)
+
+(defrule
+	(true)
+=>
+	(up-get-rule-id gl-func-pointer-targetpoint)
+	(up-modify-goal gl-func-pointer-targetpoint c:+ 1)
+	(up-jump-rule <#= OPTIONS + 1 #>)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal glx-targetpoint-action c:max <#= MIN_ACTION #>)
+	(up-modify-goal glx-targetpoint-action c:min <#= MAX_ACTION #>)
+	(up-modify-goal glx-targetpoint-stance c:max <#= MIN_STANCE #>)
+	(up-modify-goal glx-targetpoint-stance c:min <#= MAX_STANCE #>)
+	(up-modify-goal glx-targetpoint-pointer g:= glx-targetpoint-action)
+	(up-modify-goal glx-targetpoint-pointer c:* <#= STANCES #>)
+	(up-modify-goal glx-targetpoint-pointer g:+ glx-targetpoint-stance)
+	(up-modify-goal glx-targetpoint-pointer c:+ 1)
+	(up-jump-dynamic g: glx-targetpoint-pointer)
+)
+<#
+for (int action = MIN_ACTION; action <= MAX_ACTION; action++)
+{
+	for (int stance = MIN_STANCE; stance <= MAX_STANCE; stance++)
+	{
+#>
+
+(defrule
+	(true)
+=>
+	(up-target-point 0 <#= action #> -1 <#= stance #>)
+	(up-jump-direct g: gl-func-return-addr)
+)
+<#		
+	}
+}
+#>
