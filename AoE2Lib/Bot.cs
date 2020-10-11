@@ -274,10 +274,10 @@ namespace AoE2Lib
             const int SN_UNITTYPEINFO = 411;
 
             const int SN_TRAINING_START = 421;
-            const int SN_TRAINING_END = 430;
+            const int SN_TRAINING_END = 429;
 
-            const int SN_BUILDING_START = 431;
-            const int SN_BUILDING_END = 440;
+            const int SN_BUILDING_START = 430;
+            const int SN_BUILDING_END = 430;
 
             SetStrategicNumber(SN_RANDOM, RNG.Next(10000, 30000));
 

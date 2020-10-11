@@ -14,7 +14,20 @@
     <None Update="Bots\Script\Bot\Building.per">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Bots\Script\Bot\Functions\ObjectTypeCountTotal.per">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Bots\Script\Bot\Info.per">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Bots\Script\Bot\Micro.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Micro.per</LastGenOutput>
+    </None>
+    <None Update="Bots\Script\Bot\Micro.per">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Micro.tt</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Bots\Script\Bot\Tiles.per">
@@ -26,6 +39,14 @@
     <None Update="Bots\Script\Bot\UserPatchConst.per">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Mods\" />
   </ItemGroup>
 
 </Project>

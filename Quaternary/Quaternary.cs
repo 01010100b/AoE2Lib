@@ -184,6 +184,14 @@ namespace Quaternary
                     if (RNG.NextDouble() < 0.5)
                     {
                         player = RNG.Next(9);
+
+                        if (GameState.Players.Count > 0)
+                        {
+                            while (!GameState.Players.ContainsKey(player))
+                            {
+                                player = RNG.Next(9);
+                            }
+                        }
                     }
                 }
 
@@ -196,6 +204,11 @@ namespace Quaternary
                     if (RNG.NextDouble() < 0.5)
                     {
                         type = UnitSearchType.BUILDING;
+
+                        if (RNG.NextDouble() < 0.5)
+                        {
+                            type = UnitSearchType.FOOD;
+                        }
                     }
                 }
 
@@ -214,6 +227,11 @@ namespace Quaternary
                             if (RNG.NextDouble() < 0.5)
                             {
                                 type = UnitSearchType.STONE;
+
+                                if (RNG.NextDouble() < 0.5)
+                                {
+                                    type = UnitSearchType.ALL;
+                                }
                             }
                         }
                     }

@@ -16,6 +16,15 @@
 ; 501-512 special
 
 (defconst SYNC-GOAL2 1)
+(defconst gl-func-result 2)
+(defconst gl-func-return-addr 3)
+(defconst gl-func-param1 4)
+(defconst gl-func-param2 5)
+(defconst gl-func-param3 6)
+(defconst gl-func-reg1 7)
+(defconst gl-func-reg2 8)
+(defconst gl-func-reg3 9)
+(defconst gl-func-reg4 10)
 
 (defconst gl-cost-food 451)
 (defconst gl-cost-wood 452)
@@ -73,6 +82,7 @@
 (defconst gl-temp29 499)
 (defconst gl-temp30 500)
 
+(defconst gl-func-pointer-objecttypecounttotal 501)
 (defconst IDENTITY-GOAL 511)
 (defconst SYNC-GOAL1 512)
 
@@ -83,8 +93,8 @@
 ; 351-370 check tiles
 ; 401-410 unit search
 ; 411-420 unit info
-; 421-430 train units
-; 431-440 build buildings
+; 421-429 train units
+; 430 build building
 
 (defrule
 	(true)
@@ -104,6 +114,22 @@
 ; start bot
 
 (load "Bot\UserPatchConst")
+(load "Bot\Functions")
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-func-param1 c:= villager)
+	(up-get-rule-id gl-func-return-addr)
+	(up-modify-goal gl-func-return-addr c:+ 1)
+	(up-jump-direct g: gl-func-pointer-objecttypecounttotal)
+)
+
+(defrule
+	(true)
+=>
+	(up-chat-data-to-self "We have %d villagers" g: gl-func-result)
+)
 
 (load "Bot\Info")
 (load "Bot\Players")

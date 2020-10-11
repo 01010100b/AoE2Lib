@@ -33,64 +33,77 @@ namespace Quaternary
 
         private void RunManager()
         {
-            const int IDENTITY_GOAL = 511;
-
             var process = Process.GetProcessesByName("WK")[0];
-            var instance = new WKInstance(process);
 
-            Log.Debug($"connected to process {process.Id}");
+            using (var instance = new WKInstance(process))
+            {
+                Log.Debug($"connected to process {process.Id}");
+
+                while (!instance.HasExited)
+                {
+                    while (!(instance.HasExited || instance.IsGameRunning))
+                    {
+                        Thread.Sleep(200);
+                    }
+
+                    if (instance.HasExited)
+                    {
+                        break;
+                    }
+
+                    RunGame(instance);
+                }
+            }
+        }
+
+        private void RunGame(GameInstance instance)
+        {
+            const int IDENTITY_GOAL = 511;
 
             var quaternary = new Quaternary().Id;
             var sw = new Stopwatch();
             var bots = new Dictionary<int, Bot>();
 
-            while (!instance.HasExited)
+            Log.Debug("game started");
+
+            sw.Start();
+
+            while (sw.ElapsedMilliseconds < 3000)
             {
-                while (!instance.IsGameRunning)
+                for (int i = 1; i <= 8; i++)
                 {
-                    Thread.Sleep(200);
-                }
-
-                Log.Debug("game started");
-
-                sw.Restart();
-
-                while (sw.ElapsedMilliseconds < 3000)
-                {
-                    for (int i = 1; i <= 8; i++)
+                    if (instance.IsPlayerInGame(i) && !bots.ContainsKey(i))
                     {
-                        if (instance.IsPlayerInGame(i) && !bots.ContainsKey(i))
+                        var id = instance.GetGoals(i)[IDENTITY_GOAL - 1];
+
+                        if (id == quaternary)
                         {
-                            var id = instance.GetGoals(i)[IDENTITY_GOAL - 1];
+                            var q = new Quaternary();
 
-                            if (id == quaternary)
-                            {
-                                var q = new Quaternary();
-                                
-                                q.Start(instance, i);
-                                bots.Add(i, q);
+                            q.Start(instance, i);
+                            bots.Add(i, q);
 
-                                Log.Debug($"Quaternary taking control of player {i}");
-                            }
+                            Log.Debug($"Quaternary taking control of player {i}");
                         }
                     }
-
-                    Thread.Sleep(300);
                 }
-
-                while (instance.IsGameRunning)
-                {
-                    Thread.Sleep(1000);
-                }
-
-                foreach (var bot in bots.Values)
-                {
-                    bot.Stop();
-                }
-
-                bots.Clear();
-                Log.Debug("game finished");
+                Thread.Sleep(300);
             }
+
+            while (instance.IsGameRunning)
+            {
+                Thread.Sleep(1000);
+            }
+
+            foreach (var bot in bots.Values)
+            {
+                bot.Stop();
+            }
+
+            bots.Clear();
+            sw.Stop();
+
+            Log.Debug("game finished");
         }
 
         private void ButtonCopy_Click(object sender, EventArgs e)
