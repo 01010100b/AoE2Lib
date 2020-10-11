@@ -40,20 +40,16 @@
     <None Update="Bots\Script\Bot\Info.per">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Bots\Script\Bot\Micro.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Micro.per</LastGenOutput>
-    </None>
-    <None Update="Bots\Script\Bot\Micro.per">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Micro.tt</DependentUpon>
+    <None Update="Bots\Script\Bot\Players.per">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Bots\Script\Bot\Tiles.per">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Bots\Script\Bot\Training.per">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Bots\Script\Bot\Units.per">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Bots\Script\Bot\UserPatchConst.per">
