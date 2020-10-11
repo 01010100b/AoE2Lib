@@ -17,6 +17,16 @@
     <None Update="Bots\Script\Bot\Functions\ObjectTypeCountTotal.per">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Bots\Script\Bot\Functions\TargetObject.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TargetObject.per</LastGenOutput>
+    </None>
+    <None Update="Bots\Script\Bot\Functions\TargetObject.per">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TargetObject.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Bots\Script\Bot\Info.per">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

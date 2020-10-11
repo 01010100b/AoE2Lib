@@ -1,0 +1,694 @@
+﻿; func TargetObject
+; param1 = TargetAction
+; param2 = AttackStance
+
+(defconst glx-targetobject-action gl-func-param1)
+(defconst glx-targetobject-stance gl-func-param2)
+(defconst glx-targetobject-pointer gl-func-reg1)
+
+(defrule
+	(true)
+=>
+	(up-get-rule-id gl-func-pointer-targetobject)
+	(up-modify-goal gl-func-pointer-targetobject c:+ 1)
+	(up-jump-rule 96)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal glx-targetobject-action c:max 0)
+	(up-modify-goal glx-targetobject-action c:min 18)
+	(up-modify-goal glx-targetobject-stance c:max -1)
+	(up-modify-goal glx-targetobject-stance c:min 3)
+	(up-modify-goal glx-targetobject-pointer g:= glx-targetobject-action)
+	(up-modify-goal glx-targetobject-pointer c:* 5)
+	(up-modify-goal glx-targetobject-pointer g:+ glx-targetobject-stance)
+	(up-modify-goal glx-targetobject-pointer c:+ 1)
+	(up-jump-dynamic g: glx-targetobject-pointer)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 0 -1 -1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 0 -1 0)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 0 -1 1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 0 -1 2)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 0 -1 3)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 1 -1 -1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 1 -1 0)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 1 -1 1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 1 -1 2)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 1 -1 3)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 2 -1 -1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 2 -1 0)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 2 -1 1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 2 -1 2)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 2 -1 3)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 3 -1 -1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 3 -1 0)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 3 -1 1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 3 -1 2)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 3 -1 3)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 4 -1 -1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 4 -1 0)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 4 -1 1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 4 -1 2)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 4 -1 3)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 5 -1 -1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 5 -1 0)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 5 -1 1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 5 -1 2)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 5 -1 3)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 6 -1 -1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 6 -1 0)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 6 -1 1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 6 -1 2)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 6 -1 3)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 7 -1 -1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 7 -1 0)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 7 -1 1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 7 -1 2)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 7 -1 3)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 8 -1 -1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 8 -1 0)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 8 -1 1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 8 -1 2)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 8 -1 3)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 9 -1 -1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 9 -1 0)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 9 -1 1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 9 -1 2)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 9 -1 3)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 10 -1 -1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 10 -1 0)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 10 -1 1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 10 -1 2)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 10 -1 3)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 11 -1 -1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 11 -1 0)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 11 -1 1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 11 -1 2)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 11 -1 3)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 12 -1 -1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 12 -1 0)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 12 -1 1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 12 -1 2)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 12 -1 3)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 13 -1 -1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 13 -1 0)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 13 -1 1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 13 -1 2)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 13 -1 3)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 14 -1 -1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 14 -1 0)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 14 -1 1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 14 -1 2)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 14 -1 3)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 15 -1 -1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 15 -1 0)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 15 -1 1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 15 -1 2)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 15 -1 3)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 16 -1 -1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 16 -1 0)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 16 -1 1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 16 -1 2)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 16 -1 3)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 17 -1 -1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 17 -1 0)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 17 -1 1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 17 -1 2)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 17 -1 3)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 18 -1 -1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 18 -1 0)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 18 -1 1)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 18 -1 2)
+	(up-jump-direct g: gl-func-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-target-objects 1 18 -1 3)
+	(up-jump-direct g: gl-func-return-addr)
+)
