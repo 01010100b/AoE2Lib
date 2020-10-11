@@ -25,6 +25,7 @@ namespace AoE2Lib
         
         protected readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.Ticks.GetHashCode());
         protected GameState GameState { get; private set; } = null;
+        protected Mod Mod { get; private set; } = null;
         protected int Tick { get; private set; } = 0;
 
         private Thread BotThread { get; set; } = null;
@@ -35,7 +36,7 @@ namespace AoE2Lib
 
         private volatile bool Stopping = false;
 
-        public void Start(GameInstance instance, int player)
+        public void Start(GameInstance instance, int player, Mod mod)
         {
             Stopping = true;
             BotThread?.Join();
@@ -43,6 +44,7 @@ namespace AoE2Lib
             Instance = instance;
             PlayerNumber = player;
             GameState = new GameState();
+            Mod = mod;
             Tick = 0;
 
             Running = true;
@@ -98,6 +100,8 @@ namespace AoE2Lib
             Running = false;
             Stopping = false;
             PlayerNumber = -1;
+
+            Debug.WriteLine("bot stopped");
         }
 
         private bool TryUpdate()
@@ -198,6 +202,11 @@ namespace AoE2Lib
                 }
 
                 GameState.Players[player].Update(goal0, goal1);
+            }
+
+            if (!GameState.Players.ContainsKey(0))
+            {
+                GameState._Players.Add(0, new Player(0));
             }
         }
 
@@ -365,7 +374,7 @@ namespace AoE2Lib
                 }
             }
 
-            while (offset < SN_TRAINING_END)
+            while (offset <= SN_TRAINING_END)
             {
                 SetStrategicNumber(offset, -1);
                 offset++;
@@ -385,7 +394,7 @@ namespace AoE2Lib
                 }
             }
 
-            while (offset < SN_BUILDING_END)
+            while (offset <= SN_BUILDING_END)
             {
                 SetStrategicNumber(offset, -1);
                 offset++;

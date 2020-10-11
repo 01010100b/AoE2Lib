@@ -60,6 +60,8 @@ namespace AoE2Lib.Bots
             foreach (var unit in Units.Values)
             {
                 units[unit.PlayerNumber]++;
+
+                
             }
 
             var sb = new StringBuilder();
@@ -72,6 +74,9 @@ namespace AoE2Lib.Bots
 
             var explored = Tiles.Count(t => t.Value.Explored);
             sb.AppendLine($"Map tiles {Tiles.Count} explored {explored} ({(explored / (double)Tiles.Count):P})");
+            
+
+
             sb.AppendLine();
 
             for (int i = 0; i < units.Length; i++)

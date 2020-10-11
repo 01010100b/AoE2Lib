@@ -37,7 +37,7 @@ namespace Quaternary
 
             using (var instance = new WKInstance(process))
             {
-                Log.Debug($"connected to process {process.Id}");
+                LogMessage($"connected to process {process.Id}");
 
                 while (!instance.HasExited)
                 {
@@ -60,11 +60,13 @@ namespace Quaternary
         {
             const int IDENTITY_GOAL = 511;
 
+            var mod = new Mod();
+            mod.LoadWK();
             var quaternary = new Quaternary().Id;
             var sw = new Stopwatch();
             var bots = new Dictionary<int, Bot>();
 
-            Log.Debug("game started");
+            LogMessage("game started");
 
             sw.Start();
 
@@ -72,18 +74,20 @@ namespace Quaternary
             {
                 for (int i = 1; i <= 8; i++)
                 {
-                    if (instance.IsPlayerInGame(i) && !bots.ContainsKey(i))
+                    var goals = instance.GetGoals(i);
+                    if (goals != null && !bots.ContainsKey(i))
                     {
-                        var id = instance.GetGoals(i)[IDENTITY_GOAL - 1];
+                        Thread.Sleep(200);
+                        var id = goals[IDENTITY_GOAL - 1];
 
                         if (id == quaternary)
                         {
                             var q = new Quaternary();
 
-                            q.Start(instance, i);
+                            q.Start(instance, i, mod);
                             bots.Add(i, q);
 
-                            Log.Debug($"Quaternary taking control of player {i}");
+                            LogMessage($"Quaternary taking control of player {i}");
                         }
                     }
                 }
@@ -93,6 +97,13 @@ namespace Quaternary
             while (instance.IsGameRunning)
             {
                 Thread.Sleep(1000);
+
+                var bot = bots.Values.FirstOrDefault();
+                if (bot != null && bot is Quaternary q)
+                {
+                    var state = q.CurrentState;
+                    Invoke(new Action(() => TextBoxState.Text = state));
+                }
             }
 
             foreach (var bot in bots.Values)
@@ -103,7 +114,7 @@ namespace Quaternary
             bots.Clear();
             sw.Stop();
 
-            Log.Debug("game finished");
+            LogMessage("game finished");
         }
 
         private void ButtonCopy_Click(object sender, EventArgs e)
@@ -136,6 +147,13 @@ namespace Quaternary
                     queue.Enqueue(dir);
                 }
             }
+        }
+
+        private void LogMessage(string message)
+        {
+            Log.Debug(message);
+
+            Invoke(new Action(() => TextBoxLog.Text += message + "\r\n"));
         }
     }
 }

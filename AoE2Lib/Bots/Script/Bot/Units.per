@@ -291,7 +291,7 @@
 =>
 	(up-modify-goal gl-units-unit-type c:max 0)
 	(up-modify-goal gl-units-unit-type c:min 1999)
-	(up-modify-goal gl-units-temp g:+ gl-units-unit-type)
+	(up-modify-goal gl-units-temp g:= gl-units-unit-type)
 	
 	(up-modify-goal gl-units-temp c:* 500)
 	(up-modify-goal gl-units-unit-y c:max 0)
@@ -301,7 +301,7 @@
 	(up-modify-goal gl-units-temp c:* 500)
 	(up-modify-goal gl-units-unit-x c:max 0)
 	(up-modify-goal gl-units-unit-x c:min 499)
-	(up-modify-goal gl-units-temp g:= gl-units-unit-x)
+	(up-modify-goal gl-units-temp g:+ gl-units-unit-x)
 	
 	(up-set-indirect-goal g: gl-units-data-pointer g: gl-units-temp)
 	(up-modify-goal gl-units-data-pointer c:+ 1)

@@ -8,9 +8,9 @@ namespace Quaternary
 {
     static class Log
     {
-        public static void Debug(object message)
+        public static void Debug(object message = null)
         {
-            System.Diagnostics.Debug.WriteLine(message);
+            System.Diagnostics.Debug.WriteLine(message ?? "");
         }
     }
 }
