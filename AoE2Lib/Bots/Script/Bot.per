@@ -83,6 +83,7 @@
 (defconst gl-temp30 500)
 
 (defconst gl-func-pointer-objecttypecounttotal 501)
+(defconst gl-func-pointer-targetobject 502)
 (defconst IDENTITY-GOAL 511)
 (defconst SYNC-GOAL1 512)
 
@@ -115,20 +116,30 @@
 
 (load "Bot\UserPatchConst")
 (load "Bot\Functions\ObjectTypeCountTotal")
+(load "Bot\Functions\TargetObject")
 
 (defrule
 	(true)
 =>
-	(up-modify-goal gl-func-param1 c:= villager)
-	(up-get-rule-id gl-func-return-addr)
-	(up-modify-goal gl-func-return-addr c:+ 1)
-	(up-jump-direct g: gl-func-pointer-objecttypecounttotal)
+	(up-full-reset-search)
+	(up-find-local c: scout-cavalry c: 40)
+	(set-strategic-number sn-focus-player-number my-player-number)
+	(up-find-remote c: town-center c: 40)
+	(up-get-search-state gl-search-state)
+	(up-chat-data-to-self "found %d" g: gl-remote-total)
+	(up-set-target-object search-remote c: 0)
+	(disable-self)
 )
 
 (defrule
 	(true)
 =>
-	(up-chat-data-to-self "We have %d villagers" g: gl-func-result)
+	(up-modify-goal gl-func-param1 c:= action-move)
+	(up-modify-goal gl-func-param2 c:= stance-defensive)
+	(up-get-rule-id gl-func-return-addr)
+	(up-modify-goal gl-func-return-addr c:+ 1)
+	(up-jump-direct g: gl-func-pointer-targetobject)
+	(disable-self)
 )
 
 (load "Bot\Info")
