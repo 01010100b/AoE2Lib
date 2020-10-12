@@ -14,6 +14,8 @@ namespace AoE2Lib.Bots
         public int Elevation { get; private set; } = -1; // 64
         public int TerrainId { get; private set; } = -1; // 64
         public bool Explored { get; private set; } = false; // 2
+        public IReadOnlyCollection<Unit> Units => _Units;
+        internal readonly HashSet<Unit> _Units = new HashSet<Unit>();
 
         public Tile(Position position) : base()
         {

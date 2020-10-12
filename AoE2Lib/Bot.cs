@@ -171,102 +171,28 @@ namespace AoE2Lib
 
             SetStrategicNumber(SN_RANDOM, RNG.Next());
 
-            // tiles
+            GiveCommands(SN_TILE_START, SN_TILE_END, command.CheckTileCommands);
+            GiveCommands(SN_UNITSEARCH_START, SN_UNITSEARCH_END, command.UnitSearchCommands);
+            GiveCommands(SN_UNITTYPEINFO_START, SN_UNITTYPEINFO_END, command.UnitTypeInfoCommands);
+            GiveCommands(SN_TRAINING_START, SN_TRAINING_END, command.TrainCommands);
+            GiveCommands(SN_BUILDING_START, SN_BUILDING_END, command.BuildCommands);
+        }
 
-            var offset = SN_TILE_START;
-            
-            foreach (var sn in command.CheckTileCommands)
+        private void GiveCommands(int sn_start, int sn_end, IEnumerable<int> commands)
+        {
+            var offset = sn_start;
+            foreach (var sn in commands)
             {
                 SetStrategicNumber(offset, sn);
                 offset++;
 
-                if (offset > SN_TILE_END)
+                if (offset > sn_end)
                 {
                     break;
                 }
             }
 
-            while (offset <= SN_TILE_END)
-            {
-                SetStrategicNumber(offset, -1);
-                offset++;
-            }
-
-            // unit search
-
-            offset = SN_UNITSEARCH_START;
-            foreach (var sn in command.UnitSearchCommands)
-            {
-                SetStrategicNumber(offset, sn);
-                offset++;
-
-                if (offset > SN_UNITSEARCH_END)
-                {
-                    break;
-                }
-            }
-
-            while (offset <= SN_UNITSEARCH_END)
-            {
-                SetStrategicNumber(offset, -1);
-                offset++;
-            }
-
-            // unit type info
-
-            offset = SN_UNITTYPEINFO_START;
-            foreach (var sn in command.UnitTypeInfoCommands)
-            {
-                SetStrategicNumber(offset, sn);
-                offset++;
-
-                if (offset > SN_UNITTYPEINFO_END)
-                {
-                    break;
-                }
-            }
-
-            while (offset <= SN_UNITTYPEINFO_END)
-            {
-                SetStrategicNumber(offset, -1);
-                offset++;
-            }
-
-            // training
-
-            offset = SN_TRAINING_START;
-            foreach (var goal in command.TrainCommands)
-            {
-                SetStrategicNumber(offset, goal);
-                offset++;
-
-                if (offset > SN_TRAINING_END)
-                {
-                    break;
-                }
-            }
-
-            while (offset <= SN_TRAINING_END)
-            {
-                SetStrategicNumber(offset, -1);
-                offset++;
-            }
-
-            // building
-
-            offset = SN_BUILDING_START;
-            foreach (var goal in command.BuildCommands)
-            {
-                SetStrategicNumber(offset, goal);
-                offset++;
-
-                if (offset > SN_BUILDING_END)
-                {
-                    break;
-                }
-            }
-
-            while (offset <= SN_BUILDING_END)
+            while (offset <= sn_end)
             {
                 SetStrategicNumber(offset, -1);
                 offset++;

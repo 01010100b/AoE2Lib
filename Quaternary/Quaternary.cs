@@ -104,9 +104,6 @@ namespace Quaternary
 
         private void Economy(Command command)
         {
-            const int VILLAGER = 83;
-            const int HOUSE = 70;
-
             var civ = 0;
             if (GameState.Players.TryGetValue(PlayerNumber, out Player me))
             {
@@ -115,12 +112,12 @@ namespace Quaternary
 
             if (civ < 120)
             {
-                command.Train(VILLAGER, -1);
+                command.Train(Mod.Villager.TypeId, -1);
             }
 
             if (GameState.HousingHeadroom < 5 && GameState.PopulationHeadroom > 0)
             {
-                command.Build(HOUSE, GameState.MyPosition, 1);
+                command.Build(Mod.House.TypeId, GameState.MyPosition, 1);
             }
         }
 

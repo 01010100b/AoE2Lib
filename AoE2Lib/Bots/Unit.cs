@@ -66,5 +66,22 @@ namespace AoE2Lib.Bots
 
             ElementUpdated();
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Unit unit)
+            {
+                return Id == unit.Id;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
+        }
     }
 }

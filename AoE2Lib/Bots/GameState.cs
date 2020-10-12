@@ -163,7 +163,16 @@ namespace AoE2Lib.Bots
                     }
 
                     var unit = Units[id];
+                    if (Tiles.TryGetValue(unit.Position, out Tile tile))
+                    {
+                        tile._Units.Remove(unit);
+                    }
+
                     unit.Update(goal0, goal1, goal2);
+                    if (Tiles.TryGetValue(unit.Position, out tile))
+                    {
+                        tile._Units.Add(unit);
+                    }
 
                     var key = new UnitTypeInfoKey(unit.PlayerNumber, unit.TypeId);
                     if (!UnitTypeInfos.ContainsKey(key))

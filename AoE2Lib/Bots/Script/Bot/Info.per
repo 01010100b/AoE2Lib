@@ -1,7 +1,9 @@
 ; 11-40 general info
 
 ; 11-20 game info
-; 21-40 special self info
+; 21-30 self info
+; 31-34 units exist
+; 35 units count total
 
 (defconst gl-info-gametime 11)
 (defconst gl-info-mapsize 12)
@@ -14,6 +16,8 @@
 (defconst gl-info-houseroom 26)
 (defconst gl-info-x 27)
 (defconst gl-info-y 28)
+
+; game info
 
 (defrule
 	(true)
@@ -91,7 +95,7 @@
 
 #end-if
 
-
+; self info
 
 (defrule
 	(true)

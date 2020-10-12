@@ -8,6 +8,14 @@ namespace AoE2Lib
     public class Mod
     {
         public readonly Dictionary<int, UnitDef> UnitDefs = new Dictionary<int, UnitDef>();
+        public UnitDef Villager { get; private set; } = null;
+        public UnitDef House { get; private set; } = null;
+        public UnitDef TownCenter { get; private set; } = null;
+        public UnitDef WoodDropsite { get; private set; } = null;
+        public UnitDef FoodDropsite { get; private set; } = null;
+        public UnitDef GoldDropsite { get; private set; } = null;
+        public UnitDef StoneDropsite { get; private set; } = null;
+        public UnitDef Farm { get; private set; } = null;
 
         public void LoadWK()
         {
@@ -49,6 +57,22 @@ namespace AoE2Lib
 
             UnitDefs.Add(66, new UnitDef() { TypeId = 66, UnitClass = UnitClass.GoldMine });
             UnitDefs.Add(102, new UnitDef() { TypeId = 102, UnitClass = UnitClass.StoneMine });
+
+            Villager = new UnitDef() { TypeId = 83, UnitClass = UnitClass.Civilian };
+            House = new UnitDef() { TypeId = 70, UnitClass = UnitClass.Building };
+            TownCenter = new UnitDef() { TypeId = 109, UnitClass = UnitClass.Building };
+            WoodDropsite = new UnitDef() { TypeId = 562, UnitClass = UnitClass.Building };
+            FoodDropsite = new UnitDef() { TypeId = 68, UnitClass = UnitClass.Building };
+            GoldDropsite = new UnitDef() { TypeId = 584, UnitClass = UnitClass.Building };
+            StoneDropsite = new UnitDef() { TypeId = 584, UnitClass = UnitClass.Building };
+            Farm = new UnitDef() { TypeId = 50, UnitClass = UnitClass.Farm };
+
+            UnitDefs.Add(TownCenter.TypeId, TownCenter);
+            UnitDefs.Add(WoodDropsite.TypeId, WoodDropsite);
+            UnitDefs.Add(FoodDropsite.TypeId, FoodDropsite);
+            UnitDefs.Add(GoldDropsite.TypeId, GoldDropsite);
+            UnitDefs.Add(StoneDropsite.TypeId, StoneDropsite);
+            UnitDefs.Add(Farm.TypeId, Farm);
         }
     }
 }
