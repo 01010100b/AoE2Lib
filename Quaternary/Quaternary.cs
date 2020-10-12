@@ -1,5 +1,6 @@
 ﻿using AoE2Lib;
 using AoE2Lib.Bots;
+using AoE2Lib.Bots.GameElements;
 using AoE2Lib.Mods;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static AoE2Lib.Bots.Command;
-using static AoE2Lib.Bots.UnitTypeInfo;
 
 namespace Quaternary
 {
@@ -30,7 +30,7 @@ namespace Quaternary
 
         protected override void StartGame()
         {
-
+            StateLog = "";
         }
 
         protected override Command GetNextCommand()

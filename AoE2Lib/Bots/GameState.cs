@@ -1,9 +1,10 @@
-﻿using AoE2Lib.Utils;
+﻿using AoE2Lib.Bots.GameElements;
+using AoE2Lib.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using static AoE2Lib.Bots.UnitTypeInfo;
+using static AoE2Lib.Bots.GameElements.UnitTypeInfo;
 
 namespace AoE2Lib.Bots
 {

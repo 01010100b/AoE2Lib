@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 
-namespace AoE2Lib.Bots
+namespace AoE2Lib.Bots.GameElements
 {
     public class Player : GameElement
     {

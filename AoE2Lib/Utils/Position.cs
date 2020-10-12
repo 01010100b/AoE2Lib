@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Drawing;
 using System.Text;
 
 namespace AoE2Lib.Utils
@@ -27,6 +28,19 @@ namespace AoE2Lib.Utils
             var dy = (double)(Y - other.Y);
 
             return Math.Sqrt((dx * dx) + (dy * dy));
+        }
+
+        public Point ProjectOnLine(Point a, Point b)
+        {
+            // get dot product of e1, e2
+            Point e1 = new Point(b.X - a.X, b.Y - a.Y);
+            Point e2 = new Point(X - a.X, Y - a.Y);
+            double dp = (e1.X * e2.X) + (e1.Y * e2.Y);
+            // get squared length of e1
+            double len2 = e1.X * e1.X + e1.Y * e1.Y;
+            Point p = new Point((int)(a.X + (dp * e1.X) / len2), (int)(a.Y + (dp * e1.Y) / len2));
+
+            return p;
         }
 
         public override bool Equals(object obj)

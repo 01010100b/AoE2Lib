@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AoE2Lib.Bots
+namespace AoE2Lib.Bots.GameElements
 {
     public class UnitTypeInfo : GameElement
     {
@@ -67,14 +67,14 @@ namespace AoE2Lib.Bots
             Attack = goal1 % 250;
             goal1 /= 250;
             MeleeArmor = goal1 % 250;
+            goal1 /= 250;
+            PierceArmor = goal1 % 250;
 
-            PierceArmor = goal2 % 250;
-            goal2 /= 250;
+            TrainSiteId = goal2 % 2000;
+            goal2 /= 2000;
             var timer = goal2 % 50;
             goal2 /= 50;
             ReloadTime = TimeSpan.FromSeconds(timer / 5d);
-            TrainSiteId = goal2 % 2000;
-            goal2 /= 2000;
             Heresy = (goal2 % 2) == 1;
             goal2 /= 2;
             Faith = (goal2 % 2) == 1;

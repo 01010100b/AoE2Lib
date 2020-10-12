@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AoE2Lib.Bots
+namespace AoE2Lib.Bots.GameElements
 {
     public class Unit : GameElement
     {
