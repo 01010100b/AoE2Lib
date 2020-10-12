@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static AoE2Lib.Bots.Command;
-using static AoE2Lib.Bots.Command.UnitSearchCommand;
 using static AoE2Lib.Bots.UnitTypeInfo;
 
 namespace Quaternary
@@ -255,7 +254,7 @@ namespace Quaternary
                 var position = explored[RNG.Next(explored.Count)];
                 var radius = 20;
 
-                command.SearchForUnits(new UnitSearchCommand(player, position, radius, type));
+                command.SearchForUnits(player, position, radius, type);
             }
         }
 
@@ -291,7 +290,7 @@ namespace Quaternary
             {
                 units[unit.PlayerNumber]++;
 
-                if (unit.PlayerNumber == 0 && Mod.UnitDefs.TryGetValue(unit.TypeId, out UnitDef def))
+                if ((unit.PlayerNumber == 0 || unit.PlayerNumber == PlayerNumber) && Mod.UnitDefs.TryGetValue(unit.TypeId, out UnitDef def))
                 {
                     if (def.UnitClass == UnitClass.Tree)
                     {
@@ -315,15 +314,18 @@ namespace Quaternary
             sb.AppendLine("--- CURRENT STATE ---");
             sb.AppendLine();
 
-            sb.AppendLine($"Game Time: {GameState.GameTime} X {GameState.MyPosition.X} Y {GameState.MyPosition.Y}");
-            sb.AppendLine($"Wood {GameState.WoodAmount} Food {GameState.FoodAmount} Gold {GameState.GoldAmount} Stone {GameState.StoneAmount} Population Headroom {GameState.PopulationHeadroom} Housing Headroom {GameState.HousingHeadroom}");
+            sb.AppendLine($"Game Time: {GameState.GameTime} Position: X {GameState.MyPosition.X} Y {GameState.MyPosition.Y}");
+            if (GameState.Players.TryGetValue(PlayerNumber, out Player me))
+            {
+                sb.AppendLine($"Military {me.MilitaryPopulation} Civilian {me.CivilianPopulation}");
+            }
+            sb.AppendLine($"Wood {GameState.WoodAmount} Food {GameState.FoodAmount} Gold {GameState.GoldAmount} Stone {GameState.StoneAmount}");
+            sb.AppendLine($"Population Headroom {GameState.PopulationHeadroom} Housing Headroom {GameState.HousingHeadroom}");
 
             var explored = GameState.Tiles.Count(t => t.Value.Explored);
-            sb.AppendLine($"Map tiles {GameState.Tiles.Count} explored {explored} ({(explored / (double)GameState.Tiles.Count):P})");
+            sb.AppendLine($"Map tiles {GameState.Tiles.Count} explored {explored} ({explored / (double)GameState.Tiles.Count:P})");
             sb.AppendLine($"Found resources Wood {wood} Food {food} Gold {gold} Stone {stone}");
             sb.AppendLine();
-
-            var types = new Dictionary<int, int>();
 
             for (int i = 0; i < units.Length; i++)
             {

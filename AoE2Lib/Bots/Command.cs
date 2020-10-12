@@ -2,59 +2,77 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using static AoE2Lib.Bots.Command.UnitSearchCommand;
 
 namespace AoE2Lib.Bots
 {
     public class Command
     {
-        public struct UnitSearchCommand
+        public enum UnitSearchType
         {
-            public enum UnitSearchType
-            {
-                MILITARY, CIVILIAN, BUILDING, WOOD, FOOD, GOLD, STONE, ALL
-            }
+            MILITARY, CIVILIAN, BUILDING, WOOD, FOOD, GOLD, STONE, ALL
+        }
 
-            public readonly int Player;
-            public readonly Position Position;
-            public readonly int Radius;
-            public readonly UnitSearchType SearchType;
+        internal struct DoubleCommand
+        {
+            public readonly int Sn0;
+            public readonly int Sn1;
 
-            public UnitSearchCommand(int player, Position position, int radius, UnitSearchType type)
+            public DoubleCommand(int sn0, int sn1)
             {
-                Player = Math.Max(0, Math.Min(8, player));
-                var x = Math.Max(0, Math.Min(499, position.X));
-                var y = Math.Max(0, Math.Min(499, position.Y));
-                Position = new Position(x, y);
-                Radius = Math.Max(0, Math.Min(99, radius));
-                SearchType = type;
+                Sn0 = sn0;
+                Sn1 = sn1;
             }
         }
 
-        internal readonly List<Position> TilesToCheck = new List<Position>();
-        internal readonly List<UnitSearchCommand> UnitSearchCommands = new List<UnitSearchCommand>();
-        internal int UnitTypeInfoPlayer { get; private set; } = -1;
-        internal int UnitTypeInfoType { get; private set; } = -1;
-        internal readonly List<int> Training = new List<int>();
-        internal readonly List<int> Building = new List<int>();
+        internal readonly List<int> UnitSearchCommands = new List<int>();
+        internal readonly List<int> CheckTileCommands = new List<int>();
+        internal readonly List<int> UnitTypeInfoCommands = new List<int>();
+        internal readonly List<int> TrainCommands = new List<int>();
+        internal readonly List<int> BuildCommands = new List<int>();
 
         public void CheckTile(Position position)
         {
             var x = Math.Max(0, Math.Min(499, position.X));
             var y = Math.Max(0, Math.Min(499, position.Y));
 
-            TilesToCheck.Add(new Position(x, y));
+            var sn = x;
+            sn *= 500;
+            sn += y;
+
+            CheckTileCommands.Add(sn);
         }
 
-        public void SearchForUnits(UnitSearchCommand search)
+        public void SearchForUnits(int player, Position position, int radius, UnitSearchType type)
         {
-            UnitSearchCommands.Add(search);
+            player = Math.Max(0, Math.Min(8, player));
+            var x = Math.Max(0, Math.Min(499, position.X));
+            var y = Math.Max(0, Math.Min(499, position.Y));
+            position = new Position(x, y);
+            radius = Math.Max(0, Math.Min(99, radius));
+
+            var sn = player;
+            sn *= 500;
+            sn += position.X;
+            sn *= 500;
+            sn += position.Y;
+            sn *= 100;
+            sn += radius;
+            sn *= 8;
+            sn += (int)type;
+
+            UnitSearchCommands.Add(sn);
         }
 
         public void CheckUnitTypeInfo(int player, int type)
         {
-            UnitTypeInfoPlayer = Math.Max(0, Math.Min(8, player));
-            UnitTypeInfoType = Math.Max(0, Math.Min(1999, type));
+            player = Math.Max(0, Math.Min(8, player));
+            type = Math.Max(0, Math.Min(1999, type));
+
+            var sn = player;
+            sn *= 2000;
+            sn += type;
+
+            UnitTypeInfoCommands.Add(sn);
         }
 
         public void Train(int unit, int max_pending = 0)
@@ -63,7 +81,7 @@ namespace AoE2Lib.Bots
             goal *= 100;
             goal += Math.Max(-1, Math.Min(max_pending, 98)) + 1;
 
-            Training.Add(goal);
+            TrainCommands.Add(goal);
         }
 
         public void Build(int building, Position position, int max_pending = 0)
@@ -76,7 +94,7 @@ namespace AoE2Lib.Bots
             goal *= 4;
             goal += Math.Max(-1, Math.Min(max_pending, 2)) + 1;
 
-            Building.Add(goal);
+            BuildCommands.Add(goal);
         }
     }
 }

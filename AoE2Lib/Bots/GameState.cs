@@ -54,40 +54,124 @@ namespace AoE2Lib.Bots
         public IReadOnlyDictionary<UnitTypeInfoKey, UnitTypeInfo> UnitTypeInfos => _UnitTypeInfos;
         internal readonly Dictionary<UnitTypeInfoKey, UnitTypeInfo> _UnitTypeInfos = new Dictionary<UnitTypeInfoKey, UnitTypeInfo>();
 
-        public override string ToString()
+        internal void Update(int[] goals)
         {
-            var units = new int[9];
-            foreach (var unit in Units.Values)
-            {
-                units[unit.PlayerNumber]++;
+            UpdateInfo(goals);
+            UpdatePlayers(goals);
+            UpdateTiles(goals);
+            UpdateUnits(goals);
+        }
 
-                
+        private void UpdateInfo(int[] goals)
+        {
+            const int GL_GAMETIME = 11 - 1;
+            const int GL_MAPSIZE = 12 - 1;
+
+            const int GL_WOOD = 21 - 1;
+            const int GL_FOOD = 22 - 1;
+            const int GL_GOLD = 23 - 1;
+            const int GL_STONE = 24 - 1;
+            const int GL_POPULATION_HEADROOM = 25 - 1;
+            const int GL_HOUSING_HEADROOM = 26 - 1;
+            const int GL_X = 27 - 1;
+            const int GL_Y = 28 - 1;
+
+            GameTime = TimeSpan.FromSeconds(goals[GL_GAMETIME]);
+            MapWidthHeight = goals[GL_MAPSIZE];
+
+            WoodAmount = goals[GL_WOOD];
+            FoodAmount = goals[GL_FOOD];
+            GoldAmount = goals[GL_GOLD];
+            StoneAmount = goals[GL_STONE];
+            PopulationHeadroom = goals[GL_POPULATION_HEADROOM];
+            HousingHeadroom = goals[GL_HOUSING_HEADROOM];
+            MyPosition = new Position(goals[GL_X], goals[GL_Y]);
+        }
+
+        private void UpdatePlayers(int[] goals)
+        {
+            const int GL_PLAYER_GOAL0 = 41 - 1;
+            const int GL_PLAYER_GOAL1 = 42 - 1;
+
+            var goal0 = goals[GL_PLAYER_GOAL0];
+            var goal1 = goals[GL_PLAYER_GOAL1];
+
+            if (goal0 >= 0)
+            {
+                var player = goal0 % 10;
+
+                if (!Players.ContainsKey(player))
+                {
+                    _Players.Add(player, new Player(player));
+                }
+
+                Players[player].Update(goal0, goal1);
             }
 
-            var sb = new StringBuilder();
-            
-            sb.AppendLine("--- CURRENT STATE ---");
-            sb.AppendLine();
-
-            sb.AppendLine($"game time: {GameTime} X {MyPosition.X} Y {MyPosition.Y}");
-            sb.AppendLine($"Wood {WoodAmount} Food {FoodAmount} Gold {GoldAmount} Stone {StoneAmount} Population Headroom {PopulationHeadroom} Housing Headroom {HousingHeadroom}");
-
-            var explored = Tiles.Count(t => t.Value.Explored);
-            sb.AppendLine($"Map tiles {Tiles.Count} explored {explored} ({(explored / (double)Tiles.Count):P})");
-            
-
-
-            sb.AppendLine();
-
-            for (int i = 0; i < units.Length; i++)
+            if (!Players.ContainsKey(0))
             {
-                if (Players.ContainsKey(i))
+                _Players.Add(0, new Player(0));
+            }
+        }
+
+        private void UpdateTiles(int[] goals)
+        {
+            const int GL_TILES_START = 51 - 1;
+            const int GL_TILES_END = 90 - 1;
+
+            var offset = GL_TILES_START;
+            while (offset <= GL_TILES_END)
+            {
+                var goal0 = goals[offset];
+                offset++;
+                var goal1 = goals[offset];
+                offset++;
+
+                if (goal0 >= 0)
                 {
-                    sb.AppendLine($"Player {i} with {units[i]} known units");
+                    var x = goal0 / 500;
+                    var y = goal0 % 500;
+                    var position = new Position(x, y);
+
+                    Tiles[position].Update(goal0, goal1);
                 }
             }
+        }
 
-            return sb.ToString();
+        private void UpdateUnits(int[] goals)
+        {
+            const int GL_UNITS_START = 151 - 1;
+            const int GL_UNITS_END = 390 - 1;
+
+            var offset = GL_UNITS_START;
+            while (offset <= GL_UNITS_END)
+            {
+                var goal0 = goals[offset];
+                offset++;
+                var goal1 = goals[offset];
+                offset++;
+                var goal2 = goals[offset];
+                offset++;
+
+                if (goal0 >= 0)
+                {
+                    var id = goal0 % 45000;
+
+                    if (!Units.ContainsKey(id))
+                    {
+                        _Units.Add(id, new Unit(id));
+                    }
+
+                    var unit = Units[id];
+                    unit.Update(goal0, goal1, goal2);
+
+                    var key = new UnitTypeInfoKey(unit.PlayerNumber, unit.TypeId);
+                    if (!UnitTypeInfos.ContainsKey(key))
+                    {
+                        _UnitTypeInfos.Add(key, new UnitTypeInfo(key));
+                    }
+                }
+            }
         }
     }
 }
