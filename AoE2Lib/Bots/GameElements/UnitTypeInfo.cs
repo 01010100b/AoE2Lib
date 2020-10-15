@@ -28,12 +28,6 @@ namespace AoE2Lib.Bots.GameElements
         public int PierceArmor { get; private set; } = 0; // 250
         public TimeSpan ReloadTime { get; private set; } = TimeSpan.MinValue; // 50
         public int TrainSiteId { get; private set; } = -1; // 2000
-        public bool Heresy { get; private set; } = false; // 2
-        public bool Faith { get; private set; } = false; // 2
-        public bool Redemption { get; private set; } = false; // 2
-        public bool Atonement { get; private set; } = false; // 2
-        public bool Theocracy { get; private set; } = false; // 2
-        public bool Ballistics { get; private set; } = false; // 2
 
         public UnitTypeInfo(UnitTypeInfoKey key) : base()
         {
@@ -72,20 +66,7 @@ namespace AoE2Lib.Bots.GameElements
 
             TrainSiteId = goal2 % 2000;
             goal2 /= 2000;
-            var timer = goal2 % 50;
-            goal2 /= 50;
-            ReloadTime = TimeSpan.FromSeconds(timer / 5d);
-            Heresy = (goal2 % 2) == 1;
-            goal2 /= 2;
-            Faith = (goal2 % 2) == 1;
-            goal2 /= 2;
-            Redemption = (goal2 % 2) == 1;
-            goal2 /= 2;
-            Atonement = (goal2 % 2) == 1;
-            goal2 /= 2;
-            Theocracy = (goal2 % 2) == 1;
-            goal2 /= 2;
-            Ballistics = (goal2 % 2) == 1;
+            ReloadTime = TimeSpan.FromSeconds((goal2 % 50) / 5d);
 
             ElementUpdated();
         }

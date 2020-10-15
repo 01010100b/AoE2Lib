@@ -59,9 +59,9 @@ namespace AoE2Lib.Bots.GameElements
             goal2 /= 1000;
             Order = (UnitOrder)((goal2 % 40) - 1);
             goal2 /= 40;
-            var timer = goal2 % 20;
+            NextAttack = DateTime.UtcNow + TimeSpan.FromSeconds((goal2 % 20) / 5d);
             goal2 /= 20;
-            NextAttack = DateTime.UtcNow + TimeSpan.FromSeconds(timer / 5d);
+            
             Stance = (UnitStance)(goal2 % 4);
 
             ElementUpdated();
