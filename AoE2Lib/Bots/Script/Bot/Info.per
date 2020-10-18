@@ -3,6 +3,7 @@
 ; 11-20 game info
 ; 21-30 self info
 ; 31-33 unit type info
+; 34-35 unit targetable
 
 (defconst gl-info-gametime 11)
 (defconst gl-info-mapsize 12)
@@ -16,7 +17,7 @@
 (defconst gl-info-x 27)
 (defconst gl-info-y 28)
 
-; game info
+;region game info
 
 (defrule
 	(true)
@@ -94,7 +95,9 @@
 
 #end-if
 
-; self info
+;endregion
+
+;region self info
 
 (defrule
 	(true)
@@ -109,3 +112,94 @@
 	(up-modify-goal gl-info-x g:= gl-point1-x)
 	(up-modify-goal gl-info-y g:= gl-point1-y)
 )
+
+;endregion
+
+;region unit type info
+
+;sn 411
+
+(defconst gl-unitinfo-player gl-temp1)
+(defconst gl-unitinfo-type gl-temp2)
+(defconst gl-unitinfo-maxhp gl-temp3)
+(defconst gl-unitinfo-range gl-temp4)
+(defconst gl-unitinfo-speed gl-temp5)
+(defconst gl-unitinfo-attack gl-temp6)
+(defconst gl-unitinfo-meleearmor gl-temp7)
+(defconst gl-unitinfo-piercearmor gl-temp8)
+(defconst gl-unitinfo-trainsiteid gl-temp9)
+(defconst gl-unitinfo-reloadtime gl-temp10)
+(defconst gl-unitinfo-command gl-temp11)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-unitinfo-command s:= 411)
+	(set-goal 31 -1)
+	(set-goal 32 -1)
+	(set-goal 33 -1)
+)
+
+(defrule
+	(up-compare-goal gl-unitinfo-command c:>= 0)
+=>
+	(up-modify-goal gl-unitinfo-player g:= gl-unitinfo-command)
+	(up-modify-goal gl-unitinfo-player c:z/ 2000)
+	(up-modify-goal gl-unitinfo-player c:max 0)
+	(up-modify-goal gl-unitinfo-player c:min 8)
+	(up-modify-goal gl-unitinfo-type g:= gl-unitinfo-command)
+	(up-modify-goal gl-unitinfo-type c:mod 2000)
+)
+
+(defrule
+	(up-compare-goal gl-unitinfo-command c:>= 0)
+=>
+	(up-modify-sn sn-focus-player-number g:= gl-unitinfo-player)
+	(up-full-reset-search)
+	(up-find-remote g: gl-unitinfo-type c: 1)
+	(up-get-search-state gl-search-state)
+)
+	
+;endregion
+
+;region unit targetable
+
+; sn 412-413
+
+(defconst gl-unittarget-id gl-temp1)
+(defconst gl-unittarget-targetable gl-temp2)
+(defconst gl-unittarget-command gl-temp3)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-unittarget-command s:= 412)
+	(set-goal 34 -1)
+	(set-goal 35 -1)
+)
+
+(defrule
+	(up-compare-goal gl-unittarget-command c:>= 0)
+=>
+	(up-modify-goal gl-unittarget-id g:= gl-unittarget-command)
+	(up-modify-goal gl-unittarget-id c:max 0)
+	(up-modify-goal gl-unittarget-id c:min 44999)
+	(up-modify-goal gl-unittarget-targetable c:= 0)
+)
+
+(defrule
+	(up-compare-goal gl-unittarget-command c:>= 0)
+	(up-set-target-by-id g: gl-unittarget-id)
+=>
+	(up-modify-goal gl-unittarget-targetable c:= 1)
+)
+
+(defrule
+	(up-compare-goal gl-unittarget-command c:>= 0)
+=>
+	(up-modify-goal 34 g:= gl-unittarget-id)
+	(up-modify-goal 34 c:* 2)
+	(up-modify-goal 34 g:+ gl-unittarget-targetable)
+)
+
+;endregion

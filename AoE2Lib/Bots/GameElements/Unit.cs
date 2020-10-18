@@ -28,6 +28,8 @@ namespace AoE2Lib.Bots.GameElements
         public UnitOrder Order { get; private set; } = UnitOrder.NONE; // 40
         public DateTime NextAttack { get; private set; } = DateTime.UtcNow; // 20
         public UnitStance Stance { get; private set; } = UnitStance.AGGRESSIVE; // 4
+        public bool Targetable { get; private set; } = false;
+        public DateTime TargetableUpdate { get; private set; } = DateTime.MinValue;
 
         public Unit(int id) : base()
         {
@@ -65,6 +67,12 @@ namespace AoE2Lib.Bots.GameElements
             Stance = (UnitStance)(goal2 % 4);
 
             ElementUpdated();
+        }
+
+        internal void UpdateTargetable(bool targetable)
+        {
+            Targetable = targetable;
+            TargetableUpdate = DateTime.UtcNow;
         }
 
         public override bool Equals(object obj)

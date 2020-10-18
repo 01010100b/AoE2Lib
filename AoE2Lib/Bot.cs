@@ -20,11 +20,10 @@ namespace AoE2Lib
 
         public bool Running { get; private set; } = false;
         public int PlayerNumber { get; private set; } = -1;
-
+        public Mod Mod { get; private set; } = null;
+        public int Tick { get; private set; } = 0;
+        public readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.Ticks.GetHashCode());
         protected GameState GameState { get; private set; } = null;
-        protected Mod Mod { get; private set; } = null;
-        protected int Tick { get; private set; } = 0;
-        protected readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.Ticks.GetHashCode());
 
         private Thread BotThread { get; set; } = null;
         private GameInstance Instance { get; set; } = null;
@@ -163,6 +162,9 @@ namespace AoE2Lib
             const int SN_UNITTYPEINFO_START = 411;
             const int SN_UNITTYPEINFO_END = 411;
 
+            const int SN_UNITTARGETABLE_START = 412;
+            const int SN_UNITTARGETABLE_END = 413;
+
             const int SN_TRAINING_START = 421;
             const int SN_TRAINING_END = 429;
 
@@ -174,6 +176,7 @@ namespace AoE2Lib
             GiveCommands(SN_TILE_START, SN_TILE_END, command.CheckTileCommands);
             GiveCommands(SN_UNITSEARCH_START, SN_UNITSEARCH_END, command.UnitSearchCommands);
             GiveCommands(SN_UNITTYPEINFO_START, SN_UNITTYPEINFO_END, command.UnitTypeInfoCommands);
+            GiveCommands(SN_UNITTARGETABLE_START, SN_UNITTARGETABLE_END, command.UnitTargetableCommands);
             GiveCommands(SN_TRAINING_START, SN_TRAINING_END, command.TrainCommands);
             GiveCommands(SN_BUILDING_START, SN_BUILDING_END, command.BuildCommands);
         }

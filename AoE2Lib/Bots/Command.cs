@@ -29,6 +29,7 @@ namespace AoE2Lib.Bots
         internal readonly List<int> UnitTypeInfoCommands = new List<int>();
         internal readonly List<int> TrainCommands = new List<int>();
         internal readonly List<int> BuildCommands = new List<int>();
+        internal readonly List<int> UnitTargetableCommands = new List<int>();
 
         public void CheckTile(Position position)
         {
@@ -95,6 +96,12 @@ namespace AoE2Lib.Bots
             goal += Math.Max(-1, Math.Min(max_pending, 2)) + 1;
 
             BuildCommands.Add(goal);
+        }
+
+        public void CheckUnitTargetable(int unit)
+        {
+            var sn = Math.Max(0, Math.Min(44999, unit));
+            UnitTargetableCommands.Add(sn);
         }
     }
 }

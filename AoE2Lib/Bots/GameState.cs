@@ -61,6 +61,7 @@ namespace AoE2Lib.Bots
             UpdatePlayers(goals);
             UpdateTiles(goals);
             UpdateUnits(goals);
+            UpdateUnitsTargetable(goals);
         }
 
         private void UpdateInfo(int[] goals)
@@ -179,6 +180,30 @@ namespace AoE2Lib.Bots
                     if (!UnitTypeInfos.ContainsKey(key))
                     {
                         _UnitTypeInfos.Add(key, new UnitTypeInfo(key));
+                    }
+                }
+            }
+        }
+
+        private void UpdateUnitsTargetable(int[] goals)
+        {
+            const int GL_UNITTARGETABLE_START = 34 - 1;
+            const int GL_UNITTARGETABLE_END = 35 - 1;
+
+            var offset = GL_UNITTARGETABLE_START;
+            while (offset <= GL_UNITTARGETABLE_END)
+            {
+                var goal0 = goals[offset];
+                offset++;
+
+                if (goal0 >= 0)
+                {
+                    var unit = goal0 / 2;
+                    var targetable = goal0 % 2 == 1;
+
+                    if (Units.TryGetValue(unit, out Unit u))
+                    {
+                        u.UpdateTargetable(targetable);
                     }
                 }
             }

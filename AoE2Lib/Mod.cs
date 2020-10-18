@@ -68,11 +68,11 @@ namespace AoE2Lib
             Farm = new UnitDef() { TypeId = 50, UnitClass = UnitClass.Farm };
 
             UnitDefs.Add(TownCenter.TypeId, TownCenter);
-            UnitDefs.Add(WoodDropsite.TypeId, WoodDropsite);
-            UnitDefs.Add(FoodDropsite.TypeId, FoodDropsite);
-            UnitDefs.Add(GoldDropsite.TypeId, GoldDropsite);
-            UnitDefs.Add(StoneDropsite.TypeId, StoneDropsite);
-            UnitDefs.Add(Farm.TypeId, Farm);
+            UnitDefs[WoodDropsite.TypeId] = WoodDropsite;
+            UnitDefs[FoodDropsite.TypeId] = FoodDropsite;
+            UnitDefs[GoldDropsite.TypeId] = GoldDropsite;
+            UnitDefs[StoneDropsite.TypeId] = StoneDropsite;
+            UnitDefs[Farm.TypeId] = Farm;
         }
     }
 }
