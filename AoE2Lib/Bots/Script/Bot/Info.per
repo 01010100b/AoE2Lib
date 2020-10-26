@@ -3,7 +3,7 @@
 ; 11-20 game info
 ; 21-30 self info
 ; 31-33 unit type info
-; 34-35 unit targetable
+; 34-38 unit targetable
 
 (defconst gl-info-gametime 11)
 (defconst gl-info-mapsize 12)
@@ -164,18 +164,27 @@
 
 ;region unit targetable
 
-; sn 412-413
+; sn 412-416
 
 (defconst gl-unittarget-id gl-temp1)
 (defconst gl-unittarget-targetable gl-temp2)
 (defconst gl-unittarget-command gl-temp3)
+(defconst gl-unittarget-data-pointer gl-temp4)
+(defconst gl-unittarget-return-addr gl-temp5)
+(defconst gl-unittarget-func-pointer gl-temp6)
 
 (defrule
 	(true)
 =>
-	(up-modify-goal gl-unittarget-command s:= 412)
+	(set-goal gl-unittarget-data-pointer 34)
 	(set-goal 34 -1)
 	(set-goal 35 -1)
+	(set-goal 36 -1)
+	(set-goal 37 -1)
+	(set-goal 38 -1)
+	(up-get-rule-id gl-unittarget-func-pointer)
+	(up-modify-goal gl-unittarget-func-pointer c:+ 1)
+	(up-jump-rule 4)
 )
 
 (defrule
@@ -197,9 +206,63 @@
 (defrule
 	(up-compare-goal gl-unittarget-command c:>= 0)
 =>
-	(up-modify-goal 34 g:= gl-unittarget-id)
-	(up-modify-goal 34 c:* 2)
-	(up-modify-goal 34 g:+ gl-unittarget-targetable)
+	(up-modify-goal gl-unittarget-command g:= gl-unittarget-id)
+	(up-modify-goal gl-unittarget-command c:* 2)
+	(up-modify-goal gl-unittarget-command g:+ gl-unittarget-targetable)
+	(up-set-indirect-goal g: gl-unittarget-data-pointer g: gl-unittarget-command)
+	(up-modify-goal gl-unittarget-data-pointer c:+ 1)
+	
+)
+
+(defrule
+	(true)
+=>
+	(up-jump-direct g: gl-unittarget-return-addr)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-unittarget-command s:= 412)
+	(up-get-rule-id gl-unittarget-return-addr)
+	(up-modify-goal gl-unittarget-return-addr c:+ 1)
+	(up-jump-direct g: gl-unittarget-func-pointer)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-unittarget-command s:= 413)
+	(up-get-rule-id gl-unittarget-return-addr)
+	(up-modify-goal gl-unittarget-return-addr c:+ 1)
+	(up-jump-direct g: gl-unittarget-func-pointer)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-unittarget-command s:= 414)
+	(up-get-rule-id gl-unittarget-return-addr)
+	(up-modify-goal gl-unittarget-return-addr c:+ 1)
+	(up-jump-direct g: gl-unittarget-func-pointer)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-unittarget-command s:= 415)
+	(up-get-rule-id gl-unittarget-return-addr)
+	(up-modify-goal gl-unittarget-return-addr c:+ 1)
+	(up-jump-direct g: gl-unittarget-func-pointer)
+)
+
+(defrule
+	(true)
+=>
+	(up-modify-goal gl-unittarget-command s:= 416)
+	(up-get-rule-id gl-unittarget-return-addr)
+	(up-modify-goal gl-unittarget-return-addr c:+ 1)
+	(up-jump-direct g: gl-unittarget-func-pointer)
 )
 
 ;endregion

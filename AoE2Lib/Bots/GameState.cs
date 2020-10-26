@@ -188,7 +188,7 @@ namespace AoE2Lib.Bots
         private void UpdateUnitsTargetable(int[] goals)
         {
             const int GL_UNITTARGETABLE_START = 34 - 1;
-            const int GL_UNITTARGETABLE_END = 35 - 1;
+            const int GL_UNITTARGETABLE_END = 38 - 1;
 
             var offset = GL_UNITTARGETABLE_START;
             while (offset <= GL_UNITTARGETABLE_END)

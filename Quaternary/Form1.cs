@@ -26,16 +26,16 @@ namespace Quaternary
             ButtonTest.Enabled = false;
             Refresh();
 
-            var thread = new Thread(() => RunManager());
+            var thread = new Thread(() => RunManager("age2_x1.5"));
             thread.IsBackground = true;
             thread.Start();
         }
 
-        private void RunManager()
+        private void RunManager(string pname)
         {
-            var process = Process.GetProcessesByName("WK")[0];
+            var process = Process.GetProcessesByName(pname)[0];
 
-            using (var instance = new WKInstance(process))
+            using (var instance = new AoCInstance(process))
             {
                 LogMessage($"connected to process {process.Id}");
 
@@ -120,7 +120,7 @@ namespace Quaternary
         private void ButtonCopy_Click(object sender, EventArgs e)
         {
             var from = @"C:\Users\Tim\source\repos\AoE2Lib\AoE2Lib\Bots\Script";
-            var to = @"C:\Users\Tim\AppData\Roaming\Microsoft Games\Age of Empires ii\Voobly Mods\AOC\Data Mods\WololoKingdoms\Script.Ai";
+            var to = @"C:\Users\Tim\AppData\Roaming\Microsoft Games\Age of Empires ii\Ai";
 
             var queue = new Queue<string>();
             queue.Enqueue(from);

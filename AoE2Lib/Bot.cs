@@ -163,7 +163,7 @@ namespace AoE2Lib
             const int SN_UNITTYPEINFO_END = 411;
 
             const int SN_UNITTARGETABLE_START = 412;
-            const int SN_UNITTARGETABLE_END = 413;
+            const int SN_UNITTARGETABLE_END = 416;
 
             const int SN_TRAINING_START = 421;
             const int SN_TRAINING_END = 429;

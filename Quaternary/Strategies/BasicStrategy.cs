@@ -59,10 +59,10 @@ namespace Quaternary.Strategies
             SetStrategicNumber(StrategicNumber.INTELLIGENT_GATHERING, 1);
             SetStrategicNumber(StrategicNumber.USE_BY_TYPE_MAX_GATHERING, 1);
             SetStrategicNumber(StrategicNumber.MAXIMUM_WOOD_DROP_DISTANCE, 7);
-            SetStrategicNumber(StrategicNumber.MAXIMUM_GOLD_DROP_DISTANCE, 7);
-            SetStrategicNumber(StrategicNumber.MAXIMUM_STONE_DROP_DISTANCE, 7);
-            SetStrategicNumber(StrategicNumber.MAXIMUM_FOOD_DROP_DISTANCE, 8);
-            SetStrategicNumber(StrategicNumber.MAXIMUM_HUNT_DROP_DISTANCE, 8);
+            SetStrategicNumber(StrategicNumber.MAXIMUM_GOLD_DROP_DISTANCE, 4);
+            SetStrategicNumber(StrategicNumber.MAXIMUM_STONE_DROP_DISTANCE, 4);
+            SetStrategicNumber(StrategicNumber.MAXIMUM_FOOD_DROP_DISTANCE, 3);
+            SetStrategicNumber(StrategicNumber.MAXIMUM_HUNT_DROP_DISTANCE, 3);
             SetStrategicNumber(StrategicNumber.ENABLE_BOAR_HUNTING, 0);
             SetStrategicNumber(StrategicNumber.LIVESTOCK_TO_TOWN_CENTER, 1);
 
