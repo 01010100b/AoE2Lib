@@ -64,6 +64,9 @@ namespace Unary
 
             var resultlist = expert_api.ExecuteCommandList(commandlist);
             Debug.WriteLine(resultlist);
+
+            var result = resultlist.Results[1];
+            Debug.WriteLine(result);
         }
     }
 }
