@@ -98,10 +98,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="protos\Action.cs" />
-    <Compile Include="protos\AiModuleApi.cs" />
-    <Compile Include="protos\ExpertApi.cs" />
-    <Compile Include="protos\Fact.cs" />
+    <Compile Include="protos\protos\Action.cs" />
+    <Compile Include="protos\protos\AiModuleApi.cs" />
+    <Compile Include="protos\protos\AiModuleApiGrpc.cs" />
+    <Compile Include="protos\protos\ExpertApi.cs" />
+    <Compile Include="protos\protos\ExpertApiGrpc.cs" />
+    <Compile Include="protos\protos\Fact.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -124,10 +126,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="protos\action.proto" />
-    <None Include="protos\ai_module_api.proto" />
-    <None Include="protos\expert_api.proto" />
-    <None Include="protos\fact.proto" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -138,7 +136,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Protobuf Include="**/*.proto" OutputDir="%(RelativeDir)" CompileOutputs="false" GrpcServices="None" />
+    <Protobuf Include="**/*.proto" OutputDir="%(RelativeDir)" CompileOutputs="false" GrpcServices="Client" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

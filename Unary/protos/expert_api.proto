@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package protos.expert;
+
+import "google/protobuf/any.proto";
+
+service ExpertAPI {
+  rpc ExecuteCommandList(CommandList) returns (CommandResultList) {}
+  rpc ResolveConst(ResolveConstRequest) returns (ResolveConstResponse) {}
+}
+
+message CommandList {
+  int32 playerNumber = 1;
+  repeated google.protobuf.Any commands = 2;
+}
+message CommandResultList {
+  int32 playerNumber = 1;
+  repeated google.protobuf.Any results = 2;
+}
+
+message ResolveConstRequest {
+  string constToResolve = 1;
+}
+message ResolveConstResponse {
+  int32 constValue = 1;
+}
