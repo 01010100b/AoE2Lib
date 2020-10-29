@@ -63,11 +63,6 @@ namespace Unary
             Stopping = false;
         }
 
-        public T GetResponse<T>(IMessage message) where T : IMessage, new()
-        {
-            return Messages[message].Unpack<T>();
-        }
-
         private void Run()
         {
             Stopped = false;

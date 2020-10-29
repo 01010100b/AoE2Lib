@@ -11,12 +11,6 @@ namespace Unary
     public class GameState
     {
         public TimeSpan GameTime { get; internal set; } = TimeSpan.Zero;
-        public int WoodAmount { get; internal set; } = -1;
-        public int FoodAmount { get; internal set; } = -1;
-        public int GoldAmount { get; internal set; } = -1;
-        public int StoneAmount { get; internal set; } = -1;
-        public int PopulationHeadroom { get; internal set; } = -1;
-        public int HousingHeadroom { get; internal set; } = -1;
         public Position MyPosition { get; internal set; } = new Position(-1, -1);
         public int MapWidthHeight
         {

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Google.Protobuf;
+using Google.Protobuf.WellKnownTypes;
 
 namespace Unary.GameElements
 {
@@ -30,17 +31,10 @@ namespace Unary.GameElements
         public DateTime NextAttack { get; private set; } = DateTime.UtcNow;
         public UnitStance Stance { get; private set; } = UnitStance.AGGRESSIVE;
         public bool Targetable { get; private set; } = false;
-        public DateTime TargetableUpdate { get; private set; } = DateTime.MinValue;
 
         public Unit(int id) : base()
         {
             Id = id;
-        }
-
-        internal void UpdateTargetable(bool targetable)
-        {
-            Targetable = targetable;
-            TargetableUpdate = DateTime.UtcNow;
         }
 
         public override bool Equals(object obj)
@@ -60,7 +54,12 @@ namespace Unary.GameElements
             return Id.GetHashCode();
         }
 
-        protected override void UpdateElement(IEnumerable<IMessage> responses)
+        protected override void UpdateElement(List<Any> responses)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IEnumerable<IMessage> RequestElementUpdate()
         {
             throw new NotImplementedException();
         }

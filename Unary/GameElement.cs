@@ -1,6 +1,8 @@
 ﻿using Google.Protobuf;
+using Google.Protobuf.WellKnownTypes;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Unary
@@ -12,9 +14,16 @@ namespace Unary
         public DateTime FirstUpdate { get; private set; } = DateTime.MinValue;
         public int TimesUpdated { get; private set; } = 0;
 
-        public void Update(IEnumerable<IMessage> responses)
+        internal readonly List<IMessage> Messages = new List<IMessage>();
+
+        public void Update(Dictionary<IMessage, Any> responses)
         {
-            UpdateElement(responses);
+            if (Messages.Count == 0)
+            {
+                return;
+            }
+
+            UpdateElement(Messages.Select(m => responses[m]).ToList());
 
             LastUpdate = DateTime.UtcNow;
 
@@ -24,8 +33,17 @@ namespace Unary
             }
 
             TimesUpdated++;
+
+            Messages.Clear();
         }
 
-        protected abstract void UpdateElement(IEnumerable<IMessage> responses);
+        public void RequestUpdate()
+        {
+            Messages.Clear();
+            Messages.AddRange(RequestElementUpdate());
+        }
+
+        protected abstract void UpdateElement(List<Any> responses);
+        protected abstract IEnumerable<IMessage> RequestElementUpdate();
     }
 }

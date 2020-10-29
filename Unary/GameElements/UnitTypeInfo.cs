@@ -1,4 +1,5 @@
 ﻿using Google.Protobuf;
+using Google.Protobuf.WellKnownTypes;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -35,7 +36,12 @@ namespace Unary.GameElements
             Key = key;
         }
 
-        protected override void UpdateElement(IEnumerable<IMessage> responses)
+        protected override void UpdateElement(List<Any> responses)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IEnumerable<IMessage> RequestElementUpdate()
         {
             throw new NotImplementedException();
         }
