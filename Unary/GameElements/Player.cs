@@ -41,8 +41,29 @@ namespace Unary.GameElements
         {
             InGame = responses[0].Unpack<PlayerInGameResult>().Result;
             Civilization = responses[2].Unpack<GoalResult>().Result;
+            Score = responses[4].Unpack<GoalResult>().Result;
+            Age = responses[6].Unpack<GoalResult>().Result;
+            CivilianPopulation = responses[8].Unpack<GoalResult>().Result;
+            MilitaryPopulation = responses[10].Unpack<GoalResult>().Result;
+            WoodAmount = responses[12].Unpack<GoalResult>().Result;
+            FoodAmount = responses[14].Unpack<GoalResult>().Result;
+            GoldAmount = responses[16].Unpack<GoalResult>().Result;
+            StoneAmount = responses[18].Unpack<GoalResult>().Result;
+            PopulationHeadroom = responses[20].Unpack<GoalResult>().Result;
+            HousingHeadroom = responses[22].Unpack<GoalResult>().Result;
 
-            throw new NotImplementedException();
+            if (responses[23].Unpack<PlayersStanceResult>().Result)
+            {
+                Stance = PlayerStance.ALLY;
+            }
+            else if (responses[24].Unpack<PlayersStanceResult>().Result)
+            {
+                Stance = PlayerStance.NEUTRAL;
+            }
+            else if (responses[25].Unpack<PlayersStanceResult>().Result)
+            {
+                Stance = PlayerStance.ENEMY;
+            }
         }
 
         protected override IEnumerable<IMessage> RequestElementUpdate()
