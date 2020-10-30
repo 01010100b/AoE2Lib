@@ -79,12 +79,9 @@ namespace Unary
             Command.Messages.Add(new Goal() { GoalId = 100 });
             Command.Messages.Add(new Goal() { GoalId = 101 });
 
-            for (int player = 1; player <= 2; player++)
+            for (int player = 1; player <= 8; player++)
             {
-                if (!_Players.ContainsKey(player))
-                {
-                    _Players.Add(player, new Player(player));
-                }
+                Command.Messages.Add(new PlayerValid() { PlayerNumber = player });
             }
 
             foreach (var player in Players.Values)
@@ -117,6 +114,16 @@ namespace Unary
             var y = Command.Responses[3].Unpack<GoalResult>().Result;
             MyPosition = new Position(x, y);
             MapWidthHeight = Command.Responses[7].Unpack<GoalResult>().Result + 1;
+
+            for (int player = 1; player <= 8; player++)
+            {
+                var valid = Command.Responses[8 + player].Unpack<PlayerValidResult>().Result;
+
+                if (valid && !_Players.ContainsKey(player))
+                {
+                    _Players.Add(player, new Player(player));
+                }
+            }
 
             foreach (var player in Players.Values)
             {

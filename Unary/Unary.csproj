@@ -144,12 +144,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="aimodule.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Protobuf Include="**/*.proto" OutputDir="%(RelativeDir)" CompileOutputs="false" GrpcServices="Client" />
   </ItemGroup>
   <ItemGroup>
-    <Protobuf Include="**/*.proto" OutputDir="%(RelativeDir)" CompileOutputs="false" GrpcServices="Client" />
+    <Content Include="aimodule-de.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

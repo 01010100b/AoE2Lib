@@ -49,6 +49,10 @@ namespace Protos.Expert {
 
   }
   #region Messages
+  /// <summary>
+  ///*
+  /// `ExecuteCommandList` call parameters.
+  /// </summary>
   public sealed partial class CommandList : pb::IMessage<CommandList>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -91,6 +95,9 @@ namespace Protos.Expert {
     /// <summary>Field number for the "playerNumber" field.</summary>
     public const int PlayerNumberFieldNumber = 1;
     private int playerNumber_;
+    /// <summary>
+    /// player number from 1-8 on which to execute the commands, must be an AI player
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int PlayerNumber {
       get { return playerNumber_; }
@@ -104,6 +111,9 @@ namespace Protos.Expert {
     private static readonly pb::FieldCodec<global::Google.Protobuf.WellKnownTypes.Any> _repeated_commands_codec
         = pb::FieldCodec.ForMessage(18, global::Google.Protobuf.WellKnownTypes.Any.Parser);
     private readonly pbc::RepeatedField<global::Google.Protobuf.WellKnownTypes.Any> commands_ = new pbc::RepeatedField<global::Google.Protobuf.WellKnownTypes.Any>();
+    /// <summary>
+    /// list of commands to execute on behalf of that player
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<global::Google.Protobuf.WellKnownTypes.Any> Commands {
       get { return commands_; }
@@ -246,6 +256,10 @@ namespace Protos.Expert {
 
   }
 
+  /// <summary>
+  ///*
+  /// `ExecuteCommandList` call reply.
+  /// </summary>
   public sealed partial class CommandResultList : pb::IMessage<CommandResultList>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -288,6 +302,9 @@ namespace Protos.Expert {
     /// <summary>Field number for the "playerNumber" field.</summary>
     public const int PlayerNumberFieldNumber = 1;
     private int playerNumber_;
+    /// <summary>
+    /// player number from 1-8 on which the commands were executed on
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int PlayerNumber {
       get { return playerNumber_; }
@@ -301,6 +318,9 @@ namespace Protos.Expert {
     private static readonly pb::FieldCodec<global::Google.Protobuf.WellKnownTypes.Any> _repeated_results_codec
         = pb::FieldCodec.ForMessage(18, global::Google.Protobuf.WellKnownTypes.Any.Parser);
     private readonly pbc::RepeatedField<global::Google.Protobuf.WellKnownTypes.Any> results_ = new pbc::RepeatedField<global::Google.Protobuf.WellKnownTypes.Any>();
+    /// <summary>
+    /// list of results for each command in the same order as the originally sent in the command list
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<global::Google.Protobuf.WellKnownTypes.Any> Results {
       get { return results_; }
@@ -443,6 +463,10 @@ namespace Protos.Expert {
 
   }
 
+  /// <summary>
+  ///*
+  /// Experimental. Currently unsupported.
+  /// </summary>
   public sealed partial class ResolveConstRequest : pb::IMessage<ResolveConstRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -615,6 +639,10 @@ namespace Protos.Expert {
 
   }
 
+  /// <summary>
+  ///*
+  /// Experimental. Currently unsupported.
+  /// </summary>
   public sealed partial class ResolveConstResponse : pb::IMessage<ResolveConstResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage

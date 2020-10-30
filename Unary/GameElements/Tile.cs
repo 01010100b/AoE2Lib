@@ -28,7 +28,7 @@ namespace Unary.GameElements
         {
             Elevation = responses[4].Unpack<GoalResult>().Result;
             Terrain = responses[6].Unpack<GoalResult>().Result;
-            Explored = responses[7].Unpack<UpPointExploredResult>().Result;
+            Explored = responses[7].Unpack<UpPointExploredResult>().Result != 0;
         }
 
         protected override IEnumerable<IMessage> RequestElementUpdate()

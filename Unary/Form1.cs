@@ -40,7 +40,7 @@ namespace Unary
 
             if (!Connected)
             {
-                var dll = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "aimodule.dll");
+                var dll = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "aimodule-de.dll");
                 var process = Process.GetProcessesByName("AoE2DE_s")[0];
 
                 using (var injector = new Injector(process))

@@ -839,6 +839,10 @@ namespace Protos.Expert.Action {
 
   }
   #region Messages
+  /// <summary>
+  ///*
+  /// Reset a flag associated with an event such as a trigger so it could be used again.
+  /// </summary>
   public sealed partial class AcknowledgeEvent : pb::IMessage<AcknowledgeEvent>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -881,6 +885,9 @@ namespace Protos.Expert.Action {
     /// <summary>Field number for the "eventType" field.</summary>
     public const int EventTypeFieldNumber = 1;
     private int eventType_;
+    /// <summary>
+    /// type of event, such as a trigger
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int EventType {
       get { return eventType_; }
@@ -892,6 +899,9 @@ namespace Protos.Expert.Action {
     /// <summary>Field number for the "id" field.</summary>
     public const int IdFieldNumber = 2;
     private int id_;
+    /// <summary>
+    /// id of the event whose flag to reset
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int Id {
       get { return id_; }
@@ -1047,6 +1057,10 @@ namespace Protos.Expert.Action {
 
   }
 
+  /// <summary>
+  ///*
+  /// Reply for the `AcknowledgeEvent` action. No information is returned.
+  /// </summary>
   public sealed partial class AcknowledgeEventResult : pb::IMessage<AcknowledgeEventResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage

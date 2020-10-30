@@ -274,7 +274,7 @@ namespace Protos.Expert.Fact {
             "IiUKEFVwUG9pbnRFbGV2YXRpb24SEQoJZ29hbFBvaW50GAEgASgFIigKFlVw",
             "UG9pbnRFbGV2YXRpb25SZXN1bHQSDgoGcmVzdWx0GAEgASgFIiQKD1VwUG9p",
             "bnRFeHBsb3JlZBIRCglnb2FsUG9pbnQYASABKAUiJwoVVXBQb2ludEV4cGxv",
-            "cmVkUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIjCg5VcFBvaW50VGVycmFpbhIR",
+            "cmVkUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIjCg5VcFBvaW50VGVycmFpbhIR",
             "Cglnb2FsUG9pbnQYASABKAUiJgoUVXBQb2ludFRlcnJhaW5SZXN1bHQSDgoG",
             "cmVzdWx0GAEgASgFIiAKC1VwUG9pbnRab25lEhEKCWdvYWxQb2ludBgBIAEo",
             "BSIjChFVcFBvaW50Wm9uZVJlc3VsdBIOCgZyZXN1bHQYASABKAUiLgoUVXBQ",
@@ -636,6 +636,10 @@ namespace Protos.Expert.Fact {
 
   }
   #region Messages
+  /// <summary>
+  ///*
+  /// Retrieve the amount of player's land military units designated as attackers
+  /// </summary>
   public sealed partial class AttackSoldierCount : pb::IMessage<AttackSoldierCount>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -772,6 +776,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Response for the `AttackSoldierCount` fact
+  /// </summary>
   public sealed partial class AttackSoldierCountResult : pb::IMessage<AttackSoldierCountResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -813,6 +821,9 @@ namespace Protos.Expert.Fact {
     /// <summary>Field number for the "result" field.</summary>
     public const int ResultFieldNumber = 1;
     private int result_;
+    /// <summary>
+    /// number of player's land military units designated as attackers
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int Result {
       get { return result_; }
@@ -944,6 +955,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Retrieve the amount of player's naval military units designated as attackers
+  /// </summary>
   public sealed partial class AttackWarboatCount : pb::IMessage<AttackWarboatCount>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1080,6 +1095,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Response for the `AttackWarboatCount` fact
+  /// </summary>
   public sealed partial class AttackWarboatCountResult : pb::IMessage<AttackWarboatCountResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1121,6 +1140,9 @@ namespace Protos.Expert.Fact {
     /// <summary>Field number for the "result" field.</summary>
     public const int ResultFieldNumber = 1;
     private int result_;
+    /// <summary>
+    /// number of player's naval military units designated as attackers
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int Result {
       get { return result_; }
@@ -1252,6 +1274,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Check whether a building of certain type is available. This does not check if the player has the resources to build it
+  /// </summary>
   public sealed partial class BuildingAvailable : pb::IMessage<BuildingAvailable>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1293,6 +1319,9 @@ namespace Protos.Expert.Fact {
     /// <summary>Field number for the "buildingType" field.</summary>
     public const int BuildingTypeFieldNumber = 1;
     private int buildingType_;
+    /// <summary>
+    /// building type to check
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int BuildingType {
       get { return buildingType_; }
@@ -1424,6 +1453,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Response for the `BuildingAvailable` fact
+  /// </summary>
   public sealed partial class BuildingAvailableResult : pb::IMessage<BuildingAvailableResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1465,6 +1498,9 @@ namespace Protos.Expert.Fact {
     /// <summary>Field number for the "result" field.</summary>
     public const int ResultFieldNumber = 1;
     private bool result_;
+    /// <summary>
+    /// whether the given building type is available
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Result {
       get { return result_; }
@@ -49615,9 +49651,9 @@ namespace Protos.Expert.Fact {
 
     /// <summary>Field number for the "result" field.</summary>
     public const int ResultFieldNumber = 1;
-    private bool result_;
+    private int result_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Result {
+    public int Result {
       get { return result_; }
       set {
         result_ = value;
@@ -49644,7 +49680,7 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Result != false) hash ^= Result.GetHashCode();
+      if (Result != 0) hash ^= Result.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -49661,9 +49697,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Result != false) {
+      if (Result != 0) {
         output.WriteRawTag(8);
-        output.WriteBool(Result);
+        output.WriteInt32(Result);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -49674,9 +49710,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Result != false) {
+      if (Result != 0) {
         output.WriteRawTag(8);
-        output.WriteBool(Result);
+        output.WriteInt32(Result);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -49687,8 +49723,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Result != false) {
-        size += 1 + 1;
+      if (Result != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Result);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -49701,7 +49737,7 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.Result != false) {
+      if (other.Result != 0) {
         Result = other.Result;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -49719,7 +49755,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Result = input.ReadBool();
+            Result = input.ReadInt32();
             break;
           }
         }
@@ -49737,7 +49773,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Result = input.ReadBool();
+            Result = input.ReadInt32();
             break;
           }
         }

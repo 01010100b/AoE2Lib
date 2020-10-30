@@ -39,6 +39,10 @@ namespace Protos {
 
   }
   #region Messages
+  /// <summary>
+  ///*
+  /// `Unload` call parameters. Currently empty.
+  /// </summary>
   public sealed partial class UnloadRequest : pb::IMessage<UnloadRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -175,6 +179,10 @@ namespace Protos {
 
   }
 
+  /// <summary>
+  ///*
+  /// `Unload` call reply. Currently empty.
+  /// </summary>
   public sealed partial class UnloadReply : pb::IMessage<UnloadReply>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage

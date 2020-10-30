@@ -183,15 +183,21 @@ namespace Unary
         private void LogState()
         {
             var sb = new StringBuilder();
-            
+            var me = GameState.Players[Player];
+
             sb.AppendLine($"---- CURRENT STATE ----");
             sb.AppendLine($"Game time: {GameState.GameTime}");
-            sb.AppendLine($"Player: {Player}");
-            
-            var me = GameState.Players[Player];
+            sb.AppendLine($"Tiles: {GameState.Tiles.Count} of which {GameState.Tiles.Values.Count(t => t.Explored)} explored");
+
+            sb.Append($"Player: {me.PlayerNumber} ");
             sb.AppendLine($"Civ {me.CivilianPopulation} Mil {me.MilitaryPopulation} Wood {me.WoodAmount} Food {me.FoodAmount} Gold {me.GoldAmount} Stone {me.StoneAmount}");
 
-            sb.AppendLine($"Tiles: {GameState.Tiles.Count} of which {GameState.Tiles.Values.Count(t => t.Terrain >= 0)} with known terrain");
+            foreach (var player in GameState.Players.Values)
+            {
+                me = player;
+                sb.Append($"Player: {me.PlayerNumber} ");
+                sb.AppendLine($"Civ {me.CivilianPopulation} Mil {me.MilitaryPopulation} Wood {me.WoodAmount} Food {me.FoodAmount} Gold {me.GoldAmount} Stone {me.StoneAmount}");
+            }
 
             StateLog = sb.ToString();
         }

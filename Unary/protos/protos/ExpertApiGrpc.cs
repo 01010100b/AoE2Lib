@@ -90,34 +90,98 @@ namespace Protos.Expert {
       {
       }
 
+      /// <summary>
+      ///*
+      /// Send a list of expert actions and facts (commands) to the AI Module. The list will be processed during the next AI tick for the specified player. If that does not occur in 5 seconds, an error code will be returned.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
       public virtual global::Protos.Expert.CommandResultList ExecuteCommandList(global::Protos.Expert.CommandList request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return ExecuteCommandList(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
+      /// <summary>
+      ///*
+      /// Send a list of expert actions and facts (commands) to the AI Module. The list will be processed during the next AI tick for the specified player. If that does not occur in 5 seconds, an error code will be returned.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
       public virtual global::Protos.Expert.CommandResultList ExecuteCommandList(global::Protos.Expert.CommandList request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_ExecuteCommandList, null, options, request);
       }
+      /// <summary>
+      ///*
+      /// Send a list of expert actions and facts (commands) to the AI Module. The list will be processed during the next AI tick for the specified player. If that does not occur in 5 seconds, an error code will be returned.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
       public virtual grpc::AsyncUnaryCall<global::Protos.Expert.CommandResultList> ExecuteCommandListAsync(global::Protos.Expert.CommandList request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return ExecuteCommandListAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
+      /// <summary>
+      ///*
+      /// Send a list of expert actions and facts (commands) to the AI Module. The list will be processed during the next AI tick for the specified player. If that does not occur in 5 seconds, an error code will be returned.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
       public virtual grpc::AsyncUnaryCall<global::Protos.Expert.CommandResultList> ExecuteCommandListAsync(global::Protos.Expert.CommandList request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_ExecuteCommandList, null, options, request);
       }
+      /// <summary>
+      ///*
+      /// Experimental. Currently unsupported.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
       public virtual global::Protos.Expert.ResolveConstResponse ResolveConst(global::Protos.Expert.ResolveConstRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return ResolveConst(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
+      /// <summary>
+      ///*
+      /// Experimental. Currently unsupported.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
       public virtual global::Protos.Expert.ResolveConstResponse ResolveConst(global::Protos.Expert.ResolveConstRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_ResolveConst, null, options, request);
       }
+      /// <summary>
+      ///*
+      /// Experimental. Currently unsupported.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
       public virtual grpc::AsyncUnaryCall<global::Protos.Expert.ResolveConstResponse> ResolveConstAsync(global::Protos.Expert.ResolveConstRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return ResolveConstAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
+      /// <summary>
+      ///*
+      /// Experimental. Currently unsupported.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
       public virtual grpc::AsyncUnaryCall<global::Protos.Expert.ResolveConstResponse> ResolveConstAsync(global::Protos.Expert.ResolveConstRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_ResolveConst, null, options, request);
