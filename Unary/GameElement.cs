@@ -30,10 +30,7 @@ namespace Unary
                 return;
             }
 
-            if (Command.Responses.Count != Command.Messages.Count)
-            {
-                throw new Exception();
-            }
+            Debug.Assert(Command.Responses.Count == Command.Messages.Count);
 
             UpdateElement(Command.Responses);
 

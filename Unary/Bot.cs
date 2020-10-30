@@ -93,8 +93,12 @@ namespace Unary
             {
                 var commands = new List<Command>();
 
-                GameState.RequestUpdate(this);
-                commands.Add(GameState.Command);
+                commands.AddRange(GameState.RequestUpdate(this));
+
+                foreach (var module in Modules)
+                {
+                    commands.AddRange(module.RequestUpdate(this));
+                }
 
                 foreach (var player in GameState.Players.Values)
                 {
@@ -108,15 +112,6 @@ namespace Unary
                 foreach (var tile in GameState.Tiles.Values)
                 {
                     var command = tile.Command;
-                    if (command.Messages.Count > 0)
-                    {
-                        commands.Add(command);
-                    }
-                }
-
-                foreach (var module in Modules)
-                {
-                    var command = module.Command;
                     if (command.Messages.Count > 0)
                     {
                         commands.Add(command);
@@ -189,14 +184,13 @@ namespace Unary
             sb.AppendLine($"Game time: {GameState.GameTime}");
             sb.AppendLine($"Tiles: {GameState.Tiles.Count} of which {GameState.Tiles.Values.Count(t => t.Explored)} explored");
 
-            sb.Append($"Player: {me.PlayerNumber} ");
-            sb.AppendLine($"Civ {me.CivilianPopulation} Mil {me.MilitaryPopulation} Wood {me.WoodAmount} Food {me.FoodAmount} Gold {me.GoldAmount} Stone {me.StoneAmount}");
+            sb.AppendLine($"My Player: {me.PlayerNumber} at X {GameState.MyPosition.X} Y {GameState.MyPosition.Y}");
 
             foreach (var player in GameState.Players.Values)
             {
                 me = player;
-                sb.Append($"Player: {me.PlayerNumber} ");
-                sb.AppendLine($"Civ {me.CivilianPopulation} Mil {me.MilitaryPopulation} Wood {me.WoodAmount} Food {me.FoodAmount} Gold {me.GoldAmount} Stone {me.StoneAmount}");
+                sb.AppendLine($"Player: {me.PlayerNumber} Civ {me.CivilianPopulation} Mil {me.MilitaryPopulation} " +
+                    $"Wood {me.WoodAmount} Food {me.FoodAmount} Gold {me.GoldAmount} Stone {me.StoneAmount}");
             }
 
             StateLog = sb.ToString();

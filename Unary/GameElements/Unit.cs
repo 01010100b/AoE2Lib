@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Text;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
+using Protos.Expert.Action;
+using Protos.Expert.Fact;
 
 namespace Unary.GameElements
 {
@@ -56,12 +58,46 @@ namespace Unary.GameElements
 
         protected override void UpdateElement(List<Any> responses)
         {
-            throw new NotImplementedException();
+            Targetable = responses[0].Unpack<UpSetTargetByIdResult>().Result;
+
+            if (Targetable)
+            {
+                var id = responses[1].Unpack<UpObjectDataResult>().Result;
+
+                if (Id == id)
+                {
+                    TargetId = responses[2].Unpack<UpObjectDataResult>().Result;
+                    var x = responses[3].Unpack<UpObjectDataResult>().Result;
+                    var y = responses[4].Unpack<UpObjectDataResult>().Result;
+                    Position = new Position(x, y);
+                    TypeId = responses[5].Unpack<UpObjectDataResult>().Result;
+                    PlayerNumber = responses[6].Unpack<UpObjectDataResult>().Result;
+                    Hitpoints = responses[7].Unpack<UpObjectDataResult>().Result;
+                    Order = (UnitOrder)responses[8].Unpack<UpObjectDataResult>().Result;
+                    NextAttack = TimeSpan.FromMilliseconds(responses[9].Unpack<UpObjectDataResult>().Result);
+                    Stance = (UnitStance)responses[10].Unpack<UpObjectDataResult>().Result;
+                }
+            }
         }
 
         protected override IEnumerable<IMessage> RequestElementUpdate()
         {
-            throw new NotImplementedException();
+            var messages = new List<IMessage>()
+            {
+                new UpSetTargetById() {TypeOp = 6, Id = Id},
+                new UpObjectData() {ObjectData = (int)ObjectData.ID},
+                new UpObjectData() {ObjectData = (int)ObjectData.TARGET_ID},
+                new UpObjectData() {ObjectData = (int)ObjectData.POINT_X},
+                new UpObjectData() {ObjectData = (int)ObjectData.POINT_Y},
+                new UpObjectData() {ObjectData = (int)ObjectData.UPGRADE_TYPE},
+                new UpObjectData() {ObjectData = (int)ObjectData.PLAYER},
+                new UpObjectData() {ObjectData = (int)ObjectData.HITPOINTS},
+                new UpObjectData() {ObjectData = (int)ObjectData.ORDER},
+                new UpObjectData() {ObjectData = (int)ObjectData.NEXT_ATTACK},
+                new UpObjectData() {ObjectData = (int)ObjectData.ATTACK_STANCE}
+            };
+
+            return messages;
         }
     }
 }

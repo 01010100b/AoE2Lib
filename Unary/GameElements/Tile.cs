@@ -26,22 +26,20 @@ namespace Unary.GameElements
 
         protected override void UpdateElement(List<Any> responses)
         {
-            Elevation = responses[4].Unpack<GoalResult>().Result;
-            Terrain = responses[6].Unpack<GoalResult>().Result;
-            Explored = responses[7].Unpack<UpPointExploredResult>().Result != 0;
+            Elevation = responses[3].Unpack<UpPointElevationResult>().Result;
+            Terrain = responses[4].Unpack<UpPointTerrainResult>().Result;
+            Explored = responses[5].Unpack<UpPointExploredResult>().Result != 0;
         }
 
         protected override IEnumerable<IMessage> RequestElementUpdate()
         {
             var messages = new List<IMessage>()
             {
-                new UpModifyGoal() {GoalId = 50, MathOp = 0, Value = Position.X},
-                new UpModifyGoal() {GoalId = 51, MathOp = 0, Value = Position.Y},
+                new SetGoal() {GoalId = 50, GoalValue = Position.X},
+                new SetGoal() {GoalId = 51, GoalValue = Position.Y},
                 new UpBoundPoint() {GoalPoint1 = 52, GoalPoint2 = 50 },
-                new UpGetPointElevation() {GoalPoint = 52, GoalData = 100},
-                new Goal() {GoalId = 100},
-                new UpGetPointTerrain() {GoalPoint = 52, GoalTerrain = 100},
-                new Goal() {GoalId = 100},
+                new UpPointElevation() {GoalPoint = 52},
+                new UpPointTerrain() {GoalPoint = 52},
                 new UpPointExplored() {GoalPoint = 52},
             };
 

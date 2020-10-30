@@ -54,7 +54,7 @@ namespace Unary
         public IReadOnlyDictionary<UnitTypeInfoKey, UnitTypeInfo> UnitTypeInfos => _UnitTypeInfos;
         private readonly Dictionary<UnitTypeInfoKey, UnitTypeInfo> _UnitTypeInfos = new Dictionary<UnitTypeInfoKey, UnitTypeInfo>();
 
-        internal readonly Command Command = new Command();
+        private readonly Command Command = new Command();
 
         public void AddUnit(int id)
         {
@@ -64,10 +64,12 @@ namespace Unary
             }
         }
 
-        internal void RequestUpdate(Bot bot)
+        internal IEnumerable<Command> RequestUpdate(Bot bot)
         {
             Command.Messages.Clear();
             Command.Responses.Clear();
+
+            // general info
 
             Command.Messages.Add(new GameTime());
             Command.Messages.Add(new UpGetPoint() { PositionType = 9, GoalPoint = 100 });
@@ -78,6 +80,8 @@ namespace Unary
             Command.Messages.Add(new UpBoundPoint() { GoalPoint1 = 100, GoalPoint2 = 50 });
             Command.Messages.Add(new Goal() { GoalId = 100 });
             Command.Messages.Add(new Goal() { GoalId = 101 });
+
+            // find valid players
 
             for (int player = 1; player <= 8; player++)
             {
@@ -91,13 +95,59 @@ namespace Unary
 
             if (Tiles.Count > 0)
             {
-                var tiles = Tiles.Values.ToList();
-                for (int i = 0; i < 100; i++)
+                const int TILES_PER_COMMAND = 50;
+
+                var tile_time = DateTime.UtcNow - TimeSpan.FromMinutes(3);
+                if (GameTime < TimeSpan.FromMinutes(5))
                 {
-                    var tile = tiles[bot.RNG.Next(tiles.Count)];
-                    tile.RequestUpdate();
+                    tile_time = DateTime.UtcNow - TimeSpan.FromMinutes(0.3);
+                }
+                else if (GameTime < TimeSpan.FromMinutes(10))
+                {
+                    tile_time = DateTime.UtcNow - TimeSpan.FromMinutes(1);
+                }
+
+                var tiles = Tiles.Values.ToList();
+                tiles.Sort((a, b) =>
+                {
+                    var ca = a.LastUpdate < tile_time;
+                    var cb = b.LastUpdate < tile_time;
+
+                    if (ca && !cb)
+                    {
+                        return -1;
+                    }
+                    else if (cb && !ca)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        if (b.Explored && !a.Explored)
+                        {
+                            return -1;
+                        }
+                        else if (a.Explored && !b.Explored)
+                        {
+                            return 1;
+                        }
+                        else
+                        {
+                            var da = a.Position.DistanceTo(MyPosition);
+                            var db = b.Position.DistanceTo(MyPosition);
+
+                            return da.CompareTo(db);
+                        }
+                    }
+                });
+
+                for (int i = 0; i < Math.Min(tiles.Count, TILES_PER_COMMAND); i++)
+                {
+                    tiles[i].RequestUpdate();
                 }
             }
+
+            return new List<Command>() { Command };
         }
 
         internal void Update()
@@ -109,11 +159,15 @@ namespace Unary
 
             Debug.Assert(Command.Responses.Count == Command.Messages.Count);
 
+            // general info
+
             GameTime = TimeSpan.FromSeconds(Command.Responses[0].Unpack<GameTimeResult>().Result);
             var x = Command.Responses[2].Unpack<GoalResult>().Result;
             var y = Command.Responses[3].Unpack<GoalResult>().Result;
             MyPosition = new Position(x, y);
             MapWidthHeight = Command.Responses[7].Unpack<GoalResult>().Result + 1;
+
+            // find valid players
 
             for (int player = 1; player <= 8; player++)
             {

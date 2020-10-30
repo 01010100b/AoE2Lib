@@ -9,9 +9,7 @@ namespace Unary
 {
     abstract class Module
     {
-        public readonly Command Command = new Command();
-
-        protected internal abstract void RequestUpdate();
+        protected internal abstract IEnumerable<Command> RequestUpdate(Bot bot);
         protected internal abstract void Update();
 
     }
