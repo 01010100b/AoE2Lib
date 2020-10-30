@@ -9,6 +9,10 @@ namespace Unary
 {
     abstract class Module
     {
-        internal abstract IEnumerable<IMessage> GetMessages(Bot bot);
+        public readonly Command Command = new Command();
+
+        protected internal abstract void RequestUpdate();
+        protected internal abstract void Update();
+
     }
 }

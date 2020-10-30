@@ -3,6 +3,8 @@ using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using Protos;
 using Protos.Expert;
+using Protos.Expert.Action;
+using Protos.Expert.Fact;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Unary.Utils;
 using static Protos.AIModuleAPI;
 using static Protos.Expert.ExpertAPI;
 
@@ -20,13 +23,31 @@ namespace Unary
         public int Player { get; private set; } 
         public Strategy Strategy { get; private set; }
         public GameState GameState { get; private set; }
-        
+        public readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.Ticks.GetHashCode());
+        public string StateLog
+        {
+            get
+            {
+                lock (this)
+                {
+                    return _StateLog;
+                }
+            }
+            set
+            {
+                lock (this)
+                {
+                    _StateLog = value;
+                }
+            }
+        }
+        private string _StateLog { get; set; }
+
         private readonly Channel Channel;
         private readonly AIModuleAPIClient ModuleAPI;
         private readonly ExpertAPIClient ExpertAPI;
-        private readonly Dictionary<IMessage, Any> Messages = new Dictionary<IMessage, Any>();
         private readonly List<Module> Modules = new List<Module>();
-
+        
         private Thread BotThread { get; set; } = null;
         private bool Stopping { get; set; } = false;
         private volatile bool Stopped = true;
@@ -44,6 +65,7 @@ namespace Unary
             Stop();
 
             Player = player;
+            GameState = new GameState();
             BotThread = new Thread(() => Run())
             {
                 IsBackground = true
@@ -69,51 +91,109 @@ namespace Unary
 
             while (!Stopping)
             {
-                Strategy.Update(this);
+                var commands = new List<Command>();
 
-                var commands = new List<IMessage>();
+                GameState.RequestUpdate(this);
+                commands.Add(GameState.Command);
+
+                foreach (var player in GameState.Players.Values)
+                {
+                    var command = player.Command;
+                    if (command.Messages.Count > 0)
+                    {
+                        commands.Add(command);
+                    }
+                }
+
+                foreach (var tile in GameState.Tiles.Values)
+                {
+                    var command = tile.Command;
+                    if (command.Messages.Count > 0)
+                    {
+                        commands.Add(command);
+                    }
+                }
+
+                foreach (var module in Modules)
+                {
+                    var command = module.Command;
+                    if (command.Messages.Count > 0)
+                    {
+                        commands.Add(command);
+                    }
+                }
 
                 var commandlist = new CommandList
                 {
                     PlayerNumber = Player
                 };
 
-                foreach (var module in Modules)
+                foreach (var command in commands)
                 {
-                    foreach (var message in module.GetMessages(this))
+                    foreach (var message in command.Messages)
                     {
-                        commands.Add(message);
+                        commandlist.Commands.Add(Any.Pack(message));
                     }
                 }
 
-                foreach (var command in commands)
-                {
-                    commandlist.Commands.Add(Any.Pack(command));
-                }
-
-                Messages.Clear();
+                CommandResultList resultlist = null;
 
                 try
                 {
-                    var resultlist = ExpertAPI.ExecuteCommandList(commandlist);
-                    Debug.Assert(commands.Count == resultlist.Results.Count);
-
-                    for (int i = 0; i < commands.Count; i++)
-                    {
-                        var message = commands[i];
-                        var response = resultlist.Results[i];
-
-                        Messages.Add(message, response);
-                    }
+                    resultlist = ExpertAPI.ExecuteCommandList(commandlist);
                 }
                 catch (Exception e)
                 {
                     Log.Debug(e.Message);
                 }
-                
+
+                if (resultlist != null)
+                {
+                    Debug.Assert(commands.Sum(c => c.Messages.Count) == resultlist.Results.Count);
+
+                    var offset = 0;
+
+                    foreach (var command in commands)
+                    {
+                        command.Responses.Clear();
+
+                        for (int i = 0; i < command.Messages.Count; i++)
+                        {
+                            command.Responses.Add(resultlist.Results[offset + i]);
+                        }
+
+                        offset += command.Responses.Count;
+                    }
+
+                    GameState.Update();
+
+                    foreach (var module in Modules)
+                    {
+                        module.Update();
+                    }
+
+                    LogState();
+                    Log.Debug(StateLog);
+                }
             }
 
             Stopped = true;
+        }
+
+        private void LogState()
+        {
+            var sb = new StringBuilder();
+            
+            sb.AppendLine($"---- CURRENT STATE ----");
+            sb.AppendLine($"Game time: {GameState.GameTime}");
+            sb.AppendLine($"Player: {Player}");
+            
+            var me = GameState.Players[Player];
+            sb.AppendLine($"Civ {me.CivilianPopulation} Mil {me.MilitaryPopulation} Wood {me.WoodAmount} Food {me.FoodAmount} Gold {me.GoldAmount} Stone {me.StoneAmount}");
+
+            sb.AppendLine($"Tiles: {GameState.Tiles.Count} of which {GameState.Tiles.Values.Count(t => t.Terrain >= 0)} with known terrain");
+
+            StateLog = sb.ToString();
         }
 
         protected virtual void Dispose(bool disposing)
@@ -129,7 +209,14 @@ namespace Unary
                 // TODO: set large fields to null
                 DisposedValue = true;
 
-                Channel.ShutdownAsync().Wait();
+                try
+                {
+                    Channel.ShutdownAsync().Wait();
+                }
+                catch
+                {
+
+                }
             }
         }
 

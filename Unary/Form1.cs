@@ -25,6 +25,9 @@ namespace Unary
 {
     public partial class Form1 : Form
     {
+        private bool Connected { get; set; } = false;
+        private Bot Bot { get; set; }
+
         public Form1()
         {
             InitializeComponent();
@@ -35,38 +38,39 @@ namespace Unary
             ButtonTest.Enabled = false;
             Refresh();
 
-            var dll = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "aimodule.dll");
-            var process = Process.GetProcessesByName("AoE2DE_s")[0];
-
-            using (var injector = new Injector(process))
+            if (!Connected)
             {
-                injector.Inject(dll);
+                var dll = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "aimodule.dll");
+                var process = Process.GetProcessesByName("AoE2DE_s")[0];
+
+                using (var injector = new Injector(process))
+                {
+                    injector.Inject(dll);
+                }
+
+                Thread.Sleep(3000);
+
+                Connected = true;
+            }
+            
+            if (Bot == null)
+            {
+                Bot = new Bot();
             }
 
-            Thread.Sleep(3000);
+            Bot.Start(1);
 
-            var channel = new Channel("localhost:37412", ChannelCredentials.Insecure);
-            var module_api = new AIModuleAPIClient(channel);
-            var expert_api = new ExpertAPIClient(channel);
+            ButtonStop.Enabled = true;
+        }
 
-            var commands = new List<IMessage>()
-            {
-                new UpGetFact() { FactId = 25, FactParam = 83, GoalId = 99 },
-                new Goal() { GoalId = 99 }
-            };
+        private void ButtonStop_Click(object sender, EventArgs e)
+        {
+            ButtonStop.Enabled = false;
+            Refresh();
 
-            var commandlist = new CommandList();
-            commandlist.PlayerNumber = 1;
-            foreach (var command in commands)
-            {
-                commandlist.Commands.Add(Any.Pack(command));
-            }
+            Bot?.Stop();
 
-            var resultlist = expert_api.ExecuteCommandList(commandlist);
-            Debug.WriteLine(resultlist);
-
-            var result = resultlist.Results[1];
-            Debug.WriteLine(result);
+            ButtonTest.Enabled = true;
         }
     }
 }

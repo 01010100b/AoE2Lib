@@ -28,7 +28,7 @@ namespace Unary.GameElements
         public int PlayerNumber { get; private set; } = -1;
         public int Hitpoints { get; private set; } = -1;
         public UnitOrder Order { get; private set; } = UnitOrder.NONE;
-        public DateTime NextAttack { get; private set; } = DateTime.UtcNow;
+        public TimeSpan NextAttack { get; private set; } = TimeSpan.MinValue;
         public UnitStance Stance { get; private set; } = UnitStance.AGGRESSIVE;
         public bool Targetable { get; private set; } = false;
 

@@ -2,6 +2,7 @@
 using Google.Protobuf.WellKnownTypes;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -14,16 +15,27 @@ namespace Unary
         public DateTime FirstUpdate { get; private set; } = DateTime.MinValue;
         public int TimesUpdated { get; private set; } = 0;
 
-        internal readonly List<IMessage> Messages = new List<IMessage>();
+        internal readonly Command Command = new Command();
 
-        public void Update(Dictionary<IMessage, Any> responses)
+        public void RequestUpdate()
         {
-            if (Messages.Count == 0)
+            Command.Messages.Clear();
+            Command.Messages.AddRange(RequestElementUpdate());
+        }
+
+        public void Update()
+        {
+            if (Command.Messages.Count == 0)
             {
                 return;
             }
 
-            UpdateElement(Messages.Select(m => responses[m]).ToList());
+            if (Command.Responses.Count != Command.Messages.Count)
+            {
+                throw new Exception();
+            }
+
+            UpdateElement(Command.Responses);
 
             LastUpdate = DateTime.UtcNow;
 
@@ -34,13 +46,7 @@ namespace Unary
 
             TimesUpdated++;
 
-            Messages.Clear();
-        }
-
-        public void RequestUpdate()
-        {
-            Messages.Clear();
-            Messages.AddRange(RequestElementUpdate());
+            Command.Messages.Clear();
         }
 
         protected abstract void UpdateElement(List<Any> responses);
