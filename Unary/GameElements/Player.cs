@@ -46,7 +46,7 @@ namespace Unary.GameElements
             Score = responses[5].Unpack<GoalResult>().Result;
             Age = responses[7].Unpack<GoalResult>().Result;
             CivilianPopulation = responses[9].Unpack<GoalResult>().Result;
-            MilitaryPopulation = responses[11].Unpack<GoalResult>().Result;/*
+            MilitaryPopulation = responses[11].Unpack<GoalResult>().Result;
             WoodAmount = responses[13].Unpack<GoalResult>().Result;
             FoodAmount = responses[15].Unpack<GoalResult>().Result;
             GoldAmount = responses[17].Unpack<GoalResult>().Result;
@@ -65,7 +65,7 @@ namespace Unary.GameElements
             else if (responses[26].Unpack<PlayersStanceResult>().Result)
             {
                 Stance = PlayerStance.ENEMY;
-            }*/
+            }
         }
 
         protected override IEnumerable<IMessage> RequestElementUpdate()
@@ -83,7 +83,7 @@ namespace Unary.GameElements
                 new UpGetPlayerFact() { Player = PlayerNumber, FactId = (int)FactId.CIVILIAN_POPULATION, Param = 0, GoalData = 100 },
                 new Goal() { GoalId = 100 },
                 new UpGetPlayerFact() { Player = PlayerNumber, FactId = (int)FactId.MILITARY_POPULATION, Param = 0, GoalData = 100 },
-                new Goal() { GoalId = 100 }/*,
+                new Goal() { GoalId = 100 },
                 new UpGetPlayerFact() { Player = PlayerNumber, FactId = (int)FactId.WOOD_AMOUNT, Param = 0, GoalData = 100 },
                 new Goal() { GoalId = 100 },
                 new UpGetPlayerFact() { Player = PlayerNumber, FactId = (int)FactId.FOOD_AMOUNT, Param = 0, GoalData = 100 },
@@ -98,7 +98,7 @@ namespace Unary.GameElements
                 new Goal() { GoalId = 100 },
                 new PlayersStance() { PlayerNumber = PlayerNumber, Stance = (int)PlayerStance.ALLY },
                 new PlayersStance() { PlayerNumber = PlayerNumber, Stance = (int)PlayerStance.NEUTRAL },
-                new PlayersStance() { PlayerNumber = PlayerNumber, Stance = (int)PlayerStance.ENEMY }*/
+                new PlayersStance() { PlayerNumber = PlayerNumber, Stance = (int)PlayerStance.ENEMY }
             };
 
             return messages;

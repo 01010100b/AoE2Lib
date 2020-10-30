@@ -98,7 +98,7 @@ namespace Unary
                 for (int i = 0; i < 100; i++)
                 {
                     var tile = tiles[bot.RNG.Next(tiles.Count)];
-                    //tile.RequestUpdate();
+                    tile.RequestUpdate();
                 }
             }
         }
@@ -125,7 +125,7 @@ namespace Unary
 
             foreach (var tile in Tiles.Values)
             {
-                //tile.Update(responses);
+                tile.Update();
             }
 
             Command.Messages.Clear();
