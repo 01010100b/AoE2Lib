@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Unary.Modules;
 using Unary.Utils;
 using static Protos.AIModuleAPI;
 using static Protos.Expert.ExpertAPI;
@@ -21,9 +22,26 @@ namespace Unary
     class Bot : IDisposable
     {
         public int Player { get; private set; } 
-        public Strategy Strategy { get; private set; }
+        public UnitFindModule UnitFindModule { get; private set; }
         public GameState GameState { get; private set; }
-        public readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.Ticks.GetHashCode());
+        public Strategy Strategy
+        {
+            get
+            {
+                lock (this)
+                {
+                    return _Strategy;
+                }
+            }
+            set
+            {
+                lock (this)
+                {
+                    _Strategy = value;
+                }
+            }
+        }
+        private Strategy _Strategy { get; set; }
         public string StateLog
         {
             get
@@ -46,7 +64,6 @@ namespace Unary
         private readonly Channel Channel;
         private readonly AIModuleAPIClient ModuleAPI;
         private readonly ExpertAPIClient ExpertAPI;
-        private readonly List<Module> Modules = new List<Module>();
         
         private Thread BotThread { get; set; } = null;
         private bool Stopping { get; set; } = false;
@@ -66,6 +83,8 @@ namespace Unary
 
             Player = player;
             GameState = new GameState();
+            StateLog = "";
+
             BotThread = new Thread(() => Run())
             {
                 IsBackground = true
@@ -82,6 +101,8 @@ namespace Unary
                 Thread.Sleep(100);
             }
 
+            BotThread?.Join();
+
             Stopping = false;
         }
 
@@ -93,12 +114,8 @@ namespace Unary
             {
                 var commands = new List<Command>();
 
-                commands.AddRange(GameState.RequestUpdate(this));
-
-                foreach (var module in Modules)
-                {
-                    commands.AddRange(module.RequestUpdate(this));
-                }
+                commands.AddRange(GameState.RequestUpdate());
+                commands.AddRange(UnitFindModule.RequestUpdate(this));
 
                 foreach (var player in GameState.Players.Values)
                 {
@@ -132,7 +149,6 @@ namespace Unary
                 }
 
                 CommandResultList resultlist = null;
-
                 try
                 {
                     resultlist = ExpertAPI.ExecuteCommandList(commandlist);
@@ -161,11 +177,7 @@ namespace Unary
                     }
 
                     GameState.Update();
-
-                    foreach (var module in Modules)
-                    {
-                        module.Update();
-                    }
+                    UnitFindModule.Update(this);
 
                     LogState();
                     Log.Debug(StateLog);

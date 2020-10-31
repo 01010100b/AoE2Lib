@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Unary
 {
-    abstract class Module
+    public abstract class Module
     {
-        protected internal abstract IEnumerable<Command> RequestUpdate(Bot bot);
-        protected internal abstract void Update();
+        internal abstract IEnumerable<Command> RequestUpdate(Bot bot);
+        internal abstract void Update(Bot bot);
 
     }
 }

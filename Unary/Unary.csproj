@@ -107,6 +107,7 @@
     <Compile Include="GameState.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Module.cs" />
+    <Compile Include="Modules\UnitFindModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="protos\protos\Action.cs" />

@@ -15,15 +15,15 @@ namespace Unary
 {
     public class GameState
     {
-        public TimeSpan GameTime { get; internal set; } = TimeSpan.Zero;
-        public Position MyPosition { get; internal set; } = new Position(-1, -1);
+        public TimeSpan GameTime { get; private set; } = TimeSpan.Zero;
+        public Position MyPosition { get; private set; } = new Position(-1, -1);
         public int MapWidthHeight
         {
             get
             {
                 return _MapWidthHeight;
             }
-            internal set
+            private set
             {
                 _MapWidthHeight = value;
                 
@@ -55,6 +55,7 @@ namespace Unary
         private readonly Dictionary<UnitTypeInfoKey, UnitTypeInfo> _UnitTypeInfos = new Dictionary<UnitTypeInfoKey, UnitTypeInfo>();
 
         private readonly Command Command = new Command();
+        private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.Ticks.GetHashCode());
 
         public void AddUnit(int id)
         {
@@ -64,8 +65,12 @@ namespace Unary
             }
         }
 
-        internal IEnumerable<Command> RequestUpdate(Bot bot)
+        internal IEnumerable<Command> RequestUpdate()
         {
+            const int TILES_PER_COMMAND = 50;
+            const int UNITS_PER_COMMAND = 20;
+            const int UNITTYPEINFOS_PER_COMMAND = 10;
+
             Command.Messages.Clear();
             Command.Responses.Clear();
 
@@ -88,6 +93,8 @@ namespace Unary
                 Command.Messages.Add(new PlayerValid() { PlayerNumber = player });
             }
 
+            // update known elements
+
             foreach (var player in Players.Values)
             {
                 player.RequestUpdate();
@@ -95,8 +102,6 @@ namespace Unary
 
             if (Tiles.Count > 0)
             {
-                const int TILES_PER_COMMAND = 50;
-
                 var tile_time = DateTime.UtcNow - TimeSpan.FromMinutes(3);
                 if (GameTime < TimeSpan.FromMinutes(5))
                 {
@@ -147,6 +152,40 @@ namespace Unary
                 }
             }
 
+            if (Units.Count > 0)
+            {
+                var units = Units.Values.ToList();
+                units.Sort((a, b) => a.LastUpdate.CompareTo(b.LastUpdate));
+                var count = Math.Min(units.Count, UNITS_PER_COMMAND / 2);
+
+                for (int i = 0; i < count; i++)
+                {
+                    units[i].RequestUpdate();
+                }
+
+                for (int i = 0; i < count; i++)
+                {
+                    units[RNG.Next(units.Count)].RequestUpdate();
+                }
+            }
+
+            if (UnitTypeInfos.Count > 0)
+            {
+                var infos = UnitTypeInfos.Values.ToList();
+                infos.Sort((a, b) => a.LastUpdate.CompareTo(b.LastUpdate));
+                var count = Math.Min(infos.Count, UNITTYPEINFOS_PER_COMMAND / 2);
+
+                for (int i = 0; i < count; i++)
+                {
+                    infos[i].RequestUpdate();
+                }
+
+                for (int i = 0; i < count; i++)
+                {
+                    infos[RNG.Next(infos.Count)].RequestUpdate();
+                }
+            }
+
             return new List<Command>() { Command };
         }
 
@@ -187,6 +226,16 @@ namespace Unary
             foreach (var tile in Tiles.Values)
             {
                 tile.Update();
+            }
+
+            foreach (var unit in Units.Values)
+            {
+                unit.Update();
+            }
+
+            foreach (var info in UnitTypeInfos.Values)
+            {
+                info.Update();
             }
 
             Command.Messages.Clear();
