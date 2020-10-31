@@ -42,7 +42,7 @@ namespace Unary.Modules
                     command.Messages.Add(new UpFilterInclude() { CmdId = (int)CmdId.MONK, ActionId = -1, OrderId = -1, OnMainland = -1 });
                     command.Messages.Add(new UpFindRemote() { TypeOp1 = 6, UnitId = -1, TypeOp2 = 6, Count = 5 });
 
-                    command.Messages.Add(new UpResetFilters());
+                    command.Messages.Add(new UpFilterDistance() { TypeOp1 = 6, MinDistance = 9, TypeOp2 = 6, MaxDistance = -1 });
                     command.Messages.Add(new UpFilterInclude() { CmdId = (int)CmdId.MONK, ActionId = -1, OrderId = -1, OnMainland = -1 });
                     command.Messages.Add(new UpFindRemote() { TypeOp1 = 6, UnitId = -1, TypeOp2 = 6, Count = 5 });
                     command.Messages.Add(new UpFilterInclude() { CmdId = (int)CmdId.MILITARY, ActionId = -1, OrderId = -1, OnMainland = -1 });
