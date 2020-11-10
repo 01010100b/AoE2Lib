@@ -65,7 +65,7 @@ namespace Unary
             }
         }
 
-        internal IEnumerable<Command> RequestUpdate()
+        internal Command RequestUpdate()
         {
             const int TILES_PER_COMMAND = 50;
             const int UNITS_PER_COMMAND = 20;
@@ -186,7 +186,7 @@ namespace Unary
                 }
             }
 
-            return new List<Command>() { Command };
+            return Command;
         }
 
         internal void Update()

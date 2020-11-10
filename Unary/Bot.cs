@@ -114,7 +114,7 @@ namespace Unary
             {
                 var commands = new List<Command>();
 
-                commands.AddRange(GameState.RequestUpdate());
+                commands.Add(GameState.RequestUpdate());
                 commands.AddRange(UnitFindModule.RequestUpdate(this));
 
                 foreach (var player in GameState.Players.Values)
