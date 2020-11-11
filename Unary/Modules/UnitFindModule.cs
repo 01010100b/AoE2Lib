@@ -18,8 +18,6 @@ namespace Unary.Modules
             MILLITARY, CIVILIAN, BUILDING, WOOD, FOOD, GOLD, STONE, ALL
         }
 
-        private const int MAX_COMMANDS = 5;
-
         private readonly List<Command> UnitFindCommands = new List<Command>();
         private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.Ticks.GetHashCode());
 
@@ -202,24 +200,17 @@ namespace Unary.Modules
 
         private void AddDefaultCommands(Bot bot)
         {
-            var commands = MAX_COMMANDS - UnitFindCommands.Count;
-
-            if (commands <= 0)
-            {
-                return;
-            }
-
             var explored = bot.GameState.Tiles.Values.Where(t => t.Explored).Select(t => t.Position).ToList();
             if (explored.Count == 0)
             {
                 explored.Add(bot.GameState.MyPosition);
             }
 
-            for (int i = 0; i < commands; i++)
+            for (int i = 0; i < 5; i++)
             {
                 var player = bot.Player;
 
-                if (RNG.NextDouble() < 0.5)
+                if (RNG.NextDouble() < 0.5 && bot.GameState.GameTime > TimeSpan.FromSeconds(3))
                 {
                     player = 0;
 
@@ -229,13 +220,13 @@ namespace Unary.Modules
                     }
                 }
 
-                var type = UnitFindType.MILLITARY;
+                var type = UnitFindType.CIVILIAN;
 
                 if (RNG.NextDouble() < 0.5)
                 {
-                    type = UnitFindType.CIVILIAN;
+                    type = UnitFindType.MILLITARY;
 
-                    if (RNG.NextDouble() < 0.5)
+                    if (RNG.NextDouble() < 0.5 && bot.GameState.GameTime > TimeSpan.FromSeconds(5))
                     {
                         type = UnitFindType.BUILDING;
 

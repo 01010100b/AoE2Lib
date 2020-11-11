@@ -103,10 +103,10 @@
     <Compile Include="GameElements\Player.cs" />
     <Compile Include="GameElements\Tile.cs" />
     <Compile Include="GameElements\Unit.cs" />
-    <Compile Include="GameElements\UnitTypeInfo.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Module.cs" />
+    <Compile Include="Modules\BuildModule.cs" />
     <Compile Include="Modules\UnitFindModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -116,6 +116,7 @@
     <Compile Include="protos\protos\ExpertApi.cs" />
     <Compile Include="protos\protos\ExpertApiGrpc.cs" />
     <Compile Include="protos\protos\Fact.cs" />
+    <Compile Include="Strategies\BasicStrategy.cs" />
     <Compile Include="Strategy.cs" />
     <Compile Include="Utils\Position.cs" />
     <EmbeddedResource Include="Form1.resx">

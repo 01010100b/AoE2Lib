@@ -4,17 +4,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using static Unary.GameElements.UnitTypeInfo;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Protos.Expert.Fact;
 using Protos.Expert.Action;
 using System.Diagnostics;
+using System.Windows.Forms;
+using System.Xml;
 
 namespace Unary
 {
     public class GameState
     {
+        public readonly Dictionary<StrategicNumber, int> StrategicNumbers = new Dictionary<StrategicNumber, int>();
         public TimeSpan GameTime { get; private set; } = TimeSpan.Zero;
         public Position MyPosition { get; private set; } = new Position(-1, -1);
         public int MapWidthHeight
@@ -51,15 +53,30 @@ namespace Unary
         private readonly Dictionary<Position, Tile> _Tiles = new Dictionary<Position, Tile>();
         public IReadOnlyDictionary<int, Unit> Units => _Units;
         private readonly Dictionary<int, Unit> _Units = new Dictionary<int, Unit>();
-        public IReadOnlyDictionary<UnitTypeInfoKey, UnitTypeInfo> UnitTypeInfos => _UnitTypeInfos;
-        private readonly Dictionary<UnitTypeInfoKey, UnitTypeInfo> _UnitTypeInfos = new Dictionary<UnitTypeInfoKey, UnitTypeInfo>();
-
+        
         private readonly Command Command = new Command();
         private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.Ticks.GetHashCode());
 
+        public IEnumerable<Tile> GetTilesInRange(Position position, double range)
+        {
+            var d = (int)Math.Ceiling(range);
+            
+            for (int x = position.X - d; x <= position.X + d; x++)
+            {
+                for (int y = position.Y - d; y <= position.Y + d; y++)
+                {
+                    if (x >= 0 && x < MapWidthHeight && y >= 0 && y < MapWidthHeight)
+                    {
+                        var pos = new Position(x, y);
+                        yield return Tiles[pos];
+                    }
+                }
+            }
+        }
+
         public void AddUnit(int id)
         {
-            if (!_Units.ContainsKey(id))
+            if (!Units.ContainsKey(id))
             {
                 _Units.Add(id, new Unit(id));
             }
@@ -69,7 +86,6 @@ namespace Unary
         {
             const int TILES_PER_COMMAND = 50;
             const int UNITS_PER_COMMAND = 20;
-            const int UNITTYPEINFOS_PER_COMMAND = 10;
 
             Command.Messages.Clear();
             Command.Responses.Clear();
@@ -91,6 +107,13 @@ namespace Unary
             for (int player = 1; player <= 8; player++)
             {
                 Command.Messages.Add(new PlayerValid() { PlayerNumber = player });
+            }
+
+            // set strategic numbers
+
+            foreach (var kvp in StrategicNumbers)
+            {
+                Command.Messages.Add(new SetStrategicNumber() { StrategicNumber = (int)kvp.Key, Value = kvp.Value });
             }
 
             // update known elements
@@ -169,23 +192,6 @@ namespace Unary
                 }
             }
 
-            if (UnitTypeInfos.Count > 0)
-            {
-                var infos = UnitTypeInfos.Values.ToList();
-                infos.Sort((a, b) => a.LastUpdate.CompareTo(b.LastUpdate));
-                var count = Math.Min(infos.Count, UNITTYPEINFOS_PER_COMMAND / 2);
-
-                for (int i = 0; i < count; i++)
-                {
-                    infos[i].RequestUpdate();
-                }
-
-                for (int i = 0; i < count; i++)
-                {
-                    infos[RNG.Next(infos.Count)].RequestUpdate();
-                }
-            }
-
             return Command;
         }
 
@@ -218,6 +224,8 @@ namespace Unary
                 }
             }
 
+            // known game elements
+
             foreach (var player in Players.Values)
             {
                 player.Update();
@@ -231,11 +239,6 @@ namespace Unary
             foreach (var unit in Units.Values)
             {
                 unit.Update();
-            }
-
-            foreach (var info in UnitTypeInfos.Values)
-            {
-                info.Update();
             }
 
             Command.Messages.Clear();

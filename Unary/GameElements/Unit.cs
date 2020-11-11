@@ -24,6 +24,7 @@ namespace Unary.GameElements
         }
 
         public readonly int Id;
+        public bool Targetable { get; private set; } = true;
         public int TargetId { get; private set; } = -1;
         public Position Position { get; private set; } = new Position(-1, -1);
         public int TypeId { get; private set; } = -1;
@@ -32,7 +33,16 @@ namespace Unary.GameElements
         public UnitOrder Order { get; private set; } = UnitOrder.NONE;
         public TimeSpan NextAttack { get; private set; } = TimeSpan.MinValue;
         public UnitStance Stance { get; private set; } = UnitStance.AGGRESSIVE;
-        public bool Targetable { get; private set; } = false;
+        public int MaxHitpoints { get; private set; } = -1;
+        public int Range { get; private set; } = -1;
+        public double Speed { get; private set; } = -1;
+        public int Attack { get; private set; } = -1;
+        public int MeleeArmor { get; private set; } = 0;
+        public int PierceArmor { get; private set; } = 0;
+        public TimeSpan ReloadTime { get; private set; } = TimeSpan.MinValue;
+        public int TrainSiteId { get; private set; } = -1;
+        public UnitClass Class { get; private set; } = UnitClass.Miscellaneous;
+        public CmdId CmdId { get; private set; } = CmdId.FLAG;
 
         public Unit(int id) : base()
         {
@@ -58,25 +68,36 @@ namespace Unary.GameElements
 
         protected override void UpdateElement(List<Any> responses)
         {
-            Targetable = responses[0].Unpack<UpSetTargetByIdResult>().Result;
-            
-            if (Targetable)
-            {
-                var id = responses[1].Unpack<UpObjectDataResult>().Result;
+            var id = responses[1].Unpack<UpObjectDataResult>().Result;
 
-                if (Id == id)
-                {
-                    TargetId = responses[2].Unpack<UpObjectDataResult>().Result;
-                    var x = responses[3].Unpack<UpObjectDataResult>().Result;
-                    var y = responses[4].Unpack<UpObjectDataResult>().Result;
-                    Position = new Position(x, y);
-                    TypeId = responses[5].Unpack<UpObjectDataResult>().Result;
-                    PlayerNumber = responses[6].Unpack<UpObjectDataResult>().Result;
-                    Hitpoints = responses[7].Unpack<UpObjectDataResult>().Result;
-                    Order = (UnitOrder)responses[8].Unpack<UpObjectDataResult>().Result;
-                    NextAttack = TimeSpan.FromMilliseconds(responses[9].Unpack<UpObjectDataResult>().Result);
-                    Stance = (UnitStance)responses[10].Unpack<UpObjectDataResult>().Result;
-                }
+            if (Id == id)
+            {
+                Targetable = true;
+
+                TargetId = responses[2].Unpack<UpObjectDataResult>().Result;
+                var x = responses[3].Unpack<UpObjectDataResult>().Result;
+                var y = responses[4].Unpack<UpObjectDataResult>().Result;
+                Position = new Position(x, y);
+                TypeId = responses[5].Unpack<UpObjectDataResult>().Result;
+                PlayerNumber = responses[6].Unpack<UpObjectDataResult>().Result;
+                Hitpoints = responses[7].Unpack<UpObjectDataResult>().Result;
+                Order = (UnitOrder)responses[8].Unpack<UpObjectDataResult>().Result;
+                NextAttack = TimeSpan.FromMilliseconds(responses[9].Unpack<UpObjectDataResult>().Result);
+                Stance = (UnitStance)responses[10].Unpack<UpObjectDataResult>().Result;
+                MaxHitpoints = responses[11].Unpack<UpObjectDataResult>().Result;
+                Range = responses[12].Unpack<UpObjectDataResult>().Result;
+                Speed = responses[13].Unpack<UpObjectDataResult>().Result / 100d;
+                Attack = responses[14].Unpack<UpObjectDataResult>().Result;
+                MeleeArmor = responses[15].Unpack<UpObjectDataResult>().Result;
+                PierceArmor = responses[16].Unpack<UpObjectDataResult>().Result;
+                ReloadTime = TimeSpan.FromMilliseconds(responses[17].Unpack<UpObjectDataResult>().Result);
+                TrainSiteId = responses[18].Unpack<UpObjectDataResult>().Result;
+                Class = (UnitClass)responses[19].Unpack<UpObjectDataResult>().Result;
+                CmdId = (CmdId)responses[20].Unpack<UpObjectDataResult>().Result;
+            }
+            else
+            {
+                Targetable = false;
             }
         }
 
@@ -84,9 +105,6 @@ namespace Unary.GameElements
         {
             var messages = new List<IMessage>()
             {
-                /*new UpFullResetSearch(),
-                new UpFindLocal() {TypeOp1 = (int)TypeOp.C, UnitId = -1, TypeOp2 = (int)TypeOp.C, Count = 1},
-                new UpSetTargetObject() {SearchSource = 1, TypeOp = (int)TypeOp.C, Index = 0},*/
                 new UpSetTargetById() {TypeOp = (int)TypeOp.C, Id = Id},
                 new UpObjectData() {ObjectData = (int)ObjectData.ID},
                 new UpObjectData() {ObjectData = (int)ObjectData.TARGET_ID},
@@ -97,7 +115,17 @@ namespace Unary.GameElements
                 new UpObjectData() {ObjectData = (int)ObjectData.HITPOINTS},
                 new UpObjectData() {ObjectData = (int)ObjectData.ORDER},
                 new UpObjectData() {ObjectData = (int)ObjectData.NEXT_ATTACK},
-                new UpObjectData() {ObjectData = (int)ObjectData.ATTACK_STANCE}
+                new UpObjectData() {ObjectData = (int)ObjectData.ATTACK_STANCE},
+                new UpObjectData() {ObjectData = (int)ObjectData.MAXHP},
+                new UpObjectData() {ObjectData = (int)ObjectData.RANGE},
+                new UpObjectData() {ObjectData = (int)ObjectData.SPEED},
+                new UpObjectData() {ObjectData = (int)ObjectData.BASE_ATTACK},
+                new UpObjectData() {ObjectData = (int)ObjectData.STRIKE_ARMOR},
+                new UpObjectData() {ObjectData = (int)ObjectData.PIERCE_ARMOR},
+                new UpObjectData() {ObjectData = (int)ObjectData.RELOAD_TIME},
+                new UpObjectData() {ObjectData = (int)ObjectData.TRAIN_SITE},
+                new UpObjectData() {ObjectData = (int)ObjectData.CLASS},
+                new UpObjectData() {ObjectData = (int)ObjectData.CMDID}
             };
 
             return messages;

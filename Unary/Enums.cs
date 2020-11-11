@@ -214,7 +214,6 @@ namespace Unary
         UNEXPLORED_CONSTRUCTION = 293,
         DISABLE_TRADE_EVASION = 294,
         BOAR_LURE_DESTINATION = 295
-
     }
 
     public enum UnitClass

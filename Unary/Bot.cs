@@ -13,13 +13,14 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Unary.Modules;
+using Unary.Strategies;
 using Unary.Utils;
 using static Protos.AIModuleAPI;
 using static Protos.Expert.ExpertAPI;
 
 namespace Unary
 {
-    class Bot : IDisposable
+    public class Bot : IDisposable
     {
         public int Player { get; private set; }
         public GameState GameState { get; private set; }
@@ -84,12 +85,15 @@ namespace Unary
             Player = player;
             GameState = new GameState();
             UnitFindModule = new UnitFindModule();
+            Strategy = new BasicStrategy();
+
             StateLog = "";
 
             BotThread = new Thread(() => Run())
             {
                 IsBackground = true
             };
+
             BotThread.Start();
         }
 
@@ -126,6 +130,8 @@ namespace Unary
 
             while (!Stopping)
             {
+                Strategy.UpdateInternal(this);
+
                 var commands = new List<Command>();
 
                 commands.Add(GameState.RequestUpdate());
@@ -152,15 +158,6 @@ namespace Unary
                 foreach (var unit in GameState.Units.Values)
                 {
                     var command = unit.Command;
-                    if (command.Messages.Count > 0)
-                    {
-                        commands.Add(command);
-                    }
-                }
-
-                foreach (var info in GameState.UnitTypeInfos.Values)
-                {
-                    var command = info.Command;
                     if (command.Messages.Count > 0)
                     {
                         commands.Add(command);
@@ -229,7 +226,7 @@ namespace Unary
             sb.AppendLine($"Tiles: {GameState.Tiles.Count} of which {GameState.Tiles.Values.Count(t => t.Explored)} explored");
 
             sb.AppendLine($"My Player: {me.PlayerNumber} at X {GameState.MyPosition.X} Y {GameState.MyPosition.Y}");
-            sb.AppendLine($"Known units: {GameState.Units.Count}");
+            sb.AppendLine($"Known units: {GameState.Units.Count} of which {GameState.Units.Values.Count(u => u.Targetable)} targetable");
 
             foreach (var player in GameState.Players.Values)
             {
