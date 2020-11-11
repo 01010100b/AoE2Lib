@@ -65,9 +65,10 @@ namespace Unary
             {
                 for (int y = position.Y - d; y <= position.Y + d; y++)
                 {
-                    if (x >= 0 && x < MapWidthHeight && y >= 0 && y < MapWidthHeight)
+                    var pos = new Position(x, y);
+
+                    if (Tiles.ContainsKey(pos) && pos.DistanceTo(position) <= range)
                     {
-                        var pos = new Position(x, y);
                         yield return Tiles[pos];
                     }
                 }
@@ -243,6 +244,23 @@ namespace Unary
 
             Command.Messages.Clear();
             Command.Responses.Clear();
+
+            // caches
+
+            foreach (var tile in Tiles.Values)
+            {
+                tile._Units.Clear();
+            }
+
+            foreach (var unit in Units.Values)
+            {
+                var pos = unit.Position;
+
+                if (Tiles.TryGetValue(pos, out Tile tile))
+                {
+                    tile._Units.Add(unit);
+                }
+            }
         }
     }
 }

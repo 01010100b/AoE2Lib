@@ -18,6 +18,8 @@ namespace Unary.GameElements
         public int Elevation { get; private set; } = -1;
         public int Terrain { get; private set; } = -1;
         public bool Explored { get; private set; } = false;
+        public IEnumerable<Unit> Units => _Units;
+        internal readonly HashSet<Unit> _Units = new HashSet<Unit>();
 
         public Tile(Position position) : base()
         {
