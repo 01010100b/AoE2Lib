@@ -106,7 +106,7 @@
     <Compile Include="GameState.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Module.cs" />
-    <Compile Include="Modules\BuildModule.cs" />
+    <Compile Include="Modules\TrainModule.cs" />
     <Compile Include="Modules\UnitFindModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
