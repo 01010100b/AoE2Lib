@@ -17,6 +17,7 @@ namespace Unary
     public class GameState
     {
         public readonly Dictionary<StrategicNumber, int> StrategicNumbers = new Dictionary<StrategicNumber, int>();
+        public int Tick { get; private set; } = 0;
         public TimeSpan GameTime { get; private set; } = TimeSpan.Zero;
         public Position MyPosition { get; private set; } = new Position(-1, -1);
         public int MapWidthHeight
@@ -204,6 +205,8 @@ namespace Unary
             }
 
             Debug.Assert(Command.Responses.Count == Command.Messages.Count);
+
+            Tick++;
 
             // general info
 

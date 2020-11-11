@@ -18,6 +18,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Unary.Mods;
 using static Protos.AIModuleAPI;
 using static Protos.Expert.ExpertAPI;
 
@@ -58,7 +59,10 @@ namespace Unary
                 Bot = new Bot();
             }
 
-            Bot.Start(1);
+            var mod = new Mod();
+            mod.LoadWK();
+
+            Bot.Start(mod, 1);
 
             ButtonStop.Enabled = true;
         }

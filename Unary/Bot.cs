@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Unary.Mods;
 using Unary.Modules;
 using Unary.Strategies;
 using Unary.Utils;
@@ -22,9 +23,11 @@ namespace Unary
 {
     public class Bot : IDisposable
     {
+        public Mod Mod { get; private set; }
         public int Player { get; private set; }
         public GameState GameState { get; private set; }
         public UnitFindModule UnitFindModule { get; private set; }
+        public TrainModule TrainModule { get; private set; }
         public Strategy Strategy
         {
             get
@@ -78,13 +81,15 @@ namespace Unary
             ExpertAPI = new ExpertAPIClient(Channel);
         }
 
-        public void Start(int player)
+        public void Start(Mod mod, int player)
         {
             Stop();
 
+            Mod = mod;
             Player = player;
             GameState = new GameState();
             UnitFindModule = new UnitFindModule();
+            TrainModule = new TrainModule();
             Strategy = new BasicStrategy();
 
             StateLog = "";
@@ -130,11 +135,15 @@ namespace Unary
 
             while (!Stopping)
             {
-                Strategy.UpdateInternal(this);
+                if (GameState.Tick > 0)
+                {
+                    Strategy.UpdateInternal(this);
+                }
 
                 var commands = new List<Command>();
 
                 commands.AddRange(UnitFindModule.RequestUpdate(this));
+                commands.AddRange(TrainModule.RequestUpdate(this));
                 commands.Add(GameState.RequestUpdate());
 
                 foreach (var player in GameState.Players.Values)
@@ -207,6 +216,7 @@ namespace Unary
 
                     GameState.Update();
                     UnitFindModule.Update(this);
+                    TrainModule.Update(this);
 
                     LogState();
                     Log.Debug(StateLog);

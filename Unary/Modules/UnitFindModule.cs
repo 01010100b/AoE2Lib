@@ -174,7 +174,10 @@ namespace Unary.Modules
 
         internal override IEnumerable<Command> RequestUpdate(Bot bot)
         {
-            AddDefaultCommands(bot);
+            if (bot.GameState.Tick > 0)
+            {
+                AddDefaultCommands(bot);
+            }
 
             return UnitFindCommands;
         }

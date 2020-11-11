@@ -10,6 +10,7 @@ namespace Unary.Strategies
     {
         public override void Update(Bot bot)
         {
+            bot.TrainModule.Train(bot.Mod.Villager);
             //throw new NotImplementedException();
         }
     }
