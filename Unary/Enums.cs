@@ -6,6 +6,16 @@ using System.Threading.Tasks;
 
 namespace Unary
 {
+    public enum TypeOp
+    {
+        C = 6, G = 2
+    }
+
+    public enum MathOp
+    {
+        S_EQUALS = 0, S_ADD = 1, G_MUL = 15, G_DIV = 16, G_MIN = 17, G_MAX = 18, G_MOD = 19, C_EQUALS = 24, C_MIN = 29, C_MAX = 30
+    }
+
     public enum FactId
     {
         GAME_TIME, POPULATION_CAP, POPULATION_HEADROOM, HOUSING_HEADROOM, IDLE_FARM_COUNT, FOOD_AMOUNT, WOOD_AMOUNT, STONE_AMOUNT,

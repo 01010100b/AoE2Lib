@@ -38,12 +38,13 @@ namespace Unary.GameElements
 
         protected override void UpdateElement(List<Any> responses)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         protected override IEnumerable<IMessage> RequestElementUpdate()
         {
-            throw new NotImplementedException();
+            return new List<IMessage>();
+            //throw new NotImplementedException();
         }
     }
 }

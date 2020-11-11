@@ -72,5 +72,16 @@ namespace Unary
 
             ButtonTest.Enabled = true;
         }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Bot?.Exit();
+        }
+
+        private void ButtonExit_Click(object sender, EventArgs e)
+        {
+            Bot?.Exit();
+            Close();
+        }
     }
 }

@@ -59,7 +59,7 @@ namespace Unary.GameElements
         protected override void UpdateElement(List<Any> responses)
         {
             Targetable = responses[0].Unpack<UpSetTargetByIdResult>().Result;
-
+            
             if (Targetable)
             {
                 var id = responses[1].Unpack<UpObjectDataResult>().Result;
@@ -84,7 +84,10 @@ namespace Unary.GameElements
         {
             var messages = new List<IMessage>()
             {
-                new UpSetTargetById() {TypeOp = 6, Id = Id},
+                /*new UpFullResetSearch(),
+                new UpFindLocal() {TypeOp1 = (int)TypeOp.C, UnitId = -1, TypeOp2 = (int)TypeOp.C, Count = 1},
+                new UpSetTargetObject() {SearchSource = 1, TypeOp = (int)TypeOp.C, Index = 0},*/
+                new UpSetTargetById() {TypeOp = (int)TypeOp.C, Id = Id},
                 new UpObjectData() {ObjectData = (int)ObjectData.ID},
                 new UpObjectData() {ObjectData = (int)ObjectData.TARGET_ID},
                 new UpObjectData() {ObjectData = (int)ObjectData.POINT_X},

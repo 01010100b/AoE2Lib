@@ -20,6 +20,7 @@ namespace Unary
         public void RequestUpdate()
         {
             Command.Messages.Clear();
+            Command.Responses.Clear();
             Command.Messages.AddRange(RequestElementUpdate());
         }
 
@@ -44,6 +45,7 @@ namespace Unary
             TimesUpdated++;
 
             Command.Messages.Clear();
+            Command.Responses.Clear();
         }
 
         protected abstract void UpdateElement(List<Any> responses);

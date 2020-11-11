@@ -21,9 +21,9 @@ namespace Unary
 {
     class Bot : IDisposable
     {
-        public int Player { get; private set; } 
-        public UnitFindModule UnitFindModule { get; private set; }
+        public int Player { get; private set; }
         public GameState GameState { get; private set; }
+        public UnitFindModule UnitFindModule { get; private set; }
         public Strategy Strategy
         {
             get
@@ -83,6 +83,7 @@ namespace Unary
 
             Player = player;
             GameState = new GameState();
+            UnitFindModule = new UnitFindModule();
             StateLog = "";
 
             BotThread = new Thread(() => Run())
@@ -104,6 +105,19 @@ namespace Unary
             BotThread?.Join();
 
             Stopping = false;
+        }
+
+        public void Exit()
+        {
+            if (DisposedValue == true)
+            {
+                return;
+            }
+
+            Stop();
+
+            ModuleAPI.Unload(new UnloadRequest(), new CallOptions());
+            Dispose();
         }
 
         private void Run()
@@ -129,6 +143,24 @@ namespace Unary
                 foreach (var tile in GameState.Tiles.Values)
                 {
                     var command = tile.Command;
+                    if (command.Messages.Count > 0)
+                    {
+                        commands.Add(command);
+                    }
+                }
+
+                foreach (var unit in GameState.Units.Values)
+                {
+                    var command = unit.Command;
+                    if (command.Messages.Count > 0)
+                    {
+                        commands.Add(command);
+                    }
+                }
+
+                foreach (var info in GameState.UnitTypeInfos.Values)
+                {
+                    var command = info.Command;
                     if (command.Messages.Count > 0)
                     {
                         commands.Add(command);
@@ -197,6 +229,7 @@ namespace Unary
             sb.AppendLine($"Tiles: {GameState.Tiles.Count} of which {GameState.Tiles.Values.Count(t => t.Explored)} explored");
 
             sb.AppendLine($"My Player: {me.PlayerNumber} at X {GameState.MyPosition.X} Y {GameState.MyPosition.Y}");
+            sb.AppendLine($"Known units: {GameState.Units.Count}");
 
             foreach (var player in GameState.Players.Values)
             {
