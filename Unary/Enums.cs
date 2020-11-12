@@ -218,7 +218,7 @@ namespace Unary
 
     public enum UnitClass
     {
-        Archer,
+        Archer = 900,
         Artifact,
         TradeBoat,
         Building,
@@ -280,5 +280,17 @@ namespace Unary
         King,
         MiscBuilding,
         ControlledAnimal
+    }
+
+    public enum UnitOrder
+    {
+        NONE = -1, ATTACK, DEFEND, BUILD, HEAL, CONVERT, EXPLORE, STOP,
+        RUNAWAY, RETREAT, GATHER, MOVE, PATROL, FOLLOW, HUNT, TRANSPORT,
+        TRADE, EVADE, ENTER, REPAIR, TRAIN, RESEARCH, UNLOAD, RELIC = 31
+    }
+
+    public enum UnitStance
+    {
+        AGGRESSIVE, DEFENSIVE, STAND_GROUND, NO_ATTACK
     }
 }

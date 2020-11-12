@@ -60,7 +60,7 @@ namespace Unary
             }
 
             var mod = new Mod();
-            mod.LoadWK();
+            mod.LoadDE();
 
             Bot.Start(mod, 1);
 
@@ -86,6 +86,17 @@ namespace Unary
         {
             Bot?.Exit();
             Close();
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            Invoke(new Action(() =>
+            {
+                if (Bot != null)
+                {
+                    TextState.Text = Bot?.StateLog;
+                }
+            }));
         }
     }
 }

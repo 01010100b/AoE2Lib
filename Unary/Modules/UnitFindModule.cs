@@ -174,10 +174,7 @@ namespace Unary.Modules
 
         internal override IEnumerable<Command> RequestUpdate(Bot bot)
         {
-            if (bot.GameState.Tick > 0)
-            {
-                AddDefaultCommands(bot);
-            }
+            AddDefaultCommands(bot);
 
             return UnitFindCommands;
         }
@@ -206,12 +203,12 @@ namespace Unary.Modules
             var explored = bot.GameState.Tiles.Values.Where(t => t.Explored).Select(t => t.Position).ToList();
             if (explored.Count == 0)
             {
-                explored.Add(bot.GameState.MyPosition);
+                explored.Add(new Position(0, 0));
             }
 
             for (int i = 0; i < 5; i++)
             {
-                var player = bot.Player;
+                var player = bot.GameState.Player;
 
                 if (RNG.NextDouble() < 0.5 && bot.GameState.GameTime > TimeSpan.FromSeconds(3))
                 {

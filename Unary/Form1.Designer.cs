@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.ButtonTest = new System.Windows.Forms.Button();
             this.ButtonStop = new System.Windows.Forms.Button();
             this.ButtonExit = new System.Windows.Forms.Button();
+            this.TextState = new System.Windows.Forms.TextBox();
+            this.Timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // ButtonTest
@@ -59,7 +62,7 @@
             // ButtonExit
             // 
             this.ButtonExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonExit.Location = new System.Drawing.Point(60, 340);
+            this.ButtonExit.Location = new System.Drawing.Point(60, 436);
             this.ButtonExit.Name = "ButtonExit";
             this.ButtonExit.Size = new System.Drawing.Size(361, 75);
             this.ButtonExit.TabIndex = 2;
@@ -67,11 +70,27 @@
             this.ButtonExit.UseVisualStyleBackColor = true;
             this.ButtonExit.Click += new System.EventHandler(this.ButtonExit_Click);
             // 
+            // TextState
+            // 
+            this.TextState.Enabled = false;
+            this.TextState.Location = new System.Drawing.Point(450, 42);
+            this.TextState.Multiline = true;
+            this.TextState.Name = "TextState";
+            this.TextState.Size = new System.Drawing.Size(624, 469);
+            this.TextState.TabIndex = 3;
+            // 
+            // Timer1
+            // 
+            this.Timer1.Enabled = true;
+            this.Timer1.Interval = 1000;
+            this.Timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1099, 563);
+            this.Controls.Add(this.TextState);
             this.Controls.Add(this.ButtonExit);
             this.Controls.Add(this.ButtonStop);
             this.Controls.Add(this.ButtonTest);
@@ -79,6 +98,7 @@
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -87,6 +107,8 @@
         private System.Windows.Forms.Button ButtonTest;
         private System.Windows.Forms.Button ButtonStop;
         private System.Windows.Forms.Button ButtonExit;
+        private System.Windows.Forms.TextBox TextState;
+        private System.Windows.Forms.Timer Timer1;
     }
 }
 

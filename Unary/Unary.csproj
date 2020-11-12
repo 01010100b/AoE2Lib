@@ -108,6 +108,7 @@
     <Compile Include="Mods\Mod.cs" />
     <Compile Include="Mods\UnitDef.cs" />
     <Compile Include="Module.cs" />
+    <Compile Include="Modules\BuildModule.cs" />
     <Compile Include="Modules\TrainModule.cs" />
     <Compile Include="Modules\UnitFindModule.cs" />
     <Compile Include="Program.cs" />

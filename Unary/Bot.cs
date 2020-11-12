@@ -24,10 +24,10 @@ namespace Unary
     public class Bot : IDisposable
     {
         public Mod Mod { get; private set; }
-        public int Player { get; private set; }
         public GameState GameState { get; private set; }
         public UnitFindModule UnitFindModule { get; private set; }
         public TrainModule TrainModule { get; private set; }
+        public BuildModule BuildModule { get; private set; }
         public Strategy Strategy
         {
             get
@@ -86,10 +86,10 @@ namespace Unary
             Stop();
 
             Mod = mod;
-            Player = player;
-            GameState = new GameState();
+            GameState = new GameState(player);
             UnitFindModule = new UnitFindModule();
             TrainModule = new TrainModule();
+            BuildModule = new BuildModule();
             Strategy = new BasicStrategy();
 
             StateLog = "";
@@ -144,6 +144,7 @@ namespace Unary
 
                 commands.AddRange(UnitFindModule.RequestUpdate(this));
                 commands.AddRange(TrainModule.RequestUpdate(this));
+                commands.AddRange(BuildModule.RequestUpdate(this));
                 commands.Add(GameState.RequestUpdate());
 
                 foreach (var player in GameState.Players.Values)
@@ -175,7 +176,7 @@ namespace Unary
 
                 var commandlist = new CommandList
                 {
-                    PlayerNumber = Player
+                    PlayerNumber = GameState.Player
                 };
 
                 foreach (var command in commands)
@@ -193,7 +194,7 @@ namespace Unary
                 }
                 catch (Exception e)
                 {
-                    Log.Debug(e.Message);
+                    Log.Info(e.Message);
                 }
 
                 if (resultlist != null)
@@ -217,9 +218,10 @@ namespace Unary
                     GameState.Update();
                     UnitFindModule.Update(this);
                     TrainModule.Update(this);
+                    BuildModule.Update(this);
 
                     LogState();
-                    Log.Debug(StateLog);
+                    Log.Info(StateLog);
                 }
             }
 
@@ -229,7 +231,7 @@ namespace Unary
         private void LogState()
         {
             var sb = new StringBuilder();
-            var me = GameState.Players[Player];
+            var me = GameState.Players[GameState.Player];
 
             sb.AppendLine($"---- CURRENT STATE ----");
             sb.AppendLine($"Game time: {GameState.GameTime}");

@@ -16,6 +16,7 @@ namespace Unary
 {
     public class GameState
     {
+        public readonly int Player;
         public readonly Dictionary<StrategicNumber, int> StrategicNumbers = new Dictionary<StrategicNumber, int>();
         public int Tick { get; private set; } = 0;
         public TimeSpan GameTime { get; private set; } = TimeSpan.Zero;
@@ -54,9 +55,16 @@ namespace Unary
         private readonly Dictionary<Position, Tile> _Tiles = new Dictionary<Position, Tile>();
         public IReadOnlyDictionary<int, Unit> Units => _Units;
         private readonly Dictionary<int, Unit> _Units = new Dictionary<int, Unit>();
+        public IReadOnlyDictionary<int, int> ObjectTypeCountTotals => _ObjectTypeCountTotals;
+        private readonly Dictionary<int, int> _ObjectTypeCountTotals = new Dictionary<int, int>();
         
         private readonly Command Command = new Command();
         private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.Ticks.GetHashCode());
+
+        public GameState(int player)
+        {
+            Player = player;
+        }
 
         public IEnumerable<Tile> GetTilesInRange(Position position, double range)
         {
@@ -109,6 +117,21 @@ namespace Unary
             for (int player = 1; player <= 8; player++)
             {
                 Command.Messages.Add(new PlayerValid() { PlayerNumber = player });
+            }
+
+            // get object counts
+
+            _ObjectTypeCountTotals.Clear();
+            foreach (var unit in Units.Values.Where(u => u.PlayerNumber == Player))
+            {
+                _ObjectTypeCountTotals[unit.TypeId] = -1;
+            }
+
+            var types = ObjectTypeCountTotals.Keys.ToList();
+            types.Sort();
+            foreach (var type in types)
+            {
+                Command.Messages.Add(new UpObjectTypeCountTotal() { TypeOp = (int)TypeOp.C, ObjectId = type });
             }
 
             // set strategic numbers
@@ -226,6 +249,17 @@ namespace Unary
                 {
                     _Players.Add(player, new Player(player));
                 }
+            }
+
+            // counts
+
+            var types = ObjectTypeCountTotals.Keys.ToList();
+            types.Sort();
+
+            for (int i = 0; i < types.Count; i++)
+            {
+                var count = Command.Responses[17 + i].Unpack<UpObjectTypeCountTotalResult>().Result;
+                _ObjectTypeCountTotals[types[i]] = count;
             }
 
             // known game elements
