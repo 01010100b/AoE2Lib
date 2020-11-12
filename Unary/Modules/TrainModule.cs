@@ -41,6 +41,7 @@ namespace Unary.Modules
 
         internal override IEnumerable<Command> RequestUpdate(Bot bot)
         {
+            var afford = true;
             foreach (var command in Commands)
             {
                 command.Messages.Clear();
@@ -52,13 +53,16 @@ namespace Unary.Modules
                     command.Messages.Add(new UpPendingObjects() { TypeOp = (int)TypeOp.C, ObjectId = command.Unit.Id });
                     command.Messages.Add(new CanAffordUnit() { UnitType = command.Unit.Id });
                 }
-                else if (command.CountTotal < command.MaxCount && command.Pending < command.Concurrent)
+                else if (afford && command.CountTotal < command.MaxCount && command.Pending < command.Concurrent)
                 {
-                    command.Messages.Add(new Train() { UnitType = command.Unit.FoundationId });
-                }
-                else if (!command.CanAfford)
-                {
-                    break;
+                    if (command.CanAfford)
+                    {
+                        command.Messages.Add(new Train() { UnitType = command.Unit.FoundationId });
+                    }
+                    else
+                    {
+                        afford = false;
+                    }
                 }
 
                 if (command.Messages.Count > 0)

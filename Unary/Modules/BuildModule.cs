@@ -64,7 +64,7 @@ namespace Unary.Modules
 
             if (building.Id == bot.Mod.LumberCamp.Id)
             {
-                var trees = bot.GameState.Units.Values.Where(u => u.Class == UnitClass.Tree && u.Position.DistanceTo(bot.GameState.MyPosition) < MaxCampRange).ToList();
+                var trees = bot.GameState.GetUnitsInRange(bot.GameState.MyPosition, MaxCampRange).Where(u => u.Class == UnitClass.Tree).ToList();
                 if (trees.Count < 10)
                 {
                     return;
@@ -75,17 +75,19 @@ namespace Unary.Modules
                 foreach (var pos in positions)
                 {
                     var score = 0d;
-                    foreach (var tree in trees)
+
+                    trees.Sort((a, b) => a.Position.DistanceTo(pos).CompareTo(b.Position.DistanceTo(pos)));
+                    foreach (var tree in trees.Take(10))
                     {
                         var distance = tree.Position.DistanceTo(pos);
-                        score += 1 / Math.Pow(distance + 0.01, 5);
+                        score += 1 / Math.Pow(distance + 0.5, 4);
                     }
 
                     scores[pos] = score;
                 }
 
                 positions.Sort((a, b) => scores[b].CompareTo(scores[a]));
-                var position = positions[RNG.Next(5)];
+                var position = positions[0];
 
                 var placements = GetPlacementPositions(bot, building, position, false).Take(20).ToList();
                 
@@ -97,10 +99,11 @@ namespace Unary.Modules
                     {
                         var score = 0d;
 
-                        foreach (var tree in trees)
+                        trees.Sort((a, b) => a.Position.DistanceTo(placement).CompareTo(b.Position.DistanceTo(placement)));
+                        foreach (var tree in trees.Take(10))
                         {
                             var distance = GetBuildingFootprint(building, placement).Min(p => p.DistanceTo(tree.Position));
-                            score += 1 / Math.Pow(distance + 0.01, 5);
+                            score += 1 / Math.Pow(distance + 0.5, 4);
                         }
 
                         scores[placement] = score;
@@ -109,7 +112,7 @@ namespace Unary.Modules
                     placements.Sort((a, b) => scores[b].CompareTo(scores[a]));
 
                     var index = RNG.Next(5);
-                    var place = placements[index % placements.Count];
+                    var place = placements[0];
                     Build(building, place, max, concurrent);
                 }
             }
@@ -261,6 +264,7 @@ namespace Unary.Modules
 
         internal override IEnumerable<Command> RequestUpdate(Bot bot)
         {
+            var afford = true;
             foreach (var command in Commands)
             {
                 command.Messages.Clear();
@@ -276,15 +280,18 @@ namespace Unary.Modules
                     command.Messages.Add(new SetGoal() { GoalId = 101, GoalValue = command.Position.Y });
                     command.Messages.Add(new UpCanBuildLine() { TypeOp = (int)TypeOp.C, BuildingId = command.Building.FoundationId, EscrowState = 0, GoalPoint = 100 });
                 }
-                else if (command.CountTotal < command.MaxCount && command.Pending < command.Concurrent && command.CanPlace)
+                else if (afford && command.CountTotal < command.MaxCount && command.Pending < command.Concurrent && command.CanPlace)
                 {
-                    command.Messages.Add(new SetGoal() { GoalId = 100, GoalValue = command.Position.X });
-                    command.Messages.Add(new SetGoal() { GoalId = 101, GoalValue = command.Position.Y });
-                    command.Messages.Add(new UpBuildLine() { TypeOp = (int)TypeOp.C, BuildingId = command.Building.FoundationId, GoalPoint1 = 100, GoalPoint2 = 100 });
-                }
-                else if (!command.CanAfford)
-                {
-                    break;
+                    if (command.CanAfford)
+                    {
+                        command.Messages.Add(new SetGoal() { GoalId = 100, GoalValue = command.Position.X });
+                        command.Messages.Add(new SetGoal() { GoalId = 101, GoalValue = command.Position.Y });
+                        command.Messages.Add(new UpBuildLine() { TypeOp = (int)TypeOp.C, BuildingId = command.Building.FoundationId, GoalPoint1 = 100, GoalPoint2 = 100 });
+                    }
+                    else
+                    {
+                        afford = false;
+                    }
                 }
 
                 if (command.Messages.Count > 0)
