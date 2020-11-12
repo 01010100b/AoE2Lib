@@ -84,6 +84,11 @@ namespace Unary
             }
         }
 
+        public IEnumerable<Unit> GetUnitsInRange(Position position, double range)
+        {
+            return GetTilesInRange(position, range).SelectMany(t => t.Units);
+        }
+
         public void AddUnit(int id)
         {
             if (!Units.ContainsKey(id))
@@ -289,13 +294,21 @@ namespace Unary
                 tile._Units.Clear();
             }
 
-            foreach (var unit in Units.Values)
+            var cutoff = DateTime.UtcNow - TimeSpan.FromMinutes(1);
+            foreach (var unit in Units.Values.ToList())
             {
-                var pos = unit.Position;
-
-                if (Tiles.TryGetValue(pos, out Tile tile))
+                if (unit.Targetable == false && unit.LastTargetable < cutoff && unit.TimeSinceLastUpdate < TimeSpan.FromSeconds(10))
                 {
-                    tile._Units.Add(unit);
+                    _Units.Remove(unit.Id);
+                }
+                else
+                {
+                    var pos = unit.Position;
+
+                    if (Tiles.TryGetValue(pos, out Tile tile))
+                    {
+                        tile._Units.Add(unit);
+                    }
                 }
             }
         }

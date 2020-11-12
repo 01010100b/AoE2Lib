@@ -11,10 +11,9 @@ namespace Unary.GameElements
 {
     public class Unit : GameElement
     {
-        
-
         public readonly int Id;
         public bool Targetable { get; private set; } = true;
+        public DateTime LastTargetable { get; private set; } = DateTime.UtcNow;
         public int TargetId { get; private set; } = -1;
         public Position Position { get; private set; } = new Position(-1, -1);
         public int TypeId { get; private set; } = -1;
@@ -63,6 +62,7 @@ namespace Unary.GameElements
             if (Id == id)
             {
                 Targetable = true;
+                LastTargetable = DateTime.UtcNow;
 
                 TargetId = responses[2].Unpack<UpObjectDataResult>().Result;
                 var x = responses[3].Unpack<UpObjectDataResult>().Result;
