@@ -30,6 +30,7 @@ namespace Unary.Modules
         public int MaxBuildRange { get; set; } = 20;
         public int MaxLumberRange { get; set; } = 30;
         public int MaxMillRange { get; set; } = 30;
+        public int DropsiteSeparationDistance { get; set; } = 4;
 
         private readonly List<BuildCommand> Commands = new List<BuildCommand>();
         private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.GetHashCode());
@@ -82,12 +83,12 @@ namespace Unary.Modules
 
                 if (building.BaseId == bot.Mod.LumberCamp.BaseId)
                 {
-                    resources.AddRange(bot.GameState.GetUnitsInRange(bot.GameState.MyPosition, MaxLumberRange).Where(u => u.Class == UnitClass.Tree));
+                    resources.AddRange(bot.GameState.GetUnitsInRange(bot.GameState.MyPosition, MaxLumberRange).Where(u => u.Class == UnitClass.Tree && u.Targetable));
                     restricted = false;
                 }
                 else if (building.BaseId == bot.Mod.Mill.BaseId)
                 {
-                    resources.AddRange(bot.GameState.GetUnitsInRange(bot.GameState.MyPosition, MaxMillRange).Where(u => u.Class == UnitClass.BerryBush));
+                    resources.AddRange(bot.GameState.GetUnitsInRange(bot.GameState.MyPosition, MaxMillRange).Where(u => u.Class == UnitClass.BerryBush && u.Targetable));
                 }
 
                 if (resources.Count > 0)
@@ -128,15 +129,41 @@ namespace Unary.Modules
                 return place;
             }
 
-            var positions = resources.Select(r => r.Position).ToList();
-            var costs = new Dictionary<Position, double>();
-            foreach (var pos in positions)
+            var _resources = resources.ToList();
+            while (_resources.Count > 50)
             {
-                costs[pos] = GetLocalResourceCost(building, pos, resources);
-                costs[pos] += GetGlobalResourceCost(bot, pos, 1, 1);
+                _resources.RemoveAt(RNG.Next(_resources.Count));
             }
 
-            positions.Sort((a, b) => costs[a].CompareTo(costs[b]));
+            var costs = new Dictionary<Position, double>();
+
+            foreach (var res in _resources)
+            {
+                if (!costs.ContainsKey(res.Position))
+                {
+                    costs[res.Position] = GetResourceCost(bot, building, res.Position, resources, 0, 0);
+                }
+            }
+
+            _resources.Sort((a, b) => costs[a.Position].CompareTo(costs[b.Position]));
+
+            var positions = new List<Position>();
+            foreach (var res in _resources)
+            {
+                var d = double.MaxValue;
+                foreach (var p in positions)
+                {
+                    if (p.DistanceTo(res.Position) < d)
+                    {
+                        d = p.DistanceTo(res.Position);
+                    }
+                }
+
+                if (d > 1.5)
+                {
+                    positions.Add(res.Position);
+                }
+            }
 
             for (int i = 0; i < Math.Min(10, positions.Count); i++)
             {
@@ -146,12 +173,12 @@ namespace Unary.Modules
 
                 if (placements.Count > 0)
                 {
-                    costs.Clear();
-
                     foreach (var placement in placements)
                     {
-                        costs[placement] = GetLocalResourceCost(building, placement, resources);
-                        costs[placement] += GetGlobalResourceCost(bot, placement, 1, 1);
+                        if (!costs.ContainsKey(placement))
+                        {
+                            costs[placement] = GetResourceCost(bot, building, placement, _resources, 0, 0);
+                        }
                     }
 
                     placements.Sort((a, b) => costs[a].CompareTo(costs[b]));
@@ -181,7 +208,7 @@ namespace Unary.Modules
             for (int i = 0; i < 10; i++)
             {
                 var mill = mills[RNG.Next(mills.Count)];
-                var range = 5;
+                var range = 4;
                 if (mill.BaseTypeId == bot.Mod.TownCenter.BaseId)
                 {
                     range += 1;
@@ -232,7 +259,7 @@ namespace Unary.Modules
             return place;
         }
 
-        public double GetLocalResourceCost(UnitDef building, Position position, List<Unit> resources)
+        public double GetResourceCost(Bot bot, UnitDef building, Position position, List<Unit> resources, double tc_factor, double center_factor)
         {
             var cost = 0d;
 
@@ -243,24 +270,25 @@ namespace Unary.Modules
                 cost += Math.Pow(distance + 0.5, 2);
             }
 
-            return cost;
-        }
-
-        public double GetGlobalResourceCost(Bot bot, Position position, double tc_factor, double center_factor)
-        {
-            var cost = 0d;
-
-            cost += tc_factor * (position.DistanceTo(bot.GameState.MyPosition) + 0.5);
+            cost += Math.Pow(position.DistanceTo(bot.GameState.MyPosition) + 0.5, tc_factor);
 
             var center = new Position(bot.GameState.MapWidthHeight / 2, bot.GameState.MapWidthHeight / 2);
             var tc = bot.GameState.MyPosition - center;
             var pos = position - center;
             var d = (((tc.X * pos.X) + (tc.Y * pos.Y)) / tc.Norm()) - tc.Norm();
 
-            cost -= center_factor * d;
+            cost -= Math.Pow(d + 0.5, center_factor);
+
+            foreach (var unit in bot.GameState.GetUnitsInRange(position, 10)
+                .Where(u => u.PlayerNumber == bot.GameState.PlayerNumber && u.BaseTypeId == building.BaseId))
+            {
+                if (position.DistanceTo(unit.Position) <= DropsiteSeparationDistance)
+                {
+                    cost += 1000000;
+                }
+            }
 
             return cost;
-
         }
 
         public IEnumerable<Position> GetPlacementPositions(Bot bot, UnitDef building, Position position, bool restricted = true, int range = 10)
@@ -403,7 +431,7 @@ namespace Unary.Modules
                 command.Messages.Clear();
                 command.Responses.Clear();
 
-                if (command.CountTotal == -1)
+                if (command.CountTotal == -1 && bot.GameState.Tick % 2 == 0)
                 {
                     command.Messages.Add(new BuildingTypeCountTotal() { BuildingType = command.Building.Id });
                     command.Messages.Add(new UpPendingObjects() { TypeOp = (int)TypeOp.C, ObjectId = command.Building.Id });
@@ -414,7 +442,7 @@ namespace Unary.Modules
                     command.Messages.Add(new UpCanBuildLine() { TypeOp = (int)TypeOp.C, BuildingId = command.Building.FoundationId, EscrowState = 0, GoalPoint = 100 });
 
                 }
-                else if (afford && command.CountTotal < command.MaxCount && command.Pending < command.Concurrent && command.CanPlace)
+                else if (afford && command.CountTotal < command.MaxCount && command.Pending < command.Concurrent && command.CanPlace && bot.GameState.Tick % 2 == 1)
                 {
                     if (command.CanAfford)
                     {
@@ -443,6 +471,11 @@ namespace Unary.Modules
 
                 if (command.CountTotal == -1)
                 {
+                    if (command.Responses.Count == 0)
+                    {
+                        continue;
+                    }
+
                     command.CountTotal = command.Responses[0].Unpack<BuildingTypeCountTotalResult>().Result;
                     command.Pending = command.Responses[1].Unpack<UpPendingObjectsResult>().Result;
                     command.CanAfford = command.Responses[2].Unpack<CanAffordBuildingResult>().Result;
