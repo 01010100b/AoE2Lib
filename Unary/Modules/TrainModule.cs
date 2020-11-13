@@ -31,6 +31,11 @@ namespace Unary.Modules
                 return;
             }
 
+            if (max <= 0 || concurrent <= 0)
+            {
+                return;
+            }
+
             var command = new TrainCommand();
             command.Unit = unit;
             command.MaxCount = max;

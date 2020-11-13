@@ -28,7 +28,8 @@ namespace Unary.Modules
         }
 
         public int MaxBuildRange { get; set; } = 20;
-        public int MaxCampRange { get; set; } = 35;
+        public int MaxLumberRange { get; set; } = 30;
+        public int MaxMillRange { get; set; } = 30;
 
         private readonly List<BuildCommand> Commands = new List<BuildCommand>();
         private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.GetHashCode());
@@ -36,6 +37,11 @@ namespace Unary.Modules
         public void Build(UnitDef building, Position position, int max = int.MaxValue, int concurrent = int.MaxValue)
         {
             if (Commands.Select(c => c.Building.Id).Contains(building.Id))
+            {
+                return;
+            }
+
+            if (max <= 0 || concurrent <= 0)
             {
                 return;
             }
@@ -62,77 +68,199 @@ namespace Unary.Modules
                 return;
             }
 
-            if (building.Id == bot.Mod.LumberCamp.Id)
+            if (max <= 0 || concurrent <= 0)
             {
-                var trees = bot.GameState.GetUnitsInRange(bot.GameState.MyPosition, MaxCampRange).Where(u => u.Class == UnitClass.Tree).ToList();
-                if (trees.Count < 10)
+                return;
+            }
+
+            var place = new Position(-1, -1);
+
+            if (building.BaseId == bot.Mod.LumberCamp.BaseId || building.BaseId == bot.Mod.Mill.BaseId)
+            {
+                var resources = new List<Unit>();
+                var restricted = true;
+
+                if (building.BaseId == bot.Mod.LumberCamp.BaseId)
                 {
-                    return;
+                    resources.AddRange(bot.GameState.GetUnitsInRange(bot.GameState.MyPosition, MaxLumberRange).Where(u => u.Class == UnitClass.Tree));
+                    restricted = false;
+                }
+                else if (building.BaseId == bot.Mod.Mill.BaseId)
+                {
+                    resources.AddRange(bot.GameState.GetUnitsInRange(bot.GameState.MyPosition, MaxMillRange).Where(u => u.Class == UnitClass.BerryBush));
                 }
 
-                var positions = trees.Select(t => t.Position).Take(50).ToList();
-                var scores = new Dictionary<Position, double>();
-                foreach (var pos in positions)
+                if (resources.Count > 0)
                 {
-                    var score = 0d;
-
-                    trees.Sort((a, b) => a.Position.DistanceTo(pos).CompareTo(b.Position.DistanceTo(pos)));
-                    foreach (var tree in trees.Take(10))
-                    {
-                        var distance = tree.Position.DistanceTo(pos);
-                        score += 1 / Math.Pow(distance + 0.5, 4);
-                    }
-
-                    scores[pos] = score;
+                    place = GetResourcePlacement(bot, building, resources, restricted);
                 }
-
-                positions.Sort((a, b) => scores[b].CompareTo(scores[a]));
-                var position = positions[0];
-
-                var placements = GetPlacementPositions(bot, building, position, false).Take(20).ToList();
+                else
+                {
+                    place = GetNormalPlacement(bot, building, true);
+                }
                 
-                if (placements.Count > 0)
-                {
-                    scores.Clear();
-
-                    foreach (var placement in placements)
-                    {
-                        var score = 0d;
-
-                        trees.Sort((a, b) => a.Position.DistanceTo(placement).CompareTo(b.Position.DistanceTo(placement)));
-                        foreach (var tree in trees.Take(10))
-                        {
-                            var distance = GetBuildingFootprint(building, placement).Min(p => p.DistanceTo(tree.Position));
-                            score += 1 / Math.Pow(distance + 0.5, 4);
-                        }
-
-                        scores[placement] = score;
-                    }
-
-                    placements.Sort((a, b) => scores[b].CompareTo(scores[a]));
-
-                    var index = RNG.Next(5);
-                    var place = placements[0];
-                    Build(building, place, max, concurrent);
-                }
+            }
+            else if (building.BaseId == bot.Mod.Farm.BaseId)
+            {
+                place = GetFarmPlacement(bot, building);
             }
             else
             {
-                var tiles = bot.GameState.GetTilesInRange(bot.GameState.MyPosition, Math.Max(5, MaxBuildRange - 10)).ToList();
-                if (tiles.Count == 0)
-                {
-                    return;
-                }
+                place = GetNormalPlacement(bot, building, true);
+            }
 
-                var position = tiles[RNG.Next(tiles.Count)].Position;
-                var placements = GetPlacementPositions(bot, building, position).Take(20).ToList();
+            if (bot.GameState.Tiles.ContainsKey(place))
+            {
+                Build(building, place, max, concurrent);
+            }
+            else
+            {
+                Log.Debug($"{bot.GameState.GameTime.TotalSeconds}:N2 Could not place {building.Id}");
+            }
+        }
+
+        public Position GetResourcePlacement(Bot bot, UnitDef building, List<Unit> resources, bool restricted)
+        {
+            var place = new Position(-1, -1);
+
+            if (resources.Count == 0)
+            {
+                return place;
+            }
+
+            var positions = resources.Select(r => r.Position).ToList();
+            var costs = new Dictionary<Position, double>();
+            foreach (var pos in positions)
+            {
+                costs[pos] = GetLocalResourceCost(building, pos, resources);
+                costs[pos] += GetGlobalResourceCost(bot, pos, 1, 1);
+            }
+
+            positions.Sort((a, b) => costs[a].CompareTo(costs[b]));
+
+            for (int i = 0; i < Math.Min(10, positions.Count); i++)
+            {
+                var position = positions[i];
+
+                var placements = GetPlacementPositions(bot, building, position, restricted, 5).ToList();
 
                 if (placements.Count > 0)
                 {
-                    var place = placements[RNG.Next(placements.Count)];
-                    Build(building, place, max, concurrent);
+                    costs.Clear();
+
+                    foreach (var placement in placements)
+                    {
+                        costs[placement] = GetLocalResourceCost(building, placement, resources);
+                        costs[placement] += GetGlobalResourceCost(bot, placement, 1, 1);
+                    }
+
+                    placements.Sort((a, b) => costs[a].CompareTo(costs[b]));
+                    place = placements[RNG.Next(Math.Min(1, placements.Count))];
+
+                    break;
                 }
             }
+            
+            return place;
+        }
+
+        public Position GetFarmPlacement(Bot bot, UnitDef building)
+        {
+            var place = new Position(-1, -1);
+
+            var mills = bot.GameState.Units.Values
+                .Where(u => u.PlayerNumber == bot.GameState.PlayerNumber 
+                    && (u.BaseTypeId == bot.Mod.TownCenter.BaseId || u.BaseTypeId == bot.Mod.Mill.BaseId))
+                .ToList();
+
+            if (mills.Count == 0)
+            {
+                return place;
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                var mill = mills[RNG.Next(mills.Count)];
+                var range = 5;
+                if (mill.BaseTypeId == bot.Mod.TownCenter.BaseId)
+                {
+                    range += 1;
+                }
+                var placements = GetPlacementPositions(bot, building, mill.Position, false, range).Take(3).ToList();
+
+                if (placements.Count > 0)
+                {
+                    place = placements[RNG.Next(placements.Count)];
+
+                    break;
+                }
+            }
+
+            return place;
+        }
+
+        public Position GetNormalPlacement(Bot bot, UnitDef building, bool restricted)
+        {
+            var place = new Position(-1, -1);
+
+            var range = MaxBuildRange;
+            if (building.BaseId == bot.Mod.Mill.BaseId)
+            {
+                range = MaxMillRange;
+            }
+
+            var tiles = bot.GameState.GetTilesInRange(bot.GameState.MyPosition, Math.Max(5, range)).ToList();
+            if (tiles.Count == 0)
+            {
+                return place;
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                var position = tiles[RNG.Next(tiles.Count)].Position;
+                var placements = GetPlacementPositions(bot, building, position, restricted)
+                    .Where(p => p.DistanceTo(bot.GameState.MyPosition) < range)
+                    .Take(20).ToList();
+
+                if (placements.Count > 0)
+                {
+                    place = placements[RNG.Next(placements.Count)];
+                    break;
+                }
+            }
+
+            return place;
+        }
+
+        public double GetLocalResourceCost(UnitDef building, Position position, List<Unit> resources)
+        {
+            var cost = 0d;
+
+            resources.Sort((a, b) => a.Position.DistanceTo(position).CompareTo(b.Position.DistanceTo(position)));
+            foreach (var res in resources.Take(10))
+            {
+                var distance = GetBuildingFootprint(building, position).Min(p => p.DistanceTo(res.Position));
+                cost += Math.Pow(distance + 0.5, 2);
+            }
+
+            return cost;
+        }
+
+        public double GetGlobalResourceCost(Bot bot, Position position, double tc_factor, double center_factor)
+        {
+            var cost = 0d;
+
+            cost += tc_factor * (position.DistanceTo(bot.GameState.MyPosition) + 0.5);
+
+            var center = new Position(bot.GameState.MapWidthHeight / 2, bot.GameState.MapWidthHeight / 2);
+            var tc = bot.GameState.MyPosition - center;
+            var pos = position - center;
+            var d = (((tc.X * pos.X) + (tc.Y * pos.Y)) / tc.Norm()) - tc.Norm();
+
+            cost -= center_factor * d;
+
+            return cost;
+
         }
 
         public IEnumerable<Position> GetPlacementPositions(Bot bot, UnitDef building, Position position, bool restricted = true, int range = 10)
@@ -143,7 +271,7 @@ namespace Unary.Modules
             var restrictions = new HashSet<Position>();
             foreach (var unit in bot.GameState.Units.Values.Where(u => u.Position.DistanceTo(position) < range + 10))
             {
-                if (IsUnitClassObstruction(unit.Class))
+                if (IsUnitClassObstruction(unit.Class) && !(unit.PlayerNumber != 0 && unit.Targetable == false))
                 {
                     var def = bot.Mod.Villager;
                     if (bot.Mod.UnitDefs.ContainsKey(unit.TypeId))
@@ -155,6 +283,11 @@ namespace Unary.Modules
                     if (restricted)
                     {
                         margin = 1;
+
+                        if (unit.BaseTypeId == bot.Mod.TownCenter.BaseId || unit.BaseTypeId == bot.Mod.Mill.BaseId)
+                        {
+                            margin = 3;
+                        }
                     }
 
                     foreach (var pos in GetBuildingFootprint(def, unit.Position, margin))
@@ -279,6 +412,7 @@ namespace Unary.Modules
                     command.Messages.Add(new SetGoal() { GoalId = 100, GoalValue = command.Position.X });
                     command.Messages.Add(new SetGoal() { GoalId = 101, GoalValue = command.Position.Y });
                     command.Messages.Add(new UpCanBuildLine() { TypeOp = (int)TypeOp.C, BuildingId = command.Building.FoundationId, EscrowState = 0, GoalPoint = 100 });
+
                 }
                 else if (afford && command.CountTotal < command.MaxCount && command.Pending < command.Concurrent && command.CanPlace)
                 {

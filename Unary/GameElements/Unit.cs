@@ -32,6 +32,7 @@ namespace Unary.GameElements
         public int TrainSiteId { get; private set; } = -1;
         public UnitClass Class { get; private set; } = UnitClass.Miscellaneous;
         public CmdId CmdId { get; private set; } = CmdId.FLAG;
+        public int BaseTypeId { get; private set; } = -1;
 
         public Unit(int id) : base()
         {
@@ -84,6 +85,7 @@ namespace Unary.GameElements
                 TrainSiteId = responses[18].Unpack<UpObjectDataResult>().Result;
                 Class = (UnitClass)responses[19].Unpack<UpObjectDataResult>().Result;
                 CmdId = (CmdId)responses[20].Unpack<UpObjectDataResult>().Result;
+                BaseTypeId = responses[21].Unpack<UpObjectDataResult>().Result;
             }
             else
             {
@@ -115,7 +117,8 @@ namespace Unary.GameElements
                 new UpObjectData() {ObjectData = (int)ObjectData.RELOAD_TIME},
                 new UpObjectData() {ObjectData = (int)ObjectData.TRAIN_SITE},
                 new UpObjectData() {ObjectData = (int)ObjectData.CLASS},
-                new UpObjectData() {ObjectData = (int)ObjectData.CMDID}
+                new UpObjectData() {ObjectData = (int)ObjectData.CMDID},
+                new UpObjectData() {ObjectData = (int)ObjectData.BASE_TYPE}
             };
 
             return messages;

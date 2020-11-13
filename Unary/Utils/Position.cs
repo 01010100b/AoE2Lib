@@ -30,17 +30,9 @@ namespace Unary.Utils
             return Math.Sqrt((dx * dx) + (dy * dy));
         }
 
-        public Point ProjectOnLine(Point a, Point b)
+        public double Norm()
         {
-            // get dot product of e1, e2
-            Point e1 = new Point(b.X - a.X, b.Y - a.Y);
-            Point e2 = new Point(X - a.X, Y - a.Y);
-            double dp = (e1.X * e2.X) + (e1.Y * e2.Y);
-            // get squared length of e1
-            double len2 = e1.X * e1.X + e1.Y * e1.Y;
-            Point p = new Point((int)(a.X + (dp * e1.X) / len2), (int)(a.Y + (dp * e1.Y) / len2));
-
-            return p;
+            return Math.Sqrt((X * X) + (Y * Y));
         }
 
         public override bool Equals(object obj)
@@ -73,6 +65,16 @@ namespace Unary.Utils
         public static bool operator !=(Position a, Position b)
         {
             return !a.Equals(b);
+        }
+
+        public static Position operator +(Position a, Position b)
+        {
+            return new Position(a.X + b.X, a.Y + b.Y);
+        }
+
+        public static Position operator -(Position a, Position b)
+        {
+            return new Position(a.X - b.X, a.Y - b.Y);
         }
     }
 }

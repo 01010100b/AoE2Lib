@@ -23,6 +23,7 @@ namespace Unary.GameElements
         public int Civilization { get; private set; } = -1;
         public int Score { get; private set; } = -1;
         public int Age { get; private set; } = -1;
+        public int Population => CivilianPopulation + MilitaryPopulation;
         public int CivilianPopulation { get; private set; } = -1;
         public int MilitaryPopulation { get; private set; } = -1;
         public int WoodAmount { get; internal set; } = -1;

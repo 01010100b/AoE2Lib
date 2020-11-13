@@ -10,9 +10,8 @@ namespace Unary
 {
     public abstract class GameElement
     {
-        public TimeSpan TimeSinceLastUpdate => DateTime.UtcNow - LastUpdate;
-        public DateTime LastUpdate { get; private set; } = DateTime.MinValue;
-        public DateTime FirstUpdate { get; private set; } = DateTime.MinValue;
+        public TimeSpan LastUpdate { get; private set; } = TimeSpan.MinValue;
+        public TimeSpan FirstUpdate { get; private set; } = TimeSpan.MinValue;
         public int TimesUpdated { get; private set; } = 0;
 
         internal readonly Command Command = new Command();
@@ -24,9 +23,9 @@ namespace Unary
             Command.Messages.AddRange(RequestElementUpdate());
         }
 
-        public void Update()
+        public void Update(TimeSpan gametime)
         {
-            if (Command.Messages.Count == 0)
+            if (Command.Responses.Count == 0)
             {
                 return;
             }
@@ -35,11 +34,11 @@ namespace Unary
 
             UpdateElement(Command.Responses);
 
-            LastUpdate = DateTime.UtcNow;
+            LastUpdate = gametime;
 
-            if (FirstUpdate == DateTime.MinValue)
+            if (FirstUpdate == TimeSpan.MinValue)
             {
-                FirstUpdate = DateTime.UtcNow;
+                FirstUpdate = gametime;
             }
 
             TimesUpdated++;

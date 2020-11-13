@@ -28,6 +28,8 @@ namespace Unary
         public UnitFindModule UnitFindModule { get; private set; }
         public TrainModule TrainModule { get; private set; }
         public BuildModule BuildModule { get; private set; }
+        public ResearchModule ResearchModule { get; private set; }
+        public MicroModule MicroModule { get; private set; }
         public Strategy Strategy
         {
             get
@@ -90,6 +92,8 @@ namespace Unary
             UnitFindModule = new UnitFindModule();
             TrainModule = new TrainModule();
             BuildModule = new BuildModule();
+            ResearchModule = new ResearchModule();
+            MicroModule = new MicroModule();
             Strategy = new BasicStrategy();
 
             StateLog = "";
@@ -145,6 +149,8 @@ namespace Unary
                 commands.AddRange(UnitFindModule.RequestUpdate(this));
                 commands.AddRange(TrainModule.RequestUpdate(this));
                 commands.AddRange(BuildModule.RequestUpdate(this));
+                commands.AddRange(ResearchModule.RequestUpdate(this));
+                commands.AddRange(MicroModule.RequestUpdate(this));
                 commands.Add(GameState.RequestUpdate());
 
                 foreach (var player in GameState.Players.Values)
@@ -176,7 +182,7 @@ namespace Unary
 
                 var commandlist = new CommandList
                 {
-                    PlayerNumber = GameState.Player
+                    PlayerNumber = GameState.PlayerNumber
                 };
 
                 foreach (var command in commands)
@@ -219,6 +225,8 @@ namespace Unary
                     UnitFindModule.Update(this);
                     TrainModule.Update(this);
                     BuildModule.Update(this);
+                    ResearchModule.Update(this);
+                    MicroModule.Update(this);
 
                     LogState();
                     Log.Info(StateLog);
@@ -231,7 +239,7 @@ namespace Unary
         private void LogState()
         {
             var sb = new StringBuilder();
-            var me = GameState.Players[GameState.Player];
+            var me = GameState.Players[GameState.PlayerNumber];
 
             sb.AppendLine($"---- CURRENT STATE ----");
             sb.AppendLine($"Game time: {GameState.GameTime}");

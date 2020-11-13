@@ -106,9 +106,12 @@
     <Compile Include="GameState.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Mods\Mod.cs" />
+    <Compile Include="Mods\TechDef.cs" />
     <Compile Include="Mods\UnitDef.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Modules\BuildModule.cs" />
+    <Compile Include="Modules\MicroModule.cs" />
+    <Compile Include="Modules\ResearchModule.cs" />
     <Compile Include="Modules\TrainModule.cs" />
     <Compile Include="Modules\UnitFindModule.cs" />
     <Compile Include="Program.cs" />

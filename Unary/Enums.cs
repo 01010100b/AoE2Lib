@@ -282,11 +282,21 @@ namespace Unary
         ControlledAnimal
     }
 
+    public enum UnitAction
+    {
+        DEFAULT, MOVE, PATROL, GUARD, FOLLOW, STOP, GROUND, GARRISON, DELETE, UNLOAD, TRAIN, GATHER, LOCK, WORK, UNGARRISON, DROP_RELIC, PACK, UNPACK, NONE
+    }
+
     public enum UnitOrder
     {
         NONE = -1, ATTACK, DEFEND, BUILD, HEAL, CONVERT, EXPLORE, STOP,
         RUNAWAY, RETREAT, GATHER, MOVE, PATROL, FOLLOW, HUNT, TRANSPORT,
         TRADE, EVADE, ENTER, REPAIR, TRAIN, RESEARCH, UNLOAD, RELIC = 31
+    }
+
+    public enum UnitFormation
+    {
+        LINE = 2, BOX = 4, STAGGER = 7, FLANK = 8
     }
 
     public enum UnitStance

@@ -144,11 +144,11 @@ namespace Unary.Modules
                 case UnitFindType.ALL:
 
                     command.Messages.Add(new UpFilterDistance() { TypeOp1 = (int)TypeOp.C, MinDistance = -1, TypeOp2 = (int)TypeOp.C, MaxDistance = 10 });
-                    command.Messages.Add(new UpFilterExclude() { CmdId = (int)CmdId.MILITARY, ActionId = -1, OrderId = -1, ClassId = 915 });
+                    command.Messages.Add(new UpFilterExclude() { CmdId = (int)CmdId.MILITARY, ActionId = -1, OrderId = -1, ClassId = (int)UnitClass.Tree });
                     command.Messages.Add(new UpFindRemote() { TypeOp1 = (int)TypeOp.C, UnitId = -1, TypeOp2 = (int)TypeOp.C, Count = 40 });
 
                     command.Messages.Add(new UpFilterDistance() { TypeOp1 = (int)TypeOp.C, MinDistance = 9, TypeOp2 = (int)TypeOp.C, MaxDistance = -1 });
-                    command.Messages.Add(new UpFilterExclude() { CmdId = (int)CmdId.MONK, ActionId = -1, OrderId = -1, ClassId = 915 });
+                    command.Messages.Add(new UpFilterExclude() { CmdId = (int)CmdId.MONK, ActionId = -1, OrderId = -1, ClassId = (int)UnitClass.Tree });
                     command.Messages.Add(new UpFindRemote() { TypeOp1 = (int)TypeOp.C, UnitId = -1, TypeOp2 = (int)TypeOp.C, Count = 40 });
 
                     break;
@@ -208,13 +208,13 @@ namespace Unary.Modules
 
             for (int i = 0; i < 5; i++)
             {
-                var player = bot.GameState.Player;
+                var player = bot.GameState.PlayerNumber;
 
-                if (RNG.NextDouble() < 0.5 && bot.GameState.GameTime > TimeSpan.FromSeconds(3))
+                if (RNG.NextDouble() < 0.5 && bot.GameState.GameTime > TimeSpan.FromSeconds(5))
                 {
                     player = 0;
 
-                    if (RNG.NextDouble() < 0.5 && bot.GameState.Players.Count > 0)
+                    if (RNG.NextDouble() < 0.5 && bot.GameState.Players.Count > 0 && bot.GameState.GameTime > TimeSpan.FromSeconds(10))
                     {
                         player = bot.GameState.Players.Values.ElementAt(RNG.Next(bot.GameState.Players.Count)).PlayerNumber;
                     }
@@ -226,7 +226,7 @@ namespace Unary.Modules
                 {
                     type = UnitFindType.MILLITARY;
 
-                    if (RNG.NextDouble() < 0.5 && bot.GameState.GameTime > TimeSpan.FromSeconds(5))
+                    if (RNG.NextDouble() < 0.5 && bot.GameState.GameTime > TimeSpan.FromSeconds(3))
                     {
                         type = UnitFindType.BUILDING;
 
