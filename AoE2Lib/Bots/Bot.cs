@@ -1,4 +1,5 @@
 ﻿using AoE2Lib.Mods;
+using AoE2Lib.Utils;
 using Google.Protobuf.WellKnownTypes;
 using Protos.Expert;
 using System;
@@ -13,36 +14,46 @@ namespace AoE2Lib.Bots
 {
     public abstract class Bot
     {
+        public abstract string Name { get; }
+        public abstract int Id { get; }
         public Mod Mod { get; private set; } = null;
         public int PlayerNumber { get; private set; } = -1;
 
-        public bool Running { get; private set; } = false;
         private Thread BotThread { get; set; } = null;
         private volatile bool Stopping = false;
         private readonly List<Module> Modules = new List<Module>();
 
         public T GetModule<T>() where T: Module
         {
-            return Modules.OfType<T>().FirstOrDefault();
+            lock (Modules)
+            {
+                return Modules.OfType<T>().FirstOrDefault();
+            }
         }
 
         public void AddModule<T>(T module) where T : Module
         {
             if (GetModule<T>() == null)
             {
-                Modules.Add(module);
-                module.Bot = this;
+                lock (Modules)
+                {
+                    Modules.Add(module);
+                    module.Bot = this;
+                }
             }
         }
 
         protected abstract IEnumerable<Command> RequestUpdate();
         protected abstract void Update();
 
+        protected void Log(object message)
+        {
+            Utils.Log.Write(message);
+        }
+
         internal void Start(Mod mod, int player, ExpertAPIClient api)
         {
             Stop();
-
-            Running = true;
 
             Mod = mod;
             PlayerNumber = player;
@@ -55,11 +66,6 @@ namespace AoE2Lib.Bots
         {
             Stopping = true;
 
-            while (Running == true)
-            {
-                Thread.Sleep(100);
-            }
-
             BotThread?.Join();
             BotThread = null;
 
@@ -68,11 +74,6 @@ namespace AoE2Lib.Bots
 
         private void Run(ExpertAPIClient api)
         {
-            foreach (var module in Modules)
-            {
-                module.StartNewGame();
-            }
-
             var commands = new List<Command>();
 
             while (!Stopping)
@@ -83,9 +84,16 @@ namespace AoE2Lib.Bots
 
                 // add modules in reverse
 
-                for (int i = Modules.Count - 1; i >= 0; i--)
+                List<Module> modules = null;
+                lock (Modules)
                 {
-                    commands.AddRange(Modules[i].RequestUpdate());
+                    modules = Modules.ToList();
+                }
+                
+                modules.Reverse();
+                foreach (var module in modules)
+                {
+                    commands.AddRange(module.RequestUpdate());
                 }
 
                 // set up api call
@@ -109,7 +117,7 @@ namespace AoE2Lib.Bots
                 }
                 catch (Exception e)
                 {
-                    Debug.WriteLine(e.Message);
+                    Utils.Log.Debug(e.Message);
                     resultlist = null;
                 }
 
@@ -134,7 +142,8 @@ namespace AoE2Lib.Bots
 
                     // update the modules
 
-                    foreach (var module in Modules)
+                    modules.Reverse();
+                    foreach (var module in modules)
                     {
                         module.Update();
                     }
@@ -142,8 +151,6 @@ namespace AoE2Lib.Bots
                     Update();
                 }
             }
-
-            Running = false;
         }
     }
 }
