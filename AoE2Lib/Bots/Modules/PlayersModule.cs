@@ -34,6 +34,7 @@ namespace AoE2Lib.Bots.Modules
 
         public IReadOnlyDictionary<int, Player> Players => _Players;
         private Dictionary<int, Player> _Players = new Dictionary<int, Player>();
+
         private readonly Command Command = new Command();
 
         protected internal override IEnumerable<Command> RequestUpdate()
