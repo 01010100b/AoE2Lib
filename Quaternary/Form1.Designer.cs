@@ -38,7 +38,7 @@
             this.ButtonStart.Name = "ButtonStart";
             this.ButtonStart.Size = new System.Drawing.Size(294, 73);
             this.ButtonStart.TabIndex = 0;
-            this.ButtonStart.Text = "button1";
+            this.ButtonStart.Text = "Start";
             this.ButtonStart.UseVisualStyleBackColor = true;
             this.ButtonStart.Click += new System.EventHandler(this.ButtonStart_Click);
             // 
@@ -48,7 +48,7 @@
             this.ButtonExit.Name = "ButtonExit";
             this.ButtonExit.Size = new System.Drawing.Size(294, 73);
             this.ButtonExit.TabIndex = 1;
-            this.ButtonExit.Text = "button1";
+            this.ButtonExit.Text = "Exit";
             this.ButtonExit.UseVisualStyleBackColor = true;
             this.ButtonExit.Click += new System.EventHandler(this.ButtonExit_Click);
             // 

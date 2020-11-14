@@ -1,4 +1,5 @@
-﻿using AoE2Lib.Mods;
+﻿using AoE2Lib.Bots.Modules;
+using AoE2Lib.Mods;
 using AoE2Lib.Utils;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
@@ -161,9 +162,11 @@ namespace AoE2Lib.Bots
                             if (!Players.ContainsKey(player))
                             {
                                 var bot = create();
-                                var api = new ExpertAPIClient(Channel);
+                                bot.AddModule(new InfoModule());
 
                                 Players.Add(player, bot);
+
+                                var api = new ExpertAPIClient(Channel);
                                 bot.Start(mod, player, api);
 
                                 Log.Info($"{bot.Name} taking control of player {player}");
