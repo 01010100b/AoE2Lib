@@ -1,4 +1,5 @@
 ﻿using AoE2Lib.Bots;
+using AoE2Lib.Bots.Modules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,8 @@ namespace Quaternary
 
         protected override void Update()
         {
-            Log("updating");
+            var players = GetModule<PlayersModule>().Players.Count;
+            Log($"number of players {players}");
             //throw new NotImplementedException();
         }
     }

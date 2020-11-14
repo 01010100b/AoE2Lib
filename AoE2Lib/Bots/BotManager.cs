@@ -163,7 +163,8 @@ namespace AoE2Lib.Bots
                             {
                                 var bot = create();
                                 bot.AddModule(new InfoModule());
-
+                                bot.AddModule(new PlayersModule());
+                                    
                                 Players.Add(player, bot);
 
                                 var api = new ExpertAPIClient(Channel);

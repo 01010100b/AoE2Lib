@@ -304,6 +304,6 @@ namespace AoE2Lib
 
     public enum PlayerStance
     {
-        ALLY, NEUTRAL, ALL, ENEMY
+        ALLY, NEUTRAL, ENEMY = 3
     }
 }
