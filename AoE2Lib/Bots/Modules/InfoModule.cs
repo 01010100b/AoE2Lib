@@ -27,7 +27,6 @@ namespace AoE2Lib.Bots.Modules
             if (responses.Count > 0)
             {
                 GameTime = TimeSpan.FromSeconds(responses[0].Unpack<GameTimeResult>().Result);
-                Log.Write($"game-time {GameTime}");
             }
 
             Command.Reset();

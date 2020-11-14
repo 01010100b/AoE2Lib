@@ -90,4 +90,8 @@
 	  <NativeLibs Remove="libgrpc_csharp_ext.x86.so" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <NativeLibs Remove="Enums.cs" />
+	</ItemGroup>
+
 </Project>
