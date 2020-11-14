@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30105.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unary", "Unary\Unary.csproj", "{82425511-F424-4B81-99A7-4AD327912432}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AoE2Lib", "AoE2Lib\AoE2Lib.csproj", "{822D2278-142C-4350-B800-6D1F0312C501}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AoE2Lib", "AoE2Lib\AoE2Lib.csproj", "{822D2278-142C-4350-B800-6D1F0312C501}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quaternary", "Quaternary\Quaternary.csproj", "{2028D242-29EE-4A81-B44D-749F6599E85A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{822D2278-142C-4350-B800-6D1F0312C501}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{822D2278-142C-4350-B800-6D1F0312C501}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{822D2278-142C-4350-B800-6D1F0312C501}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2028D242-29EE-4A81-B44D-749F6599E85A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2028D242-29EE-4A81-B44D-749F6599E85A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2028D242-29EE-4A81-B44D-749F6599E85A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2028D242-29EE-4A81-B44D-749F6599E85A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
