@@ -20,7 +20,7 @@ namespace AoE2Lib.Bots.Modules
             public int FoodAmount { get; internal set; } = -1;
             public int GoldAmount { get; internal set; } = -1;
             public int StoneAmount { get; internal set; } = -1;
-            public PlayerStance Stance { get; private set; } = PlayerStance.NEUTRAL;
+            public PlayerStance Stance { get; private set; } = PlayerStance.ALL;
 
             internal readonly Command Command = new Command();
 
