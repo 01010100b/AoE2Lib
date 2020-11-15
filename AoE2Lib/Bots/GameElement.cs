@@ -24,22 +24,24 @@ namespace AoE2Lib.Bots
 
         public void RequestUpdate()
         {
-            Command.Messages.Clear();
-            Command.Responses.Clear();
+            Command.Reset();
 
-            Command.Messages.AddRange(RequestElementUpdate());
+            foreach (var message in RequestElementUpdate())
+            {
+                Command.Add(message);
+            }
         }
 
-        internal void Update()
+        public void Update()
         {
-            if (Command.Responses.Count == 0)
+            var responses = Command.GetResponses();
+
+            if (responses.Count == 0)
             {
                 return;
             }
 
-            Debug.Assert(Command.Responses.Count == Command.Messages.Count);
-
-            UpdateElement(Command.Responses);
+            UpdateElement(responses);
 
             var gametime = Bot.GetModule<InfoModule>().GameTime;
 
@@ -52,8 +54,7 @@ namespace AoE2Lib.Bots
 
             TimesUpdated++;
 
-            Command.Messages.Clear();
-            Command.Responses.Clear();
+            Command.Reset();
         }
 
         protected abstract IEnumerable<IMessage> RequestElementUpdate();

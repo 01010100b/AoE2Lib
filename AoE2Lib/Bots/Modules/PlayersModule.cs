@@ -28,6 +28,7 @@ namespace AoE2Lib.Bots.Modules
             foreach (var player in Players.Values)
             {
                 player.RequestUpdate();
+
                 yield return player.Command;
             }
         }

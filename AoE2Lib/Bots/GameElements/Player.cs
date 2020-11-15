@@ -24,7 +24,7 @@ namespace AoE2Lib.Bots.GameElements
         public int StoneAmount { get; private set; } = -1;
         public PlayerStance Stance { get; private set; } = PlayerStance.NEUTRAL;
         
-        internal Player(Bot bot, int player) : base(bot)
+        protected internal Player(Bot bot, int player) : base(bot)
         {
             PlayerNumber = player;
         }
