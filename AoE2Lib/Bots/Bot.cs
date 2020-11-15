@@ -74,13 +74,15 @@ namespace AoE2Lib.Bots
 
         private void Run(ExpertAPIClient api)
         {
+            Utils.Log.Info($"Bot {Name} playing {PlayerNumber} has started");
+
             var commands = new List<Command>();
 
             while (!Stopping)
             {
                 commands.Clear();
 
-                commands.AddRange(RequestUpdate());
+                commands.AddRange(RequestUpdate().Where(c => c.Messages.Count > 0));
 
                 // add modules in reverse
 
@@ -93,7 +95,7 @@ namespace AoE2Lib.Bots
                 modules.Reverse();
                 foreach (var module in modules)
                 {
-                    commands.AddRange(module.RequestUpdate());
+                    commands.AddRange(module.RequestUpdate().Where(c => c.Messages.Count > 0));
                 }
 
                 // set up api call
@@ -151,6 +153,8 @@ namespace AoE2Lib.Bots
                     Update();
                 }
             }
+
+            Utils.Log.Info($"Bot {Name} playing {PlayerNumber} has stopped");
         }
     }
 }

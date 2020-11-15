@@ -1,4 +1,5 @@
-﻿using Reloaded.Injector;
+﻿using AoE2Lib.Utils;
+using Reloaded.Injector;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,9 +13,9 @@ namespace AoE2Lib
         private readonly Process Process;
         private readonly HashSet<string> InjectedDlls = new HashSet<string>();
 
-        public GameInstance(Process process)
+        public GameInstance(string name)
         {
-            Process = process;
+            Process = Process.GetProcessesByName(name)[0];
         }
 
         public void InjectDll(string file)
@@ -34,6 +35,8 @@ namespace AoE2Lib
                 }
 
                 InjectedDlls.Add(name);
+
+                Log.Info($"Injected dll {name} into process {Process.ProcessName}");
             }
         }
     }
