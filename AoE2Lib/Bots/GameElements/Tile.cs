@@ -1,4 +1,5 @@
-﻿using Google.Protobuf;
+﻿using AoE2Lib.Utils;
+using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Protos.Expert.Action;
 using Protos.Expert.Fact;
@@ -12,6 +13,7 @@ namespace AoE2Lib.Bots.GameElements
     {
         public readonly int X;
         public readonly int Y;
+        public Position Position => new Position(X, Y);
         public int Elevation { get; private set; } = -1;
         public int Terrain { get; private set; } = -1;
         public bool Explored { get; private set; } = false;

@@ -306,4 +306,15 @@ namespace AoE2Lib
     {
         ALLY, NEUTRAL, ENEMY = 3
     }
+
+    public enum PositionType
+    {
+        CENTER, OPPOSITE, CORNER, ENEMY, BORDER, MIRROR, FLANK, ZERO, MAP_SIZE, SELF, TARGET, FOCUS, OBJECT, POINT
+    }
+
+    public enum UnitFindType
+    {
+        MILLITARY, CIVILIAN, BUILDING, WOOD, FOOD, GOLD, STONE, ALL
+    }
+
 }

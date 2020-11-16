@@ -14,7 +14,7 @@ namespace AoE2Lib.Bots.Modules
 
         private readonly Command Command = new Command();
 
-        protected internal override IEnumerable<Command> RequestUpdate()
+        protected override IEnumerable<Command> RequestUpdate()
         {
             Command.Reset();
 
@@ -33,7 +33,7 @@ namespace AoE2Lib.Bots.Modules
             }
         }
 
-        protected internal override void Update()
+        protected override void Update()
         {
             foreach (var player in Players.Values)
             {

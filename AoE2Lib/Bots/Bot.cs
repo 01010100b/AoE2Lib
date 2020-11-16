@@ -18,6 +18,7 @@ namespace AoE2Lib.Bots
         public abstract int Id { get; }
         public Mod Mod { get; private set; } = null;
         public int PlayerNumber { get; private set; } = -1;
+        public int Tick { get; private set; } = 0;
 
         private Thread BotThread { get; set; } = null;
         private volatile bool Stopping = false;
@@ -33,12 +34,12 @@ namespace AoE2Lib.Bots
 
         public void AddModule<T>(T module) where T : Module
         {
-            if (GetModule<T>() == null)
+            lock (Modules)
             {
-                lock (Modules)
+                if (Modules.OfType<T>().Count() == 0)
                 {
                     Modules.Add(module);
-                    module.Bot = this;
+                    module.BotInternal = this;
                 }
             }
         }
@@ -76,10 +77,17 @@ namespace AoE2Lib.Bots
         {
             Utils.Log.Info($"Bot {Name} playing {PlayerNumber} has started");
 
+            Tick = 0;
+
+            var sw = new Stopwatch();
             var commands = new List<Command>();
 
             while (!Stopping)
             {
+                Utils.Log.Info($"Tick {Tick}");
+
+                sw.Restart();
+
                 commands.Clear();
 
                 commands.AddRange(RequestUpdate().Where(c => c.Messages.Count > 0));
@@ -95,7 +103,7 @@ namespace AoE2Lib.Bots
                 modules.Reverse();
                 foreach (var module in modules)
                 {
-                    commands.AddRange(module.RequestUpdate().Where(c => c.Messages.Count > 0));
+                    commands.AddRange(module.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
                 }
 
                 // set up api call
@@ -110,12 +118,18 @@ namespace AoE2Lib.Bots
                     }
                 }
 
+                Utils.Log.Info($"RequestUpdate took {sw.ElapsedMilliseconds} ms");
+
                 // make the call
+
+                sw.Restart();
 
                 CommandResultList resultlist = null;
                 try
                 {
-                    resultlist = api.ExecuteCommandList(commandlist);
+                    var aw = api.ExecuteCommandListAsync(commandlist);
+                    GC.Collect();
+                    resultlist = aw.GetAwaiter().GetResult();
                 }
                 catch (Exception e)
                 {
@@ -123,8 +137,12 @@ namespace AoE2Lib.Bots
                     resultlist = null;
                 }
 
+                Utils.Log.Info($"Call took {sw.ElapsedMilliseconds} ms");
+
                 if (resultlist != null)
                 {
+                    sw.Restart();
+
                     // update the results to the commands
 
                     Debug.Assert(commands.Sum(c => c.Messages.Count) == resultlist.Results.Count);
@@ -147,10 +165,14 @@ namespace AoE2Lib.Bots
                     modules.Reverse();
                     foreach (var module in modules)
                     {
-                        module.Update();
+                        module.UpdateInternal();
                     }
 
                     Update();
+
+                    Tick++;
+
+                    Utils.Log.Info($"Update took {sw.ElapsedMilliseconds} ms");
                 }
             }
 

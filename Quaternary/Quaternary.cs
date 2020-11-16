@@ -1,4 +1,5 @@
 ﻿using AoE2Lib.Bots;
+using AoE2Lib.Bots.GameElements;
 using AoE2Lib.Bots.Modules;
 using System;
 using System.Collections.Generic;
@@ -17,14 +18,21 @@ namespace Quaternary
         protected override IEnumerable<Command> RequestUpdate()
         {
             return Enumerable.Empty<Command>();
-            //throw new NotImplementedException();
         }
 
         protected override void Update()
         {
             var players = GetModule<PlayersModule>().Players.Count;
-            Log($"number of players {players}");
-            //throw new NotImplementedException();
+            Log($"Number of players: {players}");
+
+            var tiles = GetModule<MapModule>().GetTiles().ToList();
+            Log($"Number of tiles: {tiles.Count:N0} of which {tiles.Count(t => t.Explored):N0} explored");
+
+            var seconds = GetModule<InfoModule>().GameSecondsPerTick;
+            Log($"Game seconds per tick: {seconds:N2}");
+
+            var units = GetModule<UnitsModule>().Units.Count;
+            Log($"Number of units: {units}");
         }
     }
 }

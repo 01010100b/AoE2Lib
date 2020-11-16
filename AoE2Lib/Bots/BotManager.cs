@@ -162,9 +162,12 @@ namespace AoE2Lib.Bots
                             if (!Players.ContainsKey(player))
                             {
                                 var bot = create();
+
                                 bot.AddModule(new InfoModule());
                                 bot.AddModule(new PlayersModule());
-                                    
+                                bot.AddModule(new MapModule());
+                                bot.AddModule(new UnitsModule());
+                                
                                 Players.Add(player, bot);
 
                                 var api = new ExpertAPIClient(Channel);

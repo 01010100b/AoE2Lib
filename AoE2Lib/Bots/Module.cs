@@ -6,9 +6,20 @@ namespace AoE2Lib.Bots
 {
     public abstract class Module
     {
-        protected internal Bot Bot { get; internal set; }
+        internal Bot BotInternal { set { Bot = value; } }
+        protected Bot Bot { get; private set; }
 
-        protected internal abstract IEnumerable<Command> RequestUpdate();
-        protected internal abstract void Update();
+        internal IEnumerable<Command> RequestUpdateInternal()
+        {
+            return RequestUpdate();
+        }
+
+        internal void UpdateInternal()
+        {
+            Update();
+        }
+
+        protected abstract IEnumerable<Command> RequestUpdate();
+        protected abstract void Update();
     }
 }
