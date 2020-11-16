@@ -106,7 +106,7 @@ namespace AoE2Lib.Bots.Modules
         {
             if (!IsOnMap(x, y))
             {
-                throw new Exception($"Tile {x}-{y} is not on the map.");
+                return null;
             }
 
             return Tiles[x][y];
