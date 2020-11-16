@@ -1,4 +1,5 @@
-﻿using AoE2Lib.Utils;
+﻿using AoE2Lib.Bots.Modules;
+using AoE2Lib.Utils;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Protos.Expert.Action;
@@ -15,7 +16,8 @@ namespace AoE2Lib.Bots.GameElements
         public bool Targetable { get; private set; } = true;
         public DateTime LastTargetable { get; private set; } = DateTime.UtcNow;
         public int TargetId { get; private set; } = -1;
-        public Position Position { get; private set; } = new Position(-1, -1);
+        public Vector2 Position { get; private set; } = new Vector2(-1, -1);
+        public Vector2 Velocity { get; private set; } = new Vector2(0, 0);
         public int TypeId { get; private set; } = -1;
         public int PlayerNumber { get; private set; } = -1;
         public int Hitpoints { get; private set; } = -1;
@@ -94,7 +96,6 @@ namespace AoE2Lib.Bots.GameElements
                 TargetId = responses[2].Unpack<UpObjectDataResult>().Result;
                 var x = responses[3].Unpack<UpObjectDataResult>().Result;
                 var y = responses[4].Unpack<UpObjectDataResult>().Result;
-                Position = Position.FromPrecise(x, y);
                 TypeId = responses[5].Unpack<UpObjectDataResult>().Result;
                 PlayerNumber = responses[6].Unpack<UpObjectDataResult>().Result;
                 Hitpoints = responses[7].Unpack<UpObjectDataResult>().Result;
@@ -112,6 +113,16 @@ namespace AoE2Lib.Bots.GameElements
                 Class = (UnitClass)responses[19].Unpack<UpObjectDataResult>().Result;
                 CmdId = (CmdId)responses[20].Unpack<UpObjectDataResult>().Result;
                 BaseTypeId = responses[21].Unpack<UpObjectDataResult>().Result;
+
+                var pos = Vector2.FromPrecise(x, y);
+                var seconds = Math.Max(0.001, (Bot.Tick - LastUpdateTick) * Bot.GetModule<InfoModule>().GameSecondsPerTick);
+                var v = (pos - Position) / seconds;
+                if (v.Norm() < Speed * 2)
+                {
+                    Velocity = (Velocity + v) / 2;
+                }
+
+                Position = pos;
             }
             else
             {

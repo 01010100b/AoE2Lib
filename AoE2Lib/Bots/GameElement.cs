@@ -10,12 +10,13 @@ namespace AoE2Lib.Bots
 {
     public abstract class GameElement
     {
-        public TimeSpan LastUpdate { get; private set; } = TimeSpan.MinValue;
-        public TimeSpan FirstUpdate { get; private set; } = TimeSpan.MinValue;
+        public TimeSpan LastUpdateGameTime { get; private set; } = TimeSpan.MinValue;
+        public TimeSpan FirstUpdateGameTime { get; private set; } = TimeSpan.MinValue;
         public int TimesUpdated { get; private set; } = 0;
+        public int LastUpdateTick { get; private set; } = -1;
 
         protected internal readonly Bot Bot;
-        protected internal readonly Command Command = new Command();
+        internal readonly Command Command = new Command();
 
         protected internal GameElement(Bot bot)
         {
@@ -45,14 +46,15 @@ namespace AoE2Lib.Bots
 
             var gametime = Bot.GetModule<InfoModule>().GameTime;
 
-            LastUpdate = gametime;
+            LastUpdateGameTime = gametime;
 
-            if (FirstUpdate == TimeSpan.MinValue)
+            if (FirstUpdateGameTime == TimeSpan.MinValue)
             {
-                FirstUpdate = gametime;
+                FirstUpdateGameTime = gametime;
             }
 
             TimesUpdated++;
+            LastUpdateTick = Bot.Tick;
 
             Command.Reset();
         }

@@ -13,7 +13,7 @@ namespace AoE2Lib.Bots.GameElements
     {
         public readonly int X;
         public readonly int Y;
-        public Position Position => Position.FromPoint(X, Y);
+        public Vector2 Position => Vector2.FromPoint(X, Y);
         public int Elevation { get; private set; } = -1;
         public int Terrain { get; private set; } = -1;
         public bool Explored { get; private set; } = false;

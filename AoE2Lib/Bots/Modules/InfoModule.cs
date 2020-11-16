@@ -12,7 +12,7 @@ namespace AoE2Lib.Bots.Modules
     {
         public TimeSpan GameTime { get; private set; } = TimeSpan.Zero;
         public double GameSecondsPerTick { get; private set; } = 1;
-        public Position MyPosition { get; private set; }
+        public Vector2 MyPosition { get; private set; }
         public int WoodAmount { get; private set; } = -1;
         public int FoodAmount { get; private set; } = -1;
         public int GoldAmount { get; private set; } = -1;
@@ -56,7 +56,7 @@ namespace AoE2Lib.Bots.Modules
 
                 var x = responses[2].Unpack<GoalResult>().Result;
                 var y = responses[3].Unpack<GoalResult>().Result;
-                MyPosition = Position.FromPoint(x, y);
+                MyPosition = Vector2.FromPoint(x, y);
 
                 WoodAmount = responses[4].Unpack<WoodAmountResult>().Result;
                 FoodAmount = responses[5].Unpack<FoodAmountResult>().Result;

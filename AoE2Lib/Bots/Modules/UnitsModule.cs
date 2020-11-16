@@ -18,7 +18,7 @@ namespace AoE2Lib.Bots.Modules
         private readonly List<Command> UnitFindCommands = new List<Command>();
         private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.Ticks.GetHashCode());
 
-        public void FindUnits(Position position, int player, UnitFindType type)
+        public void FindUnits(Vector2 position, int player, UnitFindType type)
         {
             var command = new Command();
 
@@ -216,7 +216,7 @@ namespace AoE2Lib.Bots.Modules
             var explored = Bot.GetModule<MapModule>().GetTiles().Where(t => t.Explored).Select(t => t.Position).ToList();
             if (explored.Count == 0)
             {
-                explored.Add(new Position(0, 0));
+                explored.Add(new Vector2(0, 0));
             }
 
             var gametime = Bot.GetModule<InfoModule>().GameTime;
@@ -284,7 +284,7 @@ namespace AoE2Lib.Bots.Modules
             }
 
             var units = Bot.GetModule<UnitsModule>().Units.Values.ToList();
-            units.Sort((a, b) => a.LastUpdate.CompareTo(b.LastUpdate));
+            units.Sort((a, b) => a.LastUpdateGameTime.CompareTo(b.LastUpdateGameTime));
 
             for (int i = 0; i < Math.Min(units.Count, NUM_UPDATES / 2); i++)
             {

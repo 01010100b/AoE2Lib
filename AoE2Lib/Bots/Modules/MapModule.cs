@@ -34,7 +34,7 @@ namespace AoE2Lib.Bots.Modules
             return Tiles.SelectMany(r => r);
         }
 
-        public IEnumerable<Tile> GetTilesByDistance(Position position)
+        public IEnumerable<Tile> GetTilesByDistance(Vector2 position)
         {
             var pointx = position.PointX;
             var pointy = position.PointY;
@@ -213,7 +213,7 @@ namespace AoE2Lib.Bots.Modules
                 var tiles = new List<Tile>(1024);
                 foreach (var tile in GetTilesByDistance(position))
                 {
-                    if (tile.LastUpdate < tile_time && !tile.Explored)
+                    if (tile.LastUpdateGameTime < tile_time && !tile.Explored)
                     {
                         tiles.Add(tile);
                     }

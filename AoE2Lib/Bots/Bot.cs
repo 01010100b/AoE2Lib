@@ -124,7 +124,7 @@ namespace AoE2Lib.Bots
 
                 sw.Restart();
 
-                CommandResultList resultlist = null;
+                CommandResultList resultlist;
                 try
                 {
                     var aw = api.ExecuteCommandListAsync(commandlist);
@@ -133,7 +133,7 @@ namespace AoE2Lib.Bots
                 }
                 catch (Exception e)
                 {
-                    Utils.Log.Debug(e.Message);
+                    Utils.Log.Info(e.Message);
                     resultlist = null;
                 }
 

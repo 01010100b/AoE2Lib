@@ -117,14 +117,15 @@ namespace AoE2Lib.Bots
 
                 for (int i = 0; i < results.Count; i++)
                 {
-                    CommandResultList result = null;
+                    CommandResultList result;
                     try
                     {
                         result = results[i].GetAwaiter().GetResult();
                     }
                     catch (Exception e)
                     {
-                        Log.Debug(e.Message);
+                        Log.Info(e.Message);
+                        result = null;
                     }
 
                     if (result != null)
@@ -134,7 +135,7 @@ namespace AoE2Lib.Bots
                         var id = result.Results[1].Unpack<GoalResult>().Result;
 
                         // new game?
-                        if (gametime < PreviousGameTime - 10)
+                        if (gametime < PreviousGameTime - 2)
                         {
                             foreach (var bot in Players.Values)
                             {
