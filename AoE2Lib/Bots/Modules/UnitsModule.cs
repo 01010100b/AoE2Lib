@@ -21,8 +21,8 @@ namespace AoE2Lib.Bots.Modules
         {
             var command = new Command();
 
-            command.Add(new SetGoal() { GoalId = 50, GoalValue = (int)Math.Floor(position.X) });
-            command.Add(new SetGoal() { GoalId = 51, GoalValue = (int)Math.Floor(position.Y) });
+            command.Add(new SetGoal() { GoalId = 50, GoalValue = position.PointX });
+            command.Add(new SetGoal() { GoalId = 51, GoalValue = position.PointY });
             command.Add(new UpSetTargetPoint() { GoalPoint = 50 });
             command.Add(new SetStrategicNumber() { StrategicNumber = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, Value = player });
             command.Add(new UpFullResetSearch());

@@ -37,7 +37,7 @@ namespace AoE2Lib.Bots.Modules
                 GameTime = TimeSpan.FromSeconds(responses[0].Unpack<GameTimeResult>().Result);
                 var x = responses[2].Unpack<GoalResult>().Result;
                 var y = responses[3].Unpack<GoalResult>().Result;
-                MyPosition = new Position(x, y);
+                MyPosition = Position.FromPoint(x, y);
 
                 GameSecondsPerTick *= 99;
                 GameSecondsPerTick += (GameTime - current_time).TotalSeconds;

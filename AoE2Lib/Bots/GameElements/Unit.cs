@@ -92,9 +92,9 @@ namespace AoE2Lib.Bots.GameElements
                 LastTargetable = DateTime.UtcNow;
 
                 TargetId = responses[2].Unpack<UpObjectDataResult>().Result;
-                var x = responses[3].Unpack<UpObjectDataResult>().Result / 100d;
-                var y = responses[4].Unpack<UpObjectDataResult>().Result / 100d;
-                Position = new Position(x, y);
+                var x = responses[3].Unpack<UpObjectDataResult>().Result;
+                var y = responses[4].Unpack<UpObjectDataResult>().Result;
+                Position = Position.FromPrecise(x, y);
                 TypeId = responses[5].Unpack<UpObjectDataResult>().Result;
                 PlayerNumber = responses[6].Unpack<UpObjectDataResult>().Result;
                 Hitpoints = responses[7].Unpack<UpObjectDataResult>().Result;

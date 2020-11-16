@@ -35,10 +35,10 @@ namespace AoE2Lib.Bots.Modules
 
         public IEnumerable<Tile> GetTilesByDistance(Position position)
         {
-            var posx = (int)Math.Floor(position.X);
-            var posy = (int)Math.Floor(position.Y);
+            var pointx = position.PointX;
+            var pointy = position.PointY;
 
-            if (!IsOnMap(posx, posy))
+            if (!IsOnMap(pointx, pointy))
             {
                 yield break;
             }
@@ -48,10 +48,10 @@ namespace AoE2Lib.Bots.Modules
             {
                 int x, y;
 
-                x = posx - delta;
+                x = pointx - delta;
                 if (x >= 0 && x < Width)
                 {
-                    for (y = posy - delta; y <= posy + delta; y++)
+                    for (y = pointy - delta; y <= pointy + delta; y++)
                     {
                         if (y >= 0 && y < Height)
                         {
@@ -62,10 +62,10 @@ namespace AoE2Lib.Bots.Modules
 
                 if (delta > 0)
                 {
-                    x = posx + delta;
+                    x = pointx + delta;
                     if (x >= 0 && x < Width)
                     {
-                        for (y = posy - delta; y <= posy + delta; y++)
+                        for (y = pointy - delta; y <= pointy + delta; y++)
                         {
                             if (y >= 0 && y < Height)
                             {
@@ -74,10 +74,10 @@ namespace AoE2Lib.Bots.Modules
                         }
                     }
 
-                    y = posy - delta;
+                    y = pointy - delta;
                     if (y >= 0 && y < Height)
                     {
-                        for (x = posx - delta + 1; x <= posx + delta - 1; x++)
+                        for (x = pointx - delta + 1; x <= pointx + delta - 1; x++)
                         {
                             if (x >= 0 && x < Width)
                             {
@@ -86,10 +86,10 @@ namespace AoE2Lib.Bots.Modules
                         }
                     }
 
-                    y = posy + delta;
+                    y = pointy + delta;
                     if (y >= 0 && y < Height)
                     {
-                        for (x = posx - delta + 1; x <= posx + delta - 1; x++)
+                        for (x = pointx - delta + 1; x <= pointx + delta - 1; x++)
                         {
                             if (x >= 0 && x < Width)
                             {
