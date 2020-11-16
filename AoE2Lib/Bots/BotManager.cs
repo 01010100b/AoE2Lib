@@ -35,7 +35,7 @@ namespace AoE2Lib.Bots
         public BotManager(GameInstance instance)
         {
             GameInstance = instance;
-            GameInstance.InjectDll(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "aimodule-de.dll"));
+            GameInstance.StartAIModule();
 
             Channel = new Channel("localhost:37412", ChannelCredentials.Insecure);
             

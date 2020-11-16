@@ -18,6 +18,12 @@ namespace AoE2Lib
             Process = Process.GetProcessesByName(name)[0];
         }
 
+        public void StartAIModule()
+        {
+            var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "aimodule-de.dll");
+            InjectDll(file);
+        }
+
         public void InjectDll(string file)
         {
             lock (InjectedDlls)
