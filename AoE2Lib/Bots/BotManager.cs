@@ -165,6 +165,7 @@ namespace AoE2Lib.Bots
                                 var bot = create();
 
                                 bot.AddModule(new InfoModule());
+                                bot.AddModule(new SpendingModule());
                                 bot.AddModule(new PlayersModule());
                                 bot.AddModule(new MapModule());
                                 bot.AddModule(new UnitsModule());

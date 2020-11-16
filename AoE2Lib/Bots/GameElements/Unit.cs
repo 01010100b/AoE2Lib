@@ -119,7 +119,7 @@ namespace AoE2Lib.Bots.GameElements
                 var v = (pos - Position) / seconds;
                 if (v.Norm() < Speed * 2)
                 {
-                    Velocity = (Velocity + v) / 2;
+                    Velocity = (Velocity + (2 * v)) / 3;
                 }
 
                 Position = pos;

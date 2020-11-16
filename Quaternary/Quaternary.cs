@@ -31,8 +31,16 @@ namespace Quaternary
             var seconds = GetModule<InfoModule>().GameSecondsPerTick;
             Log($"Game seconds per tick: {seconds:N2}");
 
-            var units = GetModule<UnitsModule>().Units.Count;
-            Log($"Number of units: {units}");
+            var units = GetModule<UnitsModule>().Units;
+            var speed = 0d;
+            foreach (var unit in units.Values)
+            {
+                if (unit.Velocity.Norm() > speed)
+                {
+                    speed = unit.Velocity.Norm();
+                }
+            }
+            Log($"Number of units: {units.Count} with highest speed {speed:N2}");
         }
     }
 }

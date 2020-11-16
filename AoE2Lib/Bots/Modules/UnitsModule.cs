@@ -283,13 +283,18 @@ namespace AoE2Lib.Bots.Modules
                 FindUnits(position, player, type);
             }
 
-            var units = Bot.GetModule<UnitsModule>().Units.Values.ToList();
+            var units = Units.Values.ToList();
             units.Sort((a, b) => a.LastUpdateGameTime.CompareTo(b.LastUpdateGameTime));
 
             for (int i = 0; i < Math.Min(units.Count, NUM_UPDATES / 2); i++)
             {
                 units[i].RequestUpdate();
                 units[RNG.Next(units.Count)].RequestUpdate();
+            }
+
+            foreach (var unit in MyUnits)
+            {
+                unit.RequestUpdate();
             }
         }
     }

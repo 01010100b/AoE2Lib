@@ -50,9 +50,9 @@ namespace AoE2Lib.Bots.Modules
                 var current_time = GameTime;
 
                 GameTime = TimeSpan.FromSeconds(responses[0].Unpack<GameTimeResult>().Result);
-                GameSecondsPerTick *= 99;
+                GameSecondsPerTick *= 49;
                 GameSecondsPerTick += (GameTime - current_time).TotalSeconds;
-                GameSecondsPerTick /= 100;
+                GameSecondsPerTick /= 50;
 
                 var x = responses[2].Unpack<GoalResult>().Result;
                 var y = responses[3].Unpack<GoalResult>().Result;
