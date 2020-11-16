@@ -29,17 +29,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <NativeLibs Remove="aimodule-de.dll" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Remove="aimodule-de.dll" />
 	  <None Remove="grpc_csharp_ext.x64.dll" />
 	  <None Remove="grpc_csharp_ext.x86.dll" />
-	  <None Remove="libgrpc_csharp_ext.x64.dylib" />
-	  <None Remove="libgrpc_csharp_ext.x64.so" />
-	  <None Remove="libgrpc_csharp_ext.x86.dylib" />
-	  <None Remove="libgrpc_csharp_ext.x86.so" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -52,46 +43,6 @@
 	  <Content Include="grpc_csharp_ext.x86.dll">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
-	  <Content Include="libgrpc_csharp_ext.x64.dylib">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </Content>
-	  <Content Include="libgrpc_csharp_ext.x64.so">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </Content>
-	  <Content Include="libgrpc_csharp_ext.x86.dylib">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </Content>
-	  <Content Include="libgrpc_csharp_ext.x86.so">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </Content>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <NativeLibs Remove="grpc_csharp_ext.x64.dll" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <NativeLibs Remove="grpc_csharp_ext.x86.dll" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <NativeLibs Remove="libgrpc_csharp_ext.x64.dylib" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <NativeLibs Remove="libgrpc_csharp_ext.x64.so" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <NativeLibs Remove="libgrpc_csharp_ext.x86.dylib" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <NativeLibs Remove="libgrpc_csharp_ext.x86.so" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <NativeLibs Remove="Enums.cs" />
 	</ItemGroup>
 
 </Project>

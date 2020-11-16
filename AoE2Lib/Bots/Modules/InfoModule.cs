@@ -11,18 +11,33 @@ namespace AoE2Lib.Bots.Modules
     public class InfoModule : Module
     {
         public TimeSpan GameTime { get; private set; } = TimeSpan.Zero;
-        public Position MyPosition { get; private set; }
         public double GameSecondsPerTick { get; private set; } = 1;
+        public Position MyPosition { get; private set; }
+        public int WoodAmount { get; private set; } = -1;
+        public int FoodAmount { get; private set; } = -1;
+        public int GoldAmount { get; private set; } = -1;
+        public int StoneAmount { get; private set; } = -1;
+        public int PopulationHeadroom { get; private set; } = -1;
+        public int HousingHeadroom { get; private set; } = -1;
+        public int PopulationCap { get; private set; } = -1;
 
         private readonly Command Command = new Command();
 
         protected override IEnumerable<Command> RequestUpdate()
         {
             Command.Reset();
+
             Command.Add(new GameTime());
             Command.Add(new UpGetPoint() { GoalPoint = 50, PositionType = (int)PositionType.SELF });
             Command.Add(new Goal() { GoalId = 50 });
             Command.Add(new Goal() { GoalId = 51 });
+            Command.Add(new WoodAmount());
+            Command.Add(new FoodAmount());
+            Command.Add(new GoldAmount());
+            Command.Add(new StoneAmount());
+            Command.Add(new PopulationHeadroom());
+            Command.Add(new HousingHeadroom());
+            Command.Add(new PopulationCap());
 
             yield return Command;
         }
@@ -35,13 +50,22 @@ namespace AoE2Lib.Bots.Modules
                 var current_time = GameTime;
 
                 GameTime = TimeSpan.FromSeconds(responses[0].Unpack<GameTimeResult>().Result);
+                GameSecondsPerTick *= 99;
+                GameSecondsPerTick += (GameTime - current_time).TotalSeconds;
+                GameSecondsPerTick /= 100;
+
                 var x = responses[2].Unpack<GoalResult>().Result;
                 var y = responses[3].Unpack<GoalResult>().Result;
                 MyPosition = Position.FromPoint(x, y);
 
-                GameSecondsPerTick *= 99;
-                GameSecondsPerTick += (GameTime - current_time).TotalSeconds;
-                GameSecondsPerTick /= 100;
+                WoodAmount = responses[4].Unpack<WoodAmountResult>().Result;
+                FoodAmount = responses[5].Unpack<FoodAmountResult>().Result;
+                GoldAmount = responses[6].Unpack<GoldAmountResult>().Result;
+                StoneAmount = responses[7].Unpack<StoneAmountResult>().Result;
+
+                PopulationHeadroom = responses[8].Unpack<PopulationHeadroomResult>().Result;
+                HousingHeadroom = responses[9].Unpack<HousingHeadroomResult>().Result;
+                PopulationCap = responses[10].Unpack<PopulationCapResult>().Result;
             }
 
             Command.Reset();
