@@ -13,6 +13,7 @@ namespace AoE2Lib.Bots.GameElements
     public class Unit : GameElement
     {
         public readonly int Id;
+        public UnitType UnitType { get; internal set; } = null;
         public bool Targetable { get; private set; } = true;
         public DateTime LastTargetable { get; private set; } = DateTime.UtcNow;
         public int TargetId { get; private set; } = -1;

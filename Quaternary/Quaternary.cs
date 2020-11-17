@@ -18,12 +18,7 @@ namespace Quaternary
 
         private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.GetHashCode());
 
-        protected override IEnumerable<Command> RequestUpdate()
-        {
-            return Enumerable.Empty<Command>();
-        }
-
-        protected override void Update()
+        protected override IEnumerable<Command> Update()
         {
             GetModule<ResearchModule>().Research(22); // loom
 
@@ -41,13 +36,13 @@ namespace Quaternary
             }
 
             var players = GetModule<PlayersModule>().Players.Count;
-            Log($"Number of players: {players}");
+            Log.Info($"Number of players: {players}");
 
             var tiles = GetModule<MapModule>().GetTiles().ToList();
-            Log($"Number of tiles: {tiles.Count:N0} of which {tiles.Count(t => t.Explored):N0} explored");
+            Log.Info($"Number of tiles: {tiles.Count:N0} of which {tiles.Count(t => t.Explored):N0} explored");
 
             var seconds = GetModule<InfoModule>().GameSecondsPerTick;
-            Log($"Game seconds per tick: {seconds:N2}");
+            Log.Info($"Game seconds per tick: {seconds:N2}");
 
             var units = GetModule<UnitsModule>().Units;
             var speed = 0d;
@@ -58,7 +53,9 @@ namespace Quaternary
                     speed = unit.Velocity.Norm();
                 }
             }
-            Log($"Number of units: {units.Count} with highest speed {speed:N2}");
+            Log.Info($"Number of units: {units.Count} with highest speed {speed:N2}");
+
+            return Enumerable.Empty<Command>();
         }
     }
 }

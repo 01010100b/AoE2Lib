@@ -17,7 +17,7 @@ namespace AoE2Lib.Bots.Modules
             if (!Researches.ContainsKey(id))
             {
                 _Researches.Add(id, new Research(Bot, id));
-                Log.Info($"Added research {id}");
+                Bot.Log.Info($"Added research {id}");
             }
         }
 

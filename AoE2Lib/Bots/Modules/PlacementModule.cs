@@ -13,7 +13,7 @@ namespace AoE2Lib.Bots.Modules
         private readonly HashSet<Vector2> Restrictions = new HashSet<Vector2>();
         private readonly HashSet<Vector2> ExtraRestrictions = new HashSet<Vector2>();
 
-        public IEnumerable<Vector2> GetPlacementPositions(UnitDef unit, Vector2 position, int margin, bool restricted, int range)
+        public IEnumerable<Vector2> GetPlacementPositions(UnitDef unit, Vector2 position, int clearance, bool restricted, int range)
         {
             var map = Bot.GetModule<MapModule>();
             foreach (var tile in map.GetTilesByDistance(position))
@@ -25,7 +25,7 @@ namespace AoE2Lib.Bots.Modules
 
                 if (tile.Position.DistanceTo(position) <= range)
                 {
-                    if (CanBuildAtPosition(map, unit, tile.Position, margin, restricted))
+                    if (CanBuildAtPosition(map, unit, tile.Position, clearance, restricted))
                     {
                         yield return tile.Position;
                     }
@@ -33,10 +33,10 @@ namespace AoE2Lib.Bots.Modules
             }
         }
 
-        private bool CanBuildAtPosition(MapModule map, UnitDef unit, Vector2 position, int margin, bool restricted)
+        public bool CanBuildAtPosition(MapModule map, UnitDef unit, Vector2 position, int clearance, bool restricted)
         {
             var elevation = int.MinValue;
-            foreach (var pos in GetFootprint(unit, position, margin))
+            foreach (var pos in GetFootprint(unit, position, clearance))
             {
                 if (!map.IsOnMap(pos))
                 {
@@ -81,12 +81,12 @@ namespace AoE2Lib.Bots.Modules
             return true;
         }
 
-        private IEnumerable<Vector2> GetFootprint(UnitDef unit, Vector2 position, int margin)
+        public IEnumerable<Vector2> GetFootprint(UnitDef unit, Vector2 position, int clearance)
         {
-            var xmin = position.PointX - (unit.Width / 2) - margin;
-            var xmax = position.PointX + ((unit.Width - 1) / 2) + margin;
-            var ymin = position.PointY - (unit.Height / 2) - margin;
-            var ymax = position.PointY + ((unit.Height - 1) / 2) + margin;
+            var xmin = position.PointX - (unit.Width / 2) - clearance;
+            var xmax = position.PointX + ((unit.Width - 1) / 2) + clearance;
+            var ymin = position.PointY - (unit.Height / 2) - clearance;
+            var ymax = position.PointY + ((unit.Height - 1) / 2) + clearance;
 
             for (int x = xmin; x <= xmax; x++)
             {
@@ -97,7 +97,7 @@ namespace AoE2Lib.Bots.Modules
             }
         }
 
-        private bool IsUnitObstruction(Unit unit)
+        public bool IsUnitObstruction(Unit unit)
         {
             switch (unit.Class)
             {

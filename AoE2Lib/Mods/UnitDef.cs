@@ -18,5 +18,7 @@ namespace AoE2Lib.Mods
         public int PlacementSideTerrain1 { get; set; } = -1;
         public int PlacementSideTerrain2 { get; set; } = -1;
         public int TerrainTable { get; set; } = -1;
+        public CmdId CmdId { get; set; }
+        public bool IsBuilding => CmdId == CmdId.CIVILIAN_BUILDING || CmdId == CmdId.MILITARY_BUILDING;
     }
 }

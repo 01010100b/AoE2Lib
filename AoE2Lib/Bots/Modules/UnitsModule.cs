@@ -22,7 +22,7 @@ namespace AoE2Lib.Bots.Modules
 
         private readonly Dictionary<int, int> LastBuildTicks = new Dictionary<int, int>();
 
-        public void FindUnits(Vector2 position, int player, UnitFindType type)
+        public void FindUnits(Vector2 position, int range, int player, UnitFindType type)
         {
             var command = new Command();
 
@@ -36,7 +36,7 @@ namespace AoE2Lib.Bots.Modules
             {
                 case UnitFindType.MILLITARY:
 
-                    command.Add(new UpFilterDistance() { TypeOp1 = (int)TypeOp.C, MinDistance = -1, TypeOp2 = (int)TypeOp.C, MaxDistance = 10 });
+                    command.Add(new UpFilterDistance() { TypeOp1 = (int)TypeOp.C, MinDistance = -1, TypeOp2 = (int)TypeOp.C, MaxDistance = range });
                     command.Add(new UpFilterInclude() { CmdId = (int)CmdId.MILITARY, ActionId = -1, OrderId = -1, OnMainland = -1 });
                     command.Add(new UpFindRemote() { TypeOp1 = (int)TypeOp.C, UnitId = -1, TypeOp2 = (int)TypeOp.C, Count = 35 });
                     command.Add(new UpFilterInclude() { CmdId = (int)CmdId.MONK, ActionId = -1, OrderId = -1, OnMainland = -1 });
@@ -52,7 +52,7 @@ namespace AoE2Lib.Bots.Modules
 
                 case UnitFindType.CIVILIAN:
 
-                    command.Add(new UpFilterDistance() { TypeOp1 = (int)TypeOp.C, MinDistance = -1, TypeOp2 = (int)TypeOp.C, MaxDistance = 10 });
+                    command.Add(new UpFilterDistance() { TypeOp1 = (int)TypeOp.C, MinDistance = -1, TypeOp2 = (int)TypeOp.C, MaxDistance = range });
                     command.Add(new UpFilterInclude() { CmdId = (int)CmdId.VILLAGER, ActionId = -1, OrderId = -1, OnMainland = -1 });
                     command.Add(new UpFindRemote() { TypeOp1 = (int)TypeOp.C, UnitId = -1, TypeOp2 = (int)TypeOp.C, Count = 30 });
                     command.Add(new UpFilterInclude() { CmdId = (int)CmdId.TRADE, ActionId = -1, OrderId = -1, OnMainland = -1 });
@@ -72,7 +72,7 @@ namespace AoE2Lib.Bots.Modules
 
                 case UnitFindType.BUILDING:
 
-                    command.Add(new UpFilterDistance() { TypeOp1 = (int)TypeOp.C, MinDistance = -1, TypeOp2 = (int)TypeOp.C, MaxDistance = 10 });
+                    command.Add(new UpFilterDistance() { TypeOp1 = (int)TypeOp.C, MinDistance = -1, TypeOp2 = (int)TypeOp.C, MaxDistance = range });
                     command.Add(new UpFilterInclude() { CmdId = (int)CmdId.MILITARY_BUILDING, ActionId = -1, OrderId = -1, OnMainland = -1 });
                     command.Add(new UpFindRemote() { TypeOp1 = (int)TypeOp.C, UnitId = -1, TypeOp2 = (int)TypeOp.C, Count = 20 });
                     command.Add(new UpFilterInclude() { CmdId = (int)CmdId.CIVILIAN_BUILDING, ActionId = -1, OrderId = -1, OnMainland = -1 });
@@ -88,7 +88,7 @@ namespace AoE2Lib.Bots.Modules
 
                 case UnitFindType.WOOD:
 
-                    command.Add(new UpFilterDistance() { TypeOp1 = (int)TypeOp.C, MinDistance = -1, TypeOp2 = (int)TypeOp.C, MaxDistance = 10 });
+                    command.Add(new UpFilterDistance() { TypeOp1 = (int)TypeOp.C, MinDistance = -1, TypeOp2 = (int)TypeOp.C, MaxDistance = range });
                     command.Add(new UpFilterStatus() { TypeOp1 = (int)TypeOp.C, ObjectStatus = 2, TypeOp2 = (int)TypeOp.C, ObjectList = 0 });
                     command.Add(new UpFindResource() { TypeOp1 = (int)TypeOp.C, Resource = 1, TypeOp2 = (int)TypeOp.C, Count = 30 });
                     command.Add(new UpFilterStatus() { TypeOp1 = (int)TypeOp.C, ObjectStatus = 3, TypeOp2 = (int)TypeOp.C, ObjectList = 0 });
@@ -104,7 +104,7 @@ namespace AoE2Lib.Bots.Modules
 
                 case UnitFindType.FOOD:
 
-                    command.Add(new UpFilterDistance() { TypeOp1 = (int)TypeOp.C, MinDistance = -1, TypeOp2 = (int)TypeOp.C, MaxDistance = 10 });
+                    command.Add(new UpFilterDistance() { TypeOp1 = (int)TypeOp.C, MinDistance = -1, TypeOp2 = (int)TypeOp.C, MaxDistance = range });
                     command.Add(new UpFilterStatus() { TypeOp1 = (int)TypeOp.C, ObjectStatus = 2, TypeOp2 = (int)TypeOp.C, ObjectList = 0 });
                     command.Add(new UpFindResource() { TypeOp1 = (int)TypeOp.C, Resource = 0, TypeOp2 = (int)TypeOp.C, Count = 30 });
                     command.Add(new UpFilterStatus() { TypeOp1 = (int)TypeOp.C, ObjectStatus = 3, TypeOp2 = (int)TypeOp.C, ObjectList = 0 });
@@ -120,7 +120,7 @@ namespace AoE2Lib.Bots.Modules
 
                 case UnitFindType.GOLD:
 
-                    command.Add(new UpFilterDistance() { TypeOp1 = (int)TypeOp.C, MinDistance = -1, TypeOp2 = (int)TypeOp.C, MaxDistance = 10 });
+                    command.Add(new UpFilterDistance() { TypeOp1 = (int)TypeOp.C, MinDistance = -1, TypeOp2 = (int)TypeOp.C, MaxDistance = range });
                     command.Add(new UpFilterStatus() { TypeOp1 = (int)TypeOp.C, ObjectStatus = 3, TypeOp2 = (int)TypeOp.C, ObjectList = 0 });
                     command.Add(new UpFindResource() { TypeOp1 = (int)TypeOp.C, Resource = 3, TypeOp2 = (int)TypeOp.C, Count = 40 });
 
@@ -132,7 +132,7 @@ namespace AoE2Lib.Bots.Modules
 
                 case UnitFindType.STONE:
 
-                    command.Add(new UpFilterDistance() { TypeOp1 = (int)TypeOp.C, MinDistance = -1, TypeOp2 = (int)TypeOp.C, MaxDistance = 10 });
+                    command.Add(new UpFilterDistance() { TypeOp1 = (int)TypeOp.C, MinDistance = -1, TypeOp2 = (int)TypeOp.C, MaxDistance = range });
                     command.Add(new UpFilterStatus() { TypeOp1 = (int)TypeOp.C, ObjectStatus = 3, TypeOp2 = (int)TypeOp.C, ObjectList = 0 });
                     command.Add(new UpFindResource() { TypeOp1 = (int)TypeOp.C, Resource = 2, TypeOp2 = (int)TypeOp.C, Count = 40 });
 
@@ -144,7 +144,7 @@ namespace AoE2Lib.Bots.Modules
 
                 case UnitFindType.ALL:
 
-                    command.Add(new UpFilterDistance() { TypeOp1 = (int)TypeOp.C, MinDistance = -1, TypeOp2 = (int)TypeOp.C, MaxDistance = 10 });
+                    command.Add(new UpFilterDistance() { TypeOp1 = (int)TypeOp.C, MinDistance = -1, TypeOp2 = (int)TypeOp.C, MaxDistance = range });
                     command.Add(new UpFilterExclude() { CmdId = (int)CmdId.MILITARY, ActionId = -1, OrderId = -1, ClassId = (int)UnitClass.Tree });
                     command.Add(new UpFindRemote() { TypeOp1 = (int)TypeOp.C, UnitId = -1, TypeOp2 = (int)TypeOp.C, Count = 40 });
 
@@ -181,7 +181,7 @@ namespace AoE2Lib.Bots.Modules
         public void Build(UnitDef unit, int x, int y, int max = int.MaxValue, int concurrent = int.MaxValue, int priority = 0)
         {
             var info = Bot.GetModule<InfoModule>();
-            info.AddUnitType(unit.Id, unit.FoundationId);
+            info.AddUnitType(unit);
 
             var type = info.UnitTypes[unit.Id];
             if (!type.Updated)
@@ -238,6 +238,8 @@ namespace AoE2Lib.Bots.Modules
                         command.Add(new SetGoal() { GoalId = 100, GoalValue = x });
                         command.Add(new SetGoal() { GoalId = 101, GoalValue = y });
                         command.Add(new UpBuildLine() { TypeOp = (int)TypeOp.C, BuildingId = type.Id, GoalPoint1 = 100, GoalPoint2 = 100 });
+
+                        
                     }
                     else
                     {
@@ -268,21 +270,45 @@ namespace AoE2Lib.Bots.Modules
 
         protected override void Update()
         {
+            var info = Bot.GetModule<InfoModule>();
+
             foreach (var unit in Units.Values)
             {
                 unit.Update();
+
+                if (unit.UnitType == null)
+                {
+                    var id = unit.TypeId;
+
+                    if (!info.UnitTypes.ContainsKey(id))
+                    {
+                        if (Bot.Mod.UnitDefs.TryGetValue(id, out UnitDef def))
+                        {
+                            info.AddUnitType(def);
+                        }
+                    }
+
+                    if (info.UnitTypes.TryGetValue(id, out UnitType type))
+                    {
+                        unit.UnitType = type;
+                    }
+                }
             }
 
             foreach (var command in UnitFindCommands)
             {
-                for (int i = 0; i < 40; i++)
+                var responses = command.GetResponses();
+                if (responses.Count > 0)
                 {
-                    var pos = command.Responses.Count - (5 * i) - 1;
-                    var id = command.Responses[pos].Unpack<UpObjectDataResult>().Result;
-
-                    if (id > 0 && !Units.ContainsKey(id))
+                    for (int i = 0; i < 40; i++)
                     {
-                        _Units.Add(id, new Unit(Bot, id));
+                        var index = responses.Count - (5 * i) - 1;
+                        var id = responses[index].Unpack<UpObjectDataResult>().Result;
+
+                        if (id > 0 && !Units.ContainsKey(id))
+                        {
+                            _Units.Add(id, new Unit(Bot, id));
+                        }
                     }
                 }
             }
@@ -308,27 +334,27 @@ namespace AoE2Lib.Bots.Modules
             {
                 var player = Bot.PlayerNumber;
 
-                if (RNG.NextDouble() < 0.5 && gametime > TimeSpan.FromSeconds(3))
+                if (RNG.NextDouble() < 0.5)
                 {
                     player = 0;
 
-                    if (RNG.NextDouble() < 0.5 && players.Count > 0 && gametime > TimeSpan.FromSeconds(10))
+                    if (RNG.NextDouble() < 0.5 && players.Count > 0)
                     {
                         player = players.Values.ElementAt(RNG.Next(players.Count)).PlayerNumber;
                     }
                 }
 
-                var type = UnitFindType.CIVILIAN;
+                var type = UnitFindType.MILLITARY;
 
                 if (RNG.NextDouble() < 0.5)
                 {
-                    type = UnitFindType.MILLITARY;
+                    type = UnitFindType.CIVILIAN;
 
                     if (RNG.NextDouble() < 0.5)
                     {
                         type = UnitFindType.BUILDING;
 
-                        if (RNG.NextDouble() < 0.5 && gametime > TimeSpan.FromSeconds(3))
+                        if (RNG.NextDouble() < 0.5)
                         {
                             type = UnitFindType.FOOD;
                         }
@@ -362,7 +388,19 @@ namespace AoE2Lib.Bots.Modules
 
                 var position = explored[RNG.Next(explored.Count)];
 
-                FindUnits(position, player, type);
+                FindUnits(position, 20, player, type);
+            }
+
+            if (Bot.Tick < 3)
+            {
+                var pos = Bot.GetModule<InfoModule>().MyPosition;
+                var player = Bot.PlayerNumber;
+
+                FindUnits(pos, 20, player, UnitFindType.CIVILIAN);
+                FindUnits(pos, 20, player, UnitFindType.MILLITARY);
+                FindUnits(pos, 20, player, UnitFindType.BUILDING);
+                FindUnits(pos, 20, player, UnitFindType.FOOD);
+                FindUnits(pos, 20, 0, UnitFindType.FOOD);
             }
 
             var units = Units.Values.ToList();

@@ -1,4 +1,5 @@
 ﻿using AoE2Lib.Bots.GameElements;
+using AoE2Lib.Mods;
 using AoE2Lib.Utils;
 using Protos.Expert.Action;
 using Protos.Expert.Fact;
@@ -27,11 +28,12 @@ namespace AoE2Lib.Bots.Modules
 
         private readonly Command Command = new Command();
 
-        public void AddUnitType(int type, int foundation)
+        public void AddUnitType(UnitDef unit)
         {
-            if (!UnitTypes.ContainsKey(type))
+            if (!UnitTypes.ContainsKey(unit.Id))
             {
-                _UnitTypes.Add(type, new UnitType(Bot, type, foundation));
+                _UnitTypes.Add(unit.Id, new UnitType(Bot, unit));
+                Bot.Log.Info($"Added unit {unit.Id}");
             }
         }
 

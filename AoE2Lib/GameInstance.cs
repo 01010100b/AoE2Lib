@@ -41,8 +41,6 @@ namespace AoE2Lib
                 }
 
                 InjectedDlls.Add(name);
-
-                Log.Info($"Injected dll {name} into process {Process.ProcessName}");
             }
         }
     }

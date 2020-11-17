@@ -9,6 +9,7 @@ using Protos.Expert;
 using Protos.Expert.Fact;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading;
@@ -26,6 +27,7 @@ namespace AoE2Lib.Bots
         private readonly Dictionary<int, Func<Bot>> RegisteredBots = new Dictionary<int, Func<Bot>>();
         private readonly Dictionary<int, Bot> Players = new Dictionary<int, Bot>();
         private int PreviousGameTime { get; set; } = 0;
+        private readonly Log Log = new Log();
 
         private Thread ManagerThread { get; set; } = null;
         private volatile bool Stopping = false;
@@ -101,6 +103,7 @@ namespace AoE2Lib.Bots
         {
             PreviousGameTime = 0;
 
+            // TODO parallelize properly
             while (!Stopping)
             {
                 var results = new List<AsyncUnaryCall<CommandResultList>>();
@@ -129,7 +132,6 @@ namespace AoE2Lib.Bots
 
                     if (result != null)
                     {
-                        var player = i + 1;
                         var gametime = result.Results[0].Unpack<GameTimeResult>().Result;
                         var id = result.Results[1].Unpack<GoalResult>().Result;
 
@@ -150,16 +152,16 @@ namespace AoE2Lib.Bots
 
                         if (RegisteredBots.TryGetValue(id, out Func<Bot> create))
                         {
-                            if (Players.TryGetValue(player, out Bot current))
+                            if (Players.TryGetValue(result.PlayerNumber, out Bot current))
                             {
                                 if (current.Id != id)
                                 {
                                     current.Stop();
-                                    Players.Remove(player);
+                                    Players.Remove(result.PlayerNumber);
                                 }
                             }
 
-                            if (!Players.ContainsKey(player))
+                            if (!Players.ContainsKey(result.PlayerNumber))
                             {
                                 var bot = create();
 
@@ -171,14 +173,14 @@ namespace AoE2Lib.Bots
                                 bot.AddModule(new ResearchModule());
                                 bot.AddModule(new PlacementModule());
                                 
-                                Players.Add(player, bot);
+                                Players.Add(result.PlayerNumber, bot);
 
                                 var api = new ExpertAPIClient(Channel);
                                 var mod = new Mod();
                                 mod.LoadDE();
-                                bot.Start(mod, player, api);
+                                bot.Start(mod, result.PlayerNumber, api);
 
-                                Log.Info($"{bot.Name} taking control of player {player}");
+                                Log.Info($"{bot.Name} taking control of player {result.PlayerNumber}");
                             }
                         }
                     }

@@ -19,6 +19,7 @@ namespace AoE2Lib.Bots
         public Mod Mod { get; private set; } = null;
         public int PlayerNumber { get; private set; } = -1;
         public int Tick { get; private set; } = 0;
+        public readonly Log Log = new Log();
 
         private Thread BotThread { get; set; } = null;
         private volatile bool Stopping = false;
@@ -49,13 +50,7 @@ namespace AoE2Lib.Bots
             }
         }
 
-        protected abstract IEnumerable<Command> RequestUpdate();
-        protected abstract void Update();
-
-        protected void Log(object message)
-        {
-            Utils.Log.Write(message);
-        }
+        protected abstract IEnumerable<Command> Update();
 
         internal void Start(Mod mod, int player, ExpertAPIClient api)
         {
@@ -80,23 +75,23 @@ namespace AoE2Lib.Bots
 
         private void Run(ExpertAPIClient api)
         {
-            Utils.Log.Info($"Bot {Name} playing {PlayerNumber} has started");
+            Log.Info($"Bot {Name} playing {PlayerNumber} has started");
 
             Tick = 0;
-
             var sw = new Stopwatch();
             var commands = new List<Command>();
+            var previous = DateTime.UtcNow;
 
             while (!Stopping)
             {
-                Utils.Log.Info($"Tick {Tick}");
+                Log.Info($"Tick {Tick}");
 
                 sw.Restart();
                 commands.Clear();
 
-                // request self update
+                // update
 
-                commands.AddRange(RequestUpdate().Where(c => c.Messages.Count > 0));
+                commands.AddRange(Update().Where(c => c.Messages.Count > 0));
 
                 // request modules update in reverse
 
@@ -112,6 +107,13 @@ namespace AoE2Lib.Bots
                     commands.AddRange(module.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
                 }
 
+                // don't send commands if it's been more than 5 seconds since previous update
+
+                if ((DateTime.UtcNow - previous) > TimeSpan.FromSeconds(5))
+                {
+                    commands.Clear();
+                }
+
                 // set up api call
 
                 var commandlist = new CommandList() { PlayerNumber = PlayerNumber };
@@ -124,7 +126,7 @@ namespace AoE2Lib.Bots
                     }
                 }
 
-                Utils.Log.Info($"RequestUpdate took {sw.ElapsedMilliseconds} ms");
+                Log.Info($"RequestUpdate took {sw.ElapsedMilliseconds} ms");
 
                 // make the call
 
@@ -139,11 +141,11 @@ namespace AoE2Lib.Bots
                 }
                 catch (Exception e)
                 {
-                    Utils.Log.Info(e.Message);
+                    Log.Info(e.Message);
                     resultlist = null;
                 }
 
-                Utils.Log.Info($"Call took {sw.ElapsedMilliseconds} ms");
+                Log.Info($"Call took {sw.ElapsedMilliseconds} ms");
 
                 if (resultlist != null)
                 {
@@ -174,17 +176,14 @@ namespace AoE2Lib.Bots
                         module.UpdateInternal();
                     }
 
-                    // update self
-
-                    Update();
-
                     Tick++;
+                    previous = DateTime.UtcNow;
 
-                    Utils.Log.Info($"Update took {sw.ElapsedMilliseconds} ms");
+                    Log.Info($"Update took {sw.ElapsedMilliseconds} ms");
                 }
             }
 
-            Utils.Log.Info($"Bot {Name} playing {PlayerNumber} has stopped");
+            Log.Info($"Bot {Name} playing {PlayerNumber} has stopped");
         }
     }
 }
