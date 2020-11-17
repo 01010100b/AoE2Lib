@@ -99,7 +99,6 @@ namespace AoE2Lib.Bots
 
         private void Run()
         {
-            var mod = new Mod();
             PreviousGameTime = 0;
 
             while (!Stopping)
@@ -170,10 +169,13 @@ namespace AoE2Lib.Bots
                                 bot.AddModule(new PlayersModule());
                                 bot.AddModule(new UnitsModule());
                                 bot.AddModule(new ResearchModule());
+                                bot.AddModule(new PlacementModule());
                                 
                                 Players.Add(player, bot);
 
                                 var api = new ExpertAPIClient(Channel);
+                                var mod = new Mod();
+                                mod.LoadDE();
                                 bot.Start(mod, player, api);
 
                                 Log.Info($"{bot.Name} taking control of player {player}");

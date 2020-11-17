@@ -24,6 +24,11 @@ namespace AoE2Lib.Bots
         private volatile bool Stopping = false;
         private readonly List<Module> Modules = new List<Module>();
 
+        public bool HasModule<T>() where T : Module
+        {
+            return GetModule<T>() != default(T);
+        }
+
         public T GetModule<T>() where T: Module
         {
             lock (Modules)

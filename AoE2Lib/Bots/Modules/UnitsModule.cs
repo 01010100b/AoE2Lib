@@ -1,4 +1,5 @@
 ﻿using AoE2Lib.Bots.GameElements;
+using AoE2Lib.Mods;
 using AoE2Lib.Utils;
 using Protos.Expert.Action;
 using Protos.Expert.Fact;
@@ -18,6 +19,8 @@ namespace AoE2Lib.Bots.Modules
 
         private readonly List<Command> UnitFindCommands = new List<Command>();
         private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.Ticks.GetHashCode());
+
+        private readonly Dictionary<int, int> LastBuildTicks = new Dictionary<int, int>();
 
         public void FindUnits(Vector2 position, int player, UnitFindType type)
         {
@@ -170,17 +173,17 @@ namespace AoE2Lib.Bots.Modules
             UnitFindCommands.Add(command);
         }
 
-        public void Train(int id, int foundation, int max = int.MaxValue, int concurrent = int.MaxValue, int priority = 0)
+        public void Train(UnitDef unit, int max = int.MaxValue, int concurrent = int.MaxValue, int priority = 0)
         {
-            Build(id, foundation, -1, -1, max, concurrent, priority);
+            Build(unit, -1, -1, max, concurrent, priority);
         }
 
-        public void Build(int id, int foundation, int x, int y, int max = int.MaxValue, int concurrent = int.MaxValue, int priority = 0)
+        public void Build(UnitDef unit, int x, int y, int max = int.MaxValue, int concurrent = int.MaxValue, int priority = 0)
         {
             var info = Bot.GetModule<InfoModule>();
-            info.AddUnitType(id, foundation);
+            info.AddUnitType(unit.Id, unit.FoundationId);
 
-            var type = info.UnitTypes[id];
+            var type = info.UnitTypes[unit.Id];
             if (!type.Updated)
             {
                 return;
@@ -197,7 +200,7 @@ namespace AoE2Lib.Bots.Modules
             {
                 return;
             }
-            else if (type.Building)
+            else if (type.IsBuilding)
             {
                 var map = Bot.GetModule<MapModule>();
                 if (!map.IsOnMap(x, y))
@@ -222,15 +225,26 @@ namespace AoE2Lib.Bots.Modules
 
             if (type.CanCreate)
             {
-                if (type.Building)
+                var tick = -1;
+                if (LastBuildTicks.ContainsKey(type.Id))
                 {
-                    command.Add(new SetGoal() { GoalId = 100, GoalValue = x });
-                    command.Add(new SetGoal() { GoalId = 101, GoalValue = y });
-                    command.Add(new UpBuildLine() { TypeOp = (int)TypeOp.C, BuildingId = type.Id, GoalPoint1 = 100, GoalPoint2 = 100 });
+                    tick = LastBuildTicks[type.Id];
                 }
-                else
+
+                if (Bot.Tick > tick + 1 || concurrent > type.Pending + 1)
                 {
-                    command.Add(new Train() { UnitType = type.Id });
+                    if (type.IsBuilding)
+                    {
+                        command.Add(new SetGoal() { GoalId = 100, GoalValue = x });
+                        command.Add(new SetGoal() { GoalId = 101, GoalValue = y });
+                        command.Add(new UpBuildLine() { TypeOp = (int)TypeOp.C, BuildingId = type.Id, GoalPoint1 = 100, GoalPoint2 = 100 });
+                    }
+                    else
+                    {
+                        command.Add(new Train() { UnitType = type.Id });
+                    }
+
+                    LastBuildTicks[type.Id] = Bot.Tick;
                 }
             }
 
@@ -284,7 +298,7 @@ namespace AoE2Lib.Bots.Modules
             var explored = Bot.GetModule<MapModule>().GetTiles().Where(t => t.Explored).Select(t => t.Position).ToList();
             if (explored.Count == 0)
             {
-                explored.Add(new Vector2(0, 0));
+                explored.Add(Vector2.FromPoint(0, 0));
             }
 
             var gametime = Bot.GetModule<InfoModule>().GameTime;
@@ -310,11 +324,11 @@ namespace AoE2Lib.Bots.Modules
                 {
                     type = UnitFindType.MILLITARY;
 
-                    if (RNG.NextDouble() < 0.5 && gametime > TimeSpan.FromSeconds(3))
+                    if (RNG.NextDouble() < 0.5)
                     {
                         type = UnitFindType.BUILDING;
 
-                        if (RNG.NextDouble() < 0.5)
+                        if (RNG.NextDouble() < 0.5 && gametime > TimeSpan.FromSeconds(3))
                         {
                             type = UnitFindType.FOOD;
                         }
@@ -358,11 +372,6 @@ namespace AoE2Lib.Bots.Modules
             {
                 units[i].RequestUpdate();
                 units[RNG.Next(units.Count)].RequestUpdate();
-            }
-
-            foreach (var unit in MyUnits)
-            {
-                unit.RequestUpdate();
             }
         }
     }

@@ -13,12 +13,12 @@ namespace AoE2Lib.Bots.GameElements
         public readonly int Id;
         public readonly int FoundationId;
         public CmdId CmdId { get; private set; }
-        public bool Building => CmdId == CmdId.CIVILIAN_BUILDING || CmdId == CmdId.MILITARY_BUILDING;
+        public bool IsBuilding => CmdId == CmdId.CIVILIAN_BUILDING || CmdId == CmdId.MILITARY_BUILDING;
         public bool Available { get; private set; }
         public int Count { get; private set; }
         public int CountTotal { get; private set; }
         public int Pending { get; private set; }
-        public bool CanCreate { get; private set; }
+        public bool CanCreate { get; private set; } // can-train for units, can-build for buildings
         public int WoodCost { get; private set; }
         public int FoodCost { get; private set; }
         public int GoldCost { get; private set; }
@@ -50,14 +50,13 @@ namespace AoE2Lib.Bots.GameElements
             yield return new UpObjectTypeCount() { TypeOp = (int)TypeOp.C, ObjectId = FoundationId };
             yield return new UpObjectTypeCountTotal() { TypeOp = (int)TypeOp.C, ObjectId = FoundationId };
             yield return new UpPendingObjects() { TypeOp = (int)TypeOp.C, ObjectId = FoundationId };
-
         }
 
         protected override void UpdateElement(IReadOnlyList<Any> responses)
         {
             CmdId = (CmdId)responses[1].Unpack<GoalResult>().Result;
             Available = responses[2].Unpack<UnitAvailableResult>().Result;
-            if (Building)
+            if (IsBuilding)
             {
                 Available = responses[3].Unpack<BuildingAvailableResult>().Result;
             }
@@ -66,7 +65,7 @@ namespace AoE2Lib.Bots.GameElements
             CountTotal = responses[5].Unpack<UpObjectTypeCountTotalResult>().Result;
             Pending = responses[6].Unpack<UpPendingObjectsResult>().Result;
             CanCreate = responses[7].Unpack<CanTrainResult>().Result;
-            if (Building)
+            if (IsBuilding)
             {
                 CanCreate = responses[8].Unpack<CanBuildResult>().Result;
             }

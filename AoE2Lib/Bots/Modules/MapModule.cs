@@ -19,9 +19,19 @@ namespace AoE2Lib.Bots.Modules
         private readonly Command Command = new Command();
         private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.GetHashCode());
 
+        public bool IsOnMap(Vector2 position)
+        {
+            return IsOnMap(position.PointX, position.PointY);
+        }
+
         public bool IsOnMap(int x, int y)
         {
             return x >= 0 && x < Width && y >= 0 && y < Height;
+        }
+
+        public Tile GetTile(Vector2 position)
+        {
+            return GetTile(position.PointX, position.PointY);
         }
 
         public Tile GetTile(int x, int y)
@@ -210,7 +220,7 @@ namespace AoE2Lib.Bots.Modules
                     tile_time = gametime - TimeSpan.FromMinutes(1);
                 }
 
-                var tiles = new List<Tile>(1024);
+                var tiles = new List<Tile>(TILES_PER_COMMAND);
                 foreach (var tile in GetTilesByDistance(position))
                 {
                     if (tile.LastUpdateGameTime < tile_time && !tile.Explored)
@@ -218,7 +228,7 @@ namespace AoE2Lib.Bots.Modules
                         tiles.Add(tile);
                     }
                     
-                    if (tiles.Count > TILES_PER_COMMAND * 2)
+                    if (tiles.Count >= TILES_PER_COMMAND)
                     {
                         break;
                     }

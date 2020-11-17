@@ -27,16 +27,17 @@ namespace Quaternary
         {
             GetModule<ResearchModule>().Research(22); // loom
 
-            GetModule<UnitsModule>().Train(83, 83); // vill
+            GetModule<UnitsModule>().Train(Mod.Villager); // vill
 
             var pos = GetModule<InfoModule>().MyPosition;
-            var dpos = new Vector2(RNG.Next(-10, 10), RNG.Next(-10, 10));
+            var dpos = Vector2.FromPoint(RNG.Next(-10, 10), RNG.Next(-10, 10));
             pos += dpos;
 
-            var map = GetModule<MapModule>();
-            if (map.IsOnMap(pos.PointX, pos.PointY))
+            var positions = GetModule<PlacementModule>().GetPlacementPositions(Mod.House, pos, 1, true, 10).ToList();
+            if (positions.Count > 0)
             {
-                GetModule<UnitsModule>().Build(70, 70, pos.PointX, pos.PointY); // house
+                pos = positions[RNG.Next(positions.Count)];
+                GetModule<UnitsModule>().Build(Mod.House, pos.PointX, pos.PointY, int.MaxValue, 2);
             }
 
             var players = GetModule<PlayersModule>().Players.Count;

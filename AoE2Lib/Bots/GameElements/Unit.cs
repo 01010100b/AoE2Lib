@@ -16,8 +16,8 @@ namespace AoE2Lib.Bots.GameElements
         public bool Targetable { get; private set; } = true;
         public DateTime LastTargetable { get; private set; } = DateTime.UtcNow;
         public int TargetId { get; private set; } = -1;
-        public Vector2 Position { get; private set; } = new Vector2(-1, -1);
-        public Vector2 Velocity { get; private set; } = new Vector2(0, 0);
+        public Vector2 Position { get; private set; } = Vector2.FromPoint(-1, -1);
+        public Vector2 Velocity { get; private set; } = Vector2.FromPoint(0, 0);
         public int TypeId { get; private set; } = -1;
         public int PlayerNumber { get; private set; } = -1;
         public int Hitpoints { get; private set; } = -1;
