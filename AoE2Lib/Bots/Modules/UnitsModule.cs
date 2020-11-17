@@ -5,6 +5,7 @@ using Protos.Expert.Action;
 using Protos.Expert.Fact;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using static AoE2Lib.Bots.Modules.SpendingModule;
@@ -175,10 +176,12 @@ namespace AoE2Lib.Bots.Modules
 
         public void Train(UnitDef unit, int max = int.MaxValue, int concurrent = int.MaxValue, int priority = 0)
         {
-            Build(unit, -1, -1, max, concurrent, priority);
+            Debug.Assert(!unit.IsBuilding);
+
+            Build(unit, Vector2.FromPoint(-1, -1), max, concurrent, priority);
         }
 
-        public void Build(UnitDef unit, int x, int y, int max = int.MaxValue, int concurrent = int.MaxValue, int priority = 0)
+        public void Build(UnitDef unit, Vector2 position, int max = int.MaxValue, int concurrent = int.MaxValue, int priority = 0)
         {
             var info = Bot.GetModule<InfoModule>();
             info.AddUnitType(unit);
@@ -203,12 +206,12 @@ namespace AoE2Lib.Bots.Modules
             else if (type.IsBuilding)
             {
                 var map = Bot.GetModule<MapModule>();
-                if (!map.IsOnMap(x, y))
+                if (!map.IsOnMap(position))
                 {
                     return;
                 }
 
-                if (!map.GetTile(x, y).Explored)
+                if (!map.GetTile(position).Explored)
                 {
                     return;
                 }
@@ -235,11 +238,9 @@ namespace AoE2Lib.Bots.Modules
                 {
                     if (type.IsBuilding)
                     {
-                        command.Add(new SetGoal() { GoalId = 100, GoalValue = x });
-                        command.Add(new SetGoal() { GoalId = 101, GoalValue = y });
+                        command.Add(new SetGoal() { GoalId = 100, GoalValue = position.PointX });
+                        command.Add(new SetGoal() { GoalId = 101, GoalValue = position.PointY });
                         command.Add(new UpBuildLine() { TypeOp = (int)TypeOp.C, BuildingId = type.Id, GoalPoint1 = 100, GoalPoint2 = 100 });
-
-                        
                     }
                     else
                     {

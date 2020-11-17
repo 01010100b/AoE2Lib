@@ -32,7 +32,7 @@ namespace Quaternary
             if (positions.Count > 0)
             {
                 pos = positions[RNG.Next(positions.Count)];
-                GetModule<UnitsModule>().Build(Mod.House, pos.PointX, pos.PointY, int.MaxValue, 2);
+                GetModule<UnitsModule>().Build(Mod.House, pos, int.MaxValue, 2);
             }
 
             var players = GetModule<PlayersModule>().Players.Count;
