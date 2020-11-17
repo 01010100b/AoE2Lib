@@ -317,4 +317,8 @@ namespace AoE2Lib
         MILLITARY, CIVILIAN, BUILDING, WOOD, FOOD, GOLD, STONE, ALL
     }
 
+    public enum ResearchState
+    {
+        UNAVAILABLE, AVAILABLE, PENDING, COMPLETE
+    }
 }

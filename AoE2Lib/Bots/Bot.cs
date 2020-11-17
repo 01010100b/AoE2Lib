@@ -87,12 +87,13 @@ namespace AoE2Lib.Bots
                 Utils.Log.Info($"Tick {Tick}");
 
                 sw.Restart();
-
                 commands.Clear();
+
+                // request self update
 
                 commands.AddRange(RequestUpdate().Where(c => c.Messages.Count > 0));
 
-                // add modules in reverse
+                // request modules update in reverse
 
                 List<Module> modules = null;
                 lock (Modules)
@@ -167,6 +168,8 @@ namespace AoE2Lib.Bots
                     {
                         module.UpdateInternal();
                     }
+
+                    // update self
 
                     Update();
 

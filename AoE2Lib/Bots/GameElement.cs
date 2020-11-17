@@ -10,6 +10,7 @@ namespace AoE2Lib.Bots
 {
     public abstract class GameElement
     {
+        public bool Updated => TimesUpdated > 0;
         public TimeSpan LastUpdateGameTime { get; private set; } = TimeSpan.MinValue;
         public TimeSpan FirstUpdateGameTime { get; private set; } = TimeSpan.MinValue;
         public int TimesUpdated { get; private set; } = 0;

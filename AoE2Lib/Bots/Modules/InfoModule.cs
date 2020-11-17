@@ -12,6 +12,7 @@ namespace AoE2Lib.Bots.Modules
     {
         public TimeSpan GameTime { get; private set; } = TimeSpan.Zero;
         public double GameSecondsPerTick { get; private set; } = 1;
+        public int PlayerNumber => Bot.PlayerNumber;
         public Vector2 MyPosition { get; private set; }
         public int WoodAmount { get; private set; } = -1;
         public int FoodAmount { get; private set; } = -1;

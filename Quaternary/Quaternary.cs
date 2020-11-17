@@ -22,6 +22,8 @@ namespace Quaternary
 
         protected override void Update()
         {
+            GetModule<ResearchModule>().Research(22);
+
             var players = GetModule<PlayersModule>().Players.Count;
             Log($"Number of players: {players}");
 

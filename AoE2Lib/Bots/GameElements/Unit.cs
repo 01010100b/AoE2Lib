@@ -115,11 +115,12 @@ namespace AoE2Lib.Bots.GameElements
                 BaseTypeId = responses[21].Unpack<UpObjectDataResult>().Result;
 
                 var pos = Vector2.FromPrecise(x, y);
-                var seconds = Math.Max(0.001, (Bot.Tick - LastUpdateTick) * Bot.GetModule<InfoModule>().GameSecondsPerTick);
+                var ticks = Math.Max(1, Bot.Tick - LastUpdateTick);
+                var seconds = Math.Max(0.001, ticks * Bot.GetModule<InfoModule>().GameSecondsPerTick);
                 var v = (pos - Position) / seconds;
                 if (v.Norm() < Speed * 2)
                 {
-                    Velocity = (Velocity + (2 * v)) / 3;
+                    Velocity = ((ticks * Velocity) + (3 * v)) / (3 + ticks);
                 }
 
                 Position = pos;
