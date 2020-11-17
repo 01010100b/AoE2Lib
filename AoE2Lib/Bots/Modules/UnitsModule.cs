@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using static AoE2Lib.Bots.Modules.SpendingModule;
 
 namespace AoE2Lib.Bots.Modules
 {
@@ -167,6 +168,73 @@ namespace AoE2Lib.Bots.Modules
             }
 
             UnitFindCommands.Add(command);
+        }
+
+        public void Train(int id, int foundation, int max = int.MaxValue, int concurrent = int.MaxValue, int priority = 0)
+        {
+            Build(id, foundation, -1, -1, max, concurrent, priority);
+        }
+
+        public void Build(int id, int foundation, int x, int y, int max = int.MaxValue, int concurrent = int.MaxValue, int priority = 0)
+        {
+            var info = Bot.GetModule<InfoModule>();
+            info.AddUnitType(id, foundation);
+
+            var type = info.UnitTypes[id];
+            if (!type.Updated)
+            {
+                return;
+            }
+            else if (!type.Available)
+            {
+                return;
+            }
+            else if (type.CountTotal >= max)
+            {
+                return;
+            }
+            else if (type.Pending >= concurrent)
+            {
+                return;
+            }
+            else if (type.Building)
+            {
+                var map = Bot.GetModule<MapModule>();
+                if (!map.IsOnMap(x, y))
+                {
+                    return;
+                }
+
+                if (!map.GetTile(x, y).Explored)
+                {
+                    return;
+                }
+            }
+
+            var command = new SpendingCommand()
+            {
+                Priority = priority,
+                WoodAmount = type.WoodCost,
+                FoodAmount = type.FoodCost,
+                GoldAmount = type.GoldCost,
+                StoneAmount = type.StoneCost
+            };
+
+            if (type.CanCreate)
+            {
+                if (type.Building)
+                {
+                    command.Add(new SetGoal() { GoalId = 100, GoalValue = x });
+                    command.Add(new SetGoal() { GoalId = 101, GoalValue = y });
+                    command.Add(new UpBuildLine() { TypeOp = (int)TypeOp.C, BuildingId = type.Id, GoalPoint1 = 100, GoalPoint2 = 100 });
+                }
+                else
+                {
+                    command.Add(new Train() { UnitType = type.Id });
+                }
+            }
+
+            Bot.GetModule<SpendingModule>().Add(command);
         }
 
         protected override IEnumerable<Command> RequestUpdate()

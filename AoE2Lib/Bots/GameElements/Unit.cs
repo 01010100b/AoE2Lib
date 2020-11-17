@@ -82,16 +82,26 @@ namespace AoE2Lib.Bots.GameElements
             yield return new UpObjectData() { ObjectData = (int)ObjectData.CLASS };
             yield return new UpObjectData() { ObjectData = (int)ObjectData.CMDID };
             yield return new UpObjectData() { ObjectData = (int)ObjectData.BASE_TYPE };
+
+            yield return new UpGetObjectData() { ObjectData = (int)ObjectData.POINT_X, GoalData = 100 };
+            yield return new UpGetObjectData() { ObjectData = (int)ObjectData.POINT_Y, GoalData = 101 };
+            yield return new UpPointExplored() { GoalPoint = 100 };
         }
 
         protected override void UpdateElement(IReadOnlyList<Any> responses)
         {
             var id = responses[1].Unpack<UpObjectDataResult>().Result;
+            var explored = responses[24].Unpack<UpPointExploredResult>().Result;
 
             if (Id == id)
             {
                 Targetable = true;
                 LastTargetable = DateTime.UtcNow;
+
+                if (explored != 15)
+                {
+                    return;
+                }
 
                 TargetId = responses[2].Unpack<UpObjectDataResult>().Result;
                 var x = responses[3].Unpack<UpObjectDataResult>().Result;

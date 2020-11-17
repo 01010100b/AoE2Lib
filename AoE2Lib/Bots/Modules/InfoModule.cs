@@ -1,4 +1,5 @@
-﻿using AoE2Lib.Utils;
+﻿using AoE2Lib.Bots.GameElements;
+using AoE2Lib.Utils;
 using Protos.Expert.Action;
 using Protos.Expert.Fact;
 using System;
@@ -21,8 +22,18 @@ namespace AoE2Lib.Bots.Modules
         public int PopulationHeadroom { get; private set; } = -1;
         public int HousingHeadroom { get; private set; } = -1;
         public int PopulationCap { get; private set; } = -1;
+        public IReadOnlyDictionary<int, UnitType> UnitTypes => _UnitTypes;
+        private readonly Dictionary<int, UnitType> _UnitTypes = new Dictionary<int, UnitType>();
 
         private readonly Command Command = new Command();
+
+        public void AddUnitType(int type, int foundation)
+        {
+            if (!UnitTypes.ContainsKey(type))
+            {
+                _UnitTypes.Add(type, new UnitType(Bot, type, foundation));
+            }
+        }
 
         protected override IEnumerable<Command> RequestUpdate()
         {
@@ -41,6 +52,12 @@ namespace AoE2Lib.Bots.Modules
             Command.Add(new PopulationCap());
 
             yield return Command;
+
+            foreach (var info in UnitTypes.Values)
+            {
+                info.RequestUpdate();
+                yield return info.Command;
+            }
         }
 
         protected override void Update()
@@ -70,6 +87,11 @@ namespace AoE2Lib.Bots.Modules
             }
 
             Command.Reset();
+
+            foreach (var info in UnitTypes.Values)
+            {
+                info.Update();
+            }
         }
     }
 }

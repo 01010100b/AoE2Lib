@@ -12,7 +12,7 @@ namespace AoE2Lib.Bots.Modules
         public IReadOnlyDictionary<int, Research> Researches => _Researches;
         private readonly Dictionary<int, Research> _Researches = new Dictionary<int, Research>();
 
-        public void AddResearch(int id)
+        public void Add(int id)
         {
             if (!Researches.ContainsKey(id))
             {
@@ -23,7 +23,7 @@ namespace AoE2Lib.Bots.Modules
 
         public void Research(int id, int priority = 0)
         {
-            AddResearch(id);
+            Add(id);
 
             var research = Researches[id];
             if (!research.Updated)

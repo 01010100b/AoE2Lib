@@ -24,6 +24,16 @@ namespace AoE2Lib.Bots.Modules
             return x >= 0 && x < Width && y >= 0 && y < Height;
         }
 
+        public Tile GetTile(int x, int y)
+        {
+            if (!IsOnMap(x, y))
+            {
+                return null;
+            }
+
+            return Tiles[x][y];
+        }
+
         public IEnumerable<Tile> GetTiles()
         {
             if (Tiles == null)
@@ -101,17 +111,7 @@ namespace AoE2Lib.Bots.Modules
                 }
             }
         }
-
-        public Tile GetTile(int x, int y)
-        {
-            if (!IsOnMap(x, y))
-            {
-                return null;
-            }
-
-            return Tiles[x][y];
-        }
-
+        
         protected override IEnumerable<Command> RequestUpdate()
         {
             Command.Reset();
@@ -218,7 +218,7 @@ namespace AoE2Lib.Bots.Modules
                         tiles.Add(tile);
                     }
                     
-                    if (tiles.Count > 1000)
+                    if (tiles.Count > TILES_PER_COMMAND * 2)
                     {
                         break;
                     }

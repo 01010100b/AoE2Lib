@@ -1,6 +1,7 @@
 ﻿using AoE2Lib.Bots;
 using AoE2Lib.Bots.GameElements;
 using AoE2Lib.Bots.Modules;
+using AoE2Lib.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace Quaternary
 
         public override int Id => 27432;
 
+        private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.GetHashCode());
+
         protected override IEnumerable<Command> RequestUpdate()
         {
             return Enumerable.Empty<Command>();
@@ -22,7 +25,19 @@ namespace Quaternary
 
         protected override void Update()
         {
-            GetModule<ResearchModule>().Research(22);
+            GetModule<ResearchModule>().Research(22); // loom
+
+            GetModule<UnitsModule>().Train(83, 83); // vill
+
+            var pos = GetModule<InfoModule>().MyPosition;
+            var dpos = new Vector2(RNG.Next(-10, 10), RNG.Next(-10, 10));
+            pos += dpos;
+
+            var map = GetModule<MapModule>();
+            if (map.IsOnMap(pos.PointX, pos.PointY))
+            {
+                GetModule<UnitsModule>().Build(70, 70, pos.PointX, pos.PointY); // house
+            }
 
             var players = GetModule<PlayersModule>().Players.Count;
             Log($"Number of players: {players}");
