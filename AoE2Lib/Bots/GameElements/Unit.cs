@@ -129,7 +129,7 @@ namespace AoE2Lib.Bots.GameElements
                 var ticks = Math.Max(1, Bot.Tick - LastUpdateTick);
                 var seconds = Math.Max(0.001, ticks * Bot.GetModule<InfoModule>().GameSecondsPerTick);
                 var v = (pos - Position) / seconds;
-                if (v.Norm() < Speed * 2)
+                if (v.Norm < Speed * 2)
                 {
                     Velocity = ((ticks * Velocity) + (3 * v)) / (3 + ticks);
                 }

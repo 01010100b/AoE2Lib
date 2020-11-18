@@ -46,5 +46,11 @@ namespace Quaternary
             Refresh();
             Close();
         }
+
+        private void ButtonDev_Click(object sender, EventArgs e)
+        {
+            var wall = new WallingForm();
+            wall.Show();
+        }
     }
 }

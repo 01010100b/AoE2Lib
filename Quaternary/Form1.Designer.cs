@@ -30,6 +30,7 @@
         {
             this.ButtonStart = new System.Windows.Forms.Button();
             this.ButtonExit = new System.Windows.Forms.Button();
+            this.ButtonDev = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ButtonStart
@@ -52,11 +53,22 @@
             this.ButtonExit.UseVisualStyleBackColor = true;
             this.ButtonExit.Click += new System.EventHandler(this.ButtonExit_Click);
             // 
+            // ButtonDev
+            // 
+            this.ButtonDev.Location = new System.Drawing.Point(647, 401);
+            this.ButtonDev.Name = "ButtonDev";
+            this.ButtonDev.Size = new System.Drawing.Size(141, 37);
+            this.ButtonDev.TabIndex = 2;
+            this.ButtonDev.Text = "Dev";
+            this.ButtonDev.UseVisualStyleBackColor = true;
+            this.ButtonDev.Click += new System.EventHandler(this.ButtonDev_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ButtonDev);
             this.Controls.Add(this.ButtonExit);
             this.Controls.Add(this.ButtonStart);
             this.Name = "Form1";
@@ -70,6 +82,7 @@
 
         private System.Windows.Forms.Button ButtonStart;
         private System.Windows.Forms.Button ButtonExit;
+        private System.Windows.Forms.Button ButtonDev;
     }
 }
 

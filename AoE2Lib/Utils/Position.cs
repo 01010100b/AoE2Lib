@@ -8,6 +8,8 @@ namespace AoE2Lib.Utils
 {
     public struct Position
     {
+        public static readonly Position Zero = new Position(0, 0);
+
         public static Position FromPoint(int x, int y)
         {
             return new Position(x, y);
@@ -24,6 +26,8 @@ namespace AoE2Lib.Utils
         public int PointY => (int)Math.Floor(Y);
         public int PreciseX => (int)Math.Floor(X * 100);
         public int PreciseY => (int)Math.Floor(Y * 100);
+        public double Norm => Math.Sqrt((X * X) + (Y * Y));
+        public double Angle => AngleFrom(Zero);
 
         public Position(double x, double y)
         {
@@ -61,17 +65,35 @@ namespace AoE2Lib.Utils
             return v / a;
         }
 
-        public double Norm()
-        {
-            return Math.Sqrt((X * X) + (Y * Y));
-        }
-
         public double DistanceTo(Position other)
         {
             var dx = X - other.X;
             var dy = Y - other.Y;
 
             return Math.Sqrt((dx * dx) + (dy * dy));
+        }
+
+        public double AngleFrom(Position other)
+        {
+            var a1 = Math.Atan2(other.Y, other.X);
+            var a2 = Math.Atan2(Y, X);
+
+            if (a1 < 0)
+            {
+                a1 += 2 * Math.PI;
+            }
+            if (a2 < 0)
+            {
+                a2 += 2 * Math.PI;
+            }
+
+            var a = a2 - a1;
+            if (a < 0)
+            {
+                a += 2 * Math.PI;
+            }
+
+            return a;
         }
     }
 }

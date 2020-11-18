@@ -48,9 +48,9 @@ namespace Quaternary
             var speed = 0d;
             foreach (var unit in units.Values)
             {
-                if (unit.Velocity.Norm() > speed)
+                if (unit.Velocity.Norm > speed)
                 {
-                    speed = unit.Velocity.Norm();
+                    speed = unit.Velocity.Norm;
                 }
             }
             Log.Info($"Number of units: {units.Count} with highest speed {speed:N2}");
