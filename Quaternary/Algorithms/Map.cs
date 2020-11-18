@@ -1,6 +1,7 @@
 ﻿using AoE2Lib.Utils;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Security.Policy;
@@ -78,6 +79,7 @@ namespace Quaternary.Algorithms
 
         public struct Tile
         {
+            public Point Point { get; set; }
             public bool IsResource => Type == TileType.WOOD || Type == TileType.FOOD || Type == TileType.GOLD || Type == TileType.STONE;
             public TileType Type { get; set; }
         }
@@ -107,6 +109,13 @@ namespace Quaternary.Algorithms
         public void Generate(int size)
         {
             Tiles = new Tile[size, size];
+            for (int x = 0; x < size; x++)
+            {
+                for (int y = 0; y < size; y++)
+                {
+                    Tiles[x, y] = new Tile() { Point = new Point(x, y) };
+                }
+            }
 
             GenerateResourceClump(TileType.WOOD, 12, 18, 30, 50);
             GenerateResourceClump(TileType.WOOD, 12, 18, 30, 50);
@@ -114,7 +123,6 @@ namespace Quaternary.Algorithms
             {
                 GenerateResourceClump(TileType.WOOD, 16, 24, 40, 60);
             }
-            
 
             GenerateResourceClump(TileType.GOLD, 10, 16, 7, 7);
             GenerateResourceClump(TileType.GOLD, 16, 24, 4, 4);
@@ -128,9 +136,16 @@ namespace Quaternary.Algorithms
 
         public List<Point> GenerateWall(IEnumerable<Point> goals)
         {
-            var wall = GrahamScan.GetConvexHull(goals).ToList();
-            wall.RemoveAll(p => Tiles[p.X, p.Y].Type != TileType.NONE);
-            return wall;
+            var wall = new HashSet<Point>();
+            foreach (var pos in GrahamScan.GetConvexHull(goals))
+            {
+                wall.Add(pos);
+            }
+            wall.RemoveWhere(p => Tiles[p.X, p.Y].Type != TileType.NONE);
+
+            FixWall(wall);
+
+            return wall.ToList();
         }
 
         public List<HashSet<Point>> GetResourceClumps()
@@ -138,27 +153,19 @@ namespace Quaternary.Algorithms
             var size = Size;
             var clumps = new List<HashSet<Point>>();
 
-            for (int x = 0; x < size; x++)
+            foreach (var tile in Tiles)
             {
-                for (int y = 0; y < size; y++)
+                var pos = tile.Point;
+
+                if (tile.IsResource && clumps.Count(c => c.Contains(pos)) == 0)
                 {
-                    var pos = new Point(x, y);
-
-                    if (clumps.Count(c => c.Contains(pos)) == 0)
+                    var clump = new HashSet<Point>();
+                    foreach (var p in FloodFill.GetInterior(pos, p => GetNeighbours(p, true), p => Tiles[p.X, p.Y].Type == tile.Type))
                     {
-                        var tile = Tiles[x, y];
-
-                        if (tile.IsResource)
-                        {
-                            var clump = new HashSet<Point>();
-                            foreach (var p in FloodFill.GetInterior(pos, p => GetNeighbours(p, true), p => Tiles[p.X, p.Y].Type == tile.Type))
-                            {
-                                clump.Add(p);
-                            }
-
-                            clumps.Add(clump);
-                        }
+                        clump.Add(p);
                     }
+
+                    clumps.Add(clump);
                 }
             }
 
@@ -247,15 +254,11 @@ namespace Quaternary.Algorithms
             var pos = Position.FromPoint(RNG.Next(size), RNG.Next(size));
             
             var resources = new HashSet<Point>();
-            for (int x = 0; x < size; x++)
+            foreach (var tile in Tiles)
             {
-                for (int y = 0; y < size; y++)
+                if (tile.IsResource)
                 {
-                    var tile = Tiles[x, y];
-                    if (tile.IsResource)
-                    {
-                        resources.Add(new Point(x, y));
-                    }
+                    resources.Add(tile.Point);
                 }
             }
 
@@ -310,6 +313,47 @@ namespace Quaternary.Algorithms
                 var tile = Tiles[p.X, p.Y];
                 tile.Type = resource;
                 Tiles[p.X, p.Y] = tile;
+            }
+        }
+
+        private void FixWall(HashSet<Point> wall)
+        {
+            var interior = new HashSet<Point>();
+            var size = Size;
+            foreach (var point in FloodFill.GetInterior(new Point(size / 2, size / 2), 
+                p => GetNeighbours(p), 
+                p => Tiles[p.X, p.Y].Type == TileType.NONE && !wall.Contains(p)))
+            {
+                interior.Add(point);
+            }
+            
+            // remove useless pieces
+
+            foreach (var point in wall.ToList())
+            {
+                var has_interior = false;
+                var has_exterior = false;
+
+                foreach (var n in GetNeighbours(point))
+                {
+                    if (Tiles[n.X, n.Y].Type == TileType.NONE && !wall.Contains(n))
+                    {
+                        if (interior.Contains(n))
+                        {
+                            has_interior = true;
+                        }
+                        else
+                        {
+                            has_exterior = true;
+                        }
+                    }
+                }
+
+                if (has_interior == false || has_exterior == false)
+                {
+                    wall.Remove(point);
+                    Debug.WriteLine($"Removed wall piece {point.X} {point.Y}");
+                }
             }
         }
     }
