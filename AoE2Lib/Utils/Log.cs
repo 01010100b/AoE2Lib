@@ -6,6 +6,8 @@ namespace AoE2Lib.Utils
 {
     public class Log
     {
+        public static readonly Log Static = new Log();
+
         public int Level = 0;
 
         public void Info(object message)

@@ -19,7 +19,7 @@ namespace AoE2Lib.Bots
         public Mod Mod { get; private set; } = null;
         public int PlayerNumber { get; private set; } = -1;
         public int Tick { get; private set; } = 0;
-        public readonly Log Log = new Log();
+        public readonly Log Log = Log.Static;
 
         private Thread BotThread { get; set; } = null;
         private volatile bool Stopping = false;
@@ -147,7 +147,14 @@ namespace AoE2Lib.Bots
 
                 Log.Info($"Call took {sw.ElapsedMilliseconds} ms");
 
-                if (resultlist != null)
+                if (resultlist == null)
+                {
+                    foreach (var command in commands)
+                    {
+                        command.Reset();
+                    }
+                }
+                else
                 {
                     sw.Restart();
 

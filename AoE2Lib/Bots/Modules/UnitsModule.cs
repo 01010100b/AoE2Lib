@@ -23,7 +23,7 @@ namespace AoE2Lib.Bots.Modules
 
         private readonly Dictionary<int, int> LastBuildTicks = new Dictionary<int, int>();
 
-        public void FindUnits(Vector2 position, int range, int player, UnitFindType type)
+        public void FindUnits(Position position, int range, int player, UnitFindType type)
         {
             var command = new Command();
 
@@ -178,10 +178,10 @@ namespace AoE2Lib.Bots.Modules
         {
             Debug.Assert(!unit.IsBuilding);
 
-            Build(unit, Vector2.FromPoint(-1, -1), max, concurrent, priority);
+            Build(unit, Position.FromPoint(-1, -1), max, concurrent, priority);
         }
 
-        public void Build(UnitDef unit, Vector2 position, int max = int.MaxValue, int concurrent = int.MaxValue, int priority = 0)
+        public void Build(UnitDef unit, Position position, int max = int.MaxValue, int concurrent = int.MaxValue, int priority = 0)
         {
             var info = Bot.GetModule<InfoModule>();
             info.AddUnitType(unit);
@@ -325,7 +325,7 @@ namespace AoE2Lib.Bots.Modules
             var explored = Bot.GetModule<MapModule>().GetTiles().Where(t => t.Explored).Select(t => t.Position).ToList();
             if (explored.Count == 0)
             {
-                explored.Add(Vector2.FromPoint(0, 0));
+                explored.Add(Position.FromPoint(0, 0));
             }
 
             var gametime = Bot.GetModule<InfoModule>().GameTime;

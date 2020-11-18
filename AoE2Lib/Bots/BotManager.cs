@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using static Protos.AIModuleAPI;
@@ -23,13 +24,12 @@ namespace AoE2Lib.Bots
         public readonly GameInstance GameInstance;
 
         private readonly Channel Channel;
+        private readonly Thread[] Threads = new Thread[8];
         private readonly ExpertAPIClient[] Clients;
         private readonly Dictionary<int, Func<Bot>> RegisteredBots = new Dictionary<int, Func<Bot>>();
         private readonly Dictionary<int, Bot> Players = new Dictionary<int, Bot>();
         private int PreviousGameTime { get; set; } = 0;
-        private readonly Log Log = new Log();
-
-        private Thread ManagerThread { get; set; } = null;
+        private readonly Log Log = Log.Static;
         private volatile bool Stopping = false;
 
         private bool DisposedValue;
@@ -68,8 +68,12 @@ namespace AoE2Lib.Bots
         {
             Stop();
 
-            ManagerThread = new Thread(() => Run()) { IsBackground = true };
-            ManagerThread.Start();
+            for (int i = 0; i < Threads.Length; i++)
+            {
+                var thread = new Thread(() => RunPlayer(i + 1));
+                Threads[i] = thread;
+                thread.Start();
+            }
 
             Log.Info("Bot manager started");
         }
@@ -77,7 +81,12 @@ namespace AoE2Lib.Bots
         public void Stop()
         {
             Stopping = true;
-            ManagerThread?.Join();
+
+            foreach (var thread in Threads)
+            {
+                thread?.Join();
+            }
+
             Stopping = false;
 
             Log.Info("Bot manager stopped");
@@ -96,6 +105,87 @@ namespace AoE2Lib.Bots
             catch
             {
 
+            }
+        }
+
+        private void RunPlayer(int player)
+        {
+            var api = new ExpertAPIClient(Channel);
+
+            while (!Stopping)
+            {
+                var commandlist = new CommandList() { PlayerNumber = player };
+                commandlist.Commands.Add(Any.Pack(new GameTime()));
+                commandlist.Commands.Add(Any.Pack(new Goal() { GoalId = 420 }));
+
+                CommandResultList result;
+                try
+                {
+                    result = api.ExecuteCommandList(commandlist);
+                }
+                catch (Exception e)
+                {
+                    Log.Info(e.Message);
+                    result = null;
+                }
+
+                if (result != null)
+                {
+                    lock (Threads)
+                    {
+                        var gametime = result.Results[0].Unpack<GameTimeResult>().Result;
+                        var id = result.Results[1].Unpack<GoalResult>().Result;
+
+                        // new game?
+                        if (gametime < PreviousGameTime - 2)
+                        {
+                            foreach (var bot in Players.Values)
+                            {
+                                bot.Stop();
+                            }
+
+                            Players.Clear();
+
+                            Log.Info("Game restarted");
+                        }
+
+                        PreviousGameTime = gametime;
+
+                        if (RegisteredBots.TryGetValue(id, out Func<Bot> create))
+                        {
+                            if (Players.TryGetValue(result.PlayerNumber, out Bot current))
+                            {
+                                if (current.Id != id)
+                                {
+                                    current.Stop();
+                                    Players.Remove(result.PlayerNumber);
+                                }
+                            }
+
+                            if (!Players.ContainsKey(result.PlayerNumber))
+                            {
+                                var bot = create();
+
+                                bot.AddModule(new InfoModule());
+                                bot.AddModule(new SpendingModule());
+                                bot.AddModule(new MapModule());
+                                bot.AddModule(new PlayersModule());
+                                bot.AddModule(new UnitsModule());
+                                bot.AddModule(new ResearchModule());
+                                bot.AddModule(new PlacementModule());
+
+                                Players.Add(result.PlayerNumber, bot);
+
+                                var botapi = new ExpertAPIClient(Channel);
+                                var mod = new Mod();
+                                mod.LoadDE();
+                                bot.Start(mod, result.PlayerNumber, botapi);
+
+                                Log.Info($"{bot.Name} taking control of player {result.PlayerNumber}");
+                            }
+                        }
+                    }
+                }
             }
         }
 

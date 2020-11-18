@@ -25,7 +25,7 @@ namespace Quaternary
             GetModule<UnitsModule>().Train(Mod.Villager); // vill
 
             var pos = GetModule<InfoModule>().MyPosition;
-            var dpos = Vector2.FromPoint(RNG.Next(-10, 10), RNG.Next(-10, 10));
+            var dpos = Position.FromPoint(RNG.Next(-10, 10), RNG.Next(-10, 10));
             pos += dpos;
 
             var positions = GetModule<PlacementModule>().GetPlacementPositions(Mod.House, pos, 1, true, 10).ToList();

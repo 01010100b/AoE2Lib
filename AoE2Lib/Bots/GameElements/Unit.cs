@@ -17,8 +17,8 @@ namespace AoE2Lib.Bots.GameElements
         public bool Targetable { get; private set; } = true;
         public DateTime LastTargetable { get; private set; } = DateTime.UtcNow;
         public int TargetId { get; private set; } = -1;
-        public Vector2 Position { get; private set; } = Vector2.FromPoint(-1, -1);
-        public Vector2 Velocity { get; private set; } = Vector2.FromPoint(0, 0);
+        public Position Position { get; private set; } = Position.FromPoint(-1, -1);
+        public Position Velocity { get; private set; } = Position.FromPoint(0, 0);
         public int TypeId { get; private set; } = -1;
         public int PlayerNumber { get; private set; } = -1;
         public int Hitpoints { get; private set; } = -1;
@@ -125,7 +125,7 @@ namespace AoE2Lib.Bots.GameElements
                 CmdId = (CmdId)responses[20].Unpack<UpObjectDataResult>().Result;
                 BaseTypeId = responses[21].Unpack<UpObjectDataResult>().Result;
 
-                var pos = Vector2.FromPrecise(x, y);
+                var pos = Position.FromPrecise(x, y);
                 var ticks = Math.Max(1, Bot.Tick - LastUpdateTick);
                 var seconds = Math.Max(0.001, ticks * Bot.GetModule<InfoModule>().GameSecondsPerTick);
                 var v = (pos - Position) / seconds;

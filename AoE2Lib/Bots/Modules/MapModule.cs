@@ -19,7 +19,7 @@ namespace AoE2Lib.Bots.Modules
         private readonly Command Command = new Command();
         private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.GetHashCode());
 
-        public bool IsOnMap(Vector2 position)
+        public bool IsOnMap(Position position)
         {
             return IsOnMap(position.PointX, position.PointY);
         }
@@ -29,7 +29,7 @@ namespace AoE2Lib.Bots.Modules
             return x >= 0 && x < Width && y >= 0 && y < Height;
         }
 
-        public Tile GetTile(Vector2 position)
+        public Tile GetTile(Position position)
         {
             return GetTile(position.PointX, position.PointY);
         }
@@ -54,7 +54,7 @@ namespace AoE2Lib.Bots.Modules
             return Tiles.SelectMany(r => r);
         }
 
-        public IEnumerable<Tile> GetTilesByDistance(Vector2 position)
+        public IEnumerable<Tile> GetTilesByDistance(Position position)
         {
             var pointx = position.PointX;
             var pointy = position.PointY;

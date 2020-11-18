@@ -10,10 +10,10 @@ namespace AoE2Lib.Bots.Modules
 {
     public class PlacementModule : Module
     {
-        private readonly HashSet<Vector2> Restrictions = new HashSet<Vector2>();
-        private readonly HashSet<Vector2> ExtraRestrictions = new HashSet<Vector2>();
+        private readonly HashSet<Position> Restrictions = new HashSet<Position>();
+        private readonly HashSet<Position> ExtraRestrictions = new HashSet<Position>();
 
-        public IEnumerable<Vector2> GetPlacementPositions(UnitDef unit, Vector2 position, int clearance, bool restricted, int range)
+        public IEnumerable<Position> GetPlacementPositions(UnitDef unit, Position position, int clearance, bool restricted, int range)
         {
             var map = Bot.GetModule<MapModule>();
             foreach (var tile in map.GetTilesByDistance(position))
@@ -33,7 +33,7 @@ namespace AoE2Lib.Bots.Modules
             }
         }
 
-        public bool CanBuildAtPosition(MapModule map, UnitDef unit, Vector2 position, int clearance, bool restricted)
+        public bool CanBuildAtPosition(MapModule map, UnitDef unit, Position position, int clearance, bool restricted)
         {
             var elevation = int.MinValue;
             foreach (var pos in GetFootprint(unit, position, clearance))
@@ -81,7 +81,7 @@ namespace AoE2Lib.Bots.Modules
             return true;
         }
 
-        public IEnumerable<Vector2> GetFootprint(UnitDef unit, Vector2 position, int clearance)
+        public IEnumerable<Position> GetFootprint(UnitDef unit, Position position, int clearance)
         {
             var xmin = position.PointX - (unit.Width / 2) - clearance;
             var xmax = position.PointX + ((unit.Width - 1) / 2) + clearance;
@@ -92,7 +92,7 @@ namespace AoE2Lib.Bots.Modules
             {
                 for (int y = ymin; y <= ymax; y++)
                 {
-                    yield return Vector2.FromPoint(x, y);
+                    yield return Position.FromPoint(x, y);
                 }
             }
         }

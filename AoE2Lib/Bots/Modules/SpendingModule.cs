@@ -17,11 +17,6 @@ namespace AoE2Lib.Bots.Modules
             public int Cost => WoodAmount + FoodAmount + GoldAmount + StoneAmount;
         }
 
-        public int WoodMin { get; set; } = 0;
-        public int FoodMin { get; set; } = 0;
-        public int GoldMin { get; set; } = 0;
-        public int StoneMin { get; set; } = 0;
-
         private readonly List<SpendingCommand> Commands = new List<SpendingCommand>();
 
         public void Add(SpendingCommand command)
@@ -32,10 +27,10 @@ namespace AoE2Lib.Bots.Modules
         protected override IEnumerable<Command> RequestUpdate()
         {
             var info = Bot.GetModule<InfoModule>();
-            var wood = info.WoodAmount - WoodMin;
-            var food = info.FoodAmount - FoodMin;
-            var gold = info.GoldAmount - GoldMin;
-            var stone = info.StoneAmount - StoneMin;
+            var wood = info.WoodAmount;
+            var food = info.FoodAmount;
+            var gold = info.GoldAmount;
+            var stone = info.StoneAmount;
             var priority = 0;
 
             foreach (var command in Commands)
