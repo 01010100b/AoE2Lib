@@ -86,7 +86,7 @@ namespace Quaternary.Algorithms
 
                 //Debug.WriteLine($"from {current.X} {current.Y} to {next.X} {next.Y}");
 
-                remaining.AddRange(Map.GetLine(current, next));
+                remaining.AddRange(AnalysisMap.GetLine(current, next));
             }
 
             return remaining.Distinct();

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Quaternary.Algorithms
 {
-    public class Map
+    public class AnalysisMap
     {
         public static int WallDistance(Point a, Point b)
         {
@@ -72,19 +72,19 @@ namespace Quaternary.Algorithms
             return points;
         }
 
-        public enum TileType
+        public enum AnalysisTileType
         {
             NONE, WALL, WOOD, FOOD, GOLD, STONE, OBSTRUCTION, GOAL, INTERIOR
         }
 
-        public struct Tile
+        public struct AnalysisTile
         {
             public Point Point { get; set; }
-            public bool IsResource => Type == TileType.WOOD || Type == TileType.FOOD || Type == TileType.GOLD || Type == TileType.STONE;
-            public TileType Type { get; set; }
+            public bool IsResource => Type == AnalysisTileType.WOOD || Type == AnalysisTileType.FOOD || Type == AnalysisTileType.GOLD || Type == AnalysisTileType.STONE;
+            public AnalysisTileType Type { get; set; }
         }
 
-        public Tile[,] Tiles { get; set; } = null;
+        public AnalysisTile[,] Tiles { get; set; } = null;
         public int Size
         {
             get
@@ -104,53 +104,40 @@ namespace Quaternary.Algorithms
             }
         }
 
+        public Point Center => new Point(Size / 2, Size / 2);
+
         private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.GetHashCode());
 
         public void Generate(int size)
         {
-            Tiles = new Tile[size, size];
+            Tiles = new AnalysisTile[size, size];
             for (int x = 0; x < size; x++)
             {
                 for (int y = 0; y < size; y++)
                 {
-                    Tiles[x, y] = new Tile() { Point = new Point(x, y) };
+                    Tiles[x, y] = new AnalysisTile() { Point = new Point(x, y) };
                 }
             }
 
-            GenerateResourceClump(TileType.WOOD, 12, 18, 30, 50);
-            GenerateResourceClump(TileType.WOOD, 12, 18, 30, 50);
+            GenerateResourceClump(AnalysisTileType.WOOD, 12, 18, 30, 50);
+            GenerateResourceClump(AnalysisTileType.WOOD, 12, 18, 30, 50);
             for (int i = 0; i < 1; i++)
             {
-                GenerateResourceClump(TileType.WOOD, 16, 24, 40, 60);
+                GenerateResourceClump(AnalysisTileType.WOOD, 16, 24, 40, 60);
             }
 
-            GenerateResourceClump(TileType.GOLD, 10, 16, 7, 7);
-            GenerateResourceClump(TileType.GOLD, 16, 24, 4, 4);
-            GenerateResourceClump(TileType.GOLD, 16, 24, 4, 4);
+            GenerateResourceClump(AnalysisTileType.GOLD, 10, 16, 7, 7);
+            GenerateResourceClump(AnalysisTileType.GOLD, 16, 24, 4, 4);
+            GenerateResourceClump(AnalysisTileType.GOLD, 16, 24, 4, 4);
 
-            GenerateResourceClump(TileType.STONE, 10, 16, 5, 5);
-            GenerateResourceClump(TileType.STONE, 15, 20, 4, 4);
+            GenerateResourceClump(AnalysisTileType.STONE, 10, 16, 5, 5);
+            GenerateResourceClump(AnalysisTileType.STONE, 15, 20, 4, 4);
 
-            GenerateResourceClump(TileType.FOOD, 8, 12, 6, 6);
-        }
-
-        public List<Point> GenerateWall(IEnumerable<Point> goals)
-        {
-            var wall = new HashSet<Point>();
-            foreach (var pos in GrahamScan.GetConvexHull(goals))
-            {
-                wall.Add(pos);
-            }
-            wall.RemoveWhere(p => Tiles[p.X, p.Y].Type != TileType.NONE);
-
-            FixWall(wall);
-
-            return wall.ToList();
+            GenerateResourceClump(AnalysisTileType.FOOD, 8, 12, 6, 6);
         }
 
         public List<HashSet<Point>> GetResourceClumps()
         {
-            var size = Size;
             var clumps = new List<HashSet<Point>>();
 
             foreach (var tile in Tiles)
@@ -241,7 +228,7 @@ namespace Quaternary.Algorithms
             }
         }
 
-        private void GenerateResourceClump(TileType resource, double min_distance, double max_distance, int min_count, int max_count)
+        private void GenerateResourceClump(AnalysisTileType resource, double min_distance, double max_distance, int min_count, int max_count)
         {
             var size = Size;
             if (size < 1)
@@ -249,8 +236,7 @@ namespace Quaternary.Algorithms
                 return;
             }
 
-            var center = Position.FromPoint(size / 2, size / 2);
-
+            var center = Position.FromPoint(Center.X, Center.Y);
             var pos = Position.FromPoint(RNG.Next(size), RNG.Next(size));
             
             var resources = new HashSet<Point>();
@@ -263,7 +249,7 @@ namespace Quaternary.Algorithms
             }
 
             var md = double.MinValue;
-            while (md < (resource == TileType.WOOD ? 5 : 5))
+            while (md < (resource == AnalysisTileType.WOOD ? 5 : 5))
             {
                 pos = Position.FromPoint(RNG.Next(size), RNG.Next(size));
 
@@ -316,45 +302,6 @@ namespace Quaternary.Algorithms
             }
         }
 
-        private void FixWall(HashSet<Point> wall)
-        {
-            var interior = new HashSet<Point>();
-            var size = Size;
-            foreach (var point in FloodFill.GetInterior(new Point(size / 2, size / 2), 
-                p => GetNeighbours(p), 
-                p => Tiles[p.X, p.Y].Type == TileType.NONE && !wall.Contains(p)))
-            {
-                interior.Add(point);
-            }
-            
-            // remove useless pieces
-
-            foreach (var point in wall.ToList())
-            {
-                var has_interior = false;
-                var has_exterior = false;
-
-                foreach (var n in GetNeighbours(point))
-                {
-                    if (Tiles[n.X, n.Y].Type == TileType.NONE && !wall.Contains(n))
-                    {
-                        if (interior.Contains(n))
-                        {
-                            has_interior = true;
-                        }
-                        else
-                        {
-                            has_exterior = true;
-                        }
-                    }
-                }
-
-                if (has_interior == false || has_exterior == false)
-                {
-                    wall.Remove(point);
-                    Debug.WriteLine($"Removed wall piece {point.X} {point.Y}");
-                }
-            }
-        }
+        
     }
 }

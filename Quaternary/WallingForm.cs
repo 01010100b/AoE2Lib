@@ -12,14 +12,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Quaternary.Algorithms.Map;
+using static Quaternary.Algorithms.AnalysisMap;
 
 namespace Quaternary
 {
     public partial class WallingForm : Form
     {
         private const int TILE_SIZE = 16;
-        private readonly Map Map = new Map();
+        private readonly AnalysisMap Map = new AnalysisMap();
 
         public WallingForm()
         {
@@ -44,14 +44,14 @@ namespace Quaternary
                     var brush = Brushes.AntiqueWhite;
                     switch (Map.Tiles[x, y].Type)
                     {
-                        case TileType.WALL: brush = Brushes.Red; break;
-                        case TileType.WOOD: brush = Brushes.Green; break;
-                        case TileType.FOOD: brush = Brushes.LightGreen; break;
-                        case TileType.GOLD: brush = Brushes.Yellow; break;
-                        case TileType.STONE: brush = Brushes.LightGray; break;
-                        case TileType.OBSTRUCTION: brush = Brushes.Black; break;
-                        case TileType.GOAL: brush = Brushes.Blue; break;
-                        case TileType.INTERIOR: brush = Brushes.DarkGray; break;
+                        case AnalysisTileType.WALL: brush = Brushes.Red; break;
+                        case AnalysisTileType.WOOD: brush = Brushes.Green; break;
+                        case AnalysisTileType.FOOD: brush = Brushes.LightGreen; break;
+                        case AnalysisTileType.GOLD: brush = Brushes.Yellow; break;
+                        case AnalysisTileType.STONE: brush = Brushes.LightGray; break;
+                        case AnalysisTileType.OBSTRUCTION: brush = Brushes.Black; break;
+                        case AnalysisTileType.GOAL: brush = Brushes.Blue; break;
+                        case AnalysisTileType.INTERIOR: brush = Brushes.DarkGray; break;
                     }
 
                     if (x == size / 2 && y == size / 2)
@@ -79,13 +79,13 @@ namespace Quaternary
             var size = Map.Size;
 
             var goals = GetGoals();
-            var wall = Map.GenerateWall(goals);
+            var wall = Walling.GenerateWall(Map, goals);
             foreach (var point in wall)
             {
-                Map.Tiles[point.X, point.Y].Type = TileType.WALL;
+                Map.Tiles[point.X, point.Y].Type = AnalysisTileType.WALL;
             }
 
-            var interior = FloodFill.GetInterior(new Point(size / 2, size / 2), p => Map.GetNeighbours(p), p => Map.Tiles[p.X, p.Y].Type == TileType.NONE);
+            var interior = FloodFill.GetInterior(new Point(size / 2, size / 2), p => Map.GetNeighbours(p), p => Map.Tiles[p.X, p.Y].Type == AnalysisTileType.NONE);
             //interior.AddRange(FloodFill.GetInterior(interior[0], p => Map.GetNeighbours(p), p => interior.Contains(p) || Map.Tiles[p.X, p.Y].Type != TileType.NONE));
 
             Debug.WriteLine($"Generation + wall took {sw.ElapsedMilliseconds} ms");
@@ -98,9 +98,9 @@ namespace Quaternary
             {
                 foreach (var point in interior)
                 {
-                    if (Map.Tiles[point.X, point.Y].Type == TileType.NONE || true)
+                    if (Map.Tiles[point.X, point.Y].Type == AnalysisTileType.NONE || true)
                     {
-                        Map.Tiles[point.X, point.Y].Type = TileType.INTERIOR;
+                        Map.Tiles[point.X, point.Y].Type = AnalysisTileType.INTERIOR;
                     }
 
                 }
@@ -110,7 +110,7 @@ namespace Quaternary
             {
                 foreach (var point in goals)
                 {
-                    Map.Tiles[point.X, point.Y].Type = TileType.GOAL;
+                    Map.Tiles[point.X, point.Y].Type = AnalysisTileType.GOAL;
                 }
             }
 
@@ -152,7 +152,7 @@ namespace Quaternary
             var clumps = Map.GetResourceClumps();
             clumps.Sort((a, b) =>
             {
-                return a.Min(p => Map.WallDistance(p, center)).CompareTo(b.Min(p => Map.WallDistance(p, center)));
+                return a.Min(p => AnalysisMap.WallDistance(p, center)).CompareTo(b.Min(p => AnalysisMap.WallDistance(p, center)));
             });
 
             var wood = false;
@@ -176,7 +176,7 @@ namespace Quaternary
                 var pos = clump.First();
                 var tile = Map.Tiles[pos.X, pos.Y];
 
-                if (tile.Type == TileType.WOOD)
+                if (tile.Type == AnalysisTileType.WOOD)
                 {
                     var add = !wood;
 
@@ -210,20 +210,20 @@ namespace Quaternary
                         goals.Add(positions[positions.Count - 1]);
                     }
                 }
-                else if (tile.Type == TileType.FOOD || tile.Type == TileType.GOLD || tile.Type == TileType.STONE)
+                else if (tile.Type == AnalysisTileType.FOOD || tile.Type == AnalysisTileType.GOLD || tile.Type == AnalysisTileType.STONE)
                 {
                     var add = false;
-                    if (tile.Type == TileType.FOOD && !food)
+                    if (tile.Type == AnalysisTileType.FOOD && !food)
                     {
                         add = true;
                         food = true;
                     }
-                    else if (tile.Type == TileType.GOLD && !gold)
+                    else if (tile.Type == AnalysisTileType.GOLD && !gold)
                     {
                         add = true;
                         gold = true;
                     }
-                    else if (tile.Type == TileType.STONE && !stone)
+                    else if (tile.Type == AnalysisTileType.STONE && !stone)
                     {
                         add = true;
                         stone = true;
