@@ -34,6 +34,7 @@
             this.LabelWallCount = new System.Windows.Forms.Label();
             this.LabelInterior = new System.Windows.Forms.Label();
             this.CheckAllResources = new System.Windows.Forms.CheckBox();
+            this.CheckOptimize = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // ButtonGenerate
@@ -94,11 +95,22 @@
             this.CheckAllResources.Text = "Take all resources";
             this.CheckAllResources.UseVisualStyleBackColor = true;
             // 
+            // CheckOptimize
+            // 
+            this.CheckOptimize.AutoSize = true;
+            this.CheckOptimize.Location = new System.Drawing.Point(1022, 809);
+            this.CheckOptimize.Name = "CheckOptimize";
+            this.CheckOptimize.Size = new System.Drawing.Size(66, 17);
+            this.CheckOptimize.TabIndex = 6;
+            this.CheckOptimize.Text = "Optimize";
+            this.CheckOptimize.UseVisualStyleBackColor = true;
+            // 
             // WallingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1238, 971);
+            this.Controls.Add(this.CheckOptimize);
             this.Controls.Add(this.CheckAllResources);
             this.Controls.Add(this.LabelInterior);
             this.Controls.Add(this.LabelWallCount);
@@ -122,5 +134,6 @@
         private System.Windows.Forms.Label LabelWallCount;
         private System.Windows.Forms.Label LabelInterior;
         private System.Windows.Forms.CheckBox CheckAllResources;
+        private System.Windows.Forms.CheckBox CheckOptimize;
     }
 }

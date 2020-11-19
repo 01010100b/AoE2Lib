@@ -125,7 +125,12 @@ namespace Quaternary
             var size = Map.Size;
 
             GetGoals();
-            var wall = Walling.GenerateWall(Map, Goals, 10);
+            var optimize = 3;
+            if (CheckOptimize.Checked)
+            {
+                optimize = 10;
+            }
+            var wall = Walling.GenerateWall(Map, Goals, optimize);
             foreach (var point in wall)
             {
                 Map.Tiles[point.X, point.Y].Type = AnalysisTileType.WALL;
