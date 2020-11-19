@@ -74,7 +74,7 @@ namespace Quaternary.Algorithms
 
         public enum AnalysisTileType
         {
-            NONE, WALL, WOOD, FOOD, GOLD, STONE, OBSTRUCTION, GOAL, INTERIOR
+            NONE, WALL, WOOD, FOOD, GOLD, STONE, OBSTRUCTION
         }
 
         public struct AnalysisTile
@@ -94,13 +94,7 @@ namespace Quaternary.Algorithms
                     return -1;
                 }
 
-                var size = (int)Math.Ceiling(Math.Sqrt(Tiles.Length));
-                while (Tiles.Length > size * size)
-                {
-                    size--;
-                }
-
-                return size;
+                return (int)Math.Round(Math.Sqrt(Tiles.Length));
             }
         }
 
@@ -134,29 +128,6 @@ namespace Quaternary.Algorithms
             GenerateResourceClump(AnalysisTileType.STONE, 15, 20, 4, 4);
 
             GenerateResourceClump(AnalysisTileType.FOOD, 8, 12, 6, 6);
-        }
-
-        public List<HashSet<Point>> GetResourceClumps()
-        {
-            var clumps = new List<HashSet<Point>>();
-
-            foreach (var tile in Tiles)
-            {
-                var pos = tile.Point;
-
-                if (tile.IsResource && clumps.Count(c => c.Contains(pos)) == 0)
-                {
-                    var clump = new HashSet<Point>();
-                    foreach (var p in FloodFill.GetInterior(pos, p => GetNeighbours(p, true), p => Tiles[p.X, p.Y].Type == tile.Type))
-                    {
-                        clump.Add(p);
-                    }
-
-                    clumps.Add(clump);
-                }
-            }
-
-            return clumps;
         }
 
         public IEnumerable<Point> GetNeighbours(Point a, bool diagonal = false)
@@ -228,6 +199,29 @@ namespace Quaternary.Algorithms
             }
         }
 
+        public List<HashSet<Point>> GetResourceClumps()
+        {
+            var clumps = new List<HashSet<Point>>();
+
+            foreach (var tile in Tiles)
+            {
+                var pos = tile.Point;
+
+                if (tile.IsResource && clumps.Count(c => c.Contains(pos)) == 0)
+                {
+                    var clump = new HashSet<Point>();
+                    foreach (var p in FloodFill.GetInterior(pos, p => GetNeighbours(p, true), p => Tiles[p.X, p.Y].Type == tile.Type))
+                    {
+                        clump.Add(p);
+                    }
+
+                    clumps.Add(clump);
+                }
+            }
+
+            return clumps;
+        }
+
         private void GenerateResourceClump(AnalysisTileType resource, double min_distance, double max_distance, int min_count, int max_count)
         {
             var size = Size;
@@ -236,9 +230,6 @@ namespace Quaternary.Algorithms
                 return;
             }
 
-            var center = Position.FromPoint(Center.X, Center.Y);
-            var pos = Position.FromPoint(RNG.Next(size), RNG.Next(size));
-            
             var resources = new HashSet<Point>();
             foreach (var tile in Tiles)
             {
@@ -248,8 +239,11 @@ namespace Quaternary.Algorithms
                 }
             }
 
+            var center = Position.FromPoint(Center.X, Center.Y);
+            var pos = Position.FromPoint(RNG.Next(size), RNG.Next(size));
+            
             var md = double.MinValue;
-            while (md < (resource == AnalysisTileType.WOOD ? 5 : 5))
+            while (md < 5)
             {
                 pos = Position.FromPoint(RNG.Next(size), RNG.Next(size));
 
@@ -301,7 +295,5 @@ namespace Quaternary.Algorithms
                 Tiles[p.X, p.Y] = tile;
             }
         }
-
-        
     }
 }

@@ -20,6 +20,8 @@ namespace Quaternary
     {
         private const int TILE_SIZE = 16;
         private readonly AnalysisMap Map = new AnalysisMap();
+        private List<Point> Goals = new List<Point>();
+        private List<Point> Interior = new List<Point>();
 
         public WallingForm()
         {
@@ -37,11 +39,13 @@ namespace Quaternary
             var size = Map.Size;
 
             var g = e.Graphics;
+            var brush = Brushes.AntiqueWhite;
+            var rect = new Rectangle(TILE_SIZE, TILE_SIZE, TILE_SIZE, TILE_SIZE);
             for (int x = 0; x < size; x++)
             {
                 for (int y = 0; y < size; y++)
                 {
-                    var brush = Brushes.AntiqueWhite;
+                    brush = Brushes.AntiqueWhite;
                     switch (Map.Tiles[x, y].Type)
                     {
                         case AnalysisTileType.WALL: brush = Brushes.Red; break;
@@ -50,8 +54,6 @@ namespace Quaternary
                         case AnalysisTileType.GOLD: brush = Brushes.Yellow; break;
                         case AnalysisTileType.STONE: brush = Brushes.LightGray; break;
                         case AnalysisTileType.OBSTRUCTION: brush = Brushes.Black; break;
-                        case AnalysisTileType.GOAL: brush = Brushes.Blue; break;
-                        case AnalysisTileType.INTERIOR: brush = Brushes.DarkGray; break;
                     }
 
                     if (x == size / 2 && y == size / 2)
@@ -59,64 +61,83 @@ namespace Quaternary
                         brush = Brushes.Orange;
                     }
 
-                    var rect = new Rectangle(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+                    rect = new Rectangle(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
                     g.FillRectangle(brush, rect);
                     g.DrawRectangle(Pens.White, rect);
                 }
             }
-        }
-
-        private void ButtonGenerate_Click(object sender, EventArgs e)
-        {
-            Debug.WriteLine("==== START NEW MAP ====");
-
-            var sw = new Stopwatch();
-            sw.Start();
-
-            Map.Generate(60);
-
-            var rng = new Random();
-            var size = Map.Size;
-
-            var goals = GetGoals();
-            var wall = Walling.GenerateWall(Map, goals);
-            foreach (var point in wall)
-            {
-                Map.Tiles[point.X, point.Y].Type = AnalysisTileType.WALL;
-            }
-
-            var interior = FloodFill.GetInterior(new Point(size / 2, size / 2), p => Map.GetNeighbours(p), p => Map.Tiles[p.X, p.Y].Type == AnalysisTileType.NONE);
-            //interior.AddRange(FloodFill.GetInterior(interior[0], p => Map.GetNeighbours(p), p => interior.Contains(p) || Map.Tiles[p.X, p.Y].Type != TileType.NONE));
-
-            Debug.WriteLine($"Generation + wall took {sw.ElapsedMilliseconds} ms");
-            
-            LabelInterior.Text = $"Interior: {interior.Count}";
-
-            LabelWallCount.Text = $"Wall length: {wall.Count}";
 
             if (CheckShowInterior.Checked)
             {
+                var interior = FloodFill.GetInterior(Map.Center, p => Map.GetNeighbours(p), p => Map.Tiles[p.X, p.Y].Type == AnalysisTileType.NONE);
                 foreach (var point in interior)
                 {
-                    if (Map.Tiles[point.X, point.Y].Type == AnalysisTileType.NONE || true)
-                    {
-                        Map.Tiles[point.X, point.Y].Type = AnalysisTileType.INTERIOR;
-                    }
-
+                    brush = Brushes.DarkGray;
+                    rect = new Rectangle(point.X * TILE_SIZE, point.Y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+                    g.FillRectangle(brush, rect);
+                    g.DrawRectangle(Pens.White, rect);
                 }
             }
 
             if (CheckShowGoals.Checked)
             {
-                foreach (var point in goals)
+                foreach (var point in Goals)
                 {
-                    Map.Tiles[point.X, point.Y].Type = AnalysisTileType.GOAL;
+                    brush = Brushes.Blue;
+                    rect = new Rectangle(point.X * TILE_SIZE, point.Y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+                    g.FillRectangle(brush, rect);
+                    g.DrawRectangle(Pens.White, rect);
                 }
             }
 
+            brush = Brushes.Orange;
+            rect = new Rectangle((size / 2) * TILE_SIZE, (size / 2) * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+            g.FillRectangle(brush, rect);
+            g.DrawRectangle(Pens.White, rect);
+        }
+
+        private void ButtonGenerate_Click(object sender, EventArgs e)
+        {
+            Sample(100);
+        }
+
+        private void Sample(int samples)
+        {
+            var wall = 0d;
+            var interior = 0d;
+            for (int i = 0; i < samples; i++)
+            {
+                wall += Generate().Count;
+                interior += FloodFill.GetInterior(Map.Center, p => Map.GetNeighbours(p), p => Map.Tiles[p.X, p.Y].Type == AnalysisTileType.NONE).Count;
+            }
+
+            wall /= samples;
+            interior /= samples;
+
+            Debug.WriteLine($"Average wall {wall:N0} interior {interior:N0} effiency {interior / wall:N2}");
+        }
+
+        private List<Point> Generate()
+        {
+            Map.Generate(60);
+
+            var rng = new Random();
+            var size = Map.Size;
+
+            GetGoals();
+            var wall = Walling.GenerateWall(Map, Goals, 10);
+            foreach (var point in wall)
+            {
+                Map.Tiles[point.X, point.Y].Type = AnalysisTileType.WALL;
+            }
+
+            var interior = FloodFill.GetInterior(Map.Center, p => Map.GetNeighbours(p), p => Map.Tiles[p.X, p.Y].Type == AnalysisTileType.NONE);
+            LabelInterior.Text = $"Interior: {interior.Count}";
+            LabelWallCount.Text = $"Wall length: {wall.Count}";
+
             Refresh();
 
-            Debug.WriteLine($"Took {sw.ElapsedMilliseconds} ms");
+            return wall;
         }
 
         private void WallingForm_MouseClick(object sender, MouseEventArgs e)
@@ -127,7 +148,7 @@ namespace Quaternary
             Debug.WriteLine($"clicked {x} {y}");
         }
 
-        private List<Point> GetGoals()
+        private void GetGoals()
         {
             const int MIN_SIZE = 10;
             const int RESOURCE_CLEARANCE = 2;
@@ -263,7 +284,8 @@ namespace Quaternary
                 
             }
 
-            return goals;
+            Goals.Clear();
+            Goals.AddRange(goals);
         }
     }
 }
