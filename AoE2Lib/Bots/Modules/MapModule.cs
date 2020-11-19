@@ -4,6 +4,7 @@ using Protos.Expert.Action;
 using Protos.Expert.Fact;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -12,10 +13,60 @@ namespace AoE2Lib.Bots.Modules
 {
     public class MapModule : Module
     {
+        public struct Tile
+        {
+            public readonly Point Point;
+            public Position Position => Position.FromPoint(Point.X, Point.Y);
+            public bool Explored { get; private set; }
+            public int Elevation { get; private set; }
+            public int Terrain { get; private set; }
+            public bool IsOnLand => Terrain != 1 && Terrain != 2 && Terrain != 4 && Terrain != 15 && Terrain != 22 && Terrain != 23 && Terrain != 28 && Terrain != 37;
+            
+            internal readonly Command Command;
+            internal TimeSpan LastUpdateGameTime { get; private set; }
+
+            internal Tile(Point point)
+            {
+                Point = point;
+                Explored = false;
+                Elevation = -1;
+                Terrain = -1;
+                Command = new Command();
+                LastUpdateGameTime = TimeSpan.MinValue;
+            }
+
+            public void RequestUpdate()
+            {
+                Command.Reset();
+
+                Command.Add(new SetGoal() { GoalId = 50, GoalValue = Point.X });
+                Command.Add(new SetGoal() { GoalId = 51, GoalValue = Point.Y });
+                Command.Add(new UpBoundPoint() { GoalPoint1 = 52, GoalPoint2 = 50 });
+                Command.Add(new UpPointElevation() { GoalPoint = 52 });
+                Command.Add(new UpPointTerrain() { GoalPoint = 52 });
+                Command.Add(new UpPointExplored() { GoalPoint = 52 });
+            }
+
+            internal void Update(TimeSpan gametime)
+            {
+                var responses = Command.GetResponses();
+
+                if (responses.Count > 0)
+                {
+                    Elevation = responses[3].Unpack<UpPointElevationResult>().Result;
+                    Terrain = responses[4].Unpack<UpPointTerrainResult>().Result;
+                    Explored = responses[5].Unpack<UpPointExploredResult>().Result != 0;
+                    LastUpdateGameTime = gametime;
+
+                    Command.Reset();
+                }
+            }
+        }
+
         public int Width { get; private set; } = -1;
         public int Height { get; private set; } = -1;
 
-        private Tile[][] Tiles { get; set; }
+        private Tile[,] Tiles { get; set; }
         private readonly Command Command = new Command();
         private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.GetHashCode());
 
@@ -38,20 +89,26 @@ namespace AoE2Lib.Bots.Modules
         {
             if (!IsOnMap(x, y))
             {
-                return null;
+                return new Tile(new Point(-1, -1));
             }
 
-            return Tiles[x][y];
+            return Tiles[x, y];
+        }
+
+        private void SetTile(int x, int y, Tile tile)
+        {
+            Tiles[x, y] = tile;
         }
 
         public IEnumerable<Tile> GetTiles()
         {
-            if (Tiles == null)
+            if (Tiles != null)
             {
-                return Enumerable.Empty<Tile>();
+                foreach (var tile in Tiles)
+                {
+                    yield return tile;
+                }
             }
-
-            return Tiles.SelectMany(r => r);
         }
 
         public IEnumerable<Tile> GetTilesByDistance(Position position)
@@ -136,7 +193,7 @@ namespace AoE2Lib.Bots.Modules
 
             AddDefaultCommands();
 
-            foreach (var tile in GetTiles())
+            foreach (var tile in GetTiles().Where(t => t.Command.HasMessages))
             {
                 yield return tile.Command;
             }
@@ -155,12 +212,19 @@ namespace AoE2Lib.Bots.Modules
             {
                 if (Tiles != null)
                 {
+                    var gametime = Bot.GetModule<InfoModule>().GameTime;
+
                     foreach (var tile in GetTiles())
                     {
-                        tile.Update();
+                        if (tile.Command.HasResponses)
+                        {
+                            tile.Update(gametime);
+                            SetTile(tile.Point.X, tile.Point.Y, tile);
+                        }
+                        
                     }
 
-                    if (Tiles.Length != Width)
+                    if (Tiles.Length != (Width * Height))
                     {
                         Tiles = null;
                     }
@@ -168,22 +232,16 @@ namespace AoE2Lib.Bots.Modules
                     {
                         Tiles = null;
                     }
-                    else if (Tiles[0].Length != Height)
-                    {
-                        Tiles = null;
-                    }
                 }
                 
                 if (Tiles == null)
                 {
-                    Tiles = new Tile[Width][];
+                    Tiles = new Tile[Width, Height];
                     for (int x = 0; x < Width; x++)
                     {
-                        Tiles[x] = new Tile[Height];
-
                         for (int y = 0; y < Height; y++)
                         {
-                            Tiles[x][y] = new Tile(Bot, x, y);
+                            Tiles[x, y] = new Tile(new Point(x, y));
                         }
                     }
                 }

@@ -176,85 +176,91 @@ namespace Quaternary
                 var pos = clump.First();
                 var tile = Map.Tiles[pos.X, pos.Y];
 
-                if (tile.Type == AnalysisTileType.WOOD)
+                if (tile.IsResource)
                 {
-                    var add = !wood;
-
-                    if (add)
+                    // TODO base method on clump size rather than resource type
+                    if (tile.Type == AnalysisTileType.WOOD)
                     {
-                        wood = true;
+                        var add = !wood;
 
-                        positions.AddRange(clump);
-                        positions.Sort((a, b) =>
+                        if (add)
                         {
-                            var pa = Position.FromPoint(a.X - center.X, a.Y - center.Y);
-                            var pb = Position.FromPoint(b.X - center.X, b.Y - center.Y);
+                            wood = true;
 
-                            var aa = pa.Angle;
-                            var ab = pb.Angle;
-
-                            if (pa.X < 0 && pb.X < 0 && aa < 0)
+                            positions.AddRange(clump);
+                            positions.Sort((a, b) =>
                             {
-                                aa += 2 * Math.PI;
-                            }
+                                var pa = Position.FromPoint(a.X - center.X, a.Y - center.Y);
+                                var pb = Position.FromPoint(b.X - center.X, b.Y - center.Y);
 
-                            if (pa.X < 0 && pb.X < 0 && ab < 0)
-                            {
-                                ab += 2 * Math.PI;
-                            }
+                                var aa = pa.Angle;
+                                var ab = pb.Angle;
 
-                            return aa.CompareTo(ab);
-                        });
+                                if (pa.X < 0 && pb.X < 0 && aa < 0)
+                                {
+                                    aa += 2 * Math.PI;
+                                }
 
-                        goals.Add(positions[0]);
-                        goals.Add(positions[positions.Count - 1]);
+                                if (pa.X < 0 && pb.X < 0 && ab < 0)
+                                {
+                                    ab += 2 * Math.PI;
+                                }
+
+                                return aa.CompareTo(ab);
+                            });
+
+                            goals.Add(positions[0]);
+                            goals.Add(positions[positions.Count - 1]);
+                        }
                     }
-                }
-                else if (tile.Type == AnalysisTileType.FOOD || tile.Type == AnalysisTileType.GOLD || tile.Type == AnalysisTileType.STONE)
-                {
-                    var add = false;
-                    if (tile.Type == AnalysisTileType.FOOD && !food)
+                    else
                     {
-                        add = true;
-                        food = true;
-                    }
-                    else if (tile.Type == AnalysisTileType.GOLD && !gold)
-                    {
-                        add = true;
-                        gold = true;
-                    }
-                    else if (tile.Type == AnalysisTileType.STONE && !stone)
-                    {
-                        add = true;
-                        stone = true;
-                    }
-
-                    if (add)
-                    {
-                        var xmin = int.MaxValue;
-                        var xmax = int.MinValue;
-                        var ymin = int.MaxValue;
-                        var ymax = int.MinValue;
-
-                        foreach (var point in clump)
+                        var add = false;
+                        if (tile.Type == AnalysisTileType.FOOD && !food)
                         {
-                            xmin = Math.Min(xmin, point.X);
-                            xmax = Math.Max(xmax, point.X);
-                            ymin = Math.Min(ymin, point.Y);
-                            ymax = Math.Max(ymax, point.Y);
+                            add = true;
+                            food = true;
+                        }
+                        else if (tile.Type == AnalysisTileType.GOLD && !gold)
+                        {
+                            add = true;
+                            gold = true;
+                        }
+                        else if (tile.Type == AnalysisTileType.STONE && !stone)
+                        {
+                            add = true;
+                            stone = true;
                         }
 
-                        xmin = Math.Max(0, xmin - RESOURCE_CLEARANCE);
-                        xmax = Math.Min(size - 1, xmax + RESOURCE_CLEARANCE);
-                        ymin = Math.Max(0, ymin - RESOURCE_CLEARANCE);
-                        ymax = Math.Min(size - 1, ymax + RESOURCE_CLEARANCE);
+                        if (add)
+                        {
+                            var xmin = int.MaxValue;
+                            var xmax = int.MinValue;
+                            var ymin = int.MaxValue;
+                            var ymax = int.MinValue;
 
-                        goals.Add(new Point(xmin, ymin));
-                        goals.Add(new Point(xmin, ymax));
-                        goals.Add(new Point(xmax, ymin));
-                        goals.Add(new Point(xmax, ymax));
+                            foreach (var point in clump)
+                            {
+                                xmin = Math.Min(xmin, point.X);
+                                xmax = Math.Max(xmax, point.X);
+                                ymin = Math.Min(ymin, point.Y);
+                                ymax = Math.Max(ymax, point.Y);
+                            }
+
+                            xmin = Math.Max(0, xmin - RESOURCE_CLEARANCE);
+                            xmax = Math.Min(size - 1, xmax + RESOURCE_CLEARANCE);
+                            ymin = Math.Max(0, ymin - RESOURCE_CLEARANCE);
+                            ymax = Math.Min(size - 1, ymax + RESOURCE_CLEARANCE);
+
+                            goals.Add(new Point(xmin, ymin));
+                            goals.Add(new Point(xmin, ymax));
+                            goals.Add(new Point(xmax, ymin));
+                            goals.Add(new Point(xmax, ymax));
+                        }
                     }
                 }
+
+                
             }
 
             return goals;

@@ -9,6 +9,9 @@ namespace AoE2Lib.Bots
 {
     public class Command
     {
+        public bool HasMessages => Messages.Count > 0;
+        public bool HasResponses => Responses.Count > 0;
+
         internal readonly List<IMessage> Messages = new List<IMessage>();
         internal readonly List<Any> Responses = new List<Any>();
 
