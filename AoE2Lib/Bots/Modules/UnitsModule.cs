@@ -191,7 +191,7 @@ namespace AoE2Lib.Bots.Modules
             {
                 return;
             }
-            else if (!type.Available)
+            else if (!type.IsAvailable)
             {
                 return;
             }

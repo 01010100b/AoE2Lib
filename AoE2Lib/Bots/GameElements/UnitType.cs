@@ -14,7 +14,7 @@ namespace AoE2Lib.Bots.GameElements
         public readonly int Id;
         public readonly UnitDef UnitDef;
         public bool IsBuilding => UnitDef.IsBuilding;
-        public bool Available { get; private set; }
+        public bool IsAvailable { get; private set; }
         public int Count { get; private set; }
         public int CountTotal { get; private set; }
         public int Pending { get; private set; }
@@ -52,10 +52,10 @@ namespace AoE2Lib.Bots.GameElements
 
         protected override void UpdateElement(IReadOnlyList<Any> responses)
         {
-            Available = responses[0].Unpack<UnitAvailableResult>().Result;
+            IsAvailable = responses[0].Unpack<UnitAvailableResult>().Result;
             if (IsBuilding)
             {
-                Available = responses[1].Unpack<BuildingAvailableResult>().Result;
+                IsAvailable = responses[1].Unpack<BuildingAvailableResult>().Result;
             }
             
             Count = responses[2].Unpack<UpObjectTypeCountResult>().Result;

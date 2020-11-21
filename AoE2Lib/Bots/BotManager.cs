@@ -25,7 +25,6 @@ namespace AoE2Lib.Bots
 
         private readonly Channel Channel;
         private readonly Thread[] Threads = new Thread[8];
-        private readonly ExpertAPIClient[] Clients;
         private readonly Dictionary<int, Func<Bot>> RegisteredBots = new Dictionary<int, Func<Bot>>();
         private readonly Dictionary<int, Bot> Players = new Dictionary<int, Bot>();
         private int PreviousGameTime { get; set; } = 0;
@@ -40,12 +39,6 @@ namespace AoE2Lib.Bots
             GameInstance.StartAIModule();
 
             Channel = new Channel("localhost:37412", ChannelCredentials.Insecure);
-            
-            Clients = new ExpertAPIClient[8];
-            for (int i = 0; i < Clients.Length; i++)
-            {
-                Clients[i] = new ExpertAPIClient(Channel);
-            }
         }
 
         public void RegisterBot<T>() where T : Bot, new()
@@ -70,7 +63,8 @@ namespace AoE2Lib.Bots
 
             for (int i = 0; i < Threads.Length; i++)
             {
-                var thread = new Thread(() => RunPlayer(i + 1));
+                var player = i + 1;
+                var thread = new Thread(() => RunPlayer(player));
                 Threads[i] = thread;
                 thread.Start();
             }
@@ -114,6 +108,7 @@ namespace AoE2Lib.Bots
 
             while (!Stopping)
             {
+                Log.Info($"Player {player} ID: CHECKiNG");
                 var commandlist = new CommandList() { PlayerNumber = player };
                 commandlist.Commands.Add(Any.Pack(new GameTime()));
                 commandlist.Commands.Add(Any.Pack(new Goal() { GoalId = 420 }));
@@ -127,6 +122,7 @@ namespace AoE2Lib.Bots
                 {
                     Log.Info(e.Message);
                     result = null;
+                    Log.Info($"Player {player} ID: FAILED");
                 }
 
                 if (result != null)
@@ -136,8 +132,9 @@ namespace AoE2Lib.Bots
                         var gametime = result.Results[0].Unpack<GameTimeResult>().Result;
                         var id = result.Results[1].Unpack<GoalResult>().Result;
 
+                        Log.Info($"Player {player} ID: {id}");
                         // new game?
-                        if (gametime < PreviousGameTime - 2)
+                        if (gametime < PreviousGameTime - 1)
                         {
                             foreach (var bot in Players.Values)
                             {
@@ -146,7 +143,7 @@ namespace AoE2Lib.Bots
 
                             Players.Clear();
 
-                            Log.Info("Game restarted");
+                            Log.Debug("Game restarted");
                         }
 
                         PreviousGameTime = gametime;
@@ -181,96 +178,7 @@ namespace AoE2Lib.Bots
                                 mod.LoadDE();
                                 bot.Start(mod, result.PlayerNumber, botapi);
 
-                                Log.Info($"{bot.Name} taking control of player {result.PlayerNumber}");
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        private void Run()
-        {
-            PreviousGameTime = 0;
-
-            // TODO parallelize properly
-            while (!Stopping)
-            {
-                var results = new List<AsyncUnaryCall<CommandResultList>>();
-
-                for (int i = 0; i < Clients.Length; i++)
-                {
-                    var commandlist = new CommandList() { PlayerNumber = i + 1 };
-                    commandlist.Commands.Add(Any.Pack(new GameTime()));
-                    commandlist.Commands.Add(Any.Pack(new Goal() { GoalId = 420 }));
-
-                    results.Add(Clients[i].ExecuteCommandListAsync(commandlist));
-                }
-
-                for (int i = 0; i < results.Count; i++)
-                {
-                    CommandResultList result;
-                    try
-                    {
-                        result = results[i].GetAwaiter().GetResult();
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Info(e.Message);
-                        result = null;
-                    }
-
-                    if (result != null)
-                    {
-                        var gametime = result.Results[0].Unpack<GameTimeResult>().Result;
-                        var id = result.Results[1].Unpack<GoalResult>().Result;
-
-                        // new game?
-                        if (gametime < PreviousGameTime - 2)
-                        {
-                            foreach (var bot in Players.Values)
-                            {
-                                bot.Stop();
-                            }
-
-                            Players.Clear();
-
-                            Log.Info("Game restarted");
-                        }
-
-                        PreviousGameTime = gametime;
-
-                        if (RegisteredBots.TryGetValue(id, out Func<Bot> create))
-                        {
-                            if (Players.TryGetValue(result.PlayerNumber, out Bot current))
-                            {
-                                if (current.Id != id)
-                                {
-                                    current.Stop();
-                                    Players.Remove(result.PlayerNumber);
-                                }
-                            }
-
-                            if (!Players.ContainsKey(result.PlayerNumber))
-                            {
-                                var bot = create();
-
-                                bot.AddModule(new InfoModule());
-                                bot.AddModule(new SpendingModule());
-                                bot.AddModule(new MapModule());
-                                bot.AddModule(new PlayersModule());
-                                bot.AddModule(new UnitsModule());
-                                bot.AddModule(new ResearchModule());
-                                bot.AddModule(new PlacementModule());
-                                
-                                Players.Add(result.PlayerNumber, bot);
-
-                                var api = new ExpertAPIClient(Channel);
-                                var mod = new Mod();
-                                mod.LoadDE();
-                                bot.Start(mod, result.PlayerNumber, api);
-
-                                Log.Info($"{bot.Name} taking control of player {result.PlayerNumber}");
+                                Log.Debug($"{bot.Name} taking control of player {result.PlayerNumber}");
                             }
                         }
                     }

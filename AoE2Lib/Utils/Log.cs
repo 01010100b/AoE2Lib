@@ -8,44 +8,43 @@ namespace AoE2Lib.Utils
     {
         public static readonly Log Static = new Log();
 
-        public int Level = 0;
+        public int Level = 3;
 
         public void Info(object message)
         {
-            if (Level >= 0)
+            if (Level >= 3)
             {
-                Write(message);
+                Write($"INFO: {message}");
             }
         }
 
         public void Debug(object message)
         {
-            if (Level >= 1)
+            if (Level >= 2)
             {
-                Write(message);
+                Write($"DEBUG: {message}");
             }
         }
 
         public void Warning(object message)
         {
-            if (Level >= 2)
+            if (Level >= 1)
             {
-                Write(message);
+                Write($"WARNING: {message}");
             }
         }
 
         public void Error(object message)
         {
-            if (Level >= 3)
+            if (Level >= 0)
             {
-                Write(message);
+                Write($"ERROR: {message}");
             }
         }
 
         public void Write(object message)
         {
-            var str = $"{DateTime.UtcNow}: {message}";
-            System.Diagnostics.Trace.WriteLine(str);
+            System.Diagnostics.Trace.WriteLine($"{DateTime.UtcNow}: {message}");
         }
     }
 }
