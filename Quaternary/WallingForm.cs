@@ -128,7 +128,7 @@ namespace Quaternary
             var optimize = 3;
             if (CheckOptimize.Checked)
             {
-                optimize = 10;
+                optimize = 50;
             }
             var wall = Walling.GenerateWall(Map, Goals, optimize);
             foreach (var point in wall)

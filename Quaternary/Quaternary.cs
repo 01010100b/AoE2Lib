@@ -1,4 +1,5 @@
-﻿using AoE2Lib.Bots;
+﻿using AoE2Lib;
+using AoE2Lib.Bots;
 using AoE2Lib.Bots.GameElements;
 using AoE2Lib.Bots.Modules;
 using AoE2Lib.Utils;
@@ -13,12 +14,87 @@ namespace Quaternary
     class Quaternary : Bot
     {
         public override string Name => "Quaternary";
-
         public override int Id => 27432;
 
         private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.GetHashCode());
 
         protected override IEnumerable<Command> Update()
+        {
+            SetStrategicNumbers();
+
+            var scout = GetModule<UnitsModule>().Units.Values.FirstOrDefault(u => u.PlayerNumber == PlayerNumber && u.Speed > 1);
+
+            if (scout == null)
+            {
+                Log.Debug("No scout");
+            }
+            else
+            {
+                if (RNG.NextDouble() < 0.1)
+                {
+                    var map = GetModule<MapModule>();
+                    var x = RNG.Next(map.Width);
+                    var y = RNG.Next(map.Height);
+
+                    GetModule<MicroModule>().TargetPosition(scout, Position.FromPoint(x, y), UnitAction.MOVE, UnitFormation.LINE, UnitStance.AGGRESSIVE);
+
+                    Log.Debug($"Sending scout {scout.Id} to {x} {y}");
+                }
+            }
+
+            
+
+            
+
+            LogState();
+
+            return Enumerable.Empty<Command>();
+        }
+
+        private void SetStrategicNumbers()
+        {
+            var sns = GetModule<InfoModule>().StrategicNumbers;
+
+            sns[StrategicNumber.PERCENT_CIVILIAN_EXPLORERS] = 0;
+            sns[StrategicNumber.CAP_CIVILIAN_EXPLORERS] = 0;
+            sns[StrategicNumber.TOTAL_NUMBER_EXPLORERS] = 0;
+            sns[StrategicNumber.NUMBER_EXPLORE_GROUPS] = 0;
+
+            sns[StrategicNumber.PERCENT_ENEMY_SIGHTED_RESPONSE] = 100;
+            sns[StrategicNumber.ENEMY_SIGHTED_RESPONSE_DISTANCE] = 100;
+            sns[StrategicNumber.ZERO_PRIORITY_DISTANCE] = 100;
+            sns[StrategicNumber.ENABLE_OFFENSIVE_PRIORITY] = 1;
+            sns[StrategicNumber.ENABLE_PATROL_ATTACK] = 1;
+            sns[StrategicNumber.MINIMUM_ATTACK_GROUP_SIZE] = 1;
+            sns[StrategicNumber.MAXIMUM_ATTACK_GROUP_SIZE] = 1;
+            sns[StrategicNumber.DISABLE_DEFEND_GROUPS] = 8;
+            sns[StrategicNumber.CONSECUTIVE_IDLE_UNIT_LIMIT] = 0;
+            sns[StrategicNumber.WALL_TARGETING_MODE] = 1;
+
+            sns[StrategicNumber.ENABLE_NEW_BUILDING_SYSTEM] = 1;
+            sns[StrategicNumber.PERCENT_BUILDING_CANCELLATION] = 0;
+            sns[StrategicNumber.DISABLE_BUILDER_ASSISTANCE] = 1;
+            sns[StrategicNumber.CAP_CIVILIAN_BUILDERS] = 4;
+
+            sns[StrategicNumber.INTELLIGENT_GATHERING] = 1;
+            sns[StrategicNumber.USE_BY_TYPE_MAX_GATHERING] = 1;
+            sns[StrategicNumber.MAXIMUM_WOOD_DROP_DISTANCE] = 4;
+            sns[StrategicNumber.MAXIMUM_GOLD_DROP_DISTANCE] = 4;
+            sns[StrategicNumber.MAXIMUM_STONE_DROP_DISTANCE] = 4;
+            sns[StrategicNumber.MAXIMUM_FOOD_DROP_DISTANCE] = 4;
+            sns[StrategicNumber.MAXIMUM_HUNT_DROP_DISTANCE] = 10;
+            sns[StrategicNumber.ENABLE_BOAR_HUNTING] = 0;
+            sns[StrategicNumber.LIVESTOCK_TO_TOWN_CENTER] = 1;
+
+            sns[StrategicNumber.HOME_EXPLORATION_TIME] = 600;
+
+            sns[StrategicNumber.FOOD_GATHERER_PERCENTAGE] = 80;
+            sns[StrategicNumber.WOOD_GATHERER_PERCENTAGE] = 20;
+            sns[StrategicNumber.GOLD_GATHERER_PERCENTAGE] = 0;
+            sns[StrategicNumber.STONE_GATHERER_PERCENTAGE] = 0;
+        }
+
+        private void LogState()
         {
             GetModule<ResearchModule>().Research(22); // loom
 
@@ -54,8 +130,6 @@ namespace Quaternary
                 }
             }
             Log.Info($"Number of units: {units.Count} with highest speed {speed:N2}");
-
-            return Enumerable.Empty<Command>();
         }
     }
 }

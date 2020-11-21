@@ -259,7 +259,7 @@ namespace AoE2Lib.Bots.Modules
 
                 if (RNG.NextDouble() < 0.5)
                 {
-                    var units = Bot.GetModule<UnitsModule>().MyUnits;
+                    var units = Bot.GetModule<UnitsModule>().Units.Values.Where(u => u.PlayerNumber == Bot.PlayerNumber).ToList();
 
                     if (units.Count > 0)
                     {

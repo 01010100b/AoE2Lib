@@ -69,7 +69,7 @@ namespace AoE2Lib.Bots
                 thread.Start();
             }
 
-            Log.Info("Bot manager started");
+            Log.Info("BotManager: Started");
         }
 
         public void Stop()
@@ -83,7 +83,7 @@ namespace AoE2Lib.Bots
 
             Stopping = false;
 
-            Log.Info("Bot manager stopped");
+            Log.Info("BotManager: Stopped");
         }
 
         public void Exit()
@@ -170,6 +170,7 @@ namespace AoE2Lib.Bots
                                 bot.AddModule(new UnitsModule());
                                 bot.AddModule(new ResearchModule());
                                 bot.AddModule(new PlacementModule());
+                                bot.AddModule(new MicroModule());
 
                                 Players.Add(result.PlayerNumber, bot);
 
@@ -183,6 +184,11 @@ namespace AoE2Lib.Bots
                         }
                     }
                 }
+            }
+
+            if (Players.TryGetValue(player, out Bot _bot))
+            {
+                _bot.Stop();
             }
         }
 

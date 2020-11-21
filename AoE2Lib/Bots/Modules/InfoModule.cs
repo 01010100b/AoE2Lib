@@ -6,6 +6,7 @@ using Protos.Expert.Fact;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 
 namespace AoE2Lib.Bots.Modules
@@ -23,6 +24,8 @@ namespace AoE2Lib.Bots.Modules
         public int PopulationHeadroom { get; private set; } = -1;
         public int HousingHeadroom { get; private set; } = -1;
         public int PopulationCap { get; private set; } = -1;
+
+        public readonly Dictionary<StrategicNumber, int> StrategicNumbers = new Dictionary<StrategicNumber, int>();
         public IReadOnlyDictionary<int, UnitType> UnitTypes => _UnitTypes;
         private readonly Dictionary<int, UnitType> _UnitTypes = new Dictionary<int, UnitType>();
 
@@ -52,6 +55,16 @@ namespace AoE2Lib.Bots.Modules
             Command.Add(new PopulationHeadroom());
             Command.Add(new HousingHeadroom());
             Command.Add(new PopulationCap());
+
+            foreach (var sn in StrategicNumbers)
+            {
+                Command.Add(new SetStrategicNumber() { StrategicNumber = (int)sn.Key, Value = sn.Value });
+            }
+
+            foreach (var sn in Enum.GetValues(typeof(StrategicNumber)).Cast<StrategicNumber>())
+            {
+                Command.Add(new Protos.Expert.Fact.StrategicNumber() { StrategicNumber_ = (int)sn });
+            }
 
             yield return Command;
 
@@ -86,6 +99,13 @@ namespace AoE2Lib.Bots.Modules
                 PopulationHeadroom = responses[8].Unpack<PopulationHeadroomResult>().Result;
                 HousingHeadroom = responses[9].Unpack<HousingHeadroomResult>().Result;
                 PopulationCap = responses[10].Unpack<PopulationCapResult>().Result;
+
+                var index = 11 + StrategicNumbers.Count;
+                foreach (var sn in Enum.GetValues(typeof(StrategicNumber)).Cast<StrategicNumber>())
+                {
+                    StrategicNumbers[sn] = responses[index].Unpack<StrategicNumberResult>().Result;
+                    index++;
+                }
             }
 
             Command.Reset();

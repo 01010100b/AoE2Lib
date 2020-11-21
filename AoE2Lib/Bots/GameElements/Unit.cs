@@ -15,10 +15,10 @@ namespace AoE2Lib.Bots.GameElements
         public readonly int Id;
         public UnitType UnitType { get; internal set; } = null;
         public bool Targetable { get; private set; } = true;
-        public DateTime LastTargetable { get; private set; } = DateTime.UtcNow;
+        public TimeSpan LastTargetable { get; private set; } = TimeSpan.Zero;
         public int TargetId { get; private set; } = -1;
-        public Position Position { get; private set; } = Position.FromPoint(-1, -1);
-        public Position Velocity { get; private set; } = Position.FromPoint(0, 0);
+        public Position Position { get; private set; }
+        public Position Velocity { get; private set; }
         public int TypeId { get; private set; } = -1;
         public int PlayerNumber { get; private set; } = -1;
         public int Hitpoints { get; private set; } = -1;
@@ -36,6 +36,7 @@ namespace AoE2Lib.Bots.GameElements
         public UnitClass Class { get; private set; } = UnitClass.Miscellaneous;
         public CmdId CmdId { get; private set; } = CmdId.FLAG;
         public int BaseTypeId { get; private set; } = -1;
+        public bool IsBuilding => CmdId == CmdId.CIVILIAN_BUILDING || CmdId == CmdId.MILITARY_BUILDING;
 
         protected internal Unit(Bot bot, int id) : base(bot)
         {
@@ -94,21 +95,15 @@ namespace AoE2Lib.Bots.GameElements
             var id = responses[1].Unpack<UpObjectDataResult>().Result;
             var explored = responses[24].Unpack<UpPointExploredResult>().Result;
 
+            if (explored != 15 && IsBuilding == false)
+            {
+                return;
+            }
+
             if (Id == id)
             {
-                var building = true;
-                if (UnitType != null)
-                {
-                    building = UnitType.IsBuilding;
-                }
-
-                if (explored != 15 && building == false)
-                {
-                    return;
-                }
-
                 Targetable = true;
-                LastTargetable = DateTime.UtcNow;
+                LastTargetable = Bot.GetModule<InfoModule>().GameTime;
 
                 if (explored != 15)
                 {

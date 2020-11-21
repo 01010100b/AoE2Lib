@@ -16,7 +16,6 @@ namespace AoE2Lib.Bots.Modules
     {
         public IReadOnlyDictionary<int, Unit> Units => _Units;
         private readonly Dictionary<int, Unit> _Units = new Dictionary<int, Unit>();
-        public IReadOnlyList<Unit> MyUnits => Units.Values.Where(u => u.PlayerNumber == Bot.PlayerNumber).ToList();
 
         private readonly List<Command> UnitFindCommands = new List<Command>();
         private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.Ticks.GetHashCode());
