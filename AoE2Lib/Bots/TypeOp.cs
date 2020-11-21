@@ -8,6 +8,7 @@ namespace AoE2Lib.Bots
     {
         public int C { get; private set; }
         public int G { get; private set; }
+        public int S { get; private set; }
 
         public TypeOp()
         {
@@ -18,12 +19,14 @@ namespace AoE2Lib.Bots
         {
             C = 6;
             G = 13;
+            S = 20;
         }
 
         public void SetDE()
         {
-            C = 6;
+            C = 0;
             G = 2;
+            S = 1;
         }
     }
 }

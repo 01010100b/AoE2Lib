@@ -39,9 +39,7 @@ namespace AoE2Lib.Bots
         {
             GameInstance = instance;
             GameInstance.StartAIModule();
-
             Channel = new Channel("localhost:37412", ChannelCredentials.Insecure);
-
             TypeOp = new TypeOp();
             MathOp = new MathOp();
 
@@ -137,8 +135,8 @@ namespace AoE2Lib.Bots
                 catch (Exception e)
                 {
                     Log.Info($"BotManager: Player {player}: {e.Message}");
-                    result = null;
                     Log.Info($"BotManager: Player {player} ID: FAILED");
+                    result = null;
                 }
 
                 if (result != null)
@@ -159,7 +157,7 @@ namespace AoE2Lib.Bots
 
                             Players.Clear();
 
-                            Log.Debug("BotManager: Game restarted");
+                            Log.Info("BotManager: Game restarted");
                         }
 
                         PreviousGameTime = gametime;
@@ -197,7 +195,7 @@ namespace AoE2Lib.Bots
                                 mod.LoadDE();
                                 bot.Start(mod, result.PlayerNumber, botapi);
 
-                                Log.Debug($"BotManager: {bot.Name} taking control of player {result.PlayerNumber}");
+                                Log.Info($"BotManager: {bot.Name} taking control of player {result.PlayerNumber}");
                             }
                         }
                     }
