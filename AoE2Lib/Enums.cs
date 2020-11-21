@@ -9,48 +9,6 @@ namespace AoE2Lib
         AOC, DE
     }
 
-    public class TypeOp
-    {
-        public int C = 6;
-        public int G = 2;
-
-        public void SetAOC()
-        {
-            C = 6;
-            G = 13;
-        }
-
-        public void SetDE()
-        {
-
-        }
-    }
-
-    public class MathOp
-    {
-        public int S_EQUALS = 0;
-        public int S_ADD = 1;
-        public int G_MUL = 15;
-        public int G_DIV = 16;
-        public int G_MIN = 17;
-        public int G_MAX = 18;
-        public int G_MOD = 19;
-        public int C_EQUALS = 24;
-        public int C_MIN = 29;
-        public int C_MAX = 30;
-
-        public void SetAOC()
-        {
-            C_MAX = 8;
-            G_MOD = 18;
-        }
-
-        public void SetDE()
-        {
-
-        }
-    }
-
     public enum FactId
     {
         GAME_TIME, POPULATION_CAP, POPULATION_HEADROOM, HOUSING_HEADROOM, IDLE_FARM_COUNT, FOOD_AMOUNT, WOOD_AMOUNT, STONE_AMOUNT,

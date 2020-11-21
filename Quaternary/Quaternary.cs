@@ -125,13 +125,7 @@ namespace Quaternary
                     speed = unit.Velocity.Norm;
                 }
             }
-            Log.Info($"Bot {Name} {PlayerNumber}: Number of units: {units.Count} of which {units.Count(u => u.Value.Updated)} updated with highest speed {speed:N2}");
-
-            var vill = units.Values.FirstOrDefault(u => u.PlayerNumber == PlayerNumber);
-            if (vill == null)
-            {
-                Log.Debug("No my unit");
-            }
+            Log.Info($"Bot {Name} {PlayerNumber}: Number of units: {units.Count} with highest speed {speed:N2}");
         }
     }
 }
