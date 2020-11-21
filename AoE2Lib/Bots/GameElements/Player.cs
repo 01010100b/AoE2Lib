@@ -15,7 +15,6 @@ namespace AoE2Lib.Bots.GameElements
         public int Civilization { get; private set; } = -1;
         public int Score { get; private set; } = -1;
         public int Age { get; private set; } = -1;
-        public int Population => CivilianPopulation + MilitaryPopulation;
         public int CivilianPopulation { get; private set; } = -1;
         public int MilitaryPopulation { get; private set; } = -1;
         public int WoodAmount { get; private set; } = -1;
@@ -23,7 +22,8 @@ namespace AoE2Lib.Bots.GameElements
         public int GoldAmount { get; private set; } = -1;
         public int StoneAmount { get; private set; } = -1;
         public PlayerStance Stance { get; private set; } = PlayerStance.NEUTRAL;
-        
+        public int Population => CivilianPopulation + MilitaryPopulation;
+
         protected internal Player(Bot bot, int player) : base(bot)
         {
             PlayerNumber = player;

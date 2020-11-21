@@ -16,10 +16,10 @@ namespace AoE2Lib.Bots
         public int TimesUpdated { get; private set; } = 0;
         public int LastUpdateTick { get; private set; } = -1;
 
-        protected internal readonly Bot Bot;
-        protected internal TypeOp TypeOp => Bot.TypeOp;
-        protected internal MathOp MathOp => Bot.MathOp;
         protected internal readonly Command Command = new Command();
+        protected readonly Bot Bot;
+        protected TypeOp TypeOp => Bot.TypeOp;
+        protected MathOp MathOp => Bot.MathOp;
 
         protected internal GameElement(Bot bot)
         {
