@@ -43,6 +43,16 @@ namespace AoE2Lib.Bots.GameElements
             Id = id;
         }
 
+        public void TargetUnit(Unit target, UnitAction action, UnitFormation formation, UnitStance stance)
+        {
+            Bot.GetModule<MicroModule>().TargetUnit(this, target, action, formation, stance);
+        }
+
+        public void TargetPosition(Position target, UnitAction action, UnitFormation formation, UnitStance stance)
+        {
+            Bot.GetModule<MicroModule>().TargetPosition(this, target, action, formation, stance);
+        }
+
         public override bool Equals(object obj)
         {
             if (obj is Unit unit)

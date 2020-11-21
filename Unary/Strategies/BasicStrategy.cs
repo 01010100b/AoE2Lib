@@ -10,7 +10,7 @@ namespace Unary.Strategies
 {
     public class BasicStrategy : Strategy
     {
-        private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.GetHashCode());
+        private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode());
 
         public override void Update(Bot bot)
         {

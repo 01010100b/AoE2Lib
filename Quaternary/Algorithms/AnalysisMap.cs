@@ -100,7 +100,7 @@ namespace Quaternary.Algorithms
 
         public Point Center => new Point(Size / 2, Size / 2);
 
-        private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.GetHashCode());
+        private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode());
 
         public void Generate(int size)
         {

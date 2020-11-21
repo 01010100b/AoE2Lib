@@ -19,7 +19,7 @@ namespace Unary.Modules
         }
 
         private readonly List<Command> UnitFindCommands = new List<Command>();
-        private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.Ticks.GetHashCode());
+        private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode());
 
         public void FindUnits(Position position, int player, UnitFindType type)
         {

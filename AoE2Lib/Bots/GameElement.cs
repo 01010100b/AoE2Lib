@@ -28,6 +28,11 @@ namespace AoE2Lib.Bots
 
         public void RequestUpdate()
         {
+            if (Command.HasMessages)
+            {
+                return;
+            }
+
             Command.Reset();
 
             foreach (var message in RequestElementUpdate())
@@ -38,24 +43,20 @@ namespace AoE2Lib.Bots
 
         public void Update()
         {
-            var responses = Command.GetResponses();
-
-            if (responses.Count == 0)
+            if (!Command.HasResponses)
             {
                 return;
             }
 
+            var responses = Command.GetResponses();
             UpdateElement(responses);
 
             var gametime = Bot.GetModule<InfoModule>().GameTime;
-
             LastUpdateGameTime = gametime;
-
             if (FirstUpdateGameTime == TimeSpan.MinValue)
             {
                 FirstUpdateGameTime = gametime;
             }
-
             TimesUpdated++;
             LastUpdateTick = Bot.Tick;
 

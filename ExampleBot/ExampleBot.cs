@@ -15,7 +15,7 @@ namespace ExampleBot
         public override string Name => "ExampleBot";
         public override int Id => 27421;
 
-        private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.GetHashCode());
+        private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode());
 
         protected override IEnumerable<Command> Update()
         {
@@ -31,33 +31,39 @@ namespace ExampleBot
             }
             else
             {
+                // do it on average every 10 ticks
                 if (RNG.NextDouble() < 0.1)
                 {
+                    // get the map and a random position
                     var map = GetModule<MapModule>();
                     var x = RNG.Next(map.Width);
                     var y = RNG.Next(map.Height);
 
-                    GetModule<MicroModule>().TargetPosition(scout, Position.FromPoint(x, y), UnitAction.MOVE, UnitFormation.LINE, UnitStance.AGGRESSIVE);
+                    // move the scout to the target position
+                    scout.TargetPosition(Position.FromPoint(x, y), UnitAction.MOVE, UnitFormation.LINE, UnitStance.AGGRESSIVE);
 
                     Log.Info($"Bot {Name} {PlayerNumber}: Sending scout {scout.Id} to {x} {y}");
                 }
             }
 
             // research loom
-            GetModule<ResearchModule>().Research(22); // loom
+            GetModule<ResearchModule>().Research(22);
 
             // train a vill
-            GetModule<UnitsModule>().Train(Mod.Villager); // vill
+            GetModule<UnitsModule>().Train(Mod.Villager);
 
-            // build a house
+            // get a position within about 10-14 tiles of the tc
             var pos = GetModule<InfoModule>().MyPosition;
             var dpos = Position.FromPoint(RNG.Next(-10, 10), RNG.Next(-10, 10));
             pos += dpos;
 
+            // get the list of possible positions for placing a house within a range of 10, leave a clearance of 1 and use extra restrictions (farm space around tc etc)
             var positions = GetModule<PlacementModule>().GetPlacementPositions(Mod.House, pos, 1, true, 10).ToList();
             if (positions.Count > 0)
             {
+                // pick a random position from that list
                 pos = positions[RNG.Next(positions.Count)];
+                // and build a house there building a max of 2 concurrently
                 GetModule<UnitsModule>().Build(Mod.House, pos, int.MaxValue, 2);
             }
 

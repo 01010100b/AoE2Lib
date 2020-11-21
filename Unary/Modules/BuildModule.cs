@@ -33,7 +33,7 @@ namespace Unary.Modules
         public int DropsiteSeparationDistance { get; set; } = 4;
 
         private readonly List<BuildCommand> Commands = new List<BuildCommand>();
-        private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.GetHashCode());
+        private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode());
 
         public void Build(UnitDef building, Position position, int max = int.MaxValue, int concurrent = int.MaxValue)
         {

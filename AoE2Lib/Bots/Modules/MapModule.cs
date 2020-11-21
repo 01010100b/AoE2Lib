@@ -69,7 +69,7 @@ namespace AoE2Lib.Bots.Modules
 
         private Tile[,] Tiles { get; set; }
         private readonly Command Command = new Command();
-        private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.GetHashCode());
+        private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode());
 
         public bool IsOnMap(Position position)
         {

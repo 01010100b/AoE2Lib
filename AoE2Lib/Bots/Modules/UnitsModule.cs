@@ -18,7 +18,7 @@ namespace AoE2Lib.Bots.Modules
         private readonly Dictionary<int, Unit> _Units = new Dictionary<int, Unit>();
 
         private readonly List<Command> UnitFindCommands = new List<Command>();
-        private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.Ticks.GetHashCode());
+        private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode());
 
         private readonly Dictionary<int, int> LastBuildTick = new Dictionary<int, int>();
 

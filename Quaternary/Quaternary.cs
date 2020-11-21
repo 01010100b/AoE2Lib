@@ -16,7 +16,7 @@ namespace Quaternary
         public override string Name => "Quaternary";
         public override int Id => 27432;
 
-        private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.GetHashCode());
+        private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode());
 
         protected override IEnumerable<Command> Update()
         {

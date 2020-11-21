@@ -59,7 +59,7 @@ namespace Unary
         private readonly Dictionary<int, int> _ObjectTypeCountTotals = new Dictionary<int, int>();
         
         private readonly Command Command = new Command();
-        private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.Ticks.GetHashCode());
+        private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode());
 
         public GameState(int player)
         {
