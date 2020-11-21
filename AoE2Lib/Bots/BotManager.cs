@@ -52,7 +52,7 @@ namespace AoE2Lib.Bots
             }
             else if (GameInstance.Version == GameVersion.DE)
             {
-                TypeOp.SetAOC();
+                TypeOp.SetDE();
                 MathOp.SetDE();
             }
         }
@@ -124,7 +124,7 @@ namespace AoE2Lib.Bots
 
             while (!Stopping)
             {
-                Log.Info($"BotManager: Player {player} ID: CHECKiNG");
+                Log.Info($"BotManager: Player {player} ID: CHECKING");
                 var commandlist = new CommandList() { PlayerNumber = player };
                 commandlist.Commands.Add(Any.Pack(new GameTime()));
                 commandlist.Commands.Add(Any.Pack(new Goal() { GoalId = Bot.GOAL_ID }));
