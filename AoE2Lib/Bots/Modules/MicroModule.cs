@@ -16,9 +16,9 @@ namespace AoE2Lib.Bots.Modules
             var command = new Command();
 
             command.Add(new UpFullResetSearch());
-            command.Add(new UpAddObjectById() { SearchSource = 1, TypeOp = (int)TypeOp.C, OpId = unit.Id });
-            command.Add(new UpSetTargetById() { TypeOp = (int)TypeOp.C, Id = unit.Id });
-            command.Add(new UpSetTargetById() { TypeOp = (int)TypeOp.C, Id = target.Id });
+            command.Add(new UpAddObjectById() { SearchSource = 1, TypeOp = TypeOp.C, OpId = unit.Id });
+            command.Add(new UpSetTargetById() { TypeOp = TypeOp.C, Id = unit.Id });
+            command.Add(new UpSetTargetById() { TypeOp = TypeOp.C, Id = target.Id });
             command.Add(new UpTargetObjects() { Target = 1, Action = (int)action, Formation = (int)formation, AttackStance = (int)stance });
 
             Commands.Add(command);
@@ -29,7 +29,7 @@ namespace AoE2Lib.Bots.Modules
             var command = new Command();
 
             command.Add(new UpFullResetSearch());
-            command.Add(new UpAddObjectById() { SearchSource = 1, TypeOp = (int)TypeOp.C, OpId = unit.Id });
+            command.Add(new UpAddObjectById() { SearchSource = 1, TypeOp = TypeOp.C, OpId = unit.Id });
             command.Add(new SetGoal() { GoalId = 100, GoalValue = target.PreciseX });
             command.Add(new SetGoal() { GoalId = 101, GoalValue = target.PreciseY });
             command.Add(new SetStrategicNumber() { StrategicNumber = 292, Value = 6 });

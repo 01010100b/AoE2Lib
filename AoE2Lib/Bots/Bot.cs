@@ -22,6 +22,8 @@ namespace AoE2Lib.Bots
         public int PlayerNumber { get; private set; } = -1;
         public int Tick { get; private set; } = 0;
         public readonly Log Log = Log.Static;
+        public TypeOp TypeOp { get; internal set; }
+        public MathOp MathOp { get; internal set; }
 
         private Thread BotThread { get; set; } = null;
         private volatile bool Stopping = false;

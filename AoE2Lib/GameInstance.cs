@@ -18,7 +18,6 @@ namespace AoE2Lib
         public GameInstance(Process process)
         {
             Process = process;
-            //Process = Process.GetProcessesByName(name)[0];
         }
 
         public void StartAIModule()

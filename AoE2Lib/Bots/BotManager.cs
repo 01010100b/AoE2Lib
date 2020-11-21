@@ -27,6 +27,8 @@ namespace AoE2Lib.Bots
         private readonly Thread[] Threads = new Thread[8];
         private readonly Dictionary<int, Func<Bot>> RegisteredBots = new Dictionary<int, Func<Bot>>();
         private readonly Dictionary<int, Bot> Players = new Dictionary<int, Bot>();
+        private readonly TypeOp TypeOp;
+        private readonly MathOp MathOp;
         private int PreviousGameTime { get; set; } = 0;
         private readonly Log Log = Log.Static;
         private volatile bool Stopping = false;
@@ -39,6 +41,20 @@ namespace AoE2Lib.Bots
             GameInstance.StartAIModule();
 
             Channel = new Channel("localhost:37412", ChannelCredentials.Insecure);
+
+            TypeOp = new TypeOp();
+            MathOp = new MathOp();
+
+            if (GameInstance.Version == GameVersion.AOC)
+            {
+                TypeOp.SetAOC();
+                MathOp.SetAOC();
+            }
+            else if (GameInstance.Version == GameVersion.DE)
+            {
+                TypeOp.SetAOC();
+                MathOp.SetDE();
+            }
         }
 
         public void RegisterBot<T>() where T : Bot, new()
@@ -162,6 +178,8 @@ namespace AoE2Lib.Bots
                             if (!Players.ContainsKey(result.PlayerNumber))
                             {
                                 var bot = create();
+                                bot.TypeOp = TypeOp;
+                                bot.MathOp = MathOp;
 
                                 bot.AddModule(new InfoModule());
                                 bot.AddModule(new SpendingModule());

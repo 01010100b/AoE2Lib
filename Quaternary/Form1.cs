@@ -27,7 +27,10 @@ namespace Quaternary
             ButtonStart.Enabled = false;
             Refresh();
 
-            var process = Process.GetProcessesByName("AoE2DE_s")[0];
+            var name = "AoE2DE_s";
+            name = "age2_x1";
+
+            var process = Process.GetProcessesByName(name)[0];
             var instance = new GameInstance(process);
 
             BotManager = new BotManager(instance);

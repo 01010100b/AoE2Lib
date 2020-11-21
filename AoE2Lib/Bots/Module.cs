@@ -8,6 +8,8 @@ namespace AoE2Lib.Bots
     {
         internal Bot BotInternal { set { Bot = value; } }
         protected Bot Bot { get; private set; }
+        protected TypeOp TypeOp => Bot.TypeOp;
+        protected MathOp MathOp => Bot.MathOp;
 
         internal IEnumerable<Command> RequestUpdateInternal()
         {

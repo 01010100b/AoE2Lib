@@ -9,14 +9,46 @@ namespace AoE2Lib
         AOC, DE
     }
 
-    public enum TypeOp
+    public class TypeOp
     {
-        C = 6, G = 2
+        public int C = 6;
+        public int G = 2;
+
+        public void SetAOC()
+        {
+            C = 6;
+            G = 13;
+        }
+
+        public void SetDE()
+        {
+
+        }
     }
 
-    public enum MathOp
+    public class MathOp
     {
-        S_EQUALS = 0, S_ADD = 1, G_MUL = 15, G_DIV = 16, G_MIN = 17, G_MAX = 18, G_MOD = 19, C_EQUALS = 24, C_MIN = 29, C_MAX = 30
+        public int S_EQUALS = 0;
+        public int S_ADD = 1;
+        public int G_MUL = 15;
+        public int G_DIV = 16;
+        public int G_MIN = 17;
+        public int G_MAX = 18;
+        public int G_MOD = 19;
+        public int C_EQUALS = 24;
+        public int C_MIN = 29;
+        public int C_MAX = 30;
+
+        public void SetAOC()
+        {
+            C_MAX = 8;
+            G_MOD = 18;
+        }
+
+        public void SetDE()
+        {
+
+        }
     }
 
     public enum FactId

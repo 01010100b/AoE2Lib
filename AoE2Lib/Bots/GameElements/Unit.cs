@@ -62,28 +62,49 @@ namespace AoE2Lib.Bots.GameElements
 
         protected override IEnumerable<IMessage> RequestElementUpdate()
         {
-            yield return new UpSetTargetById() { TypeOp = (int)TypeOp.C, Id = Id };
-            yield return new UpObjectData() { ObjectData = (int)ObjectData.ID };
-            yield return new UpObjectData() { ObjectData = (int)ObjectData.TARGET_ID };
-            yield return new UpObjectData() { ObjectData = (int)ObjectData.PRECISE_X };
-            yield return new UpObjectData() { ObjectData = (int)ObjectData.PRECISE_Y };
-            yield return new UpObjectData() { ObjectData = (int)ObjectData.UPGRADE_TYPE };
-            yield return new UpObjectData() { ObjectData = (int)ObjectData.PLAYER };
-            yield return new UpObjectData() { ObjectData = (int)ObjectData.HITPOINTS };
-            yield return new UpObjectData() { ObjectData = (int)ObjectData.ORDER };
-            yield return new UpObjectData() { ObjectData = (int)ObjectData.NEXT_ATTACK };
-            yield return new UpObjectData() { ObjectData = (int)ObjectData.ATTACK_STANCE };
-            yield return new UpObjectData() { ObjectData = (int)ObjectData.MAXHP };
-            yield return new UpObjectData() { ObjectData = (int)ObjectData.RANGE };
-            yield return new UpObjectData() { ObjectData = (int)ObjectData.SPEED };
-            yield return new UpObjectData() { ObjectData = (int)ObjectData.BASE_ATTACK };
-            yield return new UpObjectData() { ObjectData = (int)ObjectData.STRIKE_ARMOR };
-            yield return new UpObjectData() { ObjectData = (int)ObjectData.PIERCE_ARMOR };
-            yield return new UpObjectData() { ObjectData = (int)ObjectData.RELOAD_TIME };
-            yield return new UpObjectData() { ObjectData = (int)ObjectData.TRAIN_SITE };
-            yield return new UpObjectData() { ObjectData = (int)ObjectData.CLASS };
-            yield return new UpObjectData() { ObjectData = (int)ObjectData.CMDID };
-            yield return new UpObjectData() { ObjectData = (int)ObjectData.BASE_TYPE };
+            yield return new UpSetTargetById() { TypeOp = TypeOp.C, Id = Id };
+            yield return new UpGetObjectData() { ObjectData = (int)ObjectData.ID, GoalData = 100 };
+            yield return new Goal() { GoalId = 100 };
+            yield return new UpGetObjectData() { ObjectData = (int)ObjectData.TARGET_ID, GoalData = 100 };
+            yield return new Goal() { GoalId = 100 };
+            yield return new UpGetObjectData() { ObjectData = (int)ObjectData.PRECISE_X, GoalData = 100 };
+            yield return new Goal() { GoalId = 100 };
+            yield return new UpGetObjectData() { ObjectData = (int)ObjectData.PRECISE_Y, GoalData = 100 };
+            yield return new Goal() { GoalId = 100 };
+            yield return new UpGetObjectData() { ObjectData = (int)ObjectData.UPGRADE_TYPE, GoalData = 100 };
+            yield return new Goal() { GoalId = 100 };
+            yield return new UpGetObjectData() { ObjectData = (int)ObjectData.PLAYER, GoalData = 100 };
+            yield return new Goal() { GoalId = 100 };
+            yield return new UpGetObjectData() { ObjectData = (int)ObjectData.HITPOINTS, GoalData = 100 };
+            yield return new Goal() { GoalId = 100 };
+            yield return new UpGetObjectData() { ObjectData = (int)ObjectData.ORDER, GoalData = 100 };
+            yield return new Goal() { GoalId = 100 };
+            yield return new UpGetObjectData() { ObjectData = (int)ObjectData.NEXT_ATTACK, GoalData = 100 };
+            yield return new Goal() { GoalId = 100 };
+            yield return new UpGetObjectData() { ObjectData = (int)ObjectData.ATTACK_STANCE, GoalData = 100 };
+            yield return new Goal() { GoalId = 100 };
+            yield return new UpGetObjectData() { ObjectData = (int)ObjectData.MAXHP, GoalData = 100 };
+            yield return new Goal() { GoalId = 100 };
+            yield return new UpGetObjectData() { ObjectData = (int)ObjectData.RANGE, GoalData = 100 };
+            yield return new Goal() { GoalId = 100 };
+            yield return new UpGetObjectData() { ObjectData = (int)ObjectData.SPEED, GoalData = 100 };
+            yield return new Goal() { GoalId = 100 };
+            yield return new UpGetObjectData() { ObjectData = (int)ObjectData.BASE_ATTACK, GoalData = 100 };
+            yield return new Goal() { GoalId = 100 };
+            yield return new UpGetObjectData() { ObjectData = (int)ObjectData.STRIKE_ARMOR, GoalData = 100 };
+            yield return new Goal() { GoalId = 100 };
+            yield return new UpGetObjectData() { ObjectData = (int)ObjectData.PIERCE_ARMOR, GoalData = 100 };
+            yield return new Goal() { GoalId = 100 };
+            yield return new UpGetObjectData() { ObjectData = (int)ObjectData.RELOAD_TIME, GoalData = 100 };
+            yield return new Goal() { GoalId = 100 };
+            yield return new UpGetObjectData() { ObjectData = (int)ObjectData.TRAIN_SITE, GoalData = 100 };
+            yield return new Goal() { GoalId = 100 };
+            yield return new UpGetObjectData() { ObjectData = (int)ObjectData.CLASS, GoalData = 100 };
+            yield return new Goal() { GoalId = 100 };
+            yield return new UpGetObjectData() { ObjectData = (int)ObjectData.CMDID, GoalData = 100 };
+            yield return new Goal() { GoalId = 100 };
+            yield return new UpGetObjectData() { ObjectData = (int)ObjectData.BASE_TYPE, GoalData = 100 };
+            yield return new Goal() { GoalId = 100 };
 
             yield return new UpGetObjectData() { ObjectData = (int)ObjectData.POINT_X, GoalData = 100 };
             yield return new UpGetObjectData() { ObjectData = (int)ObjectData.POINT_Y, GoalData = 101 };
@@ -92,10 +113,11 @@ namespace AoE2Lib.Bots.GameElements
 
         protected override void UpdateElement(IReadOnlyList<Any> responses)
         {
-            var id = responses[1].Unpack<UpObjectDataResult>().Result;
-            var explored = responses[24].Unpack<UpPointExploredResult>().Result;
+            var id = responses[2].Unpack<GoalResult>().Result;
+            PlayerNumber = responses[12].Unpack<GoalResult>().Result;
+            var explored = responses[45].Unpack<UpPointExploredResult>().Result;
 
-            if (explored != 15 && IsBuilding == false)
+            if (explored != 15 && IsBuilding == false && PlayerNumber != Bot.PlayerNumber && PlayerNumber != 0)
             {
                 return;
             }
@@ -105,31 +127,31 @@ namespace AoE2Lib.Bots.GameElements
                 Targetable = true;
                 LastTargetable = Bot.GetModule<InfoModule>().GameTime;
 
-                if (explored != 15)
+                if (explored != 15 && PlayerNumber != Bot.PlayerNumber && PlayerNumber != 0)
                 {
                     return;
                 }
 
-                TargetId = responses[2].Unpack<UpObjectDataResult>().Result;
-                var x = responses[3].Unpack<UpObjectDataResult>().Result;
-                var y = responses[4].Unpack<UpObjectDataResult>().Result;
-                TypeId = responses[5].Unpack<UpObjectDataResult>().Result;
-                PlayerNumber = responses[6].Unpack<UpObjectDataResult>().Result;
-                Hitpoints = responses[7].Unpack<UpObjectDataResult>().Result;
-                Order = (UnitOrder)responses[8].Unpack<UpObjectDataResult>().Result;
-                NextAttack = TimeSpan.FromMilliseconds(responses[9].Unpack<UpObjectDataResult>().Result);
-                Stance = (UnitStance)responses[10].Unpack<UpObjectDataResult>().Result;
-                MaxHitpoints = responses[11].Unpack<UpObjectDataResult>().Result;
-                Range = responses[12].Unpack<UpObjectDataResult>().Result;
-                Speed = responses[13].Unpack<UpObjectDataResult>().Result / 100d;
-                Attack = responses[14].Unpack<UpObjectDataResult>().Result;
-                MeleeArmor = responses[15].Unpack<UpObjectDataResult>().Result;
-                PierceArmor = responses[16].Unpack<UpObjectDataResult>().Result;
-                ReloadTime = TimeSpan.FromMilliseconds(responses[17].Unpack<UpObjectDataResult>().Result);
-                TrainSiteId = responses[18].Unpack<UpObjectDataResult>().Result;
-                Class = (UnitClass)responses[19].Unpack<UpObjectDataResult>().Result;
-                CmdId = (CmdId)responses[20].Unpack<UpObjectDataResult>().Result;
-                BaseTypeId = responses[21].Unpack<UpObjectDataResult>().Result;
+                TargetId = responses[4].Unpack<GoalResult>().Result;
+                var x = responses[6].Unpack<GoalResult>().Result;
+                var y = responses[8].Unpack<GoalResult>().Result;
+                TypeId = responses[10].Unpack<GoalResult>().Result;
+                
+                Hitpoints = responses[14].Unpack<GoalResult>().Result;
+                Order = (UnitOrder)responses[16].Unpack<GoalResult>().Result;
+                NextAttack = TimeSpan.FromMilliseconds(responses[18].Unpack<GoalResult>().Result);
+                Stance = (UnitStance)responses[20].Unpack<GoalResult>().Result;
+                MaxHitpoints = responses[22].Unpack<GoalResult>().Result;
+                Range = responses[24].Unpack<GoalResult>().Result;
+                Speed = responses[26].Unpack<GoalResult>().Result / 100d;
+                Attack = responses[28].Unpack<GoalResult>().Result;
+                MeleeArmor = responses[30].Unpack<GoalResult>().Result;
+                PierceArmor = responses[32].Unpack<GoalResult>().Result;
+                ReloadTime = TimeSpan.FromMilliseconds(responses[34].Unpack<GoalResult>().Result);
+                TrainSiteId = responses[36].Unpack<GoalResult>().Result;
+                Class = (UnitClass)responses[38].Unpack<GoalResult>().Result;
+                CmdId = (CmdId)responses[40].Unpack<GoalResult>().Result;
+                BaseTypeId = responses[42].Unpack<GoalResult>().Result;
 
                 var pos = Position.FromPrecise(x, y);
                 var ticks = Math.Max(1, Bot.Tick - LastUpdateTick);

@@ -25,10 +25,11 @@ namespace AoE2Lib.Bots.GameElements
 
         protected override IEnumerable<IMessage> RequestElementUpdate()
         {
-            yield return new UpResearchStatus() { TypeOp = (int)TypeOp.C, TechId = Id };
+            yield return new ResearchAvailable() { ResearchType = Id };
+            yield return new ResearchCompleted() { ResearchType = Id };
             yield return new CanResearch() { ResearchType = Id };
             yield return new UpSetupCostData() { ResetCost = 1, GoalId = 100 };
-            yield return new UpAddResearchCost() { TypeOp1 = (int)TypeOp.C, TechId = Id, TypeOp2 = (int)TypeOp.C, Value = 1 };
+            yield return new UpAddResearchCost() { TypeOp1 = TypeOp.C, TechId = Id, TypeOp2 = TypeOp.C, Value = 1 };
             yield return new Goal() { GoalId = 100 };
             yield return new Goal() { GoalId = 101 };
             yield return new Goal() { GoalId = 102 };
@@ -37,12 +38,26 @@ namespace AoE2Lib.Bots.GameElements
 
         protected override void UpdateElement(IReadOnlyList<Any> responses)
         {
-            State = (ResearchState)responses[0].Unpack<UpResearchStatusResult>().Result;
-            CanResarch = responses[1].Unpack<CanResearchResult>().Result;
-            FoodCost = responses[4].Unpack<GoalResult>().Result;
-            WoodCost = responses[5].Unpack<GoalResult>().Result;
-            StoneCost = responses[6].Unpack<GoalResult>().Result;
-            GoldCost = responses[7].Unpack<GoalResult>().Result;
+            var available = responses[0].Unpack<ResearchAvailableResult>().Result;
+            var completed = responses[1].Unpack<ResearchCompletedResult>().Result;
+            if (completed)
+            {
+                State = ResearchState.COMPLETE;
+            }
+            else if (available)
+            {
+                State = ResearchState.AVAILABLE;
+            }
+            else
+            {
+                State = ResearchState.UNAVAILABLE;
+            }
+
+            CanResarch = responses[2].Unpack<CanResearchResult>().Result;
+            FoodCost = responses[5].Unpack<GoalResult>().Result;
+            WoodCost = responses[6].Unpack<GoalResult>().Result;
+            StoneCost = responses[7].Unpack<GoalResult>().Result;
+            GoldCost = responses[8].Unpack<GoalResult>().Result;
         }
     }
 }
