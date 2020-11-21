@@ -4,6 +4,11 @@ using System.Text;
 
 namespace AoE2Lib
 {
+    public enum GameVersion
+    {
+        AOC, DE
+    }
+
     public enum TypeOp
     {
         C = 6, G = 2

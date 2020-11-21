@@ -27,7 +27,8 @@ namespace Quaternary
             ButtonStart.Enabled = false;
             Refresh();
 
-            var instance = new GameInstance("AoE2DE_s");
+            var process = Process.GetProcessesByName("AoE2DE_s")[0];
+            var instance = new GameInstance(process);
 
             BotManager = new BotManager(instance);
             BotManager.RegisterBot<Quaternary>();

@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace AoE2Lib.Utils
@@ -8,7 +11,16 @@ namespace AoE2Lib.Utils
     {
         public static readonly Log Static = new Log();
 
+        public string LogFile { get; set; } = Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), "aoe2lib.log");
         public int Level = 3;
+
+        public Log()
+        {
+            if (File.Exists(LogFile))
+            {
+                File.Delete(LogFile);
+            }
+        }
 
         public void Info(object message)
         {
@@ -44,7 +56,13 @@ namespace AoE2Lib.Utils
 
         public void Write(object message)
         {
-            System.Diagnostics.Trace.WriteLine($"{DateTime.UtcNow}: {message}");
+            var str = $"{DateTime.UtcNow}: {message}";
+
+            Trace.WriteLine(str);
+            lock (LogFile)
+            {
+                File.AppendAllText(LogFile, str + "\n");
+            }
         }
     }
 }

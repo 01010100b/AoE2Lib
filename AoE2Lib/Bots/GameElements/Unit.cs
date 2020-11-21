@@ -96,6 +96,17 @@ namespace AoE2Lib.Bots.GameElements
 
             if (Id == id)
             {
+                var building = true;
+                if (UnitType != null)
+                {
+                    building = UnitType.IsBuilding;
+                }
+
+                if (explored != 15 && building == false)
+                {
+                    return;
+                }
+
                 Targetable = true;
                 LastTargetable = DateTime.UtcNow;
 

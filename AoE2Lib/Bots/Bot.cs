@@ -14,6 +14,8 @@ namespace AoE2Lib.Bots
 {
     public abstract class Bot
     {
+        public const int GOAL_ID = 420;
+
         public abstract string Name { get; }
         public abstract int Id { get; }
         public Mod Mod { get; private set; } = null;
@@ -75,7 +77,7 @@ namespace AoE2Lib.Bots
 
         private void Run(ExpertAPIClient api)
         {
-            Log.Info($"Bot {Name} playing {PlayerNumber} has started");
+            Log.Info($"Bot {Name} {PlayerNumber}: Started");
 
             Tick = 0;
             var sw = new Stopwatch();
@@ -126,7 +128,7 @@ namespace AoE2Lib.Bots
                     }
                 }
 
-                Log.Info($"RequestUpdate took {sw.ElapsedMilliseconds} ms");
+                Log.Info($"Bot {Name} {PlayerNumber}: RequestUpdate took {sw.ElapsedMilliseconds} ms");
 
                 // make the call
 
@@ -145,7 +147,7 @@ namespace AoE2Lib.Bots
                     resultlist = null;
                 }
 
-                Log.Info($"Call took {sw.ElapsedMilliseconds} ms");
+                Log.Info($"Bot {Name} {PlayerNumber}: Call took {sw.ElapsedMilliseconds} ms");
 
                 if (resultlist == null)
                 {
@@ -186,11 +188,11 @@ namespace AoE2Lib.Bots
                     Tick++;
                     previous = DateTime.UtcNow;
 
-                    Log.Info($"Update took {sw.ElapsedMilliseconds} ms");
+                    Log.Info($"Bot {Name} {PlayerNumber}: Update took {sw.ElapsedMilliseconds} ms");
                 }
             }
 
-            Log.Info($"Bot {Name} playing {PlayerNumber} has stopped");
+            Log.Info($"Bot {Name} {PlayerNumber}:  Stopped");
         }
     }
 }

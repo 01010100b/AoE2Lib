@@ -1,8 +1,11 @@
-﻿using Google.Protobuf;
+﻿using AoE2Lib.Utils;
+using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 
 namespace AoE2Lib.Bots
@@ -28,7 +31,11 @@ namespace AoE2Lib.Bots
 
         public IReadOnlyList<Any> GetResponses()
         {
-            Debug.Assert(Messages.Count == Responses.Count);
+            if (Responses.Count != Messages.Count)
+            {
+                Log.Static.Warning($"Command responses count not correct");
+                Reset();
+            }
 
             return Responses;
         }

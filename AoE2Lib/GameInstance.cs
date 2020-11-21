@@ -10,17 +10,26 @@ namespace AoE2Lib
 {
     public class GameInstance
     {
+        public GameVersion Version => Process.ProcessName.Contains("AoE2DE") ? GameVersion.DE : GameVersion.AOC;
+
         private readonly Process Process;
         private readonly HashSet<string> InjectedDlls = new HashSet<string>();
 
-        public GameInstance(string name)
+        public GameInstance(Process process)
         {
-            Process = Process.GetProcessesByName(name)[0];
+            Process = process;
+            //Process = Process.GetProcessesByName(name)[0];
         }
 
         public void StartAIModule()
         {
             var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "aimodule-de.dll");
+
+            if (Version == GameVersion.AOC)
+            {
+                file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "aimodule-aoc.dll");
+            }
+
             InjectDll(file);
         }
 

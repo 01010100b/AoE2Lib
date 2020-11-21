@@ -108,10 +108,10 @@ namespace AoE2Lib.Bots
 
             while (!Stopping)
             {
-                Log.Info($"Player {player} ID: CHECKiNG");
+                Log.Info($"BotManager: Player {player} ID: CHECKiNG");
                 var commandlist = new CommandList() { PlayerNumber = player };
                 commandlist.Commands.Add(Any.Pack(new GameTime()));
-                commandlist.Commands.Add(Any.Pack(new Goal() { GoalId = 420 }));
+                commandlist.Commands.Add(Any.Pack(new Goal() { GoalId = Bot.GOAL_ID }));
 
                 CommandResultList result;
                 try
@@ -120,9 +120,9 @@ namespace AoE2Lib.Bots
                 }
                 catch (Exception e)
                 {
-                    Log.Info(e.Message);
+                    Log.Info($"BotManager: Player {player}: {e.Message}");
                     result = null;
-                    Log.Info($"Player {player} ID: FAILED");
+                    Log.Info($"BotManager: Player {player} ID: FAILED");
                 }
 
                 if (result != null)
@@ -132,7 +132,7 @@ namespace AoE2Lib.Bots
                         var gametime = result.Results[0].Unpack<GameTimeResult>().Result;
                         var id = result.Results[1].Unpack<GoalResult>().Result;
 
-                        Log.Info($"Player {player} ID: {id}");
+                        Log.Info($"BotManager: Player {player} ID: {id}");
                         // new game?
                         if (gametime < PreviousGameTime - 1)
                         {
@@ -143,7 +143,7 @@ namespace AoE2Lib.Bots
 
                             Players.Clear();
 
-                            Log.Debug("Game restarted");
+                            Log.Debug("BotManager: Game restarted");
                         }
 
                         PreviousGameTime = gametime;
@@ -178,7 +178,7 @@ namespace AoE2Lib.Bots
                                 mod.LoadDE();
                                 bot.Start(mod, result.PlayerNumber, botapi);
 
-                                Log.Debug($"{bot.Name} taking control of player {result.PlayerNumber}");
+                                Log.Debug($"BotManager: {bot.Name} taking control of player {result.PlayerNumber}");
                             }
                         }
                     }
