@@ -1,6 +1,5 @@
 ﻿using AoE2Lib;
 using AoE2Lib.Bots;
-using AoE2Lib.Bots.GameElements;
 using AoE2Lib.Bots.Modules;
 using AoE2Lib.Utils;
 using System;
@@ -9,20 +8,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Quaternary
+namespace ExampleBot
 {
-    class Quaternary : Bot
+    class ExampleBot : Bot
     {
-        public override string Name => "Quaternary";
-        public override int Id => 27432;
+        public override string Name => "ExampleBot";
+        public override int Id => 27421;
 
         private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.GetHashCode());
 
         protected override IEnumerable<Command> Update()
         {
+            // set strategic numbers
             SetStrategicNumbers();
 
-            
+            // get scout and send it to a random point on the map
             var scout = GetModule<UnitsModule>().Units.Values.FirstOrDefault(u => u.PlayerNumber == PlayerNumber && u.Speed > 1);
 
             if (scout == null)
@@ -43,10 +43,13 @@ namespace Quaternary
                 }
             }
 
+            // research loom
             GetModule<ResearchModule>().Research(22); // loom
 
+            // train a vill
             GetModule<UnitsModule>().Train(Mod.Villager); // vill
 
+            // build a house
             var pos = GetModule<InfoModule>().MyPosition;
             var dpos = Position.FromPoint(RNG.Next(-10, 10), RNG.Next(-10, 10));
             pos += dpos;
@@ -90,11 +93,6 @@ namespace Quaternary
 
             sns[StrategicNumber.INTELLIGENT_GATHERING] = 1;
             sns[StrategicNumber.USE_BY_TYPE_MAX_GATHERING] = 1;
-            //sns[StrategicNumber.MAXIMUM_WOOD_DROP_DISTANCE] = 4;
-            //sns[StrategicNumber.MAXIMUM_GOLD_DROP_DISTANCE] = 4;
-            //sns[StrategicNumber.MAXIMUM_STONE_DROP_DISTANCE] = 4;
-            //sns[StrategicNumber.MAXIMUM_FOOD_DROP_DISTANCE] = 4;
-            //sns[StrategicNumber.MAXIMUM_HUNT_DROP_DISTANCE] = 10;
             sns[StrategicNumber.ENABLE_BOAR_HUNTING] = 0;
             sns[StrategicNumber.LIVESTOCK_TO_TOWN_CENTER] = 1;
 
