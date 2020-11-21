@@ -49,264 +49,265 @@ namespace Protos.Expert.Fact {
             "IQoMQ2FuQnVpbGRHYXRlEhEKCXBlcmltZXRlchgBIAEoBSIkChJDYW5CdWls",
             "ZEdhdGVSZXN1bHQSDgoGcmVzdWx0GAEgASgIIisKFkNhbkJ1aWxkR2F0ZVdp",
             "dGhFc2Nyb3cSEQoJcGVyaW1ldGVyGAEgASgFIi4KHENhbkJ1aWxkR2F0ZVdp",
-            "dGhFc2Nyb3dSZXN1bHQSDgoGcmVzdWx0GAEgASgIIkcKDENhbkJ1aWxkV2Fs",
-            "bBIRCglwZXJpbWV0ZXIYASABKAUSEAoId2FsbFR5cGUYAiABKAUSEgoKZXNj",
-            "cm93RmxhZxgDIAEoBSIkChJDYW5CdWlsZFdhbGxSZXN1bHQSDgoGcmVzdWx0",
-            "GAEgASgIIj0KFkNhbkJ1aWxkV2FsbFdpdGhFc2Nyb3cSEQoJcGVyaW1ldGVy",
-            "GAEgASgFEhAKCHdhbGxUeXBlGAIgASgFIi4KHENhbkJ1aWxkV2FsbFdpdGhF",
-            "c2Nyb3dSZXN1bHQSDgoGcmVzdWx0GAEgASgIIioKEkNhbkJ1aWxkV2l0aEVz",
-            "Y3JvdxIUCgxidWlsZGluZ1R5cGUYASABKAUiKgoYQ2FuQnVpbGRXaXRoRXNj",
-            "cm93UmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIoCg9DYW5CdXlDb21tb2RpdHkS",
-            "FQoNY29tbW9kaXR5VHlwZRgBIAEoBSInChVDYW5CdXlDb21tb2RpdHlSZXN1",
-            "bHQSDgoGcmVzdWx0GAEgASgIIiMKC0NhblJlc2VhcmNoEhQKDHJlc2VhcmNo",
-            "VHlwZRgBIAEoBSIjChFDYW5SZXNlYXJjaFJlc3VsdBIOCgZyZXN1bHQYASAB",
-            "KAgiLQoVQ2FuUmVzZWFyY2hXaXRoRXNjcm93EhQKDHJlc2VhcmNoVHlwZRgB",
-            "IAEoBSItChtDYW5SZXNlYXJjaFdpdGhFc2Nyb3dSZXN1bHQSDgoGcmVzdWx0",
-            "GAEgASgIIikKEENhblNlbGxDb21tb2RpdHkSFQoNY29tbW9kaXR5VHlwZRgB",
-            "IAEoBSIoChZDYW5TZWxsQ29tbW9kaXR5UmVzdWx0Eg4KBnJlc3VsdBgBIAEo",
-            "CCIICgZDYW5TcHkiHgoMQ2FuU3B5UmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIS",
-            "ChBDYW5TcHlXaXRoRXNjcm93IigKFkNhblNweVdpdGhFc2Nyb3dSZXN1bHQS",
-            "DgoGcmVzdWx0GAEgASgIIhwKCENhblRyYWluEhAKCHVuaXRUeXBlGAEgASgF",
-            "IiAKDkNhblRyYWluUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCImChJDYW5UcmFp",
-            "bldpdGhFc2Nyb3cSEAoIdW5pdFR5cGUYASABKAUiKgoYQ2FuVHJhaW5XaXRo",
-            "RXNjcm93UmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIuChZDY1BsYXllcnNCdWls",
-            "ZGluZ0NvdW50EhQKDHBsYXllck51bWJlchgBIAEoBSIuChxDY1BsYXllcnNC",
-            "dWlsZGluZ0NvdW50UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSJIChpDY1BsYXll",
-            "cnNCdWlsZGluZ1R5cGVDb3VudBIUCgxwbGF5ZXJOdW1iZXIYASABKAUSFAoM",
-            "YnVpbGRpbmdUeXBlGAIgASgFIjIKIENjUGxheWVyc0J1aWxkaW5nVHlwZUNv",
-            "dW50UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIqChJDY1BsYXllcnNVbml0Q291",
-            "bnQSFAoMcGxheWVyTnVtYmVyGAEgASgFIioKGENjUGxheWVyc1VuaXRDb3Vu",
-            "dFJlc3VsdBIOCgZyZXN1bHQYASABKAUiQAoWQ2NQbGF5ZXJzVW5pdFR5cGVD",
-            "b3VudBIUCgxwbGF5ZXJOdW1iZXIYASABKAUSEAoIdW5pdFR5cGUYAiABKAUi",
-            "LgocQ2NQbGF5ZXJzVW5pdFR5cGVDb3VudFJlc3VsdBIOCgZyZXN1bHQYASAB",
-            "KAUiDwoNQ2hlYXRzRW5hYmxlZCIlChNDaGVhdHNFbmFibGVkUmVzdWx0Eg4K",
-            "BnJlc3VsdBgBIAEoCCIaCgtDaXZTZWxlY3RlZBILCgNjaXYYASABKAUiIwoR",
-            "Q2l2U2VsZWN0ZWRSZXN1bHQSDgoGcmVzdWx0GAEgASgIIhQKEkNpdmlsaWFu",
-            "UG9wdWxhdGlvbiIqChhDaXZpbGlhblBvcHVsYXRpb25SZXN1bHQSDgoGcmVz",
-            "dWx0GAEgASgFIi0KFENvbW1vZGl0eUJ1eWluZ1ByaWNlEhUKDWNvbW1vZGl0",
-            "eVR5cGUYASABKAUiLAoaQ29tbW9kaXR5QnV5aW5nUHJpY2VSZXN1bHQSDgoG",
-            "cmVzdWx0GAEgASgFIi4KFUNvbW1vZGl0eVNlbGxpbmdQcmljZRIVCg1jb21t",
-            "b2RpdHlUeXBlGAEgASgFIi0KG0NvbW1vZGl0eVNlbGxpbmdQcmljZVJlc3Vs",
-            "dBIOCgZyZXN1bHQYASABKAUiDAoKQ3VycmVudEFnZSIiChBDdXJyZW50QWdl",
-            "UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIQCg5DdXJyZW50QWdlVGltZSImChRD",
-            "dXJyZW50QWdlVGltZVJlc3VsdBIOCgZyZXN1bHQYASABKAUiDgoMQ3VycmVu",
-            "dFNjb3JlIiQKEkN1cnJlbnRTY29yZVJlc3VsdBIOCgZyZXN1bHQYASABKAUi",
-            "EAoORGVhdGhNYXRjaEdhbWUiJgoURGVhdGhNYXRjaEdhbWVSZXN1bHQSDgoG",
-            "cmVzdWx0GAEgASgIIhQKEkRlZmVuZFNvbGRpZXJDb3VudCIqChhEZWZlbmRT",
-            "b2xkaWVyQ291bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIhQKEkRlZmVuZFdh",
-            "cmJvYXRDb3VudCIqChhEZWZlbmRXYXJib2F0Q291bnRSZXN1bHQSDgoGcmVz",
-            "dWx0GAEgASgFIgwKCkRpZmZpY3VsdHkiIgoQRGlmZmljdWx0eVJlc3VsdBIO",
-            "CgZyZXN1bHQYASABKAUiGQoIRG9jdHJpbmUSDQoFdmFsdWUYASABKAUiIAoO",
-            "RG9jdHJpbmVSZXN1bHQSDgoGcmVzdWx0GAEgASgIIisKE0Ryb3BzaXRlTWlu",
-            "RGlzdGFuY2USFAoMcmVzb3VyY2VUeXBlGAEgASgFIisKGURyb3BzaXRlTWlu",
-            "RGlzdGFuY2VSZXN1bHQSDgoGcmVzdWx0GAEgASgFIgsKCUVuZGluZ0FnZSIh",
-            "Cg9FbmRpbmdBZ2VSZXN1bHQSDgoGcmVzdWx0GAEgASgFIhYKFEVuZW15QnVp",
-            "bGRpbmdzSW5Ub3duIiwKGkVuZW15QnVpbGRpbmdzSW5Ub3duUmVzdWx0Eg4K",
-            "BnJlc3VsdBgBIAEoCCIVChNFbmVteUNhcHR1cmVkUmVsaWNzIisKGUVuZW15",
-            "Q2FwdHVyZWRSZWxpY3NSZXN1bHQSDgoGcmVzdWx0GAEgASgIIiQKDEVzY3Jv",
-            "d0Ftb3VudBIUCgxyZXNvdXJjZVR5cGUYASABKAUiJAoSRXNjcm93QW1vdW50",
-            "UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIuCg1FdmVudERldGVjdGVkEhEKCWV2",
-            "ZW50VHlwZRgBIAEoBRIKCgJpZBgCIAEoBSIlChNFdmVudERldGVjdGVkUmVz",
-            "dWx0Eg4KBnJlc3VsdBgBIAEoCCIHCgVGYWxzZSIdCgtGYWxzZVJlc3VsdBIO",
-            "CgZyZXN1bHQYASABKAgiUwoRRmVDYW5CdWlsZEF0UG9pbnQSDgoGcGFyYW0x",
-            "GAEgASgFEg4KBnBhcmFtMhgCIAEoBRIOCgZwYXJhbTMYAyABKAUSDgoGcGFy",
-            "YW00GAQgASgFIikKF0ZlQ2FuQnVpbGRBdFBvaW50UmVzdWx0Eg4KBnJlc3Vs",
-            "dBgBIAEoCCIMCgpGb29kQW1vdW50IiIKEEZvb2RBbW91bnRSZXN1bHQSDgoG",
-            "cmVzdWx0GAEgASgFIgoKCEdhbWVUaW1lIiAKDkdhbWVUaW1lUmVzdWx0Eg4K",
-            "BnJlc3VsdBgBIAEoBSIKCghHYW1lVHlwZSIgCg5HYW1lVHlwZVJlc3VsdBIO",
-            "CgZyZXN1bHQYASABKAUiHgoJR2F0ZUNvdW50EhEKCXBlcmltZXRlchgBIAEo",
-            "BSIhCg9HYXRlQ291bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIhYKBEdvYWwS",
-            "DgoGZ29hbElkGAEgASgFIhwKCkdvYWxSZXN1bHQSDgoGcmVzdWx0GAEgASgF",
-            "IgcKBUdvYWxzIh0KC0dvYWxzUmVzdWx0Eg4KBnJlc3VsdBgBIAMoBSIMCgpH",
-            "b2xkQW1vdW50IiIKEEdvbGRBbW91bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgF",
-            "Ig0KC0hvbGRLb2hSdWluIiMKEUhvbGRLb2hSdWluUmVzdWx0Eg4KBnJlc3Vs",
-            "dBgBIAEoCCIMCgpIb2xkUmVsaWNzIiIKEEhvbGRSZWxpY3NSZXN1bHQSDgoG",
-            "cmVzdWx0GAEgASgIIhEKD0hvdXNpbmdIZWFkcm9vbSInChVIb3VzaW5nSGVh",
-            "ZHJvb21SZXN1bHQSDgoGcmVzdWx0GAEgASgFIg8KDUlkbGVGYXJtQ291bnQi",
-            "JQoTSWRsZUZhcm1Db3VudFJlc3VsdBIOCgZyZXN1bHQYASABKAUiGgoHTWFw",
-            "U2l6ZRIPCgdtYXBTaXplGAEgASgFIh8KDU1hcFNpemVSZXN1bHQSDgoGcmVz",
-            "dWx0GAEgASgIIhoKB01hcFR5cGUSDwoHbWFwVHlwZRgBIAEoBSIfCg1NYXBU",
-            "eXBlUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIUChJNaWxpdGFyeVBvcHVsYXRp",
-            "b24iKgoYTWlsaXRhcnlQb3B1bGF0aW9uUmVzdWx0Eg4KBnJlc3VsdBgBIAEo",
-            "BSImCg5QbGF5ZXJDb21wdXRlchIUCgxwbGF5ZXJOdW1iZXIYASABKAUiJgoU",
-            "UGxheWVyQ29tcHV0ZXJSZXN1bHQSDgoGcmVzdWx0GAEgASgIIiMKC1BsYXll",
-            "ckh1bWFuEhQKDHBsYXllck51bWJlchgBIAEoBSIjChFQbGF5ZXJIdW1hblJl",
-            "c3VsdBIOCgZyZXN1bHQYASABKAgiJAoMUGxheWVySW5HYW1lEhQKDHBsYXll",
-            "ck51bWJlchgBIAEoBSIkChJQbGF5ZXJJbkdhbWVSZXN1bHQSDgoGcmVzdWx0",
-            "GAEgASgIIiQKDFBsYXllck51bWJlchIUCgxwbGF5ZXJOdW1iZXIYASABKAUi",
-            "JAoSUGxheWVyTnVtYmVyUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCImCg5QbGF5",
-            "ZXJSZXNpZ25lZBIUCgxwbGF5ZXJOdW1iZXIYASABKAUiJgoUUGxheWVyUmVz",
-            "aWduZWRSZXN1bHQSDgoGcmVzdWx0GAEgASgIIiMKC1BsYXllclZhbGlkEhQK",
-            "DHBsYXllck51bWJlchgBIAEoBSIjChFQbGF5ZXJWYWxpZFJlc3VsdBIOCgZy",
-            "ZXN1bHQYASABKAgiVQoTUGxheWVyc0FjaGlldmVtZW50cxIOCgZwYXJhbTEY",
-            "ASABKAUSDgoGcGFyYW0yGAIgASgFEg4KBnBhcmFtMxgDIAEoBRIOCgZwYXJh",
-            "bTQYBCABKAUiKwoZUGxheWVyc0FjaGlldmVtZW50c1Jlc3VsdBIOCgZyZXN1",
-            "bHQYASABKAgiLAoUUGxheWVyc0J1aWxkaW5nQ291bnQSFAoMcGxheWVyTnVt",
-            "YmVyGAEgASgFIiwKGlBsYXllcnNCdWlsZGluZ0NvdW50UmVzdWx0Eg4KBnJl",
-            "c3VsdBgBIAEoBSJGChhQbGF5ZXJzQnVpbGRpbmdUeXBlQ291bnQSFAoMcGxh",
-            "eWVyTnVtYmVyGAEgASgFEhQKDGJ1aWxkaW5nVHlwZRgCIAEoBSIwCh5QbGF5",
-            "ZXJzQnVpbGRpbmdUeXBlQ291bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIiIK",
-            "ClBsYXllcnNDaXYSFAoMcGxheWVyTnVtYmVyGAEgASgFIiIKEFBsYXllcnND",
-            "aXZSZXN1bHQSDgoGcmVzdWx0GAEgASgIIjEKGVBsYXllcnNDaXZpbGlhblBv",
-            "cHVsYXRpb24SFAoMcGxheWVyTnVtYmVyGAEgASgFIjEKH1BsYXllcnNDaXZp",
-            "bGlhblBvcHVsYXRpb25SZXN1bHQSDgoGcmVzdWx0GAEgASgFIikKEVBsYXll",
-            "cnNDdXJyZW50QWdlEhQKDHBsYXllck51bWJlchgBIAEoBSIpChdQbGF5ZXJz",
-            "Q3VycmVudEFnZVJlc3VsdBIOCgZyZXN1bHQYASABKAUiLQoVUGxheWVyc0N1",
-            "cnJlbnRBZ2VUaW1lEhQKDHBsYXllck51bWJlchgBIAEoBSItChtQbGF5ZXJz",
-            "Q3VycmVudEFnZVRpbWVSZXN1bHQSDgoGcmVzdWx0GAEgASgFIjEKGVBsYXll",
-            "cnNNaWxpdGFyeVBvcHVsYXRpb24SFAoMcGxheWVyTnVtYmVyGAEgASgFIjEK",
-            "H1BsYXllcnNNaWxpdGFyeVBvcHVsYXRpb25SZXN1bHQSDgoGcmVzdWx0GAEg",
-            "ASgFIikKEVBsYXllcnNQb3B1bGF0aW9uEhQKDHBsYXllck51bWJlchgBIAEo",
-            "BSIpChdQbGF5ZXJzUG9wdWxhdGlvblJlc3VsdBIOCgZyZXN1bHQYASABKAUi",
-            "JAoMUGxheWVyc1Njb3JlEhQKDHBsYXllck51bWJlchgBIAEoBSIkChJQbGF5",
-            "ZXJzU2NvcmVSZXN1bHQSDgoGcmVzdWx0GAEgASgFIjUKDVBsYXllcnNTdGFu",
-            "Y2USFAoMcGxheWVyTnVtYmVyGAEgASgFEg4KBnN0YW5jZRgCIAEoBSIlChNQ",
-            "bGF5ZXJzU3RhbmNlUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCI8Cg5QbGF5ZXJz",
-            "VHJpYnV0ZRIUCgxwbGF5ZXJOdW1iZXIYASABKAUSFAoMcmVzb3VyY2VUeXBl",
-            "GAIgASgFIiYKFFBsYXllcnNUcmlidXRlUmVzdWx0Eg4KBnJlc3VsdBgBIAEo",
-            "BSJCChRQbGF5ZXJzVHJpYnV0ZU1lbW9yeRIUCgxwbGF5ZXJOdW1iZXIYASAB",
-            "KAUSFAoMcmVzb3VyY2VUeXBlGAIgASgFIiwKGlBsYXllcnNUcmlidXRlTWVt",
-            "b3J5UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIoChBQbGF5ZXJzVW5pdENvdW50",
-            "EhQKDHBsYXllck51bWJlchgBIAEoBSIoChZQbGF5ZXJzVW5pdENvdW50UmVz",
-            "dWx0Eg4KBnJlc3VsdBgBIAEoBSI+ChRQbGF5ZXJzVW5pdFR5cGVDb3VudBIU",
-            "CgxwbGF5ZXJOdW1iZXIYASABKAUSEAoIdW5pdFR5cGUYAiABKAUiLAoaUGxh",
-            "eWVyc1VuaXRUeXBlQ291bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIgwKClBv",
-            "cHVsYXRpb24iIgoQUG9wdWxhdGlvblJlc3VsdBIOCgZyZXN1bHQYASABKAUi",
-            "DwoNUG9wdWxhdGlvbkNhcCIlChNQb3B1bGF0aW9uQ2FwUmVzdWx0Eg4KBnJl",
-            "c3VsdBgBIAEoBSIUChJQb3B1bGF0aW9uSGVhZHJvb20iKgoYUG9wdWxhdGlv",
-            "bkhlYWRyb29tUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIOCgxSYW5kb21OdW1i",
-            "ZXIiJAoSUmFuZG9tTnVtYmVyUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIOCgxS",
-            "ZWdpY2lkZUdhbWUiJAoSUmVnaWNpZGVHYW1lUmVzdWx0Eg4KBnJlc3VsdBgB",
-            "IAEoCCIpChFSZXNlYXJjaEF2YWlsYWJsZRIUCgxyZXNlYXJjaFR5cGUYASAB",
-            "KAUiKQoXUmVzZWFyY2hBdmFpbGFibGVSZXN1bHQSDgoGcmVzdWx0GAEgASgI",
-            "IikKEVJlc2VhcmNoQ29tcGxldGVkEhQKDHJlc2VhcmNoVHlwZRgBIAEoBSIp",
-            "ChdSZXNlYXJjaENvbXBsZXRlZFJlc3VsdBIOCgZyZXN1bHQYASABKAgiJQoN",
-            "UmVzb3VyY2VGb3VuZBIUCgxyZXNvdXJjZVR5cGUYASABKAUiJQoTUmVzb3Vy",
-            "Y2VGb3VuZFJlc3VsdBIOCgZyZXN1bHQYASABKAgiKwoKU2hhcmVkR29hbBIO",
-            "CgZnb2FsSWQYASABKAUSDQoFdmFsdWUYAiABKAUiIgoQU2hhcmVkR29hbFJl",
-            "c3VsdBIOCgZyZXN1bHQYASABKAgiFgoUU2hlZXBBbmRGb3JhZ2VUb29GYXIi",
-            "LAoaU2hlZXBBbmRGb3JhZ2VUb29GYXJSZXN1bHQSDgoGcmVzdWx0GAEgASgI",
-            "Ig4KDFNvbGRpZXJDb3VudCIkChJTb2xkaWVyQ291bnRSZXN1bHQSDgoGcmVz",
-            "dWx0GAEgASgFIjQKDFN0YW5jZVRvd2FyZBIUCgxwbGF5ZXJOdW1iZXIYASAB",
-            "KAUSDgoGc3RhbmNlGAIgASgFIiQKElN0YW5jZVRvd2FyZFJlc3VsdBIOCgZy",
-            "ZXN1bHQYASABKAgiDQoLU3RhcnRpbmdBZ2UiIwoRU3RhcnRpbmdBZ2VSZXN1",
-            "bHQSDgoGcmVzdWx0GAEgASgFIhMKEVN0YXJ0aW5nUmVzb3VyY2VzIikKF1N0",
-            "YXJ0aW5nUmVzb3VyY2VzUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSINCgtTdG9u",
-            "ZUFtb3VudCIjChFTdG9uZUFtb3VudFJlc3VsdBIOCgZyZXN1bHQYASABKAUi",
-            "KgoPU3RyYXRlZ2ljTnVtYmVyEhcKD3N0cmF0ZWdpY051bWJlchgBIAEoBSIn",
-            "ChVTdHJhdGVnaWNOdW1iZXJSZXN1bHQSDgoGcmVzdWx0GAEgASgFIjYKDVRh",
-            "dW50RGV0ZWN0ZWQSFAoMcGxheWVyTnVtYmVyGAEgASgFEg8KB3RhdW50SWQY",
-            "AiABKAUiJQoTVGF1bnREZXRlY3RlZFJlc3VsdBIOCgZyZXN1bHQYASABKAgi",
-            "IQoOVGltZXJUcmlnZ2VyZWQSDwoHdGltZXJJZBgBIAEoBSImChRUaW1lclRy",
-            "aWdnZXJlZFJlc3VsdBIOCgZyZXN1bHQYASABKAgiEQoPVG93blVuZGVyQXR0",
-            "YWNrIicKFVRvd25VbmRlckF0dGFja1Jlc3VsdBIOCgZyZXN1bHQYASABKAgi",
-            "GgoJVHJhY2VGYWN0Eg0KBXBhcmFtGAEgASgFIiEKD1RyYWNlRmFjdFJlc3Vs",
-            "dBIOCgZyZXN1bHQYASABKAgiBgoEVHJ1ZSIcCgpUcnVlUmVzdWx0Eg4KBnJl",
-            "c3VsdBgBIAEoCCIhCg1Vbml0QXZhaWxhYmxlEhAKCHVuaXRUeXBlGAEgASgF",
-            "IiUKE1VuaXRBdmFpbGFibGVSZXN1bHQSDgoGcmVzdWx0GAEgASgIIgsKCVVu",
-            "aXRDb3VudCIhCg9Vbml0Q291bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIhAK",
-            "DlVuaXRDb3VudFRvdGFsIiYKFFVuaXRDb3VudFRvdGFsUmVzdWx0Eg4KBnJl",
-            "c3VsdBgBIAEoBSIhCg1Vbml0VHlwZUNvdW50EhAKCHVuaXRUeXBlGAEgASgF",
-            "IiUKE1VuaXRUeXBlQ291bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIiYKElVu",
-            "aXRUeXBlQ291bnRUb3RhbBIQCgh1bml0VHlwZRgBIAEoBSIqChhVbml0VHlw",
-            "ZUNvdW50VG90YWxSZXN1bHQSDgoGcmVzdWx0GAEgASgFIjQKDFVwQWxsaWVk",
-            "R29hbBIUCgxjb21wdXRlckFsbHkYASABKAUSDgoGZ29hbElkGAIgASgFIiQK",
-            "ElVwQWxsaWVkR29hbFJlc3VsdBIOCgZyZXN1bHQYASABKAUiPgoWVXBBbGxp",
-            "ZWRSZXNvdXJjZUFtb3VudBIMCgRhbGx5GAEgASgFEhYKDnJlc291cmNlQW1v",
-            "dW50GAIgASgFIi4KHFVwQWxsaWVkUmVzb3VyY2VBbW91bnRSZXN1bHQSDgoG",
-            "cmVzdWx0GAEgASgFIj8KF1VwQWxsaWVkUmVzb3VyY2VQZXJjZW50EgwKBGFs",
-            "bHkYASABKAUSFgoOcmVzb3VyY2VBbW91bnQYAiABKAUiLwodVXBBbGxpZWRS",
-            "ZXNvdXJjZVBlcmNlbnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIjAKClVwQWxs",
-            "aWVkU24SFAoMY29tcHV0ZXJBbGx5GAEgASgFEgwKBHNuSWQYAiABKAUiIgoQ",
-            "VXBBbGxpZWRTblJlc3VsdBIOCgZyZXN1bHQYASABKAUiEQoPVXBBdHRhY2tl",
-            "ckNsYXNzIicKFVVwQXR0YWNrZXJDbGFzc1Jlc3VsdBIOCgZyZXN1bHQYASAB",
-            "KAUiOgoUVXBCdWlsZGluZ1R5cGVJblRvd24SDgoGdHlwZU9wGAEgASgFEhIK",
-            "CmJ1aWxkaW5nSWQYAiABKAUiLAoaVXBCdWlsZGluZ1R5cGVJblRvd25SZXN1",
-            "bHQSDgoGcmVzdWx0GAEgASgFIkUKClVwQ2FuQnVpbGQSEwoLZXNjcm93U3Rh",
-            "dGUYASABKAUSDgoGdHlwZU9wGAIgASgFEhIKCmJ1aWxkaW5nSWQYAyABKAUi",
-            "IgoQVXBDYW5CdWlsZFJlc3VsdBIOCgZyZXN1bHQYASABKAgiXAoOVXBDYW5C",
-            "dWlsZExpbmUSEwoLZXNjcm93U3RhdGUYASABKAUSEQoJZ29hbFBvaW50GAIg",
-            "ASgFEg4KBnR5cGVPcBgDIAEoBRISCgpidWlsZGluZ0lkGAQgASgFIiYKFFVw",
-            "Q2FuQnVpbGRMaW5lUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCJECg1VcENhblJl",
-            "c2VhcmNoEhMKC2VzY3Jvd1N0YXRlGAEgASgFEg4KBnR5cGVPcBgCIAEoBRIO",
-            "CgZ0ZWNoSWQYAyABKAUiJQoTVXBDYW5SZXNlYXJjaFJlc3VsdBIOCgZyZXN1",
-            "bHQYASABKAgiIwoLVXBDYW5TZWFyY2gSFAoMc2VhcmNoU291cmNlGAEgASgF",
-            "IiMKEVVwQ2FuU2VhcmNoUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCJBCgpVcENh",
-            "blRyYWluEhMKC2VzY3Jvd1N0YXRlGAEgASgFEg4KBnR5cGVPcBgCIAEoBRIO",
-            "CgZ1bml0SWQYAyABKAUiIgoQVXBDYW5UcmFpblJlc3VsdBIOCgZyZXN1bHQY",
-            "ASABKAgiEQoPVXBEZWZlbmRlckNvdW50IicKFVVwRGVmZW5kZXJDb3VudFJl",
-            "c3VsdBIOCgZyZXN1bHQYASABKAUiGAoWVXBFbmVteUJ1aWxkaW5nc0luVG93",
-            "biIuChxVcEVuZW15QnVpbGRpbmdzSW5Ub3duUmVzdWx0Eg4KBnJlc3VsdBgB",
-            "IAEoBSIUChJVcEVuZW15VW5pdHNJblRvd24iKgoYVXBFbmVteVVuaXRzSW5U",
-            "b3duUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIYChZVcEVuZW15VmlsbGFnZXJz",
-            "SW5Ub3duIi4KHFVwRW5lbXlWaWxsYWdlcnNJblRvd25SZXN1bHQSDgoGcmVz",
-            "dWx0GAEgASgFIjMKD1VwR2FpYVR5cGVDb3VudBIOCgZ0eXBlT3AYASABKAUS",
-            "EAoIcmVzb3VyY2UYAiABKAUiJwoVVXBHYWlhVHlwZUNvdW50UmVzdWx0Eg4K",
-            "BnJlc3VsdBgBIAEoBSI4ChRVcEdhaWFUeXBlQ291bnRUb3RhbBIOCgZ0eXBl",
-            "T3AYASABKAUSEAoIcmVzb3VyY2UYAiABKAUiLAoaVXBHYWlhVHlwZUNvdW50",
-            "VG90YWxSZXN1bHQSDgoGcmVzdWx0GAEgASgFIi4KC1VwR3JvdXBTaXplEg4K",
-            "BnR5cGVPcBgBIAEoBRIPCgdncm91cElkGAIgASgFIiMKEVVwR3JvdXBTaXpl",
-            "UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIjCg9VcElkbGVVbml0Q291bnQSEAoI",
-            "aWRsZVR5cGUYASABKAUiJwoVVXBJZGxlVW5pdENvdW50UmVzdWx0Eg4KBnJl",
-            "c3VsdBgBIAEoBSIiCgxVcE9iamVjdERhdGESEgoKb2JqZWN0RGF0YRgBIAEo",
-            "BSIkChJVcE9iamVjdERhdGFSZXN1bHQSDgoGcmVzdWx0GAEgASgFIigKElVw",
-            "T2JqZWN0VGFyZ2V0RGF0YRISCgpvYmplY3REYXRhGAEgASgFIioKGFVwT2Jq",
-            "ZWN0VGFyZ2V0RGF0YVJlc3VsdBIOCgZyZXN1bHQYASABKAUiNQoRVXBPYmpl",
-            "Y3RUeXBlQ291bnQSDgoGdHlwZU9wGAEgASgFEhAKCG9iamVjdElkGAIgASgF",
-            "IikKF1VwT2JqZWN0VHlwZUNvdW50UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSI6",
-            "ChZVcE9iamVjdFR5cGVDb3VudFRvdGFsEg4KBnR5cGVPcBgBIAEoBRIQCghv",
-            "YmplY3RJZBgCIAEoBSIuChxVcE9iamVjdFR5cGVDb3VudFRvdGFsUmVzdWx0",
-            "Eg4KBnJlc3VsdBgBIAEoBSIzCg5VcFBhdGhEaXN0YW5jZRIRCglnb2FsUG9p",
-            "bnQYASABKAUSDgoGc3RyaWN0GAIgASgFIiYKFFVwUGF0aERpc3RhbmNlUmVz",
-            "dWx0Eg4KBnJlc3VsdBgBIAEoBSI0ChBVcFBlbmRpbmdPYmplY3RzEg4KBnR5",
-            "cGVPcBgBIAEoBRIQCghvYmplY3RJZBgCIAEoBSIoChZVcFBlbmRpbmdPYmpl",
-            "Y3RzUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSI4ChJVcFBlbmRpbmdQbGFjZW1l",
-            "bnQSDgoGdHlwZU9wGAEgASgFEhIKCmJ1aWxkaW5nSWQYAiABKAUiKgoYVXBQ",
-            "ZW5kaW5nUGxhY2VtZW50UmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIiChBVcFBs",
-            "YXllckRpc3RhbmNlEg4KBnBsYXllchgBIAEoBSIoChZVcFBsYXllckRpc3Rh",
-            "bmNlUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSInCg9VcFBsYXllcnNJbkdhbWUS",
-            "FAoMcGxheWVyU3RhbmNlGAEgASgFIicKFVVwUGxheWVyc0luR2FtZVJlc3Vs",
-            "dBIOCgZyZXN1bHQYASABKAUiRgoPVXBQb2ludENvbnRhaW5zEhEKCWdvYWxQ",
-            "b2ludBgBIAEoBRIOCgZ0eXBlT3AYAiABKAUSEAoIb2JqZWN0SWQYAyABKAUi",
-            "JwoVVXBQb2ludENvbnRhaW5zUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCI5Cg9V",
-            "cFBvaW50RGlzdGFuY2USEgoKZ29hbFBvaW50MRgBIAEoBRISCgpnb2FsUG9p",
-            "bnQyGAIgASgFIicKFVVwUG9pbnREaXN0YW5jZVJlc3VsdBIOCgZyZXN1bHQY",
-            "ASABKAUiJQoQVXBQb2ludEVsZXZhdGlvbhIRCglnb2FsUG9pbnQYASABKAUi",
-            "KAoWVXBQb2ludEVsZXZhdGlvblJlc3VsdBIOCgZyZXN1bHQYASABKAUiJAoP",
-            "VXBQb2ludEV4cGxvcmVkEhEKCWdvYWxQb2ludBgBIAEoBSInChVVcFBvaW50",
-            "RXhwbG9yZWRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIiMKDlVwUG9pbnRUZXJy",
-            "YWluEhEKCWdvYWxQb2ludBgBIAEoBSImChRVcFBvaW50VGVycmFpblJlc3Vs",
-            "dBIOCgZyZXN1bHQYASABKAUiIAoLVXBQb2ludFpvbmUSEQoJZ29hbFBvaW50",
-            "GAEgASgFIiMKEVVwUG9pbnRab25lUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIu",
-            "ChRVcFByb2plY3RpbGVEZXRlY3RlZBIWCg5wcm9qZWN0aWxlVHlwZRgBIAEo",
-            "BSIsChpVcFByb2plY3RpbGVEZXRlY3RlZFJlc3VsdBIOCgZyZXN1bHQYASAB",
-            "KAUiLAoSVXBQcm9qZWN0aWxlVGFyZ2V0EhYKDnByb2plY3RpbGVUeXBlGAEg",
-            "ASgFIioKGFVwUHJvamVjdGlsZVRhcmdldFJlc3VsdBIOCgZyZXN1bHQYASAB",
-            "KAUiFwoVVXBSZW1haW5pbmdCb2FyQW1vdW50Ii0KG1VwUmVtYWluaW5nQm9h",
-            "ckFtb3VudFJlc3VsdBIOCgZyZXN1bHQYASABKAUiMgoQVXBSZXNlYXJjaFN0",
-            "YXR1cxIOCgZ0eXBlT3AYASABKAUSDgoGdGVjaElkGAIgASgFIigKFlVwUmVz",
-            "ZWFyY2hTdGF0dXNSZXN1bHQSDgoGcmVzdWx0GAEgASgFIioKEFVwUmVzb3Vy",
-            "Y2VBbW91bnQSFgoOcmVzb3VyY2VBbW91bnQYASABKAUiKAoWVXBSZXNvdXJj",
-            "ZUFtb3VudFJlc3VsdBIOCgZyZXN1bHQYASABKAUiKwoRVXBSZXNvdXJjZVBl",
-            "cmNlbnQSFgoOcmVzb3VyY2VBbW91bnQYASABKAUiKQoXVXBSZXNvdXJjZVBl",
-            "cmNlbnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIiAKDVVwVGltZXJTdGF0dXMS",
-            "DwoHdGltZXJJZBgBIAEoBSIlChNVcFRpbWVyU3RhdHVzUmVzdWx0Eg4KBnJl",
-            "c3VsdBgBIAEoBSIyChBVcFRyYWluU2l0ZVJlYWR5Eg4KBnR5cGVPcBgBIAEo",
-            "BRIOCgZ1bml0SWQYAiABKAUiKAoWVXBUcmFpblNpdGVSZWFkeVJlc3VsdBIO",
-            "CgZyZXN1bHQYASABKAgiMgoQVXBVbml0VHlwZUluVG93bhIOCgZ0eXBlT3AY",
-            "ASABKAUSDgoGdW5pdElkGAIgASgFIigKFlVwVW5pdFR5cGVJblRvd25SZXN1",
-            "bHQSDgoGcmVzdWx0GAEgASgFIjYKFFVwVmlsbGFnZXJUeXBlSW5Ub3duEg4K",
-            "BnR5cGVPcBgBIAEoBRIOCgZ1bml0SWQYAiABKAUiLAoaVXBWaWxsYWdlclR5",
-            "cGVJblRvd25SZXN1bHQSDgoGcmVzdWx0GAEgASgFIiwKEFZpY3RvcnlDb25k",
-            "aXRpb24SGAoQdmljdG9yeUNvbmRpdGlvbhgBIAEoBSIoChZWaWN0b3J5Q29u",
-            "ZGl0aW9uUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIsChdXYWxsQ29tcGxldGVk",
-            "UGVyY2VudGFnZRIRCglwZXJpbWV0ZXIYASABKAUiLwodV2FsbENvbXBsZXRl",
-            "ZFBlcmNlbnRhZ2VSZXN1bHQSDgoGcmVzdWx0GAEgASgFIiwKF1dhbGxJbnZp",
-            "c2libGVQZXJjZW50YWdlEhEKCXBlcmltZXRlchgBIAEoBSIvCh1XYWxsSW52",
-            "aXNpYmxlUGVyY2VudGFnZVJlc3VsdBIOCgZyZXN1bHQYASABKAUiDgoMV2Fy",
-            "Ym9hdENvdW50IiQKEldhcmJvYXRDb3VudFJlc3VsdBIOCgZyZXN1bHQYASAB",
-            "KAUiDAoKV29vZEFtb3VudCIiChBXb29kQW1vdW50UmVzdWx0Eg4KBnJlc3Vs",
-            "dBgBIAEoBWIGcHJvdG8z"));
+            "dGhFc2Nyb3dSZXN1bHQSDgoGcmVzdWx0GAEgASgIIjMKDENhbkJ1aWxkV2Fs",
+            "bBIRCglwZXJpbWV0ZXIYASABKAUSEAoId2FsbFR5cGUYAiABKAUiJAoSQ2Fu",
+            "QnVpbGRXYWxsUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCI9ChZDYW5CdWlsZFdh",
+            "bGxXaXRoRXNjcm93EhEKCXBlcmltZXRlchgBIAEoBRIQCgh3YWxsVHlwZRgC",
+            "IAEoBSIuChxDYW5CdWlsZFdhbGxXaXRoRXNjcm93UmVzdWx0Eg4KBnJlc3Vs",
+            "dBgBIAEoCCIqChJDYW5CdWlsZFdpdGhFc2Nyb3cSFAoMYnVpbGRpbmdUeXBl",
+            "GAEgASgFIioKGENhbkJ1aWxkV2l0aEVzY3Jvd1Jlc3VsdBIOCgZyZXN1bHQY",
+            "ASABKAgiKAoPQ2FuQnV5Q29tbW9kaXR5EhUKDWNvbW1vZGl0eVR5cGUYASAB",
+            "KAUiJwoVQ2FuQnV5Q29tbW9kaXR5UmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIj",
+            "CgtDYW5SZXNlYXJjaBIUCgxyZXNlYXJjaFR5cGUYASABKAUiIwoRQ2FuUmVz",
+            "ZWFyY2hSZXN1bHQSDgoGcmVzdWx0GAEgASgIIi0KFUNhblJlc2VhcmNoV2l0",
+            "aEVzY3JvdxIUCgxyZXNlYXJjaFR5cGUYASABKAUiLQobQ2FuUmVzZWFyY2hX",
+            "aXRoRXNjcm93UmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIpChBDYW5TZWxsQ29t",
+            "bW9kaXR5EhUKDWNvbW1vZGl0eVR5cGUYASABKAUiKAoWQ2FuU2VsbENvbW1v",
+            "ZGl0eVJlc3VsdBIOCgZyZXN1bHQYASABKAgiCAoGQ2FuU3B5Ih4KDENhblNw",
+            "eVJlc3VsdBIOCgZyZXN1bHQYASABKAgiEgoQQ2FuU3B5V2l0aEVzY3JvdyIo",
+            "ChZDYW5TcHlXaXRoRXNjcm93UmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIcCghD",
+            "YW5UcmFpbhIQCgh1bml0VHlwZRgBIAEoBSIgCg5DYW5UcmFpblJlc3VsdBIO",
+            "CgZyZXN1bHQYASABKAgiJgoSQ2FuVHJhaW5XaXRoRXNjcm93EhAKCHVuaXRU",
+            "eXBlGAEgASgFIioKGENhblRyYWluV2l0aEVzY3Jvd1Jlc3VsdBIOCgZyZXN1",
+            "bHQYASABKAgiLgoWQ2NQbGF5ZXJzQnVpbGRpbmdDb3VudBIUCgxwbGF5ZXJO",
+            "dW1iZXIYASABKAUiLgocQ2NQbGF5ZXJzQnVpbGRpbmdDb3VudFJlc3VsdBIO",
+            "CgZyZXN1bHQYASABKAUiSAoaQ2NQbGF5ZXJzQnVpbGRpbmdUeXBlQ291bnQS",
+            "FAoMcGxheWVyTnVtYmVyGAEgASgFEhQKDGJ1aWxkaW5nVHlwZRgCIAEoBSIy",
+            "CiBDY1BsYXllcnNCdWlsZGluZ1R5cGVDb3VudFJlc3VsdBIOCgZyZXN1bHQY",
+            "ASABKAUiKgoSQ2NQbGF5ZXJzVW5pdENvdW50EhQKDHBsYXllck51bWJlchgB",
+            "IAEoBSIqChhDY1BsYXllcnNVbml0Q291bnRSZXN1bHQSDgoGcmVzdWx0GAEg",
+            "ASgFIkAKFkNjUGxheWVyc1VuaXRUeXBlQ291bnQSFAoMcGxheWVyTnVtYmVy",
+            "GAEgASgFEhAKCHVuaXRUeXBlGAIgASgFIi4KHENjUGxheWVyc1VuaXRUeXBl",
+            "Q291bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIg8KDUNoZWF0c0VuYWJsZWQi",
+            "JQoTQ2hlYXRzRW5hYmxlZFJlc3VsdBIOCgZyZXN1bHQYASABKAgiGgoLQ2l2",
+            "U2VsZWN0ZWQSCwoDY2l2GAEgASgFIiMKEUNpdlNlbGVjdGVkUmVzdWx0Eg4K",
+            "BnJlc3VsdBgBIAEoCCIUChJDaXZpbGlhblBvcHVsYXRpb24iKgoYQ2l2aWxp",
+            "YW5Qb3B1bGF0aW9uUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSItChRDb21tb2Rp",
+            "dHlCdXlpbmdQcmljZRIVCg1jb21tb2RpdHlUeXBlGAEgASgFIiwKGkNvbW1v",
+            "ZGl0eUJ1eWluZ1ByaWNlUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIuChVDb21t",
+            "b2RpdHlTZWxsaW5nUHJpY2USFQoNY29tbW9kaXR5VHlwZRgBIAEoBSItChtD",
+            "b21tb2RpdHlTZWxsaW5nUHJpY2VSZXN1bHQSDgoGcmVzdWx0GAEgASgFIgwK",
+            "CkN1cnJlbnRBZ2UiIgoQQ3VycmVudEFnZVJlc3VsdBIOCgZyZXN1bHQYASAB",
+            "KAUiEAoOQ3VycmVudEFnZVRpbWUiJgoUQ3VycmVudEFnZVRpbWVSZXN1bHQS",
+            "DgoGcmVzdWx0GAEgASgFIg4KDEN1cnJlbnRTY29yZSIkChJDdXJyZW50U2Nv",
+            "cmVSZXN1bHQSDgoGcmVzdWx0GAEgASgFIhAKDkRlYXRoTWF0Y2hHYW1lIiYK",
+            "FERlYXRoTWF0Y2hHYW1lUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIUChJEZWZl",
+            "bmRTb2xkaWVyQ291bnQiKgoYRGVmZW5kU29sZGllckNvdW50UmVzdWx0Eg4K",
+            "BnJlc3VsdBgBIAEoBSIUChJEZWZlbmRXYXJib2F0Q291bnQiKgoYRGVmZW5k",
+            "V2FyYm9hdENvdW50UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIMCgpEaWZmaWN1",
+            "bHR5IiIKEERpZmZpY3VsdHlSZXN1bHQSDgoGcmVzdWx0GAEgASgFIhkKCERv",
+            "Y3RyaW5lEg0KBXZhbHVlGAEgASgFIiAKDkRvY3RyaW5lUmVzdWx0Eg4KBnJl",
+            "c3VsdBgBIAEoCCIrChNEcm9wc2l0ZU1pbkRpc3RhbmNlEhQKDHJlc291cmNl",
+            "VHlwZRgBIAEoBSIrChlEcm9wc2l0ZU1pbkRpc3RhbmNlUmVzdWx0Eg4KBnJl",
+            "c3VsdBgBIAEoBSILCglFbmRpbmdBZ2UiIQoPRW5kaW5nQWdlUmVzdWx0Eg4K",
+            "BnJlc3VsdBgBIAEoBSIWChRFbmVteUJ1aWxkaW5nc0luVG93biIsChpFbmVt",
+            "eUJ1aWxkaW5nc0luVG93blJlc3VsdBIOCgZyZXN1bHQYASABKAgiFQoTRW5l",
+            "bXlDYXB0dXJlZFJlbGljcyIrChlFbmVteUNhcHR1cmVkUmVsaWNzUmVzdWx0",
+            "Eg4KBnJlc3VsdBgBIAEoCCIkCgxFc2Nyb3dBbW91bnQSFAoMcmVzb3VyY2VU",
+            "eXBlGAEgASgFIiQKEkVzY3Jvd0Ftb3VudFJlc3VsdBIOCgZyZXN1bHQYASAB",
+            "KAUiLgoNRXZlbnREZXRlY3RlZBIRCglldmVudFR5cGUYASABKAUSCgoCaWQY",
+            "AiABKAUiJQoTRXZlbnREZXRlY3RlZFJlc3VsdBIOCgZyZXN1bHQYASABKAgi",
+            "BwoFRmFsc2UiHQoLRmFsc2VSZXN1bHQSDgoGcmVzdWx0GAEgASgIIlMKEUZl",
+            "Q2FuQnVpbGRBdFBvaW50Eg4KBnBhcmFtMRgBIAEoBRIOCgZwYXJhbTIYAiAB",
+            "KAUSDgoGcGFyYW0zGAMgASgFEg4KBnBhcmFtNBgEIAEoBSIpChdGZUNhbkJ1",
+            "aWxkQXRQb2ludFJlc3VsdBIOCgZyZXN1bHQYASABKAgiDwoNRmVTdWJHYW1l",
+            "VHlwZSIlChNGZVN1YkdhbWVUeXBlUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIM",
+            "CgpGb29kQW1vdW50IiIKEEZvb2RBbW91bnRSZXN1bHQSDgoGcmVzdWx0GAEg",
+            "ASgFIgoKCEdhbWVUaW1lIiAKDkdhbWVUaW1lUmVzdWx0Eg4KBnJlc3VsdBgB",
+            "IAEoBSIKCghHYW1lVHlwZSIgCg5HYW1lVHlwZVJlc3VsdBIOCgZyZXN1bHQY",
+            "ASABKAUiHgoJR2F0ZUNvdW50EhEKCXBlcmltZXRlchgBIAEoBSIhCg9HYXRl",
+            "Q291bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIhYKBEdvYWwSDgoGZ29hbElk",
+            "GAEgASgFIhwKCkdvYWxSZXN1bHQSDgoGcmVzdWx0GAEgASgFIgcKBUdvYWxz",
+            "Ih0KC0dvYWxzUmVzdWx0Eg4KBnJlc3VsdBgBIAMoBSIMCgpHb2xkQW1vdW50",
+            "IiIKEEdvbGRBbW91bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIg0KC0hvbGRL",
+            "b2hSdWluIiMKEUhvbGRLb2hSdWluUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIM",
+            "CgpIb2xkUmVsaWNzIiIKEEhvbGRSZWxpY3NSZXN1bHQSDgoGcmVzdWx0GAEg",
+            "ASgIIhEKD0hvdXNpbmdIZWFkcm9vbSInChVIb3VzaW5nSGVhZHJvb21SZXN1",
+            "bHQSDgoGcmVzdWx0GAEgASgFIg8KDUlkbGVGYXJtQ291bnQiJQoTSWRsZUZh",
+            "cm1Db3VudFJlc3VsdBIOCgZyZXN1bHQYASABKAUiGgoHTWFwU2l6ZRIPCgdt",
+            "YXBTaXplGAEgASgFIh8KDU1hcFNpemVSZXN1bHQSDgoGcmVzdWx0GAEgASgI",
+            "IhoKB01hcFR5cGUSDwoHbWFwVHlwZRgBIAEoBSIfCg1NYXBUeXBlUmVzdWx0",
+            "Eg4KBnJlc3VsdBgBIAEoCCIUChJNaWxpdGFyeVBvcHVsYXRpb24iKgoYTWls",
+            "aXRhcnlQb3B1bGF0aW9uUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSImCg5QbGF5",
+            "ZXJDb21wdXRlchIUCgxwbGF5ZXJOdW1iZXIYASABKAUiJgoUUGxheWVyQ29t",
+            "cHV0ZXJSZXN1bHQSDgoGcmVzdWx0GAEgASgIIiMKC1BsYXllckh1bWFuEhQK",
+            "DHBsYXllck51bWJlchgBIAEoBSIjChFQbGF5ZXJIdW1hblJlc3VsdBIOCgZy",
+            "ZXN1bHQYASABKAgiJAoMUGxheWVySW5HYW1lEhQKDHBsYXllck51bWJlchgB",
+            "IAEoBSIkChJQbGF5ZXJJbkdhbWVSZXN1bHQSDgoGcmVzdWx0GAEgASgIIiQK",
+            "DFBsYXllck51bWJlchIUCgxwbGF5ZXJOdW1iZXIYASABKAUiJAoSUGxheWVy",
+            "TnVtYmVyUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCImCg5QbGF5ZXJSZXNpZ25l",
+            "ZBIUCgxwbGF5ZXJOdW1iZXIYASABKAUiJgoUUGxheWVyUmVzaWduZWRSZXN1",
+            "bHQSDgoGcmVzdWx0GAEgASgIIiMKC1BsYXllclZhbGlkEhQKDHBsYXllck51",
+            "bWJlchgBIAEoBSIjChFQbGF5ZXJWYWxpZFJlc3VsdBIOCgZyZXN1bHQYASAB",
+            "KAgiVQoTUGxheWVyc0FjaGlldmVtZW50cxIOCgZwYXJhbTEYASABKAUSDgoG",
+            "cGFyYW0yGAIgASgFEg4KBnBhcmFtMxgDIAEoBRIOCgZwYXJhbTQYBCABKAUi",
+            "KwoZUGxheWVyc0FjaGlldmVtZW50c1Jlc3VsdBIOCgZyZXN1bHQYASABKAgi",
+            "LAoUUGxheWVyc0J1aWxkaW5nQ291bnQSFAoMcGxheWVyTnVtYmVyGAEgASgF",
+            "IiwKGlBsYXllcnNCdWlsZGluZ0NvdW50UmVzdWx0Eg4KBnJlc3VsdBgBIAEo",
+            "BSJGChhQbGF5ZXJzQnVpbGRpbmdUeXBlQ291bnQSFAoMcGxheWVyTnVtYmVy",
+            "GAEgASgFEhQKDGJ1aWxkaW5nVHlwZRgCIAEoBSIwCh5QbGF5ZXJzQnVpbGRp",
+            "bmdUeXBlQ291bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIiIKClBsYXllcnND",
+            "aXYSFAoMcGxheWVyTnVtYmVyGAEgASgFIiIKEFBsYXllcnNDaXZSZXN1bHQS",
+            "DgoGcmVzdWx0GAEgASgIIjEKGVBsYXllcnNDaXZpbGlhblBvcHVsYXRpb24S",
+            "FAoMcGxheWVyTnVtYmVyGAEgASgFIjEKH1BsYXllcnNDaXZpbGlhblBvcHVs",
+            "YXRpb25SZXN1bHQSDgoGcmVzdWx0GAEgASgFIikKEVBsYXllcnNDdXJyZW50",
+            "QWdlEhQKDHBsYXllck51bWJlchgBIAEoBSIpChdQbGF5ZXJzQ3VycmVudEFn",
+            "ZVJlc3VsdBIOCgZyZXN1bHQYASABKAUiLQoVUGxheWVyc0N1cnJlbnRBZ2VU",
+            "aW1lEhQKDHBsYXllck51bWJlchgBIAEoBSItChtQbGF5ZXJzQ3VycmVudEFn",
+            "ZVRpbWVSZXN1bHQSDgoGcmVzdWx0GAEgASgFIjEKGVBsYXllcnNNaWxpdGFy",
+            "eVBvcHVsYXRpb24SFAoMcGxheWVyTnVtYmVyGAEgASgFIjEKH1BsYXllcnNN",
+            "aWxpdGFyeVBvcHVsYXRpb25SZXN1bHQSDgoGcmVzdWx0GAEgASgFIikKEVBs",
+            "YXllcnNQb3B1bGF0aW9uEhQKDHBsYXllck51bWJlchgBIAEoBSIpChdQbGF5",
+            "ZXJzUG9wdWxhdGlvblJlc3VsdBIOCgZyZXN1bHQYASABKAUiJAoMUGxheWVy",
+            "c1Njb3JlEhQKDHBsYXllck51bWJlchgBIAEoBSIkChJQbGF5ZXJzU2NvcmVS",
+            "ZXN1bHQSDgoGcmVzdWx0GAEgASgFIjUKDVBsYXllcnNTdGFuY2USFAoMcGxh",
+            "eWVyTnVtYmVyGAEgASgFEg4KBnN0YW5jZRgCIAEoBSIlChNQbGF5ZXJzU3Rh",
+            "bmNlUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCI8Cg5QbGF5ZXJzVHJpYnV0ZRIU",
+            "CgxwbGF5ZXJOdW1iZXIYASABKAUSFAoMcmVzb3VyY2VUeXBlGAIgASgFIiYK",
+            "FFBsYXllcnNUcmlidXRlUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSJCChRQbGF5",
+            "ZXJzVHJpYnV0ZU1lbW9yeRIUCgxwbGF5ZXJOdW1iZXIYASABKAUSFAoMcmVz",
+            "b3VyY2VUeXBlGAIgASgFIiwKGlBsYXllcnNUcmlidXRlTWVtb3J5UmVzdWx0",
+            "Eg4KBnJlc3VsdBgBIAEoBSIoChBQbGF5ZXJzVW5pdENvdW50EhQKDHBsYXll",
+            "ck51bWJlchgBIAEoBSIoChZQbGF5ZXJzVW5pdENvdW50UmVzdWx0Eg4KBnJl",
+            "c3VsdBgBIAEoBSI+ChRQbGF5ZXJzVW5pdFR5cGVDb3VudBIUCgxwbGF5ZXJO",
+            "dW1iZXIYASABKAUSEAoIdW5pdFR5cGUYAiABKAUiLAoaUGxheWVyc1VuaXRU",
+            "eXBlQ291bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIgwKClBvcHVsYXRpb24i",
+            "IgoQUG9wdWxhdGlvblJlc3VsdBIOCgZyZXN1bHQYASABKAUiDwoNUG9wdWxh",
+            "dGlvbkNhcCIlChNQb3B1bGF0aW9uQ2FwUmVzdWx0Eg4KBnJlc3VsdBgBIAEo",
+            "BSIUChJQb3B1bGF0aW9uSGVhZHJvb20iKgoYUG9wdWxhdGlvbkhlYWRyb29t",
+            "UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIOCgxSYW5kb21OdW1iZXIiJAoSUmFu",
+            "ZG9tTnVtYmVyUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIOCgxSZWdpY2lkZUdh",
+            "bWUiJAoSUmVnaWNpZGVHYW1lUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIpChFS",
+            "ZXNlYXJjaEF2YWlsYWJsZRIUCgxyZXNlYXJjaFR5cGUYASABKAUiKQoXUmVz",
+            "ZWFyY2hBdmFpbGFibGVSZXN1bHQSDgoGcmVzdWx0GAEgASgIIikKEVJlc2Vh",
+            "cmNoQ29tcGxldGVkEhQKDHJlc2VhcmNoVHlwZRgBIAEoBSIpChdSZXNlYXJj",
+            "aENvbXBsZXRlZFJlc3VsdBIOCgZyZXN1bHQYASABKAgiJQoNUmVzb3VyY2VG",
+            "b3VuZBIUCgxyZXNvdXJjZVR5cGUYASABKAUiJQoTUmVzb3VyY2VGb3VuZFJl",
+            "c3VsdBIOCgZyZXN1bHQYASABKAgiKwoKU2hhcmVkR29hbBIOCgZnb2FsSWQY",
+            "ASABKAUSDQoFdmFsdWUYAiABKAUiIgoQU2hhcmVkR29hbFJlc3VsdBIOCgZy",
+            "ZXN1bHQYASABKAgiFgoUU2hlZXBBbmRGb3JhZ2VUb29GYXIiLAoaU2hlZXBB",
+            "bmRGb3JhZ2VUb29GYXJSZXN1bHQSDgoGcmVzdWx0GAEgASgIIg4KDFNvbGRp",
+            "ZXJDb3VudCIkChJTb2xkaWVyQ291bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgF",
+            "IjQKDFN0YW5jZVRvd2FyZBIUCgxwbGF5ZXJOdW1iZXIYASABKAUSDgoGc3Rh",
+            "bmNlGAIgASgFIiQKElN0YW5jZVRvd2FyZFJlc3VsdBIOCgZyZXN1bHQYASAB",
+            "KAgiDQoLU3RhcnRpbmdBZ2UiIwoRU3RhcnRpbmdBZ2VSZXN1bHQSDgoGcmVz",
+            "dWx0GAEgASgFIhMKEVN0YXJ0aW5nUmVzb3VyY2VzIikKF1N0YXJ0aW5nUmVz",
+            "b3VyY2VzUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSINCgtTdG9uZUFtb3VudCIj",
+            "ChFTdG9uZUFtb3VudFJlc3VsdBIOCgZyZXN1bHQYASABKAUiKgoPU3RyYXRl",
+            "Z2ljTnVtYmVyEhcKD3N0cmF0ZWdpY051bWJlchgBIAEoBSInChVTdHJhdGVn",
+            "aWNOdW1iZXJSZXN1bHQSDgoGcmVzdWx0GAEgASgFIjYKDVRhdW50RGV0ZWN0",
+            "ZWQSFAoMcGxheWVyTnVtYmVyGAEgASgFEg8KB3RhdW50SWQYAiABKAUiJQoT",
+            "VGF1bnREZXRlY3RlZFJlc3VsdBIOCgZyZXN1bHQYASABKAgiIQoOVGltZXJU",
+            "cmlnZ2VyZWQSDwoHdGltZXJJZBgBIAEoBSImChRUaW1lclRyaWdnZXJlZFJl",
+            "c3VsdBIOCgZyZXN1bHQYASABKAgiEQoPVG93blVuZGVyQXR0YWNrIicKFVRv",
+            "d25VbmRlckF0dGFja1Jlc3VsdBIOCgZyZXN1bHQYASABKAgiGgoJVHJhY2VG",
+            "YWN0Eg0KBXBhcmFtGAEgASgFIiEKD1RyYWNlRmFjdFJlc3VsdBIOCgZyZXN1",
+            "bHQYASABKAgiBgoEVHJ1ZSIcCgpUcnVlUmVzdWx0Eg4KBnJlc3VsdBgBIAEo",
+            "CCIhCg1Vbml0QXZhaWxhYmxlEhAKCHVuaXRUeXBlGAEgASgFIiUKE1VuaXRB",
+            "dmFpbGFibGVSZXN1bHQSDgoGcmVzdWx0GAEgASgIIgsKCVVuaXRDb3VudCIh",
+            "Cg9Vbml0Q291bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIhAKDlVuaXRDb3Vu",
+            "dFRvdGFsIiYKFFVuaXRDb3VudFRvdGFsUmVzdWx0Eg4KBnJlc3VsdBgBIAEo",
+            "BSIhCg1Vbml0VHlwZUNvdW50EhAKCHVuaXRUeXBlGAEgASgFIiUKE1VuaXRU",
+            "eXBlQ291bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIiYKElVuaXRUeXBlQ291",
+            "bnRUb3RhbBIQCgh1bml0VHlwZRgBIAEoBSIqChhVbml0VHlwZUNvdW50VG90",
+            "YWxSZXN1bHQSDgoGcmVzdWx0GAEgASgFIjQKDFVwQWxsaWVkR29hbBIUCgxj",
+            "b21wdXRlckFsbHkYASABKAUSDgoGZ29hbElkGAIgASgFIiQKElVwQWxsaWVk",
+            "R29hbFJlc3VsdBIOCgZyZXN1bHQYASABKAUiPgoWVXBBbGxpZWRSZXNvdXJj",
+            "ZUFtb3VudBIMCgRhbGx5GAEgASgFEhYKDnJlc291cmNlQW1vdW50GAIgASgF",
+            "Ii4KHFVwQWxsaWVkUmVzb3VyY2VBbW91bnRSZXN1bHQSDgoGcmVzdWx0GAEg",
+            "ASgFIj8KF1VwQWxsaWVkUmVzb3VyY2VQZXJjZW50EgwKBGFsbHkYASABKAUS",
+            "FgoOcmVzb3VyY2VBbW91bnQYAiABKAUiLwodVXBBbGxpZWRSZXNvdXJjZVBl",
+            "cmNlbnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIjAKClVwQWxsaWVkU24SFAoM",
+            "Y29tcHV0ZXJBbGx5GAEgASgFEgwKBHNuSWQYAiABKAUiIgoQVXBBbGxpZWRT",
+            "blJlc3VsdBIOCgZyZXN1bHQYASABKAUiEQoPVXBBdHRhY2tlckNsYXNzIicK",
+            "FVVwQXR0YWNrZXJDbGFzc1Jlc3VsdBIOCgZyZXN1bHQYASABKAUiOgoUVXBC",
+            "dWlsZGluZ1R5cGVJblRvd24SDgoGdHlwZU9wGAEgASgFEhIKCmJ1aWxkaW5n",
+            "SWQYAiABKAUiLAoaVXBCdWlsZGluZ1R5cGVJblRvd25SZXN1bHQSDgoGcmVz",
+            "dWx0GAEgASgFIkUKClVwQ2FuQnVpbGQSEwoLZXNjcm93U3RhdGUYASABKAUS",
+            "DgoGdHlwZU9wGAIgASgFEhIKCmJ1aWxkaW5nSWQYAyABKAUiIgoQVXBDYW5C",
+            "dWlsZFJlc3VsdBIOCgZyZXN1bHQYASABKAgiXAoOVXBDYW5CdWlsZExpbmUS",
+            "EwoLZXNjcm93U3RhdGUYASABKAUSEQoJZ29hbFBvaW50GAIgASgFEg4KBnR5",
+            "cGVPcBgDIAEoBRISCgpidWlsZGluZ0lkGAQgASgFIiYKFFVwQ2FuQnVpbGRM",
+            "aW5lUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCJECg1VcENhblJlc2VhcmNoEhMK",
+            "C2VzY3Jvd1N0YXRlGAEgASgFEg4KBnR5cGVPcBgCIAEoBRIOCgZ0ZWNoSWQY",
+            "AyABKAUiJQoTVXBDYW5SZXNlYXJjaFJlc3VsdBIOCgZyZXN1bHQYASABKAgi",
+            "IwoLVXBDYW5TZWFyY2gSFAoMc2VhcmNoU291cmNlGAEgASgFIiMKEVVwQ2Fu",
+            "U2VhcmNoUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCJBCgpVcENhblRyYWluEhMK",
+            "C2VzY3Jvd1N0YXRlGAEgASgFEg4KBnR5cGVPcBgCIAEoBRIOCgZ1bml0SWQY",
+            "AyABKAUiIgoQVXBDYW5UcmFpblJlc3VsdBIOCgZyZXN1bHQYASABKAgiEQoP",
+            "VXBEZWZlbmRlckNvdW50IicKFVVwRGVmZW5kZXJDb3VudFJlc3VsdBIOCgZy",
+            "ZXN1bHQYASABKAUiGAoWVXBFbmVteUJ1aWxkaW5nc0luVG93biIuChxVcEVu",
+            "ZW15QnVpbGRpbmdzSW5Ub3duUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIUChJV",
+            "cEVuZW15VW5pdHNJblRvd24iKgoYVXBFbmVteVVuaXRzSW5Ub3duUmVzdWx0",
+            "Eg4KBnJlc3VsdBgBIAEoBSIYChZVcEVuZW15VmlsbGFnZXJzSW5Ub3duIi4K",
+            "HFVwRW5lbXlWaWxsYWdlcnNJblRvd25SZXN1bHQSDgoGcmVzdWx0GAEgASgF",
+            "IjMKD1VwR2FpYVR5cGVDb3VudBIOCgZ0eXBlT3AYASABKAUSEAoIcmVzb3Vy",
+            "Y2UYAiABKAUiJwoVVXBHYWlhVHlwZUNvdW50UmVzdWx0Eg4KBnJlc3VsdBgB",
+            "IAEoBSI4ChRVcEdhaWFUeXBlQ291bnRUb3RhbBIOCgZ0eXBlT3AYASABKAUS",
+            "EAoIcmVzb3VyY2UYAiABKAUiLAoaVXBHYWlhVHlwZUNvdW50VG90YWxSZXN1",
+            "bHQSDgoGcmVzdWx0GAEgASgFIi4KC1VwR3JvdXBTaXplEg4KBnR5cGVPcBgB",
+            "IAEoBRIPCgdncm91cElkGAIgASgFIiMKEVVwR3JvdXBTaXplUmVzdWx0Eg4K",
+            "BnJlc3VsdBgBIAEoBSIjCg9VcElkbGVVbml0Q291bnQSEAoIaWRsZVR5cGUY",
+            "ASABKAUiJwoVVXBJZGxlVW5pdENvdW50UmVzdWx0Eg4KBnJlc3VsdBgBIAEo",
+            "BSIiCgxVcE9iamVjdERhdGESEgoKb2JqZWN0RGF0YRgBIAEoBSIkChJVcE9i",
+            "amVjdERhdGFSZXN1bHQSDgoGcmVzdWx0GAEgASgFIigKElVwT2JqZWN0VGFy",
+            "Z2V0RGF0YRISCgpvYmplY3REYXRhGAEgASgFIioKGFVwT2JqZWN0VGFyZ2V0",
+            "RGF0YVJlc3VsdBIOCgZyZXN1bHQYASABKAUiNQoRVXBPYmplY3RUeXBlQ291",
+            "bnQSDgoGdHlwZU9wGAEgASgFEhAKCG9iamVjdElkGAIgASgFIikKF1VwT2Jq",
+            "ZWN0VHlwZUNvdW50UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSI6ChZVcE9iamVj",
+            "dFR5cGVDb3VudFRvdGFsEg4KBnR5cGVPcBgBIAEoBRIQCghvYmplY3RJZBgC",
+            "IAEoBSIuChxVcE9iamVjdFR5cGVDb3VudFRvdGFsUmVzdWx0Eg4KBnJlc3Vs",
+            "dBgBIAEoBSIzCg5VcFBhdGhEaXN0YW5jZRIRCglnb2FsUG9pbnQYASABKAUS",
+            "DgoGc3RyaWN0GAIgASgFIiYKFFVwUGF0aERpc3RhbmNlUmVzdWx0Eg4KBnJl",
+            "c3VsdBgBIAEoBSI0ChBVcFBlbmRpbmdPYmplY3RzEg4KBnR5cGVPcBgBIAEo",
+            "BRIQCghvYmplY3RJZBgCIAEoBSIoChZVcFBlbmRpbmdPYmplY3RzUmVzdWx0",
+            "Eg4KBnJlc3VsdBgBIAEoBSI4ChJVcFBlbmRpbmdQbGFjZW1lbnQSDgoGdHlw",
+            "ZU9wGAEgASgFEhIKCmJ1aWxkaW5nSWQYAiABKAUiKgoYVXBQZW5kaW5nUGxh",
+            "Y2VtZW50UmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIiChBVcFBsYXllckRpc3Rh",
+            "bmNlEg4KBnBsYXllchgBIAEoBSIoChZVcFBsYXllckRpc3RhbmNlUmVzdWx0",
+            "Eg4KBnJlc3VsdBgBIAEoBSInCg9VcFBsYXllcnNJbkdhbWUSFAoMcGxheWVy",
+            "U3RhbmNlGAEgASgFIicKFVVwUGxheWVyc0luR2FtZVJlc3VsdBIOCgZyZXN1",
+            "bHQYASABKAUiRgoPVXBQb2ludENvbnRhaW5zEhEKCWdvYWxQb2ludBgBIAEo",
+            "BRIOCgZ0eXBlT3AYAiABKAUSEAoIb2JqZWN0SWQYAyABKAUiJwoVVXBQb2lu",
+            "dENvbnRhaW5zUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCI5Cg9VcFBvaW50RGlz",
+            "dGFuY2USEgoKZ29hbFBvaW50MRgBIAEoBRISCgpnb2FsUG9pbnQyGAIgASgF",
+            "IicKFVVwUG9pbnREaXN0YW5jZVJlc3VsdBIOCgZyZXN1bHQYASABKAUiJQoQ",
+            "VXBQb2ludEVsZXZhdGlvbhIRCglnb2FsUG9pbnQYASABKAUiKAoWVXBQb2lu",
+            "dEVsZXZhdGlvblJlc3VsdBIOCgZyZXN1bHQYASABKAUiJAoPVXBQb2ludEV4",
+            "cGxvcmVkEhEKCWdvYWxQb2ludBgBIAEoBSInChVVcFBvaW50RXhwbG9yZWRS",
+            "ZXN1bHQSDgoGcmVzdWx0GAEgASgFIiMKDlVwUG9pbnRUZXJyYWluEhEKCWdv",
+            "YWxQb2ludBgBIAEoBSImChRVcFBvaW50VGVycmFpblJlc3VsdBIOCgZyZXN1",
+            "bHQYASABKAUiIAoLVXBQb2ludFpvbmUSEQoJZ29hbFBvaW50GAEgASgFIiMK",
+            "EVVwUG9pbnRab25lUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIuChRVcFByb2pl",
+            "Y3RpbGVEZXRlY3RlZBIWCg5wcm9qZWN0aWxlVHlwZRgBIAEoBSIsChpVcFBy",
+            "b2plY3RpbGVEZXRlY3RlZFJlc3VsdBIOCgZyZXN1bHQYASABKAUiLAoSVXBQ",
+            "cm9qZWN0aWxlVGFyZ2V0EhYKDnByb2plY3RpbGVUeXBlGAEgASgFIioKGFVw",
+            "UHJvamVjdGlsZVRhcmdldFJlc3VsdBIOCgZyZXN1bHQYASABKAUiFwoVVXBS",
+            "ZW1haW5pbmdCb2FyQW1vdW50Ii0KG1VwUmVtYWluaW5nQm9hckFtb3VudFJl",
+            "c3VsdBIOCgZyZXN1bHQYASABKAUiMgoQVXBSZXNlYXJjaFN0YXR1cxIOCgZ0",
+            "eXBlT3AYASABKAUSDgoGdGVjaElkGAIgASgFIigKFlVwUmVzZWFyY2hTdGF0",
+            "dXNSZXN1bHQSDgoGcmVzdWx0GAEgASgFIioKEFVwUmVzb3VyY2VBbW91bnQS",
+            "FgoOcmVzb3VyY2VBbW91bnQYASABKAUiKAoWVXBSZXNvdXJjZUFtb3VudFJl",
+            "c3VsdBIOCgZyZXN1bHQYASABKAUiKwoRVXBSZXNvdXJjZVBlcmNlbnQSFgoO",
+            "cmVzb3VyY2VBbW91bnQYASABKAUiKQoXVXBSZXNvdXJjZVBlcmNlbnRSZXN1",
+            "bHQSDgoGcmVzdWx0GAEgASgFIiAKDVVwVGltZXJTdGF0dXMSDwoHdGltZXJJ",
+            "ZBgBIAEoBSIlChNVcFRpbWVyU3RhdHVzUmVzdWx0Eg4KBnJlc3VsdBgBIAEo",
+            "BSIyChBVcFRyYWluU2l0ZVJlYWR5Eg4KBnR5cGVPcBgBIAEoBRIOCgZ1bml0",
+            "SWQYAiABKAUiKAoWVXBUcmFpblNpdGVSZWFkeVJlc3VsdBIOCgZyZXN1bHQY",
+            "ASABKAgiMgoQVXBVbml0VHlwZUluVG93bhIOCgZ0eXBlT3AYASABKAUSDgoG",
+            "dW5pdElkGAIgASgFIigKFlVwVW5pdFR5cGVJblRvd25SZXN1bHQSDgoGcmVz",
+            "dWx0GAEgASgFIjYKFFVwVmlsbGFnZXJUeXBlSW5Ub3duEg4KBnR5cGVPcBgB",
+            "IAEoBRIOCgZ1bml0SWQYAiABKAUiLAoaVXBWaWxsYWdlclR5cGVJblRvd25S",
+            "ZXN1bHQSDgoGcmVzdWx0GAEgASgFIiwKEFZpY3RvcnlDb25kaXRpb24SGAoQ",
+            "dmljdG9yeUNvbmRpdGlvbhgBIAEoBSIoChZWaWN0b3J5Q29uZGl0aW9uUmVz",
+            "dWx0Eg4KBnJlc3VsdBgBIAEoCCIsChdXYWxsQ29tcGxldGVkUGVyY2VudGFn",
+            "ZRIRCglwZXJpbWV0ZXIYASABKAUiLwodV2FsbENvbXBsZXRlZFBlcmNlbnRh",
+            "Z2VSZXN1bHQSDgoGcmVzdWx0GAEgASgFIiwKF1dhbGxJbnZpc2libGVQZXJj",
+            "ZW50YWdlEhEKCXBlcmltZXRlchgBIAEoBSIvCh1XYWxsSW52aXNpYmxlUGVy",
+            "Y2VudGFnZVJlc3VsdBIOCgZyZXN1bHQYASABKAUiDgoMV2FyYm9hdENvdW50",
+            "IiQKEldhcmJvYXRDb3VudFJlc3VsdBIOCgZyZXN1bHQYASABKAUiDAoKV29v",
+            "ZEFtb3VudCIiChBXb29kQW1vdW50UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBWIG",
+            "cHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -338,7 +339,7 @@ namespace Protos.Expert.Fact {
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuildGateResult), global::Protos.Expert.Fact.CanBuildGateResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuildGateWithEscrow), global::Protos.Expert.Fact.CanBuildGateWithEscrow.Parser, new[]{ "Perimeter" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuildGateWithEscrowResult), global::Protos.Expert.Fact.CanBuildGateWithEscrowResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuildWall), global::Protos.Expert.Fact.CanBuildWall.Parser, new[]{ "Perimeter", "WallType", "EscrowFlag" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuildWall), global::Protos.Expert.Fact.CanBuildWall.Parser, new[]{ "Perimeter", "WallType" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuildWallResult), global::Protos.Expert.Fact.CanBuildWallResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuildWallWithEscrow), global::Protos.Expert.Fact.CanBuildWallWithEscrow.Parser, new[]{ "Perimeter", "WallType" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuildWallWithEscrowResult), global::Protos.Expert.Fact.CanBuildWallWithEscrowResult.Parser, new[]{ "Result" }, null, null, null, null),
@@ -410,6 +411,8 @@ namespace Protos.Expert.Fact {
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.FalseResult), global::Protos.Expert.Fact.FalseResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.FeCanBuildAtPoint), global::Protos.Expert.Fact.FeCanBuildAtPoint.Parser, new[]{ "Param1", "Param2", "Param3", "Param4" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.FeCanBuildAtPointResult), global::Protos.Expert.Fact.FeCanBuildAtPointResult.Parser, new[]{ "Result" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.FeSubGameType), global::Protos.Expert.Fact.FeSubGameType.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.FeSubGameTypeResult), global::Protos.Expert.Fact.FeSubGameTypeResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.FoodAmount), global::Protos.Expert.Fact.FoodAmount.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.FoodAmountResult), global::Protos.Expert.Fact.FoodAmountResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.GameTime), global::Protos.Expert.Fact.GameTime.Parser, null, null, null, null, null),
@@ -5411,7 +5414,6 @@ namespace Protos.Expert.Fact {
     public CanBuildWall(CanBuildWall other) : this() {
       perimeter_ = other.perimeter_;
       wallType_ = other.wallType_;
-      escrowFlag_ = other.escrowFlag_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -5442,17 +5444,6 @@ namespace Protos.Expert.Fact {
       }
     }
 
-    /// <summary>Field number for the "escrowFlag" field.</summary>
-    public const int EscrowFlagFieldNumber = 3;
-    private int escrowFlag_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int EscrowFlag {
-      get { return escrowFlag_; }
-      set {
-        escrowFlag_ = value;
-      }
-    }
-
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as CanBuildWall);
@@ -5468,7 +5459,6 @@ namespace Protos.Expert.Fact {
       }
       if (Perimeter != other.Perimeter) return false;
       if (WallType != other.WallType) return false;
-      if (EscrowFlag != other.EscrowFlag) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -5477,7 +5467,6 @@ namespace Protos.Expert.Fact {
       int hash = 1;
       if (Perimeter != 0) hash ^= Perimeter.GetHashCode();
       if (WallType != 0) hash ^= WallType.GetHashCode();
-      if (EscrowFlag != 0) hash ^= EscrowFlag.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -5502,10 +5491,6 @@ namespace Protos.Expert.Fact {
         output.WriteRawTag(16);
         output.WriteInt32(WallType);
       }
-      if (EscrowFlag != 0) {
-        output.WriteRawTag(24);
-        output.WriteInt32(EscrowFlag);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -5523,10 +5508,6 @@ namespace Protos.Expert.Fact {
         output.WriteRawTag(16);
         output.WriteInt32(WallType);
       }
-      if (EscrowFlag != 0) {
-        output.WriteRawTag(24);
-        output.WriteInt32(EscrowFlag);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -5541,9 +5522,6 @@ namespace Protos.Expert.Fact {
       }
       if (WallType != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(WallType);
-      }
-      if (EscrowFlag != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(EscrowFlag);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -5561,9 +5539,6 @@ namespace Protos.Expert.Fact {
       }
       if (other.WallType != 0) {
         WallType = other.WallType;
-      }
-      if (other.EscrowFlag != 0) {
-        EscrowFlag = other.EscrowFlag;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -5587,10 +5562,6 @@ namespace Protos.Expert.Fact {
             WallType = input.ReadInt32();
             break;
           }
-          case 24: {
-            EscrowFlag = input.ReadInt32();
-            break;
-          }
         }
       }
     #endif
@@ -5611,10 +5582,6 @@ namespace Protos.Expert.Fact {
           }
           case 16: {
             WallType = input.ReadInt32();
-            break;
-          }
-          case 24: {
-            EscrowFlag = input.ReadInt32();
             break;
           }
         }
@@ -9200,6 +9167,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class CcPlayersBuildingCount : pb::IMessage<CcPlayersBuildingCount>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -9372,6 +9343,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class CcPlayersBuildingCountResult : pb::IMessage<CcPlayersBuildingCountResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -9544,6 +9519,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class CcPlayersBuildingTypeCount : pb::IMessage<CcPlayersBuildingTypeCount>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -9752,6 +9731,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class CcPlayersBuildingTypeCountResult : pb::IMessage<CcPlayersBuildingTypeCountResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -9924,6 +9907,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class CcPlayersUnitCount : pb::IMessage<CcPlayersUnitCount>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -10096,6 +10083,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class CcPlayersUnitCountResult : pb::IMessage<CcPlayersUnitCountResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -10268,6 +10259,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class CcPlayersUnitTypeCount : pb::IMessage<CcPlayersUnitTypeCount>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -10476,6 +10471,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class CcPlayersUnitTypeCountResult : pb::IMessage<CcPlayersUnitTypeCountResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -15140,6 +15139,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Only available in DE.
+  /// </summary>
   public sealed partial class EndingAge : pb::IMessage<EndingAge>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -15276,6 +15279,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Only available in DE.
+  /// </summary>
   public sealed partial class EndingAgeResult : pb::IMessage<EndingAgeResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -17096,6 +17103,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Only available in DE.
+  /// </summary>
   public sealed partial class FeCanBuildAtPoint : pb::IMessage<FeCanBuildAtPoint>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -17376,6 +17387,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Only available in DE.
+  /// </summary>
   public sealed partial class FeCanBuildAtPointResult : pb::IMessage<FeCanBuildAtPointResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -17548,6 +17563,322 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Only available in DE.
+  /// </summary>
+  public sealed partial class FeSubGameType : pb::IMessage<FeSubGameType>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<FeSubGameType> _parser = new pb::MessageParser<FeSubGameType>(() => new FeSubGameType());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<FeSubGameType> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[100]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeSubGameType() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeSubGameType(FeSubGameType other) : this() {
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeSubGameType Clone() {
+      return new FeSubGameType(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as FeSubGameType);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(FeSubGameType other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(FeSubGameType other) {
+      if (other == null) {
+        return;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  ///*
+  /// Only available in DE.
+  /// </summary>
+  public sealed partial class FeSubGameTypeResult : pb::IMessage<FeSubGameTypeResult>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<FeSubGameTypeResult> _parser = new pb::MessageParser<FeSubGameTypeResult>(() => new FeSubGameTypeResult());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<FeSubGameTypeResult> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[101]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeSubGameTypeResult() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeSubGameTypeResult(FeSubGameTypeResult other) : this() {
+      result_ = other.result_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeSubGameTypeResult Clone() {
+      return new FeSubGameTypeResult(this);
+    }
+
+    /// <summary>Field number for the "result" field.</summary>
+    public const int ResultFieldNumber = 1;
+    private int result_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Result {
+      get { return result_; }
+      set {
+        result_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as FeSubGameTypeResult);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(FeSubGameTypeResult other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Result != other.Result) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Result != 0) hash ^= Result.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Result != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Result);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Result != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Result);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Result != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Result);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(FeSubGameTypeResult other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Result != 0) {
+        Result = other.Result;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Result = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Result = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
   public sealed partial class FoodAmount : pb::IMessage<FoodAmount>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -17560,7 +17891,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[100]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[102]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -17696,7 +18027,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[101]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[103]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -17868,7 +18199,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[102]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[104]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -18004,7 +18335,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[103]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[105]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -18176,7 +18507,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[104]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[106]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -18312,7 +18643,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[105]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[107]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -18484,7 +18815,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[106]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[108]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -18656,7 +18987,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[107]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[109]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -18828,7 +19159,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[108]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[110]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -19000,7 +19331,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[109]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[111]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -19172,7 +19503,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[110]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[112]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -19308,7 +19639,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[111]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[113]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -19471,7 +19802,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[112]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[114]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -19607,7 +19938,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[113]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[115]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -19779,7 +20110,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[114]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[116]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -19915,7 +20246,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[115]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[117]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -20087,7 +20418,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[116]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[118]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -20223,7 +20554,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[117]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[119]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -20395,7 +20726,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[118]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[120]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -20531,7 +20862,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[119]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[121]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -20703,7 +21034,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[120]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[122]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -20839,7 +21170,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[121]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[123]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -21011,7 +21342,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[122]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[124]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -21183,7 +21514,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[123]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[125]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -21355,7 +21686,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[124]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[126]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -21527,7 +21858,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[125]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[127]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -21699,7 +22030,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[126]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[128]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -21835,7 +22166,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[127]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[129]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -22007,7 +22338,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[128]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[130]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -22179,7 +22510,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[129]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[131]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -22351,7 +22682,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[130]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[132]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -22523,7 +22854,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[131]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[133]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -22695,7 +23026,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[132]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[134]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -22867,7 +23198,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[133]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[135]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -23039,7 +23370,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[134]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[136]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -23211,7 +23542,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[135]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[137]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -23383,7 +23714,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[136]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[138]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -23555,7 +23886,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[137]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[139]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -23727,7 +24058,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[138]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[140]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -23899,7 +24230,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[139]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[141]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -24071,7 +24402,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[140]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[142]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -24351,7 +24682,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[141]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[143]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -24523,7 +24854,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[142]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[144]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -24695,7 +25026,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[143]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[145]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -24867,7 +25198,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[144]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[146]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -25075,7 +25406,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[145]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[147]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -25247,7 +25578,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[146]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[148]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -25419,7 +25750,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[147]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[149]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -25591,7 +25922,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[148]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[150]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -25763,7 +26094,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[149]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[151]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -25935,7 +26266,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[150]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[152]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -26107,7 +26438,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[151]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[153]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -26279,7 +26610,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[152]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[154]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -26451,7 +26782,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[153]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[155]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -26623,7 +26954,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[154]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[156]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -26795,7 +27126,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[155]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[157]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -26967,7 +27298,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[156]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[158]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -27139,7 +27470,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[157]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[159]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -27311,7 +27642,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[158]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[160]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -27483,7 +27814,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[159]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[161]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -27655,7 +27986,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[160]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[162]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -27863,7 +28194,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[161]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[163]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -28035,7 +28366,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[162]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[164]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -28243,7 +28574,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[163]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[165]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -28415,7 +28746,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[164]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[166]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -28623,7 +28954,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[165]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[167]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -28795,7 +29126,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[166]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[168]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -28967,7 +29298,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[167]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[169]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -29139,7 +29470,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[168]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[170]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -29347,7 +29678,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[169]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[171]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -29519,7 +29850,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[170]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[172]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -29655,7 +29986,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[171]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[173]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -29827,7 +30158,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[172]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[174]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -29963,7 +30294,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[173]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[175]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -30135,7 +30466,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[174]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[176]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -30271,7 +30602,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[175]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[177]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -30443,7 +30774,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[176]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[178]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -30579,7 +30910,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[177]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[179]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -30751,7 +31082,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[178]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[180]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -30887,7 +31218,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[179]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[181]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -31059,7 +31390,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[180]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[182]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -31231,7 +31562,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[181]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[183]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -31403,7 +31734,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[182]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[184]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -31575,7 +31906,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[183]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[185]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -31747,7 +32078,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[184]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[186]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -31919,7 +32250,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[185]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[187]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -32091,7 +32422,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[186]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[188]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -32299,7 +32630,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[187]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[189]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -32471,7 +32802,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[188]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[190]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -32607,7 +32938,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[189]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[191]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -32779,7 +33110,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[190]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[192]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -32915,7 +33246,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[191]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[193]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -33087,7 +33418,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[192]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[194]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -33295,7 +33626,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[193]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[195]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -33467,7 +33798,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[194]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[196]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -33603,7 +33934,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[195]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[197]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -33775,7 +34106,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[196]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[198]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -33911,7 +34242,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[197]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[199]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -34083,7 +34414,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[198]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[200]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -34219,7 +34550,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[199]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[201]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -34391,7 +34722,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[200]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[202]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -34563,7 +34894,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[201]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[203]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -34735,7 +35066,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[202]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[204]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -34943,7 +35274,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[203]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[205]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -35115,7 +35446,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[204]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[206]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -35287,7 +35618,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[205]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[207]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -35459,7 +35790,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[206]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[208]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -35595,7 +35926,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[207]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[209]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -35767,7 +36098,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[208]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[210]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -35939,7 +36270,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[209]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[211]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -36111,7 +36442,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[210]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[212]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -36247,7 +36578,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[211]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[213]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -36419,7 +36750,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[212]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[214]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -36591,7 +36922,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[213]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[215]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -36763,7 +37094,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[214]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[216]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -36899,7 +37230,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[215]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[217]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -37071,7 +37402,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[216]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[218]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -37207,7 +37538,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[217]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[219]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -37379,7 +37710,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[218]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[220]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -37551,7 +37882,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[219]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[221]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -37723,7 +38054,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[220]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[222]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -37895,7 +38226,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[221]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[223]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -38067,7 +38398,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[222]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[224]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -38275,7 +38606,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[223]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[225]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -38447,7 +38778,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[224]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[226]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -38655,7 +38986,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[225]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[227]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -38827,7 +39158,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[226]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[228]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -39035,7 +39366,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[227]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[229]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -39207,7 +39538,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[228]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[230]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -39415,7 +39746,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[229]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[231]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -39587,7 +39918,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[230]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[232]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -39723,7 +40054,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[231]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[233]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -39883,6 +40214,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Type operator parameter is currently ignored in AoC version.
+  /// </summary>
   public sealed partial class UpBuildingTypeInTown : pb::IMessage<UpBuildingTypeInTown>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -39895,7 +40230,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[232]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[234]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -40103,7 +40438,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[233]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[235]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -40275,7 +40610,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[234]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[236]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -40519,7 +40854,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[235]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[237]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -40691,7 +41026,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[236]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[238]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -40971,7 +41306,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[237]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[239]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -41143,7 +41478,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[238]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[240]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -41387,7 +41722,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[239]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[241]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -41559,7 +41894,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[240]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[242]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -41731,7 +42066,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[241]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[243]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -41903,7 +42238,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[242]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[244]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -42147,7 +42482,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[243]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[245]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -42319,7 +42654,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[244]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[246]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -42455,7 +42790,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[245]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[247]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -42627,7 +42962,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[246]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[248]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -42763,7 +43098,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[247]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[249]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -42935,7 +43270,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[248]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[250]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -43071,7 +43406,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[249]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[251]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -43243,7 +43578,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[250]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[252]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -43379,7 +43714,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[251]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[253]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -43539,6 +43874,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Type operator parameter is currently ignored in AoC version.
+  /// </summary>
   public sealed partial class UpGaiaTypeCount : pb::IMessage<UpGaiaTypeCount>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -43551,7 +43890,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[252]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[254]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -43759,7 +44098,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[253]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[255]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -43919,6 +44258,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Type operator parameter is currently ignored in AoC version.
+  /// </summary>
   public sealed partial class UpGaiaTypeCountTotal : pb::IMessage<UpGaiaTypeCountTotal>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -43931,7 +44274,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[254]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[256]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -44139,7 +44482,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[255]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[257]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -44299,6 +44642,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpGroupSize : pb::IMessage<UpGroupSize>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -44311,7 +44658,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[256]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[258]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -44507,6 +44854,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpGroupSizeResult : pb::IMessage<UpGroupSizeResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -44519,7 +44870,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[257]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[259]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -44679,6 +45030,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpIdleUnitCount : pb::IMessage<UpIdleUnitCount>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -44691,7 +45046,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[258]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[260]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -44851,6 +45206,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpIdleUnitCountResult : pb::IMessage<UpIdleUnitCountResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -44863,7 +45222,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[259]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[261]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -45023,6 +45382,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpObjectData : pb::IMessage<UpObjectData>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -45035,7 +45398,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[260]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[262]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -45195,6 +45558,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpObjectDataResult : pb::IMessage<UpObjectDataResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -45207,7 +45574,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[261]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[263]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -45367,6 +45734,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpObjectTargetData : pb::IMessage<UpObjectTargetData>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -45379,7 +45750,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[262]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[264]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -45539,6 +45910,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpObjectTargetDataResult : pb::IMessage<UpObjectTargetDataResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -45551,7 +45926,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[263]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[265]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -45711,6 +46086,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpObjectTypeCount : pb::IMessage<UpObjectTypeCount>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -45723,7 +46102,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[264]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[266]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -45919,6 +46298,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpObjectTypeCountResult : pb::IMessage<UpObjectTypeCountResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -45931,7 +46314,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[265]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[267]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -46091,6 +46474,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpObjectTypeCountTotal : pb::IMessage<UpObjectTypeCountTotal>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -46103,7 +46490,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[266]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[268]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -46299,6 +46686,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpObjectTypeCountTotalResult : pb::IMessage<UpObjectTypeCountTotalResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -46311,7 +46702,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[267]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[269]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -46471,6 +46862,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpPathDistance : pb::IMessage<UpPathDistance>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -46483,7 +46878,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[268]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[270]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -46679,6 +47074,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpPathDistanceResult : pb::IMessage<UpPathDistanceResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -46691,7 +47090,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[269]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[271]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -46851,6 +47250,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpPendingObjects : pb::IMessage<UpPendingObjects>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -46863,7 +47266,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[270]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[272]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -47059,6 +47462,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpPendingObjectsResult : pb::IMessage<UpPendingObjectsResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -47071,7 +47478,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[271]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[273]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -47243,7 +47650,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[272]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[274]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -47451,7 +47858,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[273]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[275]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -47623,7 +48030,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[274]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[276]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -47795,7 +48202,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[275]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[277]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -47967,7 +48374,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[276]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[278]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -48139,7 +48546,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[277]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[279]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -48311,7 +48718,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[278]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[280]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -48555,7 +48962,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[279]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[281]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -48715,6 +49122,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpPointDistance : pb::IMessage<UpPointDistance>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -48727,7 +49138,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[280]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[282]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -48923,6 +49334,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpPointDistanceResult : pb::IMessage<UpPointDistanceResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -48935,7 +49350,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[281]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[283]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -49095,6 +49510,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpPointElevation : pb::IMessage<UpPointElevation>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -49107,7 +49526,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[282]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[284]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -49267,6 +49686,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpPointElevationResult : pb::IMessage<UpPointElevationResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -49279,7 +49702,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[283]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[285]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -49439,6 +49862,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpPointExplored : pb::IMessage<UpPointExplored>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -49451,7 +49878,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[284]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[286]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -49611,6 +50038,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpPointExploredResult : pb::IMessage<UpPointExploredResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -49623,7 +50054,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[285]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[287]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -49783,6 +50214,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpPointTerrain : pb::IMessage<UpPointTerrain>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -49795,7 +50230,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[286]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[288]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -49955,6 +50390,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpPointTerrainResult : pb::IMessage<UpPointTerrainResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -49967,7 +50406,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[287]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[289]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -50127,6 +50566,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpPointZone : pb::IMessage<UpPointZone>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -50139,7 +50582,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[288]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[290]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -50299,6 +50742,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpPointZoneResult : pb::IMessage<UpPointZoneResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -50311,7 +50758,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[289]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[291]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -50471,6 +50918,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpProjectileDetected : pb::IMessage<UpProjectileDetected>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -50483,7 +50934,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[290]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[292]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -50643,6 +51094,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpProjectileDetectedResult : pb::IMessage<UpProjectileDetectedResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -50655,7 +51110,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[291]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[293]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -50815,6 +51270,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpProjectileTarget : pb::IMessage<UpProjectileTarget>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -50827,7 +51286,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[292]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[294]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -50987,6 +51446,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpProjectileTargetResult : pb::IMessage<UpProjectileTargetResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -50999,7 +51462,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[293]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[295]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -51159,6 +51622,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpRemainingBoarAmount : pb::IMessage<UpRemainingBoarAmount>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -51171,7 +51638,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[294]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[296]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -51295,6 +51762,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpRemainingBoarAmountResult : pb::IMessage<UpRemainingBoarAmountResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -51307,7 +51778,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[295]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[297]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -51467,6 +51938,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpResearchStatus : pb::IMessage<UpResearchStatus>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -51479,7 +51954,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[296]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[298]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -51675,6 +52150,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpResearchStatusResult : pb::IMessage<UpResearchStatusResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -51687,7 +52166,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[297]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[299]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -51859,7 +52338,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[298]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[300]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -52031,7 +52510,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[299]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[301]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -52203,7 +52682,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[300]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[302]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -52375,7 +52854,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[301]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[303]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -52547,7 +53026,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[302]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[304]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -52719,7 +53198,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[303]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[305]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -52891,7 +53370,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[304]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[306]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -53099,7 +53578,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[305]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[307]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -53259,6 +53738,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpUnitTypeInTown : pb::IMessage<UpUnitTypeInTown>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -53271,7 +53754,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[306]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[308]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -53467,6 +53950,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpUnitTypeInTownResult : pb::IMessage<UpUnitTypeInTownResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -53479,7 +53966,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[307]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[309]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -53639,6 +54126,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpVillagerTypeInTown : pb::IMessage<UpVillagerTypeInTown>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -53651,7 +54142,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[308]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[310]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -53847,6 +54338,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class UpVillagerTypeInTownResult : pb::IMessage<UpVillagerTypeInTownResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -53859,7 +54354,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[309]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[311]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -54031,7 +54526,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[310]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[312]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -54203,7 +54698,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[311]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[313]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -54363,6 +54858,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class WallCompletedPercentage : pb::IMessage<WallCompletedPercentage>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -54375,7 +54874,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[312]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[314]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -54535,6 +55034,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class WallCompletedPercentageResult : pb::IMessage<WallCompletedPercentageResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -54547,7 +55050,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[313]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[315]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -54707,6 +55210,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class WallInvisiblePercentage : pb::IMessage<WallInvisiblePercentage>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -54719,7 +55226,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[314]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[316]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -54879,6 +55386,10 @@ namespace Protos.Expert.Fact {
 
   }
 
+  /// <summary>
+  ///*
+  /// Currently unimplemented in AoC version.
+  /// </summary>
   public sealed partial class WallInvisiblePercentageResult : pb::IMessage<WallInvisiblePercentageResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -54891,7 +55402,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[315]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[317]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -55063,7 +55574,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[316]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[318]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -55199,7 +55710,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[317]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[319]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -55371,7 +55882,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[318]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[320]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -55507,7 +56018,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[319]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[321]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
