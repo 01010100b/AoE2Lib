@@ -38,10 +38,10 @@ namespace AoE2Lib.Bots.Modules
             var command = new SpendingCommand()
             {
                 Priority = priority,
-                WoodAmount = research.WoodCost,
-                FoodAmount = research.FoodCost,
-                GoldAmount = research.GoldCost,
-                StoneAmount = research.StoneCost
+                WoodCost = research.WoodCost,
+                FoodCost = research.FoodCost,
+                GoldCost = research.GoldCost,
+                StoneCost = research.StoneCost
             };
 
             if (research.CanResarch)

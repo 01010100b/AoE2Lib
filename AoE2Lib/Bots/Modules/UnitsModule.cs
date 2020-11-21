@@ -177,11 +177,16 @@ namespace AoE2Lib.Bots.Modules
         public void Train(UnitDef unit, int max = int.MaxValue, int concurrent = int.MaxValue, int priority = 0)
         {
             Debug.Assert(!unit.IsBuilding);
-
-            Build(unit, Position.FromPoint(-1, -1), max, concurrent, priority);
+            Create(unit, Position.FromPoint(-1, -1), max, concurrent, priority);
         }
 
         public void Build(UnitDef unit, Position position, int max = int.MaxValue, int concurrent = int.MaxValue, int priority = 0)
+        {
+            Debug.Assert(unit.IsBuilding);
+            Create(unit, position, max, concurrent, priority);
+        }
+
+        private void Create(UnitDef unit, Position position, int max = int.MaxValue, int concurrent = int.MaxValue, int priority = 0)
         {
             var info = Bot.GetModule<InfoModule>();
             info.AddUnitType(unit);
@@ -220,10 +225,10 @@ namespace AoE2Lib.Bots.Modules
             var command = new SpendingCommand()
             {
                 Priority = priority,
-                WoodAmount = type.WoodCost,
-                FoodAmount = type.FoodCost,
-                GoldAmount = type.GoldCost,
-                StoneAmount = type.StoneCost
+                WoodCost = type.WoodCost,
+                FoodCost = type.FoodCost,
+                GoldCost = type.GoldCost,
+                StoneCost = type.StoneCost
             };
 
             if (type.CanCreate)
@@ -234,7 +239,7 @@ namespace AoE2Lib.Bots.Modules
                     tick = LastBuildTick[type.Id];
                 }
 
-                if (Bot.Tick > tick + 1 || concurrent > type.Pending + 1)
+                if (Bot.Tick > tick + 1 || (concurrent > type.Pending + 1 && max > type.CountTotal + 1))
                 {
                     if (type.IsBuilding)
                     {
@@ -276,7 +281,6 @@ namespace AoE2Lib.Bots.Modules
         protected override void Update()
         {
             var info = Bot.GetModule<InfoModule>();
-
             foreach (var unit in Units.Values)
             {
                 unit.Update();

@@ -13,7 +13,6 @@ namespace AoE2Lib.Bots.GameElements
     {
         public readonly int Id;
         public readonly UnitDef UnitDef;
-        public bool IsBuilding => UnitDef.IsBuilding;
         public bool IsAvailable { get; private set; }
         public int Count { get; private set; }
         public int CountTotal { get; private set; }
@@ -22,6 +21,7 @@ namespace AoE2Lib.Bots.GameElements
         public int FoodCost { get; private set; }
         public int GoldCost { get; private set; }
         public int StoneCost { get; private set; }
+        public bool IsBuilding => UnitDef.IsBuilding;
         public int Pending => CountTotal - Count;
 
         protected internal UnitType(Bot bot, UnitDef unit) : base(bot)

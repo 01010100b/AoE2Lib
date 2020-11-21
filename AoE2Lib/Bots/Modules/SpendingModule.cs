@@ -1,4 +1,5 @@
 ﻿using AoE2Lib.Utils;
+using PeNet.PatternMatching;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,11 +11,11 @@ namespace AoE2Lib.Bots.Modules
         public class SpendingCommand : Command
         {
             public int Priority { get; set; } = 0;
-            public int WoodAmount { get; set; } = 0;
-            public int FoodAmount { get; set; } = 0;
-            public int GoldAmount { get; set; } = 0;
-            public int StoneAmount { get; set; } = 0;
-            public int Cost => WoodAmount + FoodAmount + GoldAmount + StoneAmount;
+            public int WoodCost { get; set; } = 0;
+            public int FoodCost { get; set; } = 0;
+            public int GoldCost { get; set; } = 0;
+            public int StoneCost { get; set; } = 0;
+            public int Cost => WoodCost + FoodCost + GoldCost + StoneCost;
         }
 
         private readonly List<SpendingCommand> Commands = new List<SpendingCommand>();
@@ -33,33 +34,79 @@ namespace AoE2Lib.Bots.Modules
             var stone = info.StoneAmount;
             var priority = 0;
 
+            var wood_shortage = false;
+            var food_shortage = false;
+            var gold_shortage = false;
+            var stone_shortage = false;
+
             foreach (var command in Commands)
             {
-                Bot.Log.Info($"Bot {Bot.Name} {Bot.PlayerNumber}: SpendingModule: cost {command.Cost}");
-
                 if (command.Cost <= 0)
                 {
                     yield return command;
                 }
-                else if (command.Priority >= priority)
+                else
                 {
-                    wood -= command.WoodAmount;
-                    food -= command.FoodAmount;
-                    gold -= command.GoldAmount;
-                    stone -= command.StoneAmount;
+                    wood -= command.WoodCost;
+                    food -= command.FoodCost;
+                    gold -= command.GoldCost;
+                    stone -= command.StoneCost;
 
-                    if (wood >= 0 && food >= 0 && gold >= 0 && stone >= 0)
+                    var spend = true;
+                    if (wood < 0 || food < 0 || gold < 0 || stone < 0)
+                    {
+                        spend = false;
+
+                        if (wood < 0)
+                        {
+                            wood_shortage = true;
+                        }
+                        else if (food < 0)
+                        {
+                            food_shortage = true;
+                        }
+                        else if (gold < 0)
+                        {
+                            gold_shortage = true;
+                        }
+                        else if (stone < 0)
+                        {
+                            stone_shortage = true;
+                        }
+
+                        priority = Math.Max(priority, command.Priority + 1);
+                    }
+
+                    if (command.Priority < priority)
+                    {
+                        if (command.WoodCost > 0 && wood_shortage)
+                        {
+                            spend = false;
+                        }
+                        else if (command.FoodCost > 0 && food_shortage)
+                        {
+                            spend = false;
+                        }
+                        else if (command.GoldCost > 0 && gold_shortage)
+                        {
+                            spend = false;
+                        }
+                        else if (command.StoneCost > 0 && stone_shortage)
+                        {
+                            spend = false;
+                        }
+                    }
+
+                    if (spend)
                     {
                         yield return command;
                     }
                     else
                     {
-                        wood += command.WoodAmount;
-                        food += command.FoodAmount;
-                        gold += command.GoldAmount;
-                        stone += command.StoneAmount;
-
-                        priority = command.Priority + 1;
+                        wood += command.WoodCost;
+                        food += command.FoodCost;
+                        gold += command.GoldCost;
+                        stone += command.StoneCost;
                     }
                 }
             }

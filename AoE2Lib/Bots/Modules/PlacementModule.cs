@@ -10,6 +10,9 @@ namespace AoE2Lib.Bots.Modules
 {
     public class PlacementModule : Module
     {
+        public int FarmLayersAroundTownCenter { get; set; } = 1;
+        public int FarmLayersAroundMill { get; set; } = 1;
+
         private readonly HashSet<Position> Restrictions = new HashSet<Position>();
         private readonly HashSet<Position> ExtraRestrictions = new HashSet<Position>();
 
@@ -136,6 +139,8 @@ namespace AoE2Lib.Bots.Modules
             Restrictions.Clear();
             ExtraRestrictions.Clear();
 
+            var farm = Math.Max(Bot.Mod.Farm.Width, Bot.Mod.Farm.Height);
+
             var units = Bot.GetModule<UnitsModule>().Units.Values;
             foreach (var unit in units.Where(u => IsUnitObstruction(u)))
             {
@@ -155,7 +160,20 @@ namespace AoE2Lib.Bots.Modules
                     Restrictions.Add(pos);
                 }
 
-                // TODO extra restrictions
+                if (def == Bot.Mod.TownCenter)
+                {
+                    foreach (var pos in GetFootprint(def, unit.Position, farm * FarmLayersAroundTownCenter))
+                    {
+                        ExtraRestrictions.Add(pos);
+                    }
+                }
+                else if (def == Bot.Mod.Mill)
+                {
+                    foreach (var pos in GetFootprint(def, unit.Position, farm * FarmLayersAroundMill))
+                    {
+                        ExtraRestrictions.Add(pos);
+                    }
+                }
             }
         }
     }
