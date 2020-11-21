@@ -52,7 +52,7 @@ namespace AoE2Lib.Bots
                     var create = new Func<T>(() => new T());
                     RegisteredBots.Add(bot.Id, create);
 
-                    Log.Info($"Registered bot {bot.Name}");
+                    Log.Info($"BotManager: Registered bot {bot.Name}");
                 }
             }
         }

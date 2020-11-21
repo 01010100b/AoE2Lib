@@ -86,7 +86,7 @@ namespace AoE2Lib.Bots
 
             while (!Stopping)
             {
-                Log.Info($"Tick {Tick}");
+                Log.Info($"Bot {Name} {PlayerNumber}:Tick {Tick}");
 
                 sw.Restart();
                 commands.Clear();
@@ -143,7 +143,7 @@ namespace AoE2Lib.Bots
                 }
                 catch (Exception e)
                 {
-                    Log.Info(e.Message);
+                    Log.Info($"Bot {Name} {PlayerNumber}: {e.Message}");
                     resultlist = null;
                 }
 

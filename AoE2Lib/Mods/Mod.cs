@@ -14,10 +14,25 @@ namespace AoE2Lib.Mods
         {
             UnitDefs.Clear();
 
-            Villager = new UnitDef() { Id = 83, FoundationId = 83, CollisionX = 0.2, CollisionY = 0.2 };
+            Villager = new UnitDef()
+            {
+                Id = 83,
+                FoundationId = 83,
+                CollisionX = 0.2,
+                CollisionY = 0.2,
+                CmdId = CmdId.VILLAGER
+            };
             UnitDefs.Add(Villager.Id, Villager);
 
-            House = new UnitDef() { Id = 70, FoundationId = 70, CollisionX = 1, CollisionY = 1, TerrainTable = 4 };
+            House = new UnitDef() 
+            { 
+                Id = 70, 
+                FoundationId = 70, 
+                CollisionX = 1, 
+                CollisionY = 1, 
+                TerrainTable = 4,
+                CmdId = CmdId.CIVILIAN_BUILDING
+            };
             UnitDefs.Add(House.Id, House);
         }
     }

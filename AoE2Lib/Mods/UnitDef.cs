@@ -8,8 +8,6 @@ namespace AoE2Lib.Mods
     {
         public int Id { get; set; }
         public int FoundationId { get; set; }
-        public int Width => (int)Math.Ceiling(2 * CollisionX - 0.01);
-        public int Height => (int)Math.Ceiling(2 * CollisionY - 0.01);
         public double CollisionX { get; set; } = 0.5;
         public double CollisionY { get; set; } = 0.5;
         public int HillMode { get; set; } = 0;
@@ -20,5 +18,7 @@ namespace AoE2Lib.Mods
         public int TerrainTable { get; set; } = -1;
         public CmdId CmdId { get; set; }
         public bool IsBuilding => CmdId == CmdId.CIVILIAN_BUILDING || CmdId == CmdId.MILITARY_BUILDING;
+        public int Width => (int)Math.Ceiling(2 * CollisionX - 0.01);
+        public int Height => (int)Math.Ceiling(2 * CollisionY - 0.01);
     }
 }

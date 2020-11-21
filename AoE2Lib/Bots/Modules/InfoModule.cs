@@ -36,7 +36,7 @@ namespace AoE2Lib.Bots.Modules
             if (!UnitTypes.ContainsKey(unit.Id))
             {
                 _UnitTypes.Add(unit.Id, new UnitType(Bot, unit));
-                Bot.Log.Info($"Added unit {unit.Id}");
+                Bot.Log.Info($"Bot {Bot.Name} {Bot.PlayerNumber}: UnitsModule: Added unit {unit.Id}");
             }
         }
 

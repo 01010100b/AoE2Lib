@@ -147,7 +147,5 @@ namespace AoE2Lib.Bots.GameElements
                 Targetable = false;
             }
         }
-
-        
     }
 }

@@ -26,7 +26,7 @@ namespace Quaternary
 
             if (scout == null)
             {
-                Log.Debug("No scout");
+                Log.Debug($"Bot {Name} {PlayerNumber}: No scout");
             }
             else
             {
@@ -38,13 +38,24 @@ namespace Quaternary
 
                     GetModule<MicroModule>().TargetPosition(scout, Position.FromPoint(x, y), UnitAction.MOVE, UnitFormation.LINE, UnitStance.AGGRESSIVE);
 
-                    Log.Debug($"Sending scout {scout.Id} to {x} {y}");
+                    Log.Info($"Bot {Name} {PlayerNumber}: Sending scout {scout.Id} to {x} {y}");
                 }
             }
 
-            
+            GetModule<ResearchModule>().Research(22); // loom
 
-            
+            GetModule<UnitsModule>().Train(Mod.Villager); // vill
+
+            var pos = GetModule<InfoModule>().MyPosition;
+            var dpos = Position.FromPoint(RNG.Next(-10, 10), RNG.Next(-10, 10));
+            pos += dpos;
+
+            var positions = GetModule<PlacementModule>().GetPlacementPositions(Mod.House, pos, 1, true, 10).ToList();
+            if (positions.Count > 0)
+            {
+                pos = positions[RNG.Next(positions.Count)];
+                GetModule<UnitsModule>().Build(Mod.House, pos, int.MaxValue, 2);
+            }
 
             LogState();
 
@@ -78,11 +89,11 @@ namespace Quaternary
 
             sns[StrategicNumber.INTELLIGENT_GATHERING] = 1;
             sns[StrategicNumber.USE_BY_TYPE_MAX_GATHERING] = 1;
-            sns[StrategicNumber.MAXIMUM_WOOD_DROP_DISTANCE] = 4;
-            sns[StrategicNumber.MAXIMUM_GOLD_DROP_DISTANCE] = 4;
-            sns[StrategicNumber.MAXIMUM_STONE_DROP_DISTANCE] = 4;
-            sns[StrategicNumber.MAXIMUM_FOOD_DROP_DISTANCE] = 4;
-            sns[StrategicNumber.MAXIMUM_HUNT_DROP_DISTANCE] = 10;
+            //sns[StrategicNumber.MAXIMUM_WOOD_DROP_DISTANCE] = 4;
+            //sns[StrategicNumber.MAXIMUM_GOLD_DROP_DISTANCE] = 4;
+            //sns[StrategicNumber.MAXIMUM_STONE_DROP_DISTANCE] = 4;
+            //sns[StrategicNumber.MAXIMUM_FOOD_DROP_DISTANCE] = 4;
+            //sns[StrategicNumber.MAXIMUM_HUNT_DROP_DISTANCE] = 10;
             sns[StrategicNumber.ENABLE_BOAR_HUNTING] = 0;
             sns[StrategicNumber.LIVESTOCK_TO_TOWN_CENTER] = 1;
 
@@ -96,29 +107,16 @@ namespace Quaternary
 
         private void LogState()
         {
-            GetModule<ResearchModule>().Research(22); // loom
-
-            GetModule<UnitsModule>().Train(Mod.Villager); // vill
-
-            var pos = GetModule<InfoModule>().MyPosition;
-            var dpos = Position.FromPoint(RNG.Next(-10, 10), RNG.Next(-10, 10));
-            pos += dpos;
-
-            var positions = GetModule<PlacementModule>().GetPlacementPositions(Mod.House, pos, 1, true, 10).ToList();
-            if (positions.Count > 0)
-            {
-                pos = positions[RNG.Next(positions.Count)];
-                GetModule<UnitsModule>().Build(Mod.House, pos, int.MaxValue, 2);
-            }
+            
 
             var players = GetModule<PlayersModule>().Players.Count;
-            Log.Info($"Number of players: {players}");
+            Log.Info($"Bot {Name} {PlayerNumber}: Number of players: {players}");
 
             var tiles = GetModule<MapModule>().GetTiles().ToList();
-            Log.Info($"Number of tiles: {tiles.Count:N0} of which {tiles.Count(t => t.Explored):N0} explored");
+            Log.Info($"Bot {Name} {PlayerNumber}: Number of tiles: {tiles.Count:N0} of which {tiles.Count(t => t.Explored):N0} explored");
 
             var seconds = GetModule<InfoModule>().GameSecondsPerTick;
-            Log.Info($"Game seconds per tick: {seconds:N2}");
+            Log.Info($"Bot {Name} {PlayerNumber}: Game seconds per tick: {seconds:N2}");
 
             var units = GetModule<UnitsModule>().Units;
             var speed = 0d;
@@ -129,7 +127,7 @@ namespace Quaternary
                     speed = unit.Velocity.Norm;
                 }
             }
-            Log.Info($"Number of units: {units.Count} with highest speed {speed:N2}");
+            Log.Info($"Bot {Name} {PlayerNumber}: Number of units: {units.Count} with highest speed {speed:N2}");
         }
     }
 }

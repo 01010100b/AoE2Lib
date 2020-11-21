@@ -20,7 +20,7 @@ namespace AoE2Lib.Bots.Modules
         private readonly List<Command> UnitFindCommands = new List<Command>();
         private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.Ticks.GetHashCode());
 
-        private readonly Dictionary<int, int> LastBuildTicks = new Dictionary<int, int>();
+        private readonly Dictionary<int, int> LastBuildTick = new Dictionary<int, int>();
 
         public void FindUnits(Position position, int range, int player, UnitFindType type)
         {
@@ -228,9 +228,9 @@ namespace AoE2Lib.Bots.Modules
             if (type.CanCreate)
             {
                 var tick = -1;
-                if (LastBuildTicks.ContainsKey(type.Id))
+                if (LastBuildTick.ContainsKey(type.Id))
                 {
-                    tick = LastBuildTicks[type.Id];
+                    tick = LastBuildTick[type.Id];
                 }
 
                 if (Bot.Tick > tick + 1 || concurrent > type.Pending + 1)
@@ -240,13 +240,17 @@ namespace AoE2Lib.Bots.Modules
                         command.Add(new SetGoal() { GoalId = 100, GoalValue = position.PointX });
                         command.Add(new SetGoal() { GoalId = 101, GoalValue = position.PointY });
                         command.Add(new UpBuildLine() { TypeOp = (int)TypeOp.C, BuildingId = type.Id, GoalPoint1 = 100, GoalPoint2 = 100 });
+
+                        Bot.Log.Debug($"Bot {Bot.Name} {Bot.PlayerNumber}: UnitsModule: Building type {type.Id} at {position.PointX} {position.PointY}");
                     }
                     else
                     {
                         command.Add(new Train() { UnitType = type.Id });
+
+                        Bot.Log.Info($"Bot {Bot.Name} {Bot.PlayerNumber}: UnitsModule: Training type {type.Id}");
                     }
 
-                    LastBuildTicks[type.Id] = Bot.Tick;
+                    LastBuildTick[type.Id] = Bot.Tick;
                 }
             }
 

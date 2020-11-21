@@ -35,6 +35,8 @@ namespace AoE2Lib.Bots.Modules
 
             foreach (var command in Commands)
             {
+                Bot.Log.Info($"Bot {Bot.Name} {Bot.PlayerNumber}: SpendingModule: cost {command.Cost}");
+
                 if (command.Cost <= 0)
                 {
                     yield return command;
