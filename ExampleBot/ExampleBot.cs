@@ -102,12 +102,10 @@ namespace ExampleBot
             sns[StrategicNumber.ENABLE_BOAR_HUNTING] = 0;
             sns[StrategicNumber.LIVESTOCK_TO_TOWN_CENTER] = 1;
 
-            sns[StrategicNumber.HOME_EXPLORATION_TIME] = 600;
-
-            sns[StrategicNumber.FOOD_GATHERER_PERCENTAGE] = 80;
+            sns[StrategicNumber.FOOD_GATHERER_PERCENTAGE] = 70;
             sns[StrategicNumber.WOOD_GATHERER_PERCENTAGE] = 20;
-            sns[StrategicNumber.GOLD_GATHERER_PERCENTAGE] = 0;
-            sns[StrategicNumber.STONE_GATHERER_PERCENTAGE] = 0;
+            sns[StrategicNumber.GOLD_GATHERER_PERCENTAGE] = 5;
+            sns[StrategicNumber.STONE_GATHERER_PERCENTAGE] = 5;
         }
 
         private void LogState()
