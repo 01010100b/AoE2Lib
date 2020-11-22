@@ -194,6 +194,7 @@ namespace AoE2Lib.Bots.Modules
             info.AddUnitType(unit);
 
             var type = info.UnitTypes[unit.Id];
+            type.RequestUpdate();
             if (!type.Updated)
             {
                 return;
@@ -329,8 +330,10 @@ namespace AoE2Lib.Bots.Modules
 
         private void AddDefaultCommands()
         {
+            // find = 300 us
+            // update = 100 us
             const int NUM_FINDS = 5;
-            const int NUM_UPDATES = 10;
+            const int NUM_UPDATES = 20;
 
             if (AutoUpdateUnits)
             {

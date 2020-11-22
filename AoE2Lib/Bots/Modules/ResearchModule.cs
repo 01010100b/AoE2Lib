@@ -26,6 +26,7 @@ namespace AoE2Lib.Bots.Modules
             Add(id);
 
             var research = Researches[id];
+            research.RequestUpdate();
             if (!research.Updated)
             {
                 return;

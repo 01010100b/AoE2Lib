@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AoE2Lib", "AoE2Lib\AoE2Lib.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quaternary", "Quaternary\Quaternary.csproj", "{2028D242-29EE-4A81-B44D-749F6599E85A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleBot", "ExampleBot\ExampleBot.csproj", "{B4D2DBD3-BD4F-47DF-B382-553FD7A71417}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{2028D242-29EE-4A81-B44D-749F6599E85A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2028D242-29EE-4A81-B44D-749F6599E85A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2028D242-29EE-4A81-B44D-749F6599E85A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B4D2DBD3-BD4F-47DF-B382-553FD7A71417}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B4D2DBD3-BD4F-47DF-B382-553FD7A71417}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B4D2DBD3-BD4F-47DF-B382-553FD7A71417}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B4D2DBD3-BD4F-47DF-B382-553FD7A71417}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
