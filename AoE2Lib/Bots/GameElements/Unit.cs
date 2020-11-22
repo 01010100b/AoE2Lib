@@ -38,7 +38,7 @@ namespace AoE2Lib.Bots.GameElements
         public int BaseTypeId { get; private set; } = -1;
         public bool IsBuilding => CmdId == CmdId.CIVILIAN_BUILDING || CmdId == CmdId.MILITARY_BUILDING;
 
-        protected internal Unit(Bot bot, int id) : base(bot)
+        internal Unit(Bot bot, int id) : base(bot)
         {
             Id = id;
         }

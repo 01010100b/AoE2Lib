@@ -3,6 +3,7 @@ using AoE2Lib.Bots;
 using AoE2Lib.Bots.GameElements;
 using AoE2Lib.Bots.Modules;
 using AoE2Lib.Utils;
+using Quaternary.Modules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,8 @@ namespace Quaternary
 
         protected override IEnumerable<Command> Update()
         {
+            AddModules();
+
             SetStrategicNumbers();
 
             
@@ -61,6 +64,14 @@ namespace Quaternary
             LogState();
 
             return Enumerable.Empty<Command>();
+        }
+
+        private void AddModules()
+        {
+            if (!HasModule<UnitManagerModule>())
+            {
+                AddModule(new UnitManagerModule());
+            }
         }
 
         private void SetStrategicNumbers()

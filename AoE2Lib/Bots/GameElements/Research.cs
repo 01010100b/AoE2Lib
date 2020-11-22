@@ -18,7 +18,7 @@ namespace AoE2Lib.Bots.GameElements
         public int GoldCost { get; private set; }
         public int StoneCost { get; private set; }
 
-        protected internal Research(Bot bot, int id) : base(bot)
+        internal Research(Bot bot, int id) : base(bot)
         {
             Id = id;
         }

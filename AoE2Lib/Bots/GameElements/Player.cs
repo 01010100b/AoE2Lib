@@ -24,7 +24,7 @@ namespace AoE2Lib.Bots.GameElements
         public PlayerStance Stance { get; private set; } = PlayerStance.NEUTRAL;
         public int Population => CivilianPopulation + MilitaryPopulation;
 
-        protected internal Player(Bot bot, int player) : base(bot)
+        internal Player(Bot bot, int player) : base(bot)
         {
             PlayerNumber = player;
         }

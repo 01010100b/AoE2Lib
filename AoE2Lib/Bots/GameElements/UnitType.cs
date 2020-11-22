@@ -24,7 +24,7 @@ namespace AoE2Lib.Bots.GameElements
         public bool IsBuilding => UnitDef.IsBuilding;
         public int Pending => CountTotal - Count;
 
-        protected internal UnitType(Bot bot, UnitDef unit) : base(bot)
+        internal UnitType(Bot bot, UnitDef unit) : base(bot)
         {
             Id = unit.Id;
             UnitDef = unit;
@@ -42,22 +42,6 @@ namespace AoE2Lib.Bots.GameElements
             }
         }
 
-        private IEnumerable<IMessage> RequestUnit()
-        {
-            yield return new UnitAvailable() { UnitType = Id };
-            yield return new UnitTypeCount() { UnitType = Id };
-            yield return new UnitTypeCount() { UnitType = UnitDef.FoundationId };
-            yield return new UnitTypeCountTotal() { UnitType = Id };
-            yield return new UnitTypeCountTotal() { UnitType = UnitDef.FoundationId };
-            yield return new CanTrain() { UnitType = Id };
-            yield return new UpSetupCostData() { ResetCost = 1, GoalId = 100 };
-            yield return new UpAddObjectCost() { TypeOp1 = TypeOp.C, ObjectId = UnitDef.FoundationId, TypeOp2 = TypeOp.C, Value = 1 };
-            yield return new Goal() { GoalId = 100 };
-            yield return new Goal() { GoalId = 101 };
-            yield return new Goal() { GoalId = 102 };
-            yield return new Goal() { GoalId = 103 };
-        }
-
         private IEnumerable<IMessage> RequestBuilding()
         {
             yield return new BuildingAvailable() { BuildingType = Id };
@@ -66,6 +50,22 @@ namespace AoE2Lib.Bots.GameElements
             yield return new BuildingTypeCountTotal() { BuildingType = Id };
             yield return new BuildingTypeCountTotal() { BuildingType = UnitDef.FoundationId };
             yield return new CanBuild() { BuildingType = Id };
+            yield return new UpSetupCostData() { ResetCost = 1, GoalId = 100 };
+            yield return new UpAddObjectCost() { TypeOp1 = TypeOp.C, ObjectId = UnitDef.FoundationId, TypeOp2 = TypeOp.C, Value = 1 };
+            yield return new Goal() { GoalId = 100 };
+            yield return new Goal() { GoalId = 101 };
+            yield return new Goal() { GoalId = 102 };
+            yield return new Goal() { GoalId = 103 };
+        }
+
+        private IEnumerable<IMessage> RequestUnit()
+        {
+            yield return new UnitAvailable() { UnitType = Id };
+            yield return new UnitTypeCount() { UnitType = Id };
+            yield return new UnitTypeCount() { UnitType = UnitDef.FoundationId };
+            yield return new UnitTypeCountTotal() { UnitType = Id };
+            yield return new UnitTypeCountTotal() { UnitType = UnitDef.FoundationId };
+            yield return new CanTrain() { UnitType = Id };
             yield return new UpSetupCostData() { ResetCost = 1, GoalId = 100 };
             yield return new UpAddObjectCost() { TypeOp1 = TypeOp.C, ObjectId = UnitDef.FoundationId, TypeOp2 = TypeOp.C, Value = 1 };
             yield return new Goal() { GoalId = 100 };
@@ -86,26 +86,6 @@ namespace AoE2Lib.Bots.GameElements
             }
         }
 
-        private void UpdateUnit(IReadOnlyList<Any> responses)
-        {
-            IsAvailable = responses[0].Unpack<UnitAvailableResult>().Result;
-            Count = responses[1].Unpack<UnitTypeCountResult>().Result;
-            if (Id != UnitDef.FoundationId)
-            {
-                Count += responses[2].Unpack<UnitTypeCountResult>().Result;
-            }
-            CountTotal = responses[3].Unpack<UnitTypeCountTotalResult>().Result;
-            if (Id != UnitDef.FoundationId)
-            {
-                CountTotal += responses[4].Unpack<UnitTypeCountTotalResult>().Result;
-            }
-            CanCreate = responses[5].Unpack<CanTrainResult>().Result;
-            FoodCost = responses[8].Unpack<GoalResult>().Result;
-            WoodCost = responses[9].Unpack<GoalResult>().Result;
-            StoneCost = responses[10].Unpack<GoalResult>().Result;
-            GoldCost = responses[11].Unpack<GoalResult>().Result;
-        }
-
         private void UpdateBuilding(IReadOnlyList<Any> responses)
         {
             IsAvailable = responses[0].Unpack<BuildingAvailableResult>().Result;
@@ -120,6 +100,26 @@ namespace AoE2Lib.Bots.GameElements
                 CountTotal += responses[4].Unpack<BuildingTypeCountTotalResult>().Result;
             }
             CanCreate = responses[5].Unpack<CanBuildResult>().Result;
+            FoodCost = responses[8].Unpack<GoalResult>().Result;
+            WoodCost = responses[9].Unpack<GoalResult>().Result;
+            StoneCost = responses[10].Unpack<GoalResult>().Result;
+            GoldCost = responses[11].Unpack<GoalResult>().Result;
+        }
+
+        private void UpdateUnit(IReadOnlyList<Any> responses)
+        {
+            IsAvailable = responses[0].Unpack<UnitAvailableResult>().Result;
+            Count = responses[1].Unpack<UnitTypeCountResult>().Result;
+            if (Id != UnitDef.FoundationId)
+            {
+                Count += responses[2].Unpack<UnitTypeCountResult>().Result;
+            }
+            CountTotal = responses[3].Unpack<UnitTypeCountTotalResult>().Result;
+            if (Id != UnitDef.FoundationId)
+            {
+                CountTotal += responses[4].Unpack<UnitTypeCountTotalResult>().Result;
+            }
+            CanCreate = responses[5].Unpack<CanTrainResult>().Result;
             FoodCost = responses[8].Unpack<GoalResult>().Result;
             WoodCost = responses[9].Unpack<GoalResult>().Result;
             StoneCost = responses[10].Unpack<GoalResult>().Result;

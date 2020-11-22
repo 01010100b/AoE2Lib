@@ -61,15 +61,15 @@ namespace AoE2Lib.Bots.Modules
                         {
                             wood_shortage = true;
                         }
-                        else if (food < 0)
+                        if (food < 0)
                         {
                             food_shortage = true;
                         }
-                        else if (gold < 0)
+                        if (gold < 0)
                         {
                             gold_shortage = true;
                         }
-                        else if (stone < 0)
+                        if (stone < 0)
                         {
                             stone_shortage = true;
                         }
