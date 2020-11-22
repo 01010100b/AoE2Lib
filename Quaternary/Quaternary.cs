@@ -31,17 +31,17 @@ namespace Quaternary
             // train vill
             GetModule<UnitsModule>().Train(Mod.Villager);
 
-            // build house
-            var pos = GetModule<InfoModule>().MyPosition;
-            var dpos = Position.FromPoint(RNG.Next(-10, 10), RNG.Next(-10, 10));
-            pos += dpos;
-
-            var positions = GetModule<PlacementModule>().GetPlacementPositions(Mod.House, pos, 1, true, 10).ToList();
-            if (positions.Count > 0)
+            // build mill
+            if (GetModule<InfoModule>().GameTime > TimeSpan.FromMinutes(2))
             {
-                pos = positions[RNG.Next(positions.Count)];
-                GetModule<UnitsModule>().Build(Mod.House, pos, int.MaxValue, 2);
+                GetModule<BuildModule>().BuildNormal(Mod.Mill, 2, 1);
             }
+
+            // build farm
+            GetModule<BuildModule>().BuildFarm(Mod.Farm, 10, 1);
+
+            // build house
+            GetModule<BuildModule>().BuildNormal(Mod.House, 100, 2);
 
             LogState();
 
@@ -58,6 +58,11 @@ namespace Quaternary
             if (!HasModule<ScoutingModule>())
             {
                 AddModule(new ScoutingModule());
+            }
+
+            if (!HasModule<BuildModule>())
+            {
+                AddModule(new BuildModule());
             }
         }
 
