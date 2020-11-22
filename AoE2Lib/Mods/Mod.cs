@@ -20,16 +20,6 @@ namespace AoE2Lib.Mods
         {
             UnitDefs.Clear();
 
-            TownCenter = new UnitDef()
-            {
-                Id = 109,
-                FoundationId = 621,
-                CollisionX = 2,
-                CollisionY = 2,
-                CmdId = CmdId.CIVILIAN_BUILDING
-            };
-            UnitDefs.Add(TownCenter.Id, TownCenter);
-
             Villager = new UnitDef()
             {
                 Id = 83,
@@ -39,6 +29,16 @@ namespace AoE2Lib.Mods
                 CmdId = CmdId.VILLAGER
             };
             UnitDefs.Add(Villager.Id, Villager);
+
+            TownCenter = new UnitDef()
+            {
+                Id = 109,
+                FoundationId = 621,
+                CollisionX = 2,
+                CollisionY = 2,
+                CmdId = CmdId.CIVILIAN_BUILDING
+            };
+            UnitDefs.Add(TownCenter.Id, TownCenter);
 
             House = new UnitDef() 
             { 

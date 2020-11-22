@@ -66,6 +66,7 @@ namespace AoE2Lib.Bots.Modules
 
         public int Width { get; private set; } = -1;
         public int Height { get; private set; } = -1;
+        public bool AutoUpdate { get; set; } = true;
 
         private Tile[,] Tiles { get; set; }
         private readonly Command Command = new Command();
@@ -112,7 +113,95 @@ namespace AoE2Lib.Bots.Modules
             }
         }
 
-        public IEnumerable<Tile> GetTilesByDistance(Position position)
+        public IEnumerable<Tile> GetTilesInRange(Position position, double range)
+        {
+            foreach (var tile in GetTilesByDistance(position))
+            {
+                if (tile.Position.DistanceTo(position) > 1.5 * range)
+                {
+                    yield break;
+                }
+
+                if (tile.Position.DistanceTo(position) <= range)
+                {
+                    yield return tile;
+                }
+            }
+        }
+        
+        protected override IEnumerable<Command> RequestUpdate()
+        {
+            Command.Reset();
+
+            Command.Add(new SetGoal() { GoalId = 50, GoalValue = 10000 });
+            Command.Add(new SetGoal() { GoalId = 51, GoalValue = 10000 });
+            Command.Add(new UpBoundPoint() { GoalPoint1 = 52, GoalPoint2 = 50 });
+            Command.Add(new Goal() { GoalId = 52 });
+            Command.Add(new Goal() { GoalId = 53 });
+
+            yield return Command;
+
+            if (AutoUpdate)
+            {
+                AddDefaultCommands();
+            }
+            
+            foreach (var tile in GetTiles().Where(t => t.Command.HasMessages))
+            {
+                yield return tile.Command;
+            }
+        }
+
+        protected override void Update()
+        {
+            var responses = Command.GetResponses();
+            if (responses.Count > 0)
+            {
+                Width = responses[3].Unpack<GoalResult>().Result + 1;
+                Height = responses[4].Unpack<GoalResult>().Result + 1;
+            }
+
+            if (Width > 0 && Height > 0)
+            {
+                if (Tiles != null)
+                {
+                    var gametime = Bot.GetModule<InfoModule>().GameTime;
+
+                    foreach (var tile in GetTiles())
+                    {
+                        if (tile.Command.HasResponses)
+                        {
+                            tile.Update(gametime);
+                            SetTile(tile.Point.X, tile.Point.Y, tile);
+                        }
+                        
+                    }
+
+                    if (Tiles.Length != (Width * Height))
+                    {
+                        Tiles = null;
+                    }
+                    else if (Tiles.Length == 0)
+                    {
+                        Tiles = null;
+                    }
+                }
+                
+                if (Tiles == null)
+                {
+                    Tiles = new Tile[Width, Height];
+                    for (int x = 0; x < Width; x++)
+                    {
+                        for (int y = 0; y < Height; y++)
+                        {
+                            Tiles[x, y] = new Tile(new Point(x, y));
+                        }
+                    }
+                }
+            }
+        }
+
+        private IEnumerable<Tile> GetTilesByDistance(Position position)
         {
             var pointx = position.PointX;
             var pointy = position.PointY;
@@ -174,75 +263,6 @@ namespace AoE2Lib.Bots.Modules
                             {
                                 yield return GetTile(x, y);
                             }
-                        }
-                    }
-                }
-            }
-        }
-        
-        protected override IEnumerable<Command> RequestUpdate()
-        {
-            Command.Reset();
-
-            Command.Add(new SetGoal() { GoalId = 50, GoalValue = 10000 });
-            Command.Add(new SetGoal() { GoalId = 51, GoalValue = 10000 });
-            Command.Add(new UpBoundPoint() { GoalPoint1 = 52, GoalPoint2 = 50 });
-            Command.Add(new Goal() { GoalId = 52 });
-            Command.Add(new Goal() { GoalId = 53 });
-
-            yield return Command;
-
-            AddDefaultCommands();
-
-            foreach (var tile in GetTiles().Where(t => t.Command.HasMessages))
-            {
-                yield return tile.Command;
-            }
-        }
-
-        protected override void Update()
-        {
-            var responses = Command.GetResponses();
-            if (responses.Count > 0)
-            {
-                Width = responses[3].Unpack<GoalResult>().Result + 1;
-                Height = responses[4].Unpack<GoalResult>().Result + 1;
-            }
-
-            if (Width > 0 && Height > 0)
-            {
-                if (Tiles != null)
-                {
-                    var gametime = Bot.GetModule<InfoModule>().GameTime;
-
-                    foreach (var tile in GetTiles())
-                    {
-                        if (tile.Command.HasResponses)
-                        {
-                            tile.Update(gametime);
-                            SetTile(tile.Point.X, tile.Point.Y, tile);
-                        }
-                        
-                    }
-
-                    if (Tiles.Length != (Width * Height))
-                    {
-                        Tiles = null;
-                    }
-                    else if (Tiles.Length == 0)
-                    {
-                        Tiles = null;
-                    }
-                }
-                
-                if (Tiles == null)
-                {
-                    Tiles = new Tile[Width, Height];
-                    for (int x = 0; x < Width; x++)
-                    {
-                        for (int y = 0; y < Height; y++)
-                        {
-                            Tiles[x, y] = new Tile(new Point(x, y));
                         }
                     }
                 }

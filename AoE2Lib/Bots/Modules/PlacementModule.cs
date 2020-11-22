@@ -16,22 +16,14 @@ namespace AoE2Lib.Bots.Modules
         private readonly HashSet<Position> Restrictions = new HashSet<Position>();
         private readonly HashSet<Position> ExtraRestrictions = new HashSet<Position>();
 
-        public IEnumerable<Position> GetPlacementPositions(UnitDef unit, Position position, int clearance, bool restricted, int range)
+        public IEnumerable<Position> GetPlacementPositions(UnitDef unit, Position position, int clearance, bool restricted, double range)
         {
             var map = Bot.GetModule<MapModule>();
-            foreach (var tile in map.GetTilesByDistance(position))
+            foreach (var tile in map.GetTilesInRange(position, range))
             {
-                if (tile.Position.DistanceTo(position) > 1.5 * range)
+                if (CanBuildAtPosition(map, unit, tile.Position, clearance, restricted))
                 {
-                    break;
-                }
-
-                if (tile.Position.DistanceTo(position) <= range)
-                {
-                    if (CanBuildAtPosition(map, unit, tile.Position, clearance, restricted))
-                    {
-                        yield return tile.Position;
-                    }
+                    yield return tile.Position;
                 }
             }
         }

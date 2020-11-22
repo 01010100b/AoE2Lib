@@ -14,9 +14,11 @@ namespace AoE2Lib.Bots.Modules
 {
     public class UnitsModule : Module
     {
+        public bool AutoUpdateUnits { get; set; } = true;
         public IReadOnlyDictionary<int, Unit> Units => _Units;
         private readonly Dictionary<int, Unit> _Units = new Dictionary<int, Unit>();
 
+        public bool AutoFindUnits { get; set; } = true;
         private readonly List<Command> UnitFindCommands = new List<Command>();
         private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode());
 
@@ -330,6 +332,23 @@ namespace AoE2Lib.Bots.Modules
             const int NUM_FINDS = 5;
             const int NUM_UPDATES = 10;
 
+            if (AutoUpdateUnits)
+            {
+                var units = Units.Values.ToList();
+                units.Sort((a, b) => a.LastUpdateGameTime.CompareTo(b.LastUpdateGameTime));
+
+                for (int i = 0; i < Math.Min(units.Count, NUM_UPDATES / 2); i++)
+                {
+                    units[i].RequestUpdate();
+                    units[RNG.Next(units.Count)].RequestUpdate();
+                }
+            }
+
+            if (!AutoFindUnits)
+            {
+                return;
+            }
+
             var explored = Bot.GetModule<MapModule>().GetTiles().Where(t => t.Explored).Select(t => t.Position).ToList();
             if (explored.Count == 0)
             {
@@ -410,15 +429,6 @@ namespace AoE2Lib.Bots.Modules
                 FindUnits(pos, 20, player, UnitFindType.BUILDING);
                 FindUnits(pos, 20, player, UnitFindType.FOOD);
                 FindUnits(pos, 20, 0, UnitFindType.FOOD);
-            }
-
-            var units = Units.Values.ToList();
-            units.Sort((a, b) => a.LastUpdateGameTime.CompareTo(b.LastUpdateGameTime));
-
-            for (int i = 0; i < Math.Min(units.Count, NUM_UPDATES / 2); i++)
-            {
-                units[i].RequestUpdate();
-                units[RNG.Next(units.Count)].RequestUpdate();
             }
         }
     }
