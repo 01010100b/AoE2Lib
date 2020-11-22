@@ -68,7 +68,7 @@ namespace AoE2Lib.Bots.Modules
         public int Height { get; private set; } = -1;
         public bool AutoUpdate { get; set; } = true;
 
-        private Tile[,] Tiles { get; set; }
+        private Tile[] Tiles { get; set; }
         private readonly Command Command = new Command();
         private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode());
 
@@ -94,22 +94,25 @@ namespace AoE2Lib.Bots.Modules
                 return new Tile(new Point(-1, -1));
             }
 
-            return Tiles[x, y];
+            var index = (x * Height) + y;
+            return Tiles[index];
         }
 
         private void SetTile(int x, int y, Tile tile)
         {
-            Tiles[x, y] = tile;
+            var index = (x * Height) + y;
+            Tiles[index] = tile;
         }
 
         public IEnumerable<Tile> GetTiles()
         {
             if (Tiles != null)
             {
-                foreach (var tile in Tiles)
-                {
-                    yield return tile;
-                }
+                return Tiles;
+            }
+            else
+            {
+                return Enumerable.Empty<Tile>();
             }
         }
 
@@ -174,7 +177,6 @@ namespace AoE2Lib.Bots.Modules
                             tile.Update(gametime);
                             SetTile(tile.Point.X, tile.Point.Y, tile);
                         }
-                        
                     }
 
                     if (Tiles.Length != (Width * Height))
@@ -189,12 +191,12 @@ namespace AoE2Lib.Bots.Modules
                 
                 if (Tiles == null)
                 {
-                    Tiles = new Tile[Width, Height];
+                    Tiles = new Tile[Width * Height];
                     for (int x = 0; x < Width; x++)
                     {
                         for (int y = 0; y < Height; y++)
                         {
-                            Tiles[x, y] = new Tile(new Point(x, y));
+                            SetTile(x, y, new Tile(new Point(x, y)));
                         }
                     }
                 }
