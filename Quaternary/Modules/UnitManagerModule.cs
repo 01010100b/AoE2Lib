@@ -1,6 +1,7 @@
 ﻿using AoE2Lib.Bots;
 using AoE2Lib.Bots.GameElements;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Policy;
@@ -12,8 +13,10 @@ namespace Quaternary.Modules
 {
     internal class UnitManagerModule : Module
     {
-        internal class UnitGroup
+        internal class UnitGroup : IEnumerable<Unit>
         {
+            public int Count => Units.Count;
+
             private readonly UnitManagerModule Manager;
             private readonly HashSet<Unit> Units = new HashSet<Unit>();
 
@@ -27,20 +30,25 @@ namespace Quaternary.Modules
                 return Units.Contains(unit);
             }
 
-            public void AddUnit(Unit unit)
+            public void Add(Unit unit)
             {
                 Manager.RemoveUnitFromGroups(unit);
                 Units.Add(unit);
             }
 
-            public void RemoveUnit(Unit unit)
+            public void Remove(Unit unit)
             {
                 Units.Remove(unit);
             }
 
-            public IEnumerable<Unit> GetUnits()
+            public IEnumerator<Unit> GetEnumerator()
             {
-                return Units;
+                return Units.GetEnumerator();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return Units.GetEnumerator();
             }
         }
 
@@ -68,18 +76,18 @@ namespace Quaternary.Modules
         {
             foreach (var group in UnitGroups)
             {
-                group.RemoveUnit(unit);
+                group.Remove(unit);
             }
         }
 
         protected override IEnumerable<Command> RequestUpdate()
         {
-            throw new NotImplementedException();
+            return Enumerable.Empty<Command>();
         }
 
         protected override void Update()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

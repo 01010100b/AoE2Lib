@@ -25,31 +25,13 @@ namespace Quaternary
 
             SetStrategicNumbers();
 
-            
-            var scout = GetModule<UnitsModule>().Units.Values.FirstOrDefault(u => u.PlayerNumber == PlayerNumber && u.Speed > 1);
+            // research loom
+            GetModule<ResearchModule>().Research(22);
 
-            if (scout == null)
-            {
-                Log.Debug($"Bot {Name} {PlayerNumber}: No scout");
-            }
-            else
-            {
-                if (RNG.NextDouble() < 0.1)
-                {
-                    var map = GetModule<MapModule>();
-                    var x = RNG.Next(map.Width);
-                    var y = RNG.Next(map.Height);
+            // train vill
+            GetModule<UnitsModule>().Train(Mod.Villager);
 
-                    GetModule<MicroModule>().TargetPosition(scout, Position.FromPoint(x, y), UnitAction.MOVE, UnitFormation.LINE, UnitStance.AGGRESSIVE);
-
-                    Log.Info($"Bot {Name} {PlayerNumber}: Sending scout {scout.Id} to {x} {y}");
-                }
-            }
-
-            GetModule<ResearchModule>().Research(22); // loom
-
-            GetModule<UnitsModule>().Train(Mod.Villager); // vill
-
+            // build house
             var pos = GetModule<InfoModule>().MyPosition;
             var dpos = Position.FromPoint(RNG.Next(-10, 10), RNG.Next(-10, 10));
             pos += dpos;
@@ -72,6 +54,11 @@ namespace Quaternary
             {
                 AddModule(new UnitManagerModule());
             }
+
+            if (!HasModule<ScoutingModule>())
+            {
+                AddModule(new ScoutingModule());
+            }
         }
 
         private void SetStrategicNumbers()
@@ -90,7 +77,6 @@ namespace Quaternary
             sns[StrategicNumber.ENABLE_PATROL_ATTACK] = 1;
             sns[StrategicNumber.MINIMUM_ATTACK_GROUP_SIZE] = 1;
             sns[StrategicNumber.MAXIMUM_ATTACK_GROUP_SIZE] = 1;
-            sns[StrategicNumber.DISABLE_DEFEND_GROUPS] = 8;
             sns[StrategicNumber.CONSECUTIVE_IDLE_UNIT_LIMIT] = 0;
             sns[StrategicNumber.WALL_TARGETING_MODE] = 1;
 
@@ -111,10 +97,10 @@ namespace Quaternary
 
             sns[StrategicNumber.HOME_EXPLORATION_TIME] = 600;
 
-            sns[StrategicNumber.FOOD_GATHERER_PERCENTAGE] = 80;
+            sns[StrategicNumber.FOOD_GATHERER_PERCENTAGE] = 70;
             sns[StrategicNumber.WOOD_GATHERER_PERCENTAGE] = 20;
-            sns[StrategicNumber.GOLD_GATHERER_PERCENTAGE] = 0;
-            sns[StrategicNumber.STONE_GATHERER_PERCENTAGE] = 0;
+            sns[StrategicNumber.GOLD_GATHERER_PERCENTAGE] = 5;
+            sns[StrategicNumber.STONE_GATHERER_PERCENTAGE] = 5;
         }
 
         private void LogState()
