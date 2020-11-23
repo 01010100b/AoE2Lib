@@ -28,7 +28,7 @@ namespace Quaternary
             Refresh();
 
             var name = "AoE2DE_s";
-            //name = "age2_x1";
+            name = "age2_x1.5";
 
             var process = Process.GetProcessesByName(name)[0];
             var instance = new GameInstance(process);

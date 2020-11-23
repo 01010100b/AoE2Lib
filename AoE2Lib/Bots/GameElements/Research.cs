@@ -25,8 +25,7 @@ namespace AoE2Lib.Bots.GameElements
 
         protected override IEnumerable<IMessage> RequestElementUpdate()
         {
-            yield return new ResearchAvailable() { ResearchType = Id };
-            yield return new ResearchCompleted() { ResearchType = Id };
+            yield return new UpResearchStatus() { TypeOp = TypeOp.C, TechId = Id };
             yield return new CanResearch() { ResearchType = Id };
             yield return new UpSetupCostData() { ResetCost = 1, GoalId = 100 };
             yield return new UpAddResearchCost() { TypeOp1 = TypeOp.C, TechId = Id, TypeOp2 = TypeOp.C, Value = 1 };
@@ -38,26 +37,12 @@ namespace AoE2Lib.Bots.GameElements
 
         protected override void UpdateElement(IReadOnlyList<Any> responses)
         {
-            var available = responses[0].Unpack<ResearchAvailableResult>().Result;
-            var completed = responses[1].Unpack<ResearchCompletedResult>().Result;
-            if (completed)
-            {
-                State = ResearchState.COMPLETE;
-            }
-            else if (available)
-            {
-                State = ResearchState.AVAILABLE;
-            }
-            else
-            {
-                State = ResearchState.UNAVAILABLE;
-            }
-
-            CanResarch = responses[2].Unpack<CanResearchResult>().Result;
-            FoodCost = responses[5].Unpack<GoalResult>().Result;
-            WoodCost = responses[6].Unpack<GoalResult>().Result;
-            StoneCost = responses[7].Unpack<GoalResult>().Result;
-            GoldCost = responses[8].Unpack<GoalResult>().Result;
+            State = (ResearchState)responses[0].Unpack<UpResearchStatusResult>().Result;
+            CanResarch = responses[1].Unpack<CanResearchResult>().Result;
+            FoodCost = responses[4].Unpack<GoalResult>().Result;
+            WoodCost = responses[5].Unpack<GoalResult>().Result;
+            StoneCost = responses[6].Unpack<GoalResult>().Result;
+            GoldCost = responses[7].Unpack<GoalResult>().Result;
         }
     }
 }
