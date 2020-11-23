@@ -190,9 +190,14 @@ namespace AoE2Lib.Bots
 
                                 Players.Add(result.PlayerNumber, bot);
 
-                                var botapi = new ExpertAPIClient(Channel);
                                 var mod = new Mod();
                                 mod.LoadDE();
+                                if (GameInstance.DatFile != null)
+                                {
+                                    mod.LoadFromDat(GameInstance.DatFile);
+                                }
+
+                                var botapi = new ExpertAPIClient(Channel);
                                 bot.Start(mod, result.PlayerNumber, botapi);
 
                                 Log.Info($"BotManager: {bot.Name} taking control of player {result.PlayerNumber}");

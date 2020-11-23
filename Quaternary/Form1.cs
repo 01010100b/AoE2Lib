@@ -33,6 +33,9 @@ namespace Quaternary
             var process = Process.GetProcessesByName(name)[0];
             var instance = new GameInstance(process);
 
+            var dat = @"C:\Users\Tim\AppData\Roaming\Microsoft Games\Age of Empires ii\Data\Empires2_x1_p1.dat";
+            instance.LoadDatFile(dat);
+
             BotManager = new BotManager(instance);
             BotManager.RegisterBot<Quaternary>();
 
