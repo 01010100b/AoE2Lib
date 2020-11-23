@@ -5,6 +5,7 @@ using Protos.Expert;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -21,7 +22,7 @@ namespace AoE2Lib.Bots
         public Mod Mod { get; private set; } = null;
         public int PlayerNumber { get; private set; } = -1;
         public int Tick { get; private set; } = 0;
-        public readonly Log Log = Log.Static;
+        public Log Log { get; private set; }
         public TypeOp TypeOp { get; internal set; }
         public MathOp MathOp { get; internal set; }
 
@@ -62,6 +63,7 @@ namespace AoE2Lib.Bots
 
             Mod = mod;
             PlayerNumber = player;
+            Log = new Log(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"{Name} {PlayerNumber}.log"));
 
             BotThread = new Thread(() => Run(api)) { IsBackground = true };
             BotThread.Start();
@@ -79,7 +81,7 @@ namespace AoE2Lib.Bots
 
         private void Run(ExpertAPIClient api)
         {
-            Log.Info($"Bot {Name} {PlayerNumber}: Started");
+            Log.Info($"Started");
 
             Tick = 0;
             var sw = new Stopwatch();
@@ -88,7 +90,7 @@ namespace AoE2Lib.Bots
 
             while (!Stopping)
             {
-                Log.Info($"Bot {Name} {PlayerNumber}:Tick {Tick}");
+                Log.Info($"Tick {Tick}");
 
                 sw.Restart();
                 commands.Clear();
@@ -130,7 +132,7 @@ namespace AoE2Lib.Bots
                     }
                 }
 
-                Log.Info($"Bot {Name} {PlayerNumber}: RequestUpdate took {sw.ElapsedMilliseconds} ms");
+                Log.Info($"RequestUpdate took {sw.ElapsedMilliseconds} ms");
 
                 // make the call
 
@@ -145,11 +147,11 @@ namespace AoE2Lib.Bots
                 }
                 catch (Exception e)
                 {
-                    Log.Info($"Bot {Name} {PlayerNumber}: {e.Message}");
+                    Log.Info($"{e.Message}");
                     resultlist = null;
                 }
 
-                Log.Info($"Bot {Name} {PlayerNumber}: Call took {sw.ElapsedMilliseconds} ms");
+                Log.Info($"Call took {sw.ElapsedMilliseconds} ms");
 
                 if (resultlist == null)
                 {
@@ -190,11 +192,11 @@ namespace AoE2Lib.Bots
                     Tick++;
                     previous = DateTime.UtcNow;
 
-                    Log.Info($"Bot {Name} {PlayerNumber}: Update took {sw.ElapsedMilliseconds} ms");
+                    Log.Info($"Update took {sw.ElapsedMilliseconds} ms");
                 }
             }
 
-            Log.Info($"Bot {Name} {PlayerNumber}:  Stopped");
+            Log.Info($"Stopped");
         }
     }
 }

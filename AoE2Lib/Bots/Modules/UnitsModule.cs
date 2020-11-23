@@ -44,7 +44,7 @@ namespace AoE2Lib.Bots.Modules
                     command.Add(new UpFilterInclude() { CmdId = (int)CmdId.MONK, ActionId = -1, OrderId = -1, OnMainland = -1 });
                     command.Add(new UpFindRemote() { TypeOp1 = TypeOp.C, UnitId = -1, TypeOp2 = TypeOp.C, Count = 5 });
 
-                    command.Add(new UpFilterDistance() { TypeOp1 = TypeOp.C, MinDistance = 9, TypeOp2 = TypeOp.C, MaxDistance = -1 });
+                    command.Add(new UpFilterDistance() { TypeOp1 = TypeOp.C, MinDistance = range - 1, TypeOp2 = TypeOp.C, MaxDistance = -1 });
                     command.Add(new UpFilterInclude() { CmdId = (int)CmdId.MONK, ActionId = -1, OrderId = -1, OnMainland = -1 });
                     command.Add(new UpFindRemote() { TypeOp1 = TypeOp.C, UnitId = -1, TypeOp2 = TypeOp.C, Count = 5 });
                     command.Add(new UpFilterInclude() { CmdId = (int)CmdId.MILITARY, ActionId = -1, OrderId = -1, OnMainland = -1 });
@@ -62,7 +62,7 @@ namespace AoE2Lib.Bots.Modules
                     command.Add(new UpFilterInclude() { CmdId = (int)CmdId.FISHING_SHIP, ActionId = -1, OrderId = -1, OnMainland = -1 });
                     command.Add(new UpFindRemote() { TypeOp1 = TypeOp.C, UnitId = -1, TypeOp2 = TypeOp.C, Count = 5 });
 
-                    command.Add(new UpFilterDistance() { TypeOp1 = TypeOp.C, MinDistance = 9, TypeOp2 = TypeOp.C, MaxDistance = -1 });
+                    command.Add(new UpFilterDistance() { TypeOp1 = TypeOp.C, MinDistance = range - 1, TypeOp2 = TypeOp.C, MaxDistance = -1 });
                     command.Add(new UpFilterInclude() { CmdId = (int)CmdId.FISHING_SHIP, ActionId = -1, OrderId = -1, OnMainland = -1 });
                     command.Add(new UpFindRemote() { TypeOp1 = TypeOp.C, UnitId = -1, TypeOp2 = TypeOp.C, Count = 5 });
                     command.Add(new UpFilterInclude() { CmdId = (int)CmdId.TRADE, ActionId = -1, OrderId = -1, OnMainland = -1 });
@@ -75,16 +75,48 @@ namespace AoE2Lib.Bots.Modules
                 case UnitFindType.BUILDING:
 
                     command.Add(new UpFilterDistance() { TypeOp1 = TypeOp.C, MinDistance = -1, TypeOp2 = TypeOp.C, MaxDistance = range });
-                    command.Add(new UpFilterInclude() { CmdId = (int)CmdId.MILITARY_BUILDING, ActionId = -1, OrderId = -1, OnMainland = -1 });
-                    command.Add(new UpFindRemote() { TypeOp1 = TypeOp.C, UnitId = -1, TypeOp2 = TypeOp.C, Count = 20 });
-                    command.Add(new UpFilterInclude() { CmdId = (int)CmdId.CIVILIAN_BUILDING, ActionId = -1, OrderId = -1, OnMainland = -1 });
-                    command.Add(new UpFindRemote() { TypeOp1 = TypeOp.C, UnitId = -1, TypeOp2 = TypeOp.C, Count = 20 });
 
-                    command.Add(new UpFilterDistance() { TypeOp1 = TypeOp.C, MinDistance = 9, TypeOp2 = TypeOp.C, MaxDistance = -1 });
-                    command.Add(new UpFilterInclude() { CmdId = (int)CmdId.CIVILIAN_BUILDING, ActionId = -1, OrderId = -1, OnMainland = -1 });
-                    command.Add(new UpFindRemote() { TypeOp1 = TypeOp.C, UnitId = -1, TypeOp2 = TypeOp.C, Count = 20 });
                     command.Add(new UpFilterInclude() { CmdId = (int)CmdId.MILITARY_BUILDING, ActionId = -1, OrderId = -1, OnMainland = -1 });
-                    command.Add(new UpFindRemote() { TypeOp1 = TypeOp.C, UnitId = -1, TypeOp2 = TypeOp.C, Count = 40 });
+                    command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 2, TypeOp2 = TypeOp.C, ObjectList = 0 });
+                    command.Add(new UpFindStatusRemote() { TypeOp1 = TypeOp.C, UnitId = -1, TypeOp2 = TypeOp.C, Count = 8 });
+                    command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 2, TypeOp2 = TypeOp.C, ObjectList = 1 });
+                    command.Add(new UpFindStatusRemote() { TypeOp1 = TypeOp.C, UnitId = -1, TypeOp2 = TypeOp.C, Count = 8 });
+                    command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 0, TypeOp2 = TypeOp.C, ObjectList = 0 });
+                    command.Add(new UpFindStatusRemote() { TypeOp1 = TypeOp.C, UnitId = -1, TypeOp2 = TypeOp.C, Count = 2 });
+                    command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 0, TypeOp2 = TypeOp.C, ObjectList = 1 });
+                    command.Add(new UpFindStatusRemote() { TypeOp1 = TypeOp.C, UnitId = -1, TypeOp2 = TypeOp.C, Count = 2 });
+
+                    command.Add(new UpFilterInclude() { CmdId = (int)CmdId.CIVILIAN_BUILDING, ActionId = -1, OrderId = -1, OnMainland = -1 });
+                    command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 2, TypeOp2 = TypeOp.C, ObjectList = 0 });
+                    command.Add(new UpFindStatusRemote() { TypeOp1 = TypeOp.C, UnitId = -1, TypeOp2 = TypeOp.C, Count = 8 });
+                    command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 2, TypeOp2 = TypeOp.C, ObjectList = 1 });
+                    command.Add(new UpFindStatusRemote() { TypeOp1 = TypeOp.C, UnitId = -1, TypeOp2 = TypeOp.C, Count = 8 });
+                    command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 0, TypeOp2 = TypeOp.C, ObjectList = 0 });
+                    command.Add(new UpFindStatusRemote() { TypeOp1 = TypeOp.C, UnitId = -1, TypeOp2 = TypeOp.C, Count = 2 });
+                    command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 0, TypeOp2 = TypeOp.C, ObjectList = 1 });
+                    command.Add(new UpFindStatusRemote() { TypeOp1 = TypeOp.C, UnitId = -1, TypeOp2 = TypeOp.C, Count = 2 });
+
+                    command.Add(new UpFilterDistance() { TypeOp1 = TypeOp.C, MinDistance = range - 1, TypeOp2 = TypeOp.C, MaxDistance = -1 });
+
+                    command.Add(new UpFilterInclude() { CmdId = (int)CmdId.MILITARY_BUILDING, ActionId = -1, OrderId = -1, OnMainland = -1 });
+                    command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 2, TypeOp2 = TypeOp.C, ObjectList = 0 });
+                    command.Add(new UpFindStatusRemote() { TypeOp1 = TypeOp.C, UnitId = -1, TypeOp2 = TypeOp.C, Count = 8 });
+                    command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 2, TypeOp2 = TypeOp.C, ObjectList = 1 });
+                    command.Add(new UpFindStatusRemote() { TypeOp1 = TypeOp.C, UnitId = -1, TypeOp2 = TypeOp.C, Count = 8 });
+                    command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 0, TypeOp2 = TypeOp.C, ObjectList = 0 });
+                    command.Add(new UpFindStatusRemote() { TypeOp1 = TypeOp.C, UnitId = -1, TypeOp2 = TypeOp.C, Count = 2 });
+                    command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 0, TypeOp2 = TypeOp.C, ObjectList = 1 });
+                    command.Add(new UpFindStatusRemote() { TypeOp1 = TypeOp.C, UnitId = -1, TypeOp2 = TypeOp.C, Count = 2 });
+
+                    command.Add(new UpFilterInclude() { CmdId = (int)CmdId.CIVILIAN_BUILDING, ActionId = -1, OrderId = -1, OnMainland = -1 });
+                    command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 2, TypeOp2 = TypeOp.C, ObjectList = 0 });
+                    command.Add(new UpFindStatusRemote() { TypeOp1 = TypeOp.C, UnitId = -1, TypeOp2 = TypeOp.C, Count = 8 });
+                    command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 2, TypeOp2 = TypeOp.C, ObjectList = 1 });
+                    command.Add(new UpFindStatusRemote() { TypeOp1 = TypeOp.C, UnitId = -1, TypeOp2 = TypeOp.C, Count = 8 });
+                    command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 0, TypeOp2 = TypeOp.C, ObjectList = 0 });
+                    command.Add(new UpFindStatusRemote() { TypeOp1 = TypeOp.C, UnitId = -1, TypeOp2 = TypeOp.C, Count = 2 });
+                    command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 0, TypeOp2 = TypeOp.C, ObjectList = 1 });
+                    command.Add(new UpFindStatusRemote() { TypeOp1 = TypeOp.C, UnitId = -1, TypeOp2 = TypeOp.C, Count = 2 });
 
                     break;
 
@@ -96,7 +128,7 @@ namespace AoE2Lib.Bots.Modules
                     command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 3, TypeOp2 = TypeOp.C, ObjectList = 0 });
                     command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = 1, TypeOp2 = TypeOp.C, Count = 10 });
 
-                    command.Add(new UpFilterDistance() { TypeOp1 = TypeOp.C, MinDistance = 9, TypeOp2 = TypeOp.C, MaxDistance = -1 });
+                    command.Add(new UpFilterDistance() { TypeOp1 = TypeOp.C, MinDistance = range - 1, TypeOp2 = TypeOp.C, MaxDistance = -1 });
                     command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 3, TypeOp2 = TypeOp.C, ObjectList = 0 });
                     command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = 1, TypeOp2 = TypeOp.C, Count = 10 });
                     command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 2, TypeOp2 = TypeOp.C, ObjectList = 0 });
@@ -112,7 +144,7 @@ namespace AoE2Lib.Bots.Modules
                     command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 3, TypeOp2 = TypeOp.C, ObjectList = 0 });
                     command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = 0, TypeOp2 = TypeOp.C, Count = 10 });
 
-                    command.Add(new UpFilterDistance() { TypeOp1 = TypeOp.C, MinDistance = 9, TypeOp2 = TypeOp.C, MaxDistance = -1 });
+                    command.Add(new UpFilterDistance() { TypeOp1 = TypeOp.C, MinDistance = range - 1, TypeOp2 = TypeOp.C, MaxDistance = -1 });
                     command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 3, TypeOp2 = TypeOp.C, ObjectList = 0 });
                     command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = 0, TypeOp2 = TypeOp.C, Count = 10 });
                     command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 2, TypeOp2 = TypeOp.C, ObjectList = 0 });
@@ -126,7 +158,7 @@ namespace AoE2Lib.Bots.Modules
                     command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 3, TypeOp2 = TypeOp.C, ObjectList = 0 });
                     command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = 3, TypeOp2 = TypeOp.C, Count = 40 });
 
-                    command.Add(new UpFilterDistance() { TypeOp1 = TypeOp.C, MinDistance = 9, TypeOp2 = TypeOp.C, MaxDistance = -1 });
+                    command.Add(new UpFilterDistance() { TypeOp1 = TypeOp.C, MinDistance = range - 1, TypeOp2 = TypeOp.C, MaxDistance = -1 });
                     command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 3, TypeOp2 = TypeOp.C, ObjectList = 0 });
                     command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = 3, TypeOp2 = TypeOp.C, Count = 40 });
 
@@ -138,7 +170,7 @@ namespace AoE2Lib.Bots.Modules
                     command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 3, TypeOp2 = TypeOp.C, ObjectList = 0 });
                     command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = 2, TypeOp2 = TypeOp.C, Count = 40 });
 
-                    command.Add(new UpFilterDistance() { TypeOp1 = TypeOp.C, MinDistance = 9, TypeOp2 = TypeOp.C, MaxDistance = -1 });
+                    command.Add(new UpFilterDistance() { TypeOp1 = TypeOp.C, MinDistance = range - 1, TypeOp2 = TypeOp.C, MaxDistance = -1 });
                     command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 3, TypeOp2 = TypeOp.C, ObjectList = 0 });
                     command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = 2, TypeOp2 = TypeOp.C, Count = 40 });
 
@@ -150,7 +182,7 @@ namespace AoE2Lib.Bots.Modules
                     command.Add(new UpFilterExclude() { CmdId = (int)CmdId.MILITARY, ActionId = -1, OrderId = -1, ClassId = (int)UnitClass.Tree });
                     command.Add(new UpFindRemote() { TypeOp1 = TypeOp.C, UnitId = -1, TypeOp2 = TypeOp.C, Count = 40 });
 
-                    command.Add(new UpFilterDistance() { TypeOp1 = TypeOp.C, MinDistance = 9, TypeOp2 = TypeOp.C, MaxDistance = -1 });
+                    command.Add(new UpFilterDistance() { TypeOp1 = TypeOp.C, MinDistance = range - 1, TypeOp2 = TypeOp.C, MaxDistance = -1 });
                     command.Add(new UpFilterExclude() { CmdId = (int)CmdId.MONK, ActionId = -1, OrderId = -1, ClassId = (int)UnitClass.Tree });
                     command.Add(new UpFindRemote() { TypeOp1 = TypeOp.C, UnitId = -1, TypeOp2 = TypeOp.C, Count = 40 });
 
@@ -169,8 +201,7 @@ namespace AoE2Lib.Bots.Modules
                 command.Add(new UpModifyGoal() { GoalId = 200, MathOp = MathOp.G_MOD, Value = 102 });
                 command.Add(new Goal() { GoalId = 200 });
                 command.Add(new UpSetTargetObject() { SearchSource = 2, TypeOp = TypeOp.G, Index = 200 });
-                command.Add(new UpGetObjectData() { ObjectData = (int)ObjectData.ID, GoalData = 300 });
-                command.Add(new Goal() { GoalId = 300 });
+                command.Add(new UpObjectData() { ObjectData = (int)ObjectData.ID });
             }
 
             UnitFindCommands.Add(command);
@@ -250,13 +281,13 @@ namespace AoE2Lib.Bots.Modules
                         command.Add(new SetGoal() { GoalId = 101, GoalValue = position.PointY });
                         command.Add(new UpBuildLine() { TypeOp = TypeOp.C, BuildingId = type.Id, GoalPoint1 = 100, GoalPoint2 = 100 });
 
-                        Bot.Log.Info($"Bot {Bot.Name} {Bot.PlayerNumber}: UnitsModule: Building type {type.Id} at {position.PointX} {position.PointY}");
+                        Bot.Log.Info($"UnitsModule: Building type {type.Id} at {position.PointX} {position.PointY}");
                     }
                     else
                     {
                         command.Add(new Train() { UnitType = type.Id });
 
-                        Bot.Log.Info($"Bot {Bot.Name} {Bot.PlayerNumber}: UnitsModule: Training type {type.Id}");
+                        Bot.Log.Info($"UnitsModule: Training type {type.Id}");
                     }
 
                     LastBuildTick[type.Id] = Bot.Tick;
@@ -314,8 +345,8 @@ namespace AoE2Lib.Bots.Modules
                 {
                     for (int i = 0; i < 40; i++)
                     {
-                        var index = responses.Count - (6 * i) - 1;
-                        var id = responses[index].Unpack<GoalResult>().Result;
+                        var index = responses.Count - (5 * i) - 1;
+                        var id = responses[index].Unpack<UpObjectDataResult>().Result;
 
                         if (id > 0 && !Units.ContainsKey(id))
                         {
@@ -419,7 +450,7 @@ namespace AoE2Lib.Bots.Modules
 
                 var position = explored[RNG.Next(explored.Count)];
 
-                FindUnits(position, 20, player, type);
+                FindUnits(position, 10, player, type);
             }
 
             if (Bot.Tick < 3)

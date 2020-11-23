@@ -22,7 +22,7 @@ namespace Quaternary.Modules
             var clearance = 1;
             if (building == Bot.Mod.Farm || building == Bot.Mod.LumberCamp)
             {
-                clearance = 0;
+                //clearance = 0;
             }
 
             var restricted = true;
@@ -45,8 +45,7 @@ namespace Quaternary.Modules
             var positions = Bot.GetModule<PlacementModule>().GetPlacementPositions(building, pos, clearance, restricted, d).ToList();
             if (positions.Count > 0)
             {
-                pos = positions[RNG.Next(positions.Count)];
-                Bot.GetModule<UnitsModule>().Build(building, pos, max, concurrent, priority);
+                Bot.GetModule<UnitsModule>().Build(building, positions[RNG.Next(positions.Count)], max, concurrent, priority);
             }
         }
 

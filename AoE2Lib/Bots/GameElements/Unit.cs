@@ -155,6 +155,7 @@ namespace AoE2Lib.Bots.GameElements
 
             if (explored != 15 && IsBuilding == false && PlayerNumber != Bot.PlayerNumber && PlayerNumber != 0)
             {
+                Targetable = false;
                 return;
             }
 

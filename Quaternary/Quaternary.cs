@@ -2,6 +2,7 @@
 using AoE2Lib.Bots;
 using AoE2Lib.Bots.GameElements;
 using AoE2Lib.Bots.Modules;
+using AoE2Lib.Mods;
 using AoE2Lib.Utils;
 using Quaternary.Modules;
 using System;
@@ -22,8 +23,9 @@ namespace Quaternary
         protected override IEnumerable<Command> Update()
         {
             AddModules();
-
             SetStrategicNumbers();
+
+            var my_pos = GetModule<InfoModule>().MyPosition;
 
             // research loom
             GetModule<ResearchModule>().Research(22);
@@ -111,13 +113,13 @@ namespace Quaternary
         private void LogState()
         {
             var players = GetModule<PlayersModule>().Players.Count;
-            Log.Info($"Bot {Name} {PlayerNumber}: Number of players: {players}");
+            Log.Info($"Number of players: {players}");
 
             var tiles = GetModule<MapModule>().GetTiles().ToList();
-            Log.Info($"Bot {Name} {PlayerNumber}: Number of tiles: {tiles.Count:N0} of which {tiles.Count(t => t.Explored):N0} explored");
+            Log.Info($"Number of tiles: {tiles.Count:N0} of which {tiles.Count(t => t.Explored):N0} explored");
 
             var seconds = GetModule<InfoModule>().GameSecondsPerTick;
-            Log.Info($"Bot {Name} {PlayerNumber}: Game seconds per tick: {seconds:N2}");
+            Log.Info($"Game seconds per tick: {seconds:N2}");
 
             var units = GetModule<UnitsModule>().Units;
             var speed = 0d;
@@ -128,7 +130,7 @@ namespace Quaternary
                     speed = unit.Velocity.Norm;
                 }
             }
-            Log.Info($"Bot {Name} {PlayerNumber}: Number of units: {units.Count} with highest speed {speed:N2}");
+            Log.Info($"Number of units: {units.Count} with highest speed {speed:N2}");
         }
     }
 }
