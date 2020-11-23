@@ -21,6 +21,7 @@ namespace AoE2Lib.Bots.Modules
             public bool Explored { get; private set; }
             public int Elevation { get; private set; }
             public int Terrain { get; private set; }
+            public readonly HashSet<Unit> Units;
             public bool IsOnLand => Terrain != 1 && Terrain != 2 && Terrain != 4 && Terrain != 15 && Terrain != 22 && Terrain != 23 && Terrain != 28 && Terrain != 37;
             
             internal readonly Command Command;
@@ -32,6 +33,7 @@ namespace AoE2Lib.Bots.Modules
                 Explored = false;
                 Elevation = -1;
                 Terrain = -1;
+                Units = new HashSet<Unit>();
                 Command = new Command();
                 LastUpdateGameTime = TimeSpan.MinValue;
             }
@@ -172,6 +174,8 @@ namespace AoE2Lib.Bots.Modules
 
                     foreach (var tile in GetTiles())
                     {
+                        tile.Units.Clear();
+
                         if (tile.Command.HasResponses)
                         {
                             tile.Update(gametime);
@@ -200,6 +204,11 @@ namespace AoE2Lib.Bots.Modules
                         }
                     }
                 }
+            }
+
+            foreach (var unit in Bot.GetModule<UnitsModule>().Units.Values)
+            {
+                GetTile(unit.Position).Units.Add(unit);
             }
         }
 

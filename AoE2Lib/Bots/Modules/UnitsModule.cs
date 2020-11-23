@@ -229,18 +229,22 @@ namespace AoE2Lib.Bots.Modules
 
             if (!type.Updated)
             {
+                Bot.Log.Info($"UnitsModule: type not updated {unit.Id} {unit.Name}");
                 return;
             }
             else if (!type.IsAvailable)
             {
+                Bot.Log.Info($"UnitsModule: type not availabe {unit.Id} {unit.Name}");
                 return;
             }
             else if (type.CountTotal >= max)
             {
+                Bot.Log.Info($"UnitsModule: type over max {unit.Id} {unit.Name}");
                 return;
             }
             else if (type.Pending >= concurrent)
             {
+                Bot.Log.Info($"UnitsModule: type over concurrent {unit.Id} {unit.Name}");
                 return;
             }
             else if (type.IsBuilding)
@@ -248,11 +252,13 @@ namespace AoE2Lib.Bots.Modules
                 var map = Bot.GetModule<MapModule>();
                 if (!map.IsOnMap(position))
                 {
+                    Bot.Log.Info($"UnitsModule: type not on map {unit.Id} {unit.Name}");
                     return;
                 }
 
                 if (!map.GetTile(position).Explored)
                 {
+                    Bot.Log.Info($"UnitsModule: type not explored {unit.Id} {unit.Name}");
                     return;
                 }
             }

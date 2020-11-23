@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace AoE2Lib.Utils
 {
@@ -11,8 +12,10 @@ namespace AoE2Lib.Utils
     {
         internal static readonly Log Static = new Log(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), "aoe2lib.log"));
         public int Level { get; set; } = 3;
+
         private string LogFile { get; set; }
-        
+        private readonly List<string> Lines = new List<string>();
+        private readonly Thread Thread;
 
         public Log(string file)
         {
@@ -22,6 +25,12 @@ namespace AoE2Lib.Utils
             {
                 File.Delete(LogFile);
             }
+
+            Thread = new Thread(() => FlushUpdate())
+            {
+                IsBackground = true
+            };
+            Thread.Start();
         }
 
         public void Info(object message)
@@ -53,7 +62,8 @@ namespace AoE2Lib.Utils
             if (Level >= 0)
             {
                 Write($"ERROR: {message}");
-            }
+                Flush();
+            } 
         }
 
         public void Write(object message)
@@ -61,9 +71,54 @@ namespace AoE2Lib.Utils
             var str = $"{DateTime.UtcNow}: {message}";
 
             Trace.WriteLine(str);
+            lock (Lines)
+            {
+                Lines.Add(str);
+            }
+            
+            if (Lines.Count > 100)
+            {
+                Flush();
+            }
+        }
+
+        public void Flush()
+        {
+            if (Lines.Count == 0)
+            {
+                return;
+            }
+
+            var lines = new List<string>();
+            lock (Lines)
+            {
+                lines.AddRange(Lines);
+                Lines.Clear();
+            }
+
+            if (lines.Count == 0)
+            {
+                return;
+            }
+
             lock (LogFile)
             {
-                File.AppendAllText(LogFile, str + "\n");
+                File.AppendAllLines(LogFile, lines);
+            }
+        }
+
+        private void FlushUpdate()
+        {
+            var last = DateTime.UtcNow;
+            while (true)
+            {
+                while (DateTime.UtcNow - last < TimeSpan.FromSeconds(5))
+                {
+                    Thread.Sleep(1000);
+                }
+
+                Flush();
+                last = DateTime.UtcNow;
             }
         }
     }
