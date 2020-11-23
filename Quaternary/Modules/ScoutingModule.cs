@@ -67,6 +67,7 @@ namespace Quaternary.Modules
         {
             if (Scouts.Count == 0)
             {
+                Bot.Log.Info($"ScoutingModule: No scout");
                 return;
             }
 

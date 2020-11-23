@@ -51,14 +51,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <NativeLibs Remove="aimodule-aoc.dll" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <NativeLibs Remove="aimodule-de.dll" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <NativeLibs Remove="aimodule-aoc-verbose-debug.dll" />
 	</ItemGroup>
 
@@ -66,6 +58,14 @@
 	  <None Update="aimodule-aoc-verbose-debug.dll">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <NativeLibs Remove="aimodule-aoc.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <NativeLibs Remove="aimodule-de.dll" />
 	</ItemGroup>
 
 </Project>

@@ -332,7 +332,7 @@ namespace AoE2Lib.Bots.Modules
         {
             // find = 300 us
             // update = 100 us
-            const int NUM_FINDS = 5;
+            const int NUM_FINDS = 1;
             const int NUM_UPDATES = 20;
 
             if (AutoUpdateUnits)
