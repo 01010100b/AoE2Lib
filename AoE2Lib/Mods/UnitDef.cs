@@ -20,10 +20,5 @@ namespace AoE2Lib.Mods
         public bool IsBuilding => CmdId == CmdId.CIVILIAN_BUILDING || CmdId == CmdId.MILITARY_BUILDING;
         public int Width => (int)Math.Ceiling(2 * CollisionX - 0.01);
         public int Height => (int)Math.Ceiling(2 * CollisionY - 0.01);
-
-        public void SetFromDat(YTY.AocDatLib.Unit unit)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
