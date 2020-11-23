@@ -22,7 +22,7 @@ namespace Quaternary.Modules
             var clearance = 1;
             if (building == Bot.Mod.Farm || building == Bot.Mod.LumberCamp)
             {
-                //clearance = 0;
+                clearance = 0;
             }
 
             var restricted = true;
@@ -62,6 +62,10 @@ namespace Quaternary.Modules
 
         protected override IEnumerable<Command> RequestUpdate()
         {
+            var my_pos = Bot.GetModule<InfoModule>().MyPosition;
+            var pos = new Position(my_pos.X + RNG.Next(-MaxBuildRange, MaxBuildRange), my_pos.Y + RNG.Next(-MaxBuildRange, MaxBuildRange));
+            Bot.GetModule<UnitsModule>().FindUnits(pos, 10, Bot.PlayerNumber, AoE2Lib.UnitFindType.BUILDING);
+
             return Enumerable.Empty<Command>();
         }
 

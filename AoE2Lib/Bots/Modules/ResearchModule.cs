@@ -38,6 +38,7 @@ namespace AoE2Lib.Bots.Modules
 
             var command = new SpendingCommand()
             {
+                Name = $"Research {id}",
                 Priority = priority,
                 WoodCost = research.WoodCost,
                 FoodCost = research.FoodCost,

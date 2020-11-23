@@ -142,7 +142,7 @@ namespace AoE2Lib.Bots
                 try
                 {
                     var aw = api.ExecuteCommandListAsync(commandlist);
-                    //GC.Collect();
+                    GC.Collect();
                     resultlist = aw.GetAwaiter().GetResult();
                 }
                 catch (Exception e)

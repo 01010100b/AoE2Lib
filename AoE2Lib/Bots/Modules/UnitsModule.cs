@@ -226,6 +226,7 @@ namespace AoE2Lib.Bots.Modules
 
             var type = info.UnitTypes[unit.Id];
             type.RequestUpdate();
+
             if (!type.Updated)
             {
                 return;
@@ -258,6 +259,7 @@ namespace AoE2Lib.Bots.Modules
 
             var command = new SpendingCommand()
             {
+                Name = $"Create {type.Id}",
                 Priority = priority,
                 WoodCost = type.WoodCost,
                 FoodCost = type.FoodCost,

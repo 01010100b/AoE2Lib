@@ -61,6 +61,7 @@ namespace AoE2Lib.Bots.Modules
                 }
 
                 // TODO hill-mode
+                // TODO clearance doesn't require constant elevation
                 if (elevation != tile.Elevation)
                 {
                     return false;

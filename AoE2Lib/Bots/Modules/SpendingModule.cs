@@ -10,6 +10,7 @@ namespace AoE2Lib.Bots.Modules
     {
         public class SpendingCommand : Command
         {
+            public string Name { get; set; } = "null";
             public int Priority { get; set; } = 0;
             public int WoodCost { get; set; } = 0;
             public int FoodCost { get; set; } = 0;
@@ -42,7 +43,7 @@ namespace AoE2Lib.Bots.Modules
 
             foreach (var command in Commands)
             {
-                //Bot.Log.Debug($"command cost {command.Cost} priority {command.Priority}");
+                //Bot.Log.Debug($"command {command.Name} cost {command.Cost} priority {command.Priority}");
                 if (command.Cost <= 0)
                 {
                     yield return command;
@@ -86,7 +87,7 @@ namespace AoE2Lib.Bots.Modules
 
                     if (spend && command.Priority < priority)
                     {
-                        //Bot.Log.Debug($"command priority {command.Priority} below min priority {priority}");
+                        //Bot.Log.Debug($"command {command.Name} priority {command.Priority} below min priority {priority}");
                         if (command.WoodCost > 0 && wood_shortage)
                         {
                             spend = false;
@@ -111,6 +112,7 @@ namespace AoE2Lib.Bots.Modules
 
                     if (spend)
                     {
+                        Bot.Log.Info($"SpendingModule: Spending {command.WoodCost}/{command.FoodCost}/{command.GoldCost}/{command.StoneCost} (w/f/g/s) on: {command.Name}");
                         yield return command;
                     }
                     else

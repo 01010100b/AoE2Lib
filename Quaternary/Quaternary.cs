@@ -25,8 +25,6 @@ namespace Quaternary
             AddModules();
             SetStrategicNumbers();
 
-            var my_pos = GetModule<InfoModule>().MyPosition;
-
             // research loom
             GetModule<ResearchModule>().Research(22);
 
