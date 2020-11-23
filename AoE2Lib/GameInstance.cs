@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using YTY.AocDatLib;
 
 namespace AoE2Lib
 {
@@ -30,6 +31,16 @@ namespace AoE2Lib
             }
 
             InjectDll(file);
+        }
+
+        public DatFile LoadDatFile(string file)
+        {
+            if (Version == GameVersion.DE)
+            {
+                throw new Exception("Loading DE .dat files not supported yet.");
+            }
+
+            return new DatFile(file);
         }
 
         public void InjectDll(string file)
