@@ -38,14 +38,18 @@ namespace Quaternary.Modules
         {
             var d = MaxBuildRange / 2;
 
-            var pos = Bot.GetModule<InfoModule>().MyPosition;
-            var dpos = Position.FromPoint(RNG.Next(-d, d), RNG.Next(-d, d));
-            pos += dpos;
-
-            var positions = Bot.GetModule<PlacementModule>().GetPlacementPositions(building, pos, clearance, restricted, d).ToList();
-            if (positions.Count > 0)
+            for (int i = 0; i < 10; i++)
             {
-                Bot.GetModule<UnitsModule>().Build(building, positions[RNG.Next(positions.Count)], max, concurrent, priority);
+                var pos = Bot.GetModule<InfoModule>().MyPosition;
+                var dpos = Position.FromPoint(RNG.Next(-d, d), RNG.Next(-d, d));
+                pos += dpos;
+
+                var positions = Bot.GetModule<PlacementModule>().GetPlacementPositions(building, pos, clearance, restricted, d).ToList();
+                if (positions.Count > 0)
+                {
+                    Bot.GetModule<UnitsModule>().Build(building, positions[RNG.Next(positions.Count)], max, concurrent, priority);
+                    break;
+                }
             }
         }
 

@@ -12,7 +12,7 @@ namespace AoE2Lib
     public class GameInstance
     {
         public GameVersion Version => Process.ProcessName.Contains("AoE2DE") ? GameVersion.DE : GameVersion.AOC;
-        public DatFile DatFile { get; private set; }
+        public string DatFolder => Path.Combine(Directory.GetParent(Path.GetDirectoryName(Process.MainModule.FileName)).FullName, "Data");
 
         private readonly Process Process;
         private readonly HashSet<string> InjectedDlls = new HashSet<string>();
@@ -32,16 +32,6 @@ namespace AoE2Lib
             }
 
             InjectDll(file);
-        }
-
-        public void LoadDatFile(string file)
-        {
-            if (Version == GameVersion.DE)
-            {
-                throw new Exception("Loading DE .dat files not supported yet.");
-            }
-
-            DatFile = new DatFile(file);
         }
 
         public void InjectDll(string file)

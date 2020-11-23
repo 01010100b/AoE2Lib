@@ -259,7 +259,7 @@ namespace AoE2Lib.Bots.Modules
 
             var command = new SpendingCommand()
             {
-                Name = $"Create {type.Id}",
+                Name = $"Create {unit.Id} {unit.Name}",
                 Priority = priority,
                 WoodCost = type.WoodCost,
                 FoodCost = type.FoodCost,
@@ -283,13 +283,13 @@ namespace AoE2Lib.Bots.Modules
                         command.Add(new SetGoal() { GoalId = 101, GoalValue = position.PointY });
                         command.Add(new UpBuildLine() { TypeOp = TypeOp.C, BuildingId = type.Id, GoalPoint1 = 100, GoalPoint2 = 100 });
 
-                        Bot.Log.Info($"UnitsModule: Building type {type.Id} at {position.PointX} {position.PointY}");
+                        Bot.Log.Info($"UnitsModule: Building type {unit.Id} {unit.Name} at {position.PointX} {position.PointY}");
                     }
                     else
                     {
                         command.Add(new Train() { UnitType = type.Id });
 
-                        Bot.Log.Info($"UnitsModule: Training type {type.Id}");
+                        Bot.Log.Info($"UnitsModule: Training type {unit.Id} {unit.Name}");
                     }
 
                     LastBuildTick[type.Id] = Bot.Tick;

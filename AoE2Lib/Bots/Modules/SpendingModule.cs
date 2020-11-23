@@ -28,7 +28,7 @@ namespace AoE2Lib.Bots.Modules
 
         protected override IEnumerable<Command> RequestUpdate()
         {
-            //Bot.Log.Debug("SPENDING MODULE");
+            Bot.Log.Info("SPENDING MODULE");
             var info = Bot.GetModule<InfoModule>();
             var wood = info.WoodAmount;
             var food = info.FoodAmount;
@@ -43,7 +43,7 @@ namespace AoE2Lib.Bots.Modules
 
             foreach (var command in Commands)
             {
-                //Bot.Log.Debug($"command {command.Name} cost {command.Cost} priority {command.Priority}");
+                Bot.Log.Info($"command {command.Name} cost {command.Cost} priority {command.Priority}");
                 if (command.Cost <= 0)
                 {
                     yield return command;
@@ -63,57 +63,60 @@ namespace AoE2Lib.Bots.Modules
                         if (wood < 0)
                         {
                             wood_shortage = true;
-                            //Bot.Log.Debug("wood shortage");
+                            Bot.Log.Info("wood shortage");
                         }
                         if (food < 0)
                         {
                             food_shortage = true;
-                            //Bot.Log.Debug("food shortage");
+                            Bot.Log.Info("food shortage");
                         }
                         if (gold < 0)
                         {
                             gold_shortage = true;
-                            //Bot.Log.Debug("gold shortage");
+                            Bot.Log.Info("gold shortage");
                         }
                         if (stone < 0)
                         {
                             stone_shortage = true;
-                            //Bot.Log.Debug("stone shortage");
+                            Bot.Log.Info("stone shortage");
                         }
 
                         priority = Math.Max(priority, command.Priority + 1);
-                        //Bot.Log.Debug($"new min priority {priority}");
+                        Bot.Log.Info($"new min priority {priority}");
                     }
 
                     if (spend && command.Priority < priority)
                     {
-                        //Bot.Log.Debug($"command {command.Name} priority {command.Priority} below min priority {priority}");
+                        Bot.Log.Info($"command {command.Name} priority {command.Priority} below min priority {priority}");
                         if (command.WoodCost > 0 && wood_shortage)
                         {
                             spend = false;
-                            //Bot.Log.Debug($"wood shortage fail cost {command.WoodCost}");
+                            Bot.Log.Info($"wood shortage fail cost {command.WoodCost}");
                         }
                         else if (command.FoodCost > 0 && food_shortage)
                         {
                             spend = false;
-                            //Bot.Log.Debug($"food shortage fail cost {command.FoodCost}");
+                            Bot.Log.Info($"food shortage fail cost {command.FoodCost}");
                         }
                         else if (command.GoldCost > 0 && gold_shortage)
                         {
                             spend = false;
-                            //Bot.Log.Debug($"gold shortage fail cost {command.GoldCost}");
+                            Bot.Log.Info($"gold shortage fail cost {command.GoldCost}");
                         }
                         else if (command.StoneCost > 0 && stone_shortage)
                         {
                             spend = false;
-                            //Bot.Log.Debug($"stone shortage fail cost {command.StoneCost}");
+                            Bot.Log.Info($"stone shortage fail cost {command.StoneCost}");
                         }
                     }
 
                     if (spend)
                     {
-                        Bot.Log.Info($"SpendingModule: Spending {command.WoodCost}/{command.FoodCost}/{command.GoldCost}/{command.StoneCost} (w/f/g/s) on: {command.Name}");
-                        yield return command;
+                        if (command.HasMessages)
+                        {
+                            Bot.Log.Info($"SpendingModule: Spending {command.WoodCost}/{command.FoodCost}/{command.GoldCost}/{command.StoneCost} (w/f/g/s) on: {command.Name}");
+                            yield return command;
+                        }
                     }
                     else
                     {

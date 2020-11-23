@@ -191,11 +191,7 @@ namespace AoE2Lib.Bots
                                 Players.Add(result.PlayerNumber, bot);
 
                                 var mod = new Mod();
-                                mod.LoadDE();
-                                if (GameInstance.DatFile != null)
-                                {
-                                    mod.LoadFromDat(GameInstance.DatFile);
-                                }
+                                mod.Load(Path.Combine(GameInstance.DatFolder, "Empires2_x1_p1.dat"));
 
                                 var botapi = new ExpertAPIClient(Channel);
                                 bot.Start(mod, result.PlayerNumber, botapi);

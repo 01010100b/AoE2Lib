@@ -7,6 +7,7 @@ namespace AoE2Lib.Mods
     public class UnitDef
     {
         public int Id { get; set; }
+        public string Name { get; set; } = "";
         public int FoundationId { get; set; }
         public double CollisionX { get; set; } = 0.5;
         public double CollisionY { get; set; } = 0.5;
