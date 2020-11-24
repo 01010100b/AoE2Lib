@@ -7,6 +7,7 @@ using AoE2Lib.Utils;
 using Quaternary.Modules;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,6 +44,9 @@ namespace Quaternary
             // build house
             GetModule<BuildModule>().BuildNormal(Mod.House, 100, 2);
 
+            // get wall
+            GetModule<WallingModule>().GetWall(new List<Point>() { GetModule<InfoModule>().MyPosition }, 3);
+
             LogState();
 
             return Enumerable.Empty<Command>();
@@ -53,6 +57,11 @@ namespace Quaternary
             if (!HasModule<MapAnalysisModule>())
             {
                 AddModule(new MapAnalysisModule());
+            }
+
+            if (!HasModule<WallingModule>())
+            {
+                AddModule(new WallingModule());
             }
 
             if (!HasModule<UnitManagerModule>())

@@ -149,13 +149,13 @@ namespace Quaternary.Modules
                 }
             }
 
-            var obstructions = new Dictionary<Resource, List<AnalysisTile>>();
+            var obstructions = new Dictionary<Resource, HashSet<AnalysisTile>>();
 
             foreach (var tile in GetTiles())
             {
                 if (!obstructions.ContainsKey(tile.Resource))
                 {
-                    obstructions.Add(tile.Resource, new List<AnalysisTile>());
+                    obstructions.Add(tile.Resource, new HashSet<AnalysisTile>());
                 }
 
                 if (tile.Obstructed)
@@ -170,10 +170,37 @@ namespace Quaternary.Modules
                 var clumps = new List<List<AnalysisTile>>();
                 var tiles = obstructions[resource];
 
+                while (tiles.Count > 0)
+                {
+                    var clump = new List<AnalysisTile>();
 
+                    var start = tiles.First();
+                    foreach (var point in FloodFill.GetRegion(start.Point, true, p => IsPointIncluded(p, resource)))
+                    {
+                        var tile = GetTile(point);
+                        clump.Add(tile);
+                        tiles.Remove(tile);
+                    }
+
+                    clumps.Add(clump);
+                }
+
+                _Clumps.Add(resource, clumps);
             }
 
-            Bot.Log.Info($"MapAnalysisModule: updated {Tiles.Length} tiles");
+            Bot.Log.Info($"MapAnalysisModule: updated {Tiles.Length} tiles with {Clumps.Values.Sum(c => c.Count)} clumps");
+        }
+
+        private bool IsPointIncluded(Point point, Resource resource)
+        {
+            if (point.X < 0 || point.X >= Width || point.Y < 0 || point.Y >= Height)
+            {
+                return false;
+            }
+
+            var tile = GetTile(point);
+
+            return tile.Obstructed && tile.Resource == resource;
         }
     }
 }

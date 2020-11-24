@@ -84,6 +84,7 @@
     <Compile Include="Modules\MapAnalysisModule.cs" />
     <Compile Include="Modules\ScoutingModule.cs" />
     <Compile Include="Modules\UnitManagerModule.cs" />
+    <Compile Include="Modules\WallingModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quaternary.cs" />

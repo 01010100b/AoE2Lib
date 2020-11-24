@@ -136,8 +136,8 @@ namespace Quaternary
                 Map.Tiles[point.X, point.Y].Type = AnalysisTileType.WALL;
             }
 
-            var interior = FloodFill.GetRegion(Map.Center, false, p => Map.IsOnMap(p) && Map.Tiles[p.X, p.Y].Type == AnalysisTileType.NONE);
-            LabelInterior.Text = $"Interior: {interior.Count}";
+            var interior = FloodFill.GetRegion(Map.Center, false, p => Map.IsOnMap(p) && Map.Tiles[p.X, p.Y].Type == AnalysisTileType.NONE).Count;
+            LabelInterior.Text = $"Interior: {interior}";
             LabelWallCount.Text = $"Wall length: {wall.Count}";
 
             Refresh();
