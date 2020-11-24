@@ -20,6 +20,8 @@ namespace AoE2Lib.Mods
         public UnitDef Farm => CivilizationDefs[1].Farm;
         public UnitDef GoldCamp => CivilizationDefs[1].GoldCamp;
         public UnitDef StoneCamp => CivilizationDefs[1].StoneCamp;
+        public UnitDef GateHorizontal => CivilizationDefs[1].GateHorizontal;
+        public UnitDef GateVertical => CivilizationDefs[1].GateVertical;
 
         public void Load(string file)
         {
@@ -56,6 +58,7 @@ namespace AoE2Lib.Mods
                         PlacementSideTerrain2 = unit.PlacementSideTerrain1,
                         TerrainTable = unit.TerrainRestriction,
                         CmdId = (CmdId)unit.InterfaceKind,
+                        Class = (UnitClass)(unit.UnitClass + 900),
                         StackUnitId = unit.StackUnitId
                     };
 
@@ -70,6 +73,12 @@ namespace AoE2Lib.Mods
                     }
                 }
 
+                foreach (var def in civ.UnitDefs.Values)
+                {
+                    def.Width = (int)Math.Ceiling(2 * civ.UnitDefs[def.FoundationId].CollisionX - 0.01);
+                    def.Height = (int)Math.Ceiling(2 * civ.UnitDefs[def.FoundationId].CollisionY - 0.01);
+                }
+
                 civ.Villager = civ.UnitDefs[83];
                 civ.TownCenter = civ.UnitDefs[109];
                 civ.House = civ.UnitDefs[70];
@@ -77,11 +86,18 @@ namespace AoE2Lib.Mods
                 civ.Farm = civ.UnitDefs[50];
                 civ.GoldCamp = civ.UnitDefs[584];
                 civ.StoneCamp = civ.GoldCamp;
+                civ.GateHorizontal = civ.UnitDefs[487];
+                civ.GateVertical = civ.UnitDefs[490];
 
                 CivilizationDefs.Add(civ.Id, civ);
             }
 
             Log.Static.Info($"Mod: Loaded {CivilizationDefs.Values.SelectMany(c => c.UnitDefs).Distinct().Count()} units");
+        }
+
+        public UnitDef GetUnitDef(int id)
+        {
+            return CivilizationDefs.SelectMany(c => c.Value.UnitDefs.Values).FirstOrDefault(u => u.Id == id);
         }
     }
 }

@@ -273,7 +273,7 @@ namespace AoE2Lib.Bots.Modules
                 StoneCost = type.StoneCost
             };
 
-            if (type.CanCreate)
+            if (type.CanCreate || type.UnitDef.Class == UnitClass.Wall || type.UnitDef.Class == UnitClass.Gate)
             {
                 var tick = -1;
                 if (LastBuildTick.ContainsKey(type.Id))
@@ -287,19 +287,23 @@ namespace AoE2Lib.Bots.Modules
                     {
                         command.Add(new SetGoal() { GoalId = 100, GoalValue = position.PointX });
                         command.Add(new SetGoal() { GoalId = 101, GoalValue = position.PointY });
-                        command.Add(new UpBuildLine() { TypeOp = TypeOp.C, BuildingId = type.Id, GoalPoint1 = 100, GoalPoint2 = 100 });
+                        command.Add(new UpBuildLine() { TypeOp = TypeOp.C, BuildingId = unit.FoundationId, GoalPoint1 = 100, GoalPoint2 = 100 });
 
-                        Bot.Log.Info($"UnitsModule: Building type {unit.Id} {unit.Name} at {position.PointX} {position.PointY}");
+                        Bot.Log.Info($"UnitsModule: Building type {unit.Id} {unit.Name} {unit.FoundationId} at {position.PointX} {position.PointY}");
                     }
                     else
                     {
-                        command.Add(new Train() { UnitType = type.Id });
+                        command.Add(new Train() { UnitType = unit.FoundationId });
 
-                        Bot.Log.Info($"UnitsModule: Training type {unit.Id} {unit.Name}");
+                        Bot.Log.Info($"UnitsModule: Training type {unit.Id} {unit.Name} {unit.FoundationId}");
                     }
 
                     LastBuildTick[type.Id] = Bot.Tick;
                 }
+            }
+            else
+            {
+                Bot.Log.Info($"UnitsModule: Can not create type {unit.Id} {unit.Name} {unit.FoundationId}");
             }
 
             Bot.GetModule<SpendingModule>().Add(command);

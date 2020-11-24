@@ -4,6 +4,8 @@ using AoE2Lib.Bots.GameElements;
 using AoE2Lib.Bots.Modules;
 using AoE2Lib.Mods;
 using AoE2Lib.Utils;
+using Protos.Expert.Action;
+using Quaternary.Algorithms;
 using Quaternary.Modules;
 using System;
 using System.Collections.Generic;
@@ -11,6 +13,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Quaternary.Modules.MapAnalysisModule;
+using static Quaternary.Modules.WallingModule;
 
 namespace Quaternary
 {
@@ -20,11 +24,17 @@ namespace Quaternary
         public override int Id => 27432;
 
         private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode());
+        private Wall CurrentWall { get; set; }
 
         protected override IEnumerable<Command> Update()
         {
+            var command = new Command();
+
             AddModules();
             SetStrategicNumbers();
+
+            var info = GetModule<InfoModule>();
+            var build = GetModule<BuildModule>();
 
             // research loom
             GetModule<ResearchModule>().Research(22);
@@ -32,24 +42,69 @@ namespace Quaternary
             // train vill
             GetModule<UnitsModule>().Train(Mod.Villager);
 
-            // build mill
-            if (GetModule<InfoModule>().GameTime > TimeSpan.FromMinutes(2))
+            // get wall
+
+            if (info.GameTime > TimeSpan.FromMinutes(5))
             {
-                GetModule<BuildModule>().BuildNormal(Mod.Mill, 2, 1);
+                if (CurrentWall == null)
+                {
+                    CurrentWall = GetWall();
+                    Log.Debug($"Getting wall");
+                }
+
+                if (CurrentWall.IsGenerated)
+                {
+                    Log.Debug($"My position {info.MyPosition.PointX} {info.MyPosition.PointY}");
+                    var units = GetModule<UnitsModule>();
+                    var map = GetModule<MapAnalysisModule>();
+                    var walldef = Mod.GetUnitDef(72);
+
+                    command.Add(new UpAssignBuilders() { TypeOp1 = TypeOp.C, BuildingId = walldef.FoundationId, TypeOp2 = TypeOp.C, Value = 1 });
+                    command.Add(new UpAssignBuilders() { TypeOp1 = TypeOp.C, BuildingId = Mod.GateHorizontal.FoundationId, TypeOp2 = TypeOp.C, Value = 1 });
+                    command.Add(new UpAssignBuilders() { TypeOp1 = TypeOp.C, BuildingId = Mod.GateVertical.FoundationId, TypeOp2 = TypeOp.C, Value = 1 });
+
+                    if (CurrentWall.Gates.Count > 0)
+                    {
+                        var placement = GetModule<PlacementModule>();
+                        foreach (var gate in CurrentWall.Gates)
+                        {
+                            if (placement.CanBuildAtPosition(GetModule<MapModule>(), gate.Value, gate.Key.Point, 0, false))
+                            {
+                                Log.Debug($"Building gate piece {gate.Key.Point.X} {gate.Key.Point.Y}");
+                                units.Build(gate.Value, gate.Key.Point, 20, 4, 3);
+                            }
+                        }
+                    }
+
+                    for (int i = 0; i < 10; i++)
+                    {
+                        var piece = CurrentWall.Pieces[RNG.Next(CurrentWall.Pieces.Count)];
+                        if (!map.GetTile(piece.Point).Obstructed)
+                        {
+                            Log.Debug($"Building piece {piece.Point.X} {piece.Point.Y}");
+                            units.Build(walldef, piece.Point, 200, 200, 2);
+                        }
+                    }
+
+                    Log.Debug($"Building wall length {CurrentWall.Pieces.Count}");
+                }
+            }
+
+            // build mill
+            if (info.GameTime > TimeSpan.FromMinutes(2))
+            {
+                build.BuildNormal(Mod.Mill, 1, 1);
             }
 
             // build farm
-            GetModule<BuildModule>().BuildFarm(Mod.Farm, 10, 1);
+            build.BuildFarm(Mod.Farm, 10, 1);
 
             // build house
-            GetModule<BuildModule>().BuildNormal(Mod.House, 100, 2);
-
-            // get wall
-            GetModule<WallingModule>().GetWall(new List<Point>() { GetModule<InfoModule>().MyPosition }, 3);
+            build.BuildNormal(Mod.House, 5, 2);
 
             LogState();
 
-            return Enumerable.Empty<Command>();
+            yield return command;
         }
 
         private void AddModules()
@@ -86,9 +141,7 @@ namespace Quaternary
 
             sns[StrategicNumber.PERCENT_CIVILIAN_EXPLORERS] = 0;
             sns[StrategicNumber.CAP_CIVILIAN_EXPLORERS] = 0;
-            sns[StrategicNumber.TOTAL_NUMBER_EXPLORERS] = 0;
-            sns[StrategicNumber.NUMBER_EXPLORE_GROUPS] = 0;
-
+            
             sns[StrategicNumber.PERCENT_ENEMY_SIGHTED_RESPONSE] = 100;
             sns[StrategicNumber.ENEMY_SIGHTED_RESPONSE_DISTANCE] = 100;
             sns[StrategicNumber.ZERO_PRIORITY_DISTANCE] = 100;
@@ -101,8 +154,9 @@ namespace Quaternary
 
             sns[StrategicNumber.ENABLE_NEW_BUILDING_SYSTEM] = 1;
             sns[StrategicNumber.PERCENT_BUILDING_CANCELLATION] = 0;
+            sns[StrategicNumber.CAP_CIVILIAN_BUILDERS] = 8;
             sns[StrategicNumber.DISABLE_BUILDER_ASSISTANCE] = 1;
-            sns[StrategicNumber.CAP_CIVILIAN_BUILDERS] = 4;
+            sns[StrategicNumber.INITIAL_EXPLORATION_REQUIRED] = 0;
 
             sns[StrategicNumber.INTELLIGENT_GATHERING] = 1;
             sns[StrategicNumber.USE_BY_TYPE_MAX_GATHERING] = 1;
@@ -113,13 +167,66 @@ namespace Quaternary
             //sns[StrategicNumber.MAXIMUM_HUNT_DROP_DISTANCE] = 10;
             sns[StrategicNumber.ENABLE_BOAR_HUNTING] = 0;
             sns[StrategicNumber.LIVESTOCK_TO_TOWN_CENTER] = 1;
-
-            sns[StrategicNumber.HOME_EXPLORATION_TIME] = 600;
-
             sns[StrategicNumber.FOOD_GATHERER_PERCENTAGE] = 70;
             sns[StrategicNumber.WOOD_GATHERER_PERCENTAGE] = 20;
             sns[StrategicNumber.GOLD_GATHERER_PERCENTAGE] = 5;
             sns[StrategicNumber.STONE_GATHERER_PERCENTAGE] = 5;
+        }
+
+        private Wall GetWall()
+        {
+            var center = GetModule<InfoModule>().MyPosition;
+            var map = GetModule<MapAnalysisModule>();
+
+            var chosen = new List<List<AnalysisTile>>();
+            
+            foreach (var clumps in map.Clumps.Values)
+            {
+                clumps.Sort((a, b) => a.Min(t => center.DistanceTo(t.Point)).CompareTo(b.Min(t => center.DistanceTo(t.Point))));
+            }
+
+            if (map.Clumps.TryGetValue(Resource.WOOD, out List<List<AnalysisTile>> woodclumps))
+            {
+                foreach (var wood in woodclumps.Where(c => c.Count >= 10))
+                {
+                    chosen.Add(wood);
+
+                    if (chosen.Count >= 2)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            if (map.Clumps.TryGetValue(Resource.FOOD, out List<List<AnalysisTile>> foodclumps))
+            {
+                if (foodclumps.Count > 0)
+                {
+                    chosen.Add(foodclumps[0]);
+                }
+            }
+
+            if (map.Clumps.TryGetValue(Resource.GOLD, out List<List<AnalysisTile>> goldclumps))
+            {
+                if (goldclumps.Count > 0)
+                {
+                    chosen.Add(goldclumps[0]);
+                }
+            }
+
+            if (map.Clumps.TryGetValue(Resource.STONE, out List<List<AnalysisTile>> stoneclumps))
+            {
+                if (stoneclumps.Count > 0)
+                {
+                    chosen.Add(stoneclumps[0]);
+                }
+            }
+            
+            var walling = GetModule<WallingModule>();
+            var goals = walling.GetGoals(center, 10, chosen);
+            var wall = walling.GetWall(goals, 2);
+
+            return wall;
         }
 
         private void LogState()

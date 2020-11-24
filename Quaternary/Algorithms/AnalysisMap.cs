@@ -77,14 +77,14 @@ namespace Quaternary.Algorithms
             NONE, WALL, WOOD, FOOD, GOLD, STONE, OBSTRUCTION
         }
 
-        public struct AnalysisTile
+        public struct OldAnalysisTile
         {
             public Point Point { get; set; }
             public bool IsResource => Type == AnalysisTileType.WOOD || Type == AnalysisTileType.FOOD || Type == AnalysisTileType.GOLD || Type == AnalysisTileType.STONE;
             public AnalysisTileType Type { get; set; }
         }
 
-        public AnalysisTile[,] Tiles { get; set; } = null;
+        public OldAnalysisTile[,] Tiles { get; set; } = null;
         public int Size
         {
             get
@@ -109,12 +109,12 @@ namespace Quaternary.Algorithms
 
         public void Generate(int size)
         {
-            Tiles = new AnalysisTile[size, size];
+            Tiles = new OldAnalysisTile[size, size];
             for (int x = 0; x < size; x++)
             {
                 for (int y = 0; y < size; y++)
                 {
-                    Tiles[x, y] = new AnalysisTile() { Point = new Point(x, y) };
+                    Tiles[x, y] = new OldAnalysisTile() { Point = new Point(x, y) };
                 }
             }
 

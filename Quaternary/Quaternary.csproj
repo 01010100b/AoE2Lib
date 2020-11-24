@@ -57,6 +57,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Google.Protobuf, Version=3.13.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -70,9 +71,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\AnalysisMap.cs" />
     <Compile Include="Algorithms\FloodFill.cs" />
     <Compile Include="Algorithms\GrahamScan.cs" />
-    <Compile Include="Algorithms\AnalysisMap.cs" />
     <Compile Include="Algorithms\Walling.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

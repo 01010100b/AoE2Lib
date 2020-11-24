@@ -16,5 +16,7 @@ namespace AoE2Lib.Mods
         public UnitDef Farm { get; set; }
         public UnitDef GoldCamp { get; set; }
         public UnitDef StoneCamp { get; set; }
+        public UnitDef GateHorizontal { get; set; }
+        public UnitDef GateVertical { get; set; }
     }
 }

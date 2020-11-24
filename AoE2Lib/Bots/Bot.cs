@@ -97,8 +97,11 @@ namespace AoE2Lib.Bots
 
                 // update
 
-                commands.AddRange(Update().Where(c => c.HasMessages));
-
+                if (Tick > 0)
+                {
+                    commands.AddRange(Update().Where(c => c.HasMessages));
+                }
+                
                 // request modules update in reverse
 
                 List<Module> modules = null;

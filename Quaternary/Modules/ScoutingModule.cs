@@ -71,6 +71,16 @@ namespace Quaternary.Modules
                 return;
             }
 
+            if (true)
+            {
+                var sns = Bot.GetModule<InfoModule>().StrategicNumbers;
+                sns[StrategicNumber.TOTAL_NUMBER_EXPLORERS] = 1;
+                sns[StrategicNumber.NUMBER_EXPLORE_GROUPS] = 1;
+                sns[StrategicNumber.HOME_EXPLORATION_TIME] = 600;
+
+                return;
+            }
+
             var gametime = Bot.GetModule<InfoModule>().GameTime;
 
             if (RNG.NextDouble() < 1 / (10 + (gametime.TotalMinutes * 2)))

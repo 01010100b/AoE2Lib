@@ -42,9 +42,7 @@ namespace Quaternary.Modules
 
         public bool IsOnMap(Point point)
         {
-            var index = GetIndex(point);
-
-            return index >= 0 && index < Tiles.Length;
+            return point.X >= 0 && point.X < Width && point.Y >= 0 && point.Y < Height;
         }
 
         public AnalysisTile GetTile(Point point)

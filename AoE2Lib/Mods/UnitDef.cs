@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AoE2Lib.Bots.GameElements;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -18,9 +19,10 @@ namespace AoE2Lib.Mods
         public int PlacementSideTerrain2 { get; set; } = -1;
         public int TerrainTable { get; set; } = -1;
         public CmdId CmdId { get; set; }
+        public UnitClass Class { get; set; }
         public int StackUnitId { get; set; } = -1;
         public bool IsBuilding => CmdId == CmdId.CIVILIAN_BUILDING || CmdId == CmdId.MILITARY_BUILDING;
-        public int Width => (int)Math.Ceiling(2 * CollisionX - 0.01);
-        public int Height => (int)Math.Ceiling(2 * CollisionY - 0.01);
+        public int Width { get; set; }
+        public int Height { get; set; }
     }
 }
