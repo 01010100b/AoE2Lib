@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Protos.Expert.Fact;
+using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Drawing;
 using System.Numerics;
 using System.Text;
 
@@ -26,7 +28,7 @@ namespace AoE2Lib.Utils
         public int PointY => (int)Math.Floor(Y);
         public int PreciseX => (int)Math.Floor(X * 100);
         public int PreciseY => (int)Math.Floor(Y * 100);
-        public double Norm => Math.Sqrt((X * X) + (Y * Y));
+        public double Norm => DistanceTo(Zero);
         public double Angle => AngleFrom(Zero);
 
         public Position(double x, double y)
@@ -65,6 +67,16 @@ namespace AoE2Lib.Utils
             return v / a;
         }
 
+        public static implicit operator Point(Position position)
+        {
+            return new Point(position.PointX, position.PointY);
+        }
+
+        public static implicit operator Position(Point point)
+        {
+            return Position.FromPoint(point.X, point.Y);
+        }
+
         public double DistanceTo(Position other)
         {
             var dx = X - other.X;
@@ -77,6 +89,11 @@ namespace AoE2Lib.Utils
         {
             var a1 = Math.Atan2(other.Y, other.X);
             var a2 = Math.Atan2(Y, X);
+
+            if (double.IsNaN(a1) || double.IsNaN(a2))
+            {
+                throw new Exception("Position has NaN");
+            }
 
             if (a1 < 0)
             {

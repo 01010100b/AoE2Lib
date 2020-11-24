@@ -69,7 +69,7 @@ namespace Quaternary
 
             if (CheckShowInterior.Checked)
             {
-                var interior = FloodFill.GetInterior(Map.Center, p => Map.GetNeighbours(p), p => Map.Tiles[p.X, p.Y].Type == AnalysisTileType.NONE);
+                var interior = FloodFill.GetRegion(Map.Center, false, p => Map.IsOnMap(p) && Map.Tiles[p.X, p.Y].Type == AnalysisTileType.NONE);
                 foreach (var point in interior)
                 {
                     brush = Brushes.DarkGray;
@@ -108,7 +108,7 @@ namespace Quaternary
             for (int i = 0; i < samples; i++)
             {
                 wall += Generate().Count;
-                interior += FloodFill.GetInterior(Map.Center, p => Map.GetNeighbours(p), p => Map.Tiles[p.X, p.Y].Type == AnalysisTileType.NONE).Count;
+                interior += FloodFill.GetRegion(Map.Center, false, p => Map.IsOnMap(p) && Map.Tiles[p.X, p.Y].Type == AnalysisTileType.NONE).Count;
             }
 
             wall /= samples;
@@ -125,10 +125,10 @@ namespace Quaternary
             var size = Map.Size;
 
             GetGoals();
-            var optimize = 3;
+            var optimize = 1;
             if (CheckOptimize.Checked)
             {
-                optimize = 50;
+                optimize = 20;
             }
             var wall = Walling.GenerateWall(Map, Goals, optimize);
             foreach (var point in wall)
@@ -136,7 +136,7 @@ namespace Quaternary
                 Map.Tiles[point.X, point.Y].Type = AnalysisTileType.WALL;
             }
 
-            var interior = FloodFill.GetInterior(Map.Center, p => Map.GetNeighbours(p), p => Map.Tiles[p.X, p.Y].Type == AnalysisTileType.NONE);
+            var interior = FloodFill.GetRegion(Map.Center, false, p => Map.IsOnMap(p) && Map.Tiles[p.X, p.Y].Type == AnalysisTileType.NONE);
             LabelInterior.Text = $"Interior: {interior.Count}";
             LabelWallCount.Text = $"Wall length: {wall.Count}";
 

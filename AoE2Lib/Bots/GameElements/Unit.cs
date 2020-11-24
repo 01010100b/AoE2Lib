@@ -61,6 +61,7 @@ namespace AoE2Lib.Bots.GameElements
         public int LanguageId { get; private set; }
 
         public bool IsBuilding => CmdId == CmdId.CIVILIAN_BUILDING || CmdId == CmdId.MILITARY_BUILDING;
+        public bool Exists => Targetable || Class == UnitClass.Terrain;
 
         internal Unit(Bot bot, int id) : base(bot)
         {

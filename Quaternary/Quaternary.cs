@@ -50,6 +50,11 @@ namespace Quaternary
 
         private void AddModules()
         {
+            if (!HasModule<MapAnalysisModule>())
+            {
+                AddModule(new MapAnalysisModule());
+            }
+
             if (!HasModule<UnitManagerModule>())
             {
                 AddModule(new UnitManagerModule());

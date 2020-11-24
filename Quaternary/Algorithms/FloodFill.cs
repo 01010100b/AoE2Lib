@@ -9,7 +9,7 @@ namespace Quaternary.Algorithms
 {
     public static class FloodFill
     {
-        public static List<Point> GetInterior(Point start, Func<Point, IEnumerable<Point>> neighbours, Func<Point, bool> included)
+        public static List<Point> GetRegion(Point start, bool diagonal, Func<Point, bool> included)
         {
             var seen = new HashSet<Point>();
             seen.Add(start);
@@ -23,7 +23,7 @@ namespace Quaternary.Algorithms
                 var current = queue.Dequeue();
                 interior.Add(current);
                 
-                foreach (var neighbour in neighbours(current).Where(n => !seen.Contains(n)))
+                foreach (var neighbour in GetNeighbours(current, diagonal).Where(n => !seen.Contains(n)))
                 {
                     if (included(neighbour))
                     {
@@ -35,6 +35,44 @@ namespace Quaternary.Algorithms
             }
 
             return interior;
+        }
+
+        private static IEnumerable<Point> GetNeighbours(Point a, bool diagonal)
+        {
+            var x = a.X - 1;
+            var y = a.Y;
+            yield return new Point(x, y);
+
+            x = a.X + 1;
+            y = a.Y;
+            yield return new Point(x, y);
+
+            x = a.X;
+            y = a.Y - 1;
+            yield return new Point(x, y);
+
+            x = a.X;
+            y = a.Y + 1;
+            yield return new Point(x, y);
+
+            if (diagonal)
+            {
+                x = a.X - 1;
+                y = a.Y - 1;
+                yield return new Point(x, y);
+
+                x = a.X - 1;
+                y = a.Y + 1;
+                yield return new Point(x, y);
+
+                x = a.X + 1;
+                y = a.Y - 1;
+                yield return new Point(x, y);
+
+                x = a.X + 1;
+                y = a.Y + 1;
+                yield return new Point(x, y);
+            }
         }
     }
 }

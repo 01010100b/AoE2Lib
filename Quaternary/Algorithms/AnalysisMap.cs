@@ -98,6 +98,11 @@ namespace Quaternary.Algorithms
             }
         }
 
+        public bool IsOnMap(Point point)
+        {
+            return point.X >= 0 && point.X < Size && point.Y >= 0 && point.Y < Size;
+        }
+
         public Point Center => new Point(Size / 2, Size / 2);
 
         private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode());
@@ -210,7 +215,7 @@ namespace Quaternary.Algorithms
                 if (tile.IsResource && clumps.Count(c => c.Contains(pos)) == 0)
                 {
                     var clump = new HashSet<Point>();
-                    foreach (var p in FloodFill.GetInterior(pos, p => GetNeighbours(p, true), p => Tiles[p.X, p.Y].Type == tile.Type))
+                    foreach (var p in FloodFill.GetRegion(pos, true, p => IsOnMap(p) && Tiles[p.X, p.Y].Type == tile.Type))
                     {
                         clump.Add(p);
                     }

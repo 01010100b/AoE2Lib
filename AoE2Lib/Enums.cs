@@ -316,4 +316,9 @@ namespace AoE2Lib
     {
         UNAVAILABLE, AVAILABLE, PENDING, COMPLETE
     }
+
+    public enum Resource
+    {
+        NONE = -1, FOOD, WOOD, STONE, GOLD, DEER = 6, BOAR = 7
+    }
 }

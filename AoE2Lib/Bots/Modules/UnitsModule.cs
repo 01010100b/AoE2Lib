@@ -124,15 +124,15 @@ namespace AoE2Lib.Bots.Modules
 
                     command.Add(new UpFilterDistance() { TypeOp1 = TypeOp.C, MinDistance = -1, TypeOp2 = TypeOp.C, MaxDistance = range });
                     command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 2, TypeOp2 = TypeOp.C, ObjectList = 0 });
-                    command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = 1, TypeOp2 = TypeOp.C, Count = 30 });
+                    command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = (int)Resource.WOOD, TypeOp2 = TypeOp.C, Count = 30 });
                     command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 3, TypeOp2 = TypeOp.C, ObjectList = 0 });
-                    command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = 1, TypeOp2 = TypeOp.C, Count = 10 });
+                    command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = (int)Resource.WOOD, TypeOp2 = TypeOp.C, Count = 10 });
 
                     command.Add(new UpFilterDistance() { TypeOp1 = TypeOp.C, MinDistance = range - 1, TypeOp2 = TypeOp.C, MaxDistance = -1 });
                     command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 3, TypeOp2 = TypeOp.C, ObjectList = 0 });
-                    command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = 1, TypeOp2 = TypeOp.C, Count = 10 });
+                    command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = (int)Resource.WOOD, TypeOp2 = TypeOp.C, Count = 10 });
                     command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 2, TypeOp2 = TypeOp.C, ObjectList = 0 });
-                    command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = 1, TypeOp2 = TypeOp.C, Count = 40 });
+                    command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = (int)Resource.WOOD, TypeOp2 = TypeOp.C, Count = 40 });
 
                     break;
 
@@ -140,15 +140,15 @@ namespace AoE2Lib.Bots.Modules
 
                     command.Add(new UpFilterDistance() { TypeOp1 = TypeOp.C, MinDistance = -1, TypeOp2 = TypeOp.C, MaxDistance = range });
                     command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 2, TypeOp2 = TypeOp.C, ObjectList = 0 });
-                    command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = 0, TypeOp2 = TypeOp.C, Count = 30 });
+                    command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = (int)Resource.FOOD, TypeOp2 = TypeOp.C, Count = 30 });
                     command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 3, TypeOp2 = TypeOp.C, ObjectList = 0 });
-                    command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = 0, TypeOp2 = TypeOp.C, Count = 10 });
+                    command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = (int)Resource.FOOD, TypeOp2 = TypeOp.C, Count = 10 });
 
                     command.Add(new UpFilterDistance() { TypeOp1 = TypeOp.C, MinDistance = range - 1, TypeOp2 = TypeOp.C, MaxDistance = -1 });
                     command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 3, TypeOp2 = TypeOp.C, ObjectList = 0 });
-                    command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = 0, TypeOp2 = TypeOp.C, Count = 10 });
+                    command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = (int)Resource.FOOD, TypeOp2 = TypeOp.C, Count = 10 });
                     command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 2, TypeOp2 = TypeOp.C, ObjectList = 0 });
-                    command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = 0, TypeOp2 = TypeOp.C, Count = 40 });
+                    command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = (int)Resource.FOOD, TypeOp2 = TypeOp.C, Count = 40 });
 
                     break;
 
@@ -156,11 +156,11 @@ namespace AoE2Lib.Bots.Modules
 
                     command.Add(new UpFilterDistance() { TypeOp1 = TypeOp.C, MinDistance = -1, TypeOp2 = TypeOp.C, MaxDistance = range });
                     command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 3, TypeOp2 = TypeOp.C, ObjectList = 0 });
-                    command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = 3, TypeOp2 = TypeOp.C, Count = 40 });
+                    command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = (int)Resource.GOLD, TypeOp2 = TypeOp.C, Count = 40 });
 
                     command.Add(new UpFilterDistance() { TypeOp1 = TypeOp.C, MinDistance = range - 1, TypeOp2 = TypeOp.C, MaxDistance = -1 });
                     command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 3, TypeOp2 = TypeOp.C, ObjectList = 0 });
-                    command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = 3, TypeOp2 = TypeOp.C, Count = 40 });
+                    command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = (int)Resource.GOLD, TypeOp2 = TypeOp.C, Count = 40 });
 
                     break;
 
@@ -168,11 +168,11 @@ namespace AoE2Lib.Bots.Modules
 
                     command.Add(new UpFilterDistance() { TypeOp1 = TypeOp.C, MinDistance = -1, TypeOp2 = TypeOp.C, MaxDistance = range });
                     command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 3, TypeOp2 = TypeOp.C, ObjectList = 0 });
-                    command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = 2, TypeOp2 = TypeOp.C, Count = 40 });
+                    command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = (int)Resource.STONE, TypeOp2 = TypeOp.C, Count = 40 });
 
                     command.Add(new UpFilterDistance() { TypeOp1 = TypeOp.C, MinDistance = range - 1, TypeOp2 = TypeOp.C, MaxDistance = -1 });
                     command.Add(new UpFilterStatus() { TypeOp1 = TypeOp.C, ObjectStatus = 3, TypeOp2 = TypeOp.C, ObjectList = 0 });
-                    command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = 2, TypeOp2 = TypeOp.C, Count = 40 });
+                    command.Add(new UpFindResource() { TypeOp1 = TypeOp.C, Resource = (int)Resource.STONE, TypeOp2 = TypeOp.C, Count = 40 });
 
                     break;
 

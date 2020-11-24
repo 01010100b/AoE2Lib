@@ -140,7 +140,7 @@ namespace Quaternary.Algorithms
                                 var component = new HashSet<Point>();
                                 component.Add(point);
 
-                                foreach (var interior in FloodFill.GetInterior(point, p => GetNeighbours(p), p => GetType(p.X, p.Y) == Type.CLEAR))
+                                foreach (var interior in FloodFill.GetRegion(point, false, p => IsInNeighbourhood(p) && GetType(p.X, p.Y) == Type.CLEAR))
                                 {
                                     component.Add(interior);
                                 }
@@ -199,6 +199,11 @@ namespace Quaternary.Algorithms
                 }
             }
 
+            private bool IsInNeighbourhood(Point point)
+            {
+                return point.X >= 0 && point.X < 3 && point.Y >= 0 && point.Y < 3;
+            }
+
             private bool SpilledComponents(List<HashSet<Point>> first, List<HashSet<Point>> second)
             {
                 var old = new List<HashSet<Point>>();
@@ -249,13 +254,13 @@ namespace Quaternary.Algorithms
                 }
             }
 
-            var interior = FloodFill.GetInterior(map.Center,
-                p => map.GetNeighbours(p),
-                p => map.Tiles[p.X, p.Y].Type == AnalysisTileType.NONE && !wall.Contains(p));
+            var interior = FloodFill.GetRegion(map.Center,
+                false,
+                p => map.IsOnMap(p) && map.Tiles[p.X, p.Y].Type == AnalysisTileType.NONE && !wall.Contains(p));
 
-            var exterior = FloodFill.GetInterior(new Point(0, 0),
-                p => map.GetNeighbours(p),
-                p => map.Tiles[p.X, p.Y].Type == AnalysisTileType.NONE && !wall.Contains(p));
+            var exterior = FloodFill.GetRegion(new Point(0, 0),
+                false,
+                p => map.IsOnMap(p) && map.Tiles[p.X, p.Y].Type == AnalysisTileType.NONE && !wall.Contains(p));
 
             foreach (var point in wall.ToList())
             {
