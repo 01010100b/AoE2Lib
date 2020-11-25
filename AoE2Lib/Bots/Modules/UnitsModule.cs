@@ -273,7 +273,7 @@ namespace AoE2Lib.Bots.Modules
                 StoneCost = type.StoneCost
             };
 
-            if (type.CanCreate || type.UnitDef.Class == UnitClass.Wall || type.UnitDef.Class == UnitClass.Gate)
+            if (type.CanCreate)
             {
                 var tick = -1;
                 if (LastBuildTick.ContainsKey(type.Id))

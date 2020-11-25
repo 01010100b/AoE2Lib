@@ -49,7 +49,7 @@ namespace AoE2Lib.Bots.GameElements
             yield return new BuildingTypeCount() { BuildingType = UnitDef.FoundationId };
             yield return new BuildingTypeCountTotal() { BuildingType = Id };
             yield return new BuildingTypeCountTotal() { BuildingType = UnitDef.FoundationId };
-            yield return new CanBuild() { BuildingType = Id };
+            yield return new UpCanBuild() { EscrowState = 0, TypeOp = TypeOp.C, BuildingId = Id };
             yield return new UpSetupCostData() { ResetCost = 1, GoalId = 100 };
             yield return new UpAddObjectCost() { TypeOp1 = TypeOp.C, ObjectId = UnitDef.FoundationId, TypeOp2 = TypeOp.C, Value = 1 };
             yield return new Goal() { GoalId = 100 };
@@ -99,7 +99,7 @@ namespace AoE2Lib.Bots.GameElements
             {
                 CountTotal += responses[4].Unpack<BuildingTypeCountTotalResult>().Result;
             }
-            CanCreate = responses[5].Unpack<CanBuildResult>().Result;
+            CanCreate = responses[5].Unpack<UpCanBuildResult>().Result;
             FoodCost = responses[8].Unpack<GoalResult>().Result;
             WoodCost = responses[9].Unpack<GoalResult>().Result;
             StoneCost = responses[10].Unpack<GoalResult>().Result;
