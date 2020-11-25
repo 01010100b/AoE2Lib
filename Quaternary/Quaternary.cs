@@ -42,54 +42,6 @@ namespace Quaternary
             // train vill
             GetModule<UnitsModule>().Train(Mod.Villager);
 
-            // get wall
-
-            if (info.GameTime > TimeSpan.FromMinutes(5))
-            {
-                if (CurrentWall == null)
-                {
-                    CurrentWall = GetWall();
-                    Log.Debug($"Getting wall");
-                }
-
-                if (CurrentWall.IsGenerated)
-                {
-                    Log.Debug($"My position {info.MyPosition.PointX} {info.MyPosition.PointY}");
-                    var units = GetModule<UnitsModule>();
-                    var map = GetModule<MapAnalysisModule>();
-                    var walldef = Mod.GetUnitDef(72);
-
-                    command.Add(new UpAssignBuilders() { TypeOp1 = TypeOp.C, BuildingId = walldef.FoundationId, TypeOp2 = TypeOp.C, Value = 1 });
-                    command.Add(new UpAssignBuilders() { TypeOp1 = TypeOp.C, BuildingId = Mod.GateHorizontal.FoundationId, TypeOp2 = TypeOp.C, Value = 1 });
-                    command.Add(new UpAssignBuilders() { TypeOp1 = TypeOp.C, BuildingId = Mod.GateVertical.FoundationId, TypeOp2 = TypeOp.C, Value = 1 });
-
-                    if (CurrentWall.Gates.Count > 0)
-                    {
-                        var placement = GetModule<PlacementModule>();
-                        foreach (var gate in CurrentWall.Gates)
-                        {
-                            if (placement.CanBuildAtPosition(GetModule<MapModule>(), gate.Value, gate.Key.Point, 0, false))
-                            {
-                                Log.Debug($"Building gate piece {gate.Key.Point.X} {gate.Key.Point.Y}");
-                                units.Build(gate.Value, gate.Key.Point, 20, 4, 3);
-                            }
-                        }
-                    }
-
-                    for (int i = 0; i < 10; i++)
-                    {
-                        var piece = CurrentWall.Pieces[RNG.Next(CurrentWall.Pieces.Count)];
-                        if (!map.GetTile(piece.Point).Obstructed)
-                        {
-                            Log.Debug($"Building piece {piece.Point.X} {piece.Point.Y}");
-                            units.Build(walldef, piece.Point, 200, 200, 2);
-                        }
-                    }
-
-                    Log.Debug($"Building wall length {CurrentWall.Pieces.Count}");
-                }
-            }
-
             // build mill
             if (info.GameTime > TimeSpan.FromMinutes(2))
             {

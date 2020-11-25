@@ -11,8 +11,7 @@ namespace Quaternary.Algorithms
     {
         public static List<Point> GetRegion(Point start, bool diagonal, Func<Point, bool> included)
         {
-            var seen = new HashSet<Point>();
-            seen.Add(start);
+            var seen = new HashSet<Point> { start };
             var queue = new Queue<Point>();
             queue.Enqueue(start);
 
