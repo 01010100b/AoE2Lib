@@ -77,9 +77,9 @@ namespace AoE2Lib.Bots.Modules
 
         protected override void Update()
         {
-            var responses = Command.GetResponses();
-            if (responses.Count > 0)
+            if (Command.HasResponses)
             {
+                var responses = Command.GetResponses();
                 var current_time = GameTime;
 
                 GameTime = TimeSpan.FromSeconds(responses[0].Unpack<GameTimeResult>().Result);

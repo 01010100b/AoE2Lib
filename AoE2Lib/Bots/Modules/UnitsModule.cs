@@ -350,20 +350,17 @@ namespace AoE2Lib.Bots.Modules
                 }
             }
 
-            foreach (var command in UnitFindCommands)
+            foreach (var command in UnitFindCommands.Where(c => c.HasResponses)
             {
                 var responses = command.GetResponses();
-                if (responses.Count > 0)
+                for (int i = 0; i < 40; i++)
                 {
-                    for (int i = 0; i < 40; i++)
-                    {
-                        var index = responses.Count - (5 * i) - 1;
-                        var id = responses[index].Unpack<UpObjectDataResult>().Result;
+                    var index = responses.Count - (5 * i) - 1;
+                    var id = responses[index].Unpack<UpObjectDataResult>().Result;
 
-                        if (id > 0 && !Units.ContainsKey(id))
-                        {
-                            _Units.Add(id, new Unit(Bot, id));
-                        }
+                    if (id > 0 && !Units.ContainsKey(id))
+                    {
+                        _Units.Add(id, new Unit(Bot, id));
                     }
                 }
             }

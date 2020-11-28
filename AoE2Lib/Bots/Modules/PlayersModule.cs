@@ -40,6 +40,11 @@ namespace AoE2Lib.Bots.Modules
                 player.Update();
             }
 
+            if (!Command.HasResponses)
+            {
+                return;
+            }
+
             var responses = Command.GetResponses();
             for (int i = 0; i < responses.Count; i++)
             {

@@ -52,10 +52,10 @@ namespace AoE2Lib.Bots.Modules
 
             internal void Update(TimeSpan gametime)
             {
-                var responses = Command.GetResponses();
-                
-                if (responses.Count > 0)
+                if (Command.HasResponses)
                 {
+                    var responses = Command.GetResponses();
+
                     Elevation = responses[3].Unpack<UpPointElevationResult>().Result;
                     Terrain = responses[4].Unpack<UpPointTerrainResult>().Result;
                     Explored = responses[5].Unpack<UpPointExploredResult>().Result != 0;
@@ -159,9 +159,10 @@ namespace AoE2Lib.Bots.Modules
 
         protected override void Update()
         {
-            var responses = Command.GetResponses();
-            if (responses.Count > 0)
+            if (Command.HasResponses)
             {
+                var responses = Command.GetResponses();
+
                 Width = responses[3].Unpack<GoalResult>().Result + 1;
                 Height = responses[4].Unpack<GoalResult>().Result + 1;
             }
