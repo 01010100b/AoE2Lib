@@ -350,7 +350,7 @@ namespace AoE2Lib.Bots.Modules
                 }
             }
 
-            foreach (var command in UnitFindCommands.Where(c => c.HasResponses)
+            foreach (var command in UnitFindCommands.Where(c => c.HasResponses))
             {
                 var responses = command.GetResponses();
                 for (int i = 0; i < 40; i++)
