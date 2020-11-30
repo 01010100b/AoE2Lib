@@ -115,58 +115,33 @@ namespace Quaternary.Modules
                     SetTile(ntile);
                 }
 
-                if (unit.Class == UnitClass.Tree)
+                if (unit.Resource != Resource.NONE)
                 {
                     var tile = GetTile(unit.Position);
-                    SetTile(new AnalysisTile(tile.Point, tile.Explored, tile.Elevation, tile.Terrain, tile.Obstructed, Resource.WOOD));
-                }
-                else if (unit.Class == UnitClass.BerryBush || unit.Class == UnitClass.ShoreFish || unit.Class == UnitClass.OceanFish || unit.Class == UnitClass.DeepSeaFish)
-                {
-                    var tile = GetTile(unit.Position);
-                    SetTile(new AnalysisTile(tile.Point, tile.Explored, tile.Elevation, tile.Terrain, tile.Obstructed, Resource.FOOD));
-                }
-                else if (unit.Class == UnitClass.GoldMine)
-                {
-                    var tile = GetTile(unit.Position);
-                    SetTile(new AnalysisTile(tile.Point, tile.Explored, tile.Elevation, tile.Terrain, tile.Obstructed, Resource.GOLD));
-                }
-                else if (unit.Class == UnitClass.StoneMine)
-                {
-                    var tile = GetTile(unit.Position);
-                    SetTile(new AnalysisTile(tile.Point, tile.Explored, tile.Elevation, tile.Terrain, tile.Obstructed, Resource.STONE));
-                }
-                else if (unit.Class == UnitClass.PreyAnimal)
-                {
-                    var tile = GetTile(unit.Position);
-                    SetTile(new AnalysisTile(tile.Point, tile.Explored, tile.Elevation, tile.Terrain, tile.Obstructed, Resource.DEER));
-                }
-                else if (unit.Class == UnitClass.PredatorAnimal)
-                {
-                    var tile = GetTile(unit.Position);
-                    SetTile(new AnalysisTile(tile.Point, tile.Explored, tile.Elevation, tile.Terrain, tile.Obstructed, Resource.BOAR));
+                    SetTile(new AnalysisTile(tile.Point, tile.Explored, tile.Elevation, tile.Terrain, tile.Obstructed, unit.Resource));
                 }
             }
 
-            var obstructions = new Dictionary<Resource, HashSet<AnalysisTile>>();
+            var resources = new Dictionary<Resource, HashSet<AnalysisTile>>();
 
             foreach (var tile in GetTiles())
             {
-                if (!obstructions.ContainsKey(tile.Resource))
+                if (!resources.ContainsKey(tile.Resource))
                 {
-                    obstructions.Add(tile.Resource, new HashSet<AnalysisTile>());
+                    resources.Add(tile.Resource, new HashSet<AnalysisTile>());
                 }
 
-                if (tile.Obstructed)
+                if (tile.Obstructed || tile.Resource != Resource.NONE)
                 {
-                    obstructions[tile.Resource].Add(tile);
+                    resources[tile.Resource].Add(tile);
                 }
             }
 
             _Clumps.Clear();
-            foreach (var resource in obstructions.Keys)
+            foreach (var resource in resources.Keys)
             {
                 var clumps = new List<List<AnalysisTile>>();
-                var tiles = obstructions[resource];
+                var tiles = resources[resource];
 
                 while (tiles.Count > 0)
                 {

@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Quaternary.Modules
 {
-    internal class UnitManagerModule : Module
+    class UnitManagerModule : Module
     {
-        internal class UnitGroup : IEnumerable<Unit>
+        public class UnitGroup : IEnumerable<Unit>
         {
             public int Count => Units.Count;
 

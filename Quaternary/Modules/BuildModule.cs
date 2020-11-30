@@ -1,4 +1,5 @@
 ﻿using AoE2Lib.Bots;
+using AoE2Lib.Bots.GameElements;
 using AoE2Lib.Bots.Modules;
 using AoE2Lib.Mods;
 using AoE2Lib.Utils;

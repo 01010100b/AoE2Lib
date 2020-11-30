@@ -82,6 +82,8 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\BuildModule.cs" />
+    <Compile Include="Modules\EconomyModule.cs" />
+    <Compile Include="Modules\GathererModule.cs" />
     <Compile Include="Modules\MapAnalysisModule.cs" />
     <Compile Include="Modules\ScoutingModule.cs" />
     <Compile Include="Modules\UnitManagerModule.cs" />

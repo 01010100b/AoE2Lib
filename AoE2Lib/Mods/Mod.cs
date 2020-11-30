@@ -82,6 +82,7 @@ namespace AoE2Lib.Mods
                 civ.Villager = civ.UnitDefs[83];
                 civ.TownCenter = civ.UnitDefs[109];
                 civ.House = civ.UnitDefs[70];
+                civ.LumberCamp = civ.UnitDefs[562];
                 civ.Mill = civ.UnitDefs[68];
                 civ.Farm = civ.UnitDefs[50];
                 civ.GoldCamp = civ.UnitDefs[584];

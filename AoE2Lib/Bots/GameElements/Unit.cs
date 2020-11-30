@@ -61,7 +61,41 @@ namespace AoE2Lib.Bots.GameElements
         public int LanguageId { get; private set; }
 
         public bool IsBuilding => CmdId == CmdId.CIVILIAN_BUILDING || CmdId == CmdId.MILITARY_BUILDING;
-        public bool Exists => Targetable || Class == UnitClass.Terrain;
+        public bool Exists => Updated && (Targetable || Class == UnitClass.Terrain);
+        public Resource Resource
+        {
+            get
+            {
+                if (Class == UnitClass.Tree)
+                {
+                    return Resource.WOOD;
+                }
+                else if (Class == UnitClass.BerryBush || Class == UnitClass.ShoreFish || Class == UnitClass.OceanFish || Class == UnitClass.DeepSeaFish)
+                {
+                    return Resource.FOOD;
+                }
+                else if (Class == UnitClass.GoldMine)
+                {
+                    return Resource.GOLD;
+                }
+                else if (Class == UnitClass.StoneMine)
+                {
+                    return Resource.STONE;
+                }
+                else if (Class == UnitClass.PreyAnimal)
+                {
+                    return Resource.DEER;
+                }
+                else if (Class == UnitClass.PredatorAnimal)
+                {
+                    return Resource.BOAR;
+                }
+                else
+                {
+                    return Resource.NONE;
+                }
+            }
+        }
 
         internal Unit(Bot bot, int id) : base(bot)
         {

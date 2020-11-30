@@ -24,7 +24,6 @@ namespace Quaternary
         public override int Id => 27432;
 
         private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode());
-        private Wall CurrentWall { get; set; }
 
         protected override IEnumerable<Command> Update()
         {
@@ -43,7 +42,7 @@ namespace Quaternary
             GetModule<UnitsModule>().Train(Mod.Villager);
 
             // build mill
-            if (info.GameTime > TimeSpan.FromMinutes(2))
+            if (info.GameTime > TimeSpan.FromMinutes(4))
             {
                 build.BuildNormal(Mod.Mill, 1, 1);
             }
@@ -52,7 +51,39 @@ namespace Quaternary
             build.BuildFarm(Mod.Farm, 10, 1);
 
             // build house
-            build.BuildNormal(Mod.House, 5, 2);
+            if (info.HousingHeadroom < 5 && info.PopulationHeadroom > 0)
+            {
+                build.BuildNormal(Mod.House, 50, 2);
+            }
+            
+            // gather wood
+            if (info.GameTime > TimeSpan.FromMinutes(2))
+            {
+                var clumps = GetModule<MapAnalysisModule>().Clumps[Resource.WOOD].Where(c => c.Count > 10).ToList();
+                var eco = GetModule<EconomyModule>();
+                if (clumps.Count > 0 && eco.Operations.Count == 0)
+                {
+                    var clump = clumps[RNG.Next(clumps.Count)];
+                    var resources = new List<Unit>();
+
+                    var map = GetModule<MapModule>();
+                    foreach (var tile in clump)
+                    {
+                        foreach (var unit in map.GetTile(tile.Point).Units)
+                        {
+                            if (unit.Resource == Resource.WOOD)
+                            {
+                                resources.Add(unit);
+                            }
+                        }
+                    }
+
+                    if (resources.Count > 0)
+                    {
+                        eco.Gather(resources);
+                    }
+                }
+            }
 
             LogState();
 
@@ -84,6 +115,11 @@ namespace Quaternary
             if (!HasModule<BuildModule>())
             {
                 AddModule(new BuildModule());
+            }
+
+            if (!HasModule<EconomyModule>())
+            {
+                AddModule(new EconomyModule());
             }
         }
 
@@ -123,62 +159,6 @@ namespace Quaternary
             sns[StrategicNumber.WOOD_GATHERER_PERCENTAGE] = 20;
             sns[StrategicNumber.GOLD_GATHERER_PERCENTAGE] = 5;
             sns[StrategicNumber.STONE_GATHERER_PERCENTAGE] = 5;
-        }
-
-        private Wall GetWall()
-        {
-            var center = GetModule<InfoModule>().MyPosition;
-            var map = GetModule<MapAnalysisModule>();
-
-            var chosen = new List<List<AnalysisTile>>();
-            
-            foreach (var clumps in map.Clumps.Values)
-            {
-                clumps.Sort((a, b) => a.Min(t => center.DistanceTo(t.Point)).CompareTo(b.Min(t => center.DistanceTo(t.Point))));
-            }
-
-            if (map.Clumps.TryGetValue(Resource.WOOD, out List<List<AnalysisTile>> woodclumps))
-            {
-                foreach (var wood in woodclumps.Where(c => c.Count >= 10))
-                {
-                    chosen.Add(wood);
-
-                    if (chosen.Count >= 2)
-                    {
-                        break;
-                    }
-                }
-            }
-
-            if (map.Clumps.TryGetValue(Resource.FOOD, out List<List<AnalysisTile>> foodclumps))
-            {
-                if (foodclumps.Count > 0)
-                {
-                    chosen.Add(foodclumps[0]);
-                }
-            }
-
-            if (map.Clumps.TryGetValue(Resource.GOLD, out List<List<AnalysisTile>> goldclumps))
-            {
-                if (goldclumps.Count > 0)
-                {
-                    chosen.Add(goldclumps[0]);
-                }
-            }
-
-            if (map.Clumps.TryGetValue(Resource.STONE, out List<List<AnalysisTile>> stoneclumps))
-            {
-                if (stoneclumps.Count > 0)
-                {
-                    chosen.Add(stoneclumps[0]);
-                }
-            }
-            
-            var walling = GetModule<WallingModule>();
-            var goals = walling.GetGoals(center, 10, chosen);
-            var wall = walling.GetWall(goals, 2);
-
-            return wall;
         }
 
         private void LogState()
