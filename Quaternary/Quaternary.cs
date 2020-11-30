@@ -146,19 +146,21 @@ namespace Quaternary
             sns[StrategicNumber.DISABLE_BUILDER_ASSISTANCE] = 1;
             sns[StrategicNumber.INITIAL_EXPLORATION_REQUIRED] = 0;
 
-            sns[StrategicNumber.INTELLIGENT_GATHERING] = 1;
-            sns[StrategicNumber.USE_BY_TYPE_MAX_GATHERING] = 1;
-            //sns[StrategicNumber.MAXIMUM_WOOD_DROP_DISTANCE] = 4;
-            //sns[StrategicNumber.MAXIMUM_GOLD_DROP_DISTANCE] = 4;
-            //sns[StrategicNumber.MAXIMUM_STONE_DROP_DISTANCE] = 4;
-            //sns[StrategicNumber.MAXIMUM_FOOD_DROP_DISTANCE] = 4;
-            //sns[StrategicNumber.MAXIMUM_HUNT_DROP_DISTANCE] = 10;
-            sns[StrategicNumber.ENABLE_BOAR_HUNTING] = 0;
+            sns[StrategicNumber.CAP_CIVILIAN_GATHERERS] = 0;
+            sns[StrategicNumber.PERCENT_CIVILIAN_GATHERERS] = 0;
+            //sns[StrategicNumber.INTELLIGENT_GATHERING] = 1;
+            //sns[StrategicNumber.USE_BY_TYPE_MAX_GATHERING] = 1;
+            sns[StrategicNumber.MAXIMUM_WOOD_DROP_DISTANCE] = 0;
+            sns[StrategicNumber.MAXIMUM_GOLD_DROP_DISTANCE] = 0;
+            sns[StrategicNumber.MAXIMUM_STONE_DROP_DISTANCE] = 0;
+            sns[StrategicNumber.MAXIMUM_FOOD_DROP_DISTANCE] = 0;
+            sns[StrategicNumber.MAXIMUM_HUNT_DROP_DISTANCE] = 0;
+            //sns[StrategicNumber.ENABLE_BOAR_HUNTING] = 0;
             sns[StrategicNumber.LIVESTOCK_TO_TOWN_CENTER] = 1;
-            sns[StrategicNumber.FOOD_GATHERER_PERCENTAGE] = 70;
-            sns[StrategicNumber.WOOD_GATHERER_PERCENTAGE] = 20;
-            sns[StrategicNumber.GOLD_GATHERER_PERCENTAGE] = 5;
-            sns[StrategicNumber.STONE_GATHERER_PERCENTAGE] = 5;
+            sns[StrategicNumber.FOOD_GATHERER_PERCENTAGE] = 0;
+            sns[StrategicNumber.WOOD_GATHERER_PERCENTAGE] = 0;
+            sns[StrategicNumber.GOLD_GATHERER_PERCENTAGE] = 0;
+            sns[StrategicNumber.STONE_GATHERER_PERCENTAGE] = 0;
         }
 
         private void LogState()
