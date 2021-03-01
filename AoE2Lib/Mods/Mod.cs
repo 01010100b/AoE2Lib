@@ -22,6 +22,7 @@ namespace AoE2Lib.Mods
         public UnitDef StoneCamp => CivilizationDefs[1].StoneCamp;
         public UnitDef GateHorizontal => CivilizationDefs[1].GateHorizontal;
         public UnitDef GateVertical => CivilizationDefs[1].GateVertical;
+        public Unit unit;
 
         public void Load(string file)
         {
