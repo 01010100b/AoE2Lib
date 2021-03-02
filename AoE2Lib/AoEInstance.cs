@@ -4,11 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 
 namespace AoE2Lib
 {
-    public class GameInstance
+    public class AoEInstance
     {
         public GameVersion Version => Process.ProcessName.Contains("AoE2DE") ? GameVersion.DE : GameVersion.AOC;
         public string DatFolder => Path.Combine(Directory.GetParent(Path.GetDirectoryName(Process.MainModule.FileName)).FullName, "Data");
@@ -16,21 +19,44 @@ namespace AoE2Lib
         private readonly Process Process;
         private readonly HashSet<string> InjectedDlls = new HashSet<string>();
 
-        public GameInstance(Process process)
+        public AoEInstance(Process process)
         {
             Process = process;
         }
 
-        public void StartAIModule()
+        public void StartGame()
         {
-            var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "aimodule-de.dll");
+            var socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            socket.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 64720));
+            /*
+            var socket = new NeovimClient.NeovimSocket("127.0.0.1:64720");
+            socket.Init();
 
+            var messages = socket.Request("GetApiVersion", new object[0]);
+
+            Debug.WriteLine($"aoc auto game version {messages[0].AsDouble()}");*/
+        }
+
+        public void StartAocAutoGame()
+        {
             if (Version == GameVersion.AOC)
             {
-                file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "aimodule-aoc.dll");
+                var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "aoc-auto-game.dll");
+                InjectDll(file);
             }
 
-            InjectDll(file);
+            Thread.Sleep(1000);
+        }
+
+        public void StartAIModule()
+        {
+            if (Version == GameVersion.AOC)
+            {
+                var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "aimodule-aoc.dll");
+                InjectDll(file);
+            }
+
+            Thread.Sleep(1000);
         }
 
         public void InjectDll(string file)

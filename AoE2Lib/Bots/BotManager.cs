@@ -20,7 +20,7 @@ namespace AoE2Lib.Bots
 {
     public class BotManager : IDisposable
     {
-        public readonly GameInstance GameInstance;
+        public readonly AoEInstance GameInstance;
 
         private readonly Channel Channel;
         private readonly Thread[] PlayerThreads = new Thread[8];
@@ -34,7 +34,7 @@ namespace AoE2Lib.Bots
 
         private bool DisposedValue;
 
-        public BotManager(GameInstance instance)
+        public BotManager(AoEInstance instance)
         {
             GameInstance = instance;
             GameInstance.StartAIModule();

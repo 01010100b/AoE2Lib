@@ -76,4 +76,12 @@
 	  <NativeLibs Remove="aoc-auto-game.dll" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <NativeLibs Remove="AoEInstance.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <NativeLibs Remove="Game.cs" />
+	</ItemGroup>
+
 </Project>
