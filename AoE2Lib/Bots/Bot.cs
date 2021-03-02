@@ -27,6 +27,7 @@ namespace AoE2Lib.Bots
         private Thread BotThread { get; set; } = null;
         private volatile bool Stopping = false;
         private readonly List<Module> Modules = new List<Module>();
+        private readonly Dictionary<GameElement, Command> GameElementUpdates = new Dictionary<GameElement, Command>();
 
         public bool HasModule<T>() where T : Module
         {
@@ -76,6 +77,11 @@ namespace AoE2Lib.Bots
             Stopping = false;
         }
 
+        internal void UpdateGameElement(GameElement element, Command command)
+        {
+            GameElementUpdates[element] = command;
+        }
+
         private void Run(ExpertAPIClient api)
         {
             Log.Info($"Started");
@@ -99,7 +105,7 @@ namespace AoE2Lib.Bots
                     commands.AddRange(Update().Where(c => c.HasMessages));
                 }
                 
-                // request modules update in reverse
+                
 
                 List<Module> modules = null;
                 lock (Modules)
@@ -107,17 +113,20 @@ namespace AoE2Lib.Bots
                     modules = Modules.ToList();
                 }
                 
-                modules.Reverse();
+                modules.Reverse(); // request modules update in reverse to allow later ones to use earlier ones
                 foreach (var module in modules)
                 {
                     commands.AddRange(module.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
                 }
+
+                commands.AddRange(GameElementUpdates.Values);
 
                 // don't send commands if it's been more than 5 seconds since previous update
 
                 if ((DateTime.UtcNow - previous) > TimeSpan.FromSeconds(5))
                 {
                     commands.Clear();
+                    GameElementUpdates.Clear();
                 }
 
                 // set up api call
@@ -181,9 +190,15 @@ namespace AoE2Lib.Bots
                         offset += command.Responses.Count;
                     }
 
-                    // update the modules
+                    // perform update
 
-                    modules.Reverse();
+                    foreach (var element in GameElementUpdates.Keys)
+                    {
+                        element.Update();
+                    }
+                    GameElementUpdates.Clear();
+
+                    modules.Reverse(); // back in normal order
                     foreach (var module in modules)
                     {
                         module.UpdateInternal();

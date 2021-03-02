@@ -26,10 +26,7 @@ namespace AoE2Lib.Bots.Modules
 
         public readonly Dictionary<StrategicNumber, int> StrategicNumbers = new Dictionary<StrategicNumber, int>();
         
-
         private readonly Command Command = new Command();
-
-        
 
         protected override IEnumerable<Command> RequestUpdate()
         {
@@ -58,8 +55,6 @@ namespace AoE2Lib.Bots.Modules
             }
 
             yield return Command;
-
-            
         }
 
         protected override void Update()
@@ -96,8 +91,6 @@ namespace AoE2Lib.Bots.Modules
             }
 
             Command.Reset();
-
-            
         }
     }
 }

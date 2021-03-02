@@ -16,10 +16,11 @@ namespace AoE2Lib.Bots
         public int TimesUpdated { get; private set; } = 0;
         public int LastUpdateTick { get; private set; } = -1;
 
-        protected internal readonly Command Command = new Command();
         protected readonly Bot Bot;
         protected TypeOp TypeOp => Bot.TypeOp;
         protected MathOp MathOp => Bot.MathOp;
+
+        private readonly Command Command = new Command();
 
         protected internal GameElement(Bot bot)
         {
@@ -38,6 +39,11 @@ namespace AoE2Lib.Bots
             foreach (var message in RequestElementUpdate())
             {
                 Command.Add(message);
+            }
+
+            if (Command.HasMessages)
+            {
+                Bot.UpdateGameElement(this, Command);
             }
         }
 

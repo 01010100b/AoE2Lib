@@ -28,18 +28,11 @@ namespace AoE2Lib.Bots.Modules
             foreach (var player in Players.Values)
             {
                 player.RequestUpdate();
-
-                yield return player.Command;
             }
         }
 
         protected override void Update()
         {
-            foreach (var player in Players.Values)
-            {
-                player.Update();
-            }
-
             if (!Command.HasResponses)
             {
                 return;

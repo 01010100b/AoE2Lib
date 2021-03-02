@@ -50,7 +50,6 @@ namespace AoE2Lib.Bots.Modules
             foreach (var research in Researches.Values)
             {
                 research.RequestUpdate();
-                yield return research.Command;
             }
 
             foreach (var command in ResearchCommands)
@@ -63,10 +62,7 @@ namespace AoE2Lib.Bots.Modules
 
         protected override void Update()
         {
-            foreach (var research in Researches.Values)
-            {
-                research.Update();
-            }
+
         }
     }
 }

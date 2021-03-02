@@ -49,22 +49,15 @@ namespace AoE2Lib.Bots.Modules
 
             Commands.Clear();
 
-            foreach (var info in UnitTypes.Values)
+            foreach (var type in UnitTypes.Values)
             {
-                info.RequestUpdate();
-                yield return info.Command;
+                type.RequestUpdate();
             }
-
-            throw new NotImplementedException();
         }
 
         protected override void Update()
         {
-            foreach (var info in UnitTypes.Values)
-            {
-                info.Update();
-            }
-            throw new NotImplementedException();
+
         }
     }
 }

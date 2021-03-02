@@ -31,6 +31,7 @@ namespace AoE2Lib.Bots.GameElements
         
         protected override IEnumerable<IMessage> RequestElementUpdate()
         {
+            // TODO use UpPlayerFact instead
             yield return new PlayerInGame() { PlayerNumber = PlayerNumber };
             yield return new UpGetPlayerFact() { Player = PlayerNumber, FactId = (int)FactId.CIVILIZATION, Param = 0, GoalData = 100 };
             yield return new Goal() { GoalId = 100 };

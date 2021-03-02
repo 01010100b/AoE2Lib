@@ -23,9 +23,9 @@ namespace AoE2Lib.Bots
         public readonly GameInstance GameInstance;
 
         private readonly Channel Channel;
-        private readonly Thread[] Threads = new Thread[8];
+        private readonly Thread[] PlayerThreads = new Thread[8];
         private readonly Dictionary<int, Func<Bot>> RegisteredBots = new Dictionary<int, Func<Bot>>();
-        private readonly Dictionary<int, Bot> Players = new Dictionary<int, Bot>();
+        private readonly Dictionary<int, Bot> CurrentPlayers = new Dictionary<int, Bot>();
         private readonly TypeOp TypeOp;
         private readonly MathOp MathOp;
         private int PreviousGameTime { get; set; } = 0;
@@ -74,11 +74,11 @@ namespace AoE2Lib.Bots
         {
             Stop();
 
-            for (int i = 0; i < Threads.Length; i++)
+            for (int i = 0; i < PlayerThreads.Length; i++)
             {
                 var player = i + 1;
                 var thread = new Thread(() => RunPlayer(player));
-                Threads[i] = thread;
+                PlayerThreads[i] = thread;
                 thread.Start();
             }
 
@@ -89,7 +89,7 @@ namespace AoE2Lib.Bots
         {
             Stopping = true;
 
-            foreach (var thread in Threads)
+            foreach (var thread in PlayerThreads)
             {
                 thread?.Join();
             }
@@ -140,7 +140,7 @@ namespace AoE2Lib.Bots
 
                 if (result != null)
                 {
-                    lock (Threads)
+                    lock (PlayerThreads)
                     {
                         var gametime = result.Results[0].Unpack<GameTimeResult>().Result;
                         var id = result.Results[1].Unpack<GoalResult>().Result;
@@ -149,12 +149,12 @@ namespace AoE2Lib.Bots
                         // new game?
                         if (gametime < PreviousGameTime - 1)
                         {
-                            foreach (var bot in Players.Values)
+                            foreach (var bot in CurrentPlayers.Values)
                             {
                                 bot.Stop();
                             }
 
-                            Players.Clear();
+                            CurrentPlayers.Clear();
 
                             Log.Info("BotManager: Game restarted");
                         }
@@ -163,16 +163,16 @@ namespace AoE2Lib.Bots
 
                         if (RegisteredBots.TryGetValue(id, out Func<Bot> create))
                         {
-                            if (Players.TryGetValue(result.PlayerNumber, out Bot current))
+                            if (CurrentPlayers.TryGetValue(result.PlayerNumber, out Bot current))
                             {
                                 if (current.Id != id)
                                 {
                                     current.Stop();
-                                    Players.Remove(result.PlayerNumber);
+                                    CurrentPlayers.Remove(result.PlayerNumber);
                                 }
                             }
 
-                            if (!Players.ContainsKey(result.PlayerNumber))
+                            if (!CurrentPlayers.ContainsKey(result.PlayerNumber))
                             {
                                 var bot = create();
                                 bot.TypeOp = TypeOp;
@@ -185,7 +185,7 @@ namespace AoE2Lib.Bots
                                 bot.AddModule(new ResearchModule());
                                 bot.AddModule(new MicroModule());
 
-                                Players.Add(result.PlayerNumber, bot);
+                                CurrentPlayers.Add(result.PlayerNumber, bot);
 
                                 var botapi = new ExpertAPIClient(Channel);
                                 bot.Start(result.PlayerNumber, botapi);
@@ -197,7 +197,7 @@ namespace AoE2Lib.Bots
                 }
             }
 
-            if (Players.TryGetValue(player, out Bot _bot))
+            if (CurrentPlayers.TryGetValue(player, out Bot _bot))
             {
                 _bot.Stop();
             }
