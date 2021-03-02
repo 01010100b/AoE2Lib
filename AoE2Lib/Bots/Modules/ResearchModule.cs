@@ -3,7 +3,6 @@ using AoE2Lib.Utils;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using static AoE2Lib.Bots.Modules.SpendingModule;
 
 namespace AoE2Lib.Bots.Modules
 {
@@ -11,6 +10,7 @@ namespace AoE2Lib.Bots.Modules
     {
         public IReadOnlyDictionary<int, Research> Researches => _Researches;
         private readonly Dictionary<int, Research> _Researches = new Dictionary<int, Research>();
+        private readonly List<Command> ResearchCommands = new List<Command>();
 
         public void Add(int id)
         {
@@ -21,7 +21,7 @@ namespace AoE2Lib.Bots.Modules
             }
         }
 
-        public void Research(int id, int priority = 0)
+        public void Research(int id)
         {
             Add(id);
 
@@ -35,23 +35,14 @@ namespace AoE2Lib.Bots.Modules
             {
                 return;
             }
-
-            var command = new SpendingCommand()
+            else if (!research.CanResarch)
             {
-                Name = $"Research {id}",
-                Priority = priority,
-                WoodCost = research.WoodCost,
-                FoodCost = research.FoodCost,
-                GoldCost = research.GoldCost,
-                StoneCost = research.StoneCost
-            };
-
-            if (research.CanResarch)
-            {
-                command.Add(new Protos.Expert.Action.Research() { ResearchType = id });
+                return;
             }
 
-            Bot.GetModule<SpendingModule>().Add(command);
+            var command = new Command();
+            command.Add(new Protos.Expert.Action.Research() { ResearchType = id });
+            ResearchCommands.Add(command);
         }
 
         protected override IEnumerable<Command> RequestUpdate()
@@ -61,6 +52,13 @@ namespace AoE2Lib.Bots.Modules
                 research.RequestUpdate();
                 yield return research.Command;
             }
+
+            foreach (var command in ResearchCommands)
+            {
+                yield return command;
+            }
+
+            ResearchCommands.Clear();
         }
 
         protected override void Update()

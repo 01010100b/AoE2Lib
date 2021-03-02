@@ -1,5 +1,4 @@
-﻿using AoE2Lib.Mods;
-using System;
+﻿using System;
 
 namespace ExampleBot
 {

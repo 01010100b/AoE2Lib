@@ -1,5 +1,4 @@
-﻿using AoE2Lib.Mods;
-using AoE2Lib.Utils;
+﻿using AoE2Lib.Utils;
 using Google.Protobuf.WellKnownTypes;
 using Protos.Expert;
 using System;
@@ -19,7 +18,6 @@ namespace AoE2Lib.Bots
 
         public abstract string Name { get; }
         public abstract int Id { get; }
-        public Mod Mod { get; private set; } = null;
         public int PlayerNumber { get; private set; } = -1;
         public int Tick { get; private set; } = 0;
         public Log Log { get; private set; }
@@ -57,11 +55,10 @@ namespace AoE2Lib.Bots
 
         protected abstract IEnumerable<Command> Update();
 
-        internal void Start(Mod mod, int player, ExpertAPIClient api)
+        internal void Start(int player, ExpertAPIClient api)
         {
             Stop();
 
-            Mod = mod;
             PlayerNumber = player;
             Log = new Log(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"{Name} {PlayerNumber}.log"));
 

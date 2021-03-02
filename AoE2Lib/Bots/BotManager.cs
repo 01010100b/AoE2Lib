@@ -1,5 +1,4 @@
 ﻿using AoE2Lib.Bots.Modules;
-using AoE2Lib.Mods;
 using AoE2Lib.Utils;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
@@ -180,21 +179,16 @@ namespace AoE2Lib.Bots
                                 bot.MathOp = MathOp;
 
                                 bot.AddModule(new InfoModule());
-                                bot.AddModule(new SpendingModule());
                                 bot.AddModule(new MapModule());
                                 bot.AddModule(new PlayersModule());
                                 bot.AddModule(new UnitsModule());
                                 bot.AddModule(new ResearchModule());
-                                bot.AddModule(new PlacementModule());
                                 bot.AddModule(new MicroModule());
 
                                 Players.Add(result.PlayerNumber, bot);
 
-                                var mod = new Mod();
-                                mod.Load(Path.Combine(GameInstance.DatFolder, "Empires2_x1_p1.dat"));
-
                                 var botapi = new ExpertAPIClient(Channel);
-                                bot.Start(mod, result.PlayerNumber, botapi);
+                                bot.Start(result.PlayerNumber, botapi);
 
                                 Log.Info($"BotManager: {bot.Name} taking control of player {result.PlayerNumber}");
                             }
