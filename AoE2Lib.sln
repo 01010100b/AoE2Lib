@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30105.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AoE2Lib", "AoE2Lib\AoE2Lib.csproj", "{822D2278-142C-4350-B800-6D1F0312C501}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleBot", "ExampleBot\ExampleBot.csproj", "{210DCFD1-A2D7-4F01-B68D-43088A0325D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MsgPack.Rpc.Core", "MsgPack.Rpc.Core\MsgPack.Rpc.Core.csproj", "{ADB6572F-2CD2-4664-9BBA-2E0826E7210B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{822D2278-142C-4350-B800-6D1F0312C501}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{822D2278-142C-4350-B800-6D1F0312C501}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{822D2278-142C-4350-B800-6D1F0312C501}.Release|Any CPU.Build.0 = Release|Any CPU
-		{210DCFD1-A2D7-4F01-B68D-43088A0325D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{210DCFD1-A2D7-4F01-B68D-43088A0325D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{210DCFD1-A2D7-4F01-B68D-43088A0325D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{210DCFD1-A2D7-4F01-B68D-43088A0325D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADB6572F-2CD2-4664-9BBA-2E0826E7210B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADB6572F-2CD2-4664-9BBA-2E0826E7210B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADB6572F-2CD2-4664-9BBA-2E0826E7210B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADB6572F-2CD2-4664-9BBA-2E0826E7210B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

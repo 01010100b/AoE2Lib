@@ -28,13 +28,6 @@ namespace AoE2Lib
         {
             var socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             socket.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 64720));
-            /*
-            var socket = new NeovimClient.NeovimSocket("127.0.0.1:64720");
-            socket.Init();
-
-            var messages = socket.Request("GetApiVersion", new object[0]);
-
-            Debug.WriteLine($"aoc auto game version {messages[0].AsDouble()}");*/
         }
 
         public void StartAocAutoGame()

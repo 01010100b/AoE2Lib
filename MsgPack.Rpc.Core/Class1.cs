@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace ExampleBot
+namespace MsgPack.Rpc.Core
 {
     public class Class1
     {
-
     }
 }
