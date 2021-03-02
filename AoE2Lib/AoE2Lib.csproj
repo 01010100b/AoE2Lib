@@ -31,6 +31,7 @@
 	<ItemGroup>
 	  <None Remove="aimodule-aoc.dll" />
 	  <None Remove="aimodule-de.dll" />
+	  <None Remove="aoc-auto-game.dll" />
 	  <None Remove="grpc_csharp_ext.x64.dll" />
 	  <None Remove="grpc_csharp_ext.x86.dll" />
 	</ItemGroup>
@@ -40,6 +41,9 @@
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
 	  <Content Include="aimodule-de.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="aoc-auto-game.dll">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
 	  <Content Include="grpc_csharp_ext.x64.dll">
@@ -66,6 +70,10 @@
 
 	<ItemGroup>
 	  <NativeLibs Remove="aimodule-de.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <NativeLibs Remove="aoc-auto-game.dll" />
 	</ItemGroup>
 
 </Project>
