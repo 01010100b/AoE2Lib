@@ -84,4 +84,8 @@
 	  <NativeLibs Remove="Game.cs" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\MsgPack.Rpc.Core\MsgPack.Rpc.Core.csproj" />
+	</ItemGroup>
+
 </Project>
