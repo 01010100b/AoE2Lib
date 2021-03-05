@@ -37,7 +37,7 @@ namespace AoE2Lib.Bots
         public BotManager(AoEInstance instance)
         {
             GameInstance = instance;
-            GameInstance.StartAIModule();
+            GameInstance.LoadAIModule();
             Channel = new Channel("localhost:37412", ChannelCredentials.Insecure);
             TypeOp = new TypeOp();
             MathOp = new MathOp();

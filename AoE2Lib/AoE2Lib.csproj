@@ -21,6 +21,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="MessagePack" Version="2.2.85" />
     <PackageReference Include="Reloaded.Injector" Version="1.2.4" />
   </ItemGroup>
 
@@ -28,13 +29,7 @@
 		<Protobuf Include="**/*.proto" OutputDir="" CompileOutputs="false" GrpcServices="Client" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <None Remove="aimodule-aoc.dll" />
-	  <None Remove="aimodule-de.dll" />
-	  <None Remove="aoc-auto-game.dll" />
-	  <None Remove="grpc_csharp_ext.x64.dll" />
-	  <None Remove="grpc_csharp_ext.x86.dll" />
-	</ItemGroup>
+
 
 	<ItemGroup>
 	  <Content Include="aimodule-aoc.dll">
@@ -54,38 +49,12 @@
 	  </Content>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <NativeLibs Remove="aimodule-aoc-verbose-debug.dll" />
-	</ItemGroup>
+
 
 	<ItemGroup>
 	  <None Update="aimodule-aoc-verbose-debug.dll">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </None>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <NativeLibs Remove="aimodule-aoc.dll" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <NativeLibs Remove="aimodule-de.dll" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <NativeLibs Remove="aoc-auto-game.dll" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <NativeLibs Remove="AoEInstance.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <NativeLibs Remove="Game.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\MsgPack.Rpc.Core\MsgPack.Rpc.Core.csproj" />
 	</ItemGroup>
 
 </Project>

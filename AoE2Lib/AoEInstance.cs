@@ -14,7 +14,6 @@ namespace AoE2Lib
     public class AoEInstance
     {
         public GameVersion Version => Process.ProcessName.Contains("AoE2DE") ? GameVersion.DE : GameVersion.AOC;
-        public string DatFolder => Path.Combine(Directory.GetParent(Path.GetDirectoryName(Process.MainModule.FileName)).FullName, "Data");
 
         private readonly Process Process;
         private readonly HashSet<string> InjectedDlls = new HashSet<string>();
@@ -24,32 +23,37 @@ namespace AoE2Lib
             Process = process;
         }
 
-        public void StartGame()
+        public void Run(Game game)
         {
-            var socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            socket.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 64720));
+            LoadAocAutoGame();
+            game.Start(64720);
         }
 
-        public void StartAocAutoGame()
+        public void LoadAocAutoGame()
         {
             if (Version == GameVersion.AOC)
             {
                 var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "aoc-auto-game.dll");
                 InjectDll(file);
             }
-
-            Thread.Sleep(1000);
+            else
+            {
+                throw new Exception("Not supported for DE.");
+            }
         }
 
-        public void StartAIModule()
+        public void LoadAIModule()
         {
             if (Version == GameVersion.AOC)
             {
                 var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "aimodule-aoc.dll");
                 InjectDll(file);
             }
-
-            Thread.Sleep(1000);
+            else
+            {
+                var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "aimodule-de.dll");
+                InjectDll(file);
+            }
         }
 
         public void InjectDll(string file)
@@ -69,7 +73,11 @@ namespace AoE2Lib
                 }
 
                 InjectedDlls.Add(name);
+
+                Debug.WriteLine($"Injected dll {name}");
             }
+
+            Thread.Sleep(1000);
         }
     }
 }
