@@ -54,5 +54,24 @@ namespace GameRunner
 
             instance.Run(game);
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            ComboGameType.DataSource = Enum.GetValues(typeof(GameType));
+            ComboMapType.DataSource = Enum.GetValues(typeof(MapType));
+            ComboMapSize.DataSource = Enum.GetValues(typeof(MapSize));
+            ComboDifficulty.DataSource = Enum.GetValues(typeof(Difficulty));
+            ComboStartingResources.DataSource = Enum.GetValues(typeof(StartingResources));
+            ComboRevealMap.DataSource = Enum.GetValues(typeof(RevealMap));
+            ComboStartingAge.DataSource = Enum.GetValues(typeof(StartingAge));
+            ComboVictoryType.DataSource = Enum.GetValues(typeof(VictoryType));
+
+            ComboPopulationCap.Items.Clear();
+            for (int i = 25; i <= 250; i += 25)
+            {
+                ComboPopulationCap.Items.Add(i);
+            }
+            ComboPopulationCap.SelectedIndex = 0;
+        }
     }
 }

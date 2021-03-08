@@ -33,7 +33,6 @@ namespace AoE2Lib.Bots
         {
             if (Responses.Count != Messages.Count)
             {
-                Log.Static.Warning($"Command responses count not correct");
                 Reset();
             }
 

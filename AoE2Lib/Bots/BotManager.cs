@@ -22,6 +22,7 @@ namespace AoE2Lib.Bots
     {
         public readonly AoEInstance GameInstance;
 
+        private readonly Log Log = new Log(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), "aoe2lib.log"));
         private readonly Channel Channel;
         private readonly Thread[] PlayerThreads = new Thread[8];
         private readonly Dictionary<int, Func<Bot>> RegisteredBots = new Dictionary<int, Func<Bot>>();
@@ -29,7 +30,6 @@ namespace AoE2Lib.Bots
         private readonly TypeOp TypeOp;
         private readonly MathOp MathOp;
         private int PreviousGameTime { get; set; } = 0;
-        private readonly Log Log = Log.Static;
         private volatile bool Stopping = false;
 
         private bool DisposedValue;

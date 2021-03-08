@@ -10,7 +10,6 @@ namespace AoE2Lib.Utils
 {
     public class Log
     {
-        internal static readonly Log Static = new Log(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), "aoe2lib.log"));
         public int Level { get; set; } = 3;
 
         private string LogFile { get; set; }

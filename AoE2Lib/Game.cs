@@ -27,7 +27,7 @@ namespace AoE2Lib
         }
 
         public int GameType { get; set; } = 0;
-        public string ScenarioName { get; set; } = null;
+        public string ScenarioName { get; set; } = "";
         public int MapType { get; set; } = 9;
         public int MapSize { get; set; } = 0;
         public int Difficulty { get; set; } = 1;
