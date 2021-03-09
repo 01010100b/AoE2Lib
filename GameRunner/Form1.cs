@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace GameRunner
 {
     public partial class Form1 : Form
     {
+        private readonly List<string> Players = new List<string>() { "*Closed", "*Human" };
+
         public Form1()
         {
             InitializeComponent();
@@ -72,6 +75,87 @@ namespace GameRunner
                 ComboPopulationCap.Items.Add(i);
             }
             ComboPopulationCap.SelectedIndex = 0;
+
+            ComboPlayer1Civ.DataSource = Enum.GetValues(typeof(Civilization));
+            ComboPlayer2Civ.DataSource = Enum.GetValues(typeof(Civilization));
+            ComboPlayer3Civ.DataSource = Enum.GetValues(typeof(Civilization));
+            ComboPlayer4Civ.DataSource = Enum.GetValues(typeof(Civilization));
+            ComboPlayer5Civ.DataSource = Enum.GetValues(typeof(Civilization));
+            ComboPlayer6Civ.DataSource = Enum.GetValues(typeof(Civilization));
+            ComboPlayer7Civ.DataSource = Enum.GetValues(typeof(Civilization));
+            ComboPlayer8Civ.DataSource = Enum.GetValues(typeof(Civilization));
+
+            ComboPlayer1Team.DataSource = Enum.GetValues(typeof(Team));
+            ComboPlayer2Team.DataSource = Enum.GetValues(typeof(Team));
+            ComboPlayer3Team.DataSource = Enum.GetValues(typeof(Team));
+            ComboPlayer4Team.DataSource = Enum.GetValues(typeof(Team));
+            ComboPlayer5Team.DataSource = Enum.GetValues(typeof(Team));
+            ComboPlayer6Team.DataSource = Enum.GetValues(typeof(Team));
+            ComboPlayer7Team.DataSource = Enum.GetValues(typeof(Team));
+            ComboPlayer8Team.DataSource = Enum.GetValues(typeof(Team));
+
+            ComboPlayer1Color.DataSource = Enum.GetValues(typeof(Color));
+            ComboPlayer2Color.DataSource = Enum.GetValues(typeof(Color));
+            ComboPlayer3Color.DataSource = Enum.GetValues(typeof(Color));
+            ComboPlayer4Color.DataSource = Enum.GetValues(typeof(Color));
+            ComboPlayer5Color.DataSource = Enum.GetValues(typeof(Color));
+            ComboPlayer6Color.DataSource = Enum.GetValues(typeof(Color));
+            ComboPlayer7Color.DataSource = Enum.GetValues(typeof(Color));
+            ComboPlayer8Color.DataSource = Enum.GetValues(typeof(Color));
+
+            LoadPlayersFromFolder(null);
+        }
+
+        private void LoadPlayersFromFolder(string folder)
+        {
+            Players.Clear();
+
+            if (Directory.Exists(folder))
+            {
+                foreach (var file in Directory.EnumerateFiles(folder, "*.ai"))
+                {
+                    var player = Path.GetFileNameWithoutExtension(file);
+                    Players.Add(player);
+
+                    Debug.WriteLine(player);
+                }
+
+                Players.Sort();
+            }
+            
+            Players.Insert(0, "*Human");
+            Players.Insert(0, "*Closed");
+
+            ComboPlayer1Name.DataSource = null;
+            ComboPlayer1Name.DataSource = Players;
+            ComboPlayer2Name.DataSource = null;
+            ComboPlayer2Name.DataSource = Players;
+            ComboPlayer3Name.DataSource = null;
+            ComboPlayer3Name.DataSource = Players;
+            ComboPlayer4Name.DataSource = null;
+            ComboPlayer4Name.DataSource = Players;
+            ComboPlayer5Name.DataSource = null;
+            ComboPlayer5Name.DataSource = Players;
+            ComboPlayer6Name.DataSource = null;
+            ComboPlayer6Name.DataSource = Players;
+            ComboPlayer7Name.DataSource = null;
+            ComboPlayer7Name.DataSource = Players;
+            ComboPlayer8Name.DataSource = null;
+            ComboPlayer8Name.DataSource = Players;
+        }
+
+        private void ButtonSetAiFolder_Click(object sender, EventArgs e)
+        {
+            using (var fbd = new FolderBrowserDialog())
+            {
+                var result = fbd.ShowDialog();
+
+                if (result == DialogResult.OK && Directory.Exists(fbd.SelectedPath))
+                {
+                    TextAiFolder.Text = fbd.SelectedPath;
+                    LoadPlayersFromFolder(fbd.SelectedPath);
+                }
+            }
         }
     }
 }

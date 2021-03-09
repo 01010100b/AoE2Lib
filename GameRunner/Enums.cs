@@ -43,4 +43,19 @@ namespace GameRunner
     {
         STANDARD, CONQUEST, RELICS = 4, TIME_LIMIT = 7, SCORE
     }
+
+    public enum Civilization
+    {
+        BRITONS = 1, FRANKS, GOTHS, TEUTONS, JAPANESE, CHINESE, BYZANTINES, PERSIANS, SARACENS, TURKS, VIKINGS, MONGOLS, CELTS, SPANISH, AZTECS, MAYANS, HUNS, KOREANS, RANDOM, RANDOM2 = 30
+    }
+
+    public enum Team
+    {
+        NO_TEAM, TEAM_1, TEAM_2, TEAM_3, TEAM_4, RANDOM_TEAM
+    }
+
+    public enum Color
+    {
+        COLOR_1 = 1, COLOR_2, COLOR_3, COLOR_4, COLOR_5, COLOR_6, COLOR_7, COLOR_8
+    }
 }
