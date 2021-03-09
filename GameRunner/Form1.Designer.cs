@@ -155,6 +155,7 @@ namespace GameRunner
             this.ComboGameType.Name = "ComboGameType";
             this.ComboGameType.Size = new System.Drawing.Size(246, 23);
             this.ComboGameType.TabIndex = 5;
+            this.ComboGameType.SelectedIndexChanged += new System.EventHandler(this.ComboGameType_SelectedIndexChanged);
             // 
             // LabelGameType
             // 
@@ -272,6 +273,7 @@ namespace GameRunner
             this.ComboVictoryType.Name = "ComboVictoryType";
             this.ComboVictoryType.Size = new System.Drawing.Size(246, 23);
             this.ComboVictoryType.TabIndex = 17;
+            this.ComboVictoryType.SelectedIndexChanged += new System.EventHandler(this.ComboVictoryType_SelectedIndexChanged);
             // 
             // CheckTeamsTogether
             // 

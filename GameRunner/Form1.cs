@@ -157,5 +157,33 @@ namespace GameRunner
                 }
             }
         }
+
+        private void ComboGameType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if ((GameType)ComboGameType.SelectedItem == GameType.SCENARIO)
+            {
+                TextScenario.Enabled = true;
+            }
+            else
+            {
+                TextScenario.Text = "";
+                TextScenario.Enabled = false;
+            }
+        }
+
+        private void ComboVictoryType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selected = (VictoryType)ComboVictoryType.SelectedItem;
+
+            if (selected == VictoryType.SCORE || selected == VictoryType.TIME_LIMIT)
+            {
+                TextVictoryValue.Enabled = true;
+            }
+            else
+            {
+                TextVictoryValue.Text = "";
+                TextVictoryValue.Enabled = false;
+            }
+        }
     }
 }
