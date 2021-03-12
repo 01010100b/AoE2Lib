@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,7 +16,8 @@ namespace GameRunner
 {
     public partial class Form1 : Form
     {
-        private readonly List<string> Players = new List<string>() { "*Closed", "*Human" };
+        private string Exe { get; set; } = "";
+        private string AiFolder { get; set; } = "";
 
         public Form1()
         {
@@ -24,6 +26,10 @@ namespace GameRunner
 
         private void ButtonDev_Click(object sender, EventArgs e)
         {
+            int t = (int)ComboGameType.SelectedItem;
+            Debug.WriteLine(t);
+
+            return;
             var process = Process.GetProcessesByName("WK")[0];
             var instance = new AoEInstance(process);
 
@@ -103,45 +109,115 @@ namespace GameRunner
             ComboPlayer7Color.DataSource = Enum.GetValues(typeof(Color));
             ComboPlayer8Color.DataSource = Enum.GetValues(typeof(Color));
 
-            LoadPlayersFromFolder(null);
+            LoadPlayersFromFolder();
         }
 
-        private void LoadPlayersFromFolder(string folder)
+        private void LoadPlayersFromFolder()
         {
-            Players.Clear();
+            var names = new List<string>();
 
-            if (Directory.Exists(folder))
+            if (Directory.Exists(AiFolder))
             {
-                foreach (var file in Directory.EnumerateFiles(folder, "*.ai"))
+                foreach (var file in Directory.EnumerateFiles(AiFolder, "*.ai"))
                 {
                     var player = Path.GetFileNameWithoutExtension(file);
-                    Players.Add(player);
+                    names.Add(player);
 
                     Debug.WriteLine(player);
                 }
-
-                Players.Sort();
             }
-            
-            Players.Insert(0, "*Human");
-            Players.Insert(0, "*Closed");
 
-            ComboPlayer1Name.DataSource = null;
-            ComboPlayer1Name.DataSource = Players;
-            ComboPlayer2Name.DataSource = null;
-            ComboPlayer2Name.DataSource = Players;
-            ComboPlayer3Name.DataSource = null;
-            ComboPlayer3Name.DataSource = Players;
-            ComboPlayer4Name.DataSource = null;
-            ComboPlayer4Name.DataSource = Players;
-            ComboPlayer5Name.DataSource = null;
-            ComboPlayer5Name.DataSource = Players;
-            ComboPlayer6Name.DataSource = null;
-            ComboPlayer6Name.DataSource = Players;
-            ComboPlayer7Name.DataSource = null;
-            ComboPlayer7Name.DataSource = Players;
-            ComboPlayer8Name.DataSource = null;
-            ComboPlayer8Name.DataSource = Players;
+            names.Sort();
+
+            names.Insert(0, "*Human");
+            names.Insert(0, "*Closed");
+
+            var players = new ComboBox[] { ComboPlayer1Name, ComboPlayer2Name, ComboPlayer3Name, ComboPlayer4Name, ComboPlayer5Name, ComboPlayer6Name, ComboPlayer7Name, ComboPlayer8Name };
+
+            foreach (var player in players)
+            {
+                player.Items.Clear();
+                player.Items.AddRange(names.ToArray());
+                player.SelectedIndex = 0;
+            }
+
+        }
+
+        private void StartGame()
+        {
+            if (!File.Exists(Exe))
+            {
+                throw new Exception("Exe does not exist");
+            }
+            else if (!Directory.Exists(AiFolder))
+            {
+                throw new Exception("Ai folder does not exist");
+            }
+
+            // set up game
+
+            var game = new Game()
+            {
+                GameType = (int)ComboGameType.SelectedItem,
+                ScenarioName = TextScenario.Text,
+                MapType = (int)ComboMapType.SelectedItem,
+                MapSize = (int)ComboMapSize.SelectedItem,
+                Difficulty = (int)ComboDifficulty.SelectedItem,
+                StartingResources = (int)ComboStartingResources.SelectedItem,
+                PopulationLimit = (int)ComboPopulationCap.SelectedItem,
+                RevealMap = (int)ComboRevealMap.SelectedItem,
+                StartingAge = (int)ComboStartingAge.SelectedItem,
+                VictoryType = (int)ComboVictoryType.SelectedItem,
+                VictoryValue = int.Parse(TextVictoryValue.Text),
+                TeamsTogether = CheckTeamsTogether.Checked,
+                LockTeams = CheckLockTeams.Checked,
+                AllTechs = CheckAllTech.Checked,
+                Recorded = CheckRecorded.Checked,
+            };
+
+            var players = new ComboBox[] { ComboPlayer1Name, ComboPlayer2Name, ComboPlayer3Name, ComboPlayer4Name, ComboPlayer5Name, ComboPlayer6Name, ComboPlayer7Name, ComboPlayer8Name };
+            var civs = new ComboBox[] { ComboPlayer1Civ, ComboPlayer2Civ, ComboPlayer3Civ, ComboPlayer4Civ, ComboPlayer5Civ, ComboPlayer6Civ, ComboPlayer7Civ, ComboPlayer8Civ };
+            var colors = new ComboBox[] { ComboPlayer1Color, ComboPlayer2Color, ComboPlayer3Color, ComboPlayer4Color, ComboPlayer5Color, ComboPlayer6Color, ComboPlayer7Color, ComboPlayer8Color };
+            var teams = new ComboBox[] { ComboPlayer1Team, ComboPlayer2Team, ComboPlayer3Team, ComboPlayer4Team, ComboPlayer5Team, ComboPlayer6Team, ComboPlayer7Team, ComboPlayer8Team };
+            
+            for (int i = 0; i < players.Length; i++)
+            {
+                var name = (string)players[i].SelectedItem;
+
+                if (name != "*Closed")
+                {
+                    var player = new Game.Player() { PlayerNumber = i + 1 };
+
+                    if (name == "*Human")
+                    {
+                        player.IsHuman = true;
+                    }
+                    else
+                    {
+                        player.IsHuman = false;
+                        player.AiFile = name;
+                    }
+
+                    player.Civilization = (int)civs[i].SelectedItem;
+                    player.Color = (int)colors[i].SelectedItem;
+                    player.Team = (int)teams[i].SelectedItem;
+
+                    game.Players.Add(player);
+                }
+            }
+
+            if (game.Players.Count < 2)
+            {
+                throw new Exception("Need at least 2 players");
+            }
+
+            // run on aoe
+
+            var process = Process.Start(Exe);
+            Thread.Sleep(10 * 1000);
+
+            var instance = new AoEInstance(process);
+            instance.Run(game);
         }
 
         private void ButtonSetAiFolder_Click(object sender, EventArgs e)
@@ -152,8 +228,9 @@ namespace GameRunner
 
                 if (result == DialogResult.OK && Directory.Exists(fbd.SelectedPath))
                 {
+                    AiFolder = fbd.SelectedPath;
                     TextAiFolder.Text = fbd.SelectedPath;
-                    LoadPlayersFromFolder(fbd.SelectedPath);
+                    LoadPlayersFromFolder();
                 }
             }
         }
@@ -181,9 +258,28 @@ namespace GameRunner
             }
             else
             {
-                TextVictoryValue.Text = "";
+                TextVictoryValue.Text = "0";
                 TextVictoryValue.Enabled = false;
             }
+        }
+
+        private void ButtonSetExe_Click(object sender, EventArgs e)
+        {
+            using (var fd = new OpenFileDialog())
+            {
+                fd.Filter = "exe files|*.exe";
+                var result = fd.ShowDialog();
+
+                if (result == DialogResult.OK && File.Exists(fd.FileName))
+                {
+                    Exe = fd.FileName;
+                }
+            }
+        }
+
+        private void ButtonStart_Click(object sender, EventArgs e)
+        {
+            StartGame();
         }
     }
 }

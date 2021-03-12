@@ -81,7 +81,7 @@ namespace AoE2Lib
             Call("SetGameStartingAge", StartingAge);
             Call("SetGameVictoryType", VictoryType, VictoryValue);
             Call("SetGameTeamsTogether", TeamsTogether);
-            Call("SetGameLockTeams", LockTeams);
+            Call("SetGameTeamsLocked", LockTeams);
             Call("SetGameAllTechs", AllTechs);
             Call("SetGameRecorded", Recorded);
 
@@ -111,15 +111,25 @@ namespace AoE2Lib
             {
                 Thread.Sleep(1000);
             }
+
+            Client.Close();
         }
 
         private bool IsFinished()
         {
+            var score = 0;
+
             foreach (var player in Players)
             {
                 player.Exists = Call<bool>("GetPlayerExists", player.PlayerNumber);
                 player.Alive = Call<bool>("GetPlayerAlive", player.PlayerNumber);
                 player.Score = Call<int>("GetPlayerScore", player.PlayerNumber);
+                score += player.Score;
+            }
+
+            if (score <= 0)
+            {
+                return true;
             }
 
             var team = new int[5];

@@ -100,6 +100,7 @@ namespace GameRunner
             this.ComboPlayer8Civ = new System.Windows.Forms.ComboBox();
             this.ComboPlayer8Name = new System.Windows.Forms.ComboBox();
             this.LabelPlayer8 = new System.Windows.Forms.Label();
+            this.ButtonStart = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ButtonDev
@@ -128,6 +129,7 @@ namespace GameRunner
             this.ButtonSetExe.TabIndex = 2;
             this.ButtonSetExe.Text = "Set AoE Exe";
             this.ButtonSetExe.UseVisualStyleBackColor = true;
+            this.ButtonSetExe.Click += new System.EventHandler(this.ButtonSetExe_Click);
             // 
             // ButtonSetAiFolder
             // 
@@ -747,11 +749,22 @@ namespace GameRunner
             this.LabelPlayer8.TabIndex = 66;
             this.LabelPlayer8.Text = "8";
             // 
+            // ButtonStart
+            // 
+            this.ButtonStart.Location = new System.Drawing.Point(478, 373);
+            this.ButtonStart.Name = "ButtonStart";
+            this.ButtonStart.Size = new System.Drawing.Size(251, 47);
+            this.ButtonStart.TabIndex = 71;
+            this.ButtonStart.Text = "Start Game";
+            this.ButtonStart.UseVisualStyleBackColor = true;
+            this.ButtonStart.Click += new System.EventHandler(this.ButtonStart_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1078, 586);
+            this.Controls.Add(this.ButtonStart);
             this.Controls.Add(this.ComboPlayer8Team);
             this.Controls.Add(this.ComboPlayer8Color);
             this.Controls.Add(this.ComboPlayer8Civ);
@@ -904,6 +917,7 @@ namespace GameRunner
         private System.Windows.Forms.ComboBox ComboPlayer8Civ;
         private System.Windows.Forms.ComboBox ComboPlayer8Name;
         private System.Windows.Forms.Label LabelPlayer8;
+        private System.Windows.Forms.Button ButtonStart;
     }
 }
 
