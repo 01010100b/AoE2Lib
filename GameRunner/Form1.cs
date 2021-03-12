@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,9 +17,6 @@ namespace GameRunner
 {
     public partial class Form1 : Form
     {
-        private string Exe { get; set; } = "";
-        private string AiFolder { get; set; } = "";
-
         public Form1()
         {
             InitializeComponent();
@@ -109,16 +107,72 @@ namespace GameRunner
             ComboPlayer7Color.DataSource = Enum.GetValues(typeof(Color));
             ComboPlayer8Color.DataSource = Enum.GetValues(typeof(Color));
 
+            LoadSettings();
+
             LoadPlayersFromFolder();
+        }
+
+        private void LoadSettings()
+        {
+            var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings.json");
+            if (File.Exists(file))
+            {
+                var settings = JsonSerializer.Deserialize<Settings>(File.ReadAllText(file), new JsonSerializerOptions() { WriteIndented = true });
+
+                TextExe.Text = settings.Exe;
+                TextAiFolder.Text = settings.AiFolder;
+                ComboGameType.SelectedItem = settings.GameType;
+                TextScenario.Text = settings.Scenario;
+                ComboMapType.SelectedItem = settings.MapType;
+                ComboMapSize.SelectedItem = settings.MapSize;
+                ComboDifficulty.SelectedItem = settings.Difficulty;
+                ComboStartingResources.SelectedItem = settings.StartingResources;
+                ComboRevealMap.SelectedItem = settings.RevealMap;
+                ComboStartingAge.SelectedItem = settings.StartingAge;
+                ComboVictoryType.SelectedItem = settings.VictoryType;
+                TextVictoryValue.Text = settings.VictoryValue.ToString();
+                ComboPopulationCap.SelectedItem = settings.PopulationLimit;
+                CheckTeamsTogether.Checked = settings.TeamsTogether;
+                CheckLockTeams.Checked = settings.LockTeams;
+                CheckAllTech.Checked = settings.AllTechs;
+                CheckRecorded.Checked = settings.Recorded;
+            }
+        }
+
+        private void SaveSettings()
+        {
+            var settings = new Settings()
+            {
+                Exe = TextExe.Text,
+                AiFolder = TextAiFolder.Text,
+                GameType = (GameType)ComboGameType.SelectedItem,
+                Scenario = TextScenario.Text,
+                MapType = (MapType)ComboMapType.SelectedItem,
+                MapSize = (MapSize)ComboMapSize.SelectedItem,
+                Difficulty = (Difficulty)ComboDifficulty.SelectedItem,
+                StartingResources = (StartingResources)ComboStartingResources.SelectedItem,
+                RevealMap = (RevealMap)ComboRevealMap.SelectedItem,
+                StartingAge = (StartingAge)ComboStartingAge.SelectedItem,
+                VictoryType = (VictoryType)ComboVictoryType.SelectedItem,
+                VictoryValue = int.Parse(TextVictoryValue.Text),
+                PopulationLimit = (int)ComboPopulationCap.SelectedItem,
+                TeamsTogether = CheckTeamsTogether.Checked,
+                LockTeams = CheckLockTeams.Checked,
+                AllTechs = CheckAllTech.Checked,
+                Recorded = CheckRecorded.Checked
+            };
+
+            var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings.json");
+            File.WriteAllText(file, JsonSerializer.Serialize(settings, new JsonSerializerOptions() { WriteIndented = true }));
         }
 
         private void LoadPlayersFromFolder()
         {
             var names = new List<string>();
 
-            if (Directory.Exists(AiFolder))
+            if (Directory.Exists(TextAiFolder.Text))
             {
-                foreach (var file in Directory.EnumerateFiles(AiFolder, "*.ai"))
+                foreach (var file in Directory.EnumerateFiles(TextAiFolder.Text, "*.ai"))
                 {
                     var player = Path.GetFileNameWithoutExtension(file);
                     names.Add(player);
@@ -145,11 +199,11 @@ namespace GameRunner
 
         private void StartGame()
         {
-            if (!File.Exists(Exe))
+            if (!File.Exists(TextExe.Text))
             {
                 throw new Exception("Exe does not exist");
             }
-            else if (!Directory.Exists(AiFolder))
+            else if (!Directory.Exists(TextAiFolder.Text))
             {
                 throw new Exception("Ai folder does not exist");
             }
@@ -211,9 +265,11 @@ namespace GameRunner
                 throw new Exception("Need at least 2 players");
             }
 
+            SaveSettings();
+
             // run on aoe
 
-            var process = Process.Start(Exe);
+            var process = Process.Start(TextExe.Text);
             Thread.Sleep(10 * 1000);
 
             var instance = new AoEInstance(process);
@@ -228,7 +284,6 @@ namespace GameRunner
 
                 if (result == DialogResult.OK && Directory.Exists(fbd.SelectedPath))
                 {
-                    AiFolder = fbd.SelectedPath;
                     TextAiFolder.Text = fbd.SelectedPath;
                     LoadPlayersFromFolder();
                 }
@@ -272,7 +327,7 @@ namespace GameRunner
 
                 if (result == DialogResult.OK && File.Exists(fd.FileName))
                 {
-                    Exe = fd.FileName;
+                    TextExe.Text = fd.FileName;
                 }
             }
         }
