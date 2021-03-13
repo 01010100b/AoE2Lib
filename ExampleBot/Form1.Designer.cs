@@ -41,7 +41,7 @@ namespace ExampleBot
             this.TextProcess.Name = "TextProcess";
             this.TextProcess.Size = new System.Drawing.Size(145, 23);
             this.TextProcess.TabIndex = 0;
-            this.TextProcess.Text = "WK";
+            this.TextProcess.Text = "AoE2DE_s.exe";
             // 
             // ButtonConnect
             // 
