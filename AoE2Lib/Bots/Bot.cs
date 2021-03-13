@@ -23,7 +23,6 @@ namespace AoE2Lib.Bots
 
         private Thread BotThread { get; set; } = null;
         private volatile bool Stopping = false;
-        private Channel Channel { get; set; }
         private readonly List<Module> Modules = new List<Module>();
         private readonly Dictionary<GameElement, Command> GameElementUpdates = new Dictionary<GameElement, Command>();
 

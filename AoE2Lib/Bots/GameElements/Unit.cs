@@ -14,6 +14,8 @@ namespace AoE2Lib.Bots.GameElements
     {
         public readonly int Id;
         public int PlayerNumber => GetData(ObjectData.PLAYER);
+        public bool Targetable;
+        public bool Visible;
         public Position Position => Position.FromPrecise(GetData(ObjectData.PRECISE_X), GetData(ObjectData.PRECISE_Y));
 
         private readonly Dictionary<ObjectData, int> Data = new Dictionary<ObjectData, int>();
@@ -38,15 +40,40 @@ namespace AoE2Lib.Bots.GameElements
         protected override IEnumerable<IMessage> RequestElementUpdate()
         {
             yield return new UpSetTargetById() { InConstId = Id };
+            yield return new UpGetObjectData() { InConstObjectData = (int)ObjectData.POINT_X, OutGoalData = 100 };
+            yield return new UpGetObjectData() { InConstObjectData = (int)ObjectData.POINT_Y, OutGoalData = 101 };
+            yield return new UpPointExplored() { InGoalPoint = 100 };
             yield return new UpObjectDataList();
         }
 
         protected override void UpdateElement(IReadOnlyList<Any> responses)
         {
-            var v = responses[1].Unpack<UpObjectDataListResult>().Result.ToArray();
-            for (int i = 0; i < v.Length; i++)
+            var visible = responses[3].Unpack<UpPointExploredResult>().Result == 15;
+            var data = responses[4].Unpack<UpObjectDataListResult>().Result.ToArray();
+            var id = data[(int)ObjectData.ID];
+            var player = data[(int)ObjectData.PLAYER];
+
+            if (id != Id)
             {
-                Data[(ObjectData)i] = v[i];
+                Targetable = false;
+                Visible = false;
+
+                return;
+            }
+
+            if (player != 0 && player != Bot.PlayerNumber && visible == false)
+            {
+                Visible = false;
+
+                return;
+            }
+
+            Visible = true;
+            Targetable = true;
+
+            for (int i = 0; i < data.Length; i++)
+            {
+                Data[(ObjectData)i] = data[i];
             }
         }
     }
