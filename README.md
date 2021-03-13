@@ -12,7 +12,7 @@ See the classes in the `Bots` namespace. A bot is created by deriving from the a
 
 ### Game running
 
-Construct an instance of the `Game` class and call `AoEInstance.StartGame`. This function is not available for DE.
+Construct an instance of the `Game` class and call `AoEInstance.StartGame`. This function is not available for DE. A .NET5 WinForms `GameRunner` application is included as well.
 
 ### Dll injection
 
