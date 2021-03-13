@@ -59,7 +59,7 @@ namespace GameRunner
             game.Players.Add(player1);
             game.Players.Add(player2);
 
-            instance.Run(game);
+            instance.RunGame(game);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -273,7 +273,7 @@ namespace GameRunner
             Thread.Sleep(10 * 1000);
 
             var instance = new AoEInstance(process);
-            instance.Run(game);
+            instance.RunGame(game);
         }
 
         private void ButtonSetAiFolder_Click(object sender, EventArgs e)

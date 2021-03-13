@@ -1,4 +1,5 @@
-﻿using AoE2Lib.Utils;
+﻿using AoE2Lib.Bots;
+using AoE2Lib.Utils;
 using Reloaded.Injector;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,12 @@ namespace AoE2Lib
             Process = process;
         }
 
-        public void Run(Game game)
+        public void StartBot(Bot bot)
+        {
+
+        }
+
+        public void RunGame(Game game)
         {
             LoadAocAutoGame();
             game.Start(64720);
@@ -60,9 +66,7 @@ namespace AoE2Lib
         {
             lock (InjectedDlls)
             {
-                var name = Path.GetFileNameWithoutExtension(file);
-
-                if (InjectedDlls.Contains(name))
+                if (InjectedDlls.Contains(file))
                 {
                     return;
                 }
@@ -72,9 +76,9 @@ namespace AoE2Lib
                     injector.Inject(file);
                 }
 
-                InjectedDlls.Add(name);
+                InjectedDlls.Add(file);
 
-                Debug.WriteLine($"Injected dll {name}");
+                Debug.WriteLine($"Injected dll {Path.GetFileName(file)}");
             }
 
             Thread.Sleep(1000);

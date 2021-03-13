@@ -73,7 +73,7 @@ namespace AoE2Lib.Bots
             BotThread.Start();
         }
 
-        internal void Stop()
+        public void Stop()
         {
             Stopping = true;
 
