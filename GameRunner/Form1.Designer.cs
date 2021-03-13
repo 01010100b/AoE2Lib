@@ -105,11 +105,11 @@ namespace GameRunner
             // 
             // ButtonDev
             // 
-            this.ButtonDev.Location = new System.Drawing.Point(592, 455);
+            this.ButtonDev.Location = new System.Drawing.Point(815, 373);
             this.ButtonDev.Name = "ButtonDev";
             this.ButtonDev.Size = new System.Drawing.Size(251, 47);
             this.ButtonDev.TabIndex = 0;
-            this.ButtonDev.Text = "button1";
+            this.ButtonDev.Text = "Dev Button (do not click)";
             this.ButtonDev.UseVisualStyleBackColor = true;
             this.ButtonDev.Click += new System.EventHandler(this.ButtonDev_Click);
             // 
@@ -837,7 +837,7 @@ namespace GameRunner
             this.Controls.Add(this.TextExe);
             this.Controls.Add(this.ButtonDev);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "AoC Game Runner";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
