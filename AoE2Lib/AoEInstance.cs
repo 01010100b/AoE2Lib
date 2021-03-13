@@ -24,9 +24,10 @@ namespace AoE2Lib
             Process = process;
         }
 
-        public void StartBot(Bot bot)
+        public void StartBot(Bot bot, int player)
         {
-
+            LoadAIModule();
+            bot.Start(player);
         }
 
         public void RunGame(Game game)

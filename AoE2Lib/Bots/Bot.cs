@@ -1,6 +1,7 @@
 ﻿using AoE2Lib.Bots.Modules;
 using AoE2Lib.Utils;
 using Google.Protobuf.WellKnownTypes;
+using Grpc.Core;
 using Protos.Expert;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace AoE2Lib.Bots
 
         private Thread BotThread { get; set; } = null;
         private volatile bool Stopping = false;
+        private Channel Channel { get; set; }
         private readonly List<Module> Modules = new List<Module>();
         private readonly Dictionary<GameElement, Command> GameElementUpdates = new Dictionary<GameElement, Command>();
 
@@ -35,42 +37,9 @@ namespace AoE2Lib.Bots
             AddModule(new MicroModule());
         }
 
-        public bool HasModule<T>() where T : Module
-        {
-            return GetModule<T>() != default(T);
-        }
-
         public T GetModule<T>() where T: Module
         {
-            lock (Modules)
-            {
-                return Modules.OfType<T>().FirstOrDefault();
-            }
-        }
-
-        public void AddModule<T>(T module) where T : Module
-        {
-            lock (Modules)
-            {
-                if (Modules.OfType<T>().Count() == 0)
-                {
-                    Modules.Add(module);
-                    module.BotInternal = this;
-                }
-            }
-        }
-
-        protected abstract IEnumerable<Command> Update();
-
-        internal void Start(int player, ExpertAPIClient api)
-        {
-            Stop();
-
-            PlayerNumber = player;
-            Log = new Log(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"{Name} {PlayerNumber}.log"));
-
-            BotThread = new Thread(() => Run(api)) { IsBackground = true };
-            BotThread.Start();
+            return Modules.OfType<T>().FirstOrDefault();
         }
 
         public void Stop()
@@ -83,14 +52,36 @@ namespace AoE2Lib.Bots
             Stopping = false;
         }
 
+        protected abstract IEnumerable<Command> Update();
+
+        internal void Start(int player)
+        {
+            Stop();
+
+            PlayerNumber = player;
+            Log = new Log(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"{Name} {PlayerNumber}.log"));
+
+            BotThread = new Thread(() => Run()) { IsBackground = true };
+            BotThread.Start();
+        }
+
         internal void UpdateGameElement(GameElement element, Command command)
         {
             GameElementUpdates[element] = command;
         }
 
-        private void Run(ExpertAPIClient api)
+        private void AddModule<T>(T module) where T : Module
+        {
+            Modules.Add(module);
+            module.BotInternal = this;
+        }
+
+        private void Run()
         {
             Log.Info($"Started");
+
+            var channel = new Channel("localhost:37412", ChannelCredentials.Insecure);
+            var api = new ExpertAPIClient(channel);
 
             Tick = 0;
             var sw = new Stopwatch();
@@ -111,17 +102,12 @@ namespace AoE2Lib.Bots
                     commands.AddRange(Update().Where(c => c.HasMessages));
                 }
 
-                var modules = new List<Module>();
-                lock (Modules)
-                {
-                    modules.AddRange(Modules);
-                }
-                
-                modules.Reverse(); // request modules update in reverse to allow later ones to use earlier ones
-                foreach (var module in modules)
+                Modules.Reverse(); // request modules update in reverse to allow later ones to use earlier ones
+                foreach (var module in Modules)
                 {
                     commands.AddRange(module.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
                 }
+                Modules.Reverse(); // back in normal order
 
                 commands.AddRange(GameElementUpdates.Values);
 
@@ -202,8 +188,7 @@ namespace AoE2Lib.Bots
                     }
                     GameElementUpdates.Clear();
 
-                    modules.Reverse(); // back in normal order
-                    foreach (var module in modules)
+                    foreach (var module in Modules)
                     {
                         module.UpdateInternal();
                     }
@@ -214,6 +199,8 @@ namespace AoE2Lib.Bots
                     Log.Info($"Update took {sw.ElapsedMilliseconds} ms");
                 }
             }
+
+            channel.ShutdownAsync().Wait();
 
             Log.Info($"Stopped");
         }
