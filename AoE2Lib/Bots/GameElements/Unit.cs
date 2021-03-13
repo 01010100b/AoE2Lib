@@ -13,11 +13,10 @@ namespace AoE2Lib.Bots.GameElements
     public class Unit : GameElement
     {
         public readonly int Id;
-        public IReadOnlyDictionary<ObjectData, int> Data => _Data;
-        private readonly Dictionary<ObjectData, int> _Data = new Dictionary<ObjectData, int>();
-
         public int PlayerNumber => GetData(ObjectData.PLAYER);
         public Position Position => Position.FromPrecise(GetData(ObjectData.PRECISE_X), GetData(ObjectData.PRECISE_Y));
+
+        private readonly Dictionary<ObjectData, int> Data = new Dictionary<ObjectData, int>();
 
         internal Unit(Bot bot, int id) : base(bot)
         {
@@ -39,28 +38,15 @@ namespace AoE2Lib.Bots.GameElements
         protected override IEnumerable<IMessage> RequestElementUpdate()
         {
             yield return new UpSetTargetById() { InConstId = Id };
-
-            foreach (var data in System.Enum.GetValues(typeof(ObjectData)).Cast<ObjectData>())
-            {
-                if (data != ObjectData.LOCKED)
-                {
-                    yield return new UpObjectData() { InConstObjectData = (int)data };
-                }
-            }
+            yield return new UpObjectDataList();
         }
 
         protected override void UpdateElement(IReadOnlyList<Any> responses)
         {
-            var i = 1;
-            foreach (var data in System.Enum.GetValues(typeof(ObjectData)).Cast<ObjectData>())
+            var v = responses[1].Unpack<UpObjectDataListResult>().Result.ToArray();
+            for (int i = 0; i < v.Length; i++)
             {
-                if (data != ObjectData.LOCKED)
-                {
-                    var value = responses[i].Unpack<UpObjectDataResult>().Result;
-                    _Data[data] = value;
-
-                    i++;
-                }
+                Data[(ObjectData)i] = v[i];
             }
         }
     }
