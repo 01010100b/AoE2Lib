@@ -25,14 +25,14 @@ namespace AoE2Lib.Bots.GameElements
 
         protected override IEnumerable<IMessage> RequestElementUpdate()
         {
-            yield return new UpResearchStatus() { TypeOp = TypeOp.C, TechId = Id };
-            yield return new CanResearch() { ResearchType = Id };
-            yield return new UpSetupCostData() { ResetCost = 1, GoalId = 100 };
-            yield return new UpAddResearchCost() { TypeOp1 = TypeOp.C, TechId = Id, TypeOp2 = TypeOp.C, Value = 1 };
-            yield return new Goal() { GoalId = 100 };
-            yield return new Goal() { GoalId = 101 };
-            yield return new Goal() { GoalId = 102 };
-            yield return new Goal() { GoalId = 103 };
+            yield return new UpResearchStatus() { InConstTechId = Id };
+            yield return new CanResearch() { InConstTechId = Id };
+            yield return new UpSetupCostData() { InConstResetCost = 1, IoGoalId = 100 };
+            yield return new UpAddResearchCost() { InConstTechId = Id, InConstValue = 1 };
+            yield return new Goal() { InConstGoalId = 100 };
+            yield return new Goal() { InConstGoalId = 101 };
+            yield return new Goal() { InConstGoalId = 102 };
+            yield return new Goal() { InConstGoalId = 103 };
         }
 
         protected override void UpdateElement(IReadOnlyList<Any> responses)

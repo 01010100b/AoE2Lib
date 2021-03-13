@@ -38,13 +38,13 @@ namespace AoE2Lib.Bots.GameElements
 
         protected override IEnumerable<IMessage> RequestElementUpdate()
         {
-            yield return new UpSetTargetById() { TypeOp = TypeOp.C, Id = Id };
+            yield return new UpSetTargetById() { InConstId = Id };
 
             foreach (var data in System.Enum.GetValues(typeof(ObjectData)).Cast<ObjectData>())
             {
                 if (data != ObjectData.LOCKED)
                 {
-                    yield return new UpObjectData() { ObjectData = (int)data };
+                    yield return new UpObjectData() { InConstObjectData = (int)data };
                 }
             }
         }

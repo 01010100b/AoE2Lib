@@ -124,7 +124,7 @@ namespace AoE2Lib.Bots
                 Log.Info($"BotManager: Player {player} ID: CHECKING");
                 var commandlist = new CommandList() { PlayerNumber = player };
                 commandlist.Commands.Add(Any.Pack(new GameTime()));
-                commandlist.Commands.Add(Any.Pack(new Goal() { GoalId = Bot.GOAL_ID }));
+                commandlist.Commands.Add(Any.Pack(new Goal() { InConstGoalId = Bot.GOAL_ID }));
 
                 CommandResultList result;
                 try

@@ -44,6 +44,8 @@ namespace Protos {
 
     static readonly grpc::Marshaller<global::Protos.IsMatchInProgressRequest> __Marshaller_protos_IsMatchInProgressRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Protos.IsMatchInProgressRequest.Parser));
     static readonly grpc::Marshaller<global::Protos.IsMatchInProgressReply> __Marshaller_protos_IsMatchInProgressReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Protos.IsMatchInProgressReply.Parser));
+    static readonly grpc::Marshaller<global::Protos.GetGameDataFilePathRequest> __Marshaller_protos_GetGameDataFilePathRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Protos.GetGameDataFilePathRequest.Parser));
+    static readonly grpc::Marshaller<global::Protos.GetGameDataFilePathReply> __Marshaller_protos_GetGameDataFilePathReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Protos.GetGameDataFilePathReply.Parser));
     static readonly grpc::Marshaller<global::Protos.UnloadRequest> __Marshaller_protos_UnloadRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Protos.UnloadRequest.Parser));
     static readonly grpc::Marshaller<global::Protos.UnloadReply> __Marshaller_protos_UnloadReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Protos.UnloadReply.Parser));
 
@@ -53,6 +55,13 @@ namespace Protos {
         "IsMatchInProgress",
         __Marshaller_protos_IsMatchInProgressRequest,
         __Marshaller_protos_IsMatchInProgressReply);
+
+    static readonly grpc::Method<global::Protos.GetGameDataFilePathRequest, global::Protos.GetGameDataFilePathReply> __Method_GetGameDataFilePath = new grpc::Method<global::Protos.GetGameDataFilePathRequest, global::Protos.GetGameDataFilePathReply>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetGameDataFilePath",
+        __Marshaller_protos_GetGameDataFilePathRequest,
+        __Marshaller_protos_GetGameDataFilePathReply);
 
     static readonly grpc::Method<global::Protos.UnloadRequest, global::Protos.UnloadReply> __Method_Unload = new grpc::Method<global::Protos.UnloadRequest, global::Protos.UnloadReply>(
         grpc::MethodType.Unary,
@@ -137,6 +146,54 @@ namespace Protos {
       public virtual grpc::AsyncUnaryCall<global::Protos.IsMatchInProgressReply> IsMatchInProgressAsync(global::Protos.IsMatchInProgressRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_IsMatchInProgress, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// Get the path to the game data (.dat) file that is being used by the game. Only available on AoC.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::Protos.GetGameDataFilePathReply GetGameDataFilePath(global::Protos.GetGameDataFilePathRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetGameDataFilePath(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// Get the path to the game data (.dat) file that is being used by the game. Only available on AoC.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      public virtual global::Protos.GetGameDataFilePathReply GetGameDataFilePath(global::Protos.GetGameDataFilePathRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetGameDataFilePath, null, options, request);
+      }
+      /// <summary>
+      ///*
+      /// Get the path to the game data (.dat) file that is being used by the game. Only available on AoC.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::Protos.GetGameDataFilePathReply> GetGameDataFilePathAsync(global::Protos.GetGameDataFilePathRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetGameDataFilePathAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///*
+      /// Get the path to the game data (.dat) file that is being used by the game. Only available on AoC.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      public virtual grpc::AsyncUnaryCall<global::Protos.GetGameDataFilePathReply> GetGameDataFilePathAsync(global::Protos.GetGameDataFilePathRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetGameDataFilePath, null, options, request);
       }
       /// <summary>
       ///*

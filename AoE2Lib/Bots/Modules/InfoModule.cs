@@ -33,9 +33,9 @@ namespace AoE2Lib.Bots.Modules
             Command.Reset();
 
             Command.Add(new GameTime());
-            Command.Add(new UpGetPoint() { GoalPoint = 50, PositionType = (int)PositionType.SELF });
-            Command.Add(new Goal() { GoalId = 50 });
-            Command.Add(new Goal() { GoalId = 51 });
+            Command.Add(new UpGetPoint() { OutGoalPoint = 50, InConstPositionType = (int)PositionType.SELF });
+            Command.Add(new Goal() { InConstGoalId = 50 });
+            Command.Add(new Goal() { InConstGoalId = 51 });
             Command.Add(new WoodAmount());
             Command.Add(new FoodAmount());
             Command.Add(new GoldAmount());
@@ -46,12 +46,12 @@ namespace AoE2Lib.Bots.Modules
 
             foreach (var sn in StrategicNumbers)
             {
-                Command.Add(new SetStrategicNumber() { StrategicNumber = (int)sn.Key, Value = sn.Value });
+                Command.Add(new SetStrategicNumber() { InConstSnId = (int)sn.Key, InConstValue = sn.Value });
             }
 
             foreach (var sn in Enum.GetValues(typeof(StrategicNumber)).Cast<StrategicNumber>())
             {
-                Command.Add(new Protos.Expert.Fact.StrategicNumber() { StrategicNumber_ = (int)sn });
+                Command.Add(new Protos.Expert.Fact.StrategicNumber() { InConstSnId = (int)sn });
             }
 
             yield return Command;

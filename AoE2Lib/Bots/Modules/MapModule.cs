@@ -42,12 +42,12 @@ namespace AoE2Lib.Bots.Modules
             {
                 Command.Reset();
 
-                Command.Add(new SetGoal() { GoalId = 50, GoalValue = Point.X });
-                Command.Add(new SetGoal() { GoalId = 51, GoalValue = Point.Y });
-                Command.Add(new UpBoundPoint() { GoalPoint1 = 52, GoalPoint2 = 50 });
-                Command.Add(new UpPointElevation() { GoalPoint = 52 });
-                Command.Add(new UpPointTerrain() { GoalPoint = 52 });
-                Command.Add(new UpPointExplored() { GoalPoint = 52 });
+                Command.Add(new SetGoal() { InConstGoalId = 50, InConstValue = Point.X });
+                Command.Add(new SetGoal() { InConstGoalId = 51, InConstValue = Point.Y });
+                Command.Add(new UpBoundPoint() { OutGoalPoint = 52, InGoalPoint = 50 });
+                Command.Add(new UpPointElevation() { InGoalPoint = 52 });
+                Command.Add(new UpPointTerrain() { InGoalPoint = 52 });
+                Command.Add(new UpPointExplored() { InGoalPoint = 52 });
             }
 
             internal void Update(TimeSpan gametime)
@@ -138,11 +138,11 @@ namespace AoE2Lib.Bots.Modules
         {
             Command.Reset();
 
-            Command.Add(new SetGoal() { GoalId = 50, GoalValue = 10000 });
-            Command.Add(new SetGoal() { GoalId = 51, GoalValue = 10000 });
-            Command.Add(new UpBoundPoint() { GoalPoint1 = 52, GoalPoint2 = 50 });
-            Command.Add(new Goal() { GoalId = 52 });
-            Command.Add(new Goal() { GoalId = 53 });
+            Command.Add(new SetGoal() { InConstGoalId = 50, InConstValue = 10000 });
+            Command.Add(new SetGoal() { InConstGoalId = 51, InConstValue = 10000 });
+            Command.Add(new UpBoundPoint() { OutGoalPoint = 52, InGoalPoint = 50 });
+            Command.Add(new Goal() { InConstGoalId = 52 });
+            Command.Add(new Goal() { InConstGoalId = 53 });
 
             yield return Command;
 

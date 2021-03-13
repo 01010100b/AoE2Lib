@@ -30,6 +30,7 @@ namespace AoE2Lib.Bots
         public int G_NEG { get; private set; }
         public int G_PERC_DIV { get; private set; }
         public int G_PERC_MUL { get; private set; }
+#pragma warning disable IDE1006 // Naming Styles
         public int S_EQUALS { get; private set; }
         public int S_ADD { get; private set; }
         public int S_SUB { get; private set; }
@@ -42,6 +43,7 @@ namespace AoE2Lib.Bots
         public int S_NEG { get; private set; }
         public int S_PERC_DIV { get; private set; }
         public int S_PERC_MUL { get; private set; }
+#pragma warning restore IDE1006 // Naming Styles
 
         public MathOp()
         {

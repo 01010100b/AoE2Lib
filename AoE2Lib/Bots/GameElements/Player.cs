@@ -32,28 +32,28 @@ namespace AoE2Lib.Bots.GameElements
         protected override IEnumerable<IMessage> RequestElementUpdate()
         {
             // TODO use UpPlayerFact instead
-            yield return new PlayerInGame() { PlayerNumber = PlayerNumber };
-            yield return new UpGetPlayerFact() { Player = PlayerNumber, FactId = (int)FactId.CIVILIZATION, Param = 0, GoalData = 100 };
-            yield return new Goal() { GoalId = 100 };
-            yield return new UpGetPlayerFact() { Player = PlayerNumber, FactId = (int)FactId.CURRENT_SCORE, Param = 0, GoalData = 100 };
-            yield return new Goal() { GoalId = 100 };
-            yield return new UpGetPlayerFact() { Player = PlayerNumber, FactId = (int)FactId.CURRENT_AGE, Param = 0, GoalData = 100 };
-            yield return new Goal() { GoalId = 100 };
-            yield return new UpGetPlayerFact() { Player = PlayerNumber, FactId = (int)FactId.CIVILIAN_POPULATION, Param = 0, GoalData = 100 };
-            yield return new Goal() { GoalId = 100 };
-            yield return new UpGetPlayerFact() { Player = PlayerNumber, FactId = (int)FactId.MILITARY_POPULATION, Param = 0, GoalData = 100 };
-            yield return new Goal() { GoalId = 100 };
-            yield return new UpGetPlayerFact() { Player = PlayerNumber, FactId = (int)FactId.WOOD_AMOUNT, Param = 0, GoalData = 100 };
-            yield return new Goal() { GoalId = 100 };
-            yield return new UpGetPlayerFact() { Player = PlayerNumber, FactId = (int)FactId.FOOD_AMOUNT, Param = 0, GoalData = 100 };
-            yield return new Goal() { GoalId = 100 };
-            yield return new UpGetPlayerFact() { Player = PlayerNumber, FactId = (int)FactId.GOLD_AMOUNT, Param = 0, GoalData = 100 };
-            yield return new Goal() { GoalId = 100 };
-            yield return new UpGetPlayerFact() { Player = PlayerNumber, FactId = (int)FactId.STONE_AMOUNT, Param = 0, GoalData = 100 };
-            yield return new Goal() { GoalId = 100 };
-            yield return new StanceToward() { PlayerNumber = PlayerNumber, Stance = (int)PlayerStance.ALLY };
-            yield return new StanceToward() { PlayerNumber = PlayerNumber, Stance = (int)PlayerStance.ENEMY };
-            yield return new StanceToward() { PlayerNumber = PlayerNumber, Stance = (int)PlayerStance.NEUTRAL };
+            yield return new PlayerInGame() { InPlayerAnyPlayer = PlayerNumber };
+            yield return new UpGetPlayerFact() { InPlayerAnyPlayer = PlayerNumber, InConstFactId = (int)FactId.CIVILIZATION, InConstParam = 0, OutGoalData = 100 };
+            yield return new Goal() { InConstGoalId = 100 };
+            yield return new UpGetPlayerFact() { InPlayerAnyPlayer = PlayerNumber, InConstFactId = (int)FactId.CURRENT_SCORE, InConstParam = 0, OutGoalData = 100 };
+            yield return new Goal() { InConstGoalId = 100 };
+            yield return new UpGetPlayerFact() { InPlayerAnyPlayer = PlayerNumber, InConstFactId = (int)FactId.CURRENT_AGE, InConstParam = 0, OutGoalData = 100 };
+            yield return new Goal() { InConstGoalId = 100 };
+            yield return new UpGetPlayerFact() { InPlayerAnyPlayer = PlayerNumber, InConstFactId = (int)FactId.CIVILIAN_POPULATION, InConstParam = 0, OutGoalData = 100 };
+            yield return new Goal() { InConstGoalId = 100 };
+            yield return new UpGetPlayerFact() { InPlayerAnyPlayer = PlayerNumber, InConstFactId = (int)FactId.MILITARY_POPULATION, InConstParam = 0, OutGoalData = 100 };
+            yield return new Goal() { InConstGoalId = 100 };
+            yield return new UpGetPlayerFact() { InPlayerAnyPlayer = PlayerNumber, InConstFactId = (int)FactId.WOOD_AMOUNT, InConstParam = 0, OutGoalData = 100 };
+            yield return new Goal() { InConstGoalId = 100 };
+            yield return new UpGetPlayerFact() { InPlayerAnyPlayer = PlayerNumber, InConstFactId = (int)FactId.FOOD_AMOUNT, InConstParam = 0, OutGoalData = 100 };
+            yield return new Goal() { InConstGoalId = 100 };
+            yield return new UpGetPlayerFact() { InPlayerAnyPlayer = PlayerNumber, InConstFactId = (int)FactId.GOLD_AMOUNT, InConstParam = 0, OutGoalData = 100 };
+            yield return new Goal() { InConstGoalId = 100 };
+            yield return new UpGetPlayerFact() { InPlayerAnyPlayer = PlayerNumber, InConstFactId = (int)FactId.STONE_AMOUNT, InConstParam = 0, OutGoalData = 100 };
+            yield return new Goal() { InConstGoalId = 100 };
+            yield return new StanceToward() { InPlayerAnyPlayer = PlayerNumber, InConstESPlayerStance = (int)PlayerStance.ALLY };
+            yield return new StanceToward() { InPlayerAnyPlayer = PlayerNumber, InConstESPlayerStance = (int)PlayerStance.ENEMY };
+            yield return new StanceToward() { InPlayerAnyPlayer = PlayerNumber, InConstESPlayerStance = (int)PlayerStance.NEUTRAL };
         }
 
         protected override void UpdateElement(IReadOnlyList<Any> responses)

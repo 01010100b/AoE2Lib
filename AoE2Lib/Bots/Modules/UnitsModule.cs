@@ -29,14 +29,14 @@ namespace AoE2Lib.Bots.Modules
         public void Build(int id)
         {
             var command = new Command();
-            command.Add(new Build() { BuildingType = id });
+            command.Add(new Build() { InConstBuildingId = id });
             Commands.Add(command);
         }
 
         public void Train(int id)
         {
             var command = new Command();
-            command.Add(new Train() { UnitType = id });
+            command.Add(new Train() { InConstUnitId = id });
             Commands.Add(command);
         }
 

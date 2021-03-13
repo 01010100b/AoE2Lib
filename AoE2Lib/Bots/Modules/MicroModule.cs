@@ -16,10 +16,10 @@ namespace AoE2Lib.Bots.Modules
             var command = new Command();
 
             command.Add(new UpFullResetSearch());
-            command.Add(new UpAddObjectById() { SearchSource = 1, TypeOp = TypeOp.C, OpId = unit.Id });
-            command.Add(new UpSetTargetById() { TypeOp = TypeOp.C, Id = unit.Id });
-            command.Add(new UpSetTargetById() { TypeOp = TypeOp.C, Id = target.Id });
-            command.Add(new UpTargetObjects() { Target = 1, Action = (int)action, Formation = (int)formation, AttackStance = (int)stance });
+            command.Add(new UpAddObjectById() { InConstSearchSource = 1, InConstId = unit.Id });
+            command.Add(new UpSetTargetById() { InConstId = unit.Id });
+            command.Add(new UpSetTargetById() { InConstId = target.Id });
+            command.Add(new UpTargetObjects() { InConstTarget = 1, InConstTargetAction = (int)action, InConstFormation = (int)formation, InConstAttackStance = (int)stance });
 
             Commands.Add(command);
         }
@@ -29,11 +29,11 @@ namespace AoE2Lib.Bots.Modules
             var command = new Command();
 
             command.Add(new UpFullResetSearch());
-            command.Add(new UpAddObjectById() { SearchSource = 1, TypeOp = TypeOp.C, OpId = unit.Id });
-            command.Add(new SetGoal() { GoalId = 100, GoalValue = target.PreciseX });
-            command.Add(new SetGoal() { GoalId = 101, GoalValue = target.PreciseY });
-            command.Add(new SetStrategicNumber() { StrategicNumber = (int)StrategicNumber.TARGET_POINT_ADJUSTMENT, Value = 6 });
-            command.Add(new UpTargetPoint() { GoalPoint = 100, Action = (int)action, Formation = (int)formation, AttackStance = (int)stance });
+            command.Add(new UpAddObjectById() { InConstSearchSource = 1, InConstId = unit.Id });
+            command.Add(new SetGoal() { InConstGoalId = 100, InConstValue = target.PreciseX });
+            command.Add(new SetGoal() { InConstGoalId = 101, InConstValue = target.PreciseY });
+            command.Add(new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.TARGET_POINT_ADJUSTMENT, InConstValue = 6 });
+            command.Add(new UpTargetPoint() { InGoalPoint = 100, InConstTargetAction = (int)action, InConstFormation = (int)formation, InConstAttackStance = (int)stance });
 
             Commands.Add(command);
         }

@@ -20,7 +20,7 @@ namespace AoE2Lib.Bots.Modules
 
             for (int i = 1; i <= 8; i++)
             {
-                Command.Add(new PlayerValid() { PlayerNumber = i });
+                Command.Add(new PlayerValid() { InPlayerAnyPlayer = i });
             }
 
             yield return Command;

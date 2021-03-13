@@ -27,287 +27,328 @@ namespace Protos.Expert.Fact {
             "ChZCb3RzL1Byb3Rvcy9mYWN0LnByb3RvEhJwcm90b3MuZXhwZXJ0LmZhY3Qi",
             "FAoSQXR0YWNrU29sZGllckNvdW50IioKGEF0dGFja1NvbGRpZXJDb3VudFJl",
             "c3VsdBIOCgZyZXN1bHQYASABKAUiFAoSQXR0YWNrV2FyYm9hdENvdW50IioK",
-            "GEF0dGFja1dhcmJvYXRDb3VudFJlc3VsdBIOCgZyZXN1bHQYASABKAUiKQoR",
-            "QnVpbGRpbmdBdmFpbGFibGUSFAoMYnVpbGRpbmdUeXBlGAEgASgFIikKF0J1",
-            "aWxkaW5nQXZhaWxhYmxlUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIPCg1CdWls",
-            "ZGluZ0NvdW50IiUKE0J1aWxkaW5nQ291bnRSZXN1bHQSDgoGcmVzdWx0GAEg",
-            "ASgFIhQKEkJ1aWxkaW5nQ291bnRUb3RhbCIqChhCdWlsZGluZ0NvdW50VG90",
-            "YWxSZXN1bHQSDgoGcmVzdWx0GAEgASgFIikKEUJ1aWxkaW5nVHlwZUNvdW50",
-            "EhQKDGJ1aWxkaW5nVHlwZRgBIAEoBSIpChdCdWlsZGluZ1R5cGVDb3VudFJl",
-            "c3VsdBIOCgZyZXN1bHQYASABKAUiLgoWQnVpbGRpbmdUeXBlQ291bnRUb3Rh",
-            "bBIUCgxidWlsZGluZ1R5cGUYASABKAUiLgocQnVpbGRpbmdUeXBlQ291bnRU",
-            "b3RhbFJlc3VsdBIOCgZyZXN1bHQYASABKAUiKQoRQ2FuQWZmb3JkQnVpbGRp",
-            "bmcSFAoMYnVpbGRpbmdUeXBlGAEgASgFIikKF0NhbkFmZm9yZEJ1aWxkaW5n",
-            "UmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCI8ChVDYW5BZmZvcmRDb21wbGV0ZVdh",
-            "bGwSEQoJcGVyaW1ldGVyGAEgASgFEhAKCHdhbGxUeXBlGAIgASgFIi0KG0Nh",
-            "bkFmZm9yZENvbXBsZXRlV2FsbFJlc3VsdBIOCgZyZXN1bHQYASABKAgiKQoR",
-            "Q2FuQWZmb3JkUmVzZWFyY2gSFAoMcmVzZWFyY2hUeXBlGAEgASgFIikKF0Nh",
-            "bkFmZm9yZFJlc2VhcmNoUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIhCg1DYW5B",
-            "ZmZvcmRVbml0EhAKCHVuaXRUeXBlGAEgASgFIiUKE0NhbkFmZm9yZFVuaXRS",
-            "ZXN1bHQSDgoGcmVzdWx0GAEgASgIIiAKCENhbkJ1aWxkEhQKDGJ1aWxkaW5n",
-            "VHlwZRgBIAEoBSIgCg5DYW5CdWlsZFJlc3VsdBIOCgZyZXN1bHQYASABKAgi",
-            "IQoMQ2FuQnVpbGRHYXRlEhEKCXBlcmltZXRlchgBIAEoBSIkChJDYW5CdWls",
-            "ZEdhdGVSZXN1bHQSDgoGcmVzdWx0GAEgASgIIisKFkNhbkJ1aWxkR2F0ZVdp",
-            "dGhFc2Nyb3cSEQoJcGVyaW1ldGVyGAEgASgFIi4KHENhbkJ1aWxkR2F0ZVdp",
-            "dGhFc2Nyb3dSZXN1bHQSDgoGcmVzdWx0GAEgASgIIjMKDENhbkJ1aWxkV2Fs",
-            "bBIRCglwZXJpbWV0ZXIYASABKAUSEAoId2FsbFR5cGUYAiABKAUiJAoSQ2Fu",
-            "QnVpbGRXYWxsUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCI9ChZDYW5CdWlsZFdh",
-            "bGxXaXRoRXNjcm93EhEKCXBlcmltZXRlchgBIAEoBRIQCgh3YWxsVHlwZRgC",
-            "IAEoBSIuChxDYW5CdWlsZFdhbGxXaXRoRXNjcm93UmVzdWx0Eg4KBnJlc3Vs",
-            "dBgBIAEoCCIqChJDYW5CdWlsZFdpdGhFc2Nyb3cSFAoMYnVpbGRpbmdUeXBl",
-            "GAEgASgFIioKGENhbkJ1aWxkV2l0aEVzY3Jvd1Jlc3VsdBIOCgZyZXN1bHQY",
-            "ASABKAgiKAoPQ2FuQnV5Q29tbW9kaXR5EhUKDWNvbW1vZGl0eVR5cGUYASAB",
-            "KAUiJwoVQ2FuQnV5Q29tbW9kaXR5UmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIj",
-            "CgtDYW5SZXNlYXJjaBIUCgxyZXNlYXJjaFR5cGUYASABKAUiIwoRQ2FuUmVz",
-            "ZWFyY2hSZXN1bHQSDgoGcmVzdWx0GAEgASgIIi0KFUNhblJlc2VhcmNoV2l0",
-            "aEVzY3JvdxIUCgxyZXNlYXJjaFR5cGUYASABKAUiLQobQ2FuUmVzZWFyY2hX",
-            "aXRoRXNjcm93UmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIpChBDYW5TZWxsQ29t",
-            "bW9kaXR5EhUKDWNvbW1vZGl0eVR5cGUYASABKAUiKAoWQ2FuU2VsbENvbW1v",
-            "ZGl0eVJlc3VsdBIOCgZyZXN1bHQYASABKAgiCAoGQ2FuU3B5Ih4KDENhblNw",
-            "eVJlc3VsdBIOCgZyZXN1bHQYASABKAgiEgoQQ2FuU3B5V2l0aEVzY3JvdyIo",
-            "ChZDYW5TcHlXaXRoRXNjcm93UmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIcCghD",
-            "YW5UcmFpbhIQCgh1bml0VHlwZRgBIAEoBSIgCg5DYW5UcmFpblJlc3VsdBIO",
-            "CgZyZXN1bHQYASABKAgiJgoSQ2FuVHJhaW5XaXRoRXNjcm93EhAKCHVuaXRU",
-            "eXBlGAEgASgFIioKGENhblRyYWluV2l0aEVzY3Jvd1Jlc3VsdBIOCgZyZXN1",
-            "bHQYASABKAgiLgoWQ2NQbGF5ZXJzQnVpbGRpbmdDb3VudBIUCgxwbGF5ZXJO",
-            "dW1iZXIYASABKAUiLgocQ2NQbGF5ZXJzQnVpbGRpbmdDb3VudFJlc3VsdBIO",
-            "CgZyZXN1bHQYASABKAUiSAoaQ2NQbGF5ZXJzQnVpbGRpbmdUeXBlQ291bnQS",
-            "FAoMcGxheWVyTnVtYmVyGAEgASgFEhQKDGJ1aWxkaW5nVHlwZRgCIAEoBSIy",
-            "CiBDY1BsYXllcnNCdWlsZGluZ1R5cGVDb3VudFJlc3VsdBIOCgZyZXN1bHQY",
-            "ASABKAUiKgoSQ2NQbGF5ZXJzVW5pdENvdW50EhQKDHBsYXllck51bWJlchgB",
-            "IAEoBSIqChhDY1BsYXllcnNVbml0Q291bnRSZXN1bHQSDgoGcmVzdWx0GAEg",
-            "ASgFIkAKFkNjUGxheWVyc1VuaXRUeXBlQ291bnQSFAoMcGxheWVyTnVtYmVy",
-            "GAEgASgFEhAKCHVuaXRUeXBlGAIgASgFIi4KHENjUGxheWVyc1VuaXRUeXBl",
-            "Q291bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIg8KDUNoZWF0c0VuYWJsZWQi",
-            "JQoTQ2hlYXRzRW5hYmxlZFJlc3VsdBIOCgZyZXN1bHQYASABKAgiGgoLQ2l2",
-            "U2VsZWN0ZWQSCwoDY2l2GAEgASgFIiMKEUNpdlNlbGVjdGVkUmVzdWx0Eg4K",
-            "BnJlc3VsdBgBIAEoCCIUChJDaXZpbGlhblBvcHVsYXRpb24iKgoYQ2l2aWxp",
-            "YW5Qb3B1bGF0aW9uUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSItChRDb21tb2Rp",
-            "dHlCdXlpbmdQcmljZRIVCg1jb21tb2RpdHlUeXBlGAEgASgFIiwKGkNvbW1v",
-            "ZGl0eUJ1eWluZ1ByaWNlUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIuChVDb21t",
-            "b2RpdHlTZWxsaW5nUHJpY2USFQoNY29tbW9kaXR5VHlwZRgBIAEoBSItChtD",
-            "b21tb2RpdHlTZWxsaW5nUHJpY2VSZXN1bHQSDgoGcmVzdWx0GAEgASgFIgwK",
-            "CkN1cnJlbnRBZ2UiIgoQQ3VycmVudEFnZVJlc3VsdBIOCgZyZXN1bHQYASAB",
-            "KAUiEAoOQ3VycmVudEFnZVRpbWUiJgoUQ3VycmVudEFnZVRpbWVSZXN1bHQS",
-            "DgoGcmVzdWx0GAEgASgFIg4KDEN1cnJlbnRTY29yZSIkChJDdXJyZW50U2Nv",
-            "cmVSZXN1bHQSDgoGcmVzdWx0GAEgASgFIhAKDkRlYXRoTWF0Y2hHYW1lIiYK",
-            "FERlYXRoTWF0Y2hHYW1lUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIUChJEZWZl",
-            "bmRTb2xkaWVyQ291bnQiKgoYRGVmZW5kU29sZGllckNvdW50UmVzdWx0Eg4K",
-            "BnJlc3VsdBgBIAEoBSIUChJEZWZlbmRXYXJib2F0Q291bnQiKgoYRGVmZW5k",
-            "V2FyYm9hdENvdW50UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIMCgpEaWZmaWN1",
-            "bHR5IiIKEERpZmZpY3VsdHlSZXN1bHQSDgoGcmVzdWx0GAEgASgFIhkKCERv",
-            "Y3RyaW5lEg0KBXZhbHVlGAEgASgFIiAKDkRvY3RyaW5lUmVzdWx0Eg4KBnJl",
-            "c3VsdBgBIAEoCCIrChNEcm9wc2l0ZU1pbkRpc3RhbmNlEhQKDHJlc291cmNl",
-            "VHlwZRgBIAEoBSIrChlEcm9wc2l0ZU1pbkRpc3RhbmNlUmVzdWx0Eg4KBnJl",
-            "c3VsdBgBIAEoBSILCglFbmRpbmdBZ2UiIQoPRW5kaW5nQWdlUmVzdWx0Eg4K",
-            "BnJlc3VsdBgBIAEoBSIWChRFbmVteUJ1aWxkaW5nc0luVG93biIsChpFbmVt",
-            "eUJ1aWxkaW5nc0luVG93blJlc3VsdBIOCgZyZXN1bHQYASABKAgiFQoTRW5l",
-            "bXlDYXB0dXJlZFJlbGljcyIrChlFbmVteUNhcHR1cmVkUmVsaWNzUmVzdWx0",
-            "Eg4KBnJlc3VsdBgBIAEoCCIkCgxFc2Nyb3dBbW91bnQSFAoMcmVzb3VyY2VU",
-            "eXBlGAEgASgFIiQKEkVzY3Jvd0Ftb3VudFJlc3VsdBIOCgZyZXN1bHQYASAB",
-            "KAUiLgoNRXZlbnREZXRlY3RlZBIRCglldmVudFR5cGUYASABKAUSCgoCaWQY",
-            "AiABKAUiJQoTRXZlbnREZXRlY3RlZFJlc3VsdBIOCgZyZXN1bHQYASABKAgi",
-            "BwoFRmFsc2UiHQoLRmFsc2VSZXN1bHQSDgoGcmVzdWx0GAEgASgIIlMKEUZl",
-            "Q2FuQnVpbGRBdFBvaW50Eg4KBnBhcmFtMRgBIAEoBRIOCgZwYXJhbTIYAiAB",
-            "KAUSDgoGcGFyYW0zGAMgASgFEg4KBnBhcmFtNBgEIAEoBSIpChdGZUNhbkJ1",
-            "aWxkQXRQb2ludFJlc3VsdBIOCgZyZXN1bHQYASABKAgiDwoNRmVTdWJHYW1l",
-            "VHlwZSIlChNGZVN1YkdhbWVUeXBlUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIM",
-            "CgpGb29kQW1vdW50IiIKEEZvb2RBbW91bnRSZXN1bHQSDgoGcmVzdWx0GAEg",
-            "ASgFIgoKCEdhbWVUaW1lIiAKDkdhbWVUaW1lUmVzdWx0Eg4KBnJlc3VsdBgB",
-            "IAEoBSIKCghHYW1lVHlwZSIgCg5HYW1lVHlwZVJlc3VsdBIOCgZyZXN1bHQY",
-            "ASABKAUiHgoJR2F0ZUNvdW50EhEKCXBlcmltZXRlchgBIAEoBSIhCg9HYXRl",
-            "Q291bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIhYKBEdvYWwSDgoGZ29hbElk",
-            "GAEgASgFIhwKCkdvYWxSZXN1bHQSDgoGcmVzdWx0GAEgASgFIgcKBUdvYWxz",
-            "Ih0KC0dvYWxzUmVzdWx0Eg4KBnJlc3VsdBgBIAMoBSIMCgpHb2xkQW1vdW50",
-            "IiIKEEdvbGRBbW91bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIg0KC0hvbGRL",
-            "b2hSdWluIiMKEUhvbGRLb2hSdWluUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIM",
-            "CgpIb2xkUmVsaWNzIiIKEEhvbGRSZWxpY3NSZXN1bHQSDgoGcmVzdWx0GAEg",
-            "ASgIIhEKD0hvdXNpbmdIZWFkcm9vbSInChVIb3VzaW5nSGVhZHJvb21SZXN1",
-            "bHQSDgoGcmVzdWx0GAEgASgFIg8KDUlkbGVGYXJtQ291bnQiJQoTSWRsZUZh",
-            "cm1Db3VudFJlc3VsdBIOCgZyZXN1bHQYASABKAUiGgoHTWFwU2l6ZRIPCgdt",
-            "YXBTaXplGAEgASgFIh8KDU1hcFNpemVSZXN1bHQSDgoGcmVzdWx0GAEgASgI",
-            "IhoKB01hcFR5cGUSDwoHbWFwVHlwZRgBIAEoBSIfCg1NYXBUeXBlUmVzdWx0",
-            "Eg4KBnJlc3VsdBgBIAEoCCIUChJNaWxpdGFyeVBvcHVsYXRpb24iKgoYTWls",
-            "aXRhcnlQb3B1bGF0aW9uUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSImCg5QbGF5",
-            "ZXJDb21wdXRlchIUCgxwbGF5ZXJOdW1iZXIYASABKAUiJgoUUGxheWVyQ29t",
-            "cHV0ZXJSZXN1bHQSDgoGcmVzdWx0GAEgASgIIiMKC1BsYXllckh1bWFuEhQK",
-            "DHBsYXllck51bWJlchgBIAEoBSIjChFQbGF5ZXJIdW1hblJlc3VsdBIOCgZy",
-            "ZXN1bHQYASABKAgiJAoMUGxheWVySW5HYW1lEhQKDHBsYXllck51bWJlchgB",
-            "IAEoBSIkChJQbGF5ZXJJbkdhbWVSZXN1bHQSDgoGcmVzdWx0GAEgASgIIiQK",
-            "DFBsYXllck51bWJlchIUCgxwbGF5ZXJOdW1iZXIYASABKAUiJAoSUGxheWVy",
-            "TnVtYmVyUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCImCg5QbGF5ZXJSZXNpZ25l",
-            "ZBIUCgxwbGF5ZXJOdW1iZXIYASABKAUiJgoUUGxheWVyUmVzaWduZWRSZXN1",
-            "bHQSDgoGcmVzdWx0GAEgASgIIiMKC1BsYXllclZhbGlkEhQKDHBsYXllck51",
-            "bWJlchgBIAEoBSIjChFQbGF5ZXJWYWxpZFJlc3VsdBIOCgZyZXN1bHQYASAB",
-            "KAgiVQoTUGxheWVyc0FjaGlldmVtZW50cxIOCgZwYXJhbTEYASABKAUSDgoG",
-            "cGFyYW0yGAIgASgFEg4KBnBhcmFtMxgDIAEoBRIOCgZwYXJhbTQYBCABKAUi",
-            "KwoZUGxheWVyc0FjaGlldmVtZW50c1Jlc3VsdBIOCgZyZXN1bHQYASABKAgi",
-            "LAoUUGxheWVyc0J1aWxkaW5nQ291bnQSFAoMcGxheWVyTnVtYmVyGAEgASgF",
+            "GEF0dGFja1dhcmJvYXRDb3VudFJlc3VsdBIOCgZyZXN1bHQYASABKAUiLgoR",
+            "QnVpbGRpbmdBdmFpbGFibGUSGQoRaW5Db25zdEJ1aWxkaW5nSWQYASABKAUi",
+            "KQoXQnVpbGRpbmdBdmFpbGFibGVSZXN1bHQSDgoGcmVzdWx0GAEgASgIIg8K",
+            "DUJ1aWxkaW5nQ291bnQiJQoTQnVpbGRpbmdDb3VudFJlc3VsdBIOCgZyZXN1",
+            "bHQYASABKAUiFAoSQnVpbGRpbmdDb3VudFRvdGFsIioKGEJ1aWxkaW5nQ291",
+            "bnRUb3RhbFJlc3VsdBIOCgZyZXN1bHQYASABKAUiLgoRQnVpbGRpbmdUeXBl",
+            "Q291bnQSGQoRaW5Db25zdEJ1aWxkaW5nSWQYASABKAUiKQoXQnVpbGRpbmdU",
+            "eXBlQ291bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIjMKFkJ1aWxkaW5nVHlw",
+            "ZUNvdW50VG90YWwSGQoRaW5Db25zdEJ1aWxkaW5nSWQYASABKAUiLgocQnVp",
+            "bGRpbmdUeXBlQ291bnRUb3RhbFJlc3VsdBIOCgZyZXN1bHQYASABKAUiLgoR",
+            "Q2FuQWZmb3JkQnVpbGRpbmcSGQoRaW5Db25zdEJ1aWxkaW5nSWQYASABKAUi",
+            "KQoXQ2FuQWZmb3JkQnVpbGRpbmdSZXN1bHQSDgoGcmVzdWx0GAEgASgIIkgK",
+            "FUNhbkFmZm9yZENvbXBsZXRlV2FsbBIYChBpbkNvbnN0UGVyaW1ldGVyGAEg",
+            "ASgFEhUKDWluQ29uc3RXYWxsSWQYAiABKAUiLQobQ2FuQWZmb3JkQ29tcGxl",
+            "dGVXYWxsUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIqChFDYW5BZmZvcmRSZXNl",
+            "YXJjaBIVCg1pbkNvbnN0VGVjaElkGAEgASgFIikKF0NhbkFmZm9yZFJlc2Vh",
+            "cmNoUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCImCg1DYW5BZmZvcmRVbml0EhUK",
+            "DWluQ29uc3RVbml0SWQYASABKAUiJQoTQ2FuQWZmb3JkVW5pdFJlc3VsdBIO",
+            "CgZyZXN1bHQYASABKAgiJQoIQ2FuQnVpbGQSGQoRaW5Db25zdEJ1aWxkaW5n",
+            "SWQYASABKAUiIAoOQ2FuQnVpbGRSZXN1bHQSDgoGcmVzdWx0GAEgASgIIigK",
+            "DENhbkJ1aWxkR2F0ZRIYChBpbkNvbnN0UGVyaW1ldGVyGAEgASgFIiQKEkNh",
+            "bkJ1aWxkR2F0ZVJlc3VsdBIOCgZyZXN1bHQYASABKAgiMgoWQ2FuQnVpbGRH",
+            "YXRlV2l0aEVzY3JvdxIYChBpbkNvbnN0UGVyaW1ldGVyGAEgASgFIi4KHENh",
+            "bkJ1aWxkR2F0ZVdpdGhFc2Nyb3dSZXN1bHQSDgoGcmVzdWx0GAEgASgIIj8K",
+            "DENhbkJ1aWxkV2FsbBIYChBpbkNvbnN0UGVyaW1ldGVyGAEgASgFEhUKDWlu",
+            "Q29uc3RXYWxsSWQYAiABKAUiJAoSQ2FuQnVpbGRXYWxsUmVzdWx0Eg4KBnJl",
+            "c3VsdBgBIAEoCCJJChZDYW5CdWlsZFdhbGxXaXRoRXNjcm93EhgKEGluQ29u",
+            "c3RQZXJpbWV0ZXIYASABKAUSFQoNaW5Db25zdFdhbGxJZBgCIAEoBSIuChxD",
+            "YW5CdWlsZFdhbGxXaXRoRXNjcm93UmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIv",
+            "ChJDYW5CdWlsZFdpdGhFc2Nyb3cSGQoRaW5Db25zdEJ1aWxkaW5nSWQYASAB",
+            "KAUiKgoYQ2FuQnVpbGRXaXRoRXNjcm93UmVzdWx0Eg4KBnJlc3VsdBgBIAEo",
+            "CCIrCg9DYW5CdXlDb21tb2RpdHkSGAoQaW5Db25zdENvbW1vZGl0eRgBIAEo",
+            "BSInChVDYW5CdXlDb21tb2RpdHlSZXN1bHQSDgoGcmVzdWx0GAEgASgIIiQK",
+            "C0NhblJlc2VhcmNoEhUKDWluQ29uc3RUZWNoSWQYASABKAUiIwoRQ2FuUmVz",
+            "ZWFyY2hSZXN1bHQSDgoGcmVzdWx0GAEgASgIIi4KFUNhblJlc2VhcmNoV2l0",
+            "aEVzY3JvdxIVCg1pbkNvbnN0VGVjaElkGAEgASgFIi0KG0NhblJlc2VhcmNo",
+            "V2l0aEVzY3Jvd1Jlc3VsdBIOCgZyZXN1bHQYASABKAgiLAoQQ2FuU2VsbENv",
+            "bW1vZGl0eRIYChBpbkNvbnN0Q29tbW9kaXR5GAEgASgFIigKFkNhblNlbGxD",
+            "b21tb2RpdHlSZXN1bHQSDgoGcmVzdWx0GAEgASgIIggKBkNhblNweSIeCgxD",
+            "YW5TcHlSZXN1bHQSDgoGcmVzdWx0GAEgASgIIhIKEENhblNweVdpdGhFc2Ny",
+            "b3ciKAoWQ2FuU3B5V2l0aEVzY3Jvd1Jlc3VsdBIOCgZyZXN1bHQYASABKAgi",
+            "IQoIQ2FuVHJhaW4SFQoNaW5Db25zdFVuaXRJZBgBIAEoBSIgCg5DYW5UcmFp",
+            "blJlc3VsdBIOCgZyZXN1bHQYASABKAgiKwoSQ2FuVHJhaW5XaXRoRXNjcm93",
+            "EhUKDWluQ29uc3RVbml0SWQYASABKAUiKgoYQ2FuVHJhaW5XaXRoRXNjcm93",
+            "UmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIzChZDY1BsYXllcnNCdWlsZGluZ0Nv",
+            "dW50EhkKEWluUGxheWVyQW55UGxheWVyGAEgASgFIi4KHENjUGxheWVyc0J1",
+            "aWxkaW5nQ291bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIlIKGkNjUGxheWVy",
+            "c0J1aWxkaW5nVHlwZUNvdW50EhkKEWluUGxheWVyQW55UGxheWVyGAEgASgF",
+            "EhkKEWluQ29uc3RCdWlsZGluZ0lkGAIgASgFIjIKIENjUGxheWVyc0J1aWxk",
+            "aW5nVHlwZUNvdW50UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIvChJDY1BsYXll",
+            "cnNVbml0Q291bnQSGQoRaW5QbGF5ZXJBbnlQbGF5ZXIYASABKAUiKgoYQ2NQ",
+            "bGF5ZXJzVW5pdENvdW50UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSJKChZDY1Bs",
+            "YXllcnNVbml0VHlwZUNvdW50EhkKEWluUGxheWVyQW55UGxheWVyGAEgASgF",
+            "EhUKDWluQ29uc3RVbml0SWQYAiABKAUiLgocQ2NQbGF5ZXJzVW5pdFR5cGVD",
+            "b3VudFJlc3VsdBIOCgZyZXN1bHQYASABKAUiDwoNQ2hlYXRzRW5hYmxlZCIl",
+            "ChNDaGVhdHNFbmFibGVkUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCINCgtDaXZT",
+            "ZWxlY3RlZCIjChFDaXZTZWxlY3RlZFJlc3VsdBIOCgZyZXN1bHQYASABKAUi",
+            "FAoSQ2l2aWxpYW5Qb3B1bGF0aW9uIioKGENpdmlsaWFuUG9wdWxhdGlvblJl",
+            "c3VsdBIOCgZyZXN1bHQYASABKAUiMAoUQ29tbW9kaXR5QnV5aW5nUHJpY2US",
+            "GAoQaW5Db25zdENvbW1vZGl0eRgBIAEoBSIsChpDb21tb2RpdHlCdXlpbmdQ",
+            "cmljZVJlc3VsdBIOCgZyZXN1bHQYASABKAUiMQoVQ29tbW9kaXR5U2VsbGlu",
+            "Z1ByaWNlEhgKEGluQ29uc3RDb21tb2RpdHkYASABKAUiLQobQ29tbW9kaXR5",
+            "U2VsbGluZ1ByaWNlUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIMCgpDdXJyZW50",
+            "QWdlIiIKEEN1cnJlbnRBZ2VSZXN1bHQSDgoGcmVzdWx0GAEgASgFIhAKDkN1",
+            "cnJlbnRBZ2VUaW1lIiYKFEN1cnJlbnRBZ2VUaW1lUmVzdWx0Eg4KBnJlc3Vs",
+            "dBgBIAEoBSIOCgxDdXJyZW50U2NvcmUiJAoSQ3VycmVudFNjb3JlUmVzdWx0",
+            "Eg4KBnJlc3VsdBgBIAEoBSIQCg5EZWF0aE1hdGNoR2FtZSImChREZWF0aE1h",
+            "dGNoR2FtZVJlc3VsdBIOCgZyZXN1bHQYASABKAgiFAoSRGVmZW5kU29sZGll",
+            "ckNvdW50IioKGERlZmVuZFNvbGRpZXJDb3VudFJlc3VsdBIOCgZyZXN1bHQY",
+            "ASABKAUiFAoSRGVmZW5kV2FyYm9hdENvdW50IioKGERlZmVuZFdhcmJvYXRD",
+            "b3VudFJlc3VsdBIOCgZyZXN1bHQYASABKAUiDAoKRGlmZmljdWx0eSIiChBE",
+            "aWZmaWN1bHR5UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIgCghEb2N0cmluZRIU",
+            "CgxpbkNvbnN0VmFsdWUYASABKAUiIAoORG9jdHJpbmVSZXN1bHQSDgoGcmVz",
+            "dWx0GAEgASgIIi4KE0Ryb3BzaXRlTWluRGlzdGFuY2USFwoPaW5Db25zdFJl",
+            "c291cmNlGAEgASgFIisKGURyb3BzaXRlTWluRGlzdGFuY2VSZXN1bHQSDgoG",
+            "cmVzdWx0GAEgASgFIgsKCUVuZGluZ0FnZSIhCg9FbmRpbmdBZ2VSZXN1bHQS",
+            "DgoGcmVzdWx0GAEgASgFIhYKFEVuZW15QnVpbGRpbmdzSW5Ub3duIiwKGkVu",
+            "ZW15QnVpbGRpbmdzSW5Ub3duUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIVChNF",
+            "bmVteUNhcHR1cmVkUmVsaWNzIisKGUVuZW15Q2FwdHVyZWRSZWxpY3NSZXN1",
+            "bHQSDgoGcmVzdWx0GAEgASgIIicKDEVzY3Jvd0Ftb3VudBIXCg9pbkNvbnN0",
+            "UmVzb3VyY2UYASABKAUiJAoSRXNjcm93QW1vdW50UmVzdWx0Eg4KBnJlc3Vs",
+            "dBgBIAEoBSJBCg1FdmVudERldGVjdGVkEhgKEGluQ29uc3RFdmVudFR5cGUY",
+            "ASABKAUSFgoOaW5Db25zdEV2ZW50SWQYAiABKAUiJQoTRXZlbnREZXRlY3Rl",
+            "ZFJlc3VsdBIOCgZyZXN1bHQYASABKAgiBwoFRmFsc2UiHQoLRmFsc2VSZXN1",
+            "bHQSDgoGcmVzdWx0GAEgASgIIlMKEUZlQ2FuQnVpbGRBdFBvaW50Eg4KBnBh",
+            "cmFtMRgBIAEoBRIOCgZwYXJhbTIYAiABKAUSDgoGcGFyYW0zGAMgASgFEg4K",
+            "BnBhcmFtNBgEIAEoBSIpChdGZUNhbkJ1aWxkQXRQb2ludFJlc3VsdBIOCgZy",
+            "ZXN1bHQYASABKAgiDwoNRmVTdWJHYW1lVHlwZSIlChNGZVN1YkdhbWVUeXBl",
+            "UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIMCgpGb29kQW1vdW50IiIKEEZvb2RB",
+            "bW91bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIgoKCEdhbWVUaW1lIiAKDkdh",
+            "bWVUaW1lUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIKCghHYW1lVHlwZSIgCg5H",
+            "YW1lVHlwZVJlc3VsdBIOCgZyZXN1bHQYASABKAUiJQoJR2F0ZUNvdW50EhgK",
+            "EGluQ29uc3RQZXJpbWV0ZXIYASABKAUiIQoPR2F0ZUNvdW50UmVzdWx0Eg4K",
+            "BnJlc3VsdBgBIAEoBSIdCgRHb2FsEhUKDWluQ29uc3RHb2FsSWQYASABKAUi",
+            "HAoKR29hbFJlc3VsdBIOCgZyZXN1bHQYASABKBEiCgoIR29hbExpc3QiIAoO",
+            "R29hbExpc3RSZXN1bHQSDgoGcmVzdWx0GAEgAygRIgwKCkdvbGRBbW91bnQi",
+            "IgoQR29sZEFtb3VudFJlc3VsdBIOCgZyZXN1bHQYASABKAUiDQoLSG9sZEtv",
+            "aFJ1aW4iIwoRSG9sZEtvaFJ1aW5SZXN1bHQSDgoGcmVzdWx0GAEgASgIIgwK",
+            "CkhvbGRSZWxpY3MiIgoQSG9sZFJlbGljc1Jlc3VsdBIOCgZyZXN1bHQYASAB",
+            "KAgiEQoPSG91c2luZ0hlYWRyb29tIicKFUhvdXNpbmdIZWFkcm9vbVJlc3Vs",
+            "dBIOCgZyZXN1bHQYASABKAUiDwoNSWRsZUZhcm1Db3VudCIlChNJZGxlRmFy",
+            "bUNvdW50UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIJCgdNYXBTaXplIh8KDU1h",
+            "cFNpemVSZXN1bHQSDgoGcmVzdWx0GAEgASgFIgkKB01hcFR5cGUiHwoNTWFw",
+            "VHlwZVJlc3VsdBIOCgZyZXN1bHQYASABKAUiFAoSTWlsaXRhcnlQb3B1bGF0",
+            "aW9uIioKGE1pbGl0YXJ5UG9wdWxhdGlvblJlc3VsdBIOCgZyZXN1bHQYASAB",
+            "KAUiKwoOUGxheWVyQ29tcHV0ZXISGQoRaW5QbGF5ZXJBbnlQbGF5ZXIYASAB",
+            "KAUiJgoUUGxheWVyQ29tcHV0ZXJSZXN1bHQSDgoGcmVzdWx0GAEgASgIIigK",
+            "C1BsYXllckh1bWFuEhkKEWluUGxheWVyQW55UGxheWVyGAEgASgFIiMKEVBs",
+            "YXllckh1bWFuUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIpCgxQbGF5ZXJJbkdh",
+            "bWUSGQoRaW5QbGF5ZXJBbnlQbGF5ZXIYASABKAUiJAoSUGxheWVySW5HYW1l",
+            "UmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIpCgxQbGF5ZXJOdW1iZXISGQoRaW5Q",
+            "bGF5ZXJBbnlQbGF5ZXIYASABKAUiJAoSUGxheWVyTnVtYmVyUmVzdWx0Eg4K",
+            "BnJlc3VsdBgBIAEoCCIrCg5QbGF5ZXJSZXNpZ25lZBIZChFpblBsYXllckFu",
+            "eVBsYXllchgBIAEoBSImChRQbGF5ZXJSZXNpZ25lZFJlc3VsdBIOCgZyZXN1",
+            "bHQYASABKAgiKAoLUGxheWVyVmFsaWQSGQoRaW5QbGF5ZXJBbnlQbGF5ZXIY",
+            "ASABKAUiIwoRUGxheWVyVmFsaWRSZXN1bHQSDgoGcmVzdWx0GAEgASgIIlUK",
+            "E1BsYXllcnNBY2hpZXZlbWVudHMSDgoGcGFyYW0xGAEgASgFEg4KBnBhcmFt",
+            "MhgCIAEoBRIOCgZwYXJhbTMYAyABKAUSDgoGcGFyYW00GAQgASgFIisKGVBs",
+            "YXllcnNBY2hpZXZlbWVudHNSZXN1bHQSDgoGcmVzdWx0GAEgASgIIjEKFFBs",
+            "YXllcnNCdWlsZGluZ0NvdW50EhkKEWluUGxheWVyQW55UGxheWVyGAEgASgF",
             "IiwKGlBsYXllcnNCdWlsZGluZ0NvdW50UmVzdWx0Eg4KBnJlc3VsdBgBIAEo",
-            "BSJGChhQbGF5ZXJzQnVpbGRpbmdUeXBlQ291bnQSFAoMcGxheWVyTnVtYmVy",
-            "GAEgASgFEhQKDGJ1aWxkaW5nVHlwZRgCIAEoBSIwCh5QbGF5ZXJzQnVpbGRp",
-            "bmdUeXBlQ291bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIiIKClBsYXllcnND",
-            "aXYSFAoMcGxheWVyTnVtYmVyGAEgASgFIiIKEFBsYXllcnNDaXZSZXN1bHQS",
-            "DgoGcmVzdWx0GAEgASgIIjEKGVBsYXllcnNDaXZpbGlhblBvcHVsYXRpb24S",
-            "FAoMcGxheWVyTnVtYmVyGAEgASgFIjEKH1BsYXllcnNDaXZpbGlhblBvcHVs",
-            "YXRpb25SZXN1bHQSDgoGcmVzdWx0GAEgASgFIikKEVBsYXllcnNDdXJyZW50",
-            "QWdlEhQKDHBsYXllck51bWJlchgBIAEoBSIpChdQbGF5ZXJzQ3VycmVudEFn",
-            "ZVJlc3VsdBIOCgZyZXN1bHQYASABKAUiLQoVUGxheWVyc0N1cnJlbnRBZ2VU",
-            "aW1lEhQKDHBsYXllck51bWJlchgBIAEoBSItChtQbGF5ZXJzQ3VycmVudEFn",
-            "ZVRpbWVSZXN1bHQSDgoGcmVzdWx0GAEgASgFIjEKGVBsYXllcnNNaWxpdGFy",
-            "eVBvcHVsYXRpb24SFAoMcGxheWVyTnVtYmVyGAEgASgFIjEKH1BsYXllcnNN",
-            "aWxpdGFyeVBvcHVsYXRpb25SZXN1bHQSDgoGcmVzdWx0GAEgASgFIikKEVBs",
-            "YXllcnNQb3B1bGF0aW9uEhQKDHBsYXllck51bWJlchgBIAEoBSIpChdQbGF5",
-            "ZXJzUG9wdWxhdGlvblJlc3VsdBIOCgZyZXN1bHQYASABKAUiJAoMUGxheWVy",
-            "c1Njb3JlEhQKDHBsYXllck51bWJlchgBIAEoBSIkChJQbGF5ZXJzU2NvcmVS",
-            "ZXN1bHQSDgoGcmVzdWx0GAEgASgFIjUKDVBsYXllcnNTdGFuY2USFAoMcGxh",
-            "eWVyTnVtYmVyGAEgASgFEg4KBnN0YW5jZRgCIAEoBSIlChNQbGF5ZXJzU3Rh",
-            "bmNlUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCI8Cg5QbGF5ZXJzVHJpYnV0ZRIU",
-            "CgxwbGF5ZXJOdW1iZXIYASABKAUSFAoMcmVzb3VyY2VUeXBlGAIgASgFIiYK",
-            "FFBsYXllcnNUcmlidXRlUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSJCChRQbGF5",
-            "ZXJzVHJpYnV0ZU1lbW9yeRIUCgxwbGF5ZXJOdW1iZXIYASABKAUSFAoMcmVz",
-            "b3VyY2VUeXBlGAIgASgFIiwKGlBsYXllcnNUcmlidXRlTWVtb3J5UmVzdWx0",
-            "Eg4KBnJlc3VsdBgBIAEoBSIoChBQbGF5ZXJzVW5pdENvdW50EhQKDHBsYXll",
-            "ck51bWJlchgBIAEoBSIoChZQbGF5ZXJzVW5pdENvdW50UmVzdWx0Eg4KBnJl",
-            "c3VsdBgBIAEoBSI+ChRQbGF5ZXJzVW5pdFR5cGVDb3VudBIUCgxwbGF5ZXJO",
-            "dW1iZXIYASABKAUSEAoIdW5pdFR5cGUYAiABKAUiLAoaUGxheWVyc1VuaXRU",
-            "eXBlQ291bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIgwKClBvcHVsYXRpb24i",
-            "IgoQUG9wdWxhdGlvblJlc3VsdBIOCgZyZXN1bHQYASABKAUiDwoNUG9wdWxh",
-            "dGlvbkNhcCIlChNQb3B1bGF0aW9uQ2FwUmVzdWx0Eg4KBnJlc3VsdBgBIAEo",
-            "BSIUChJQb3B1bGF0aW9uSGVhZHJvb20iKgoYUG9wdWxhdGlvbkhlYWRyb29t",
-            "UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIOCgxSYW5kb21OdW1iZXIiJAoSUmFu",
-            "ZG9tTnVtYmVyUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIOCgxSZWdpY2lkZUdh",
-            "bWUiJAoSUmVnaWNpZGVHYW1lUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIpChFS",
-            "ZXNlYXJjaEF2YWlsYWJsZRIUCgxyZXNlYXJjaFR5cGUYASABKAUiKQoXUmVz",
-            "ZWFyY2hBdmFpbGFibGVSZXN1bHQSDgoGcmVzdWx0GAEgASgIIikKEVJlc2Vh",
-            "cmNoQ29tcGxldGVkEhQKDHJlc2VhcmNoVHlwZRgBIAEoBSIpChdSZXNlYXJj",
-            "aENvbXBsZXRlZFJlc3VsdBIOCgZyZXN1bHQYASABKAgiJQoNUmVzb3VyY2VG",
-            "b3VuZBIUCgxyZXNvdXJjZVR5cGUYASABKAUiJQoTUmVzb3VyY2VGb3VuZFJl",
-            "c3VsdBIOCgZyZXN1bHQYASABKAgiKwoKU2hhcmVkR29hbBIOCgZnb2FsSWQY",
-            "ASABKAUSDQoFdmFsdWUYAiABKAUiIgoQU2hhcmVkR29hbFJlc3VsdBIOCgZy",
-            "ZXN1bHQYASABKAgiFgoUU2hlZXBBbmRGb3JhZ2VUb29GYXIiLAoaU2hlZXBB",
-            "bmRGb3JhZ2VUb29GYXJSZXN1bHQSDgoGcmVzdWx0GAEgASgIIg4KDFNvbGRp",
-            "ZXJDb3VudCIkChJTb2xkaWVyQ291bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgF",
-            "IjQKDFN0YW5jZVRvd2FyZBIUCgxwbGF5ZXJOdW1iZXIYASABKAUSDgoGc3Rh",
-            "bmNlGAIgASgFIiQKElN0YW5jZVRvd2FyZFJlc3VsdBIOCgZyZXN1bHQYASAB",
-            "KAgiDQoLU3RhcnRpbmdBZ2UiIwoRU3RhcnRpbmdBZ2VSZXN1bHQSDgoGcmVz",
-            "dWx0GAEgASgFIhMKEVN0YXJ0aW5nUmVzb3VyY2VzIikKF1N0YXJ0aW5nUmVz",
-            "b3VyY2VzUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSINCgtTdG9uZUFtb3VudCIj",
-            "ChFTdG9uZUFtb3VudFJlc3VsdBIOCgZyZXN1bHQYASABKAUiKgoPU3RyYXRl",
-            "Z2ljTnVtYmVyEhcKD3N0cmF0ZWdpY051bWJlchgBIAEoBSInChVTdHJhdGVn",
-            "aWNOdW1iZXJSZXN1bHQSDgoGcmVzdWx0GAEgASgFIjYKDVRhdW50RGV0ZWN0",
-            "ZWQSFAoMcGxheWVyTnVtYmVyGAEgASgFEg8KB3RhdW50SWQYAiABKAUiJQoT",
-            "VGF1bnREZXRlY3RlZFJlc3VsdBIOCgZyZXN1bHQYASABKAgiIQoOVGltZXJU",
-            "cmlnZ2VyZWQSDwoHdGltZXJJZBgBIAEoBSImChRUaW1lclRyaWdnZXJlZFJl",
-            "c3VsdBIOCgZyZXN1bHQYASABKAgiEQoPVG93blVuZGVyQXR0YWNrIicKFVRv",
-            "d25VbmRlckF0dGFja1Jlc3VsdBIOCgZyZXN1bHQYASABKAgiGgoJVHJhY2VG",
-            "YWN0Eg0KBXBhcmFtGAEgASgFIiEKD1RyYWNlRmFjdFJlc3VsdBIOCgZyZXN1",
-            "bHQYASABKAgiBgoEVHJ1ZSIcCgpUcnVlUmVzdWx0Eg4KBnJlc3VsdBgBIAEo",
-            "CCIhCg1Vbml0QXZhaWxhYmxlEhAKCHVuaXRUeXBlGAEgASgFIiUKE1VuaXRB",
-            "dmFpbGFibGVSZXN1bHQSDgoGcmVzdWx0GAEgASgIIgsKCVVuaXRDb3VudCIh",
-            "Cg9Vbml0Q291bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIhAKDlVuaXRDb3Vu",
-            "dFRvdGFsIiYKFFVuaXRDb3VudFRvdGFsUmVzdWx0Eg4KBnJlc3VsdBgBIAEo",
-            "BSIhCg1Vbml0VHlwZUNvdW50EhAKCHVuaXRUeXBlGAEgASgFIiUKE1VuaXRU",
-            "eXBlQ291bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIiYKElVuaXRUeXBlQ291",
-            "bnRUb3RhbBIQCgh1bml0VHlwZRgBIAEoBSIqChhVbml0VHlwZUNvdW50VG90",
-            "YWxSZXN1bHQSDgoGcmVzdWx0GAEgASgFIjQKDFVwQWxsaWVkR29hbBIUCgxj",
-            "b21wdXRlckFsbHkYASABKAUSDgoGZ29hbElkGAIgASgFIiQKElVwQWxsaWVk",
-            "R29hbFJlc3VsdBIOCgZyZXN1bHQYASABKAUiPgoWVXBBbGxpZWRSZXNvdXJj",
-            "ZUFtb3VudBIMCgRhbGx5GAEgASgFEhYKDnJlc291cmNlQW1vdW50GAIgASgF",
-            "Ii4KHFVwQWxsaWVkUmVzb3VyY2VBbW91bnRSZXN1bHQSDgoGcmVzdWx0GAEg",
-            "ASgFIj8KF1VwQWxsaWVkUmVzb3VyY2VQZXJjZW50EgwKBGFsbHkYASABKAUS",
-            "FgoOcmVzb3VyY2VBbW91bnQYAiABKAUiLwodVXBBbGxpZWRSZXNvdXJjZVBl",
-            "cmNlbnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIjAKClVwQWxsaWVkU24SFAoM",
-            "Y29tcHV0ZXJBbGx5GAEgASgFEgwKBHNuSWQYAiABKAUiIgoQVXBBbGxpZWRT",
-            "blJlc3VsdBIOCgZyZXN1bHQYASABKAUiEQoPVXBBdHRhY2tlckNsYXNzIicK",
-            "FVVwQXR0YWNrZXJDbGFzc1Jlc3VsdBIOCgZyZXN1bHQYASABKAUiOgoUVXBC",
-            "dWlsZGluZ1R5cGVJblRvd24SDgoGdHlwZU9wGAEgASgFEhIKCmJ1aWxkaW5n",
-            "SWQYAiABKAUiLAoaVXBCdWlsZGluZ1R5cGVJblRvd25SZXN1bHQSDgoGcmVz",
-            "dWx0GAEgASgFIkUKClVwQ2FuQnVpbGQSEwoLZXNjcm93U3RhdGUYASABKAUS",
-            "DgoGdHlwZU9wGAIgASgFEhIKCmJ1aWxkaW5nSWQYAyABKAUiIgoQVXBDYW5C",
-            "dWlsZFJlc3VsdBIOCgZyZXN1bHQYASABKAgiXAoOVXBDYW5CdWlsZExpbmUS",
-            "EwoLZXNjcm93U3RhdGUYASABKAUSEQoJZ29hbFBvaW50GAIgASgFEg4KBnR5",
-            "cGVPcBgDIAEoBRISCgpidWlsZGluZ0lkGAQgASgFIiYKFFVwQ2FuQnVpbGRM",
-            "aW5lUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCJECg1VcENhblJlc2VhcmNoEhMK",
-            "C2VzY3Jvd1N0YXRlGAEgASgFEg4KBnR5cGVPcBgCIAEoBRIOCgZ0ZWNoSWQY",
-            "AyABKAUiJQoTVXBDYW5SZXNlYXJjaFJlc3VsdBIOCgZyZXN1bHQYASABKAgi",
-            "IwoLVXBDYW5TZWFyY2gSFAoMc2VhcmNoU291cmNlGAEgASgFIiMKEVVwQ2Fu",
-            "U2VhcmNoUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCJBCgpVcENhblRyYWluEhMK",
-            "C2VzY3Jvd1N0YXRlGAEgASgFEg4KBnR5cGVPcBgCIAEoBRIOCgZ1bml0SWQY",
-            "AyABKAUiIgoQVXBDYW5UcmFpblJlc3VsdBIOCgZyZXN1bHQYASABKAgiEQoP",
-            "VXBEZWZlbmRlckNvdW50IicKFVVwRGVmZW5kZXJDb3VudFJlc3VsdBIOCgZy",
-            "ZXN1bHQYASABKAUiGAoWVXBFbmVteUJ1aWxkaW5nc0luVG93biIuChxVcEVu",
-            "ZW15QnVpbGRpbmdzSW5Ub3duUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIUChJV",
-            "cEVuZW15VW5pdHNJblRvd24iKgoYVXBFbmVteVVuaXRzSW5Ub3duUmVzdWx0",
-            "Eg4KBnJlc3VsdBgBIAEoBSIYChZVcEVuZW15VmlsbGFnZXJzSW5Ub3duIi4K",
-            "HFVwRW5lbXlWaWxsYWdlcnNJblRvd25SZXN1bHQSDgoGcmVzdWx0GAEgASgF",
-            "IjMKD1VwR2FpYVR5cGVDb3VudBIOCgZ0eXBlT3AYASABKAUSEAoIcmVzb3Vy",
-            "Y2UYAiABKAUiJwoVVXBHYWlhVHlwZUNvdW50UmVzdWx0Eg4KBnJlc3VsdBgB",
-            "IAEoBSI4ChRVcEdhaWFUeXBlQ291bnRUb3RhbBIOCgZ0eXBlT3AYASABKAUS",
-            "EAoIcmVzb3VyY2UYAiABKAUiLAoaVXBHYWlhVHlwZUNvdW50VG90YWxSZXN1",
-            "bHQSDgoGcmVzdWx0GAEgASgFIi4KC1VwR3JvdXBTaXplEg4KBnR5cGVPcBgB",
-            "IAEoBRIPCgdncm91cElkGAIgASgFIiMKEVVwR3JvdXBTaXplUmVzdWx0Eg4K",
-            "BnJlc3VsdBgBIAEoBSIjCg9VcElkbGVVbml0Q291bnQSEAoIaWRsZVR5cGUY",
-            "ASABKAUiJwoVVXBJZGxlVW5pdENvdW50UmVzdWx0Eg4KBnJlc3VsdBgBIAEo",
-            "BSIiCgxVcE9iamVjdERhdGESEgoKb2JqZWN0RGF0YRgBIAEoBSIkChJVcE9i",
-            "amVjdERhdGFSZXN1bHQSDgoGcmVzdWx0GAEgASgFIigKElVwT2JqZWN0VGFy",
-            "Z2V0RGF0YRISCgpvYmplY3REYXRhGAEgASgFIioKGFVwT2JqZWN0VGFyZ2V0",
-            "RGF0YVJlc3VsdBIOCgZyZXN1bHQYASABKAUiNQoRVXBPYmplY3RUeXBlQ291",
-            "bnQSDgoGdHlwZU9wGAEgASgFEhAKCG9iamVjdElkGAIgASgFIikKF1VwT2Jq",
-            "ZWN0VHlwZUNvdW50UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSI6ChZVcE9iamVj",
-            "dFR5cGVDb3VudFRvdGFsEg4KBnR5cGVPcBgBIAEoBRIQCghvYmplY3RJZBgC",
-            "IAEoBSIuChxVcE9iamVjdFR5cGVDb3VudFRvdGFsUmVzdWx0Eg4KBnJlc3Vs",
-            "dBgBIAEoBSIzCg5VcFBhdGhEaXN0YW5jZRIRCglnb2FsUG9pbnQYASABKAUS",
-            "DgoGc3RyaWN0GAIgASgFIiYKFFVwUGF0aERpc3RhbmNlUmVzdWx0Eg4KBnJl",
-            "c3VsdBgBIAEoBSI0ChBVcFBlbmRpbmdPYmplY3RzEg4KBnR5cGVPcBgBIAEo",
-            "BRIQCghvYmplY3RJZBgCIAEoBSIoChZVcFBlbmRpbmdPYmplY3RzUmVzdWx0",
-            "Eg4KBnJlc3VsdBgBIAEoBSI4ChJVcFBlbmRpbmdQbGFjZW1lbnQSDgoGdHlw",
-            "ZU9wGAEgASgFEhIKCmJ1aWxkaW5nSWQYAiABKAUiKgoYVXBQZW5kaW5nUGxh",
-            "Y2VtZW50UmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIiChBVcFBsYXllckRpc3Rh",
-            "bmNlEg4KBnBsYXllchgBIAEoBSIoChZVcFBsYXllckRpc3RhbmNlUmVzdWx0",
-            "Eg4KBnJlc3VsdBgBIAEoBSInCg9VcFBsYXllcnNJbkdhbWUSFAoMcGxheWVy",
-            "U3RhbmNlGAEgASgFIicKFVVwUGxheWVyc0luR2FtZVJlc3VsdBIOCgZyZXN1",
-            "bHQYASABKAUiRgoPVXBQb2ludENvbnRhaW5zEhEKCWdvYWxQb2ludBgBIAEo",
-            "BRIOCgZ0eXBlT3AYAiABKAUSEAoIb2JqZWN0SWQYAyABKAUiJwoVVXBQb2lu",
-            "dENvbnRhaW5zUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCI5Cg9VcFBvaW50RGlz",
-            "dGFuY2USEgoKZ29hbFBvaW50MRgBIAEoBRISCgpnb2FsUG9pbnQyGAIgASgF",
-            "IicKFVVwUG9pbnREaXN0YW5jZVJlc3VsdBIOCgZyZXN1bHQYASABKAUiJQoQ",
-            "VXBQb2ludEVsZXZhdGlvbhIRCglnb2FsUG9pbnQYASABKAUiKAoWVXBQb2lu",
-            "dEVsZXZhdGlvblJlc3VsdBIOCgZyZXN1bHQYASABKAUiJAoPVXBQb2ludEV4",
-            "cGxvcmVkEhEKCWdvYWxQb2ludBgBIAEoBSInChVVcFBvaW50RXhwbG9yZWRS",
-            "ZXN1bHQSDgoGcmVzdWx0GAEgASgFIiMKDlVwUG9pbnRUZXJyYWluEhEKCWdv",
-            "YWxQb2ludBgBIAEoBSImChRVcFBvaW50VGVycmFpblJlc3VsdBIOCgZyZXN1",
-            "bHQYASABKAUiIAoLVXBQb2ludFpvbmUSEQoJZ29hbFBvaW50GAEgASgFIiMK",
-            "EVVwUG9pbnRab25lUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIuChRVcFByb2pl",
-            "Y3RpbGVEZXRlY3RlZBIWCg5wcm9qZWN0aWxlVHlwZRgBIAEoBSIsChpVcFBy",
-            "b2plY3RpbGVEZXRlY3RlZFJlc3VsdBIOCgZyZXN1bHQYASABKAUiLAoSVXBQ",
-            "cm9qZWN0aWxlVGFyZ2V0EhYKDnByb2plY3RpbGVUeXBlGAEgASgFIioKGFVw",
-            "UHJvamVjdGlsZVRhcmdldFJlc3VsdBIOCgZyZXN1bHQYASABKAUiFwoVVXBS",
-            "ZW1haW5pbmdCb2FyQW1vdW50Ii0KG1VwUmVtYWluaW5nQm9hckFtb3VudFJl",
-            "c3VsdBIOCgZyZXN1bHQYASABKAUiMgoQVXBSZXNlYXJjaFN0YXR1cxIOCgZ0",
-            "eXBlT3AYASABKAUSDgoGdGVjaElkGAIgASgFIigKFlVwUmVzZWFyY2hTdGF0",
-            "dXNSZXN1bHQSDgoGcmVzdWx0GAEgASgFIioKEFVwUmVzb3VyY2VBbW91bnQS",
-            "FgoOcmVzb3VyY2VBbW91bnQYASABKAUiKAoWVXBSZXNvdXJjZUFtb3VudFJl",
-            "c3VsdBIOCgZyZXN1bHQYASABKAUiKwoRVXBSZXNvdXJjZVBlcmNlbnQSFgoO",
-            "cmVzb3VyY2VBbW91bnQYASABKAUiKQoXVXBSZXNvdXJjZVBlcmNlbnRSZXN1",
-            "bHQSDgoGcmVzdWx0GAEgASgFIiAKDVVwVGltZXJTdGF0dXMSDwoHdGltZXJJ",
-            "ZBgBIAEoBSIlChNVcFRpbWVyU3RhdHVzUmVzdWx0Eg4KBnJlc3VsdBgBIAEo",
-            "BSIyChBVcFRyYWluU2l0ZVJlYWR5Eg4KBnR5cGVPcBgBIAEoBRIOCgZ1bml0",
-            "SWQYAiABKAUiKAoWVXBUcmFpblNpdGVSZWFkeVJlc3VsdBIOCgZyZXN1bHQY",
-            "ASABKAgiMgoQVXBVbml0VHlwZUluVG93bhIOCgZ0eXBlT3AYASABKAUSDgoG",
-            "dW5pdElkGAIgASgFIigKFlVwVW5pdFR5cGVJblRvd25SZXN1bHQSDgoGcmVz",
-            "dWx0GAEgASgFIjYKFFVwVmlsbGFnZXJUeXBlSW5Ub3duEg4KBnR5cGVPcBgB",
-            "IAEoBRIOCgZ1bml0SWQYAiABKAUiLAoaVXBWaWxsYWdlclR5cGVJblRvd25S",
-            "ZXN1bHQSDgoGcmVzdWx0GAEgASgFIiwKEFZpY3RvcnlDb25kaXRpb24SGAoQ",
-            "dmljdG9yeUNvbmRpdGlvbhgBIAEoBSIoChZWaWN0b3J5Q29uZGl0aW9uUmVz",
-            "dWx0Eg4KBnJlc3VsdBgBIAEoCCIsChdXYWxsQ29tcGxldGVkUGVyY2VudGFn",
-            "ZRIRCglwZXJpbWV0ZXIYASABKAUiLwodV2FsbENvbXBsZXRlZFBlcmNlbnRh",
-            "Z2VSZXN1bHQSDgoGcmVzdWx0GAEgASgFIiwKF1dhbGxJbnZpc2libGVQZXJj",
-            "ZW50YWdlEhEKCXBlcmltZXRlchgBIAEoBSIvCh1XYWxsSW52aXNpYmxlUGVy",
-            "Y2VudGFnZVJlc3VsdBIOCgZyZXN1bHQYASABKAUiDgoMV2FyYm9hdENvdW50",
-            "IiQKEldhcmJvYXRDb3VudFJlc3VsdBIOCgZyZXN1bHQYASABKAUiDAoKV29v",
-            "ZEFtb3VudCIiChBXb29kQW1vdW50UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBWIG",
-            "cHJvdG8z"));
+            "BSJQChhQbGF5ZXJzQnVpbGRpbmdUeXBlQ291bnQSGQoRaW5QbGF5ZXJBbnlQ",
+            "bGF5ZXIYASABKAUSGQoRaW5Db25zdEJ1aWxkaW5nSWQYAiABKAUiMAoeUGxh",
+            "eWVyc0J1aWxkaW5nVHlwZUNvdW50UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIn",
+            "CgpQbGF5ZXJzQ2l2EhkKEWluUGxheWVyQW55UGxheWVyGAEgASgFIiIKEFBs",
+            "YXllcnNDaXZSZXN1bHQSDgoGcmVzdWx0GAEgASgFIjYKGVBsYXllcnNDaXZp",
+            "bGlhblBvcHVsYXRpb24SGQoRaW5QbGF5ZXJBbnlQbGF5ZXIYASABKAUiMQof",
+            "UGxheWVyc0NpdmlsaWFuUG9wdWxhdGlvblJlc3VsdBIOCgZyZXN1bHQYASAB",
+            "KAUiLgoRUGxheWVyc0N1cnJlbnRBZ2USGQoRaW5QbGF5ZXJBbnlQbGF5ZXIY",
+            "ASABKAUiKQoXUGxheWVyc0N1cnJlbnRBZ2VSZXN1bHQSDgoGcmVzdWx0GAEg",
+            "ASgFIjIKFVBsYXllcnNDdXJyZW50QWdlVGltZRIZChFpblBsYXllckFueVBs",
+            "YXllchgBIAEoBSItChtQbGF5ZXJzQ3VycmVudEFnZVRpbWVSZXN1bHQSDgoG",
+            "cmVzdWx0GAEgASgFIjYKGVBsYXllcnNNaWxpdGFyeVBvcHVsYXRpb24SGQoR",
+            "aW5QbGF5ZXJBbnlQbGF5ZXIYASABKAUiMQofUGxheWVyc01pbGl0YXJ5UG9w",
+            "dWxhdGlvblJlc3VsdBIOCgZyZXN1bHQYASABKAUiLgoRUGxheWVyc1BvcHVs",
+            "YXRpb24SGQoRaW5QbGF5ZXJBbnlQbGF5ZXIYASABKAUiKQoXUGxheWVyc1Bv",
+            "cHVsYXRpb25SZXN1bHQSDgoGcmVzdWx0GAEgASgFIikKDFBsYXllcnNTY29y",
+            "ZRIZChFpblBsYXllckFueVBsYXllchgBIAEoBSIkChJQbGF5ZXJzU2NvcmVS",
+            "ZXN1bHQSDgoGcmVzdWx0GAEgASgFIkkKDVBsYXllcnNTdGFuY2USGQoRaW5Q",
+            "bGF5ZXJBbnlQbGF5ZXIYASABKAUSHQoVaW5Db25zdEVTUGxheWVyU3RhbmNl",
+            "GAIgASgFIiUKE1BsYXllcnNTdGFuY2VSZXN1bHQSDgoGcmVzdWx0GAEgASgI",
+            "IkQKDlBsYXllcnNUcmlidXRlEhkKEWluUGxheWVyQW55UGxheWVyGAEgASgF",
+            "EhcKD2luQ29uc3RSZXNvdXJjZRgCIAEoBSImChRQbGF5ZXJzVHJpYnV0ZVJl",
+            "c3VsdBIOCgZyZXN1bHQYASABKAUiSgoUUGxheWVyc1RyaWJ1dGVNZW1vcnkS",
+            "GQoRaW5QbGF5ZXJBbnlQbGF5ZXIYASABKAUSFwoPaW5Db25zdFJlc291cmNl",
+            "GAIgASgFIiwKGlBsYXllcnNUcmlidXRlTWVtb3J5UmVzdWx0Eg4KBnJlc3Vs",
+            "dBgBIAEoBSItChBQbGF5ZXJzVW5pdENvdW50EhkKEWluUGxheWVyQW55UGxh",
+            "eWVyGAEgASgFIigKFlBsYXllcnNVbml0Q291bnRSZXN1bHQSDgoGcmVzdWx0",
+            "GAEgASgFIkgKFFBsYXllcnNVbml0VHlwZUNvdW50EhkKEWluUGxheWVyQW55",
+            "UGxheWVyGAEgASgFEhUKDWluQ29uc3RVbml0SWQYAiABKAUiLAoaUGxheWVy",
+            "c1VuaXRUeXBlQ291bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIgwKClBvcHVs",
+            "YXRpb24iIgoQUG9wdWxhdGlvblJlc3VsdBIOCgZyZXN1bHQYASABKAUiDwoN",
+            "UG9wdWxhdGlvbkNhcCIlChNQb3B1bGF0aW9uQ2FwUmVzdWx0Eg4KBnJlc3Vs",
+            "dBgBIAEoBSIUChJQb3B1bGF0aW9uSGVhZHJvb20iKgoYUG9wdWxhdGlvbkhl",
+            "YWRyb29tUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIOCgxSYW5kb21OdW1iZXIi",
+            "JAoSUmFuZG9tTnVtYmVyUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIOCgxSZWdp",
+            "Y2lkZUdhbWUiJAoSUmVnaWNpZGVHYW1lUmVzdWx0Eg4KBnJlc3VsdBgBIAEo",
+            "CCIqChFSZXNlYXJjaEF2YWlsYWJsZRIVCg1pbkNvbnN0VGVjaElkGAEgASgF",
+            "IikKF1Jlc2VhcmNoQXZhaWxhYmxlUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIq",
+            "ChFSZXNlYXJjaENvbXBsZXRlZBIVCg1pbkNvbnN0VGVjaElkGAEgASgFIikK",
+            "F1Jlc2VhcmNoQ29tcGxldGVkUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIoCg1S",
+            "ZXNvdXJjZUZvdW5kEhcKD2luQ29uc3RSZXNvdXJjZRgBIAEoBSIlChNSZXNv",
+            "dXJjZUZvdW5kUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCI/CgpTaGFyZWRHb2Fs",
+            "EhsKE2luQ29uc3RTaGFyZWRHb2FsSWQYASABKAUSFAoMaW5Db25zdFZhbHVl",
+            "GAIgASgFIiIKEFNoYXJlZEdvYWxSZXN1bHQSDgoGcmVzdWx0GAEgASgIIhYK",
+            "FFNoZWVwQW5kRm9yYWdlVG9vRmFyIiwKGlNoZWVwQW5kRm9yYWdlVG9vRmFy",
+            "UmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIOCgxTb2xkaWVyQ291bnQiJAoSU29s",
+            "ZGllckNvdW50UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSJICgxTdGFuY2VUb3dh",
+            "cmQSGQoRaW5QbGF5ZXJBbnlQbGF5ZXIYASABKAUSHQoVaW5Db25zdEVTUGxh",
+            "eWVyU3RhbmNlGAIgASgFIiQKElN0YW5jZVRvd2FyZFJlc3VsdBIOCgZyZXN1",
+            "bHQYASABKAgiDQoLU3RhcnRpbmdBZ2UiIwoRU3RhcnRpbmdBZ2VSZXN1bHQS",
+            "DgoGcmVzdWx0GAEgASgFIhMKEVN0YXJ0aW5nUmVzb3VyY2VzIikKF1N0YXJ0",
+            "aW5nUmVzb3VyY2VzUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSINCgtTdG9uZUFt",
+            "b3VudCIjChFTdG9uZUFtb3VudFJlc3VsdBIOCgZyZXN1bHQYASABKAUiJgoP",
+            "U3RyYXRlZ2ljTnVtYmVyEhMKC2luQ29uc3RTbklkGAEgASgFIicKFVN0cmF0",
+            "ZWdpY051bWJlclJlc3VsdBIOCgZyZXN1bHQYASABKAUiFQoTU3RyYXRlZ2lj",
+            "TnVtYmVyTGlzdCIrChlTdHJhdGVnaWNOdW1iZXJMaXN0UmVzdWx0Eg4KBnJl",
+            "c3VsdBgBIAMoBSJCCg1UYXVudERldGVjdGVkEhkKEWluUGxheWVyQW55UGxh",
+            "eWVyGAEgASgFEhYKDmluQ29uc3RUYXVudElkGAIgASgFIiUKE1RhdW50RGV0",
+            "ZWN0ZWRSZXN1bHQSDgoGcmVzdWx0GAEgASgIIigKDlRpbWVyVHJpZ2dlcmVk",
+            "EhYKDmluQ29uc3RUaW1lcklkGAEgASgFIiYKFFRpbWVyVHJpZ2dlcmVkUmVz",
+            "dWx0Eg4KBnJlc3VsdBgBIAEoCCIRCg9Ub3duVW5kZXJBdHRhY2siJwoVVG93",
+            "blVuZGVyQXR0YWNrUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIaCglUcmFjZUZh",
+            "Y3QSDQoFcGFyYW0YASABKAUiIQoPVHJhY2VGYWN0UmVzdWx0Eg4KBnJlc3Vs",
+            "dBgBIAEoCCIGCgRUcnVlIhwKClRydWVSZXN1bHQSDgoGcmVzdWx0GAEgASgI",
+            "IiYKDVVuaXRBdmFpbGFibGUSFQoNaW5Db25zdFVuaXRJZBgBIAEoBSIlChNV",
+            "bml0QXZhaWxhYmxlUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCILCglVbml0Q291",
+            "bnQiIQoPVW5pdENvdW50UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIQCg5Vbml0",
+            "Q291bnRUb3RhbCImChRVbml0Q291bnRUb3RhbFJlc3VsdBIOCgZyZXN1bHQY",
+            "ASABKAUiJgoNVW5pdFR5cGVDb3VudBIVCg1pbkNvbnN0VW5pdElkGAEgASgF",
+            "IiUKE1VuaXRUeXBlQ291bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIisKElVu",
+            "aXRUeXBlQ291bnRUb3RhbBIVCg1pbkNvbnN0VW5pdElkGAEgASgFIioKGFVu",
+            "aXRUeXBlQ291bnRUb3RhbFJlc3VsdBIOCgZyZXN1bHQYASABKAUiRAoMVXBB",
+            "bGxpZWRHb2FsEiIKGmluUGxheWVyQ29tcHV0ZXJBbGx5UGxheWVyGAEgASgF",
+            "EhAKCGluR29hbElkGAIgASgFIiQKElVwQWxsaWVkR29hbFJlc3VsdBIOCgZy",
+            "ZXN1bHQYASABKAUiUwoWVXBBbGxpZWRSZXNvdXJjZUFtb3VudBIaChJpblBs",
+            "YXllckFsbHlQbGF5ZXIYASABKAUSHQoVaW5Db25zdFJlc291cmNlQW1vdW50",
+            "GAIgASgFIi4KHFVwQWxsaWVkUmVzb3VyY2VBbW91bnRSZXN1bHQSDgoGcmVz",
+            "dWx0GAEgASgFIlQKF1VwQWxsaWVkUmVzb3VyY2VQZXJjZW50EhoKEmluUGxh",
+            "eWVyQWxseVBsYXllchgBIAEoBRIdChVpbkNvbnN0UmVzb3VyY2VBbW91bnQY",
+            "AiABKAUiLwodVXBBbGxpZWRSZXNvdXJjZVBlcmNlbnRSZXN1bHQSDgoGcmVz",
+            "dWx0GAEgASgFIkAKClVwQWxsaWVkU24SIgoaaW5QbGF5ZXJDb21wdXRlckFs",
+            "bHlQbGF5ZXIYASABKAUSDgoGaW5TbklkGAIgASgFIiIKEFVwQWxsaWVkU25S",
+            "ZXN1bHQSDgoGcmVzdWx0GAEgASgFIhEKD1VwQXR0YWNrZXJDbGFzcyInChVV",
+            "cEF0dGFja2VyQ2xhc3NSZXN1bHQSDgoGcmVzdWx0GAEgASgFIncKFFVwQnVp",
+            "bGRpbmdUeXBlSW5Ub3duEhsKEWluQ29uc3RCdWlsZGluZ0lkGAEgASgFSAAS",
+            "GgoQaW5Hb2FsQnVpbGRpbmdJZBgCIAEoBUgAEhgKDmluU25CdWlsZGluZ0lk",
+            "GAMgASgFSABCDAoKYnVpbGRpbmdJZCIsChpVcEJ1aWxkaW5nVHlwZUluVG93",
+            "blJlc3VsdBIOCgZyZXN1bHQYASABKAUiiAEKClVwQ2FuQnVpbGQSGQoRaW5H",
+            "b2FsRXNjcm93U3RhdGUYASABKAUSGwoRaW5Db25zdEJ1aWxkaW5nSWQYAiAB",
+            "KAVIABIaChBpbkdvYWxCdWlsZGluZ0lkGAMgASgFSAASGAoOaW5TbkJ1aWxk",
+            "aW5nSWQYBCABKAVIAEIMCgpidWlsZGluZ0lkIiIKEFVwQ2FuQnVpbGRSZXN1",
+            "bHQSDgoGcmVzdWx0GAEgASgIIqEBCg5VcENhbkJ1aWxkTGluZRIZChFpbkdv",
+            "YWxFc2Nyb3dTdGF0ZRgBIAEoBRITCgtpbkdvYWxQb2ludBgCIAEoBRIbChFp",
+            "bkNvbnN0QnVpbGRpbmdJZBgDIAEoBUgAEhoKEGluR29hbEJ1aWxkaW5nSWQY",
+            "BCABKAVIABIYCg5pblNuQnVpbGRpbmdJZBgFIAEoBUgAQgwKCmJ1aWxkaW5n",
+            "SWQiJgoUVXBDYW5CdWlsZExpbmVSZXN1bHQSDgoGcmVzdWx0GAEgASgIInsK",
+            "DVVwQ2FuUmVzZWFyY2gSGQoRaW5Hb2FsRXNjcm93U3RhdGUYASABKAUSFwoN",
+            "aW5Db25zdFRlY2hJZBgCIAEoBUgAEhYKDGluR29hbFRlY2hJZBgDIAEoBUgA",
+            "EhQKCmluU25UZWNoSWQYBCABKAVIAEIICgZ0ZWNoSWQiJQoTVXBDYW5SZXNl",
+            "YXJjaFJlc3VsdBIOCgZyZXN1bHQYASABKAgiKgoLVXBDYW5TZWFyY2gSGwoT",
+            "aW5Db25zdFNlYXJjaFNvdXJjZRgBIAEoBSIjChFVcENhblNlYXJjaFJlc3Vs",
+            "dBIOCgZyZXN1bHQYASABKAgieAoKVXBDYW5UcmFpbhIZChFpbkdvYWxFc2Ny",
+            "b3dTdGF0ZRgBIAEoBRIXCg1pbkNvbnN0VW5pdElkGAIgASgFSAASFgoMaW5H",
+            "b2FsVW5pdElkGAMgASgFSAASFAoKaW5TblVuaXRJZBgEIAEoBUgAQggKBnVu",
+            "aXRJZCIiChBVcENhblRyYWluUmVzdWx0Eg4KBnJlc3VsdBgBIAEoCCIRCg9V",
+            "cERlZmVuZGVyQ291bnQiJwoVVXBEZWZlbmRlckNvdW50UmVzdWx0Eg4KBnJl",
+            "c3VsdBgBIAEoBSIYChZVcEVuZW15QnVpbGRpbmdzSW5Ub3duIi4KHFVwRW5l",
+            "bXlCdWlsZGluZ3NJblRvd25SZXN1bHQSDgoGcmVzdWx0GAEgASgFIhQKElVw",
+            "RW5lbXlVbml0c0luVG93biIqChhVcEVuZW15VW5pdHNJblRvd25SZXN1bHQS",
+            "DgoGcmVzdWx0GAEgASgFIhgKFlVwRW5lbXlWaWxsYWdlcnNJblRvd24iLgoc",
+            "VXBFbmVteVZpbGxhZ2Vyc0luVG93blJlc3VsdBIOCgZyZXN1bHQYASABKAUi",
+            "KgoPVXBHYWlhVHlwZUNvdW50EhcKD2luQ29uc3RSZXNvdXJjZRgBIAEoBSIn",
+            "ChVVcEdhaWFUeXBlQ291bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIi8KFFVw",
+            "R2FpYVR5cGVDb3VudFRvdGFsEhcKD2luQ29uc3RSZXNvdXJjZRgBIAEoBSIs",
+            "ChpVcEdhaWFUeXBlQ291bnRUb3RhbFJlc3VsdBIOCgZyZXN1bHQYASABKAUi",
+            "YgoLVXBHcm91cFNpemUSGAoOaW5Db25zdEdyb3VwSWQYASABKAVIABIXCg1p",
+            "bkdvYWxHcm91cElkGAIgASgFSAASFQoLaW5Tbkdyb3VwSWQYAyABKAVIAEIJ",
+            "Cgdncm91cElkIiMKEVVwR3JvdXBTaXplUmVzdWx0Eg4KBnJlc3VsdBgBIAEo",
+            "BSIqCg9VcElkbGVVbml0Q291bnQSFwoPaW5Db25zdElkbGVUeXBlGAEgASgF",
+            "IicKFVVwSWRsZVVuaXRDb3VudFJlc3VsdBIOCgZyZXN1bHQYASABKAUiKQoM",
+            "VXBPYmplY3REYXRhEhkKEWluQ29uc3RPYmplY3REYXRhGAEgASgFIiQKElVw",
+            "T2JqZWN0RGF0YVJlc3VsdBIOCgZyZXN1bHQYASABKAUiEgoQVXBPYmplY3RE",
+            "YXRhTGlzdCIoChZVcE9iamVjdERhdGFMaXN0UmVzdWx0Eg4KBnJlc3VsdBgB",
+            "IAMoBSIvChJVcE9iamVjdFRhcmdldERhdGESGQoRaW5Db25zdE9iamVjdERh",
+            "dGEYASABKAUiKgoYVXBPYmplY3RUYXJnZXREYXRhUmVzdWx0Eg4KBnJlc3Vs",
+            "dBgBIAEoBSJsChFVcE9iamVjdFR5cGVDb3VudBIZCg9pbkNvbnN0T2JqZWN0",
+            "SWQYASABKAVIABIYCg5pbkdvYWxPYmplY3RJZBgCIAEoBUgAEhYKDGluU25P",
+            "YmplY3RJZBgDIAEoBUgAQgoKCG9iamVjdElkIikKF1VwT2JqZWN0VHlwZUNv",
+            "dW50UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSJxChZVcE9iamVjdFR5cGVDb3Vu",
+            "dFRvdGFsEhkKD2luQ29uc3RPYmplY3RJZBgBIAEoBUgAEhgKDmluR29hbE9i",
+            "amVjdElkGAIgASgFSAASFgoMaW5Tbk9iamVjdElkGAMgASgFSABCCgoIb2Jq",
+            "ZWN0SWQiLgocVXBPYmplY3RUeXBlQ291bnRUb3RhbFJlc3VsdBIOCgZyZXN1",
+            "bHQYASABKAUiPAoOVXBQYXRoRGlzdGFuY2USEwoLaW5Hb2FsUG9pbnQYASAB",
+            "KAUSFQoNaW5Db25zdFN0cmljdBgCIAEoBSImChRVcFBhdGhEaXN0YW5jZVJl",
+            "c3VsdBIOCgZyZXN1bHQYASABKAUiawoQVXBQZW5kaW5nT2JqZWN0cxIZCg9p",
+            "bkNvbnN0T2JqZWN0SWQYASABKAVIABIYCg5pbkdvYWxPYmplY3RJZBgCIAEo",
+            "BUgAEhYKDGluU25PYmplY3RJZBgDIAEoBUgAQgoKCG9iamVjdElkIigKFlVw",
+            "UGVuZGluZ09iamVjdHNSZXN1bHQSDgoGcmVzdWx0GAEgASgFInUKElVwUGVu",
+            "ZGluZ1BsYWNlbWVudBIbChFpbkNvbnN0QnVpbGRpbmdJZBgBIAEoBUgAEhoK",
+            "EGluR29hbEJ1aWxkaW5nSWQYAiABKAVIABIYCg5pblNuQnVpbGRpbmdJZBgD",
+            "IAEoBUgAQgwKCmJ1aWxkaW5nSWQiKgoYVXBQZW5kaW5nUGxhY2VtZW50UmVz",
+            "dWx0Eg4KBnJlc3VsdBgBIAEoCCItChBVcFBsYXllckRpc3RhbmNlEhkKEWlu",
+            "UGxheWVyQW55UGxheWVyGAEgASgFIigKFlVwUGxheWVyRGlzdGFuY2VSZXN1",
+            "bHQSDgoGcmVzdWx0GAEgASgFIi4KD1VwUGxheWVyc0luR2FtZRIbChNpbkNv",
+            "bnN0UGxheWVyU3RhbmNlGAEgASgFIicKFVVwUGxheWVyc0luR2FtZVJlc3Vs",
+            "dBIOCgZyZXN1bHQYASABKAUifwoPVXBQb2ludENvbnRhaW5zEhMKC2luR29h",
+            "bFBvaW50GAEgASgFEhkKD2luQ29uc3RPYmplY3RJZBgCIAEoBUgAEhgKDmlu",
+            "R29hbE9iamVjdElkGAMgASgFSAASFgoMaW5Tbk9iamVjdElkGAQgASgFSABC",
+            "CgoIb2JqZWN0SWQiJwoVVXBQb2ludENvbnRhaW5zUmVzdWx0Eg4KBnJlc3Vs",
+            "dBgBIAEoCCI9Cg9VcFBvaW50RGlzdGFuY2USFAoMaW5Hb2FsUG9pbnQxGAEg",
+            "ASgFEhQKDGluR29hbFBvaW50MhgCIAEoBSInChVVcFBvaW50RGlzdGFuY2VS",
+            "ZXN1bHQSDgoGcmVzdWx0GAEgASgFIicKEFVwUG9pbnRFbGV2YXRpb24SEwoL",
+            "aW5Hb2FsUG9pbnQYASABKAUiKAoWVXBQb2ludEVsZXZhdGlvblJlc3VsdBIO",
+            "CgZyZXN1bHQYASABKAUiJgoPVXBQb2ludEV4cGxvcmVkEhMKC2luR29hbFBv",
+            "aW50GAEgASgFIicKFVVwUG9pbnRFeHBsb3JlZFJlc3VsdBIOCgZyZXN1bHQY",
+            "ASABKAUiJQoOVXBQb2ludFRlcnJhaW4SEwoLaW5Hb2FsUG9pbnQYASABKAUi",
+            "JgoUVXBQb2ludFRlcnJhaW5SZXN1bHQSDgoGcmVzdWx0GAEgASgFIiIKC1Vw",
+            "UG9pbnRab25lEhMKC2luR29hbFBvaW50GAEgASgFIiMKEVVwUG9pbnRab25l",
+            "UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSI1ChRVcFByb2plY3RpbGVEZXRlY3Rl",
+            "ZBIdChVpbkNvbnN0UHJvamVjdGlsZVR5cGUYASABKAUiLAoaVXBQcm9qZWN0",
+            "aWxlRGV0ZWN0ZWRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIjMKElVwUHJvamVj",
+            "dGlsZVRhcmdldBIdChVpbkNvbnN0UHJvamVjdGlsZVR5cGUYASABKAUiKgoY",
+            "VXBQcm9qZWN0aWxlVGFyZ2V0UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSIXChVV",
+            "cFJlbWFpbmluZ0JvYXJBbW91bnQiLQobVXBSZW1haW5pbmdCb2FyQW1vdW50",
+            "UmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSJjChBVcFJlc2VhcmNoU3RhdHVzEhcK",
+            "DWluQ29uc3RUZWNoSWQYASABKAVIABIWCgxpbkdvYWxUZWNoSWQYAiABKAVI",
+            "ABIUCgppblNuVGVjaElkGAMgASgFSABCCAoGdGVjaElkIigKFlVwUmVzZWFy",
+            "Y2hTdGF0dXNSZXN1bHQSDgoGcmVzdWx0GAEgASgFIjEKEFVwUmVzb3VyY2VB",
+            "bW91bnQSHQoVaW5Db25zdFJlc291cmNlQW1vdW50GAEgASgFIigKFlVwUmVz",
+            "b3VyY2VBbW91bnRSZXN1bHQSDgoGcmVzdWx0GAEgASgFIjIKEVVwUmVzb3Vy",
+            "Y2VQZXJjZW50Eh0KFWluQ29uc3RSZXNvdXJjZUFtb3VudBgBIAEoBSIpChdV",
+            "cFJlc291cmNlUGVyY2VudFJlc3VsdBIOCgZyZXN1bHQYASABKAUiMwoUVXBT",
+            "ZWFyY2hPYmplY3RJZExpc3QSGwoTaW5Db25zdFNlYXJjaFNvdXJjZRgBIAEo",
+            "BSIsChpVcFNlYXJjaE9iamVjdElkTGlzdFJlc3VsdBIOCgZyZXN1bHQYASAD",
+            "KAUiJwoNVXBUaW1lclN0YXR1cxIWCg5pbkNvbnN0VGltZXJJZBgBIAEoBSIl",
+            "ChNVcFRpbWVyU3RhdHVzUmVzdWx0Eg4KBnJlc3VsdBgBIAEoBSJjChBVcFRy",
+            "YWluU2l0ZVJlYWR5EhcKDWluQ29uc3RVbml0SWQYASABKAVIABIWCgxpbkdv",
+            "YWxVbml0SWQYAiABKAVIABIUCgppblNuVW5pdElkGAMgASgFSABCCAoGdW5p",
+            "dElkIigKFlVwVHJhaW5TaXRlUmVhZHlSZXN1bHQSDgoGcmVzdWx0GAEgASgI",
+            "ImMKEFVwVW5pdFR5cGVJblRvd24SFwoNaW5Db25zdFVuaXRJZBgBIAEoBUgA",
+            "EhYKDGluR29hbFVuaXRJZBgCIAEoBUgAEhQKCmluU25Vbml0SWQYAyABKAVI",
+            "AEIICgZ1bml0SWQiKAoWVXBVbml0VHlwZUluVG93blJlc3VsdBIOCgZyZXN1",
+            "bHQYASABKAUiZwoUVXBWaWxsYWdlclR5cGVJblRvd24SFwoNaW5Db25zdFVu",
+            "aXRJZBgBIAEoBUgAEhYKDGluR29hbFVuaXRJZBgCIAEoBUgAEhQKCmluU25V",
+            "bml0SWQYAyABKAVIAEIICgZ1bml0SWQiLAoaVXBWaWxsYWdlclR5cGVJblRv",
+            "d25SZXN1bHQSDgoGcmVzdWx0GAEgASgFIioKEFZpY3RvcnlDb25kaXRpb24S",
+            "FgoOaW5Db25zdFZpY3RvcnkYASABKAUiKAoWVmljdG9yeUNvbmRpdGlvblJl",
+            "c3VsdBIOCgZyZXN1bHQYASABKAgiMwoXV2FsbENvbXBsZXRlZFBlcmNlbnRh",
+            "Z2USGAoQaW5Db25zdFBlcmltZXRlchgBIAEoBSIvCh1XYWxsQ29tcGxldGVk",
+            "UGVyY2VudGFnZVJlc3VsdBIOCgZyZXN1bHQYASABKAUiMwoXV2FsbEludmlz",
+            "aWJsZVBlcmNlbnRhZ2USGAoQaW5Db25zdFBlcmltZXRlchgBIAEoBSIvCh1X",
+            "YWxsSW52aXNpYmxlUGVyY2VudGFnZVJlc3VsdBIOCgZyZXN1bHQYASABKAUi",
+            "DgoMV2FyYm9hdENvdW50IiQKEldhcmJvYXRDb3VudFJlc3VsdBIOCgZyZXN1",
+            "bHQYASABKAUiDAoKV29vZEFtb3VudCIiChBXb29kQW1vdW50UmVzdWx0Eg4K",
+            "BnJlc3VsdBgBIAEoBSISChBNb2RNYXBEaW1lbnNpb25zIjcKFk1vZE1hcERp",
+            "bWVuc2lvbnNSZXN1bHQSDQoFd2lkdGgYASABKAUSDgoGaGVpZ2h0GAIgASgF",
+            "Ig0KC01vZE1hcFRpbGVzImEKEU1vZE1hcFRpbGVzUmVzdWx0EhAKCG1hcFdp",
+            "ZHRoGAEgASgFEhEKCW1hcEhlaWdodBgCIAEoBRInCgV0aWxlcxgDIAMoCzIY",
+            "LnByb3Rvcy5leHBlcnQuZmFjdC5UaWxlIlEKBFRpbGUSCQoBeBgBIAEoBRIJ",
+            "CgF5GAIgASgFEg4KBmhlaWdodBgDIAEoBRIPCgd0ZXJyYWluGAQgASgFEhIK",
+            "CnZpc2liaWxpdHkYBSABKAViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -315,69 +356,69 @@ namespace Protos.Expert.Fact {
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.AttackSoldierCountResult), global::Protos.Expert.Fact.AttackSoldierCountResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.AttackWarboatCount), global::Protos.Expert.Fact.AttackWarboatCount.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.AttackWarboatCountResult), global::Protos.Expert.Fact.AttackWarboatCountResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.BuildingAvailable), global::Protos.Expert.Fact.BuildingAvailable.Parser, new[]{ "BuildingType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.BuildingAvailable), global::Protos.Expert.Fact.BuildingAvailable.Parser, new[]{ "InConstBuildingId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.BuildingAvailableResult), global::Protos.Expert.Fact.BuildingAvailableResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.BuildingCount), global::Protos.Expert.Fact.BuildingCount.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.BuildingCountResult), global::Protos.Expert.Fact.BuildingCountResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.BuildingCountTotal), global::Protos.Expert.Fact.BuildingCountTotal.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.BuildingCountTotalResult), global::Protos.Expert.Fact.BuildingCountTotalResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.BuildingTypeCount), global::Protos.Expert.Fact.BuildingTypeCount.Parser, new[]{ "BuildingType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.BuildingTypeCount), global::Protos.Expert.Fact.BuildingTypeCount.Parser, new[]{ "InConstBuildingId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.BuildingTypeCountResult), global::Protos.Expert.Fact.BuildingTypeCountResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.BuildingTypeCountTotal), global::Protos.Expert.Fact.BuildingTypeCountTotal.Parser, new[]{ "BuildingType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.BuildingTypeCountTotal), global::Protos.Expert.Fact.BuildingTypeCountTotal.Parser, new[]{ "InConstBuildingId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.BuildingTypeCountTotalResult), global::Protos.Expert.Fact.BuildingTypeCountTotalResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanAffordBuilding), global::Protos.Expert.Fact.CanAffordBuilding.Parser, new[]{ "BuildingType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanAffordBuilding), global::Protos.Expert.Fact.CanAffordBuilding.Parser, new[]{ "InConstBuildingId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanAffordBuildingResult), global::Protos.Expert.Fact.CanAffordBuildingResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanAffordCompleteWall), global::Protos.Expert.Fact.CanAffordCompleteWall.Parser, new[]{ "Perimeter", "WallType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanAffordCompleteWall), global::Protos.Expert.Fact.CanAffordCompleteWall.Parser, new[]{ "InConstPerimeter", "InConstWallId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanAffordCompleteWallResult), global::Protos.Expert.Fact.CanAffordCompleteWallResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanAffordResearch), global::Protos.Expert.Fact.CanAffordResearch.Parser, new[]{ "ResearchType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanAffordResearch), global::Protos.Expert.Fact.CanAffordResearch.Parser, new[]{ "InConstTechId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanAffordResearchResult), global::Protos.Expert.Fact.CanAffordResearchResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanAffordUnit), global::Protos.Expert.Fact.CanAffordUnit.Parser, new[]{ "UnitType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanAffordUnit), global::Protos.Expert.Fact.CanAffordUnit.Parser, new[]{ "InConstUnitId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanAffordUnitResult), global::Protos.Expert.Fact.CanAffordUnitResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuild), global::Protos.Expert.Fact.CanBuild.Parser, new[]{ "BuildingType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuild), global::Protos.Expert.Fact.CanBuild.Parser, new[]{ "InConstBuildingId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuildResult), global::Protos.Expert.Fact.CanBuildResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuildGate), global::Protos.Expert.Fact.CanBuildGate.Parser, new[]{ "Perimeter" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuildGate), global::Protos.Expert.Fact.CanBuildGate.Parser, new[]{ "InConstPerimeter" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuildGateResult), global::Protos.Expert.Fact.CanBuildGateResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuildGateWithEscrow), global::Protos.Expert.Fact.CanBuildGateWithEscrow.Parser, new[]{ "Perimeter" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuildGateWithEscrow), global::Protos.Expert.Fact.CanBuildGateWithEscrow.Parser, new[]{ "InConstPerimeter" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuildGateWithEscrowResult), global::Protos.Expert.Fact.CanBuildGateWithEscrowResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuildWall), global::Protos.Expert.Fact.CanBuildWall.Parser, new[]{ "Perimeter", "WallType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuildWall), global::Protos.Expert.Fact.CanBuildWall.Parser, new[]{ "InConstPerimeter", "InConstWallId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuildWallResult), global::Protos.Expert.Fact.CanBuildWallResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuildWallWithEscrow), global::Protos.Expert.Fact.CanBuildWallWithEscrow.Parser, new[]{ "Perimeter", "WallType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuildWallWithEscrow), global::Protos.Expert.Fact.CanBuildWallWithEscrow.Parser, new[]{ "InConstPerimeter", "InConstWallId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuildWallWithEscrowResult), global::Protos.Expert.Fact.CanBuildWallWithEscrowResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuildWithEscrow), global::Protos.Expert.Fact.CanBuildWithEscrow.Parser, new[]{ "BuildingType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuildWithEscrow), global::Protos.Expert.Fact.CanBuildWithEscrow.Parser, new[]{ "InConstBuildingId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuildWithEscrowResult), global::Protos.Expert.Fact.CanBuildWithEscrowResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuyCommodity), global::Protos.Expert.Fact.CanBuyCommodity.Parser, new[]{ "CommodityType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuyCommodity), global::Protos.Expert.Fact.CanBuyCommodity.Parser, new[]{ "InConstCommodity" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanBuyCommodityResult), global::Protos.Expert.Fact.CanBuyCommodityResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanResearch), global::Protos.Expert.Fact.CanResearch.Parser, new[]{ "ResearchType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanResearch), global::Protos.Expert.Fact.CanResearch.Parser, new[]{ "InConstTechId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanResearchResult), global::Protos.Expert.Fact.CanResearchResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanResearchWithEscrow), global::Protos.Expert.Fact.CanResearchWithEscrow.Parser, new[]{ "ResearchType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanResearchWithEscrow), global::Protos.Expert.Fact.CanResearchWithEscrow.Parser, new[]{ "InConstTechId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanResearchWithEscrowResult), global::Protos.Expert.Fact.CanResearchWithEscrowResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanSellCommodity), global::Protos.Expert.Fact.CanSellCommodity.Parser, new[]{ "CommodityType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanSellCommodity), global::Protos.Expert.Fact.CanSellCommodity.Parser, new[]{ "InConstCommodity" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanSellCommodityResult), global::Protos.Expert.Fact.CanSellCommodityResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanSpy), global::Protos.Expert.Fact.CanSpy.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanSpyResult), global::Protos.Expert.Fact.CanSpyResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanSpyWithEscrow), global::Protos.Expert.Fact.CanSpyWithEscrow.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanSpyWithEscrowResult), global::Protos.Expert.Fact.CanSpyWithEscrowResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanTrain), global::Protos.Expert.Fact.CanTrain.Parser, new[]{ "UnitType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanTrain), global::Protos.Expert.Fact.CanTrain.Parser, new[]{ "InConstUnitId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanTrainResult), global::Protos.Expert.Fact.CanTrainResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanTrainWithEscrow), global::Protos.Expert.Fact.CanTrainWithEscrow.Parser, new[]{ "UnitType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanTrainWithEscrow), global::Protos.Expert.Fact.CanTrainWithEscrow.Parser, new[]{ "InConstUnitId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CanTrainWithEscrowResult), global::Protos.Expert.Fact.CanTrainWithEscrowResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CcPlayersBuildingCount), global::Protos.Expert.Fact.CcPlayersBuildingCount.Parser, new[]{ "PlayerNumber" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CcPlayersBuildingCount), global::Protos.Expert.Fact.CcPlayersBuildingCount.Parser, new[]{ "InPlayerAnyPlayer" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CcPlayersBuildingCountResult), global::Protos.Expert.Fact.CcPlayersBuildingCountResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CcPlayersBuildingTypeCount), global::Protos.Expert.Fact.CcPlayersBuildingTypeCount.Parser, new[]{ "PlayerNumber", "BuildingType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CcPlayersBuildingTypeCount), global::Protos.Expert.Fact.CcPlayersBuildingTypeCount.Parser, new[]{ "InPlayerAnyPlayer", "InConstBuildingId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CcPlayersBuildingTypeCountResult), global::Protos.Expert.Fact.CcPlayersBuildingTypeCountResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CcPlayersUnitCount), global::Protos.Expert.Fact.CcPlayersUnitCount.Parser, new[]{ "PlayerNumber" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CcPlayersUnitCount), global::Protos.Expert.Fact.CcPlayersUnitCount.Parser, new[]{ "InPlayerAnyPlayer" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CcPlayersUnitCountResult), global::Protos.Expert.Fact.CcPlayersUnitCountResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CcPlayersUnitTypeCount), global::Protos.Expert.Fact.CcPlayersUnitTypeCount.Parser, new[]{ "PlayerNumber", "UnitType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CcPlayersUnitTypeCount), global::Protos.Expert.Fact.CcPlayersUnitTypeCount.Parser, new[]{ "InPlayerAnyPlayer", "InConstUnitId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CcPlayersUnitTypeCountResult), global::Protos.Expert.Fact.CcPlayersUnitTypeCountResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CheatsEnabled), global::Protos.Expert.Fact.CheatsEnabled.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CheatsEnabledResult), global::Protos.Expert.Fact.CheatsEnabledResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CivSelected), global::Protos.Expert.Fact.CivSelected.Parser, new[]{ "Civ" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CivSelected), global::Protos.Expert.Fact.CivSelected.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CivSelectedResult), global::Protos.Expert.Fact.CivSelectedResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CivilianPopulation), global::Protos.Expert.Fact.CivilianPopulation.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CivilianPopulationResult), global::Protos.Expert.Fact.CivilianPopulationResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CommodityBuyingPrice), global::Protos.Expert.Fact.CommodityBuyingPrice.Parser, new[]{ "CommodityType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CommodityBuyingPrice), global::Protos.Expert.Fact.CommodityBuyingPrice.Parser, new[]{ "InConstCommodity" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CommodityBuyingPriceResult), global::Protos.Expert.Fact.CommodityBuyingPriceResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CommoditySellingPrice), global::Protos.Expert.Fact.CommoditySellingPrice.Parser, new[]{ "CommodityType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CommoditySellingPrice), global::Protos.Expert.Fact.CommoditySellingPrice.Parser, new[]{ "InConstCommodity" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CommoditySellingPriceResult), global::Protos.Expert.Fact.CommoditySellingPriceResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CurrentAge), global::Protos.Expert.Fact.CurrentAge.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.CurrentAgeResult), global::Protos.Expert.Fact.CurrentAgeResult.Parser, new[]{ "Result" }, null, null, null, null),
@@ -393,9 +434,9 @@ namespace Protos.Expert.Fact {
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.DefendWarboatCountResult), global::Protos.Expert.Fact.DefendWarboatCountResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.Difficulty), global::Protos.Expert.Fact.Difficulty.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.DifficultyResult), global::Protos.Expert.Fact.DifficultyResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.Doctrine), global::Protos.Expert.Fact.Doctrine.Parser, new[]{ "Value" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.Doctrine), global::Protos.Expert.Fact.Doctrine.Parser, new[]{ "InConstValue" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.DoctrineResult), global::Protos.Expert.Fact.DoctrineResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.DropsiteMinDistance), global::Protos.Expert.Fact.DropsiteMinDistance.Parser, new[]{ "ResourceType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.DropsiteMinDistance), global::Protos.Expert.Fact.DropsiteMinDistance.Parser, new[]{ "InConstResource" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.DropsiteMinDistanceResult), global::Protos.Expert.Fact.DropsiteMinDistanceResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.EndingAge), global::Protos.Expert.Fact.EndingAge.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.EndingAgeResult), global::Protos.Expert.Fact.EndingAgeResult.Parser, new[]{ "Result" }, null, null, null, null),
@@ -403,9 +444,9 @@ namespace Protos.Expert.Fact {
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.EnemyBuildingsInTownResult), global::Protos.Expert.Fact.EnemyBuildingsInTownResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.EnemyCapturedRelics), global::Protos.Expert.Fact.EnemyCapturedRelics.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.EnemyCapturedRelicsResult), global::Protos.Expert.Fact.EnemyCapturedRelicsResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.EscrowAmount), global::Protos.Expert.Fact.EscrowAmount.Parser, new[]{ "ResourceType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.EscrowAmount), global::Protos.Expert.Fact.EscrowAmount.Parser, new[]{ "InConstResource" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.EscrowAmountResult), global::Protos.Expert.Fact.EscrowAmountResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.EventDetected), global::Protos.Expert.Fact.EventDetected.Parser, new[]{ "EventType", "Id" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.EventDetected), global::Protos.Expert.Fact.EventDetected.Parser, new[]{ "InConstEventType", "InConstEventId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.EventDetectedResult), global::Protos.Expert.Fact.EventDetectedResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.False), global::Protos.Expert.Fact.False.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.FalseResult), global::Protos.Expert.Fact.FalseResult.Parser, new[]{ "Result" }, null, null, null, null),
@@ -419,12 +460,12 @@ namespace Protos.Expert.Fact {
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.GameTimeResult), global::Protos.Expert.Fact.GameTimeResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.GameType), global::Protos.Expert.Fact.GameType.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.GameTypeResult), global::Protos.Expert.Fact.GameTypeResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.GateCount), global::Protos.Expert.Fact.GateCount.Parser, new[]{ "Perimeter" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.GateCount), global::Protos.Expert.Fact.GateCount.Parser, new[]{ "InConstPerimeter" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.GateCountResult), global::Protos.Expert.Fact.GateCountResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.Goal), global::Protos.Expert.Fact.Goal.Parser, new[]{ "GoalId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.Goal), global::Protos.Expert.Fact.Goal.Parser, new[]{ "InConstGoalId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.GoalResult), global::Protos.Expert.Fact.GoalResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.Goals), global::Protos.Expert.Fact.Goals.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.GoalsResult), global::Protos.Expert.Fact.GoalsResult.Parser, new[]{ "Result" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.GoalList), global::Protos.Expert.Fact.GoalList.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.GoalListResult), global::Protos.Expert.Fact.GoalListResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.GoldAmount), global::Protos.Expert.Fact.GoldAmount.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.GoldAmountResult), global::Protos.Expert.Fact.GoldAmountResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.HoldKohRuin), global::Protos.Expert.Fact.HoldKohRuin.Parser, null, null, null, null, null),
@@ -435,53 +476,53 @@ namespace Protos.Expert.Fact {
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.HousingHeadroomResult), global::Protos.Expert.Fact.HousingHeadroomResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.IdleFarmCount), global::Protos.Expert.Fact.IdleFarmCount.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.IdleFarmCountResult), global::Protos.Expert.Fact.IdleFarmCountResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.MapSize), global::Protos.Expert.Fact.MapSize.Parser, new[]{ "MapSize_" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.MapSize), global::Protos.Expert.Fact.MapSize.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.MapSizeResult), global::Protos.Expert.Fact.MapSizeResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.MapType), global::Protos.Expert.Fact.MapType.Parser, new[]{ "MapType_" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.MapType), global::Protos.Expert.Fact.MapType.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.MapTypeResult), global::Protos.Expert.Fact.MapTypeResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.MilitaryPopulation), global::Protos.Expert.Fact.MilitaryPopulation.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.MilitaryPopulationResult), global::Protos.Expert.Fact.MilitaryPopulationResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayerComputer), global::Protos.Expert.Fact.PlayerComputer.Parser, new[]{ "PlayerNumber" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayerComputer), global::Protos.Expert.Fact.PlayerComputer.Parser, new[]{ "InPlayerAnyPlayer" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayerComputerResult), global::Protos.Expert.Fact.PlayerComputerResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayerHuman), global::Protos.Expert.Fact.PlayerHuman.Parser, new[]{ "PlayerNumber" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayerHuman), global::Protos.Expert.Fact.PlayerHuman.Parser, new[]{ "InPlayerAnyPlayer" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayerHumanResult), global::Protos.Expert.Fact.PlayerHumanResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayerInGame), global::Protos.Expert.Fact.PlayerInGame.Parser, new[]{ "PlayerNumber" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayerInGame), global::Protos.Expert.Fact.PlayerInGame.Parser, new[]{ "InPlayerAnyPlayer" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayerInGameResult), global::Protos.Expert.Fact.PlayerInGameResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayerNumber), global::Protos.Expert.Fact.PlayerNumber.Parser, new[]{ "PlayerNumber_" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayerNumber), global::Protos.Expert.Fact.PlayerNumber.Parser, new[]{ "InPlayerAnyPlayer" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayerNumberResult), global::Protos.Expert.Fact.PlayerNumberResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayerResigned), global::Protos.Expert.Fact.PlayerResigned.Parser, new[]{ "PlayerNumber" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayerResigned), global::Protos.Expert.Fact.PlayerResigned.Parser, new[]{ "InPlayerAnyPlayer" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayerResignedResult), global::Protos.Expert.Fact.PlayerResignedResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayerValid), global::Protos.Expert.Fact.PlayerValid.Parser, new[]{ "PlayerNumber" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayerValid), global::Protos.Expert.Fact.PlayerValid.Parser, new[]{ "InPlayerAnyPlayer" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayerValidResult), global::Protos.Expert.Fact.PlayerValidResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersAchievements), global::Protos.Expert.Fact.PlayersAchievements.Parser, new[]{ "Param1", "Param2", "Param3", "Param4" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersAchievementsResult), global::Protos.Expert.Fact.PlayersAchievementsResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersBuildingCount), global::Protos.Expert.Fact.PlayersBuildingCount.Parser, new[]{ "PlayerNumber" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersBuildingCount), global::Protos.Expert.Fact.PlayersBuildingCount.Parser, new[]{ "InPlayerAnyPlayer" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersBuildingCountResult), global::Protos.Expert.Fact.PlayersBuildingCountResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersBuildingTypeCount), global::Protos.Expert.Fact.PlayersBuildingTypeCount.Parser, new[]{ "PlayerNumber", "BuildingType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersBuildingTypeCount), global::Protos.Expert.Fact.PlayersBuildingTypeCount.Parser, new[]{ "InPlayerAnyPlayer", "InConstBuildingId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersBuildingTypeCountResult), global::Protos.Expert.Fact.PlayersBuildingTypeCountResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersCiv), global::Protos.Expert.Fact.PlayersCiv.Parser, new[]{ "PlayerNumber" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersCiv), global::Protos.Expert.Fact.PlayersCiv.Parser, new[]{ "InPlayerAnyPlayer" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersCivResult), global::Protos.Expert.Fact.PlayersCivResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersCivilianPopulation), global::Protos.Expert.Fact.PlayersCivilianPopulation.Parser, new[]{ "PlayerNumber" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersCivilianPopulation), global::Protos.Expert.Fact.PlayersCivilianPopulation.Parser, new[]{ "InPlayerAnyPlayer" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersCivilianPopulationResult), global::Protos.Expert.Fact.PlayersCivilianPopulationResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersCurrentAge), global::Protos.Expert.Fact.PlayersCurrentAge.Parser, new[]{ "PlayerNumber" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersCurrentAge), global::Protos.Expert.Fact.PlayersCurrentAge.Parser, new[]{ "InPlayerAnyPlayer" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersCurrentAgeResult), global::Protos.Expert.Fact.PlayersCurrentAgeResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersCurrentAgeTime), global::Protos.Expert.Fact.PlayersCurrentAgeTime.Parser, new[]{ "PlayerNumber" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersCurrentAgeTime), global::Protos.Expert.Fact.PlayersCurrentAgeTime.Parser, new[]{ "InPlayerAnyPlayer" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersCurrentAgeTimeResult), global::Protos.Expert.Fact.PlayersCurrentAgeTimeResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersMilitaryPopulation), global::Protos.Expert.Fact.PlayersMilitaryPopulation.Parser, new[]{ "PlayerNumber" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersMilitaryPopulation), global::Protos.Expert.Fact.PlayersMilitaryPopulation.Parser, new[]{ "InPlayerAnyPlayer" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersMilitaryPopulationResult), global::Protos.Expert.Fact.PlayersMilitaryPopulationResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersPopulation), global::Protos.Expert.Fact.PlayersPopulation.Parser, new[]{ "PlayerNumber" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersPopulation), global::Protos.Expert.Fact.PlayersPopulation.Parser, new[]{ "InPlayerAnyPlayer" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersPopulationResult), global::Protos.Expert.Fact.PlayersPopulationResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersScore), global::Protos.Expert.Fact.PlayersScore.Parser, new[]{ "PlayerNumber" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersScore), global::Protos.Expert.Fact.PlayersScore.Parser, new[]{ "InPlayerAnyPlayer" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersScoreResult), global::Protos.Expert.Fact.PlayersScoreResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersStance), global::Protos.Expert.Fact.PlayersStance.Parser, new[]{ "PlayerNumber", "Stance" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersStance), global::Protos.Expert.Fact.PlayersStance.Parser, new[]{ "InPlayerAnyPlayer", "InConstESPlayerStance" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersStanceResult), global::Protos.Expert.Fact.PlayersStanceResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersTribute), global::Protos.Expert.Fact.PlayersTribute.Parser, new[]{ "PlayerNumber", "ResourceType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersTribute), global::Protos.Expert.Fact.PlayersTribute.Parser, new[]{ "InPlayerAnyPlayer", "InConstResource" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersTributeResult), global::Protos.Expert.Fact.PlayersTributeResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersTributeMemory), global::Protos.Expert.Fact.PlayersTributeMemory.Parser, new[]{ "PlayerNumber", "ResourceType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersTributeMemory), global::Protos.Expert.Fact.PlayersTributeMemory.Parser, new[]{ "InPlayerAnyPlayer", "InConstResource" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersTributeMemoryResult), global::Protos.Expert.Fact.PlayersTributeMemoryResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersUnitCount), global::Protos.Expert.Fact.PlayersUnitCount.Parser, new[]{ "PlayerNumber" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersUnitCount), global::Protos.Expert.Fact.PlayersUnitCount.Parser, new[]{ "InPlayerAnyPlayer" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersUnitCountResult), global::Protos.Expert.Fact.PlayersUnitCountResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersUnitTypeCount), global::Protos.Expert.Fact.PlayersUnitTypeCount.Parser, new[]{ "PlayerNumber", "UnitType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersUnitTypeCount), global::Protos.Expert.Fact.PlayersUnitTypeCount.Parser, new[]{ "InPlayerAnyPlayer", "InConstUnitId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PlayersUnitTypeCountResult), global::Protos.Expert.Fact.PlayersUnitTypeCountResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.Population), global::Protos.Expert.Fact.Population.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.PopulationResult), global::Protos.Expert.Fact.PopulationResult.Parser, new[]{ "Result" }, null, null, null, null),
@@ -493,19 +534,19 @@ namespace Protos.Expert.Fact {
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.RandomNumberResult), global::Protos.Expert.Fact.RandomNumberResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.RegicideGame), global::Protos.Expert.Fact.RegicideGame.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.RegicideGameResult), global::Protos.Expert.Fact.RegicideGameResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.ResearchAvailable), global::Protos.Expert.Fact.ResearchAvailable.Parser, new[]{ "ResearchType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.ResearchAvailable), global::Protos.Expert.Fact.ResearchAvailable.Parser, new[]{ "InConstTechId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.ResearchAvailableResult), global::Protos.Expert.Fact.ResearchAvailableResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.ResearchCompleted), global::Protos.Expert.Fact.ResearchCompleted.Parser, new[]{ "ResearchType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.ResearchCompleted), global::Protos.Expert.Fact.ResearchCompleted.Parser, new[]{ "InConstTechId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.ResearchCompletedResult), global::Protos.Expert.Fact.ResearchCompletedResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.ResourceFound), global::Protos.Expert.Fact.ResourceFound.Parser, new[]{ "ResourceType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.ResourceFound), global::Protos.Expert.Fact.ResourceFound.Parser, new[]{ "InConstResource" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.ResourceFoundResult), global::Protos.Expert.Fact.ResourceFoundResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.SharedGoal), global::Protos.Expert.Fact.SharedGoal.Parser, new[]{ "GoalId", "Value" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.SharedGoal), global::Protos.Expert.Fact.SharedGoal.Parser, new[]{ "InConstSharedGoalId", "InConstValue" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.SharedGoalResult), global::Protos.Expert.Fact.SharedGoalResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.SheepAndForageTooFar), global::Protos.Expert.Fact.SheepAndForageTooFar.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.SheepAndForageTooFarResult), global::Protos.Expert.Fact.SheepAndForageTooFarResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.SoldierCount), global::Protos.Expert.Fact.SoldierCount.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.SoldierCountResult), global::Protos.Expert.Fact.SoldierCountResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.StanceToward), global::Protos.Expert.Fact.StanceToward.Parser, new[]{ "PlayerNumber", "Stance" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.StanceToward), global::Protos.Expert.Fact.StanceToward.Parser, new[]{ "InPlayerAnyPlayer", "InConstESPlayerStance" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.StanceTowardResult), global::Protos.Expert.Fact.StanceTowardResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.StartingAge), global::Protos.Expert.Fact.StartingAge.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.StartingAgeResult), global::Protos.Expert.Fact.StartingAgeResult.Parser, new[]{ "Result" }, null, null, null, null),
@@ -513,11 +554,13 @@ namespace Protos.Expert.Fact {
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.StartingResourcesResult), global::Protos.Expert.Fact.StartingResourcesResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.StoneAmount), global::Protos.Expert.Fact.StoneAmount.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.StoneAmountResult), global::Protos.Expert.Fact.StoneAmountResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.StrategicNumber), global::Protos.Expert.Fact.StrategicNumber.Parser, new[]{ "StrategicNumber_" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.StrategicNumber), global::Protos.Expert.Fact.StrategicNumber.Parser, new[]{ "InConstSnId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.StrategicNumberResult), global::Protos.Expert.Fact.StrategicNumberResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.TauntDetected), global::Protos.Expert.Fact.TauntDetected.Parser, new[]{ "PlayerNumber", "TauntId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.StrategicNumberList), global::Protos.Expert.Fact.StrategicNumberList.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.StrategicNumberListResult), global::Protos.Expert.Fact.StrategicNumberListResult.Parser, new[]{ "Result" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.TauntDetected), global::Protos.Expert.Fact.TauntDetected.Parser, new[]{ "InPlayerAnyPlayer", "InConstTauntId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.TauntDetectedResult), global::Protos.Expert.Fact.TauntDetectedResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.TimerTriggered), global::Protos.Expert.Fact.TimerTriggered.Parser, new[]{ "TimerId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.TimerTriggered), global::Protos.Expert.Fact.TimerTriggered.Parser, new[]{ "InConstTimerId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.TimerTriggeredResult), global::Protos.Expert.Fact.TimerTriggeredResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.TownUnderAttack), global::Protos.Expert.Fact.TownUnderAttack.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.TownUnderAttackResult), global::Protos.Expert.Fact.TownUnderAttackResult.Parser, new[]{ "Result" }, null, null, null, null),
@@ -525,37 +568,37 @@ namespace Protos.Expert.Fact {
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.TraceFactResult), global::Protos.Expert.Fact.TraceFactResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.True), global::Protos.Expert.Fact.True.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.TrueResult), global::Protos.Expert.Fact.TrueResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UnitAvailable), global::Protos.Expert.Fact.UnitAvailable.Parser, new[]{ "UnitType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UnitAvailable), global::Protos.Expert.Fact.UnitAvailable.Parser, new[]{ "InConstUnitId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UnitAvailableResult), global::Protos.Expert.Fact.UnitAvailableResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UnitCount), global::Protos.Expert.Fact.UnitCount.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UnitCountResult), global::Protos.Expert.Fact.UnitCountResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UnitCountTotal), global::Protos.Expert.Fact.UnitCountTotal.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UnitCountTotalResult), global::Protos.Expert.Fact.UnitCountTotalResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UnitTypeCount), global::Protos.Expert.Fact.UnitTypeCount.Parser, new[]{ "UnitType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UnitTypeCount), global::Protos.Expert.Fact.UnitTypeCount.Parser, new[]{ "InConstUnitId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UnitTypeCountResult), global::Protos.Expert.Fact.UnitTypeCountResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UnitTypeCountTotal), global::Protos.Expert.Fact.UnitTypeCountTotal.Parser, new[]{ "UnitType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UnitTypeCountTotal), global::Protos.Expert.Fact.UnitTypeCountTotal.Parser, new[]{ "InConstUnitId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UnitTypeCountTotalResult), global::Protos.Expert.Fact.UnitTypeCountTotalResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpAlliedGoal), global::Protos.Expert.Fact.UpAlliedGoal.Parser, new[]{ "ComputerAlly", "GoalId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpAlliedGoal), global::Protos.Expert.Fact.UpAlliedGoal.Parser, new[]{ "InPlayerComputerAllyPlayer", "InGoalId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpAlliedGoalResult), global::Protos.Expert.Fact.UpAlliedGoalResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpAlliedResourceAmount), global::Protos.Expert.Fact.UpAlliedResourceAmount.Parser, new[]{ "Ally", "ResourceAmount" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpAlliedResourceAmount), global::Protos.Expert.Fact.UpAlliedResourceAmount.Parser, new[]{ "InPlayerAllyPlayer", "InConstResourceAmount" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpAlliedResourceAmountResult), global::Protos.Expert.Fact.UpAlliedResourceAmountResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpAlliedResourcePercent), global::Protos.Expert.Fact.UpAlliedResourcePercent.Parser, new[]{ "Ally", "ResourceAmount" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpAlliedResourcePercent), global::Protos.Expert.Fact.UpAlliedResourcePercent.Parser, new[]{ "InPlayerAllyPlayer", "InConstResourceAmount" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpAlliedResourcePercentResult), global::Protos.Expert.Fact.UpAlliedResourcePercentResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpAlliedSn), global::Protos.Expert.Fact.UpAlliedSn.Parser, new[]{ "ComputerAlly", "SnId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpAlliedSn), global::Protos.Expert.Fact.UpAlliedSn.Parser, new[]{ "InPlayerComputerAllyPlayer", "InSnId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpAlliedSnResult), global::Protos.Expert.Fact.UpAlliedSnResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpAttackerClass), global::Protos.Expert.Fact.UpAttackerClass.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpAttackerClassResult), global::Protos.Expert.Fact.UpAttackerClassResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpBuildingTypeInTown), global::Protos.Expert.Fact.UpBuildingTypeInTown.Parser, new[]{ "TypeOp", "BuildingId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpBuildingTypeInTown), global::Protos.Expert.Fact.UpBuildingTypeInTown.Parser, new[]{ "InConstBuildingId", "InGoalBuildingId", "InSnBuildingId" }, new[]{ "BuildingId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpBuildingTypeInTownResult), global::Protos.Expert.Fact.UpBuildingTypeInTownResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpCanBuild), global::Protos.Expert.Fact.UpCanBuild.Parser, new[]{ "EscrowState", "TypeOp", "BuildingId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpCanBuild), global::Protos.Expert.Fact.UpCanBuild.Parser, new[]{ "InGoalEscrowState", "InConstBuildingId", "InGoalBuildingId", "InSnBuildingId" }, new[]{ "BuildingId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpCanBuildResult), global::Protos.Expert.Fact.UpCanBuildResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpCanBuildLine), global::Protos.Expert.Fact.UpCanBuildLine.Parser, new[]{ "EscrowState", "GoalPoint", "TypeOp", "BuildingId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpCanBuildLine), global::Protos.Expert.Fact.UpCanBuildLine.Parser, new[]{ "InGoalEscrowState", "InGoalPoint", "InConstBuildingId", "InGoalBuildingId", "InSnBuildingId" }, new[]{ "BuildingId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpCanBuildLineResult), global::Protos.Expert.Fact.UpCanBuildLineResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpCanResearch), global::Protos.Expert.Fact.UpCanResearch.Parser, new[]{ "EscrowState", "TypeOp", "TechId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpCanResearch), global::Protos.Expert.Fact.UpCanResearch.Parser, new[]{ "InGoalEscrowState", "InConstTechId", "InGoalTechId", "InSnTechId" }, new[]{ "TechId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpCanResearchResult), global::Protos.Expert.Fact.UpCanResearchResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpCanSearch), global::Protos.Expert.Fact.UpCanSearch.Parser, new[]{ "SearchSource" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpCanSearch), global::Protos.Expert.Fact.UpCanSearch.Parser, new[]{ "InConstSearchSource" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpCanSearchResult), global::Protos.Expert.Fact.UpCanSearchResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpCanTrain), global::Protos.Expert.Fact.UpCanTrain.Parser, new[]{ "EscrowState", "TypeOp", "UnitId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpCanTrain), global::Protos.Expert.Fact.UpCanTrain.Parser, new[]{ "InGoalEscrowState", "InConstUnitId", "InGoalUnitId", "InSnUnitId" }, new[]{ "UnitId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpCanTrainResult), global::Protos.Expert.Fact.UpCanTrainResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpDefenderCount), global::Protos.Expert.Fact.UpDefenderCount.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpDefenderCountResult), global::Protos.Expert.Fact.UpDefenderCountResult.Parser, new[]{ "Result" }, null, null, null, null),
@@ -565,74 +608,83 @@ namespace Protos.Expert.Fact {
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpEnemyUnitsInTownResult), global::Protos.Expert.Fact.UpEnemyUnitsInTownResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpEnemyVillagersInTown), global::Protos.Expert.Fact.UpEnemyVillagersInTown.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpEnemyVillagersInTownResult), global::Protos.Expert.Fact.UpEnemyVillagersInTownResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpGaiaTypeCount), global::Protos.Expert.Fact.UpGaiaTypeCount.Parser, new[]{ "TypeOp", "Resource" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpGaiaTypeCount), global::Protos.Expert.Fact.UpGaiaTypeCount.Parser, new[]{ "InConstResource" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpGaiaTypeCountResult), global::Protos.Expert.Fact.UpGaiaTypeCountResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpGaiaTypeCountTotal), global::Protos.Expert.Fact.UpGaiaTypeCountTotal.Parser, new[]{ "TypeOp", "Resource" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpGaiaTypeCountTotal), global::Protos.Expert.Fact.UpGaiaTypeCountTotal.Parser, new[]{ "InConstResource" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpGaiaTypeCountTotalResult), global::Protos.Expert.Fact.UpGaiaTypeCountTotalResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpGroupSize), global::Protos.Expert.Fact.UpGroupSize.Parser, new[]{ "TypeOp", "GroupId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpGroupSize), global::Protos.Expert.Fact.UpGroupSize.Parser, new[]{ "InConstGroupId", "InGoalGroupId", "InSnGroupId" }, new[]{ "GroupId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpGroupSizeResult), global::Protos.Expert.Fact.UpGroupSizeResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpIdleUnitCount), global::Protos.Expert.Fact.UpIdleUnitCount.Parser, new[]{ "IdleType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpIdleUnitCount), global::Protos.Expert.Fact.UpIdleUnitCount.Parser, new[]{ "InConstIdleType" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpIdleUnitCountResult), global::Protos.Expert.Fact.UpIdleUnitCountResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpObjectData), global::Protos.Expert.Fact.UpObjectData.Parser, new[]{ "ObjectData" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpObjectData), global::Protos.Expert.Fact.UpObjectData.Parser, new[]{ "InConstObjectData" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpObjectDataResult), global::Protos.Expert.Fact.UpObjectDataResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpObjectTargetData), global::Protos.Expert.Fact.UpObjectTargetData.Parser, new[]{ "ObjectData" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpObjectDataList), global::Protos.Expert.Fact.UpObjectDataList.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpObjectDataListResult), global::Protos.Expert.Fact.UpObjectDataListResult.Parser, new[]{ "Result" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpObjectTargetData), global::Protos.Expert.Fact.UpObjectTargetData.Parser, new[]{ "InConstObjectData" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpObjectTargetDataResult), global::Protos.Expert.Fact.UpObjectTargetDataResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpObjectTypeCount), global::Protos.Expert.Fact.UpObjectTypeCount.Parser, new[]{ "TypeOp", "ObjectId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpObjectTypeCount), global::Protos.Expert.Fact.UpObjectTypeCount.Parser, new[]{ "InConstObjectId", "InGoalObjectId", "InSnObjectId" }, new[]{ "ObjectId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpObjectTypeCountResult), global::Protos.Expert.Fact.UpObjectTypeCountResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpObjectTypeCountTotal), global::Protos.Expert.Fact.UpObjectTypeCountTotal.Parser, new[]{ "TypeOp", "ObjectId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpObjectTypeCountTotal), global::Protos.Expert.Fact.UpObjectTypeCountTotal.Parser, new[]{ "InConstObjectId", "InGoalObjectId", "InSnObjectId" }, new[]{ "ObjectId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpObjectTypeCountTotalResult), global::Protos.Expert.Fact.UpObjectTypeCountTotalResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPathDistance), global::Protos.Expert.Fact.UpPathDistance.Parser, new[]{ "GoalPoint", "Strict" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPathDistance), global::Protos.Expert.Fact.UpPathDistance.Parser, new[]{ "InGoalPoint", "InConstStrict" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPathDistanceResult), global::Protos.Expert.Fact.UpPathDistanceResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPendingObjects), global::Protos.Expert.Fact.UpPendingObjects.Parser, new[]{ "TypeOp", "ObjectId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPendingObjects), global::Protos.Expert.Fact.UpPendingObjects.Parser, new[]{ "InConstObjectId", "InGoalObjectId", "InSnObjectId" }, new[]{ "ObjectId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPendingObjectsResult), global::Protos.Expert.Fact.UpPendingObjectsResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPendingPlacement), global::Protos.Expert.Fact.UpPendingPlacement.Parser, new[]{ "TypeOp", "BuildingId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPendingPlacement), global::Protos.Expert.Fact.UpPendingPlacement.Parser, new[]{ "InConstBuildingId", "InGoalBuildingId", "InSnBuildingId" }, new[]{ "BuildingId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPendingPlacementResult), global::Protos.Expert.Fact.UpPendingPlacementResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPlayerDistance), global::Protos.Expert.Fact.UpPlayerDistance.Parser, new[]{ "Player" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPlayerDistance), global::Protos.Expert.Fact.UpPlayerDistance.Parser, new[]{ "InPlayerAnyPlayer" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPlayerDistanceResult), global::Protos.Expert.Fact.UpPlayerDistanceResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPlayersInGame), global::Protos.Expert.Fact.UpPlayersInGame.Parser, new[]{ "PlayerStance" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPlayersInGame), global::Protos.Expert.Fact.UpPlayersInGame.Parser, new[]{ "InConstPlayerStance" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPlayersInGameResult), global::Protos.Expert.Fact.UpPlayersInGameResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPointContains), global::Protos.Expert.Fact.UpPointContains.Parser, new[]{ "GoalPoint", "TypeOp", "ObjectId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPointContains), global::Protos.Expert.Fact.UpPointContains.Parser, new[]{ "InGoalPoint", "InConstObjectId", "InGoalObjectId", "InSnObjectId" }, new[]{ "ObjectId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPointContainsResult), global::Protos.Expert.Fact.UpPointContainsResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPointDistance), global::Protos.Expert.Fact.UpPointDistance.Parser, new[]{ "GoalPoint1", "GoalPoint2" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPointDistance), global::Protos.Expert.Fact.UpPointDistance.Parser, new[]{ "InGoalPoint1", "InGoalPoint2" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPointDistanceResult), global::Protos.Expert.Fact.UpPointDistanceResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPointElevation), global::Protos.Expert.Fact.UpPointElevation.Parser, new[]{ "GoalPoint" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPointElevation), global::Protos.Expert.Fact.UpPointElevation.Parser, new[]{ "InGoalPoint" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPointElevationResult), global::Protos.Expert.Fact.UpPointElevationResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPointExplored), global::Protos.Expert.Fact.UpPointExplored.Parser, new[]{ "GoalPoint" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPointExplored), global::Protos.Expert.Fact.UpPointExplored.Parser, new[]{ "InGoalPoint" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPointExploredResult), global::Protos.Expert.Fact.UpPointExploredResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPointTerrain), global::Protos.Expert.Fact.UpPointTerrain.Parser, new[]{ "GoalPoint" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPointTerrain), global::Protos.Expert.Fact.UpPointTerrain.Parser, new[]{ "InGoalPoint" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPointTerrainResult), global::Protos.Expert.Fact.UpPointTerrainResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPointZone), global::Protos.Expert.Fact.UpPointZone.Parser, new[]{ "GoalPoint" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPointZone), global::Protos.Expert.Fact.UpPointZone.Parser, new[]{ "InGoalPoint" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpPointZoneResult), global::Protos.Expert.Fact.UpPointZoneResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpProjectileDetected), global::Protos.Expert.Fact.UpProjectileDetected.Parser, new[]{ "ProjectileType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpProjectileDetected), global::Protos.Expert.Fact.UpProjectileDetected.Parser, new[]{ "InConstProjectileType" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpProjectileDetectedResult), global::Protos.Expert.Fact.UpProjectileDetectedResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpProjectileTarget), global::Protos.Expert.Fact.UpProjectileTarget.Parser, new[]{ "ProjectileType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpProjectileTarget), global::Protos.Expert.Fact.UpProjectileTarget.Parser, new[]{ "InConstProjectileType" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpProjectileTargetResult), global::Protos.Expert.Fact.UpProjectileTargetResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpRemainingBoarAmount), global::Protos.Expert.Fact.UpRemainingBoarAmount.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpRemainingBoarAmountResult), global::Protos.Expert.Fact.UpRemainingBoarAmountResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpResearchStatus), global::Protos.Expert.Fact.UpResearchStatus.Parser, new[]{ "TypeOp", "TechId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpResearchStatus), global::Protos.Expert.Fact.UpResearchStatus.Parser, new[]{ "InConstTechId", "InGoalTechId", "InSnTechId" }, new[]{ "TechId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpResearchStatusResult), global::Protos.Expert.Fact.UpResearchStatusResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpResourceAmount), global::Protos.Expert.Fact.UpResourceAmount.Parser, new[]{ "ResourceAmount" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpResourceAmount), global::Protos.Expert.Fact.UpResourceAmount.Parser, new[]{ "InConstResourceAmount" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpResourceAmountResult), global::Protos.Expert.Fact.UpResourceAmountResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpResourcePercent), global::Protos.Expert.Fact.UpResourcePercent.Parser, new[]{ "ResourceAmount" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpResourcePercent), global::Protos.Expert.Fact.UpResourcePercent.Parser, new[]{ "InConstResourceAmount" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpResourcePercentResult), global::Protos.Expert.Fact.UpResourcePercentResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpTimerStatus), global::Protos.Expert.Fact.UpTimerStatus.Parser, new[]{ "TimerId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpSearchObjectIdList), global::Protos.Expert.Fact.UpSearchObjectIdList.Parser, new[]{ "InConstSearchSource" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpSearchObjectIdListResult), global::Protos.Expert.Fact.UpSearchObjectIdListResult.Parser, new[]{ "Result" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpTimerStatus), global::Protos.Expert.Fact.UpTimerStatus.Parser, new[]{ "InConstTimerId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpTimerStatusResult), global::Protos.Expert.Fact.UpTimerStatusResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpTrainSiteReady), global::Protos.Expert.Fact.UpTrainSiteReady.Parser, new[]{ "TypeOp", "UnitId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpTrainSiteReady), global::Protos.Expert.Fact.UpTrainSiteReady.Parser, new[]{ "InConstUnitId", "InGoalUnitId", "InSnUnitId" }, new[]{ "UnitId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpTrainSiteReadyResult), global::Protos.Expert.Fact.UpTrainSiteReadyResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpUnitTypeInTown), global::Protos.Expert.Fact.UpUnitTypeInTown.Parser, new[]{ "TypeOp", "UnitId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpUnitTypeInTown), global::Protos.Expert.Fact.UpUnitTypeInTown.Parser, new[]{ "InConstUnitId", "InGoalUnitId", "InSnUnitId" }, new[]{ "UnitId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpUnitTypeInTownResult), global::Protos.Expert.Fact.UpUnitTypeInTownResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpVillagerTypeInTown), global::Protos.Expert.Fact.UpVillagerTypeInTown.Parser, new[]{ "TypeOp", "UnitId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpVillagerTypeInTown), global::Protos.Expert.Fact.UpVillagerTypeInTown.Parser, new[]{ "InConstUnitId", "InGoalUnitId", "InSnUnitId" }, new[]{ "UnitId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.UpVillagerTypeInTownResult), global::Protos.Expert.Fact.UpVillagerTypeInTownResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.VictoryCondition), global::Protos.Expert.Fact.VictoryCondition.Parser, new[]{ "VictoryCondition_" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.VictoryCondition), global::Protos.Expert.Fact.VictoryCondition.Parser, new[]{ "InConstVictory" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.VictoryConditionResult), global::Protos.Expert.Fact.VictoryConditionResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.WallCompletedPercentage), global::Protos.Expert.Fact.WallCompletedPercentage.Parser, new[]{ "Perimeter" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.WallCompletedPercentage), global::Protos.Expert.Fact.WallCompletedPercentage.Parser, new[]{ "InConstPerimeter" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.WallCompletedPercentageResult), global::Protos.Expert.Fact.WallCompletedPercentageResult.Parser, new[]{ "Result" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.WallInvisiblePercentage), global::Protos.Expert.Fact.WallInvisiblePercentage.Parser, new[]{ "Perimeter" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.WallInvisiblePercentage), global::Protos.Expert.Fact.WallInvisiblePercentage.Parser, new[]{ "InConstPerimeter" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.WallInvisiblePercentageResult), global::Protos.Expert.Fact.WallInvisiblePercentageResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.WarboatCount), global::Protos.Expert.Fact.WarboatCount.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.WarboatCountResult), global::Protos.Expert.Fact.WarboatCountResult.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.WoodAmount), global::Protos.Expert.Fact.WoodAmount.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.WoodAmountResult), global::Protos.Expert.Fact.WoodAmountResult.Parser, new[]{ "Result" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.WoodAmountResult), global::Protos.Expert.Fact.WoodAmountResult.Parser, new[]{ "Result" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.ModMapDimensions), global::Protos.Expert.Fact.ModMapDimensions.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.ModMapDimensionsResult), global::Protos.Expert.Fact.ModMapDimensionsResult.Parser, new[]{ "Width", "Height" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.ModMapTiles), global::Protos.Expert.Fact.ModMapTiles.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.ModMapTilesResult), global::Protos.Expert.Fact.ModMapTilesResult.Parser, new[]{ "MapWidth", "MapHeight", "Tiles" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Fact.Tile), global::Protos.Expert.Fact.Tile.Parser, new[]{ "X", "Y", "Height", "Terrain", "Visibility" }, null, null, null, null)
           }));
     }
     #endregion
@@ -641,7 +693,7 @@ namespace Protos.Expert.Fact {
   #region Messages
   /// <summary>
   ///*
-  /// Retrieve the amount of player's land military units designated as attackers
+  /// Retrieve the amount of player's land military units designated as attackers.
   /// </summary>
   public sealed partial class AttackSoldierCount : pb::IMessage<AttackSoldierCount>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
@@ -781,7 +833,7 @@ namespace Protos.Expert.Fact {
 
   /// <summary>
   ///*
-  /// Response for the `AttackSoldierCount` fact
+  /// Response for the `AttackSoldierCount` fact.
   /// </summary>
   public sealed partial class AttackSoldierCountResult : pb::IMessage<AttackSoldierCountResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
@@ -960,7 +1012,7 @@ namespace Protos.Expert.Fact {
 
   /// <summary>
   ///*
-  /// Retrieve the amount of player's naval military units designated as attackers
+  /// Retrieve the amount of player's naval military units designated as attackers.
   /// </summary>
   public sealed partial class AttackWarboatCount : pb::IMessage<AttackWarboatCount>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
@@ -1100,7 +1152,7 @@ namespace Protos.Expert.Fact {
 
   /// <summary>
   ///*
-  /// Response for the `AttackWarboatCount` fact
+  /// Response for the `AttackWarboatCount` fact.
   /// </summary>
   public sealed partial class AttackWarboatCountResult : pb::IMessage<AttackWarboatCountResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
@@ -1279,7 +1331,7 @@ namespace Protos.Expert.Fact {
 
   /// <summary>
   ///*
-  /// Check whether a building of certain type is available. This does not check if the player has the resources to build it
+  /// Check whether a building of certain type is available. This does not check if the player has the resources to build it.
   /// </summary>
   public sealed partial class BuildingAvailable : pb::IMessage<BuildingAvailable>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
@@ -1310,7 +1362,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public BuildingAvailable(BuildingAvailable other) : this() {
-      buildingType_ = other.buildingType_;
+      inConstBuildingId_ = other.inConstBuildingId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1319,17 +1371,17 @@ namespace Protos.Expert.Fact {
       return new BuildingAvailable(this);
     }
 
-    /// <summary>Field number for the "buildingType" field.</summary>
-    public const int BuildingTypeFieldNumber = 1;
-    private int buildingType_;
+    /// <summary>Field number for the "inConstBuildingId" field.</summary>
+    public const int InConstBuildingIdFieldNumber = 1;
+    private int inConstBuildingId_;
     /// <summary>
     /// building type to check
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int BuildingType {
-      get { return buildingType_; }
+    public int InConstBuildingId {
+      get { return inConstBuildingId_; }
       set {
-        buildingType_ = value;
+        inConstBuildingId_ = value;
       }
     }
 
@@ -1346,14 +1398,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (BuildingType != other.BuildingType) return false;
+      if (InConstBuildingId != other.InConstBuildingId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (BuildingType != 0) hash ^= BuildingType.GetHashCode();
+      if (InConstBuildingId != 0) hash ^= InConstBuildingId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1370,9 +1422,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (BuildingType != 0) {
+      if (InConstBuildingId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(BuildingType);
+        output.WriteInt32(InConstBuildingId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -1383,9 +1435,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (BuildingType != 0) {
+      if (InConstBuildingId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(BuildingType);
+        output.WriteInt32(InConstBuildingId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -1396,8 +1448,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (BuildingType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BuildingType);
+      if (InConstBuildingId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstBuildingId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1410,8 +1462,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.BuildingType != 0) {
-        BuildingType = other.BuildingType;
+      if (other.InConstBuildingId != 0) {
+        InConstBuildingId = other.InConstBuildingId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1428,7 +1480,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            BuildingType = input.ReadInt32();
+            InConstBuildingId = input.ReadInt32();
             break;
           }
         }
@@ -1446,7 +1498,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            BuildingType = input.ReadInt32();
+            InConstBuildingId = input.ReadInt32();
             break;
           }
         }
@@ -1458,7 +1510,7 @@ namespace Protos.Expert.Fact {
 
   /// <summary>
   ///*
-  /// Response for the `BuildingAvailable` fact
+  /// Response for the `BuildingAvailable` fact.
   /// </summary>
   public sealed partial class BuildingAvailableResult : pb::IMessage<BuildingAvailableResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
@@ -2280,7 +2332,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public BuildingTypeCount(BuildingTypeCount other) : this() {
-      buildingType_ = other.buildingType_;
+      inConstBuildingId_ = other.inConstBuildingId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2289,14 +2341,14 @@ namespace Protos.Expert.Fact {
       return new BuildingTypeCount(this);
     }
 
-    /// <summary>Field number for the "buildingType" field.</summary>
-    public const int BuildingTypeFieldNumber = 1;
-    private int buildingType_;
+    /// <summary>Field number for the "inConstBuildingId" field.</summary>
+    public const int InConstBuildingIdFieldNumber = 1;
+    private int inConstBuildingId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int BuildingType {
-      get { return buildingType_; }
+    public int InConstBuildingId {
+      get { return inConstBuildingId_; }
       set {
-        buildingType_ = value;
+        inConstBuildingId_ = value;
       }
     }
 
@@ -2313,14 +2365,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (BuildingType != other.BuildingType) return false;
+      if (InConstBuildingId != other.InConstBuildingId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (BuildingType != 0) hash ^= BuildingType.GetHashCode();
+      if (InConstBuildingId != 0) hash ^= InConstBuildingId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2337,9 +2389,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (BuildingType != 0) {
+      if (InConstBuildingId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(BuildingType);
+        output.WriteInt32(InConstBuildingId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -2350,9 +2402,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (BuildingType != 0) {
+      if (InConstBuildingId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(BuildingType);
+        output.WriteInt32(InConstBuildingId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -2363,8 +2415,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (BuildingType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BuildingType);
+      if (InConstBuildingId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstBuildingId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2377,8 +2429,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.BuildingType != 0) {
-        BuildingType = other.BuildingType;
+      if (other.InConstBuildingId != 0) {
+        InConstBuildingId = other.InConstBuildingId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2395,7 +2447,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            BuildingType = input.ReadInt32();
+            InConstBuildingId = input.ReadInt32();
             break;
           }
         }
@@ -2413,7 +2465,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            BuildingType = input.ReadInt32();
+            InConstBuildingId = input.ReadInt32();
             break;
           }
         }
@@ -2624,7 +2676,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public BuildingTypeCountTotal(BuildingTypeCountTotal other) : this() {
-      buildingType_ = other.buildingType_;
+      inConstBuildingId_ = other.inConstBuildingId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2633,14 +2685,14 @@ namespace Protos.Expert.Fact {
       return new BuildingTypeCountTotal(this);
     }
 
-    /// <summary>Field number for the "buildingType" field.</summary>
-    public const int BuildingTypeFieldNumber = 1;
-    private int buildingType_;
+    /// <summary>Field number for the "inConstBuildingId" field.</summary>
+    public const int InConstBuildingIdFieldNumber = 1;
+    private int inConstBuildingId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int BuildingType {
-      get { return buildingType_; }
+    public int InConstBuildingId {
+      get { return inConstBuildingId_; }
       set {
-        buildingType_ = value;
+        inConstBuildingId_ = value;
       }
     }
 
@@ -2657,14 +2709,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (BuildingType != other.BuildingType) return false;
+      if (InConstBuildingId != other.InConstBuildingId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (BuildingType != 0) hash ^= BuildingType.GetHashCode();
+      if (InConstBuildingId != 0) hash ^= InConstBuildingId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2681,9 +2733,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (BuildingType != 0) {
+      if (InConstBuildingId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(BuildingType);
+        output.WriteInt32(InConstBuildingId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -2694,9 +2746,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (BuildingType != 0) {
+      if (InConstBuildingId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(BuildingType);
+        output.WriteInt32(InConstBuildingId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -2707,8 +2759,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (BuildingType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BuildingType);
+      if (InConstBuildingId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstBuildingId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2721,8 +2773,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.BuildingType != 0) {
-        BuildingType = other.BuildingType;
+      if (other.InConstBuildingId != 0) {
+        InConstBuildingId = other.InConstBuildingId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2739,7 +2791,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            BuildingType = input.ReadInt32();
+            InConstBuildingId = input.ReadInt32();
             break;
           }
         }
@@ -2757,7 +2809,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            BuildingType = input.ReadInt32();
+            InConstBuildingId = input.ReadInt32();
             break;
           }
         }
@@ -2968,7 +3020,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CanAffordBuilding(CanAffordBuilding other) : this() {
-      buildingType_ = other.buildingType_;
+      inConstBuildingId_ = other.inConstBuildingId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2977,14 +3029,14 @@ namespace Protos.Expert.Fact {
       return new CanAffordBuilding(this);
     }
 
-    /// <summary>Field number for the "buildingType" field.</summary>
-    public const int BuildingTypeFieldNumber = 1;
-    private int buildingType_;
+    /// <summary>Field number for the "inConstBuildingId" field.</summary>
+    public const int InConstBuildingIdFieldNumber = 1;
+    private int inConstBuildingId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int BuildingType {
-      get { return buildingType_; }
+    public int InConstBuildingId {
+      get { return inConstBuildingId_; }
       set {
-        buildingType_ = value;
+        inConstBuildingId_ = value;
       }
     }
 
@@ -3001,14 +3053,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (BuildingType != other.BuildingType) return false;
+      if (InConstBuildingId != other.InConstBuildingId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (BuildingType != 0) hash ^= BuildingType.GetHashCode();
+      if (InConstBuildingId != 0) hash ^= InConstBuildingId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -3025,9 +3077,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (BuildingType != 0) {
+      if (InConstBuildingId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(BuildingType);
+        output.WriteInt32(InConstBuildingId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -3038,9 +3090,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (BuildingType != 0) {
+      if (InConstBuildingId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(BuildingType);
+        output.WriteInt32(InConstBuildingId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -3051,8 +3103,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (BuildingType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BuildingType);
+      if (InConstBuildingId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstBuildingId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -3065,8 +3117,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.BuildingType != 0) {
-        BuildingType = other.BuildingType;
+      if (other.InConstBuildingId != 0) {
+        InConstBuildingId = other.InConstBuildingId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -3083,7 +3135,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            BuildingType = input.ReadInt32();
+            InConstBuildingId = input.ReadInt32();
             break;
           }
         }
@@ -3101,7 +3153,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            BuildingType = input.ReadInt32();
+            InConstBuildingId = input.ReadInt32();
             break;
           }
         }
@@ -3312,8 +3364,8 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CanAffordCompleteWall(CanAffordCompleteWall other) : this() {
-      perimeter_ = other.perimeter_;
-      wallType_ = other.wallType_;
+      inConstPerimeter_ = other.inConstPerimeter_;
+      inConstWallId_ = other.inConstWallId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -3322,25 +3374,25 @@ namespace Protos.Expert.Fact {
       return new CanAffordCompleteWall(this);
     }
 
-    /// <summary>Field number for the "perimeter" field.</summary>
-    public const int PerimeterFieldNumber = 1;
-    private int perimeter_;
+    /// <summary>Field number for the "inConstPerimeter" field.</summary>
+    public const int InConstPerimeterFieldNumber = 1;
+    private int inConstPerimeter_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Perimeter {
-      get { return perimeter_; }
+    public int InConstPerimeter {
+      get { return inConstPerimeter_; }
       set {
-        perimeter_ = value;
+        inConstPerimeter_ = value;
       }
     }
 
-    /// <summary>Field number for the "wallType" field.</summary>
-    public const int WallTypeFieldNumber = 2;
-    private int wallType_;
+    /// <summary>Field number for the "inConstWallId" field.</summary>
+    public const int InConstWallIdFieldNumber = 2;
+    private int inConstWallId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int WallType {
-      get { return wallType_; }
+    public int InConstWallId {
+      get { return inConstWallId_; }
       set {
-        wallType_ = value;
+        inConstWallId_ = value;
       }
     }
 
@@ -3357,16 +3409,16 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Perimeter != other.Perimeter) return false;
-      if (WallType != other.WallType) return false;
+      if (InConstPerimeter != other.InConstPerimeter) return false;
+      if (InConstWallId != other.InConstWallId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Perimeter != 0) hash ^= Perimeter.GetHashCode();
-      if (WallType != 0) hash ^= WallType.GetHashCode();
+      if (InConstPerimeter != 0) hash ^= InConstPerimeter.GetHashCode();
+      if (InConstWallId != 0) hash ^= InConstWallId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -3383,13 +3435,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Perimeter != 0) {
+      if (InConstPerimeter != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(Perimeter);
+        output.WriteInt32(InConstPerimeter);
       }
-      if (WallType != 0) {
+      if (InConstWallId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(WallType);
+        output.WriteInt32(InConstWallId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -3400,13 +3452,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Perimeter != 0) {
+      if (InConstPerimeter != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(Perimeter);
+        output.WriteInt32(InConstPerimeter);
       }
-      if (WallType != 0) {
+      if (InConstWallId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(WallType);
+        output.WriteInt32(InConstWallId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -3417,11 +3469,11 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Perimeter != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Perimeter);
+      if (InConstPerimeter != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstPerimeter);
       }
-      if (WallType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(WallType);
+      if (InConstWallId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstWallId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -3434,11 +3486,11 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.Perimeter != 0) {
-        Perimeter = other.Perimeter;
+      if (other.InConstPerimeter != 0) {
+        InConstPerimeter = other.InConstPerimeter;
       }
-      if (other.WallType != 0) {
-        WallType = other.WallType;
+      if (other.InConstWallId != 0) {
+        InConstWallId = other.InConstWallId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -3455,11 +3507,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Perimeter = input.ReadInt32();
+            InConstPerimeter = input.ReadInt32();
             break;
           }
           case 16: {
-            WallType = input.ReadInt32();
+            InConstWallId = input.ReadInt32();
             break;
           }
         }
@@ -3477,11 +3529,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Perimeter = input.ReadInt32();
+            InConstPerimeter = input.ReadInt32();
             break;
           }
           case 16: {
-            WallType = input.ReadInt32();
+            InConstWallId = input.ReadInt32();
             break;
           }
         }
@@ -3692,7 +3744,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CanAffordResearch(CanAffordResearch other) : this() {
-      researchType_ = other.researchType_;
+      inConstTechId_ = other.inConstTechId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -3701,14 +3753,14 @@ namespace Protos.Expert.Fact {
       return new CanAffordResearch(this);
     }
 
-    /// <summary>Field number for the "researchType" field.</summary>
-    public const int ResearchTypeFieldNumber = 1;
-    private int researchType_;
+    /// <summary>Field number for the "inConstTechId" field.</summary>
+    public const int InConstTechIdFieldNumber = 1;
+    private int inConstTechId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ResearchType {
-      get { return researchType_; }
+    public int InConstTechId {
+      get { return inConstTechId_; }
       set {
-        researchType_ = value;
+        inConstTechId_ = value;
       }
     }
 
@@ -3725,14 +3777,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (ResearchType != other.ResearchType) return false;
+      if (InConstTechId != other.InConstTechId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (ResearchType != 0) hash ^= ResearchType.GetHashCode();
+      if (InConstTechId != 0) hash ^= InConstTechId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -3749,9 +3801,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (ResearchType != 0) {
+      if (InConstTechId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ResearchType);
+        output.WriteInt32(InConstTechId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -3762,9 +3814,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (ResearchType != 0) {
+      if (InConstTechId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ResearchType);
+        output.WriteInt32(InConstTechId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -3775,8 +3827,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (ResearchType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ResearchType);
+      if (InConstTechId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstTechId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -3789,8 +3841,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.ResearchType != 0) {
-        ResearchType = other.ResearchType;
+      if (other.InConstTechId != 0) {
+        InConstTechId = other.InConstTechId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -3807,7 +3859,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            ResearchType = input.ReadInt32();
+            InConstTechId = input.ReadInt32();
             break;
           }
         }
@@ -3825,7 +3877,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            ResearchType = input.ReadInt32();
+            InConstTechId = input.ReadInt32();
             break;
           }
         }
@@ -4036,7 +4088,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CanAffordUnit(CanAffordUnit other) : this() {
-      unitType_ = other.unitType_;
+      inConstUnitId_ = other.inConstUnitId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -4045,14 +4097,14 @@ namespace Protos.Expert.Fact {
       return new CanAffordUnit(this);
     }
 
-    /// <summary>Field number for the "unitType" field.</summary>
-    public const int UnitTypeFieldNumber = 1;
-    private int unitType_;
+    /// <summary>Field number for the "inConstUnitId" field.</summary>
+    public const int InConstUnitIdFieldNumber = 1;
+    private int inConstUnitId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int UnitType {
-      get { return unitType_; }
+    public int InConstUnitId {
+      get { return inConstUnitId_; }
       set {
-        unitType_ = value;
+        inConstUnitId_ = value;
       }
     }
 
@@ -4069,14 +4121,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (UnitType != other.UnitType) return false;
+      if (InConstUnitId != other.InConstUnitId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (UnitType != 0) hash ^= UnitType.GetHashCode();
+      if (InConstUnitId != 0) hash ^= InConstUnitId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -4093,9 +4145,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (UnitType != 0) {
+      if (InConstUnitId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(UnitType);
+        output.WriteInt32(InConstUnitId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -4106,9 +4158,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (UnitType != 0) {
+      if (InConstUnitId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(UnitType);
+        output.WriteInt32(InConstUnitId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -4119,8 +4171,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (UnitType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(UnitType);
+      if (InConstUnitId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstUnitId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -4133,8 +4185,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.UnitType != 0) {
-        UnitType = other.UnitType;
+      if (other.InConstUnitId != 0) {
+        InConstUnitId = other.InConstUnitId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -4151,7 +4203,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            UnitType = input.ReadInt32();
+            InConstUnitId = input.ReadInt32();
             break;
           }
         }
@@ -4169,7 +4221,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            UnitType = input.ReadInt32();
+            InConstUnitId = input.ReadInt32();
             break;
           }
         }
@@ -4380,7 +4432,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CanBuild(CanBuild other) : this() {
-      buildingType_ = other.buildingType_;
+      inConstBuildingId_ = other.inConstBuildingId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -4389,14 +4441,14 @@ namespace Protos.Expert.Fact {
       return new CanBuild(this);
     }
 
-    /// <summary>Field number for the "buildingType" field.</summary>
-    public const int BuildingTypeFieldNumber = 1;
-    private int buildingType_;
+    /// <summary>Field number for the "inConstBuildingId" field.</summary>
+    public const int InConstBuildingIdFieldNumber = 1;
+    private int inConstBuildingId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int BuildingType {
-      get { return buildingType_; }
+    public int InConstBuildingId {
+      get { return inConstBuildingId_; }
       set {
-        buildingType_ = value;
+        inConstBuildingId_ = value;
       }
     }
 
@@ -4413,14 +4465,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (BuildingType != other.BuildingType) return false;
+      if (InConstBuildingId != other.InConstBuildingId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (BuildingType != 0) hash ^= BuildingType.GetHashCode();
+      if (InConstBuildingId != 0) hash ^= InConstBuildingId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -4437,9 +4489,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (BuildingType != 0) {
+      if (InConstBuildingId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(BuildingType);
+        output.WriteInt32(InConstBuildingId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -4450,9 +4502,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (BuildingType != 0) {
+      if (InConstBuildingId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(BuildingType);
+        output.WriteInt32(InConstBuildingId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -4463,8 +4515,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (BuildingType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BuildingType);
+      if (InConstBuildingId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstBuildingId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -4477,8 +4529,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.BuildingType != 0) {
-        BuildingType = other.BuildingType;
+      if (other.InConstBuildingId != 0) {
+        InConstBuildingId = other.InConstBuildingId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -4495,7 +4547,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            BuildingType = input.ReadInt32();
+            InConstBuildingId = input.ReadInt32();
             break;
           }
         }
@@ -4513,7 +4565,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            BuildingType = input.ReadInt32();
+            InConstBuildingId = input.ReadInt32();
             break;
           }
         }
@@ -4724,7 +4776,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CanBuildGate(CanBuildGate other) : this() {
-      perimeter_ = other.perimeter_;
+      inConstPerimeter_ = other.inConstPerimeter_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -4733,14 +4785,14 @@ namespace Protos.Expert.Fact {
       return new CanBuildGate(this);
     }
 
-    /// <summary>Field number for the "perimeter" field.</summary>
-    public const int PerimeterFieldNumber = 1;
-    private int perimeter_;
+    /// <summary>Field number for the "inConstPerimeter" field.</summary>
+    public const int InConstPerimeterFieldNumber = 1;
+    private int inConstPerimeter_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Perimeter {
-      get { return perimeter_; }
+    public int InConstPerimeter {
+      get { return inConstPerimeter_; }
       set {
-        perimeter_ = value;
+        inConstPerimeter_ = value;
       }
     }
 
@@ -4757,14 +4809,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Perimeter != other.Perimeter) return false;
+      if (InConstPerimeter != other.InConstPerimeter) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Perimeter != 0) hash ^= Perimeter.GetHashCode();
+      if (InConstPerimeter != 0) hash ^= InConstPerimeter.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -4781,9 +4833,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Perimeter != 0) {
+      if (InConstPerimeter != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(Perimeter);
+        output.WriteInt32(InConstPerimeter);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -4794,9 +4846,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Perimeter != 0) {
+      if (InConstPerimeter != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(Perimeter);
+        output.WriteInt32(InConstPerimeter);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -4807,8 +4859,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Perimeter != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Perimeter);
+      if (InConstPerimeter != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstPerimeter);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -4821,8 +4873,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.Perimeter != 0) {
-        Perimeter = other.Perimeter;
+      if (other.InConstPerimeter != 0) {
+        InConstPerimeter = other.InConstPerimeter;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -4839,7 +4891,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Perimeter = input.ReadInt32();
+            InConstPerimeter = input.ReadInt32();
             break;
           }
         }
@@ -4857,7 +4909,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Perimeter = input.ReadInt32();
+            InConstPerimeter = input.ReadInt32();
             break;
           }
         }
@@ -5068,7 +5120,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CanBuildGateWithEscrow(CanBuildGateWithEscrow other) : this() {
-      perimeter_ = other.perimeter_;
+      inConstPerimeter_ = other.inConstPerimeter_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -5077,14 +5129,14 @@ namespace Protos.Expert.Fact {
       return new CanBuildGateWithEscrow(this);
     }
 
-    /// <summary>Field number for the "perimeter" field.</summary>
-    public const int PerimeterFieldNumber = 1;
-    private int perimeter_;
+    /// <summary>Field number for the "inConstPerimeter" field.</summary>
+    public const int InConstPerimeterFieldNumber = 1;
+    private int inConstPerimeter_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Perimeter {
-      get { return perimeter_; }
+    public int InConstPerimeter {
+      get { return inConstPerimeter_; }
       set {
-        perimeter_ = value;
+        inConstPerimeter_ = value;
       }
     }
 
@@ -5101,14 +5153,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Perimeter != other.Perimeter) return false;
+      if (InConstPerimeter != other.InConstPerimeter) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Perimeter != 0) hash ^= Perimeter.GetHashCode();
+      if (InConstPerimeter != 0) hash ^= InConstPerimeter.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -5125,9 +5177,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Perimeter != 0) {
+      if (InConstPerimeter != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(Perimeter);
+        output.WriteInt32(InConstPerimeter);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -5138,9 +5190,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Perimeter != 0) {
+      if (InConstPerimeter != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(Perimeter);
+        output.WriteInt32(InConstPerimeter);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -5151,8 +5203,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Perimeter != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Perimeter);
+      if (InConstPerimeter != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstPerimeter);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -5165,8 +5217,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.Perimeter != 0) {
-        Perimeter = other.Perimeter;
+      if (other.InConstPerimeter != 0) {
+        InConstPerimeter = other.InConstPerimeter;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -5183,7 +5235,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Perimeter = input.ReadInt32();
+            InConstPerimeter = input.ReadInt32();
             break;
           }
         }
@@ -5201,7 +5253,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Perimeter = input.ReadInt32();
+            InConstPerimeter = input.ReadInt32();
             break;
           }
         }
@@ -5412,8 +5464,8 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CanBuildWall(CanBuildWall other) : this() {
-      perimeter_ = other.perimeter_;
-      wallType_ = other.wallType_;
+      inConstPerimeter_ = other.inConstPerimeter_;
+      inConstWallId_ = other.inConstWallId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -5422,25 +5474,25 @@ namespace Protos.Expert.Fact {
       return new CanBuildWall(this);
     }
 
-    /// <summary>Field number for the "perimeter" field.</summary>
-    public const int PerimeterFieldNumber = 1;
-    private int perimeter_;
+    /// <summary>Field number for the "inConstPerimeter" field.</summary>
+    public const int InConstPerimeterFieldNumber = 1;
+    private int inConstPerimeter_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Perimeter {
-      get { return perimeter_; }
+    public int InConstPerimeter {
+      get { return inConstPerimeter_; }
       set {
-        perimeter_ = value;
+        inConstPerimeter_ = value;
       }
     }
 
-    /// <summary>Field number for the "wallType" field.</summary>
-    public const int WallTypeFieldNumber = 2;
-    private int wallType_;
+    /// <summary>Field number for the "inConstWallId" field.</summary>
+    public const int InConstWallIdFieldNumber = 2;
+    private int inConstWallId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int WallType {
-      get { return wallType_; }
+    public int InConstWallId {
+      get { return inConstWallId_; }
       set {
-        wallType_ = value;
+        inConstWallId_ = value;
       }
     }
 
@@ -5457,16 +5509,16 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Perimeter != other.Perimeter) return false;
-      if (WallType != other.WallType) return false;
+      if (InConstPerimeter != other.InConstPerimeter) return false;
+      if (InConstWallId != other.InConstWallId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Perimeter != 0) hash ^= Perimeter.GetHashCode();
-      if (WallType != 0) hash ^= WallType.GetHashCode();
+      if (InConstPerimeter != 0) hash ^= InConstPerimeter.GetHashCode();
+      if (InConstWallId != 0) hash ^= InConstWallId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -5483,13 +5535,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Perimeter != 0) {
+      if (InConstPerimeter != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(Perimeter);
+        output.WriteInt32(InConstPerimeter);
       }
-      if (WallType != 0) {
+      if (InConstWallId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(WallType);
+        output.WriteInt32(InConstWallId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -5500,13 +5552,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Perimeter != 0) {
+      if (InConstPerimeter != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(Perimeter);
+        output.WriteInt32(InConstPerimeter);
       }
-      if (WallType != 0) {
+      if (InConstWallId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(WallType);
+        output.WriteInt32(InConstWallId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -5517,11 +5569,11 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Perimeter != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Perimeter);
+      if (InConstPerimeter != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstPerimeter);
       }
-      if (WallType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(WallType);
+      if (InConstWallId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstWallId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -5534,11 +5586,11 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.Perimeter != 0) {
-        Perimeter = other.Perimeter;
+      if (other.InConstPerimeter != 0) {
+        InConstPerimeter = other.InConstPerimeter;
       }
-      if (other.WallType != 0) {
-        WallType = other.WallType;
+      if (other.InConstWallId != 0) {
+        InConstWallId = other.InConstWallId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -5555,11 +5607,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Perimeter = input.ReadInt32();
+            InConstPerimeter = input.ReadInt32();
             break;
           }
           case 16: {
-            WallType = input.ReadInt32();
+            InConstWallId = input.ReadInt32();
             break;
           }
         }
@@ -5577,11 +5629,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Perimeter = input.ReadInt32();
+            InConstPerimeter = input.ReadInt32();
             break;
           }
           case 16: {
-            WallType = input.ReadInt32();
+            InConstWallId = input.ReadInt32();
             break;
           }
         }
@@ -5792,8 +5844,8 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CanBuildWallWithEscrow(CanBuildWallWithEscrow other) : this() {
-      perimeter_ = other.perimeter_;
-      wallType_ = other.wallType_;
+      inConstPerimeter_ = other.inConstPerimeter_;
+      inConstWallId_ = other.inConstWallId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -5802,25 +5854,25 @@ namespace Protos.Expert.Fact {
       return new CanBuildWallWithEscrow(this);
     }
 
-    /// <summary>Field number for the "perimeter" field.</summary>
-    public const int PerimeterFieldNumber = 1;
-    private int perimeter_;
+    /// <summary>Field number for the "inConstPerimeter" field.</summary>
+    public const int InConstPerimeterFieldNumber = 1;
+    private int inConstPerimeter_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Perimeter {
-      get { return perimeter_; }
+    public int InConstPerimeter {
+      get { return inConstPerimeter_; }
       set {
-        perimeter_ = value;
+        inConstPerimeter_ = value;
       }
     }
 
-    /// <summary>Field number for the "wallType" field.</summary>
-    public const int WallTypeFieldNumber = 2;
-    private int wallType_;
+    /// <summary>Field number for the "inConstWallId" field.</summary>
+    public const int InConstWallIdFieldNumber = 2;
+    private int inConstWallId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int WallType {
-      get { return wallType_; }
+    public int InConstWallId {
+      get { return inConstWallId_; }
       set {
-        wallType_ = value;
+        inConstWallId_ = value;
       }
     }
 
@@ -5837,16 +5889,16 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Perimeter != other.Perimeter) return false;
-      if (WallType != other.WallType) return false;
+      if (InConstPerimeter != other.InConstPerimeter) return false;
+      if (InConstWallId != other.InConstWallId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Perimeter != 0) hash ^= Perimeter.GetHashCode();
-      if (WallType != 0) hash ^= WallType.GetHashCode();
+      if (InConstPerimeter != 0) hash ^= InConstPerimeter.GetHashCode();
+      if (InConstWallId != 0) hash ^= InConstWallId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -5863,13 +5915,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Perimeter != 0) {
+      if (InConstPerimeter != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(Perimeter);
+        output.WriteInt32(InConstPerimeter);
       }
-      if (WallType != 0) {
+      if (InConstWallId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(WallType);
+        output.WriteInt32(InConstWallId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -5880,13 +5932,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Perimeter != 0) {
+      if (InConstPerimeter != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(Perimeter);
+        output.WriteInt32(InConstPerimeter);
       }
-      if (WallType != 0) {
+      if (InConstWallId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(WallType);
+        output.WriteInt32(InConstWallId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -5897,11 +5949,11 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Perimeter != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Perimeter);
+      if (InConstPerimeter != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstPerimeter);
       }
-      if (WallType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(WallType);
+      if (InConstWallId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstWallId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -5914,11 +5966,11 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.Perimeter != 0) {
-        Perimeter = other.Perimeter;
+      if (other.InConstPerimeter != 0) {
+        InConstPerimeter = other.InConstPerimeter;
       }
-      if (other.WallType != 0) {
-        WallType = other.WallType;
+      if (other.InConstWallId != 0) {
+        InConstWallId = other.InConstWallId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -5935,11 +5987,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Perimeter = input.ReadInt32();
+            InConstPerimeter = input.ReadInt32();
             break;
           }
           case 16: {
-            WallType = input.ReadInt32();
+            InConstWallId = input.ReadInt32();
             break;
           }
         }
@@ -5957,11 +6009,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Perimeter = input.ReadInt32();
+            InConstPerimeter = input.ReadInt32();
             break;
           }
           case 16: {
-            WallType = input.ReadInt32();
+            InConstWallId = input.ReadInt32();
             break;
           }
         }
@@ -6172,7 +6224,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CanBuildWithEscrow(CanBuildWithEscrow other) : this() {
-      buildingType_ = other.buildingType_;
+      inConstBuildingId_ = other.inConstBuildingId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -6181,14 +6233,14 @@ namespace Protos.Expert.Fact {
       return new CanBuildWithEscrow(this);
     }
 
-    /// <summary>Field number for the "buildingType" field.</summary>
-    public const int BuildingTypeFieldNumber = 1;
-    private int buildingType_;
+    /// <summary>Field number for the "inConstBuildingId" field.</summary>
+    public const int InConstBuildingIdFieldNumber = 1;
+    private int inConstBuildingId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int BuildingType {
-      get { return buildingType_; }
+    public int InConstBuildingId {
+      get { return inConstBuildingId_; }
       set {
-        buildingType_ = value;
+        inConstBuildingId_ = value;
       }
     }
 
@@ -6205,14 +6257,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (BuildingType != other.BuildingType) return false;
+      if (InConstBuildingId != other.InConstBuildingId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (BuildingType != 0) hash ^= BuildingType.GetHashCode();
+      if (InConstBuildingId != 0) hash ^= InConstBuildingId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -6229,9 +6281,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (BuildingType != 0) {
+      if (InConstBuildingId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(BuildingType);
+        output.WriteInt32(InConstBuildingId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -6242,9 +6294,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (BuildingType != 0) {
+      if (InConstBuildingId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(BuildingType);
+        output.WriteInt32(InConstBuildingId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -6255,8 +6307,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (BuildingType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BuildingType);
+      if (InConstBuildingId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstBuildingId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -6269,8 +6321,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.BuildingType != 0) {
-        BuildingType = other.BuildingType;
+      if (other.InConstBuildingId != 0) {
+        InConstBuildingId = other.InConstBuildingId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -6287,7 +6339,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            BuildingType = input.ReadInt32();
+            InConstBuildingId = input.ReadInt32();
             break;
           }
         }
@@ -6305,7 +6357,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            BuildingType = input.ReadInt32();
+            InConstBuildingId = input.ReadInt32();
             break;
           }
         }
@@ -6516,7 +6568,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CanBuyCommodity(CanBuyCommodity other) : this() {
-      commodityType_ = other.commodityType_;
+      inConstCommodity_ = other.inConstCommodity_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -6525,14 +6577,14 @@ namespace Protos.Expert.Fact {
       return new CanBuyCommodity(this);
     }
 
-    /// <summary>Field number for the "commodityType" field.</summary>
-    public const int CommodityTypeFieldNumber = 1;
-    private int commodityType_;
+    /// <summary>Field number for the "inConstCommodity" field.</summary>
+    public const int InConstCommodityFieldNumber = 1;
+    private int inConstCommodity_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CommodityType {
-      get { return commodityType_; }
+    public int InConstCommodity {
+      get { return inConstCommodity_; }
       set {
-        commodityType_ = value;
+        inConstCommodity_ = value;
       }
     }
 
@@ -6549,14 +6601,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (CommodityType != other.CommodityType) return false;
+      if (InConstCommodity != other.InConstCommodity) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (CommodityType != 0) hash ^= CommodityType.GetHashCode();
+      if (InConstCommodity != 0) hash ^= InConstCommodity.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -6573,9 +6625,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (CommodityType != 0) {
+      if (InConstCommodity != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(CommodityType);
+        output.WriteInt32(InConstCommodity);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -6586,9 +6638,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (CommodityType != 0) {
+      if (InConstCommodity != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(CommodityType);
+        output.WriteInt32(InConstCommodity);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -6599,8 +6651,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (CommodityType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(CommodityType);
+      if (InConstCommodity != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstCommodity);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -6613,8 +6665,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.CommodityType != 0) {
-        CommodityType = other.CommodityType;
+      if (other.InConstCommodity != 0) {
+        InConstCommodity = other.InConstCommodity;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -6631,7 +6683,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            CommodityType = input.ReadInt32();
+            InConstCommodity = input.ReadInt32();
             break;
           }
         }
@@ -6649,7 +6701,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            CommodityType = input.ReadInt32();
+            InConstCommodity = input.ReadInt32();
             break;
           }
         }
@@ -6860,7 +6912,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CanResearch(CanResearch other) : this() {
-      researchType_ = other.researchType_;
+      inConstTechId_ = other.inConstTechId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -6869,14 +6921,14 @@ namespace Protos.Expert.Fact {
       return new CanResearch(this);
     }
 
-    /// <summary>Field number for the "researchType" field.</summary>
-    public const int ResearchTypeFieldNumber = 1;
-    private int researchType_;
+    /// <summary>Field number for the "inConstTechId" field.</summary>
+    public const int InConstTechIdFieldNumber = 1;
+    private int inConstTechId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ResearchType {
-      get { return researchType_; }
+    public int InConstTechId {
+      get { return inConstTechId_; }
       set {
-        researchType_ = value;
+        inConstTechId_ = value;
       }
     }
 
@@ -6893,14 +6945,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (ResearchType != other.ResearchType) return false;
+      if (InConstTechId != other.InConstTechId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (ResearchType != 0) hash ^= ResearchType.GetHashCode();
+      if (InConstTechId != 0) hash ^= InConstTechId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -6917,9 +6969,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (ResearchType != 0) {
+      if (InConstTechId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ResearchType);
+        output.WriteInt32(InConstTechId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -6930,9 +6982,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (ResearchType != 0) {
+      if (InConstTechId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ResearchType);
+        output.WriteInt32(InConstTechId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -6943,8 +6995,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (ResearchType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ResearchType);
+      if (InConstTechId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstTechId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -6957,8 +7009,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.ResearchType != 0) {
-        ResearchType = other.ResearchType;
+      if (other.InConstTechId != 0) {
+        InConstTechId = other.InConstTechId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -6975,7 +7027,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            ResearchType = input.ReadInt32();
+            InConstTechId = input.ReadInt32();
             break;
           }
         }
@@ -6993,7 +7045,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            ResearchType = input.ReadInt32();
+            InConstTechId = input.ReadInt32();
             break;
           }
         }
@@ -7204,7 +7256,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CanResearchWithEscrow(CanResearchWithEscrow other) : this() {
-      researchType_ = other.researchType_;
+      inConstTechId_ = other.inConstTechId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -7213,14 +7265,14 @@ namespace Protos.Expert.Fact {
       return new CanResearchWithEscrow(this);
     }
 
-    /// <summary>Field number for the "researchType" field.</summary>
-    public const int ResearchTypeFieldNumber = 1;
-    private int researchType_;
+    /// <summary>Field number for the "inConstTechId" field.</summary>
+    public const int InConstTechIdFieldNumber = 1;
+    private int inConstTechId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ResearchType {
-      get { return researchType_; }
+    public int InConstTechId {
+      get { return inConstTechId_; }
       set {
-        researchType_ = value;
+        inConstTechId_ = value;
       }
     }
 
@@ -7237,14 +7289,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (ResearchType != other.ResearchType) return false;
+      if (InConstTechId != other.InConstTechId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (ResearchType != 0) hash ^= ResearchType.GetHashCode();
+      if (InConstTechId != 0) hash ^= InConstTechId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -7261,9 +7313,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (ResearchType != 0) {
+      if (InConstTechId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ResearchType);
+        output.WriteInt32(InConstTechId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -7274,9 +7326,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (ResearchType != 0) {
+      if (InConstTechId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ResearchType);
+        output.WriteInt32(InConstTechId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -7287,8 +7339,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (ResearchType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ResearchType);
+      if (InConstTechId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstTechId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -7301,8 +7353,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.ResearchType != 0) {
-        ResearchType = other.ResearchType;
+      if (other.InConstTechId != 0) {
+        InConstTechId = other.InConstTechId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -7319,7 +7371,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            ResearchType = input.ReadInt32();
+            InConstTechId = input.ReadInt32();
             break;
           }
         }
@@ -7337,7 +7389,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            ResearchType = input.ReadInt32();
+            InConstTechId = input.ReadInt32();
             break;
           }
         }
@@ -7548,7 +7600,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CanSellCommodity(CanSellCommodity other) : this() {
-      commodityType_ = other.commodityType_;
+      inConstCommodity_ = other.inConstCommodity_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -7557,14 +7609,14 @@ namespace Protos.Expert.Fact {
       return new CanSellCommodity(this);
     }
 
-    /// <summary>Field number for the "commodityType" field.</summary>
-    public const int CommodityTypeFieldNumber = 1;
-    private int commodityType_;
+    /// <summary>Field number for the "inConstCommodity" field.</summary>
+    public const int InConstCommodityFieldNumber = 1;
+    private int inConstCommodity_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CommodityType {
-      get { return commodityType_; }
+    public int InConstCommodity {
+      get { return inConstCommodity_; }
       set {
-        commodityType_ = value;
+        inConstCommodity_ = value;
       }
     }
 
@@ -7581,14 +7633,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (CommodityType != other.CommodityType) return false;
+      if (InConstCommodity != other.InConstCommodity) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (CommodityType != 0) hash ^= CommodityType.GetHashCode();
+      if (InConstCommodity != 0) hash ^= InConstCommodity.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -7605,9 +7657,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (CommodityType != 0) {
+      if (InConstCommodity != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(CommodityType);
+        output.WriteInt32(InConstCommodity);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -7618,9 +7670,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (CommodityType != 0) {
+      if (InConstCommodity != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(CommodityType);
+        output.WriteInt32(InConstCommodity);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -7631,8 +7683,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (CommodityType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(CommodityType);
+      if (InConstCommodity != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstCommodity);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -7645,8 +7697,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.CommodityType != 0) {
-        CommodityType = other.CommodityType;
+      if (other.InConstCommodity != 0) {
+        InConstCommodity = other.InConstCommodity;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -7663,7 +7715,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            CommodityType = input.ReadInt32();
+            InConstCommodity = input.ReadInt32();
             break;
           }
         }
@@ -7681,7 +7733,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            CommodityType = input.ReadInt32();
+            InConstCommodity = input.ReadInt32();
             break;
           }
         }
@@ -8508,7 +8560,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CanTrain(CanTrain other) : this() {
-      unitType_ = other.unitType_;
+      inConstUnitId_ = other.inConstUnitId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -8517,14 +8569,14 @@ namespace Protos.Expert.Fact {
       return new CanTrain(this);
     }
 
-    /// <summary>Field number for the "unitType" field.</summary>
-    public const int UnitTypeFieldNumber = 1;
-    private int unitType_;
+    /// <summary>Field number for the "inConstUnitId" field.</summary>
+    public const int InConstUnitIdFieldNumber = 1;
+    private int inConstUnitId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int UnitType {
-      get { return unitType_; }
+    public int InConstUnitId {
+      get { return inConstUnitId_; }
       set {
-        unitType_ = value;
+        inConstUnitId_ = value;
       }
     }
 
@@ -8541,14 +8593,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (UnitType != other.UnitType) return false;
+      if (InConstUnitId != other.InConstUnitId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (UnitType != 0) hash ^= UnitType.GetHashCode();
+      if (InConstUnitId != 0) hash ^= InConstUnitId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -8565,9 +8617,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (UnitType != 0) {
+      if (InConstUnitId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(UnitType);
+        output.WriteInt32(InConstUnitId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -8578,9 +8630,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (UnitType != 0) {
+      if (InConstUnitId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(UnitType);
+        output.WriteInt32(InConstUnitId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -8591,8 +8643,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (UnitType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(UnitType);
+      if (InConstUnitId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstUnitId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -8605,8 +8657,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.UnitType != 0) {
-        UnitType = other.UnitType;
+      if (other.InConstUnitId != 0) {
+        InConstUnitId = other.InConstUnitId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -8623,7 +8675,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            UnitType = input.ReadInt32();
+            InConstUnitId = input.ReadInt32();
             break;
           }
         }
@@ -8641,7 +8693,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            UnitType = input.ReadInt32();
+            InConstUnitId = input.ReadInt32();
             break;
           }
         }
@@ -8852,7 +8904,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CanTrainWithEscrow(CanTrainWithEscrow other) : this() {
-      unitType_ = other.unitType_;
+      inConstUnitId_ = other.inConstUnitId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -8861,14 +8913,14 @@ namespace Protos.Expert.Fact {
       return new CanTrainWithEscrow(this);
     }
 
-    /// <summary>Field number for the "unitType" field.</summary>
-    public const int UnitTypeFieldNumber = 1;
-    private int unitType_;
+    /// <summary>Field number for the "inConstUnitId" field.</summary>
+    public const int InConstUnitIdFieldNumber = 1;
+    private int inConstUnitId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int UnitType {
-      get { return unitType_; }
+    public int InConstUnitId {
+      get { return inConstUnitId_; }
       set {
-        unitType_ = value;
+        inConstUnitId_ = value;
       }
     }
 
@@ -8885,14 +8937,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (UnitType != other.UnitType) return false;
+      if (InConstUnitId != other.InConstUnitId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (UnitType != 0) hash ^= UnitType.GetHashCode();
+      if (InConstUnitId != 0) hash ^= InConstUnitId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -8909,9 +8961,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (UnitType != 0) {
+      if (InConstUnitId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(UnitType);
+        output.WriteInt32(InConstUnitId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -8922,9 +8974,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (UnitType != 0) {
+      if (InConstUnitId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(UnitType);
+        output.WriteInt32(InConstUnitId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -8935,8 +8987,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (UnitType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(UnitType);
+      if (InConstUnitId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstUnitId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -8949,8 +9001,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.UnitType != 0) {
-        UnitType = other.UnitType;
+      if (other.InConstUnitId != 0) {
+        InConstUnitId = other.InConstUnitId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -8967,7 +9019,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            UnitType = input.ReadInt32();
+            InConstUnitId = input.ReadInt32();
             break;
           }
         }
@@ -8985,7 +9037,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            UnitType = input.ReadInt32();
+            InConstUnitId = input.ReadInt32();
             break;
           }
         }
@@ -9200,7 +9252,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CcPlayersBuildingCount(CcPlayersBuildingCount other) : this() {
-      playerNumber_ = other.playerNumber_;
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -9209,14 +9261,14 @@ namespace Protos.Expert.Fact {
       return new CcPlayersBuildingCount(this);
     }
 
-    /// <summary>Field number for the "playerNumber" field.</summary>
-    public const int PlayerNumberFieldNumber = 1;
-    private int playerNumber_;
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerNumber {
-      get { return playerNumber_; }
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
       set {
-        playerNumber_ = value;
+        inPlayerAnyPlayer_ = value;
       }
     }
 
@@ -9233,14 +9285,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerNumber != other.PlayerNumber) return false;
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerNumber != 0) hash ^= PlayerNumber.GetHashCode();
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -9257,9 +9309,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -9270,9 +9322,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -9283,8 +9335,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerNumber != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerNumber);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -9297,8 +9349,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerNumber != 0) {
-        PlayerNumber = other.PlayerNumber;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -9315,7 +9367,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -9333,7 +9385,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -9552,8 +9604,8 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CcPlayersBuildingTypeCount(CcPlayersBuildingTypeCount other) : this() {
-      playerNumber_ = other.playerNumber_;
-      buildingType_ = other.buildingType_;
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
+      inConstBuildingId_ = other.inConstBuildingId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -9562,25 +9614,25 @@ namespace Protos.Expert.Fact {
       return new CcPlayersBuildingTypeCount(this);
     }
 
-    /// <summary>Field number for the "playerNumber" field.</summary>
-    public const int PlayerNumberFieldNumber = 1;
-    private int playerNumber_;
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerNumber {
-      get { return playerNumber_; }
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
       set {
-        playerNumber_ = value;
+        inPlayerAnyPlayer_ = value;
       }
     }
 
-    /// <summary>Field number for the "buildingType" field.</summary>
-    public const int BuildingTypeFieldNumber = 2;
-    private int buildingType_;
+    /// <summary>Field number for the "inConstBuildingId" field.</summary>
+    public const int InConstBuildingIdFieldNumber = 2;
+    private int inConstBuildingId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int BuildingType {
-      get { return buildingType_; }
+    public int InConstBuildingId {
+      get { return inConstBuildingId_; }
       set {
-        buildingType_ = value;
+        inConstBuildingId_ = value;
       }
     }
 
@@ -9597,16 +9649,16 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerNumber != other.PlayerNumber) return false;
-      if (BuildingType != other.BuildingType) return false;
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
+      if (InConstBuildingId != other.InConstBuildingId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerNumber != 0) hash ^= PlayerNumber.GetHashCode();
-      if (BuildingType != 0) hash ^= BuildingType.GetHashCode();
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
+      if (InConstBuildingId != 0) hash ^= InConstBuildingId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -9623,13 +9675,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
-      if (BuildingType != 0) {
+      if (InConstBuildingId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(BuildingType);
+        output.WriteInt32(InConstBuildingId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -9640,13 +9692,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
-      if (BuildingType != 0) {
+      if (InConstBuildingId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(BuildingType);
+        output.WriteInt32(InConstBuildingId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -9657,11 +9709,11 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerNumber != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerNumber);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
-      if (BuildingType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BuildingType);
+      if (InConstBuildingId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstBuildingId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -9674,11 +9726,11 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerNumber != 0) {
-        PlayerNumber = other.PlayerNumber;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
-      if (other.BuildingType != 0) {
-        BuildingType = other.BuildingType;
+      if (other.InConstBuildingId != 0) {
+        InConstBuildingId = other.InConstBuildingId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -9695,11 +9747,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
           case 16: {
-            BuildingType = input.ReadInt32();
+            InConstBuildingId = input.ReadInt32();
             break;
           }
         }
@@ -9717,11 +9769,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
           case 16: {
-            BuildingType = input.ReadInt32();
+            InConstBuildingId = input.ReadInt32();
             break;
           }
         }
@@ -9940,7 +9992,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CcPlayersUnitCount(CcPlayersUnitCount other) : this() {
-      playerNumber_ = other.playerNumber_;
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -9949,14 +10001,14 @@ namespace Protos.Expert.Fact {
       return new CcPlayersUnitCount(this);
     }
 
-    /// <summary>Field number for the "playerNumber" field.</summary>
-    public const int PlayerNumberFieldNumber = 1;
-    private int playerNumber_;
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerNumber {
-      get { return playerNumber_; }
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
       set {
-        playerNumber_ = value;
+        inPlayerAnyPlayer_ = value;
       }
     }
 
@@ -9973,14 +10025,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerNumber != other.PlayerNumber) return false;
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerNumber != 0) hash ^= PlayerNumber.GetHashCode();
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -9997,9 +10049,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -10010,9 +10062,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -10023,8 +10075,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerNumber != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerNumber);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -10037,8 +10089,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerNumber != 0) {
-        PlayerNumber = other.PlayerNumber;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -10055,7 +10107,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -10073,7 +10125,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -10292,8 +10344,8 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CcPlayersUnitTypeCount(CcPlayersUnitTypeCount other) : this() {
-      playerNumber_ = other.playerNumber_;
-      unitType_ = other.unitType_;
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
+      inConstUnitId_ = other.inConstUnitId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -10302,25 +10354,25 @@ namespace Protos.Expert.Fact {
       return new CcPlayersUnitTypeCount(this);
     }
 
-    /// <summary>Field number for the "playerNumber" field.</summary>
-    public const int PlayerNumberFieldNumber = 1;
-    private int playerNumber_;
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerNumber {
-      get { return playerNumber_; }
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
       set {
-        playerNumber_ = value;
+        inPlayerAnyPlayer_ = value;
       }
     }
 
-    /// <summary>Field number for the "unitType" field.</summary>
-    public const int UnitTypeFieldNumber = 2;
-    private int unitType_;
+    /// <summary>Field number for the "inConstUnitId" field.</summary>
+    public const int InConstUnitIdFieldNumber = 2;
+    private int inConstUnitId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int UnitType {
-      get { return unitType_; }
+    public int InConstUnitId {
+      get { return inConstUnitId_; }
       set {
-        unitType_ = value;
+        inConstUnitId_ = value;
       }
     }
 
@@ -10337,16 +10389,16 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerNumber != other.PlayerNumber) return false;
-      if (UnitType != other.UnitType) return false;
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
+      if (InConstUnitId != other.InConstUnitId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerNumber != 0) hash ^= PlayerNumber.GetHashCode();
-      if (UnitType != 0) hash ^= UnitType.GetHashCode();
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
+      if (InConstUnitId != 0) hash ^= InConstUnitId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -10363,13 +10415,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
-      if (UnitType != 0) {
+      if (InConstUnitId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(UnitType);
+        output.WriteInt32(InConstUnitId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -10380,13 +10432,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
-      if (UnitType != 0) {
+      if (InConstUnitId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(UnitType);
+        output.WriteInt32(InConstUnitId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -10397,11 +10449,11 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerNumber != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerNumber);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
-      if (UnitType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(UnitType);
+      if (InConstUnitId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstUnitId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -10414,11 +10466,11 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerNumber != 0) {
-        PlayerNumber = other.PlayerNumber;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
-      if (other.UnitType != 0) {
-        UnitType = other.UnitType;
+      if (other.InConstUnitId != 0) {
+        InConstUnitId = other.InConstUnitId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -10435,11 +10487,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
           case 16: {
-            UnitType = input.ReadInt32();
+            InConstUnitId = input.ReadInt32();
             break;
           }
         }
@@ -10457,11 +10509,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
           case 16: {
-            UnitType = input.ReadInt32();
+            InConstUnitId = input.ReadInt32();
             break;
           }
         }
@@ -10984,24 +11036,12 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CivSelected(CivSelected other) : this() {
-      civ_ = other.civ_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CivSelected Clone() {
       return new CivSelected(this);
-    }
-
-    /// <summary>Field number for the "civ" field.</summary>
-    public const int CivFieldNumber = 1;
-    private int civ_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Civ {
-      get { return civ_; }
-      set {
-        civ_ = value;
-      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11017,14 +11057,12 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Civ != other.Civ) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Civ != 0) hash ^= Civ.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -11041,10 +11079,6 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Civ != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(Civ);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -11054,10 +11088,6 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Civ != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(Civ);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -11067,9 +11097,6 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Civ != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Civ);
-      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -11080,9 +11107,6 @@ namespace Protos.Expert.Fact {
     public void MergeFrom(CivSelected other) {
       if (other == null) {
         return;
-      }
-      if (other.Civ != 0) {
-        Civ = other.Civ;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -11098,10 +11122,6 @@ namespace Protos.Expert.Fact {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 8: {
-            Civ = input.ReadInt32();
-            break;
-          }
         }
       }
     #endif
@@ -11116,10 +11136,6 @@ namespace Protos.Expert.Fact {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 8: {
-            Civ = input.ReadInt32();
-            break;
-          }
         }
       }
     }
@@ -11167,9 +11183,9 @@ namespace Protos.Expert.Fact {
 
     /// <summary>Field number for the "result" field.</summary>
     public const int ResultFieldNumber = 1;
-    private bool result_;
+    private int result_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Result {
+    public int Result {
       get { return result_; }
       set {
         result_ = value;
@@ -11196,7 +11212,7 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Result != false) hash ^= Result.GetHashCode();
+      if (Result != 0) hash ^= Result.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -11213,9 +11229,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Result != false) {
+      if (Result != 0) {
         output.WriteRawTag(8);
-        output.WriteBool(Result);
+        output.WriteInt32(Result);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -11226,9 +11242,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Result != false) {
+      if (Result != 0) {
         output.WriteRawTag(8);
-        output.WriteBool(Result);
+        output.WriteInt32(Result);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -11239,8 +11255,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Result != false) {
-        size += 1 + 1;
+      if (Result != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Result);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -11253,7 +11269,7 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.Result != false) {
+      if (other.Result != 0) {
         Result = other.Result;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -11271,7 +11287,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Result = input.ReadBool();
+            Result = input.ReadInt32();
             break;
           }
         }
@@ -11289,7 +11305,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Result = input.ReadBool();
+            Result = input.ReadInt32();
             break;
           }
         }
@@ -11636,7 +11652,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CommodityBuyingPrice(CommodityBuyingPrice other) : this() {
-      commodityType_ = other.commodityType_;
+      inConstCommodity_ = other.inConstCommodity_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -11645,14 +11661,14 @@ namespace Protos.Expert.Fact {
       return new CommodityBuyingPrice(this);
     }
 
-    /// <summary>Field number for the "commodityType" field.</summary>
-    public const int CommodityTypeFieldNumber = 1;
-    private int commodityType_;
+    /// <summary>Field number for the "inConstCommodity" field.</summary>
+    public const int InConstCommodityFieldNumber = 1;
+    private int inConstCommodity_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CommodityType {
-      get { return commodityType_; }
+    public int InConstCommodity {
+      get { return inConstCommodity_; }
       set {
-        commodityType_ = value;
+        inConstCommodity_ = value;
       }
     }
 
@@ -11669,14 +11685,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (CommodityType != other.CommodityType) return false;
+      if (InConstCommodity != other.InConstCommodity) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (CommodityType != 0) hash ^= CommodityType.GetHashCode();
+      if (InConstCommodity != 0) hash ^= InConstCommodity.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -11693,9 +11709,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (CommodityType != 0) {
+      if (InConstCommodity != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(CommodityType);
+        output.WriteInt32(InConstCommodity);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -11706,9 +11722,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (CommodityType != 0) {
+      if (InConstCommodity != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(CommodityType);
+        output.WriteInt32(InConstCommodity);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -11719,8 +11735,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (CommodityType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(CommodityType);
+      if (InConstCommodity != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstCommodity);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -11733,8 +11749,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.CommodityType != 0) {
-        CommodityType = other.CommodityType;
+      if (other.InConstCommodity != 0) {
+        InConstCommodity = other.InConstCommodity;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -11751,7 +11767,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            CommodityType = input.ReadInt32();
+            InConstCommodity = input.ReadInt32();
             break;
           }
         }
@@ -11769,7 +11785,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            CommodityType = input.ReadInt32();
+            InConstCommodity = input.ReadInt32();
             break;
           }
         }
@@ -11980,7 +11996,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CommoditySellingPrice(CommoditySellingPrice other) : this() {
-      commodityType_ = other.commodityType_;
+      inConstCommodity_ = other.inConstCommodity_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -11989,14 +12005,14 @@ namespace Protos.Expert.Fact {
       return new CommoditySellingPrice(this);
     }
 
-    /// <summary>Field number for the "commodityType" field.</summary>
-    public const int CommodityTypeFieldNumber = 1;
-    private int commodityType_;
+    /// <summary>Field number for the "inConstCommodity" field.</summary>
+    public const int InConstCommodityFieldNumber = 1;
+    private int inConstCommodity_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CommodityType {
-      get { return commodityType_; }
+    public int InConstCommodity {
+      get { return inConstCommodity_; }
       set {
-        commodityType_ = value;
+        inConstCommodity_ = value;
       }
     }
 
@@ -12013,14 +12029,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (CommodityType != other.CommodityType) return false;
+      if (InConstCommodity != other.InConstCommodity) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (CommodityType != 0) hash ^= CommodityType.GetHashCode();
+      if (InConstCommodity != 0) hash ^= InConstCommodity.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -12037,9 +12053,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (CommodityType != 0) {
+      if (InConstCommodity != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(CommodityType);
+        output.WriteInt32(InConstCommodity);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -12050,9 +12066,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (CommodityType != 0) {
+      if (InConstCommodity != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(CommodityType);
+        output.WriteInt32(InConstCommodity);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -12063,8 +12079,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (CommodityType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(CommodityType);
+      if (InConstCommodity != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstCommodity);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -12077,8 +12093,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.CommodityType != 0) {
-        CommodityType = other.CommodityType;
+      if (other.InConstCommodity != 0) {
+        InConstCommodity = other.InConstCommodity;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -12095,7 +12111,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            CommodityType = input.ReadInt32();
+            InConstCommodity = input.ReadInt32();
             break;
           }
         }
@@ -12113,7 +12129,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            CommodityType = input.ReadInt32();
+            InConstCommodity = input.ReadInt32();
             break;
           }
         }
@@ -14480,7 +14496,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Doctrine(Doctrine other) : this() {
-      value_ = other.value_;
+      inConstValue_ = other.inConstValue_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -14489,14 +14505,14 @@ namespace Protos.Expert.Fact {
       return new Doctrine(this);
     }
 
-    /// <summary>Field number for the "value" field.</summary>
-    public const int ValueFieldNumber = 1;
-    private int value_;
+    /// <summary>Field number for the "inConstValue" field.</summary>
+    public const int InConstValueFieldNumber = 1;
+    private int inConstValue_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Value {
-      get { return value_; }
+    public int InConstValue {
+      get { return inConstValue_; }
       set {
-        value_ = value;
+        inConstValue_ = value;
       }
     }
 
@@ -14513,14 +14529,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Value != other.Value) return false;
+      if (InConstValue != other.InConstValue) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Value != 0) hash ^= Value.GetHashCode();
+      if (InConstValue != 0) hash ^= InConstValue.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -14537,9 +14553,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Value != 0) {
+      if (InConstValue != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(Value);
+        output.WriteInt32(InConstValue);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -14550,9 +14566,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Value != 0) {
+      if (InConstValue != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(Value);
+        output.WriteInt32(InConstValue);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -14563,8 +14579,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Value != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Value);
+      if (InConstValue != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstValue);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -14577,8 +14593,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.Value != 0) {
-        Value = other.Value;
+      if (other.InConstValue != 0) {
+        InConstValue = other.InConstValue;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -14595,7 +14611,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Value = input.ReadInt32();
+            InConstValue = input.ReadInt32();
             break;
           }
         }
@@ -14613,7 +14629,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Value = input.ReadInt32();
+            InConstValue = input.ReadInt32();
             break;
           }
         }
@@ -14824,7 +14840,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public DropsiteMinDistance(DropsiteMinDistance other) : this() {
-      resourceType_ = other.resourceType_;
+      inConstResource_ = other.inConstResource_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -14833,14 +14849,14 @@ namespace Protos.Expert.Fact {
       return new DropsiteMinDistance(this);
     }
 
-    /// <summary>Field number for the "resourceType" field.</summary>
-    public const int ResourceTypeFieldNumber = 1;
-    private int resourceType_;
+    /// <summary>Field number for the "inConstResource" field.</summary>
+    public const int InConstResourceFieldNumber = 1;
+    private int inConstResource_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ResourceType {
-      get { return resourceType_; }
+    public int InConstResource {
+      get { return inConstResource_; }
       set {
-        resourceType_ = value;
+        inConstResource_ = value;
       }
     }
 
@@ -14857,14 +14873,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (ResourceType != other.ResourceType) return false;
+      if (InConstResource != other.InConstResource) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (ResourceType != 0) hash ^= ResourceType.GetHashCode();
+      if (InConstResource != 0) hash ^= InConstResource.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -14881,9 +14897,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (ResourceType != 0) {
+      if (InConstResource != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ResourceType);
+        output.WriteInt32(InConstResource);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -14894,9 +14910,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (ResourceType != 0) {
+      if (InConstResource != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ResourceType);
+        output.WriteInt32(InConstResource);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -14907,8 +14923,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (ResourceType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ResourceType);
+      if (InConstResource != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstResource);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -14921,8 +14937,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.ResourceType != 0) {
-        ResourceType = other.ResourceType;
+      if (other.InConstResource != 0) {
+        InConstResource = other.InConstResource;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -14939,7 +14955,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            ResourceType = input.ReadInt32();
+            InConstResource = input.ReadInt32();
             break;
           }
         }
@@ -14957,7 +14973,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            ResourceType = input.ReadInt32();
+            InConstResource = input.ReadInt32();
             break;
           }
         }
@@ -16100,7 +16116,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EscrowAmount(EscrowAmount other) : this() {
-      resourceType_ = other.resourceType_;
+      inConstResource_ = other.inConstResource_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -16109,14 +16125,14 @@ namespace Protos.Expert.Fact {
       return new EscrowAmount(this);
     }
 
-    /// <summary>Field number for the "resourceType" field.</summary>
-    public const int ResourceTypeFieldNumber = 1;
-    private int resourceType_;
+    /// <summary>Field number for the "inConstResource" field.</summary>
+    public const int InConstResourceFieldNumber = 1;
+    private int inConstResource_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ResourceType {
-      get { return resourceType_; }
+    public int InConstResource {
+      get { return inConstResource_; }
       set {
-        resourceType_ = value;
+        inConstResource_ = value;
       }
     }
 
@@ -16133,14 +16149,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (ResourceType != other.ResourceType) return false;
+      if (InConstResource != other.InConstResource) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (ResourceType != 0) hash ^= ResourceType.GetHashCode();
+      if (InConstResource != 0) hash ^= InConstResource.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -16157,9 +16173,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (ResourceType != 0) {
+      if (InConstResource != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ResourceType);
+        output.WriteInt32(InConstResource);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -16170,9 +16186,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (ResourceType != 0) {
+      if (InConstResource != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ResourceType);
+        output.WriteInt32(InConstResource);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -16183,8 +16199,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (ResourceType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ResourceType);
+      if (InConstResource != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstResource);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -16197,8 +16213,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.ResourceType != 0) {
-        ResourceType = other.ResourceType;
+      if (other.InConstResource != 0) {
+        InConstResource = other.InConstResource;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -16215,7 +16231,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            ResourceType = input.ReadInt32();
+            InConstResource = input.ReadInt32();
             break;
           }
         }
@@ -16233,7 +16249,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            ResourceType = input.ReadInt32();
+            InConstResource = input.ReadInt32();
             break;
           }
         }
@@ -16444,8 +16460,8 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EventDetected(EventDetected other) : this() {
-      eventType_ = other.eventType_;
-      id_ = other.id_;
+      inConstEventType_ = other.inConstEventType_;
+      inConstEventId_ = other.inConstEventId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -16454,25 +16470,25 @@ namespace Protos.Expert.Fact {
       return new EventDetected(this);
     }
 
-    /// <summary>Field number for the "eventType" field.</summary>
-    public const int EventTypeFieldNumber = 1;
-    private int eventType_;
+    /// <summary>Field number for the "inConstEventType" field.</summary>
+    public const int InConstEventTypeFieldNumber = 1;
+    private int inConstEventType_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int EventType {
-      get { return eventType_; }
+    public int InConstEventType {
+      get { return inConstEventType_; }
       set {
-        eventType_ = value;
+        inConstEventType_ = value;
       }
     }
 
-    /// <summary>Field number for the "id" field.</summary>
-    public const int IdFieldNumber = 2;
-    private int id_;
+    /// <summary>Field number for the "inConstEventId" field.</summary>
+    public const int InConstEventIdFieldNumber = 2;
+    private int inConstEventId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Id {
-      get { return id_; }
+    public int InConstEventId {
+      get { return inConstEventId_; }
       set {
-        id_ = value;
+        inConstEventId_ = value;
       }
     }
 
@@ -16489,16 +16505,16 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (EventType != other.EventType) return false;
-      if (Id != other.Id) return false;
+      if (InConstEventType != other.InConstEventType) return false;
+      if (InConstEventId != other.InConstEventId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (EventType != 0) hash ^= EventType.GetHashCode();
-      if (Id != 0) hash ^= Id.GetHashCode();
+      if (InConstEventType != 0) hash ^= InConstEventType.GetHashCode();
+      if (InConstEventId != 0) hash ^= InConstEventId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -16515,13 +16531,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (EventType != 0) {
+      if (InConstEventType != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(EventType);
+        output.WriteInt32(InConstEventType);
       }
-      if (Id != 0) {
+      if (InConstEventId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(Id);
+        output.WriteInt32(InConstEventId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -16532,13 +16548,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (EventType != 0) {
+      if (InConstEventType != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(EventType);
+        output.WriteInt32(InConstEventType);
       }
-      if (Id != 0) {
+      if (InConstEventId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(Id);
+        output.WriteInt32(InConstEventId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -16549,11 +16565,11 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (EventType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(EventType);
+      if (InConstEventType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstEventType);
       }
-      if (Id != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Id);
+      if (InConstEventId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstEventId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -16566,11 +16582,11 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.EventType != 0) {
-        EventType = other.EventType;
+      if (other.InConstEventType != 0) {
+        InConstEventType = other.InConstEventType;
       }
-      if (other.Id != 0) {
-        Id = other.Id;
+      if (other.InConstEventId != 0) {
+        InConstEventId = other.InConstEventId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -16587,11 +16603,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            EventType = input.ReadInt32();
+            InConstEventType = input.ReadInt32();
             break;
           }
           case 16: {
-            Id = input.ReadInt32();
+            InConstEventId = input.ReadInt32();
             break;
           }
         }
@@ -16609,11 +16625,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            EventType = input.ReadInt32();
+            InConstEventType = input.ReadInt32();
             break;
           }
           case 16: {
-            Id = input.ReadInt32();
+            InConstEventId = input.ReadInt32();
             break;
           }
         }
@@ -18832,7 +18848,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public GateCount(GateCount other) : this() {
-      perimeter_ = other.perimeter_;
+      inConstPerimeter_ = other.inConstPerimeter_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -18841,14 +18857,14 @@ namespace Protos.Expert.Fact {
       return new GateCount(this);
     }
 
-    /// <summary>Field number for the "perimeter" field.</summary>
-    public const int PerimeterFieldNumber = 1;
-    private int perimeter_;
+    /// <summary>Field number for the "inConstPerimeter" field.</summary>
+    public const int InConstPerimeterFieldNumber = 1;
+    private int inConstPerimeter_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Perimeter {
-      get { return perimeter_; }
+    public int InConstPerimeter {
+      get { return inConstPerimeter_; }
       set {
-        perimeter_ = value;
+        inConstPerimeter_ = value;
       }
     }
 
@@ -18865,14 +18881,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Perimeter != other.Perimeter) return false;
+      if (InConstPerimeter != other.InConstPerimeter) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Perimeter != 0) hash ^= Perimeter.GetHashCode();
+      if (InConstPerimeter != 0) hash ^= InConstPerimeter.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -18889,9 +18905,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Perimeter != 0) {
+      if (InConstPerimeter != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(Perimeter);
+        output.WriteInt32(InConstPerimeter);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -18902,9 +18918,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Perimeter != 0) {
+      if (InConstPerimeter != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(Perimeter);
+        output.WriteInt32(InConstPerimeter);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -18915,8 +18931,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Perimeter != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Perimeter);
+      if (InConstPerimeter != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstPerimeter);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -18929,8 +18945,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.Perimeter != 0) {
-        Perimeter = other.Perimeter;
+      if (other.InConstPerimeter != 0) {
+        InConstPerimeter = other.InConstPerimeter;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -18947,7 +18963,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Perimeter = input.ReadInt32();
+            InConstPerimeter = input.ReadInt32();
             break;
           }
         }
@@ -18965,7 +18981,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Perimeter = input.ReadInt32();
+            InConstPerimeter = input.ReadInt32();
             break;
           }
         }
@@ -19176,7 +19192,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Goal(Goal other) : this() {
-      goalId_ = other.goalId_;
+      inConstGoalId_ = other.inConstGoalId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -19185,14 +19201,14 @@ namespace Protos.Expert.Fact {
       return new Goal(this);
     }
 
-    /// <summary>Field number for the "goalId" field.</summary>
-    public const int GoalIdFieldNumber = 1;
-    private int goalId_;
+    /// <summary>Field number for the "inConstGoalId" field.</summary>
+    public const int InConstGoalIdFieldNumber = 1;
+    private int inConstGoalId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int GoalId {
-      get { return goalId_; }
+    public int InConstGoalId {
+      get { return inConstGoalId_; }
       set {
-        goalId_ = value;
+        inConstGoalId_ = value;
       }
     }
 
@@ -19209,14 +19225,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (GoalId != other.GoalId) return false;
+      if (InConstGoalId != other.InConstGoalId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (GoalId != 0) hash ^= GoalId.GetHashCode();
+      if (InConstGoalId != 0) hash ^= InConstGoalId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -19233,9 +19249,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (GoalId != 0) {
+      if (InConstGoalId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(GoalId);
+        output.WriteInt32(InConstGoalId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -19246,9 +19262,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (GoalId != 0) {
+      if (InConstGoalId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(GoalId);
+        output.WriteInt32(InConstGoalId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -19259,8 +19275,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (GoalId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(GoalId);
+      if (InConstGoalId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstGoalId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -19273,8 +19289,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.GoalId != 0) {
-        GoalId = other.GoalId;
+      if (other.InConstGoalId != 0) {
+        InConstGoalId = other.InConstGoalId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -19291,7 +19307,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            GoalId = input.ReadInt32();
+            InConstGoalId = input.ReadInt32();
             break;
           }
         }
@@ -19309,7 +19325,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            GoalId = input.ReadInt32();
+            InConstGoalId = input.ReadInt32();
             break;
           }
         }
@@ -19407,7 +19423,7 @@ namespace Protos.Expert.Fact {
     #else
       if (Result != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(Result);
+        output.WriteSInt32(Result);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -19420,7 +19436,7 @@ namespace Protos.Expert.Fact {
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
       if (Result != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(Result);
+        output.WriteSInt32(Result);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -19432,7 +19448,7 @@ namespace Protos.Expert.Fact {
     public int CalculateSize() {
       int size = 0;
       if (Result != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Result);
+        size += 1 + pb::CodedOutputStream.ComputeSInt32Size(Result);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -19463,7 +19479,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Result = input.ReadInt32();
+            Result = input.ReadSInt32();
             break;
           }
         }
@@ -19481,7 +19497,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Result = input.ReadInt32();
+            Result = input.ReadSInt32();
             break;
           }
         }
@@ -19491,15 +19507,19 @@ namespace Protos.Expert.Fact {
 
   }
 
-  public sealed partial class Goals : pb::IMessage<Goals>
+  /// <summary>
+  ///*
+  /// Custom fact. Retrieve all goals as a list starting from index 0.
+  /// </summary>
+  public sealed partial class GoalList : pb::IMessage<GoalList>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<Goals> _parser = new pb::MessageParser<Goals>(() => new Goals());
+    private static readonly pb::MessageParser<GoalList> _parser = new pb::MessageParser<GoalList>(() => new GoalList());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<Goals> Parser { get { return _parser; } }
+    public static pb::MessageParser<GoalList> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -19512,29 +19532,29 @@ namespace Protos.Expert.Fact {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Goals() {
+    public GoalList() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Goals(Goals other) : this() {
+    public GoalList(GoalList other) : this() {
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Goals Clone() {
-      return new Goals(this);
+    public GoalList Clone() {
+      return new GoalList(this);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as Goals);
+      return Equals(other as GoalList);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(Goals other) {
+    public bool Equals(GoalList other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -19588,7 +19608,7 @@ namespace Protos.Expert.Fact {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(Goals other) {
+    public void MergeFrom(GoalList other) {
       if (other == null) {
         return;
       }
@@ -19627,15 +19647,19 @@ namespace Protos.Expert.Fact {
 
   }
 
-  public sealed partial class GoalsResult : pb::IMessage<GoalsResult>
+  /// <summary>
+  ///*
+  /// Response for the `GoalList` fact.
+  /// </summary>
+  public sealed partial class GoalListResult : pb::IMessage<GoalListResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<GoalsResult> _parser = new pb::MessageParser<GoalsResult>(() => new GoalsResult());
+    private static readonly pb::MessageParser<GoalListResult> _parser = new pb::MessageParser<GoalListResult>(() => new GoalListResult());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<GoalsResult> Parser { get { return _parser; } }
+    public static pb::MessageParser<GoalListResult> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -19648,28 +19672,31 @@ namespace Protos.Expert.Fact {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public GoalsResult() {
+    public GoalListResult() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public GoalsResult(GoalsResult other) : this() {
+    public GoalListResult(GoalListResult other) : this() {
       result_ = other.result_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public GoalsResult Clone() {
-      return new GoalsResult(this);
+    public GoalListResult Clone() {
+      return new GoalListResult(this);
     }
 
     /// <summary>Field number for the "result" field.</summary>
     public const int ResultFieldNumber = 1;
     private static readonly pb::FieldCodec<int> _repeated_result_codec
-        = pb::FieldCodec.ForInt32(10);
+        = pb::FieldCodec.ForSInt32(10);
     private readonly pbc::RepeatedField<int> result_ = new pbc::RepeatedField<int>();
+    /// <summary>
+    /// all goals as a list starting from index 0
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<int> Result {
       get { return result_; }
@@ -19677,11 +19704,11 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as GoalsResult);
+      return Equals(other as GoalListResult);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(GoalsResult other) {
+    public bool Equals(GoalListResult other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -19740,7 +19767,7 @@ namespace Protos.Expert.Fact {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(GoalsResult other) {
+    public void MergeFrom(GoalListResult other) {
       if (other == null) {
         return;
       }
@@ -21359,24 +21386,12 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public MapSize(MapSize other) : this() {
-      mapSize_ = other.mapSize_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public MapSize Clone() {
       return new MapSize(this);
-    }
-
-    /// <summary>Field number for the "mapSize" field.</summary>
-    public const int MapSize_FieldNumber = 1;
-    private int mapSize_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int MapSize_ {
-      get { return mapSize_; }
-      set {
-        mapSize_ = value;
-      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -21392,14 +21407,12 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (MapSize_ != other.MapSize_) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (MapSize_ != 0) hash ^= MapSize_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -21416,10 +21429,6 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (MapSize_ != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(MapSize_);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -21429,10 +21438,6 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (MapSize_ != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(MapSize_);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -21442,9 +21447,6 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (MapSize_ != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MapSize_);
-      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -21455,9 +21457,6 @@ namespace Protos.Expert.Fact {
     public void MergeFrom(MapSize other) {
       if (other == null) {
         return;
-      }
-      if (other.MapSize_ != 0) {
-        MapSize_ = other.MapSize_;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -21473,10 +21472,6 @@ namespace Protos.Expert.Fact {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 8: {
-            MapSize_ = input.ReadInt32();
-            break;
-          }
         }
       }
     #endif
@@ -21491,10 +21486,6 @@ namespace Protos.Expert.Fact {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 8: {
-            MapSize_ = input.ReadInt32();
-            break;
-          }
         }
       }
     }
@@ -21542,9 +21533,9 @@ namespace Protos.Expert.Fact {
 
     /// <summary>Field number for the "result" field.</summary>
     public const int ResultFieldNumber = 1;
-    private bool result_;
+    private int result_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Result {
+    public int Result {
       get { return result_; }
       set {
         result_ = value;
@@ -21571,7 +21562,7 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Result != false) hash ^= Result.GetHashCode();
+      if (Result != 0) hash ^= Result.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -21588,9 +21579,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Result != false) {
+      if (Result != 0) {
         output.WriteRawTag(8);
-        output.WriteBool(Result);
+        output.WriteInt32(Result);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -21601,9 +21592,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Result != false) {
+      if (Result != 0) {
         output.WriteRawTag(8);
-        output.WriteBool(Result);
+        output.WriteInt32(Result);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -21614,8 +21605,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Result != false) {
-        size += 1 + 1;
+      if (Result != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Result);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -21628,7 +21619,7 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.Result != false) {
+      if (other.Result != 0) {
         Result = other.Result;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -21646,7 +21637,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Result = input.ReadBool();
+            Result = input.ReadInt32();
             break;
           }
         }
@@ -21664,7 +21655,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Result = input.ReadBool();
+            Result = input.ReadInt32();
             break;
           }
         }
@@ -21703,24 +21694,12 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public MapType(MapType other) : this() {
-      mapType_ = other.mapType_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public MapType Clone() {
       return new MapType(this);
-    }
-
-    /// <summary>Field number for the "mapType" field.</summary>
-    public const int MapType_FieldNumber = 1;
-    private int mapType_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int MapType_ {
-      get { return mapType_; }
-      set {
-        mapType_ = value;
-      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -21736,14 +21715,12 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (MapType_ != other.MapType_) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (MapType_ != 0) hash ^= MapType_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -21760,10 +21737,6 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (MapType_ != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(MapType_);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -21773,10 +21746,6 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (MapType_ != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(MapType_);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -21786,9 +21755,6 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (MapType_ != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MapType_);
-      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -21799,9 +21765,6 @@ namespace Protos.Expert.Fact {
     public void MergeFrom(MapType other) {
       if (other == null) {
         return;
-      }
-      if (other.MapType_ != 0) {
-        MapType_ = other.MapType_;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -21817,10 +21780,6 @@ namespace Protos.Expert.Fact {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 8: {
-            MapType_ = input.ReadInt32();
-            break;
-          }
         }
       }
     #endif
@@ -21835,10 +21794,6 @@ namespace Protos.Expert.Fact {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 8: {
-            MapType_ = input.ReadInt32();
-            break;
-          }
         }
       }
     }
@@ -21886,9 +21841,9 @@ namespace Protos.Expert.Fact {
 
     /// <summary>Field number for the "result" field.</summary>
     public const int ResultFieldNumber = 1;
-    private bool result_;
+    private int result_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Result {
+    public int Result {
       get { return result_; }
       set {
         result_ = value;
@@ -21915,7 +21870,7 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Result != false) hash ^= Result.GetHashCode();
+      if (Result != 0) hash ^= Result.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -21932,9 +21887,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Result != false) {
+      if (Result != 0) {
         output.WriteRawTag(8);
-        output.WriteBool(Result);
+        output.WriteInt32(Result);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -21945,9 +21900,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Result != false) {
+      if (Result != 0) {
         output.WriteRawTag(8);
-        output.WriteBool(Result);
+        output.WriteInt32(Result);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -21958,8 +21913,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Result != false) {
-        size += 1 + 1;
+      if (Result != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Result);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -21972,7 +21927,7 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.Result != false) {
+      if (other.Result != 0) {
         Result = other.Result;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -21990,7 +21945,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Result = input.ReadBool();
+            Result = input.ReadInt32();
             break;
           }
         }
@@ -22008,7 +21963,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Result = input.ReadBool();
+            Result = input.ReadInt32();
             break;
           }
         }
@@ -22355,7 +22310,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PlayerComputer(PlayerComputer other) : this() {
-      playerNumber_ = other.playerNumber_;
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -22364,14 +22319,14 @@ namespace Protos.Expert.Fact {
       return new PlayerComputer(this);
     }
 
-    /// <summary>Field number for the "playerNumber" field.</summary>
-    public const int PlayerNumberFieldNumber = 1;
-    private int playerNumber_;
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerNumber {
-      get { return playerNumber_; }
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
       set {
-        playerNumber_ = value;
+        inPlayerAnyPlayer_ = value;
       }
     }
 
@@ -22388,14 +22343,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerNumber != other.PlayerNumber) return false;
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerNumber != 0) hash ^= PlayerNumber.GetHashCode();
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -22412,9 +22367,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -22425,9 +22380,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -22438,8 +22393,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerNumber != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerNumber);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -22452,8 +22407,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerNumber != 0) {
-        PlayerNumber = other.PlayerNumber;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -22470,7 +22425,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -22488,7 +22443,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -22699,7 +22654,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PlayerHuman(PlayerHuman other) : this() {
-      playerNumber_ = other.playerNumber_;
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -22708,14 +22663,14 @@ namespace Protos.Expert.Fact {
       return new PlayerHuman(this);
     }
 
-    /// <summary>Field number for the "playerNumber" field.</summary>
-    public const int PlayerNumberFieldNumber = 1;
-    private int playerNumber_;
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerNumber {
-      get { return playerNumber_; }
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
       set {
-        playerNumber_ = value;
+        inPlayerAnyPlayer_ = value;
       }
     }
 
@@ -22732,14 +22687,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerNumber != other.PlayerNumber) return false;
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerNumber != 0) hash ^= PlayerNumber.GetHashCode();
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -22756,9 +22711,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -22769,9 +22724,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -22782,8 +22737,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerNumber != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerNumber);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -22796,8 +22751,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerNumber != 0) {
-        PlayerNumber = other.PlayerNumber;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -22814,7 +22769,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -22832,7 +22787,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -23043,7 +22998,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PlayerInGame(PlayerInGame other) : this() {
-      playerNumber_ = other.playerNumber_;
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -23052,14 +23007,14 @@ namespace Protos.Expert.Fact {
       return new PlayerInGame(this);
     }
 
-    /// <summary>Field number for the "playerNumber" field.</summary>
-    public const int PlayerNumberFieldNumber = 1;
-    private int playerNumber_;
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerNumber {
-      get { return playerNumber_; }
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
       set {
-        playerNumber_ = value;
+        inPlayerAnyPlayer_ = value;
       }
     }
 
@@ -23076,14 +23031,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerNumber != other.PlayerNumber) return false;
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerNumber != 0) hash ^= PlayerNumber.GetHashCode();
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -23100,9 +23055,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -23113,9 +23068,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -23126,8 +23081,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerNumber != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerNumber);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -23140,8 +23095,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerNumber != 0) {
-        PlayerNumber = other.PlayerNumber;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -23158,7 +23113,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -23176,7 +23131,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -23387,7 +23342,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PlayerNumber(PlayerNumber other) : this() {
-      playerNumber_ = other.playerNumber_;
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -23396,14 +23351,14 @@ namespace Protos.Expert.Fact {
       return new PlayerNumber(this);
     }
 
-    /// <summary>Field number for the "playerNumber" field.</summary>
-    public const int PlayerNumber_FieldNumber = 1;
-    private int playerNumber_;
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerNumber_ {
-      get { return playerNumber_; }
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
       set {
-        playerNumber_ = value;
+        inPlayerAnyPlayer_ = value;
       }
     }
 
@@ -23420,14 +23375,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerNumber_ != other.PlayerNumber_) return false;
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerNumber_ != 0) hash ^= PlayerNumber_.GetHashCode();
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -23444,9 +23399,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerNumber_ != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber_);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -23457,9 +23412,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerNumber_ != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber_);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -23470,8 +23425,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerNumber_ != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerNumber_);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -23484,8 +23439,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerNumber_ != 0) {
-        PlayerNumber_ = other.PlayerNumber_;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -23502,7 +23457,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerNumber_ = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -23520,7 +23475,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerNumber_ = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -23731,7 +23686,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PlayerResigned(PlayerResigned other) : this() {
-      playerNumber_ = other.playerNumber_;
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -23740,14 +23695,14 @@ namespace Protos.Expert.Fact {
       return new PlayerResigned(this);
     }
 
-    /// <summary>Field number for the "playerNumber" field.</summary>
-    public const int PlayerNumberFieldNumber = 1;
-    private int playerNumber_;
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerNumber {
-      get { return playerNumber_; }
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
       set {
-        playerNumber_ = value;
+        inPlayerAnyPlayer_ = value;
       }
     }
 
@@ -23764,14 +23719,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerNumber != other.PlayerNumber) return false;
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerNumber != 0) hash ^= PlayerNumber.GetHashCode();
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -23788,9 +23743,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -23801,9 +23756,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -23814,8 +23769,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerNumber != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerNumber);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -23828,8 +23783,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerNumber != 0) {
-        PlayerNumber = other.PlayerNumber;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -23846,7 +23801,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -23864,7 +23819,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -24075,7 +24030,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PlayerValid(PlayerValid other) : this() {
-      playerNumber_ = other.playerNumber_;
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -24084,14 +24039,14 @@ namespace Protos.Expert.Fact {
       return new PlayerValid(this);
     }
 
-    /// <summary>Field number for the "playerNumber" field.</summary>
-    public const int PlayerNumberFieldNumber = 1;
-    private int playerNumber_;
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerNumber {
-      get { return playerNumber_; }
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
       set {
-        playerNumber_ = value;
+        inPlayerAnyPlayer_ = value;
       }
     }
 
@@ -24108,14 +24063,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerNumber != other.PlayerNumber) return false;
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerNumber != 0) hash ^= PlayerNumber.GetHashCode();
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -24132,9 +24087,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -24145,9 +24100,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -24158,8 +24113,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerNumber != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerNumber);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -24172,8 +24127,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerNumber != 0) {
-        PlayerNumber = other.PlayerNumber;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -24190,7 +24145,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -24208,7 +24163,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -24871,7 +24826,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PlayersBuildingCount(PlayersBuildingCount other) : this() {
-      playerNumber_ = other.playerNumber_;
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -24880,14 +24835,14 @@ namespace Protos.Expert.Fact {
       return new PlayersBuildingCount(this);
     }
 
-    /// <summary>Field number for the "playerNumber" field.</summary>
-    public const int PlayerNumberFieldNumber = 1;
-    private int playerNumber_;
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerNumber {
-      get { return playerNumber_; }
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
       set {
-        playerNumber_ = value;
+        inPlayerAnyPlayer_ = value;
       }
     }
 
@@ -24904,14 +24859,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerNumber != other.PlayerNumber) return false;
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerNumber != 0) hash ^= PlayerNumber.GetHashCode();
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -24928,9 +24883,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -24941,9 +24896,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -24954,8 +24909,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerNumber != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerNumber);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -24968,8 +24923,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerNumber != 0) {
-        PlayerNumber = other.PlayerNumber;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -24986,7 +24941,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -25004,7 +24959,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -25215,8 +25170,8 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PlayersBuildingTypeCount(PlayersBuildingTypeCount other) : this() {
-      playerNumber_ = other.playerNumber_;
-      buildingType_ = other.buildingType_;
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
+      inConstBuildingId_ = other.inConstBuildingId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -25225,25 +25180,25 @@ namespace Protos.Expert.Fact {
       return new PlayersBuildingTypeCount(this);
     }
 
-    /// <summary>Field number for the "playerNumber" field.</summary>
-    public const int PlayerNumberFieldNumber = 1;
-    private int playerNumber_;
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerNumber {
-      get { return playerNumber_; }
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
       set {
-        playerNumber_ = value;
+        inPlayerAnyPlayer_ = value;
       }
     }
 
-    /// <summary>Field number for the "buildingType" field.</summary>
-    public const int BuildingTypeFieldNumber = 2;
-    private int buildingType_;
+    /// <summary>Field number for the "inConstBuildingId" field.</summary>
+    public const int InConstBuildingIdFieldNumber = 2;
+    private int inConstBuildingId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int BuildingType {
-      get { return buildingType_; }
+    public int InConstBuildingId {
+      get { return inConstBuildingId_; }
       set {
-        buildingType_ = value;
+        inConstBuildingId_ = value;
       }
     }
 
@@ -25260,16 +25215,16 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerNumber != other.PlayerNumber) return false;
-      if (BuildingType != other.BuildingType) return false;
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
+      if (InConstBuildingId != other.InConstBuildingId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerNumber != 0) hash ^= PlayerNumber.GetHashCode();
-      if (BuildingType != 0) hash ^= BuildingType.GetHashCode();
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
+      if (InConstBuildingId != 0) hash ^= InConstBuildingId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -25286,13 +25241,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
-      if (BuildingType != 0) {
+      if (InConstBuildingId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(BuildingType);
+        output.WriteInt32(InConstBuildingId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -25303,13 +25258,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
-      if (BuildingType != 0) {
+      if (InConstBuildingId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(BuildingType);
+        output.WriteInt32(InConstBuildingId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -25320,11 +25275,11 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerNumber != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerNumber);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
-      if (BuildingType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BuildingType);
+      if (InConstBuildingId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstBuildingId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -25337,11 +25292,11 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerNumber != 0) {
-        PlayerNumber = other.PlayerNumber;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
-      if (other.BuildingType != 0) {
-        BuildingType = other.BuildingType;
+      if (other.InConstBuildingId != 0) {
+        InConstBuildingId = other.InConstBuildingId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -25358,11 +25313,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
           case 16: {
-            BuildingType = input.ReadInt32();
+            InConstBuildingId = input.ReadInt32();
             break;
           }
         }
@@ -25380,11 +25335,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
           case 16: {
-            BuildingType = input.ReadInt32();
+            InConstBuildingId = input.ReadInt32();
             break;
           }
         }
@@ -25595,7 +25550,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PlayersCiv(PlayersCiv other) : this() {
-      playerNumber_ = other.playerNumber_;
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -25604,14 +25559,14 @@ namespace Protos.Expert.Fact {
       return new PlayersCiv(this);
     }
 
-    /// <summary>Field number for the "playerNumber" field.</summary>
-    public const int PlayerNumberFieldNumber = 1;
-    private int playerNumber_;
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerNumber {
-      get { return playerNumber_; }
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
       set {
-        playerNumber_ = value;
+        inPlayerAnyPlayer_ = value;
       }
     }
 
@@ -25628,14 +25583,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerNumber != other.PlayerNumber) return false;
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerNumber != 0) hash ^= PlayerNumber.GetHashCode();
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -25652,9 +25607,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -25665,9 +25620,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -25678,8 +25633,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerNumber != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerNumber);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -25692,8 +25647,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerNumber != 0) {
-        PlayerNumber = other.PlayerNumber;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -25710,7 +25665,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -25728,7 +25683,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -25778,9 +25733,9 @@ namespace Protos.Expert.Fact {
 
     /// <summary>Field number for the "result" field.</summary>
     public const int ResultFieldNumber = 1;
-    private bool result_;
+    private int result_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Result {
+    public int Result {
       get { return result_; }
       set {
         result_ = value;
@@ -25807,7 +25762,7 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Result != false) hash ^= Result.GetHashCode();
+      if (Result != 0) hash ^= Result.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -25824,9 +25779,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Result != false) {
+      if (Result != 0) {
         output.WriteRawTag(8);
-        output.WriteBool(Result);
+        output.WriteInt32(Result);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -25837,9 +25792,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Result != false) {
+      if (Result != 0) {
         output.WriteRawTag(8);
-        output.WriteBool(Result);
+        output.WriteInt32(Result);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -25850,8 +25805,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Result != false) {
-        size += 1 + 1;
+      if (Result != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Result);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -25864,7 +25819,7 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.Result != false) {
+      if (other.Result != 0) {
         Result = other.Result;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -25882,7 +25837,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Result = input.ReadBool();
+            Result = input.ReadInt32();
             break;
           }
         }
@@ -25900,7 +25855,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Result = input.ReadBool();
+            Result = input.ReadInt32();
             break;
           }
         }
@@ -25939,7 +25894,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PlayersCivilianPopulation(PlayersCivilianPopulation other) : this() {
-      playerNumber_ = other.playerNumber_;
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -25948,14 +25903,14 @@ namespace Protos.Expert.Fact {
       return new PlayersCivilianPopulation(this);
     }
 
-    /// <summary>Field number for the "playerNumber" field.</summary>
-    public const int PlayerNumberFieldNumber = 1;
-    private int playerNumber_;
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerNumber {
-      get { return playerNumber_; }
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
       set {
-        playerNumber_ = value;
+        inPlayerAnyPlayer_ = value;
       }
     }
 
@@ -25972,14 +25927,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerNumber != other.PlayerNumber) return false;
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerNumber != 0) hash ^= PlayerNumber.GetHashCode();
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -25996,9 +25951,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -26009,9 +25964,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -26022,8 +25977,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerNumber != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerNumber);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -26036,8 +25991,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerNumber != 0) {
-        PlayerNumber = other.PlayerNumber;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -26054,7 +26009,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -26072,7 +26027,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -26283,7 +26238,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PlayersCurrentAge(PlayersCurrentAge other) : this() {
-      playerNumber_ = other.playerNumber_;
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -26292,14 +26247,14 @@ namespace Protos.Expert.Fact {
       return new PlayersCurrentAge(this);
     }
 
-    /// <summary>Field number for the "playerNumber" field.</summary>
-    public const int PlayerNumberFieldNumber = 1;
-    private int playerNumber_;
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerNumber {
-      get { return playerNumber_; }
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
       set {
-        playerNumber_ = value;
+        inPlayerAnyPlayer_ = value;
       }
     }
 
@@ -26316,14 +26271,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerNumber != other.PlayerNumber) return false;
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerNumber != 0) hash ^= PlayerNumber.GetHashCode();
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -26340,9 +26295,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -26353,9 +26308,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -26366,8 +26321,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerNumber != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerNumber);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -26380,8 +26335,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerNumber != 0) {
-        PlayerNumber = other.PlayerNumber;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -26398,7 +26353,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -26416,7 +26371,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -26627,7 +26582,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PlayersCurrentAgeTime(PlayersCurrentAgeTime other) : this() {
-      playerNumber_ = other.playerNumber_;
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -26636,14 +26591,14 @@ namespace Protos.Expert.Fact {
       return new PlayersCurrentAgeTime(this);
     }
 
-    /// <summary>Field number for the "playerNumber" field.</summary>
-    public const int PlayerNumberFieldNumber = 1;
-    private int playerNumber_;
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerNumber {
-      get { return playerNumber_; }
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
       set {
-        playerNumber_ = value;
+        inPlayerAnyPlayer_ = value;
       }
     }
 
@@ -26660,14 +26615,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerNumber != other.PlayerNumber) return false;
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerNumber != 0) hash ^= PlayerNumber.GetHashCode();
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -26684,9 +26639,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -26697,9 +26652,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -26710,8 +26665,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerNumber != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerNumber);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -26724,8 +26679,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerNumber != 0) {
-        PlayerNumber = other.PlayerNumber;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -26742,7 +26697,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -26760,7 +26715,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -26971,7 +26926,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PlayersMilitaryPopulation(PlayersMilitaryPopulation other) : this() {
-      playerNumber_ = other.playerNumber_;
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -26980,14 +26935,14 @@ namespace Protos.Expert.Fact {
       return new PlayersMilitaryPopulation(this);
     }
 
-    /// <summary>Field number for the "playerNumber" field.</summary>
-    public const int PlayerNumberFieldNumber = 1;
-    private int playerNumber_;
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerNumber {
-      get { return playerNumber_; }
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
       set {
-        playerNumber_ = value;
+        inPlayerAnyPlayer_ = value;
       }
     }
 
@@ -27004,14 +26959,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerNumber != other.PlayerNumber) return false;
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerNumber != 0) hash ^= PlayerNumber.GetHashCode();
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -27028,9 +26983,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -27041,9 +26996,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -27054,8 +27009,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerNumber != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerNumber);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -27068,8 +27023,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerNumber != 0) {
-        PlayerNumber = other.PlayerNumber;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -27086,7 +27041,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -27104,7 +27059,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -27315,7 +27270,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PlayersPopulation(PlayersPopulation other) : this() {
-      playerNumber_ = other.playerNumber_;
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -27324,14 +27279,14 @@ namespace Protos.Expert.Fact {
       return new PlayersPopulation(this);
     }
 
-    /// <summary>Field number for the "playerNumber" field.</summary>
-    public const int PlayerNumberFieldNumber = 1;
-    private int playerNumber_;
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerNumber {
-      get { return playerNumber_; }
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
       set {
-        playerNumber_ = value;
+        inPlayerAnyPlayer_ = value;
       }
     }
 
@@ -27348,14 +27303,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerNumber != other.PlayerNumber) return false;
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerNumber != 0) hash ^= PlayerNumber.GetHashCode();
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -27372,9 +27327,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -27385,9 +27340,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -27398,8 +27353,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerNumber != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerNumber);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -27412,8 +27367,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerNumber != 0) {
-        PlayerNumber = other.PlayerNumber;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -27430,7 +27385,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -27448,7 +27403,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -27659,7 +27614,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PlayersScore(PlayersScore other) : this() {
-      playerNumber_ = other.playerNumber_;
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -27668,14 +27623,14 @@ namespace Protos.Expert.Fact {
       return new PlayersScore(this);
     }
 
-    /// <summary>Field number for the "playerNumber" field.</summary>
-    public const int PlayerNumberFieldNumber = 1;
-    private int playerNumber_;
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerNumber {
-      get { return playerNumber_; }
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
       set {
-        playerNumber_ = value;
+        inPlayerAnyPlayer_ = value;
       }
     }
 
@@ -27692,14 +27647,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerNumber != other.PlayerNumber) return false;
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerNumber != 0) hash ^= PlayerNumber.GetHashCode();
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -27716,9 +27671,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -27729,9 +27684,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -27742,8 +27697,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerNumber != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerNumber);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -27756,8 +27711,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerNumber != 0) {
-        PlayerNumber = other.PlayerNumber;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -27774,7 +27729,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -27792,7 +27747,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -28003,8 +27958,8 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PlayersStance(PlayersStance other) : this() {
-      playerNumber_ = other.playerNumber_;
-      stance_ = other.stance_;
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
+      inConstESPlayerStance_ = other.inConstESPlayerStance_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -28013,25 +27968,25 @@ namespace Protos.Expert.Fact {
       return new PlayersStance(this);
     }
 
-    /// <summary>Field number for the "playerNumber" field.</summary>
-    public const int PlayerNumberFieldNumber = 1;
-    private int playerNumber_;
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerNumber {
-      get { return playerNumber_; }
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
       set {
-        playerNumber_ = value;
+        inPlayerAnyPlayer_ = value;
       }
     }
 
-    /// <summary>Field number for the "stance" field.</summary>
-    public const int StanceFieldNumber = 2;
-    private int stance_;
+    /// <summary>Field number for the "inConstESPlayerStance" field.</summary>
+    public const int InConstESPlayerStanceFieldNumber = 2;
+    private int inConstESPlayerStance_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Stance {
-      get { return stance_; }
+    public int InConstESPlayerStance {
+      get { return inConstESPlayerStance_; }
       set {
-        stance_ = value;
+        inConstESPlayerStance_ = value;
       }
     }
 
@@ -28048,16 +28003,16 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerNumber != other.PlayerNumber) return false;
-      if (Stance != other.Stance) return false;
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
+      if (InConstESPlayerStance != other.InConstESPlayerStance) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerNumber != 0) hash ^= PlayerNumber.GetHashCode();
-      if (Stance != 0) hash ^= Stance.GetHashCode();
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
+      if (InConstESPlayerStance != 0) hash ^= InConstESPlayerStance.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -28074,13 +28029,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
-      if (Stance != 0) {
+      if (InConstESPlayerStance != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(Stance);
+        output.WriteInt32(InConstESPlayerStance);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -28091,13 +28046,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
-      if (Stance != 0) {
+      if (InConstESPlayerStance != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(Stance);
+        output.WriteInt32(InConstESPlayerStance);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -28108,11 +28063,11 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerNumber != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerNumber);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
-      if (Stance != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Stance);
+      if (InConstESPlayerStance != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstESPlayerStance);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -28125,11 +28080,11 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerNumber != 0) {
-        PlayerNumber = other.PlayerNumber;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
-      if (other.Stance != 0) {
-        Stance = other.Stance;
+      if (other.InConstESPlayerStance != 0) {
+        InConstESPlayerStance = other.InConstESPlayerStance;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -28146,11 +28101,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
           case 16: {
-            Stance = input.ReadInt32();
+            InConstESPlayerStance = input.ReadInt32();
             break;
           }
         }
@@ -28168,11 +28123,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
           case 16: {
-            Stance = input.ReadInt32();
+            InConstESPlayerStance = input.ReadInt32();
             break;
           }
         }
@@ -28383,8 +28338,8 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PlayersTribute(PlayersTribute other) : this() {
-      playerNumber_ = other.playerNumber_;
-      resourceType_ = other.resourceType_;
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
+      inConstResource_ = other.inConstResource_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -28393,25 +28348,25 @@ namespace Protos.Expert.Fact {
       return new PlayersTribute(this);
     }
 
-    /// <summary>Field number for the "playerNumber" field.</summary>
-    public const int PlayerNumberFieldNumber = 1;
-    private int playerNumber_;
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerNumber {
-      get { return playerNumber_; }
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
       set {
-        playerNumber_ = value;
+        inPlayerAnyPlayer_ = value;
       }
     }
 
-    /// <summary>Field number for the "resourceType" field.</summary>
-    public const int ResourceTypeFieldNumber = 2;
-    private int resourceType_;
+    /// <summary>Field number for the "inConstResource" field.</summary>
+    public const int InConstResourceFieldNumber = 2;
+    private int inConstResource_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ResourceType {
-      get { return resourceType_; }
+    public int InConstResource {
+      get { return inConstResource_; }
       set {
-        resourceType_ = value;
+        inConstResource_ = value;
       }
     }
 
@@ -28428,16 +28383,16 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerNumber != other.PlayerNumber) return false;
-      if (ResourceType != other.ResourceType) return false;
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
+      if (InConstResource != other.InConstResource) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerNumber != 0) hash ^= PlayerNumber.GetHashCode();
-      if (ResourceType != 0) hash ^= ResourceType.GetHashCode();
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
+      if (InConstResource != 0) hash ^= InConstResource.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -28454,13 +28409,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
-      if (ResourceType != 0) {
+      if (InConstResource != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(ResourceType);
+        output.WriteInt32(InConstResource);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -28471,13 +28426,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
-      if (ResourceType != 0) {
+      if (InConstResource != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(ResourceType);
+        output.WriteInt32(InConstResource);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -28488,11 +28443,11 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerNumber != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerNumber);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
-      if (ResourceType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ResourceType);
+      if (InConstResource != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstResource);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -28505,11 +28460,11 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerNumber != 0) {
-        PlayerNumber = other.PlayerNumber;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
-      if (other.ResourceType != 0) {
-        ResourceType = other.ResourceType;
+      if (other.InConstResource != 0) {
+        InConstResource = other.InConstResource;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -28526,11 +28481,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
           case 16: {
-            ResourceType = input.ReadInt32();
+            InConstResource = input.ReadInt32();
             break;
           }
         }
@@ -28548,11 +28503,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
           case 16: {
-            ResourceType = input.ReadInt32();
+            InConstResource = input.ReadInt32();
             break;
           }
         }
@@ -28763,8 +28718,8 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PlayersTributeMemory(PlayersTributeMemory other) : this() {
-      playerNumber_ = other.playerNumber_;
-      resourceType_ = other.resourceType_;
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
+      inConstResource_ = other.inConstResource_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -28773,25 +28728,25 @@ namespace Protos.Expert.Fact {
       return new PlayersTributeMemory(this);
     }
 
-    /// <summary>Field number for the "playerNumber" field.</summary>
-    public const int PlayerNumberFieldNumber = 1;
-    private int playerNumber_;
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerNumber {
-      get { return playerNumber_; }
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
       set {
-        playerNumber_ = value;
+        inPlayerAnyPlayer_ = value;
       }
     }
 
-    /// <summary>Field number for the "resourceType" field.</summary>
-    public const int ResourceTypeFieldNumber = 2;
-    private int resourceType_;
+    /// <summary>Field number for the "inConstResource" field.</summary>
+    public const int InConstResourceFieldNumber = 2;
+    private int inConstResource_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ResourceType {
-      get { return resourceType_; }
+    public int InConstResource {
+      get { return inConstResource_; }
       set {
-        resourceType_ = value;
+        inConstResource_ = value;
       }
     }
 
@@ -28808,16 +28763,16 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerNumber != other.PlayerNumber) return false;
-      if (ResourceType != other.ResourceType) return false;
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
+      if (InConstResource != other.InConstResource) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerNumber != 0) hash ^= PlayerNumber.GetHashCode();
-      if (ResourceType != 0) hash ^= ResourceType.GetHashCode();
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
+      if (InConstResource != 0) hash ^= InConstResource.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -28834,13 +28789,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
-      if (ResourceType != 0) {
+      if (InConstResource != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(ResourceType);
+        output.WriteInt32(InConstResource);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -28851,13 +28806,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
-      if (ResourceType != 0) {
+      if (InConstResource != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(ResourceType);
+        output.WriteInt32(InConstResource);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -28868,11 +28823,11 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerNumber != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerNumber);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
-      if (ResourceType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ResourceType);
+      if (InConstResource != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstResource);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -28885,11 +28840,11 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerNumber != 0) {
-        PlayerNumber = other.PlayerNumber;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
-      if (other.ResourceType != 0) {
-        ResourceType = other.ResourceType;
+      if (other.InConstResource != 0) {
+        InConstResource = other.InConstResource;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -28906,11 +28861,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
           case 16: {
-            ResourceType = input.ReadInt32();
+            InConstResource = input.ReadInt32();
             break;
           }
         }
@@ -28928,11 +28883,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
           case 16: {
-            ResourceType = input.ReadInt32();
+            InConstResource = input.ReadInt32();
             break;
           }
         }
@@ -29143,7 +29098,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PlayersUnitCount(PlayersUnitCount other) : this() {
-      playerNumber_ = other.playerNumber_;
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -29152,14 +29107,14 @@ namespace Protos.Expert.Fact {
       return new PlayersUnitCount(this);
     }
 
-    /// <summary>Field number for the "playerNumber" field.</summary>
-    public const int PlayerNumberFieldNumber = 1;
-    private int playerNumber_;
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerNumber {
-      get { return playerNumber_; }
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
       set {
-        playerNumber_ = value;
+        inPlayerAnyPlayer_ = value;
       }
     }
 
@@ -29176,14 +29131,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerNumber != other.PlayerNumber) return false;
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerNumber != 0) hash ^= PlayerNumber.GetHashCode();
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -29200,9 +29155,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -29213,9 +29168,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -29226,8 +29181,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerNumber != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerNumber);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -29240,8 +29195,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerNumber != 0) {
-        PlayerNumber = other.PlayerNumber;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -29258,7 +29213,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -29276,7 +29231,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -29487,8 +29442,8 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PlayersUnitTypeCount(PlayersUnitTypeCount other) : this() {
-      playerNumber_ = other.playerNumber_;
-      unitType_ = other.unitType_;
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
+      inConstUnitId_ = other.inConstUnitId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -29497,25 +29452,25 @@ namespace Protos.Expert.Fact {
       return new PlayersUnitTypeCount(this);
     }
 
-    /// <summary>Field number for the "playerNumber" field.</summary>
-    public const int PlayerNumberFieldNumber = 1;
-    private int playerNumber_;
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerNumber {
-      get { return playerNumber_; }
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
       set {
-        playerNumber_ = value;
+        inPlayerAnyPlayer_ = value;
       }
     }
 
-    /// <summary>Field number for the "unitType" field.</summary>
-    public const int UnitTypeFieldNumber = 2;
-    private int unitType_;
+    /// <summary>Field number for the "inConstUnitId" field.</summary>
+    public const int InConstUnitIdFieldNumber = 2;
+    private int inConstUnitId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int UnitType {
-      get { return unitType_; }
+    public int InConstUnitId {
+      get { return inConstUnitId_; }
       set {
-        unitType_ = value;
+        inConstUnitId_ = value;
       }
     }
 
@@ -29532,16 +29487,16 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerNumber != other.PlayerNumber) return false;
-      if (UnitType != other.UnitType) return false;
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
+      if (InConstUnitId != other.InConstUnitId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerNumber != 0) hash ^= PlayerNumber.GetHashCode();
-      if (UnitType != 0) hash ^= UnitType.GetHashCode();
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
+      if (InConstUnitId != 0) hash ^= InConstUnitId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -29558,13 +29513,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
-      if (UnitType != 0) {
+      if (InConstUnitId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(UnitType);
+        output.WriteInt32(InConstUnitId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -29575,13 +29530,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
-      if (UnitType != 0) {
+      if (InConstUnitId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(UnitType);
+        output.WriteInt32(InConstUnitId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -29592,11 +29547,11 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerNumber != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerNumber);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
-      if (UnitType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(UnitType);
+      if (InConstUnitId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstUnitId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -29609,11 +29564,11 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerNumber != 0) {
-        PlayerNumber = other.PlayerNumber;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
-      if (other.UnitType != 0) {
-        UnitType = other.UnitType;
+      if (other.InConstUnitId != 0) {
+        InConstUnitId = other.InConstUnitId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -29630,11 +29585,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
           case 16: {
-            UnitType = input.ReadInt32();
+            InConstUnitId = input.ReadInt32();
             break;
           }
         }
@@ -29652,11 +29607,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
           case 16: {
-            UnitType = input.ReadInt32();
+            InConstUnitId = input.ReadInt32();
             break;
           }
         }
@@ -31407,7 +31362,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ResearchAvailable(ResearchAvailable other) : this() {
-      researchType_ = other.researchType_;
+      inConstTechId_ = other.inConstTechId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -31416,14 +31371,14 @@ namespace Protos.Expert.Fact {
       return new ResearchAvailable(this);
     }
 
-    /// <summary>Field number for the "researchType" field.</summary>
-    public const int ResearchTypeFieldNumber = 1;
-    private int researchType_;
+    /// <summary>Field number for the "inConstTechId" field.</summary>
+    public const int InConstTechIdFieldNumber = 1;
+    private int inConstTechId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ResearchType {
-      get { return researchType_; }
+    public int InConstTechId {
+      get { return inConstTechId_; }
       set {
-        researchType_ = value;
+        inConstTechId_ = value;
       }
     }
 
@@ -31440,14 +31395,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (ResearchType != other.ResearchType) return false;
+      if (InConstTechId != other.InConstTechId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (ResearchType != 0) hash ^= ResearchType.GetHashCode();
+      if (InConstTechId != 0) hash ^= InConstTechId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -31464,9 +31419,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (ResearchType != 0) {
+      if (InConstTechId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ResearchType);
+        output.WriteInt32(InConstTechId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -31477,9 +31432,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (ResearchType != 0) {
+      if (InConstTechId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ResearchType);
+        output.WriteInt32(InConstTechId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -31490,8 +31445,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (ResearchType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ResearchType);
+      if (InConstTechId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstTechId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -31504,8 +31459,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.ResearchType != 0) {
-        ResearchType = other.ResearchType;
+      if (other.InConstTechId != 0) {
+        InConstTechId = other.InConstTechId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -31522,7 +31477,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            ResearchType = input.ReadInt32();
+            InConstTechId = input.ReadInt32();
             break;
           }
         }
@@ -31540,7 +31495,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            ResearchType = input.ReadInt32();
+            InConstTechId = input.ReadInt32();
             break;
           }
         }
@@ -31751,7 +31706,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ResearchCompleted(ResearchCompleted other) : this() {
-      researchType_ = other.researchType_;
+      inConstTechId_ = other.inConstTechId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -31760,14 +31715,14 @@ namespace Protos.Expert.Fact {
       return new ResearchCompleted(this);
     }
 
-    /// <summary>Field number for the "researchType" field.</summary>
-    public const int ResearchTypeFieldNumber = 1;
-    private int researchType_;
+    /// <summary>Field number for the "inConstTechId" field.</summary>
+    public const int InConstTechIdFieldNumber = 1;
+    private int inConstTechId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ResearchType {
-      get { return researchType_; }
+    public int InConstTechId {
+      get { return inConstTechId_; }
       set {
-        researchType_ = value;
+        inConstTechId_ = value;
       }
     }
 
@@ -31784,14 +31739,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (ResearchType != other.ResearchType) return false;
+      if (InConstTechId != other.InConstTechId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (ResearchType != 0) hash ^= ResearchType.GetHashCode();
+      if (InConstTechId != 0) hash ^= InConstTechId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -31808,9 +31763,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (ResearchType != 0) {
+      if (InConstTechId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ResearchType);
+        output.WriteInt32(InConstTechId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -31821,9 +31776,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (ResearchType != 0) {
+      if (InConstTechId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ResearchType);
+        output.WriteInt32(InConstTechId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -31834,8 +31789,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (ResearchType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ResearchType);
+      if (InConstTechId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstTechId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -31848,8 +31803,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.ResearchType != 0) {
-        ResearchType = other.ResearchType;
+      if (other.InConstTechId != 0) {
+        InConstTechId = other.InConstTechId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -31866,7 +31821,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            ResearchType = input.ReadInt32();
+            InConstTechId = input.ReadInt32();
             break;
           }
         }
@@ -31884,7 +31839,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            ResearchType = input.ReadInt32();
+            InConstTechId = input.ReadInt32();
             break;
           }
         }
@@ -32095,7 +32050,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ResourceFound(ResourceFound other) : this() {
-      resourceType_ = other.resourceType_;
+      inConstResource_ = other.inConstResource_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -32104,14 +32059,14 @@ namespace Protos.Expert.Fact {
       return new ResourceFound(this);
     }
 
-    /// <summary>Field number for the "resourceType" field.</summary>
-    public const int ResourceTypeFieldNumber = 1;
-    private int resourceType_;
+    /// <summary>Field number for the "inConstResource" field.</summary>
+    public const int InConstResourceFieldNumber = 1;
+    private int inConstResource_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ResourceType {
-      get { return resourceType_; }
+    public int InConstResource {
+      get { return inConstResource_; }
       set {
-        resourceType_ = value;
+        inConstResource_ = value;
       }
     }
 
@@ -32128,14 +32083,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (ResourceType != other.ResourceType) return false;
+      if (InConstResource != other.InConstResource) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (ResourceType != 0) hash ^= ResourceType.GetHashCode();
+      if (InConstResource != 0) hash ^= InConstResource.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -32152,9 +32107,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (ResourceType != 0) {
+      if (InConstResource != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ResourceType);
+        output.WriteInt32(InConstResource);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -32165,9 +32120,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (ResourceType != 0) {
+      if (InConstResource != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ResourceType);
+        output.WriteInt32(InConstResource);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -32178,8 +32133,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (ResourceType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ResourceType);
+      if (InConstResource != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstResource);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -32192,8 +32147,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.ResourceType != 0) {
-        ResourceType = other.ResourceType;
+      if (other.InConstResource != 0) {
+        InConstResource = other.InConstResource;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -32210,7 +32165,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            ResourceType = input.ReadInt32();
+            InConstResource = input.ReadInt32();
             break;
           }
         }
@@ -32228,7 +32183,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            ResourceType = input.ReadInt32();
+            InConstResource = input.ReadInt32();
             break;
           }
         }
@@ -32439,8 +32394,8 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SharedGoal(SharedGoal other) : this() {
-      goalId_ = other.goalId_;
-      value_ = other.value_;
+      inConstSharedGoalId_ = other.inConstSharedGoalId_;
+      inConstValue_ = other.inConstValue_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -32449,25 +32404,25 @@ namespace Protos.Expert.Fact {
       return new SharedGoal(this);
     }
 
-    /// <summary>Field number for the "goalId" field.</summary>
-    public const int GoalIdFieldNumber = 1;
-    private int goalId_;
+    /// <summary>Field number for the "inConstSharedGoalId" field.</summary>
+    public const int InConstSharedGoalIdFieldNumber = 1;
+    private int inConstSharedGoalId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int GoalId {
-      get { return goalId_; }
+    public int InConstSharedGoalId {
+      get { return inConstSharedGoalId_; }
       set {
-        goalId_ = value;
+        inConstSharedGoalId_ = value;
       }
     }
 
-    /// <summary>Field number for the "value" field.</summary>
-    public const int ValueFieldNumber = 2;
-    private int value_;
+    /// <summary>Field number for the "inConstValue" field.</summary>
+    public const int InConstValueFieldNumber = 2;
+    private int inConstValue_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Value {
-      get { return value_; }
+    public int InConstValue {
+      get { return inConstValue_; }
       set {
-        value_ = value;
+        inConstValue_ = value;
       }
     }
 
@@ -32484,16 +32439,16 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (GoalId != other.GoalId) return false;
-      if (Value != other.Value) return false;
+      if (InConstSharedGoalId != other.InConstSharedGoalId) return false;
+      if (InConstValue != other.InConstValue) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (GoalId != 0) hash ^= GoalId.GetHashCode();
-      if (Value != 0) hash ^= Value.GetHashCode();
+      if (InConstSharedGoalId != 0) hash ^= InConstSharedGoalId.GetHashCode();
+      if (InConstValue != 0) hash ^= InConstValue.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -32510,13 +32465,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (GoalId != 0) {
+      if (InConstSharedGoalId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(GoalId);
+        output.WriteInt32(InConstSharedGoalId);
       }
-      if (Value != 0) {
+      if (InConstValue != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(Value);
+        output.WriteInt32(InConstValue);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -32527,13 +32482,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (GoalId != 0) {
+      if (InConstSharedGoalId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(GoalId);
+        output.WriteInt32(InConstSharedGoalId);
       }
-      if (Value != 0) {
+      if (InConstValue != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(Value);
+        output.WriteInt32(InConstValue);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -32544,11 +32499,11 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (GoalId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(GoalId);
+      if (InConstSharedGoalId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstSharedGoalId);
       }
-      if (Value != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Value);
+      if (InConstValue != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstValue);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -32561,11 +32516,11 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.GoalId != 0) {
-        GoalId = other.GoalId;
+      if (other.InConstSharedGoalId != 0) {
+        InConstSharedGoalId = other.InConstSharedGoalId;
       }
-      if (other.Value != 0) {
-        Value = other.Value;
+      if (other.InConstValue != 0) {
+        InConstValue = other.InConstValue;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -32582,11 +32537,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            GoalId = input.ReadInt32();
+            InConstSharedGoalId = input.ReadInt32();
             break;
           }
           case 16: {
-            Value = input.ReadInt32();
+            InConstValue = input.ReadInt32();
             break;
           }
         }
@@ -32604,11 +32559,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            GoalId = input.ReadInt32();
+            InConstSharedGoalId = input.ReadInt32();
             break;
           }
           case 16: {
-            Value = input.ReadInt32();
+            InConstValue = input.ReadInt32();
             break;
           }
         }
@@ -33435,8 +33390,8 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public StanceToward(StanceToward other) : this() {
-      playerNumber_ = other.playerNumber_;
-      stance_ = other.stance_;
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
+      inConstESPlayerStance_ = other.inConstESPlayerStance_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -33445,25 +33400,25 @@ namespace Protos.Expert.Fact {
       return new StanceToward(this);
     }
 
-    /// <summary>Field number for the "playerNumber" field.</summary>
-    public const int PlayerNumberFieldNumber = 1;
-    private int playerNumber_;
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerNumber {
-      get { return playerNumber_; }
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
       set {
-        playerNumber_ = value;
+        inPlayerAnyPlayer_ = value;
       }
     }
 
-    /// <summary>Field number for the "stance" field.</summary>
-    public const int StanceFieldNumber = 2;
-    private int stance_;
+    /// <summary>Field number for the "inConstESPlayerStance" field.</summary>
+    public const int InConstESPlayerStanceFieldNumber = 2;
+    private int inConstESPlayerStance_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Stance {
-      get { return stance_; }
+    public int InConstESPlayerStance {
+      get { return inConstESPlayerStance_; }
       set {
-        stance_ = value;
+        inConstESPlayerStance_ = value;
       }
     }
 
@@ -33480,16 +33435,16 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerNumber != other.PlayerNumber) return false;
-      if (Stance != other.Stance) return false;
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
+      if (InConstESPlayerStance != other.InConstESPlayerStance) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerNumber != 0) hash ^= PlayerNumber.GetHashCode();
-      if (Stance != 0) hash ^= Stance.GetHashCode();
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
+      if (InConstESPlayerStance != 0) hash ^= InConstESPlayerStance.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -33506,13 +33461,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
-      if (Stance != 0) {
+      if (InConstESPlayerStance != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(Stance);
+        output.WriteInt32(InConstESPlayerStance);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -33523,13 +33478,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
-      if (Stance != 0) {
+      if (InConstESPlayerStance != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(Stance);
+        output.WriteInt32(InConstESPlayerStance);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -33540,11 +33495,11 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerNumber != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerNumber);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
-      if (Stance != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Stance);
+      if (InConstESPlayerStance != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstESPlayerStance);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -33557,11 +33512,11 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerNumber != 0) {
-        PlayerNumber = other.PlayerNumber;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
-      if (other.Stance != 0) {
-        Stance = other.Stance;
+      if (other.InConstESPlayerStance != 0) {
+        InConstESPlayerStance = other.InConstESPlayerStance;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -33578,11 +33533,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
           case 16: {
-            Stance = input.ReadInt32();
+            InConstESPlayerStance = input.ReadInt32();
             break;
           }
         }
@@ -33600,11 +33555,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
           case 16: {
-            Stance = input.ReadInt32();
+            InConstESPlayerStance = input.ReadInt32();
             break;
           }
         }
@@ -34739,7 +34694,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public StrategicNumber(StrategicNumber other) : this() {
-      strategicNumber_ = other.strategicNumber_;
+      inConstSnId_ = other.inConstSnId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -34748,14 +34703,14 @@ namespace Protos.Expert.Fact {
       return new StrategicNumber(this);
     }
 
-    /// <summary>Field number for the "strategicNumber" field.</summary>
-    public const int StrategicNumber_FieldNumber = 1;
-    private int strategicNumber_;
+    /// <summary>Field number for the "inConstSnId" field.</summary>
+    public const int InConstSnIdFieldNumber = 1;
+    private int inConstSnId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int StrategicNumber_ {
-      get { return strategicNumber_; }
+    public int InConstSnId {
+      get { return inConstSnId_; }
       set {
-        strategicNumber_ = value;
+        inConstSnId_ = value;
       }
     }
 
@@ -34772,14 +34727,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (StrategicNumber_ != other.StrategicNumber_) return false;
+      if (InConstSnId != other.InConstSnId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (StrategicNumber_ != 0) hash ^= StrategicNumber_.GetHashCode();
+      if (InConstSnId != 0) hash ^= InConstSnId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -34796,9 +34751,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (StrategicNumber_ != 0) {
+      if (InConstSnId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(StrategicNumber_);
+        output.WriteInt32(InConstSnId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -34809,9 +34764,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (StrategicNumber_ != 0) {
+      if (InConstSnId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(StrategicNumber_);
+        output.WriteInt32(InConstSnId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -34822,8 +34777,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (StrategicNumber_ != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(StrategicNumber_);
+      if (InConstSnId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstSnId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -34836,8 +34791,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.StrategicNumber_ != 0) {
-        StrategicNumber_ = other.StrategicNumber_;
+      if (other.InConstSnId != 0) {
+        InConstSnId = other.InConstSnId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -34854,7 +34809,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            StrategicNumber_ = input.ReadInt32();
+            InConstSnId = input.ReadInt32();
             break;
           }
         }
@@ -34872,7 +34827,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            StrategicNumber_ = input.ReadInt32();
+            InConstSnId = input.ReadInt32();
             break;
           }
         }
@@ -35054,15 +35009,19 @@ namespace Protos.Expert.Fact {
 
   }
 
-  public sealed partial class TauntDetected : pb::IMessage<TauntDetected>
+  /// <summary>
+  ///*
+  /// Custom fact. Retrieve all strategic numbers as a list.
+  /// </summary>
+  public sealed partial class StrategicNumberList : pb::IMessage<StrategicNumberList>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<TauntDetected> _parser = new pb::MessageParser<TauntDetected>(() => new TauntDetected());
+    private static readonly pb::MessageParser<StrategicNumberList> _parser = new pb::MessageParser<StrategicNumberList>(() => new StrategicNumberList());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<TauntDetected> Parser { get { return _parser; } }
+    public static pb::MessageParser<StrategicNumberList> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -35075,69 +35034,41 @@ namespace Protos.Expert.Fact {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public TauntDetected() {
+    public StrategicNumberList() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public TauntDetected(TauntDetected other) : this() {
-      playerNumber_ = other.playerNumber_;
-      tauntId_ = other.tauntId_;
+    public StrategicNumberList(StrategicNumberList other) : this() {
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public TauntDetected Clone() {
-      return new TauntDetected(this);
-    }
-
-    /// <summary>Field number for the "playerNumber" field.</summary>
-    public const int PlayerNumberFieldNumber = 1;
-    private int playerNumber_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerNumber {
-      get { return playerNumber_; }
-      set {
-        playerNumber_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "tauntId" field.</summary>
-    public const int TauntIdFieldNumber = 2;
-    private int tauntId_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int TauntId {
-      get { return tauntId_; }
-      set {
-        tauntId_ = value;
-      }
+    public StrategicNumberList Clone() {
+      return new StrategicNumberList(this);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as TauntDetected);
+      return Equals(other as StrategicNumberList);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(TauntDetected other) {
+    public bool Equals(StrategicNumberList other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerNumber != other.PlayerNumber) return false;
-      if (TauntId != other.TauntId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerNumber != 0) hash ^= PlayerNumber.GetHashCode();
-      if (TauntId != 0) hash ^= TauntId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -35154,13 +35085,347 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerNumber != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
       }
-      if (TauntId != 0) {
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(StrategicNumberList other) {
+      if (other == null) {
+        return;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  ///*
+  /// Response for the `StrategicNumberList` custom fact.
+  /// </summary>
+  public sealed partial class StrategicNumberListResult : pb::IMessage<StrategicNumberListResult>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<StrategicNumberListResult> _parser = new pb::MessageParser<StrategicNumberListResult>(() => new StrategicNumberListResult());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<StrategicNumberListResult> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[205]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public StrategicNumberListResult() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public StrategicNumberListResult(StrategicNumberListResult other) : this() {
+      result_ = other.result_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public StrategicNumberListResult Clone() {
+      return new StrategicNumberListResult(this);
+    }
+
+    /// <summary>Field number for the "result" field.</summary>
+    public const int ResultFieldNumber = 1;
+    private static readonly pb::FieldCodec<int> _repeated_result_codec
+        = pb::FieldCodec.ForInt32(10);
+    private readonly pbc::RepeatedField<int> result_ = new pbc::RepeatedField<int>();
+    /// <summary>
+    /// list of all strategic numbers
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<int> Result {
+      get { return result_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as StrategicNumberListResult);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(StrategicNumberListResult other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!result_.Equals(other.result_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= result_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      result_.WriteTo(output, _repeated_result_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      result_.WriteTo(ref output, _repeated_result_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += result_.CalculateSize(_repeated_result_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(StrategicNumberListResult other) {
+      if (other == null) {
+        return;
+      }
+      result_.Add(other.result_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10:
+          case 8: {
+            result_.AddEntriesFrom(input, _repeated_result_codec);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10:
+          case 8: {
+            result_.AddEntriesFrom(ref input, _repeated_result_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  public sealed partial class TauntDetected : pb::IMessage<TauntDetected>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<TauntDetected> _parser = new pb::MessageParser<TauntDetected>(() => new TauntDetected());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<TauntDetected> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[206]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public TauntDetected() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public TauntDetected(TauntDetected other) : this() {
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
+      inConstTauntId_ = other.inConstTauntId_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public TauntDetected Clone() {
+      return new TauntDetected(this);
+    }
+
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
+      set {
+        inPlayerAnyPlayer_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "inConstTauntId" field.</summary>
+    public const int InConstTauntIdFieldNumber = 2;
+    private int inConstTauntId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int InConstTauntId {
+      get { return inConstTauntId_; }
+      set {
+        inConstTauntId_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as TauntDetected);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(TauntDetected other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
+      if (InConstTauntId != other.InConstTauntId) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
+      if (InConstTauntId != 0) hash ^= InConstTauntId.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (InPlayerAnyPlayer != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(InPlayerAnyPlayer);
+      }
+      if (InConstTauntId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(TauntId);
+        output.WriteInt32(InConstTauntId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -35171,13 +35436,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerNumber != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerNumber);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
-      if (TauntId != 0) {
+      if (InConstTauntId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(TauntId);
+        output.WriteInt32(InConstTauntId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -35188,11 +35453,11 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerNumber != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerNumber);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
-      if (TauntId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TauntId);
+      if (InConstTauntId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstTauntId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -35205,11 +35470,11 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerNumber != 0) {
-        PlayerNumber = other.PlayerNumber;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
-      if (other.TauntId != 0) {
-        TauntId = other.TauntId;
+      if (other.InConstTauntId != 0) {
+        InConstTauntId = other.InConstTauntId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -35226,11 +35491,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
           case 16: {
-            TauntId = input.ReadInt32();
+            InConstTauntId = input.ReadInt32();
             break;
           }
         }
@@ -35248,11 +35513,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerNumber = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
           case 16: {
-            TauntId = input.ReadInt32();
+            InConstTauntId = input.ReadInt32();
             break;
           }
         }
@@ -35274,7 +35539,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[205]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[207]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -35446,7 +35711,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[206]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[208]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -35463,7 +35728,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public TimerTriggered(TimerTriggered other) : this() {
-      timerId_ = other.timerId_;
+      inConstTimerId_ = other.inConstTimerId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -35472,14 +35737,14 @@ namespace Protos.Expert.Fact {
       return new TimerTriggered(this);
     }
 
-    /// <summary>Field number for the "timerId" field.</summary>
-    public const int TimerIdFieldNumber = 1;
-    private int timerId_;
+    /// <summary>Field number for the "inConstTimerId" field.</summary>
+    public const int InConstTimerIdFieldNumber = 1;
+    private int inConstTimerId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int TimerId {
-      get { return timerId_; }
+    public int InConstTimerId {
+      get { return inConstTimerId_; }
       set {
-        timerId_ = value;
+        inConstTimerId_ = value;
       }
     }
 
@@ -35496,14 +35761,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (TimerId != other.TimerId) return false;
+      if (InConstTimerId != other.InConstTimerId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (TimerId != 0) hash ^= TimerId.GetHashCode();
+      if (InConstTimerId != 0) hash ^= InConstTimerId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -35520,9 +35785,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (TimerId != 0) {
+      if (InConstTimerId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(TimerId);
+        output.WriteInt32(InConstTimerId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -35533,9 +35798,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (TimerId != 0) {
+      if (InConstTimerId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(TimerId);
+        output.WriteInt32(InConstTimerId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -35546,8 +35811,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (TimerId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TimerId);
+      if (InConstTimerId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstTimerId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -35560,8 +35825,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.TimerId != 0) {
-        TimerId = other.TimerId;
+      if (other.InConstTimerId != 0) {
+        InConstTimerId = other.InConstTimerId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -35578,7 +35843,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            TimerId = input.ReadInt32();
+            InConstTimerId = input.ReadInt32();
             break;
           }
         }
@@ -35596,7 +35861,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            TimerId = input.ReadInt32();
+            InConstTimerId = input.ReadInt32();
             break;
           }
         }
@@ -35618,7 +35883,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[207]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[209]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -35790,7 +36055,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[208]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[210]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -35926,7 +36191,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[209]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[211]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -36098,7 +36363,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[210]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[212]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -36270,7 +36535,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[211]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[213]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -36442,7 +36707,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[212]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[214]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -36578,7 +36843,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[213]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[215]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -36750,7 +37015,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[214]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[216]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -36767,7 +37032,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UnitAvailable(UnitAvailable other) : this() {
-      unitType_ = other.unitType_;
+      inConstUnitId_ = other.inConstUnitId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -36776,14 +37041,14 @@ namespace Protos.Expert.Fact {
       return new UnitAvailable(this);
     }
 
-    /// <summary>Field number for the "unitType" field.</summary>
-    public const int UnitTypeFieldNumber = 1;
-    private int unitType_;
+    /// <summary>Field number for the "inConstUnitId" field.</summary>
+    public const int InConstUnitIdFieldNumber = 1;
+    private int inConstUnitId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int UnitType {
-      get { return unitType_; }
+    public int InConstUnitId {
+      get { return inConstUnitId_; }
       set {
-        unitType_ = value;
+        inConstUnitId_ = value;
       }
     }
 
@@ -36800,14 +37065,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (UnitType != other.UnitType) return false;
+      if (InConstUnitId != other.InConstUnitId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (UnitType != 0) hash ^= UnitType.GetHashCode();
+      if (InConstUnitId != 0) hash ^= InConstUnitId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -36824,9 +37089,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (UnitType != 0) {
+      if (InConstUnitId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(UnitType);
+        output.WriteInt32(InConstUnitId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -36837,9 +37102,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (UnitType != 0) {
+      if (InConstUnitId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(UnitType);
+        output.WriteInt32(InConstUnitId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -36850,8 +37115,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (UnitType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(UnitType);
+      if (InConstUnitId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstUnitId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -36864,8 +37129,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.UnitType != 0) {
-        UnitType = other.UnitType;
+      if (other.InConstUnitId != 0) {
+        InConstUnitId = other.InConstUnitId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -36882,7 +37147,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            UnitType = input.ReadInt32();
+            InConstUnitId = input.ReadInt32();
             break;
           }
         }
@@ -36900,7 +37165,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            UnitType = input.ReadInt32();
+            InConstUnitId = input.ReadInt32();
             break;
           }
         }
@@ -36922,7 +37187,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[215]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[217]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -37094,7 +37359,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[216]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[218]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -37230,7 +37495,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[217]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[219]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -37402,7 +37667,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[218]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[220]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -37538,7 +37803,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[219]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[221]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -37710,7 +37975,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[220]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[222]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -37727,7 +37992,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UnitTypeCount(UnitTypeCount other) : this() {
-      unitType_ = other.unitType_;
+      inConstUnitId_ = other.inConstUnitId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -37736,14 +38001,14 @@ namespace Protos.Expert.Fact {
       return new UnitTypeCount(this);
     }
 
-    /// <summary>Field number for the "unitType" field.</summary>
-    public const int UnitTypeFieldNumber = 1;
-    private int unitType_;
+    /// <summary>Field number for the "inConstUnitId" field.</summary>
+    public const int InConstUnitIdFieldNumber = 1;
+    private int inConstUnitId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int UnitType {
-      get { return unitType_; }
+    public int InConstUnitId {
+      get { return inConstUnitId_; }
       set {
-        unitType_ = value;
+        inConstUnitId_ = value;
       }
     }
 
@@ -37760,14 +38025,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (UnitType != other.UnitType) return false;
+      if (InConstUnitId != other.InConstUnitId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (UnitType != 0) hash ^= UnitType.GetHashCode();
+      if (InConstUnitId != 0) hash ^= InConstUnitId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -37784,9 +38049,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (UnitType != 0) {
+      if (InConstUnitId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(UnitType);
+        output.WriteInt32(InConstUnitId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -37797,9 +38062,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (UnitType != 0) {
+      if (InConstUnitId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(UnitType);
+        output.WriteInt32(InConstUnitId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -37810,8 +38075,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (UnitType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(UnitType);
+      if (InConstUnitId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstUnitId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -37824,8 +38089,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.UnitType != 0) {
-        UnitType = other.UnitType;
+      if (other.InConstUnitId != 0) {
+        InConstUnitId = other.InConstUnitId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -37842,7 +38107,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            UnitType = input.ReadInt32();
+            InConstUnitId = input.ReadInt32();
             break;
           }
         }
@@ -37860,7 +38125,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            UnitType = input.ReadInt32();
+            InConstUnitId = input.ReadInt32();
             break;
           }
         }
@@ -37882,7 +38147,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[221]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[223]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -38054,7 +38319,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[222]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[224]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -38071,7 +38336,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UnitTypeCountTotal(UnitTypeCountTotal other) : this() {
-      unitType_ = other.unitType_;
+      inConstUnitId_ = other.inConstUnitId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -38080,14 +38345,14 @@ namespace Protos.Expert.Fact {
       return new UnitTypeCountTotal(this);
     }
 
-    /// <summary>Field number for the "unitType" field.</summary>
-    public const int UnitTypeFieldNumber = 1;
-    private int unitType_;
+    /// <summary>Field number for the "inConstUnitId" field.</summary>
+    public const int InConstUnitIdFieldNumber = 1;
+    private int inConstUnitId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int UnitType {
-      get { return unitType_; }
+    public int InConstUnitId {
+      get { return inConstUnitId_; }
       set {
-        unitType_ = value;
+        inConstUnitId_ = value;
       }
     }
 
@@ -38104,14 +38369,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (UnitType != other.UnitType) return false;
+      if (InConstUnitId != other.InConstUnitId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (UnitType != 0) hash ^= UnitType.GetHashCode();
+      if (InConstUnitId != 0) hash ^= InConstUnitId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -38128,9 +38393,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (UnitType != 0) {
+      if (InConstUnitId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(UnitType);
+        output.WriteInt32(InConstUnitId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -38141,9 +38406,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (UnitType != 0) {
+      if (InConstUnitId != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(UnitType);
+        output.WriteInt32(InConstUnitId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -38154,8 +38419,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (UnitType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(UnitType);
+      if (InConstUnitId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstUnitId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -38168,8 +38433,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.UnitType != 0) {
-        UnitType = other.UnitType;
+      if (other.InConstUnitId != 0) {
+        InConstUnitId = other.InConstUnitId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -38186,7 +38451,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            UnitType = input.ReadInt32();
+            InConstUnitId = input.ReadInt32();
             break;
           }
         }
@@ -38204,7 +38469,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            UnitType = input.ReadInt32();
+            InConstUnitId = input.ReadInt32();
             break;
           }
         }
@@ -38226,7 +38491,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[223]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[225]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -38398,7 +38663,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[224]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[226]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -38415,8 +38680,8 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpAlliedGoal(UpAlliedGoal other) : this() {
-      computerAlly_ = other.computerAlly_;
-      goalId_ = other.goalId_;
+      inPlayerComputerAllyPlayer_ = other.inPlayerComputerAllyPlayer_;
+      inGoalId_ = other.inGoalId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -38425,25 +38690,25 @@ namespace Protos.Expert.Fact {
       return new UpAlliedGoal(this);
     }
 
-    /// <summary>Field number for the "computerAlly" field.</summary>
-    public const int ComputerAllyFieldNumber = 1;
-    private int computerAlly_;
+    /// <summary>Field number for the "inPlayerComputerAllyPlayer" field.</summary>
+    public const int InPlayerComputerAllyPlayerFieldNumber = 1;
+    private int inPlayerComputerAllyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ComputerAlly {
-      get { return computerAlly_; }
+    public int InPlayerComputerAllyPlayer {
+      get { return inPlayerComputerAllyPlayer_; }
       set {
-        computerAlly_ = value;
+        inPlayerComputerAllyPlayer_ = value;
       }
     }
 
-    /// <summary>Field number for the "goalId" field.</summary>
-    public const int GoalIdFieldNumber = 2;
-    private int goalId_;
+    /// <summary>Field number for the "inGoalId" field.</summary>
+    public const int InGoalIdFieldNumber = 2;
+    private int inGoalId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int GoalId {
-      get { return goalId_; }
+    public int InGoalId {
+      get { return inGoalId_; }
       set {
-        goalId_ = value;
+        inGoalId_ = value;
       }
     }
 
@@ -38460,16 +38725,16 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (ComputerAlly != other.ComputerAlly) return false;
-      if (GoalId != other.GoalId) return false;
+      if (InPlayerComputerAllyPlayer != other.InPlayerComputerAllyPlayer) return false;
+      if (InGoalId != other.InGoalId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (ComputerAlly != 0) hash ^= ComputerAlly.GetHashCode();
-      if (GoalId != 0) hash ^= GoalId.GetHashCode();
+      if (InPlayerComputerAllyPlayer != 0) hash ^= InPlayerComputerAllyPlayer.GetHashCode();
+      if (InGoalId != 0) hash ^= InGoalId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -38486,13 +38751,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (ComputerAlly != 0) {
+      if (InPlayerComputerAllyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ComputerAlly);
+        output.WriteInt32(InPlayerComputerAllyPlayer);
       }
-      if (GoalId != 0) {
+      if (InGoalId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(GoalId);
+        output.WriteInt32(InGoalId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -38503,13 +38768,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (ComputerAlly != 0) {
+      if (InPlayerComputerAllyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ComputerAlly);
+        output.WriteInt32(InPlayerComputerAllyPlayer);
       }
-      if (GoalId != 0) {
+      if (InGoalId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(GoalId);
+        output.WriteInt32(InGoalId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -38520,11 +38785,11 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (ComputerAlly != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ComputerAlly);
+      if (InPlayerComputerAllyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerComputerAllyPlayer);
       }
-      if (GoalId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(GoalId);
+      if (InGoalId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -38537,11 +38802,11 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.ComputerAlly != 0) {
-        ComputerAlly = other.ComputerAlly;
+      if (other.InPlayerComputerAllyPlayer != 0) {
+        InPlayerComputerAllyPlayer = other.InPlayerComputerAllyPlayer;
       }
-      if (other.GoalId != 0) {
-        GoalId = other.GoalId;
+      if (other.InGoalId != 0) {
+        InGoalId = other.InGoalId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -38558,11 +38823,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            ComputerAlly = input.ReadInt32();
+            InPlayerComputerAllyPlayer = input.ReadInt32();
             break;
           }
           case 16: {
-            GoalId = input.ReadInt32();
+            InGoalId = input.ReadInt32();
             break;
           }
         }
@@ -38580,11 +38845,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            ComputerAlly = input.ReadInt32();
+            InPlayerComputerAllyPlayer = input.ReadInt32();
             break;
           }
           case 16: {
-            GoalId = input.ReadInt32();
+            InGoalId = input.ReadInt32();
             break;
           }
         }
@@ -38606,7 +38871,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[225]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[227]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -38778,7 +39043,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[226]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[228]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -38795,8 +39060,8 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpAlliedResourceAmount(UpAlliedResourceAmount other) : this() {
-      ally_ = other.ally_;
-      resourceAmount_ = other.resourceAmount_;
+      inPlayerAllyPlayer_ = other.inPlayerAllyPlayer_;
+      inConstResourceAmount_ = other.inConstResourceAmount_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -38805,25 +39070,25 @@ namespace Protos.Expert.Fact {
       return new UpAlliedResourceAmount(this);
     }
 
-    /// <summary>Field number for the "ally" field.</summary>
-    public const int AllyFieldNumber = 1;
-    private int ally_;
+    /// <summary>Field number for the "inPlayerAllyPlayer" field.</summary>
+    public const int InPlayerAllyPlayerFieldNumber = 1;
+    private int inPlayerAllyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Ally {
-      get { return ally_; }
+    public int InPlayerAllyPlayer {
+      get { return inPlayerAllyPlayer_; }
       set {
-        ally_ = value;
+        inPlayerAllyPlayer_ = value;
       }
     }
 
-    /// <summary>Field number for the "resourceAmount" field.</summary>
-    public const int ResourceAmountFieldNumber = 2;
-    private int resourceAmount_;
+    /// <summary>Field number for the "inConstResourceAmount" field.</summary>
+    public const int InConstResourceAmountFieldNumber = 2;
+    private int inConstResourceAmount_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ResourceAmount {
-      get { return resourceAmount_; }
+    public int InConstResourceAmount {
+      get { return inConstResourceAmount_; }
       set {
-        resourceAmount_ = value;
+        inConstResourceAmount_ = value;
       }
     }
 
@@ -38840,16 +39105,16 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Ally != other.Ally) return false;
-      if (ResourceAmount != other.ResourceAmount) return false;
+      if (InPlayerAllyPlayer != other.InPlayerAllyPlayer) return false;
+      if (InConstResourceAmount != other.InConstResourceAmount) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Ally != 0) hash ^= Ally.GetHashCode();
-      if (ResourceAmount != 0) hash ^= ResourceAmount.GetHashCode();
+      if (InPlayerAllyPlayer != 0) hash ^= InPlayerAllyPlayer.GetHashCode();
+      if (InConstResourceAmount != 0) hash ^= InConstResourceAmount.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -38866,13 +39131,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Ally != 0) {
+      if (InPlayerAllyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(Ally);
+        output.WriteInt32(InPlayerAllyPlayer);
       }
-      if (ResourceAmount != 0) {
+      if (InConstResourceAmount != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(ResourceAmount);
+        output.WriteInt32(InConstResourceAmount);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -38883,13 +39148,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Ally != 0) {
+      if (InPlayerAllyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(Ally);
+        output.WriteInt32(InPlayerAllyPlayer);
       }
-      if (ResourceAmount != 0) {
+      if (InConstResourceAmount != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(ResourceAmount);
+        output.WriteInt32(InConstResourceAmount);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -38900,11 +39165,11 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Ally != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Ally);
+      if (InPlayerAllyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAllyPlayer);
       }
-      if (ResourceAmount != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ResourceAmount);
+      if (InConstResourceAmount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstResourceAmount);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -38917,11 +39182,11 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.Ally != 0) {
-        Ally = other.Ally;
+      if (other.InPlayerAllyPlayer != 0) {
+        InPlayerAllyPlayer = other.InPlayerAllyPlayer;
       }
-      if (other.ResourceAmount != 0) {
-        ResourceAmount = other.ResourceAmount;
+      if (other.InConstResourceAmount != 0) {
+        InConstResourceAmount = other.InConstResourceAmount;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -38938,11 +39203,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Ally = input.ReadInt32();
+            InPlayerAllyPlayer = input.ReadInt32();
             break;
           }
           case 16: {
-            ResourceAmount = input.ReadInt32();
+            InConstResourceAmount = input.ReadInt32();
             break;
           }
         }
@@ -38960,11 +39225,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Ally = input.ReadInt32();
+            InPlayerAllyPlayer = input.ReadInt32();
             break;
           }
           case 16: {
-            ResourceAmount = input.ReadInt32();
+            InConstResourceAmount = input.ReadInt32();
             break;
           }
         }
@@ -38986,7 +39251,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[227]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[229]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -39158,7 +39423,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[228]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[230]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -39175,8 +39440,8 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpAlliedResourcePercent(UpAlliedResourcePercent other) : this() {
-      ally_ = other.ally_;
-      resourceAmount_ = other.resourceAmount_;
+      inPlayerAllyPlayer_ = other.inPlayerAllyPlayer_;
+      inConstResourceAmount_ = other.inConstResourceAmount_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -39185,25 +39450,25 @@ namespace Protos.Expert.Fact {
       return new UpAlliedResourcePercent(this);
     }
 
-    /// <summary>Field number for the "ally" field.</summary>
-    public const int AllyFieldNumber = 1;
-    private int ally_;
+    /// <summary>Field number for the "inPlayerAllyPlayer" field.</summary>
+    public const int InPlayerAllyPlayerFieldNumber = 1;
+    private int inPlayerAllyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Ally {
-      get { return ally_; }
+    public int InPlayerAllyPlayer {
+      get { return inPlayerAllyPlayer_; }
       set {
-        ally_ = value;
+        inPlayerAllyPlayer_ = value;
       }
     }
 
-    /// <summary>Field number for the "resourceAmount" field.</summary>
-    public const int ResourceAmountFieldNumber = 2;
-    private int resourceAmount_;
+    /// <summary>Field number for the "inConstResourceAmount" field.</summary>
+    public const int InConstResourceAmountFieldNumber = 2;
+    private int inConstResourceAmount_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ResourceAmount {
-      get { return resourceAmount_; }
+    public int InConstResourceAmount {
+      get { return inConstResourceAmount_; }
       set {
-        resourceAmount_ = value;
+        inConstResourceAmount_ = value;
       }
     }
 
@@ -39220,16 +39485,16 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Ally != other.Ally) return false;
-      if (ResourceAmount != other.ResourceAmount) return false;
+      if (InPlayerAllyPlayer != other.InPlayerAllyPlayer) return false;
+      if (InConstResourceAmount != other.InConstResourceAmount) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Ally != 0) hash ^= Ally.GetHashCode();
-      if (ResourceAmount != 0) hash ^= ResourceAmount.GetHashCode();
+      if (InPlayerAllyPlayer != 0) hash ^= InPlayerAllyPlayer.GetHashCode();
+      if (InConstResourceAmount != 0) hash ^= InConstResourceAmount.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -39246,13 +39511,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Ally != 0) {
+      if (InPlayerAllyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(Ally);
+        output.WriteInt32(InPlayerAllyPlayer);
       }
-      if (ResourceAmount != 0) {
+      if (InConstResourceAmount != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(ResourceAmount);
+        output.WriteInt32(InConstResourceAmount);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -39263,13 +39528,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Ally != 0) {
+      if (InPlayerAllyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(Ally);
+        output.WriteInt32(InPlayerAllyPlayer);
       }
-      if (ResourceAmount != 0) {
+      if (InConstResourceAmount != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(ResourceAmount);
+        output.WriteInt32(InConstResourceAmount);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -39280,11 +39545,11 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Ally != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Ally);
+      if (InPlayerAllyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAllyPlayer);
       }
-      if (ResourceAmount != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ResourceAmount);
+      if (InConstResourceAmount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstResourceAmount);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -39297,11 +39562,11 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.Ally != 0) {
-        Ally = other.Ally;
+      if (other.InPlayerAllyPlayer != 0) {
+        InPlayerAllyPlayer = other.InPlayerAllyPlayer;
       }
-      if (other.ResourceAmount != 0) {
-        ResourceAmount = other.ResourceAmount;
+      if (other.InConstResourceAmount != 0) {
+        InConstResourceAmount = other.InConstResourceAmount;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -39318,11 +39583,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Ally = input.ReadInt32();
+            InPlayerAllyPlayer = input.ReadInt32();
             break;
           }
           case 16: {
-            ResourceAmount = input.ReadInt32();
+            InConstResourceAmount = input.ReadInt32();
             break;
           }
         }
@@ -39340,11 +39605,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Ally = input.ReadInt32();
+            InPlayerAllyPlayer = input.ReadInt32();
             break;
           }
           case 16: {
-            ResourceAmount = input.ReadInt32();
+            InConstResourceAmount = input.ReadInt32();
             break;
           }
         }
@@ -39366,7 +39631,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[229]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[231]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -39538,7 +39803,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[230]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[232]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -39555,8 +39820,8 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpAlliedSn(UpAlliedSn other) : this() {
-      computerAlly_ = other.computerAlly_;
-      snId_ = other.snId_;
+      inPlayerComputerAllyPlayer_ = other.inPlayerComputerAllyPlayer_;
+      inSnId_ = other.inSnId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -39565,25 +39830,25 @@ namespace Protos.Expert.Fact {
       return new UpAlliedSn(this);
     }
 
-    /// <summary>Field number for the "computerAlly" field.</summary>
-    public const int ComputerAllyFieldNumber = 1;
-    private int computerAlly_;
+    /// <summary>Field number for the "inPlayerComputerAllyPlayer" field.</summary>
+    public const int InPlayerComputerAllyPlayerFieldNumber = 1;
+    private int inPlayerComputerAllyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ComputerAlly {
-      get { return computerAlly_; }
+    public int InPlayerComputerAllyPlayer {
+      get { return inPlayerComputerAllyPlayer_; }
       set {
-        computerAlly_ = value;
+        inPlayerComputerAllyPlayer_ = value;
       }
     }
 
-    /// <summary>Field number for the "snId" field.</summary>
-    public const int SnIdFieldNumber = 2;
-    private int snId_;
+    /// <summary>Field number for the "inSnId" field.</summary>
+    public const int InSnIdFieldNumber = 2;
+    private int inSnId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int SnId {
-      get { return snId_; }
+    public int InSnId {
+      get { return inSnId_; }
       set {
-        snId_ = value;
+        inSnId_ = value;
       }
     }
 
@@ -39600,16 +39865,16 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (ComputerAlly != other.ComputerAlly) return false;
-      if (SnId != other.SnId) return false;
+      if (InPlayerComputerAllyPlayer != other.InPlayerComputerAllyPlayer) return false;
+      if (InSnId != other.InSnId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (ComputerAlly != 0) hash ^= ComputerAlly.GetHashCode();
-      if (SnId != 0) hash ^= SnId.GetHashCode();
+      if (InPlayerComputerAllyPlayer != 0) hash ^= InPlayerComputerAllyPlayer.GetHashCode();
+      if (InSnId != 0) hash ^= InSnId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -39626,13 +39891,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (ComputerAlly != 0) {
+      if (InPlayerComputerAllyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ComputerAlly);
+        output.WriteInt32(InPlayerComputerAllyPlayer);
       }
-      if (SnId != 0) {
+      if (InSnId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(SnId);
+        output.WriteInt32(InSnId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -39643,13 +39908,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (ComputerAlly != 0) {
+      if (InPlayerComputerAllyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ComputerAlly);
+        output.WriteInt32(InPlayerComputerAllyPlayer);
       }
-      if (SnId != 0) {
+      if (InSnId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(SnId);
+        output.WriteInt32(InSnId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -39660,11 +39925,11 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (ComputerAlly != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ComputerAlly);
+      if (InPlayerComputerAllyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerComputerAllyPlayer);
       }
-      if (SnId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(SnId);
+      if (InSnId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InSnId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -39677,11 +39942,11 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.ComputerAlly != 0) {
-        ComputerAlly = other.ComputerAlly;
+      if (other.InPlayerComputerAllyPlayer != 0) {
+        InPlayerComputerAllyPlayer = other.InPlayerComputerAllyPlayer;
       }
-      if (other.SnId != 0) {
-        SnId = other.SnId;
+      if (other.InSnId != 0) {
+        InSnId = other.InSnId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -39698,11 +39963,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            ComputerAlly = input.ReadInt32();
+            InPlayerComputerAllyPlayer = input.ReadInt32();
             break;
           }
           case 16: {
-            SnId = input.ReadInt32();
+            InSnId = input.ReadInt32();
             break;
           }
         }
@@ -39720,11 +39985,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            ComputerAlly = input.ReadInt32();
+            InPlayerComputerAllyPlayer = input.ReadInt32();
             break;
           }
           case 16: {
-            SnId = input.ReadInt32();
+            InSnId = input.ReadInt32();
             break;
           }
         }
@@ -39746,7 +40011,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[231]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[233]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -39918,7 +40183,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[232]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[234]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -40054,7 +40319,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[233]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[235]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -40230,7 +40495,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[234]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[236]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -40247,8 +40512,18 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpBuildingTypeInTown(UpBuildingTypeInTown other) : this() {
-      typeOp_ = other.typeOp_;
-      buildingId_ = other.buildingId_;
+      switch (other.BuildingIdCase) {
+        case BuildingIdOneofCase.InConstBuildingId:
+          InConstBuildingId = other.InConstBuildingId;
+          break;
+        case BuildingIdOneofCase.InGoalBuildingId:
+          InGoalBuildingId = other.InGoalBuildingId;
+          break;
+        case BuildingIdOneofCase.InSnBuildingId:
+          InSnBuildingId = other.InSnBuildingId;
+          break;
+      }
+
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -40257,26 +40532,57 @@ namespace Protos.Expert.Fact {
       return new UpBuildingTypeInTown(this);
     }
 
-    /// <summary>Field number for the "typeOp" field.</summary>
-    public const int TypeOpFieldNumber = 1;
-    private int typeOp_;
+    /// <summary>Field number for the "inConstBuildingId" field.</summary>
+    public const int InConstBuildingIdFieldNumber = 1;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int TypeOp {
-      get { return typeOp_; }
+    public int InConstBuildingId {
+      get { return buildingIdCase_ == BuildingIdOneofCase.InConstBuildingId ? (int) buildingId_ : 0; }
       set {
-        typeOp_ = value;
+        buildingId_ = value;
+        buildingIdCase_ = BuildingIdOneofCase.InConstBuildingId;
       }
     }
 
-    /// <summary>Field number for the "buildingId" field.</summary>
-    public const int BuildingIdFieldNumber = 2;
-    private int buildingId_;
+    /// <summary>Field number for the "inGoalBuildingId" field.</summary>
+    public const int InGoalBuildingIdFieldNumber = 2;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int BuildingId {
-      get { return buildingId_; }
+    public int InGoalBuildingId {
+      get { return buildingIdCase_ == BuildingIdOneofCase.InGoalBuildingId ? (int) buildingId_ : 0; }
       set {
         buildingId_ = value;
+        buildingIdCase_ = BuildingIdOneofCase.InGoalBuildingId;
       }
+    }
+
+    /// <summary>Field number for the "inSnBuildingId" field.</summary>
+    public const int InSnBuildingIdFieldNumber = 3;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int InSnBuildingId {
+      get { return buildingIdCase_ == BuildingIdOneofCase.InSnBuildingId ? (int) buildingId_ : 0; }
+      set {
+        buildingId_ = value;
+        buildingIdCase_ = BuildingIdOneofCase.InSnBuildingId;
+      }
+    }
+
+    private object buildingId_;
+    /// <summary>Enum of possible cases for the "buildingId" oneof.</summary>
+    public enum BuildingIdOneofCase {
+      None = 0,
+      InConstBuildingId = 1,
+      InGoalBuildingId = 2,
+      InSnBuildingId = 3,
+    }
+    private BuildingIdOneofCase buildingIdCase_ = BuildingIdOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BuildingIdOneofCase BuildingIdCase {
+      get { return buildingIdCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void ClearBuildingId() {
+      buildingIdCase_ = BuildingIdOneofCase.None;
+      buildingId_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -40292,16 +40598,20 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (TypeOp != other.TypeOp) return false;
-      if (BuildingId != other.BuildingId) return false;
+      if (InConstBuildingId != other.InConstBuildingId) return false;
+      if (InGoalBuildingId != other.InGoalBuildingId) return false;
+      if (InSnBuildingId != other.InSnBuildingId) return false;
+      if (BuildingIdCase != other.BuildingIdCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (TypeOp != 0) hash ^= TypeOp.GetHashCode();
-      if (BuildingId != 0) hash ^= BuildingId.GetHashCode();
+      if (buildingIdCase_ == BuildingIdOneofCase.InConstBuildingId) hash ^= InConstBuildingId.GetHashCode();
+      if (buildingIdCase_ == BuildingIdOneofCase.InGoalBuildingId) hash ^= InGoalBuildingId.GetHashCode();
+      if (buildingIdCase_ == BuildingIdOneofCase.InSnBuildingId) hash ^= InSnBuildingId.GetHashCode();
+      hash ^= (int) buildingIdCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -40318,13 +40628,17 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (TypeOp != 0) {
+      if (buildingIdCase_ == BuildingIdOneofCase.InConstBuildingId) {
         output.WriteRawTag(8);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstBuildingId);
       }
-      if (BuildingId != 0) {
+      if (buildingIdCase_ == BuildingIdOneofCase.InGoalBuildingId) {
         output.WriteRawTag(16);
-        output.WriteInt32(BuildingId);
+        output.WriteInt32(InGoalBuildingId);
+      }
+      if (buildingIdCase_ == BuildingIdOneofCase.InSnBuildingId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(InSnBuildingId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -40335,13 +40649,17 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (TypeOp != 0) {
+      if (buildingIdCase_ == BuildingIdOneofCase.InConstBuildingId) {
         output.WriteRawTag(8);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstBuildingId);
       }
-      if (BuildingId != 0) {
+      if (buildingIdCase_ == BuildingIdOneofCase.InGoalBuildingId) {
         output.WriteRawTag(16);
-        output.WriteInt32(BuildingId);
+        output.WriteInt32(InGoalBuildingId);
+      }
+      if (buildingIdCase_ == BuildingIdOneofCase.InSnBuildingId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(InSnBuildingId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -40352,11 +40670,14 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (TypeOp != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TypeOp);
+      if (buildingIdCase_ == BuildingIdOneofCase.InConstBuildingId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstBuildingId);
       }
-      if (BuildingId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BuildingId);
+      if (buildingIdCase_ == BuildingIdOneofCase.InGoalBuildingId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalBuildingId);
+      }
+      if (buildingIdCase_ == BuildingIdOneofCase.InSnBuildingId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InSnBuildingId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -40369,12 +40690,18 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.TypeOp != 0) {
-        TypeOp = other.TypeOp;
+      switch (other.BuildingIdCase) {
+        case BuildingIdOneofCase.InConstBuildingId:
+          InConstBuildingId = other.InConstBuildingId;
+          break;
+        case BuildingIdOneofCase.InGoalBuildingId:
+          InGoalBuildingId = other.InGoalBuildingId;
+          break;
+        case BuildingIdOneofCase.InSnBuildingId:
+          InSnBuildingId = other.InSnBuildingId;
+          break;
       }
-      if (other.BuildingId != 0) {
-        BuildingId = other.BuildingId;
-      }
+
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -40390,11 +40717,15 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            TypeOp = input.ReadInt32();
+            InConstBuildingId = input.ReadInt32();
             break;
           }
           case 16: {
-            BuildingId = input.ReadInt32();
+            InGoalBuildingId = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            InSnBuildingId = input.ReadInt32();
             break;
           }
         }
@@ -40412,11 +40743,15 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            TypeOp = input.ReadInt32();
+            InConstBuildingId = input.ReadInt32();
             break;
           }
           case 16: {
-            BuildingId = input.ReadInt32();
+            InGoalBuildingId = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            InSnBuildingId = input.ReadInt32();
             break;
           }
         }
@@ -40438,7 +40773,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[235]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[237]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -40610,7 +40945,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[236]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[238]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -40627,9 +40962,19 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpCanBuild(UpCanBuild other) : this() {
-      escrowState_ = other.escrowState_;
-      typeOp_ = other.typeOp_;
-      buildingId_ = other.buildingId_;
+      inGoalEscrowState_ = other.inGoalEscrowState_;
+      switch (other.BuildingIdCase) {
+        case BuildingIdOneofCase.InConstBuildingId:
+          InConstBuildingId = other.InConstBuildingId;
+          break;
+        case BuildingIdOneofCase.InGoalBuildingId:
+          InGoalBuildingId = other.InGoalBuildingId;
+          break;
+        case BuildingIdOneofCase.InSnBuildingId:
+          InSnBuildingId = other.InSnBuildingId;
+          break;
+      }
+
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -40638,37 +40983,68 @@ namespace Protos.Expert.Fact {
       return new UpCanBuild(this);
     }
 
-    /// <summary>Field number for the "escrowState" field.</summary>
-    public const int EscrowStateFieldNumber = 1;
-    private int escrowState_;
+    /// <summary>Field number for the "inGoalEscrowState" field.</summary>
+    public const int InGoalEscrowStateFieldNumber = 1;
+    private int inGoalEscrowState_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int EscrowState {
-      get { return escrowState_; }
+    public int InGoalEscrowState {
+      get { return inGoalEscrowState_; }
       set {
-        escrowState_ = value;
+        inGoalEscrowState_ = value;
       }
     }
 
-    /// <summary>Field number for the "typeOp" field.</summary>
-    public const int TypeOpFieldNumber = 2;
-    private int typeOp_;
+    /// <summary>Field number for the "inConstBuildingId" field.</summary>
+    public const int InConstBuildingIdFieldNumber = 2;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int TypeOp {
-      get { return typeOp_; }
-      set {
-        typeOp_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "buildingId" field.</summary>
-    public const int BuildingIdFieldNumber = 3;
-    private int buildingId_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int BuildingId {
-      get { return buildingId_; }
+    public int InConstBuildingId {
+      get { return buildingIdCase_ == BuildingIdOneofCase.InConstBuildingId ? (int) buildingId_ : 0; }
       set {
         buildingId_ = value;
+        buildingIdCase_ = BuildingIdOneofCase.InConstBuildingId;
       }
+    }
+
+    /// <summary>Field number for the "inGoalBuildingId" field.</summary>
+    public const int InGoalBuildingIdFieldNumber = 3;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int InGoalBuildingId {
+      get { return buildingIdCase_ == BuildingIdOneofCase.InGoalBuildingId ? (int) buildingId_ : 0; }
+      set {
+        buildingId_ = value;
+        buildingIdCase_ = BuildingIdOneofCase.InGoalBuildingId;
+      }
+    }
+
+    /// <summary>Field number for the "inSnBuildingId" field.</summary>
+    public const int InSnBuildingIdFieldNumber = 4;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int InSnBuildingId {
+      get { return buildingIdCase_ == BuildingIdOneofCase.InSnBuildingId ? (int) buildingId_ : 0; }
+      set {
+        buildingId_ = value;
+        buildingIdCase_ = BuildingIdOneofCase.InSnBuildingId;
+      }
+    }
+
+    private object buildingId_;
+    /// <summary>Enum of possible cases for the "buildingId" oneof.</summary>
+    public enum BuildingIdOneofCase {
+      None = 0,
+      InConstBuildingId = 2,
+      InGoalBuildingId = 3,
+      InSnBuildingId = 4,
+    }
+    private BuildingIdOneofCase buildingIdCase_ = BuildingIdOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BuildingIdOneofCase BuildingIdCase {
+      get { return buildingIdCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void ClearBuildingId() {
+      buildingIdCase_ = BuildingIdOneofCase.None;
+      buildingId_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -40684,18 +41060,22 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (EscrowState != other.EscrowState) return false;
-      if (TypeOp != other.TypeOp) return false;
-      if (BuildingId != other.BuildingId) return false;
+      if (InGoalEscrowState != other.InGoalEscrowState) return false;
+      if (InConstBuildingId != other.InConstBuildingId) return false;
+      if (InGoalBuildingId != other.InGoalBuildingId) return false;
+      if (InSnBuildingId != other.InSnBuildingId) return false;
+      if (BuildingIdCase != other.BuildingIdCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (EscrowState != 0) hash ^= EscrowState.GetHashCode();
-      if (TypeOp != 0) hash ^= TypeOp.GetHashCode();
-      if (BuildingId != 0) hash ^= BuildingId.GetHashCode();
+      if (InGoalEscrowState != 0) hash ^= InGoalEscrowState.GetHashCode();
+      if (buildingIdCase_ == BuildingIdOneofCase.InConstBuildingId) hash ^= InConstBuildingId.GetHashCode();
+      if (buildingIdCase_ == BuildingIdOneofCase.InGoalBuildingId) hash ^= InGoalBuildingId.GetHashCode();
+      if (buildingIdCase_ == BuildingIdOneofCase.InSnBuildingId) hash ^= InSnBuildingId.GetHashCode();
+      hash ^= (int) buildingIdCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -40712,17 +41092,21 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (EscrowState != 0) {
+      if (InGoalEscrowState != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(EscrowState);
+        output.WriteInt32(InGoalEscrowState);
       }
-      if (TypeOp != 0) {
+      if (buildingIdCase_ == BuildingIdOneofCase.InConstBuildingId) {
         output.WriteRawTag(16);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstBuildingId);
       }
-      if (BuildingId != 0) {
+      if (buildingIdCase_ == BuildingIdOneofCase.InGoalBuildingId) {
         output.WriteRawTag(24);
-        output.WriteInt32(BuildingId);
+        output.WriteInt32(InGoalBuildingId);
+      }
+      if (buildingIdCase_ == BuildingIdOneofCase.InSnBuildingId) {
+        output.WriteRawTag(32);
+        output.WriteInt32(InSnBuildingId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -40733,17 +41117,21 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (EscrowState != 0) {
+      if (InGoalEscrowState != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(EscrowState);
+        output.WriteInt32(InGoalEscrowState);
       }
-      if (TypeOp != 0) {
+      if (buildingIdCase_ == BuildingIdOneofCase.InConstBuildingId) {
         output.WriteRawTag(16);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstBuildingId);
       }
-      if (BuildingId != 0) {
+      if (buildingIdCase_ == BuildingIdOneofCase.InGoalBuildingId) {
         output.WriteRawTag(24);
-        output.WriteInt32(BuildingId);
+        output.WriteInt32(InGoalBuildingId);
+      }
+      if (buildingIdCase_ == BuildingIdOneofCase.InSnBuildingId) {
+        output.WriteRawTag(32);
+        output.WriteInt32(InSnBuildingId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -40754,14 +41142,17 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (EscrowState != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(EscrowState);
+      if (InGoalEscrowState != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalEscrowState);
       }
-      if (TypeOp != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TypeOp);
+      if (buildingIdCase_ == BuildingIdOneofCase.InConstBuildingId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstBuildingId);
       }
-      if (BuildingId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BuildingId);
+      if (buildingIdCase_ == BuildingIdOneofCase.InGoalBuildingId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalBuildingId);
+      }
+      if (buildingIdCase_ == BuildingIdOneofCase.InSnBuildingId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InSnBuildingId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -40774,15 +41165,21 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.EscrowState != 0) {
-        EscrowState = other.EscrowState;
+      if (other.InGoalEscrowState != 0) {
+        InGoalEscrowState = other.InGoalEscrowState;
       }
-      if (other.TypeOp != 0) {
-        TypeOp = other.TypeOp;
+      switch (other.BuildingIdCase) {
+        case BuildingIdOneofCase.InConstBuildingId:
+          InConstBuildingId = other.InConstBuildingId;
+          break;
+        case BuildingIdOneofCase.InGoalBuildingId:
+          InGoalBuildingId = other.InGoalBuildingId;
+          break;
+        case BuildingIdOneofCase.InSnBuildingId:
+          InSnBuildingId = other.InSnBuildingId;
+          break;
       }
-      if (other.BuildingId != 0) {
-        BuildingId = other.BuildingId;
-      }
+
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -40798,15 +41195,19 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            EscrowState = input.ReadInt32();
+            InGoalEscrowState = input.ReadInt32();
             break;
           }
           case 16: {
-            TypeOp = input.ReadInt32();
+            InConstBuildingId = input.ReadInt32();
             break;
           }
           case 24: {
-            BuildingId = input.ReadInt32();
+            InGoalBuildingId = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            InSnBuildingId = input.ReadInt32();
             break;
           }
         }
@@ -40824,15 +41225,19 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            EscrowState = input.ReadInt32();
+            InGoalEscrowState = input.ReadInt32();
             break;
           }
           case 16: {
-            TypeOp = input.ReadInt32();
+            InConstBuildingId = input.ReadInt32();
             break;
           }
           case 24: {
-            BuildingId = input.ReadInt32();
+            InGoalBuildingId = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            InSnBuildingId = input.ReadInt32();
             break;
           }
         }
@@ -40854,7 +41259,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[237]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[239]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -41026,7 +41431,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[238]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[240]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -41043,10 +41448,20 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpCanBuildLine(UpCanBuildLine other) : this() {
-      escrowState_ = other.escrowState_;
-      goalPoint_ = other.goalPoint_;
-      typeOp_ = other.typeOp_;
-      buildingId_ = other.buildingId_;
+      inGoalEscrowState_ = other.inGoalEscrowState_;
+      inGoalPoint_ = other.inGoalPoint_;
+      switch (other.BuildingIdCase) {
+        case BuildingIdOneofCase.InConstBuildingId:
+          InConstBuildingId = other.InConstBuildingId;
+          break;
+        case BuildingIdOneofCase.InGoalBuildingId:
+          InGoalBuildingId = other.InGoalBuildingId;
+          break;
+        case BuildingIdOneofCase.InSnBuildingId:
+          InSnBuildingId = other.InSnBuildingId;
+          break;
+      }
+
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -41055,48 +41470,79 @@ namespace Protos.Expert.Fact {
       return new UpCanBuildLine(this);
     }
 
-    /// <summary>Field number for the "escrowState" field.</summary>
-    public const int EscrowStateFieldNumber = 1;
-    private int escrowState_;
+    /// <summary>Field number for the "inGoalEscrowState" field.</summary>
+    public const int InGoalEscrowStateFieldNumber = 1;
+    private int inGoalEscrowState_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int EscrowState {
-      get { return escrowState_; }
+    public int InGoalEscrowState {
+      get { return inGoalEscrowState_; }
       set {
-        escrowState_ = value;
+        inGoalEscrowState_ = value;
       }
     }
 
-    /// <summary>Field number for the "goalPoint" field.</summary>
-    public const int GoalPointFieldNumber = 2;
-    private int goalPoint_;
+    /// <summary>Field number for the "inGoalPoint" field.</summary>
+    public const int InGoalPointFieldNumber = 2;
+    private int inGoalPoint_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int GoalPoint {
-      get { return goalPoint_; }
+    public int InGoalPoint {
+      get { return inGoalPoint_; }
       set {
-        goalPoint_ = value;
+        inGoalPoint_ = value;
       }
     }
 
-    /// <summary>Field number for the "typeOp" field.</summary>
-    public const int TypeOpFieldNumber = 3;
-    private int typeOp_;
+    /// <summary>Field number for the "inConstBuildingId" field.</summary>
+    public const int InConstBuildingIdFieldNumber = 3;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int TypeOp {
-      get { return typeOp_; }
-      set {
-        typeOp_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "buildingId" field.</summary>
-    public const int BuildingIdFieldNumber = 4;
-    private int buildingId_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int BuildingId {
-      get { return buildingId_; }
+    public int InConstBuildingId {
+      get { return buildingIdCase_ == BuildingIdOneofCase.InConstBuildingId ? (int) buildingId_ : 0; }
       set {
         buildingId_ = value;
+        buildingIdCase_ = BuildingIdOneofCase.InConstBuildingId;
       }
+    }
+
+    /// <summary>Field number for the "inGoalBuildingId" field.</summary>
+    public const int InGoalBuildingIdFieldNumber = 4;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int InGoalBuildingId {
+      get { return buildingIdCase_ == BuildingIdOneofCase.InGoalBuildingId ? (int) buildingId_ : 0; }
+      set {
+        buildingId_ = value;
+        buildingIdCase_ = BuildingIdOneofCase.InGoalBuildingId;
+      }
+    }
+
+    /// <summary>Field number for the "inSnBuildingId" field.</summary>
+    public const int InSnBuildingIdFieldNumber = 5;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int InSnBuildingId {
+      get { return buildingIdCase_ == BuildingIdOneofCase.InSnBuildingId ? (int) buildingId_ : 0; }
+      set {
+        buildingId_ = value;
+        buildingIdCase_ = BuildingIdOneofCase.InSnBuildingId;
+      }
+    }
+
+    private object buildingId_;
+    /// <summary>Enum of possible cases for the "buildingId" oneof.</summary>
+    public enum BuildingIdOneofCase {
+      None = 0,
+      InConstBuildingId = 3,
+      InGoalBuildingId = 4,
+      InSnBuildingId = 5,
+    }
+    private BuildingIdOneofCase buildingIdCase_ = BuildingIdOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BuildingIdOneofCase BuildingIdCase {
+      get { return buildingIdCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void ClearBuildingId() {
+      buildingIdCase_ = BuildingIdOneofCase.None;
+      buildingId_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -41112,20 +41558,24 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (EscrowState != other.EscrowState) return false;
-      if (GoalPoint != other.GoalPoint) return false;
-      if (TypeOp != other.TypeOp) return false;
-      if (BuildingId != other.BuildingId) return false;
+      if (InGoalEscrowState != other.InGoalEscrowState) return false;
+      if (InGoalPoint != other.InGoalPoint) return false;
+      if (InConstBuildingId != other.InConstBuildingId) return false;
+      if (InGoalBuildingId != other.InGoalBuildingId) return false;
+      if (InSnBuildingId != other.InSnBuildingId) return false;
+      if (BuildingIdCase != other.BuildingIdCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (EscrowState != 0) hash ^= EscrowState.GetHashCode();
-      if (GoalPoint != 0) hash ^= GoalPoint.GetHashCode();
-      if (TypeOp != 0) hash ^= TypeOp.GetHashCode();
-      if (BuildingId != 0) hash ^= BuildingId.GetHashCode();
+      if (InGoalEscrowState != 0) hash ^= InGoalEscrowState.GetHashCode();
+      if (InGoalPoint != 0) hash ^= InGoalPoint.GetHashCode();
+      if (buildingIdCase_ == BuildingIdOneofCase.InConstBuildingId) hash ^= InConstBuildingId.GetHashCode();
+      if (buildingIdCase_ == BuildingIdOneofCase.InGoalBuildingId) hash ^= InGoalBuildingId.GetHashCode();
+      if (buildingIdCase_ == BuildingIdOneofCase.InSnBuildingId) hash ^= InSnBuildingId.GetHashCode();
+      hash ^= (int) buildingIdCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -41142,21 +41592,25 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (EscrowState != 0) {
+      if (InGoalEscrowState != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(EscrowState);
+        output.WriteInt32(InGoalEscrowState);
       }
-      if (GoalPoint != 0) {
+      if (InGoalPoint != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(GoalPoint);
+        output.WriteInt32(InGoalPoint);
       }
-      if (TypeOp != 0) {
+      if (buildingIdCase_ == BuildingIdOneofCase.InConstBuildingId) {
         output.WriteRawTag(24);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstBuildingId);
       }
-      if (BuildingId != 0) {
+      if (buildingIdCase_ == BuildingIdOneofCase.InGoalBuildingId) {
         output.WriteRawTag(32);
-        output.WriteInt32(BuildingId);
+        output.WriteInt32(InGoalBuildingId);
+      }
+      if (buildingIdCase_ == BuildingIdOneofCase.InSnBuildingId) {
+        output.WriteRawTag(40);
+        output.WriteInt32(InSnBuildingId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -41167,21 +41621,25 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (EscrowState != 0) {
+      if (InGoalEscrowState != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(EscrowState);
+        output.WriteInt32(InGoalEscrowState);
       }
-      if (GoalPoint != 0) {
+      if (InGoalPoint != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(GoalPoint);
+        output.WriteInt32(InGoalPoint);
       }
-      if (TypeOp != 0) {
+      if (buildingIdCase_ == BuildingIdOneofCase.InConstBuildingId) {
         output.WriteRawTag(24);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstBuildingId);
       }
-      if (BuildingId != 0) {
+      if (buildingIdCase_ == BuildingIdOneofCase.InGoalBuildingId) {
         output.WriteRawTag(32);
-        output.WriteInt32(BuildingId);
+        output.WriteInt32(InGoalBuildingId);
+      }
+      if (buildingIdCase_ == BuildingIdOneofCase.InSnBuildingId) {
+        output.WriteRawTag(40);
+        output.WriteInt32(InSnBuildingId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -41192,17 +41650,20 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (EscrowState != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(EscrowState);
+      if (InGoalEscrowState != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalEscrowState);
       }
-      if (GoalPoint != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(GoalPoint);
+      if (InGoalPoint != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalPoint);
       }
-      if (TypeOp != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TypeOp);
+      if (buildingIdCase_ == BuildingIdOneofCase.InConstBuildingId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstBuildingId);
       }
-      if (BuildingId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BuildingId);
+      if (buildingIdCase_ == BuildingIdOneofCase.InGoalBuildingId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalBuildingId);
+      }
+      if (buildingIdCase_ == BuildingIdOneofCase.InSnBuildingId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InSnBuildingId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -41215,18 +41676,24 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.EscrowState != 0) {
-        EscrowState = other.EscrowState;
+      if (other.InGoalEscrowState != 0) {
+        InGoalEscrowState = other.InGoalEscrowState;
       }
-      if (other.GoalPoint != 0) {
-        GoalPoint = other.GoalPoint;
+      if (other.InGoalPoint != 0) {
+        InGoalPoint = other.InGoalPoint;
       }
-      if (other.TypeOp != 0) {
-        TypeOp = other.TypeOp;
+      switch (other.BuildingIdCase) {
+        case BuildingIdOneofCase.InConstBuildingId:
+          InConstBuildingId = other.InConstBuildingId;
+          break;
+        case BuildingIdOneofCase.InGoalBuildingId:
+          InGoalBuildingId = other.InGoalBuildingId;
+          break;
+        case BuildingIdOneofCase.InSnBuildingId:
+          InSnBuildingId = other.InSnBuildingId;
+          break;
       }
-      if (other.BuildingId != 0) {
-        BuildingId = other.BuildingId;
-      }
+
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -41242,19 +41709,23 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            EscrowState = input.ReadInt32();
+            InGoalEscrowState = input.ReadInt32();
             break;
           }
           case 16: {
-            GoalPoint = input.ReadInt32();
+            InGoalPoint = input.ReadInt32();
             break;
           }
           case 24: {
-            TypeOp = input.ReadInt32();
+            InConstBuildingId = input.ReadInt32();
             break;
           }
           case 32: {
-            BuildingId = input.ReadInt32();
+            InGoalBuildingId = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            InSnBuildingId = input.ReadInt32();
             break;
           }
         }
@@ -41272,19 +41743,23 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            EscrowState = input.ReadInt32();
+            InGoalEscrowState = input.ReadInt32();
             break;
           }
           case 16: {
-            GoalPoint = input.ReadInt32();
+            InGoalPoint = input.ReadInt32();
             break;
           }
           case 24: {
-            TypeOp = input.ReadInt32();
+            InConstBuildingId = input.ReadInt32();
             break;
           }
           case 32: {
-            BuildingId = input.ReadInt32();
+            InGoalBuildingId = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            InSnBuildingId = input.ReadInt32();
             break;
           }
         }
@@ -41306,7 +41781,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[239]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[241]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -41478,7 +41953,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[240]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[242]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -41495,9 +41970,19 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpCanResearch(UpCanResearch other) : this() {
-      escrowState_ = other.escrowState_;
-      typeOp_ = other.typeOp_;
-      techId_ = other.techId_;
+      inGoalEscrowState_ = other.inGoalEscrowState_;
+      switch (other.TechIdCase) {
+        case TechIdOneofCase.InConstTechId:
+          InConstTechId = other.InConstTechId;
+          break;
+        case TechIdOneofCase.InGoalTechId:
+          InGoalTechId = other.InGoalTechId;
+          break;
+        case TechIdOneofCase.InSnTechId:
+          InSnTechId = other.InSnTechId;
+          break;
+      }
+
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -41506,37 +41991,68 @@ namespace Protos.Expert.Fact {
       return new UpCanResearch(this);
     }
 
-    /// <summary>Field number for the "escrowState" field.</summary>
-    public const int EscrowStateFieldNumber = 1;
-    private int escrowState_;
+    /// <summary>Field number for the "inGoalEscrowState" field.</summary>
+    public const int InGoalEscrowStateFieldNumber = 1;
+    private int inGoalEscrowState_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int EscrowState {
-      get { return escrowState_; }
+    public int InGoalEscrowState {
+      get { return inGoalEscrowState_; }
       set {
-        escrowState_ = value;
+        inGoalEscrowState_ = value;
       }
     }
 
-    /// <summary>Field number for the "typeOp" field.</summary>
-    public const int TypeOpFieldNumber = 2;
-    private int typeOp_;
+    /// <summary>Field number for the "inConstTechId" field.</summary>
+    public const int InConstTechIdFieldNumber = 2;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int TypeOp {
-      get { return typeOp_; }
-      set {
-        typeOp_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "techId" field.</summary>
-    public const int TechIdFieldNumber = 3;
-    private int techId_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int TechId {
-      get { return techId_; }
+    public int InConstTechId {
+      get { return techIdCase_ == TechIdOneofCase.InConstTechId ? (int) techId_ : 0; }
       set {
         techId_ = value;
+        techIdCase_ = TechIdOneofCase.InConstTechId;
       }
+    }
+
+    /// <summary>Field number for the "inGoalTechId" field.</summary>
+    public const int InGoalTechIdFieldNumber = 3;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int InGoalTechId {
+      get { return techIdCase_ == TechIdOneofCase.InGoalTechId ? (int) techId_ : 0; }
+      set {
+        techId_ = value;
+        techIdCase_ = TechIdOneofCase.InGoalTechId;
+      }
+    }
+
+    /// <summary>Field number for the "inSnTechId" field.</summary>
+    public const int InSnTechIdFieldNumber = 4;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int InSnTechId {
+      get { return techIdCase_ == TechIdOneofCase.InSnTechId ? (int) techId_ : 0; }
+      set {
+        techId_ = value;
+        techIdCase_ = TechIdOneofCase.InSnTechId;
+      }
+    }
+
+    private object techId_;
+    /// <summary>Enum of possible cases for the "techId" oneof.</summary>
+    public enum TechIdOneofCase {
+      None = 0,
+      InConstTechId = 2,
+      InGoalTechId = 3,
+      InSnTechId = 4,
+    }
+    private TechIdOneofCase techIdCase_ = TechIdOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public TechIdOneofCase TechIdCase {
+      get { return techIdCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void ClearTechId() {
+      techIdCase_ = TechIdOneofCase.None;
+      techId_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -41552,18 +42068,22 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (EscrowState != other.EscrowState) return false;
-      if (TypeOp != other.TypeOp) return false;
-      if (TechId != other.TechId) return false;
+      if (InGoalEscrowState != other.InGoalEscrowState) return false;
+      if (InConstTechId != other.InConstTechId) return false;
+      if (InGoalTechId != other.InGoalTechId) return false;
+      if (InSnTechId != other.InSnTechId) return false;
+      if (TechIdCase != other.TechIdCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (EscrowState != 0) hash ^= EscrowState.GetHashCode();
-      if (TypeOp != 0) hash ^= TypeOp.GetHashCode();
-      if (TechId != 0) hash ^= TechId.GetHashCode();
+      if (InGoalEscrowState != 0) hash ^= InGoalEscrowState.GetHashCode();
+      if (techIdCase_ == TechIdOneofCase.InConstTechId) hash ^= InConstTechId.GetHashCode();
+      if (techIdCase_ == TechIdOneofCase.InGoalTechId) hash ^= InGoalTechId.GetHashCode();
+      if (techIdCase_ == TechIdOneofCase.InSnTechId) hash ^= InSnTechId.GetHashCode();
+      hash ^= (int) techIdCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -41580,17 +42100,21 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (EscrowState != 0) {
+      if (InGoalEscrowState != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(EscrowState);
+        output.WriteInt32(InGoalEscrowState);
       }
-      if (TypeOp != 0) {
+      if (techIdCase_ == TechIdOneofCase.InConstTechId) {
         output.WriteRawTag(16);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstTechId);
       }
-      if (TechId != 0) {
+      if (techIdCase_ == TechIdOneofCase.InGoalTechId) {
         output.WriteRawTag(24);
-        output.WriteInt32(TechId);
+        output.WriteInt32(InGoalTechId);
+      }
+      if (techIdCase_ == TechIdOneofCase.InSnTechId) {
+        output.WriteRawTag(32);
+        output.WriteInt32(InSnTechId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -41601,17 +42125,21 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (EscrowState != 0) {
+      if (InGoalEscrowState != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(EscrowState);
+        output.WriteInt32(InGoalEscrowState);
       }
-      if (TypeOp != 0) {
+      if (techIdCase_ == TechIdOneofCase.InConstTechId) {
         output.WriteRawTag(16);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstTechId);
       }
-      if (TechId != 0) {
+      if (techIdCase_ == TechIdOneofCase.InGoalTechId) {
         output.WriteRawTag(24);
-        output.WriteInt32(TechId);
+        output.WriteInt32(InGoalTechId);
+      }
+      if (techIdCase_ == TechIdOneofCase.InSnTechId) {
+        output.WriteRawTag(32);
+        output.WriteInt32(InSnTechId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -41622,14 +42150,17 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (EscrowState != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(EscrowState);
+      if (InGoalEscrowState != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalEscrowState);
       }
-      if (TypeOp != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TypeOp);
+      if (techIdCase_ == TechIdOneofCase.InConstTechId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstTechId);
       }
-      if (TechId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TechId);
+      if (techIdCase_ == TechIdOneofCase.InGoalTechId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalTechId);
+      }
+      if (techIdCase_ == TechIdOneofCase.InSnTechId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InSnTechId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -41642,15 +42173,21 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.EscrowState != 0) {
-        EscrowState = other.EscrowState;
+      if (other.InGoalEscrowState != 0) {
+        InGoalEscrowState = other.InGoalEscrowState;
       }
-      if (other.TypeOp != 0) {
-        TypeOp = other.TypeOp;
+      switch (other.TechIdCase) {
+        case TechIdOneofCase.InConstTechId:
+          InConstTechId = other.InConstTechId;
+          break;
+        case TechIdOneofCase.InGoalTechId:
+          InGoalTechId = other.InGoalTechId;
+          break;
+        case TechIdOneofCase.InSnTechId:
+          InSnTechId = other.InSnTechId;
+          break;
       }
-      if (other.TechId != 0) {
-        TechId = other.TechId;
-      }
+
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -41666,15 +42203,19 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            EscrowState = input.ReadInt32();
+            InGoalEscrowState = input.ReadInt32();
             break;
           }
           case 16: {
-            TypeOp = input.ReadInt32();
+            InConstTechId = input.ReadInt32();
             break;
           }
           case 24: {
-            TechId = input.ReadInt32();
+            InGoalTechId = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            InSnTechId = input.ReadInt32();
             break;
           }
         }
@@ -41692,15 +42233,19 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            EscrowState = input.ReadInt32();
+            InGoalEscrowState = input.ReadInt32();
             break;
           }
           case 16: {
-            TypeOp = input.ReadInt32();
+            InConstTechId = input.ReadInt32();
             break;
           }
           case 24: {
-            TechId = input.ReadInt32();
+            InGoalTechId = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            InSnTechId = input.ReadInt32();
             break;
           }
         }
@@ -41722,7 +42267,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[241]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[243]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -41894,7 +42439,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[242]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[244]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -41911,7 +42456,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpCanSearch(UpCanSearch other) : this() {
-      searchSource_ = other.searchSource_;
+      inConstSearchSource_ = other.inConstSearchSource_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -41920,14 +42465,14 @@ namespace Protos.Expert.Fact {
       return new UpCanSearch(this);
     }
 
-    /// <summary>Field number for the "searchSource" field.</summary>
-    public const int SearchSourceFieldNumber = 1;
-    private int searchSource_;
+    /// <summary>Field number for the "inConstSearchSource" field.</summary>
+    public const int InConstSearchSourceFieldNumber = 1;
+    private int inConstSearchSource_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int SearchSource {
-      get { return searchSource_; }
+    public int InConstSearchSource {
+      get { return inConstSearchSource_; }
       set {
-        searchSource_ = value;
+        inConstSearchSource_ = value;
       }
     }
 
@@ -41944,14 +42489,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (SearchSource != other.SearchSource) return false;
+      if (InConstSearchSource != other.InConstSearchSource) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (SearchSource != 0) hash ^= SearchSource.GetHashCode();
+      if (InConstSearchSource != 0) hash ^= InConstSearchSource.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -41968,9 +42513,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (SearchSource != 0) {
+      if (InConstSearchSource != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(SearchSource);
+        output.WriteInt32(InConstSearchSource);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -41981,9 +42526,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (SearchSource != 0) {
+      if (InConstSearchSource != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(SearchSource);
+        output.WriteInt32(InConstSearchSource);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -41994,8 +42539,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (SearchSource != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(SearchSource);
+      if (InConstSearchSource != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstSearchSource);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -42008,8 +42553,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.SearchSource != 0) {
-        SearchSource = other.SearchSource;
+      if (other.InConstSearchSource != 0) {
+        InConstSearchSource = other.InConstSearchSource;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -42026,7 +42571,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            SearchSource = input.ReadInt32();
+            InConstSearchSource = input.ReadInt32();
             break;
           }
         }
@@ -42044,7 +42589,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            SearchSource = input.ReadInt32();
+            InConstSearchSource = input.ReadInt32();
             break;
           }
         }
@@ -42066,7 +42611,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[243]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[245]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -42238,7 +42783,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[244]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[246]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -42255,9 +42800,19 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpCanTrain(UpCanTrain other) : this() {
-      escrowState_ = other.escrowState_;
-      typeOp_ = other.typeOp_;
-      unitId_ = other.unitId_;
+      inGoalEscrowState_ = other.inGoalEscrowState_;
+      switch (other.UnitIdCase) {
+        case UnitIdOneofCase.InConstUnitId:
+          InConstUnitId = other.InConstUnitId;
+          break;
+        case UnitIdOneofCase.InGoalUnitId:
+          InGoalUnitId = other.InGoalUnitId;
+          break;
+        case UnitIdOneofCase.InSnUnitId:
+          InSnUnitId = other.InSnUnitId;
+          break;
+      }
+
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -42266,37 +42821,68 @@ namespace Protos.Expert.Fact {
       return new UpCanTrain(this);
     }
 
-    /// <summary>Field number for the "escrowState" field.</summary>
-    public const int EscrowStateFieldNumber = 1;
-    private int escrowState_;
+    /// <summary>Field number for the "inGoalEscrowState" field.</summary>
+    public const int InGoalEscrowStateFieldNumber = 1;
+    private int inGoalEscrowState_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int EscrowState {
-      get { return escrowState_; }
+    public int InGoalEscrowState {
+      get { return inGoalEscrowState_; }
       set {
-        escrowState_ = value;
+        inGoalEscrowState_ = value;
       }
     }
 
-    /// <summary>Field number for the "typeOp" field.</summary>
-    public const int TypeOpFieldNumber = 2;
-    private int typeOp_;
+    /// <summary>Field number for the "inConstUnitId" field.</summary>
+    public const int InConstUnitIdFieldNumber = 2;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int TypeOp {
-      get { return typeOp_; }
-      set {
-        typeOp_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "unitId" field.</summary>
-    public const int UnitIdFieldNumber = 3;
-    private int unitId_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int UnitId {
-      get { return unitId_; }
+    public int InConstUnitId {
+      get { return unitIdCase_ == UnitIdOneofCase.InConstUnitId ? (int) unitId_ : 0; }
       set {
         unitId_ = value;
+        unitIdCase_ = UnitIdOneofCase.InConstUnitId;
       }
+    }
+
+    /// <summary>Field number for the "inGoalUnitId" field.</summary>
+    public const int InGoalUnitIdFieldNumber = 3;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int InGoalUnitId {
+      get { return unitIdCase_ == UnitIdOneofCase.InGoalUnitId ? (int) unitId_ : 0; }
+      set {
+        unitId_ = value;
+        unitIdCase_ = UnitIdOneofCase.InGoalUnitId;
+      }
+    }
+
+    /// <summary>Field number for the "inSnUnitId" field.</summary>
+    public const int InSnUnitIdFieldNumber = 4;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int InSnUnitId {
+      get { return unitIdCase_ == UnitIdOneofCase.InSnUnitId ? (int) unitId_ : 0; }
+      set {
+        unitId_ = value;
+        unitIdCase_ = UnitIdOneofCase.InSnUnitId;
+      }
+    }
+
+    private object unitId_;
+    /// <summary>Enum of possible cases for the "unitId" oneof.</summary>
+    public enum UnitIdOneofCase {
+      None = 0,
+      InConstUnitId = 2,
+      InGoalUnitId = 3,
+      InSnUnitId = 4,
+    }
+    private UnitIdOneofCase unitIdCase_ = UnitIdOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UnitIdOneofCase UnitIdCase {
+      get { return unitIdCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void ClearUnitId() {
+      unitIdCase_ = UnitIdOneofCase.None;
+      unitId_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -42312,18 +42898,22 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (EscrowState != other.EscrowState) return false;
-      if (TypeOp != other.TypeOp) return false;
-      if (UnitId != other.UnitId) return false;
+      if (InGoalEscrowState != other.InGoalEscrowState) return false;
+      if (InConstUnitId != other.InConstUnitId) return false;
+      if (InGoalUnitId != other.InGoalUnitId) return false;
+      if (InSnUnitId != other.InSnUnitId) return false;
+      if (UnitIdCase != other.UnitIdCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (EscrowState != 0) hash ^= EscrowState.GetHashCode();
-      if (TypeOp != 0) hash ^= TypeOp.GetHashCode();
-      if (UnitId != 0) hash ^= UnitId.GetHashCode();
+      if (InGoalEscrowState != 0) hash ^= InGoalEscrowState.GetHashCode();
+      if (unitIdCase_ == UnitIdOneofCase.InConstUnitId) hash ^= InConstUnitId.GetHashCode();
+      if (unitIdCase_ == UnitIdOneofCase.InGoalUnitId) hash ^= InGoalUnitId.GetHashCode();
+      if (unitIdCase_ == UnitIdOneofCase.InSnUnitId) hash ^= InSnUnitId.GetHashCode();
+      hash ^= (int) unitIdCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -42340,17 +42930,21 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (EscrowState != 0) {
+      if (InGoalEscrowState != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(EscrowState);
+        output.WriteInt32(InGoalEscrowState);
       }
-      if (TypeOp != 0) {
+      if (unitIdCase_ == UnitIdOneofCase.InConstUnitId) {
         output.WriteRawTag(16);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstUnitId);
       }
-      if (UnitId != 0) {
+      if (unitIdCase_ == UnitIdOneofCase.InGoalUnitId) {
         output.WriteRawTag(24);
-        output.WriteInt32(UnitId);
+        output.WriteInt32(InGoalUnitId);
+      }
+      if (unitIdCase_ == UnitIdOneofCase.InSnUnitId) {
+        output.WriteRawTag(32);
+        output.WriteInt32(InSnUnitId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -42361,17 +42955,21 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (EscrowState != 0) {
+      if (InGoalEscrowState != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(EscrowState);
+        output.WriteInt32(InGoalEscrowState);
       }
-      if (TypeOp != 0) {
+      if (unitIdCase_ == UnitIdOneofCase.InConstUnitId) {
         output.WriteRawTag(16);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstUnitId);
       }
-      if (UnitId != 0) {
+      if (unitIdCase_ == UnitIdOneofCase.InGoalUnitId) {
         output.WriteRawTag(24);
-        output.WriteInt32(UnitId);
+        output.WriteInt32(InGoalUnitId);
+      }
+      if (unitIdCase_ == UnitIdOneofCase.InSnUnitId) {
+        output.WriteRawTag(32);
+        output.WriteInt32(InSnUnitId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -42382,14 +42980,17 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (EscrowState != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(EscrowState);
+      if (InGoalEscrowState != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalEscrowState);
       }
-      if (TypeOp != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TypeOp);
+      if (unitIdCase_ == UnitIdOneofCase.InConstUnitId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstUnitId);
       }
-      if (UnitId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(UnitId);
+      if (unitIdCase_ == UnitIdOneofCase.InGoalUnitId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalUnitId);
+      }
+      if (unitIdCase_ == UnitIdOneofCase.InSnUnitId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InSnUnitId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -42402,15 +43003,21 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.EscrowState != 0) {
-        EscrowState = other.EscrowState;
+      if (other.InGoalEscrowState != 0) {
+        InGoalEscrowState = other.InGoalEscrowState;
       }
-      if (other.TypeOp != 0) {
-        TypeOp = other.TypeOp;
+      switch (other.UnitIdCase) {
+        case UnitIdOneofCase.InConstUnitId:
+          InConstUnitId = other.InConstUnitId;
+          break;
+        case UnitIdOneofCase.InGoalUnitId:
+          InGoalUnitId = other.InGoalUnitId;
+          break;
+        case UnitIdOneofCase.InSnUnitId:
+          InSnUnitId = other.InSnUnitId;
+          break;
       }
-      if (other.UnitId != 0) {
-        UnitId = other.UnitId;
-      }
+
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -42426,15 +43033,19 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            EscrowState = input.ReadInt32();
+            InGoalEscrowState = input.ReadInt32();
             break;
           }
           case 16: {
-            TypeOp = input.ReadInt32();
+            InConstUnitId = input.ReadInt32();
             break;
           }
           case 24: {
-            UnitId = input.ReadInt32();
+            InGoalUnitId = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            InSnUnitId = input.ReadInt32();
             break;
           }
         }
@@ -42452,15 +43063,19 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            EscrowState = input.ReadInt32();
+            InGoalEscrowState = input.ReadInt32();
             break;
           }
           case 16: {
-            TypeOp = input.ReadInt32();
+            InConstUnitId = input.ReadInt32();
             break;
           }
           case 24: {
-            UnitId = input.ReadInt32();
+            InGoalUnitId = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            InSnUnitId = input.ReadInt32();
             break;
           }
         }
@@ -42482,7 +43097,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[245]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[247]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -42654,7 +43269,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[246]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[248]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -42790,7 +43405,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[247]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[249]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -42962,7 +43577,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[248]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[250]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -43098,7 +43713,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[249]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[251]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -43270,7 +43885,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[250]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[252]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -43406,7 +44021,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[251]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[253]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -43578,7 +44193,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[252]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[254]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -43714,7 +44329,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[253]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[255]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -43874,10 +44489,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Type operator parameter is currently ignored in AoC version.
-  /// </summary>
   public sealed partial class UpGaiaTypeCount : pb::IMessage<UpGaiaTypeCount>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -43890,7 +44501,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[254]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[256]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -43907,8 +44518,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpGaiaTypeCount(UpGaiaTypeCount other) : this() {
-      typeOp_ = other.typeOp_;
-      resource_ = other.resource_;
+      inConstResource_ = other.inConstResource_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -43917,25 +44527,14 @@ namespace Protos.Expert.Fact {
       return new UpGaiaTypeCount(this);
     }
 
-    /// <summary>Field number for the "typeOp" field.</summary>
-    public const int TypeOpFieldNumber = 1;
-    private int typeOp_;
+    /// <summary>Field number for the "inConstResource" field.</summary>
+    public const int InConstResourceFieldNumber = 1;
+    private int inConstResource_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int TypeOp {
-      get { return typeOp_; }
+    public int InConstResource {
+      get { return inConstResource_; }
       set {
-        typeOp_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "resource" field.</summary>
-    public const int ResourceFieldNumber = 2;
-    private int resource_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Resource {
-      get { return resource_; }
-      set {
-        resource_ = value;
+        inConstResource_ = value;
       }
     }
 
@@ -43952,16 +44551,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (TypeOp != other.TypeOp) return false;
-      if (Resource != other.Resource) return false;
+      if (InConstResource != other.InConstResource) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (TypeOp != 0) hash ^= TypeOp.GetHashCode();
-      if (Resource != 0) hash ^= Resource.GetHashCode();
+      if (InConstResource != 0) hash ^= InConstResource.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -43978,13 +44575,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (TypeOp != 0) {
+      if (InConstResource != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(TypeOp);
-      }
-      if (Resource != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(Resource);
+        output.WriteInt32(InConstResource);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -43995,13 +44588,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (TypeOp != 0) {
+      if (InConstResource != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(TypeOp);
-      }
-      if (Resource != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(Resource);
+        output.WriteInt32(InConstResource);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -44012,11 +44601,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (TypeOp != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TypeOp);
-      }
-      if (Resource != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Resource);
+      if (InConstResource != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstResource);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -44029,11 +44615,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.TypeOp != 0) {
-        TypeOp = other.TypeOp;
-      }
-      if (other.Resource != 0) {
-        Resource = other.Resource;
+      if (other.InConstResource != 0) {
+        InConstResource = other.InConstResource;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -44050,11 +44633,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            TypeOp = input.ReadInt32();
-            break;
-          }
-          case 16: {
-            Resource = input.ReadInt32();
+            InConstResource = input.ReadInt32();
             break;
           }
         }
@@ -44072,11 +44651,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            TypeOp = input.ReadInt32();
-            break;
-          }
-          case 16: {
-            Resource = input.ReadInt32();
+            InConstResource = input.ReadInt32();
             break;
           }
         }
@@ -44098,7 +44673,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[255]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[257]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -44258,10 +44833,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Type operator parameter is currently ignored in AoC version.
-  /// </summary>
   public sealed partial class UpGaiaTypeCountTotal : pb::IMessage<UpGaiaTypeCountTotal>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -44274,7 +44845,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[256]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[258]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -44291,8 +44862,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpGaiaTypeCountTotal(UpGaiaTypeCountTotal other) : this() {
-      typeOp_ = other.typeOp_;
-      resource_ = other.resource_;
+      inConstResource_ = other.inConstResource_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -44301,25 +44871,14 @@ namespace Protos.Expert.Fact {
       return new UpGaiaTypeCountTotal(this);
     }
 
-    /// <summary>Field number for the "typeOp" field.</summary>
-    public const int TypeOpFieldNumber = 1;
-    private int typeOp_;
+    /// <summary>Field number for the "inConstResource" field.</summary>
+    public const int InConstResourceFieldNumber = 1;
+    private int inConstResource_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int TypeOp {
-      get { return typeOp_; }
+    public int InConstResource {
+      get { return inConstResource_; }
       set {
-        typeOp_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "resource" field.</summary>
-    public const int ResourceFieldNumber = 2;
-    private int resource_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Resource {
-      get { return resource_; }
-      set {
-        resource_ = value;
+        inConstResource_ = value;
       }
     }
 
@@ -44336,16 +44895,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (TypeOp != other.TypeOp) return false;
-      if (Resource != other.Resource) return false;
+      if (InConstResource != other.InConstResource) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (TypeOp != 0) hash ^= TypeOp.GetHashCode();
-      if (Resource != 0) hash ^= Resource.GetHashCode();
+      if (InConstResource != 0) hash ^= InConstResource.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -44362,13 +44919,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (TypeOp != 0) {
+      if (InConstResource != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(TypeOp);
-      }
-      if (Resource != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(Resource);
+        output.WriteInt32(InConstResource);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -44379,13 +44932,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (TypeOp != 0) {
+      if (InConstResource != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(TypeOp);
-      }
-      if (Resource != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(Resource);
+        output.WriteInt32(InConstResource);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -44396,11 +44945,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (TypeOp != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TypeOp);
-      }
-      if (Resource != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Resource);
+      if (InConstResource != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstResource);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -44413,11 +44959,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.TypeOp != 0) {
-        TypeOp = other.TypeOp;
-      }
-      if (other.Resource != 0) {
-        Resource = other.Resource;
+      if (other.InConstResource != 0) {
+        InConstResource = other.InConstResource;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -44434,11 +44977,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            TypeOp = input.ReadInt32();
-            break;
-          }
-          case 16: {
-            Resource = input.ReadInt32();
+            InConstResource = input.ReadInt32();
             break;
           }
         }
@@ -44456,11 +44995,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            TypeOp = input.ReadInt32();
-            break;
-          }
-          case 16: {
-            Resource = input.ReadInt32();
+            InConstResource = input.ReadInt32();
             break;
           }
         }
@@ -44482,7 +45017,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[257]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[259]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -44642,10 +45177,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpGroupSize : pb::IMessage<UpGroupSize>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -44658,7 +45189,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[258]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[260]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -44675,8 +45206,18 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpGroupSize(UpGroupSize other) : this() {
-      typeOp_ = other.typeOp_;
-      groupId_ = other.groupId_;
+      switch (other.GroupIdCase) {
+        case GroupIdOneofCase.InConstGroupId:
+          InConstGroupId = other.InConstGroupId;
+          break;
+        case GroupIdOneofCase.InGoalGroupId:
+          InGoalGroupId = other.InGoalGroupId;
+          break;
+        case GroupIdOneofCase.InSnGroupId:
+          InSnGroupId = other.InSnGroupId;
+          break;
+      }
+
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -44685,26 +45226,57 @@ namespace Protos.Expert.Fact {
       return new UpGroupSize(this);
     }
 
-    /// <summary>Field number for the "typeOp" field.</summary>
-    public const int TypeOpFieldNumber = 1;
-    private int typeOp_;
+    /// <summary>Field number for the "inConstGroupId" field.</summary>
+    public const int InConstGroupIdFieldNumber = 1;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int TypeOp {
-      get { return typeOp_; }
+    public int InConstGroupId {
+      get { return groupIdCase_ == GroupIdOneofCase.InConstGroupId ? (int) groupId_ : 0; }
       set {
-        typeOp_ = value;
+        groupId_ = value;
+        groupIdCase_ = GroupIdOneofCase.InConstGroupId;
       }
     }
 
-    /// <summary>Field number for the "groupId" field.</summary>
-    public const int GroupIdFieldNumber = 2;
-    private int groupId_;
+    /// <summary>Field number for the "inGoalGroupId" field.</summary>
+    public const int InGoalGroupIdFieldNumber = 2;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int GroupId {
-      get { return groupId_; }
+    public int InGoalGroupId {
+      get { return groupIdCase_ == GroupIdOneofCase.InGoalGroupId ? (int) groupId_ : 0; }
       set {
         groupId_ = value;
+        groupIdCase_ = GroupIdOneofCase.InGoalGroupId;
       }
+    }
+
+    /// <summary>Field number for the "inSnGroupId" field.</summary>
+    public const int InSnGroupIdFieldNumber = 3;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int InSnGroupId {
+      get { return groupIdCase_ == GroupIdOneofCase.InSnGroupId ? (int) groupId_ : 0; }
+      set {
+        groupId_ = value;
+        groupIdCase_ = GroupIdOneofCase.InSnGroupId;
+      }
+    }
+
+    private object groupId_;
+    /// <summary>Enum of possible cases for the "groupId" oneof.</summary>
+    public enum GroupIdOneofCase {
+      None = 0,
+      InConstGroupId = 1,
+      InGoalGroupId = 2,
+      InSnGroupId = 3,
+    }
+    private GroupIdOneofCase groupIdCase_ = GroupIdOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public GroupIdOneofCase GroupIdCase {
+      get { return groupIdCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void ClearGroupId() {
+      groupIdCase_ = GroupIdOneofCase.None;
+      groupId_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -44720,16 +45292,20 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (TypeOp != other.TypeOp) return false;
-      if (GroupId != other.GroupId) return false;
+      if (InConstGroupId != other.InConstGroupId) return false;
+      if (InGoalGroupId != other.InGoalGroupId) return false;
+      if (InSnGroupId != other.InSnGroupId) return false;
+      if (GroupIdCase != other.GroupIdCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (TypeOp != 0) hash ^= TypeOp.GetHashCode();
-      if (GroupId != 0) hash ^= GroupId.GetHashCode();
+      if (groupIdCase_ == GroupIdOneofCase.InConstGroupId) hash ^= InConstGroupId.GetHashCode();
+      if (groupIdCase_ == GroupIdOneofCase.InGoalGroupId) hash ^= InGoalGroupId.GetHashCode();
+      if (groupIdCase_ == GroupIdOneofCase.InSnGroupId) hash ^= InSnGroupId.GetHashCode();
+      hash ^= (int) groupIdCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -44746,13 +45322,17 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (TypeOp != 0) {
+      if (groupIdCase_ == GroupIdOneofCase.InConstGroupId) {
         output.WriteRawTag(8);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstGroupId);
       }
-      if (GroupId != 0) {
+      if (groupIdCase_ == GroupIdOneofCase.InGoalGroupId) {
         output.WriteRawTag(16);
-        output.WriteInt32(GroupId);
+        output.WriteInt32(InGoalGroupId);
+      }
+      if (groupIdCase_ == GroupIdOneofCase.InSnGroupId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(InSnGroupId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -44763,13 +45343,17 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (TypeOp != 0) {
+      if (groupIdCase_ == GroupIdOneofCase.InConstGroupId) {
         output.WriteRawTag(8);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstGroupId);
       }
-      if (GroupId != 0) {
+      if (groupIdCase_ == GroupIdOneofCase.InGoalGroupId) {
         output.WriteRawTag(16);
-        output.WriteInt32(GroupId);
+        output.WriteInt32(InGoalGroupId);
+      }
+      if (groupIdCase_ == GroupIdOneofCase.InSnGroupId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(InSnGroupId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -44780,11 +45364,14 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (TypeOp != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TypeOp);
+      if (groupIdCase_ == GroupIdOneofCase.InConstGroupId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstGroupId);
       }
-      if (GroupId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(GroupId);
+      if (groupIdCase_ == GroupIdOneofCase.InGoalGroupId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalGroupId);
+      }
+      if (groupIdCase_ == GroupIdOneofCase.InSnGroupId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InSnGroupId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -44797,12 +45384,18 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.TypeOp != 0) {
-        TypeOp = other.TypeOp;
+      switch (other.GroupIdCase) {
+        case GroupIdOneofCase.InConstGroupId:
+          InConstGroupId = other.InConstGroupId;
+          break;
+        case GroupIdOneofCase.InGoalGroupId:
+          InGoalGroupId = other.InGoalGroupId;
+          break;
+        case GroupIdOneofCase.InSnGroupId:
+          InSnGroupId = other.InSnGroupId;
+          break;
       }
-      if (other.GroupId != 0) {
-        GroupId = other.GroupId;
-      }
+
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -44818,11 +45411,15 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            TypeOp = input.ReadInt32();
+            InConstGroupId = input.ReadInt32();
             break;
           }
           case 16: {
-            GroupId = input.ReadInt32();
+            InGoalGroupId = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            InSnGroupId = input.ReadInt32();
             break;
           }
         }
@@ -44840,11 +45437,15 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            TypeOp = input.ReadInt32();
+            InConstGroupId = input.ReadInt32();
             break;
           }
           case 16: {
-            GroupId = input.ReadInt32();
+            InGoalGroupId = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            InSnGroupId = input.ReadInt32();
             break;
           }
         }
@@ -44854,10 +45455,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpGroupSizeResult : pb::IMessage<UpGroupSizeResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -44870,7 +45467,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[259]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[261]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -45030,10 +45627,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpIdleUnitCount : pb::IMessage<UpIdleUnitCount>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -45046,7 +45639,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[260]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[262]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -45063,7 +45656,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpIdleUnitCount(UpIdleUnitCount other) : this() {
-      idleType_ = other.idleType_;
+      inConstIdleType_ = other.inConstIdleType_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -45072,14 +45665,14 @@ namespace Protos.Expert.Fact {
       return new UpIdleUnitCount(this);
     }
 
-    /// <summary>Field number for the "idleType" field.</summary>
-    public const int IdleTypeFieldNumber = 1;
-    private int idleType_;
+    /// <summary>Field number for the "inConstIdleType" field.</summary>
+    public const int InConstIdleTypeFieldNumber = 1;
+    private int inConstIdleType_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int IdleType {
-      get { return idleType_; }
+    public int InConstIdleType {
+      get { return inConstIdleType_; }
       set {
-        idleType_ = value;
+        inConstIdleType_ = value;
       }
     }
 
@@ -45096,14 +45689,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (IdleType != other.IdleType) return false;
+      if (InConstIdleType != other.InConstIdleType) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (IdleType != 0) hash ^= IdleType.GetHashCode();
+      if (InConstIdleType != 0) hash ^= InConstIdleType.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -45120,9 +45713,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (IdleType != 0) {
+      if (InConstIdleType != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(IdleType);
+        output.WriteInt32(InConstIdleType);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -45133,9 +45726,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (IdleType != 0) {
+      if (InConstIdleType != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(IdleType);
+        output.WriteInt32(InConstIdleType);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -45146,8 +45739,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (IdleType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(IdleType);
+      if (InConstIdleType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstIdleType);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -45160,8 +45753,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.IdleType != 0) {
-        IdleType = other.IdleType;
+      if (other.InConstIdleType != 0) {
+        InConstIdleType = other.InConstIdleType;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -45178,7 +45771,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            IdleType = input.ReadInt32();
+            InConstIdleType = input.ReadInt32();
             break;
           }
         }
@@ -45196,7 +45789,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            IdleType = input.ReadInt32();
+            InConstIdleType = input.ReadInt32();
             break;
           }
         }
@@ -45206,10 +45799,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpIdleUnitCountResult : pb::IMessage<UpIdleUnitCountResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -45222,7 +45811,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[261]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[263]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -45382,10 +45971,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpObjectData : pb::IMessage<UpObjectData>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -45398,7 +45983,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[262]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[264]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -45415,7 +46000,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpObjectData(UpObjectData other) : this() {
-      objectData_ = other.objectData_;
+      inConstObjectData_ = other.inConstObjectData_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -45424,14 +46009,14 @@ namespace Protos.Expert.Fact {
       return new UpObjectData(this);
     }
 
-    /// <summary>Field number for the "objectData" field.</summary>
-    public const int ObjectDataFieldNumber = 1;
-    private int objectData_;
+    /// <summary>Field number for the "inConstObjectData" field.</summary>
+    public const int InConstObjectDataFieldNumber = 1;
+    private int inConstObjectData_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ObjectData {
-      get { return objectData_; }
+    public int InConstObjectData {
+      get { return inConstObjectData_; }
       set {
-        objectData_ = value;
+        inConstObjectData_ = value;
       }
     }
 
@@ -45448,14 +46033,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (ObjectData != other.ObjectData) return false;
+      if (InConstObjectData != other.InConstObjectData) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (ObjectData != 0) hash ^= ObjectData.GetHashCode();
+      if (InConstObjectData != 0) hash ^= InConstObjectData.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -45472,9 +46057,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (ObjectData != 0) {
+      if (InConstObjectData != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ObjectData);
+        output.WriteInt32(InConstObjectData);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -45485,9 +46070,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (ObjectData != 0) {
+      if (InConstObjectData != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ObjectData);
+        output.WriteInt32(InConstObjectData);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -45498,8 +46083,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (ObjectData != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ObjectData);
+      if (InConstObjectData != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstObjectData);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -45512,8 +46097,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.ObjectData != 0) {
-        ObjectData = other.ObjectData;
+      if (other.InConstObjectData != 0) {
+        InConstObjectData = other.InConstObjectData;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -45530,7 +46115,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            ObjectData = input.ReadInt32();
+            InConstObjectData = input.ReadInt32();
             break;
           }
         }
@@ -45548,7 +46133,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            ObjectData = input.ReadInt32();
+            InConstObjectData = input.ReadInt32();
             break;
           }
         }
@@ -45558,10 +46143,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpObjectDataResult : pb::IMessage<UpObjectDataResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -45574,7 +46155,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[263]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[265]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -45736,21 +46317,21 @@ namespace Protos.Expert.Fact {
 
   /// <summary>
   ///*
-  /// Currently unimplemented in AoC version.
+  /// Custom fact. Retrieve current target object's all data values as a list.
   /// </summary>
-  public sealed partial class UpObjectTargetData : pb::IMessage<UpObjectTargetData>
+  public sealed partial class UpObjectDataList : pb::IMessage<UpObjectDataList>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<UpObjectTargetData> _parser = new pb::MessageParser<UpObjectTargetData>(() => new UpObjectTargetData());
+    private static readonly pb::MessageParser<UpObjectDataList> _parser = new pb::MessageParser<UpObjectDataList>(() => new UpObjectDataList());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<UpObjectTargetData> Parser { get { return _parser; } }
+    public static pb::MessageParser<UpObjectDataList> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[264]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[266]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -45759,55 +46340,41 @@ namespace Protos.Expert.Fact {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public UpObjectTargetData() {
+    public UpObjectDataList() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public UpObjectTargetData(UpObjectTargetData other) : this() {
-      objectData_ = other.objectData_;
+    public UpObjectDataList(UpObjectDataList other) : this() {
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public UpObjectTargetData Clone() {
-      return new UpObjectTargetData(this);
-    }
-
-    /// <summary>Field number for the "objectData" field.</summary>
-    public const int ObjectDataFieldNumber = 1;
-    private int objectData_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ObjectData {
-      get { return objectData_; }
-      set {
-        objectData_ = value;
-      }
+    public UpObjectDataList Clone() {
+      return new UpObjectDataList(this);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as UpObjectTargetData);
+      return Equals(other as UpObjectDataList);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(UpObjectTargetData other) {
+    public bool Equals(UpObjectDataList other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (ObjectData != other.ObjectData) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (ObjectData != 0) hash ^= ObjectData.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -45824,9 +46391,329 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (ObjectData != 0) {
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(UpObjectDataList other) {
+      if (other == null) {
+        return;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  ///*
+  /// Response for the `UpObjectDataList` custom fact.
+  /// </summary>
+  public sealed partial class UpObjectDataListResult : pb::IMessage<UpObjectDataListResult>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<UpObjectDataListResult> _parser = new pb::MessageParser<UpObjectDataListResult>(() => new UpObjectDataListResult());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<UpObjectDataListResult> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[267]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UpObjectDataListResult() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UpObjectDataListResult(UpObjectDataListResult other) : this() {
+      result_ = other.result_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UpObjectDataListResult Clone() {
+      return new UpObjectDataListResult(this);
+    }
+
+    /// <summary>Field number for the "result" field.</summary>
+    public const int ResultFieldNumber = 1;
+    private static readonly pb::FieldCodec<int> _repeated_result_codec
+        = pb::FieldCodec.ForInt32(10);
+    private readonly pbc::RepeatedField<int> result_ = new pbc::RepeatedField<int>();
+    /// <summary>
+    /// list of all current target object's data values
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<int> Result {
+      get { return result_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as UpObjectDataListResult);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(UpObjectDataListResult other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!result_.Equals(other.result_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= result_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      result_.WriteTo(output, _repeated_result_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      result_.WriteTo(ref output, _repeated_result_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += result_.CalculateSize(_repeated_result_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(UpObjectDataListResult other) {
+      if (other == null) {
+        return;
+      }
+      result_.Add(other.result_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10:
+          case 8: {
+            result_.AddEntriesFrom(input, _repeated_result_codec);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10:
+          case 8: {
+            result_.AddEntriesFrom(ref input, _repeated_result_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  public sealed partial class UpObjectTargetData : pb::IMessage<UpObjectTargetData>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<UpObjectTargetData> _parser = new pb::MessageParser<UpObjectTargetData>(() => new UpObjectTargetData());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<UpObjectTargetData> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[268]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UpObjectTargetData() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UpObjectTargetData(UpObjectTargetData other) : this() {
+      inConstObjectData_ = other.inConstObjectData_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UpObjectTargetData Clone() {
+      return new UpObjectTargetData(this);
+    }
+
+    /// <summary>Field number for the "inConstObjectData" field.</summary>
+    public const int InConstObjectDataFieldNumber = 1;
+    private int inConstObjectData_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int InConstObjectData {
+      get { return inConstObjectData_; }
+      set {
+        inConstObjectData_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as UpObjectTargetData);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(UpObjectTargetData other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (InConstObjectData != other.InConstObjectData) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (InConstObjectData != 0) hash ^= InConstObjectData.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (InConstObjectData != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ObjectData);
+        output.WriteInt32(InConstObjectData);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -45837,9 +46724,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (ObjectData != 0) {
+      if (InConstObjectData != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ObjectData);
+        output.WriteInt32(InConstObjectData);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -45850,8 +46737,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (ObjectData != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ObjectData);
+      if (InConstObjectData != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstObjectData);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -45864,8 +46751,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.ObjectData != 0) {
-        ObjectData = other.ObjectData;
+      if (other.InConstObjectData != 0) {
+        InConstObjectData = other.InConstObjectData;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -45882,7 +46769,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            ObjectData = input.ReadInt32();
+            InConstObjectData = input.ReadInt32();
             break;
           }
         }
@@ -45900,7 +46787,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            ObjectData = input.ReadInt32();
+            InConstObjectData = input.ReadInt32();
             break;
           }
         }
@@ -45910,10 +46797,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpObjectTargetDataResult : pb::IMessage<UpObjectTargetDataResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -45926,7 +46809,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[265]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[269]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -46086,10 +46969,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpObjectTypeCount : pb::IMessage<UpObjectTypeCount>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -46102,7 +46981,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[266]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[270]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -46119,8 +46998,18 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpObjectTypeCount(UpObjectTypeCount other) : this() {
-      typeOp_ = other.typeOp_;
-      objectId_ = other.objectId_;
+      switch (other.ObjectIdCase) {
+        case ObjectIdOneofCase.InConstObjectId:
+          InConstObjectId = other.InConstObjectId;
+          break;
+        case ObjectIdOneofCase.InGoalObjectId:
+          InGoalObjectId = other.InGoalObjectId;
+          break;
+        case ObjectIdOneofCase.InSnObjectId:
+          InSnObjectId = other.InSnObjectId;
+          break;
+      }
+
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -46129,26 +47018,57 @@ namespace Protos.Expert.Fact {
       return new UpObjectTypeCount(this);
     }
 
-    /// <summary>Field number for the "typeOp" field.</summary>
-    public const int TypeOpFieldNumber = 1;
-    private int typeOp_;
+    /// <summary>Field number for the "inConstObjectId" field.</summary>
+    public const int InConstObjectIdFieldNumber = 1;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int TypeOp {
-      get { return typeOp_; }
+    public int InConstObjectId {
+      get { return objectIdCase_ == ObjectIdOneofCase.InConstObjectId ? (int) objectId_ : 0; }
       set {
-        typeOp_ = value;
+        objectId_ = value;
+        objectIdCase_ = ObjectIdOneofCase.InConstObjectId;
       }
     }
 
-    /// <summary>Field number for the "objectId" field.</summary>
-    public const int ObjectIdFieldNumber = 2;
-    private int objectId_;
+    /// <summary>Field number for the "inGoalObjectId" field.</summary>
+    public const int InGoalObjectIdFieldNumber = 2;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ObjectId {
-      get { return objectId_; }
+    public int InGoalObjectId {
+      get { return objectIdCase_ == ObjectIdOneofCase.InGoalObjectId ? (int) objectId_ : 0; }
       set {
         objectId_ = value;
+        objectIdCase_ = ObjectIdOneofCase.InGoalObjectId;
       }
+    }
+
+    /// <summary>Field number for the "inSnObjectId" field.</summary>
+    public const int InSnObjectIdFieldNumber = 3;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int InSnObjectId {
+      get { return objectIdCase_ == ObjectIdOneofCase.InSnObjectId ? (int) objectId_ : 0; }
+      set {
+        objectId_ = value;
+        objectIdCase_ = ObjectIdOneofCase.InSnObjectId;
+      }
+    }
+
+    private object objectId_;
+    /// <summary>Enum of possible cases for the "objectId" oneof.</summary>
+    public enum ObjectIdOneofCase {
+      None = 0,
+      InConstObjectId = 1,
+      InGoalObjectId = 2,
+      InSnObjectId = 3,
+    }
+    private ObjectIdOneofCase objectIdCase_ = ObjectIdOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ObjectIdOneofCase ObjectIdCase {
+      get { return objectIdCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void ClearObjectId() {
+      objectIdCase_ = ObjectIdOneofCase.None;
+      objectId_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -46164,16 +47084,20 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (TypeOp != other.TypeOp) return false;
-      if (ObjectId != other.ObjectId) return false;
+      if (InConstObjectId != other.InConstObjectId) return false;
+      if (InGoalObjectId != other.InGoalObjectId) return false;
+      if (InSnObjectId != other.InSnObjectId) return false;
+      if (ObjectIdCase != other.ObjectIdCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (TypeOp != 0) hash ^= TypeOp.GetHashCode();
-      if (ObjectId != 0) hash ^= ObjectId.GetHashCode();
+      if (objectIdCase_ == ObjectIdOneofCase.InConstObjectId) hash ^= InConstObjectId.GetHashCode();
+      if (objectIdCase_ == ObjectIdOneofCase.InGoalObjectId) hash ^= InGoalObjectId.GetHashCode();
+      if (objectIdCase_ == ObjectIdOneofCase.InSnObjectId) hash ^= InSnObjectId.GetHashCode();
+      hash ^= (int) objectIdCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -46190,13 +47114,17 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (TypeOp != 0) {
+      if (objectIdCase_ == ObjectIdOneofCase.InConstObjectId) {
         output.WriteRawTag(8);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstObjectId);
       }
-      if (ObjectId != 0) {
+      if (objectIdCase_ == ObjectIdOneofCase.InGoalObjectId) {
         output.WriteRawTag(16);
-        output.WriteInt32(ObjectId);
+        output.WriteInt32(InGoalObjectId);
+      }
+      if (objectIdCase_ == ObjectIdOneofCase.InSnObjectId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(InSnObjectId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -46207,13 +47135,17 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (TypeOp != 0) {
+      if (objectIdCase_ == ObjectIdOneofCase.InConstObjectId) {
         output.WriteRawTag(8);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstObjectId);
       }
-      if (ObjectId != 0) {
+      if (objectIdCase_ == ObjectIdOneofCase.InGoalObjectId) {
         output.WriteRawTag(16);
-        output.WriteInt32(ObjectId);
+        output.WriteInt32(InGoalObjectId);
+      }
+      if (objectIdCase_ == ObjectIdOneofCase.InSnObjectId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(InSnObjectId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -46224,11 +47156,14 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (TypeOp != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TypeOp);
+      if (objectIdCase_ == ObjectIdOneofCase.InConstObjectId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstObjectId);
       }
-      if (ObjectId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ObjectId);
+      if (objectIdCase_ == ObjectIdOneofCase.InGoalObjectId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalObjectId);
+      }
+      if (objectIdCase_ == ObjectIdOneofCase.InSnObjectId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InSnObjectId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -46241,12 +47176,18 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.TypeOp != 0) {
-        TypeOp = other.TypeOp;
+      switch (other.ObjectIdCase) {
+        case ObjectIdOneofCase.InConstObjectId:
+          InConstObjectId = other.InConstObjectId;
+          break;
+        case ObjectIdOneofCase.InGoalObjectId:
+          InGoalObjectId = other.InGoalObjectId;
+          break;
+        case ObjectIdOneofCase.InSnObjectId:
+          InSnObjectId = other.InSnObjectId;
+          break;
       }
-      if (other.ObjectId != 0) {
-        ObjectId = other.ObjectId;
-      }
+
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -46262,11 +47203,15 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            TypeOp = input.ReadInt32();
+            InConstObjectId = input.ReadInt32();
             break;
           }
           case 16: {
-            ObjectId = input.ReadInt32();
+            InGoalObjectId = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            InSnObjectId = input.ReadInt32();
             break;
           }
         }
@@ -46284,11 +47229,15 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            TypeOp = input.ReadInt32();
+            InConstObjectId = input.ReadInt32();
             break;
           }
           case 16: {
-            ObjectId = input.ReadInt32();
+            InGoalObjectId = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            InSnObjectId = input.ReadInt32();
             break;
           }
         }
@@ -46298,10 +47247,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpObjectTypeCountResult : pb::IMessage<UpObjectTypeCountResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -46314,7 +47259,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[267]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[271]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -46474,10 +47419,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpObjectTypeCountTotal : pb::IMessage<UpObjectTypeCountTotal>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -46490,7 +47431,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[268]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[272]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -46507,8 +47448,18 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpObjectTypeCountTotal(UpObjectTypeCountTotal other) : this() {
-      typeOp_ = other.typeOp_;
-      objectId_ = other.objectId_;
+      switch (other.ObjectIdCase) {
+        case ObjectIdOneofCase.InConstObjectId:
+          InConstObjectId = other.InConstObjectId;
+          break;
+        case ObjectIdOneofCase.InGoalObjectId:
+          InGoalObjectId = other.InGoalObjectId;
+          break;
+        case ObjectIdOneofCase.InSnObjectId:
+          InSnObjectId = other.InSnObjectId;
+          break;
+      }
+
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -46517,26 +47468,57 @@ namespace Protos.Expert.Fact {
       return new UpObjectTypeCountTotal(this);
     }
 
-    /// <summary>Field number for the "typeOp" field.</summary>
-    public const int TypeOpFieldNumber = 1;
-    private int typeOp_;
+    /// <summary>Field number for the "inConstObjectId" field.</summary>
+    public const int InConstObjectIdFieldNumber = 1;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int TypeOp {
-      get { return typeOp_; }
+    public int InConstObjectId {
+      get { return objectIdCase_ == ObjectIdOneofCase.InConstObjectId ? (int) objectId_ : 0; }
       set {
-        typeOp_ = value;
+        objectId_ = value;
+        objectIdCase_ = ObjectIdOneofCase.InConstObjectId;
       }
     }
 
-    /// <summary>Field number for the "objectId" field.</summary>
-    public const int ObjectIdFieldNumber = 2;
-    private int objectId_;
+    /// <summary>Field number for the "inGoalObjectId" field.</summary>
+    public const int InGoalObjectIdFieldNumber = 2;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ObjectId {
-      get { return objectId_; }
+    public int InGoalObjectId {
+      get { return objectIdCase_ == ObjectIdOneofCase.InGoalObjectId ? (int) objectId_ : 0; }
       set {
         objectId_ = value;
+        objectIdCase_ = ObjectIdOneofCase.InGoalObjectId;
       }
+    }
+
+    /// <summary>Field number for the "inSnObjectId" field.</summary>
+    public const int InSnObjectIdFieldNumber = 3;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int InSnObjectId {
+      get { return objectIdCase_ == ObjectIdOneofCase.InSnObjectId ? (int) objectId_ : 0; }
+      set {
+        objectId_ = value;
+        objectIdCase_ = ObjectIdOneofCase.InSnObjectId;
+      }
+    }
+
+    private object objectId_;
+    /// <summary>Enum of possible cases for the "objectId" oneof.</summary>
+    public enum ObjectIdOneofCase {
+      None = 0,
+      InConstObjectId = 1,
+      InGoalObjectId = 2,
+      InSnObjectId = 3,
+    }
+    private ObjectIdOneofCase objectIdCase_ = ObjectIdOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ObjectIdOneofCase ObjectIdCase {
+      get { return objectIdCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void ClearObjectId() {
+      objectIdCase_ = ObjectIdOneofCase.None;
+      objectId_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -46552,16 +47534,20 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (TypeOp != other.TypeOp) return false;
-      if (ObjectId != other.ObjectId) return false;
+      if (InConstObjectId != other.InConstObjectId) return false;
+      if (InGoalObjectId != other.InGoalObjectId) return false;
+      if (InSnObjectId != other.InSnObjectId) return false;
+      if (ObjectIdCase != other.ObjectIdCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (TypeOp != 0) hash ^= TypeOp.GetHashCode();
-      if (ObjectId != 0) hash ^= ObjectId.GetHashCode();
+      if (objectIdCase_ == ObjectIdOneofCase.InConstObjectId) hash ^= InConstObjectId.GetHashCode();
+      if (objectIdCase_ == ObjectIdOneofCase.InGoalObjectId) hash ^= InGoalObjectId.GetHashCode();
+      if (objectIdCase_ == ObjectIdOneofCase.InSnObjectId) hash ^= InSnObjectId.GetHashCode();
+      hash ^= (int) objectIdCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -46578,13 +47564,17 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (TypeOp != 0) {
+      if (objectIdCase_ == ObjectIdOneofCase.InConstObjectId) {
         output.WriteRawTag(8);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstObjectId);
       }
-      if (ObjectId != 0) {
+      if (objectIdCase_ == ObjectIdOneofCase.InGoalObjectId) {
         output.WriteRawTag(16);
-        output.WriteInt32(ObjectId);
+        output.WriteInt32(InGoalObjectId);
+      }
+      if (objectIdCase_ == ObjectIdOneofCase.InSnObjectId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(InSnObjectId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -46595,13 +47585,17 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (TypeOp != 0) {
+      if (objectIdCase_ == ObjectIdOneofCase.InConstObjectId) {
         output.WriteRawTag(8);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstObjectId);
       }
-      if (ObjectId != 0) {
+      if (objectIdCase_ == ObjectIdOneofCase.InGoalObjectId) {
         output.WriteRawTag(16);
-        output.WriteInt32(ObjectId);
+        output.WriteInt32(InGoalObjectId);
+      }
+      if (objectIdCase_ == ObjectIdOneofCase.InSnObjectId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(InSnObjectId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -46612,11 +47606,14 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (TypeOp != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TypeOp);
+      if (objectIdCase_ == ObjectIdOneofCase.InConstObjectId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstObjectId);
       }
-      if (ObjectId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ObjectId);
+      if (objectIdCase_ == ObjectIdOneofCase.InGoalObjectId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalObjectId);
+      }
+      if (objectIdCase_ == ObjectIdOneofCase.InSnObjectId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InSnObjectId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -46629,12 +47626,18 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.TypeOp != 0) {
-        TypeOp = other.TypeOp;
+      switch (other.ObjectIdCase) {
+        case ObjectIdOneofCase.InConstObjectId:
+          InConstObjectId = other.InConstObjectId;
+          break;
+        case ObjectIdOneofCase.InGoalObjectId:
+          InGoalObjectId = other.InGoalObjectId;
+          break;
+        case ObjectIdOneofCase.InSnObjectId:
+          InSnObjectId = other.InSnObjectId;
+          break;
       }
-      if (other.ObjectId != 0) {
-        ObjectId = other.ObjectId;
-      }
+
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -46650,11 +47653,15 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            TypeOp = input.ReadInt32();
+            InConstObjectId = input.ReadInt32();
             break;
           }
           case 16: {
-            ObjectId = input.ReadInt32();
+            InGoalObjectId = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            InSnObjectId = input.ReadInt32();
             break;
           }
         }
@@ -46672,11 +47679,15 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            TypeOp = input.ReadInt32();
+            InConstObjectId = input.ReadInt32();
             break;
           }
           case 16: {
-            ObjectId = input.ReadInt32();
+            InGoalObjectId = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            InSnObjectId = input.ReadInt32();
             break;
           }
         }
@@ -46686,10 +47697,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpObjectTypeCountTotalResult : pb::IMessage<UpObjectTypeCountTotalResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -46702,7 +47709,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[269]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[273]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -46862,10 +47869,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpPathDistance : pb::IMessage<UpPathDistance>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -46878,7 +47881,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[270]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[274]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -46895,8 +47898,8 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpPathDistance(UpPathDistance other) : this() {
-      goalPoint_ = other.goalPoint_;
-      strict_ = other.strict_;
+      inGoalPoint_ = other.inGoalPoint_;
+      inConstStrict_ = other.inConstStrict_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -46905,25 +47908,25 @@ namespace Protos.Expert.Fact {
       return new UpPathDistance(this);
     }
 
-    /// <summary>Field number for the "goalPoint" field.</summary>
-    public const int GoalPointFieldNumber = 1;
-    private int goalPoint_;
+    /// <summary>Field number for the "inGoalPoint" field.</summary>
+    public const int InGoalPointFieldNumber = 1;
+    private int inGoalPoint_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int GoalPoint {
-      get { return goalPoint_; }
+    public int InGoalPoint {
+      get { return inGoalPoint_; }
       set {
-        goalPoint_ = value;
+        inGoalPoint_ = value;
       }
     }
 
-    /// <summary>Field number for the "strict" field.</summary>
-    public const int StrictFieldNumber = 2;
-    private int strict_;
+    /// <summary>Field number for the "inConstStrict" field.</summary>
+    public const int InConstStrictFieldNumber = 2;
+    private int inConstStrict_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Strict {
-      get { return strict_; }
+    public int InConstStrict {
+      get { return inConstStrict_; }
       set {
-        strict_ = value;
+        inConstStrict_ = value;
       }
     }
 
@@ -46940,16 +47943,16 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (GoalPoint != other.GoalPoint) return false;
-      if (Strict != other.Strict) return false;
+      if (InGoalPoint != other.InGoalPoint) return false;
+      if (InConstStrict != other.InConstStrict) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (GoalPoint != 0) hash ^= GoalPoint.GetHashCode();
-      if (Strict != 0) hash ^= Strict.GetHashCode();
+      if (InGoalPoint != 0) hash ^= InGoalPoint.GetHashCode();
+      if (InConstStrict != 0) hash ^= InConstStrict.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -46966,13 +47969,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (GoalPoint != 0) {
+      if (InGoalPoint != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(GoalPoint);
+        output.WriteInt32(InGoalPoint);
       }
-      if (Strict != 0) {
+      if (InConstStrict != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(Strict);
+        output.WriteInt32(InConstStrict);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -46983,13 +47986,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (GoalPoint != 0) {
+      if (InGoalPoint != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(GoalPoint);
+        output.WriteInt32(InGoalPoint);
       }
-      if (Strict != 0) {
+      if (InConstStrict != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(Strict);
+        output.WriteInt32(InConstStrict);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -47000,11 +48003,11 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (GoalPoint != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(GoalPoint);
+      if (InGoalPoint != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalPoint);
       }
-      if (Strict != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Strict);
+      if (InConstStrict != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstStrict);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -47017,11 +48020,11 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.GoalPoint != 0) {
-        GoalPoint = other.GoalPoint;
+      if (other.InGoalPoint != 0) {
+        InGoalPoint = other.InGoalPoint;
       }
-      if (other.Strict != 0) {
-        Strict = other.Strict;
+      if (other.InConstStrict != 0) {
+        InConstStrict = other.InConstStrict;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -47038,11 +48041,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            GoalPoint = input.ReadInt32();
+            InGoalPoint = input.ReadInt32();
             break;
           }
           case 16: {
-            Strict = input.ReadInt32();
+            InConstStrict = input.ReadInt32();
             break;
           }
         }
@@ -47060,11 +48063,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            GoalPoint = input.ReadInt32();
+            InGoalPoint = input.ReadInt32();
             break;
           }
           case 16: {
-            Strict = input.ReadInt32();
+            InConstStrict = input.ReadInt32();
             break;
           }
         }
@@ -47074,10 +48077,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpPathDistanceResult : pb::IMessage<UpPathDistanceResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -47090,7 +48089,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[271]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[275]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -47250,10 +48249,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpPendingObjects : pb::IMessage<UpPendingObjects>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -47266,7 +48261,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[272]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[276]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -47283,8 +48278,18 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpPendingObjects(UpPendingObjects other) : this() {
-      typeOp_ = other.typeOp_;
-      objectId_ = other.objectId_;
+      switch (other.ObjectIdCase) {
+        case ObjectIdOneofCase.InConstObjectId:
+          InConstObjectId = other.InConstObjectId;
+          break;
+        case ObjectIdOneofCase.InGoalObjectId:
+          InGoalObjectId = other.InGoalObjectId;
+          break;
+        case ObjectIdOneofCase.InSnObjectId:
+          InSnObjectId = other.InSnObjectId;
+          break;
+      }
+
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -47293,26 +48298,57 @@ namespace Protos.Expert.Fact {
       return new UpPendingObjects(this);
     }
 
-    /// <summary>Field number for the "typeOp" field.</summary>
-    public const int TypeOpFieldNumber = 1;
-    private int typeOp_;
+    /// <summary>Field number for the "inConstObjectId" field.</summary>
+    public const int InConstObjectIdFieldNumber = 1;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int TypeOp {
-      get { return typeOp_; }
+    public int InConstObjectId {
+      get { return objectIdCase_ == ObjectIdOneofCase.InConstObjectId ? (int) objectId_ : 0; }
       set {
-        typeOp_ = value;
+        objectId_ = value;
+        objectIdCase_ = ObjectIdOneofCase.InConstObjectId;
       }
     }
 
-    /// <summary>Field number for the "objectId" field.</summary>
-    public const int ObjectIdFieldNumber = 2;
-    private int objectId_;
+    /// <summary>Field number for the "inGoalObjectId" field.</summary>
+    public const int InGoalObjectIdFieldNumber = 2;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ObjectId {
-      get { return objectId_; }
+    public int InGoalObjectId {
+      get { return objectIdCase_ == ObjectIdOneofCase.InGoalObjectId ? (int) objectId_ : 0; }
       set {
         objectId_ = value;
+        objectIdCase_ = ObjectIdOneofCase.InGoalObjectId;
       }
+    }
+
+    /// <summary>Field number for the "inSnObjectId" field.</summary>
+    public const int InSnObjectIdFieldNumber = 3;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int InSnObjectId {
+      get { return objectIdCase_ == ObjectIdOneofCase.InSnObjectId ? (int) objectId_ : 0; }
+      set {
+        objectId_ = value;
+        objectIdCase_ = ObjectIdOneofCase.InSnObjectId;
+      }
+    }
+
+    private object objectId_;
+    /// <summary>Enum of possible cases for the "objectId" oneof.</summary>
+    public enum ObjectIdOneofCase {
+      None = 0,
+      InConstObjectId = 1,
+      InGoalObjectId = 2,
+      InSnObjectId = 3,
+    }
+    private ObjectIdOneofCase objectIdCase_ = ObjectIdOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ObjectIdOneofCase ObjectIdCase {
+      get { return objectIdCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void ClearObjectId() {
+      objectIdCase_ = ObjectIdOneofCase.None;
+      objectId_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -47328,16 +48364,20 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (TypeOp != other.TypeOp) return false;
-      if (ObjectId != other.ObjectId) return false;
+      if (InConstObjectId != other.InConstObjectId) return false;
+      if (InGoalObjectId != other.InGoalObjectId) return false;
+      if (InSnObjectId != other.InSnObjectId) return false;
+      if (ObjectIdCase != other.ObjectIdCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (TypeOp != 0) hash ^= TypeOp.GetHashCode();
-      if (ObjectId != 0) hash ^= ObjectId.GetHashCode();
+      if (objectIdCase_ == ObjectIdOneofCase.InConstObjectId) hash ^= InConstObjectId.GetHashCode();
+      if (objectIdCase_ == ObjectIdOneofCase.InGoalObjectId) hash ^= InGoalObjectId.GetHashCode();
+      if (objectIdCase_ == ObjectIdOneofCase.InSnObjectId) hash ^= InSnObjectId.GetHashCode();
+      hash ^= (int) objectIdCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -47354,13 +48394,17 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (TypeOp != 0) {
+      if (objectIdCase_ == ObjectIdOneofCase.InConstObjectId) {
         output.WriteRawTag(8);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstObjectId);
       }
-      if (ObjectId != 0) {
+      if (objectIdCase_ == ObjectIdOneofCase.InGoalObjectId) {
         output.WriteRawTag(16);
-        output.WriteInt32(ObjectId);
+        output.WriteInt32(InGoalObjectId);
+      }
+      if (objectIdCase_ == ObjectIdOneofCase.InSnObjectId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(InSnObjectId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -47371,13 +48415,17 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (TypeOp != 0) {
+      if (objectIdCase_ == ObjectIdOneofCase.InConstObjectId) {
         output.WriteRawTag(8);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstObjectId);
       }
-      if (ObjectId != 0) {
+      if (objectIdCase_ == ObjectIdOneofCase.InGoalObjectId) {
         output.WriteRawTag(16);
-        output.WriteInt32(ObjectId);
+        output.WriteInt32(InGoalObjectId);
+      }
+      if (objectIdCase_ == ObjectIdOneofCase.InSnObjectId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(InSnObjectId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -47388,11 +48436,14 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (TypeOp != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TypeOp);
+      if (objectIdCase_ == ObjectIdOneofCase.InConstObjectId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstObjectId);
       }
-      if (ObjectId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ObjectId);
+      if (objectIdCase_ == ObjectIdOneofCase.InGoalObjectId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalObjectId);
+      }
+      if (objectIdCase_ == ObjectIdOneofCase.InSnObjectId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InSnObjectId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -47405,12 +48456,18 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.TypeOp != 0) {
-        TypeOp = other.TypeOp;
+      switch (other.ObjectIdCase) {
+        case ObjectIdOneofCase.InConstObjectId:
+          InConstObjectId = other.InConstObjectId;
+          break;
+        case ObjectIdOneofCase.InGoalObjectId:
+          InGoalObjectId = other.InGoalObjectId;
+          break;
+        case ObjectIdOneofCase.InSnObjectId:
+          InSnObjectId = other.InSnObjectId;
+          break;
       }
-      if (other.ObjectId != 0) {
-        ObjectId = other.ObjectId;
-      }
+
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -47426,11 +48483,15 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            TypeOp = input.ReadInt32();
+            InConstObjectId = input.ReadInt32();
             break;
           }
           case 16: {
-            ObjectId = input.ReadInt32();
+            InGoalObjectId = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            InSnObjectId = input.ReadInt32();
             break;
           }
         }
@@ -47448,11 +48509,15 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            TypeOp = input.ReadInt32();
+            InConstObjectId = input.ReadInt32();
             break;
           }
           case 16: {
-            ObjectId = input.ReadInt32();
+            InGoalObjectId = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            InSnObjectId = input.ReadInt32();
             break;
           }
         }
@@ -47462,10 +48527,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpPendingObjectsResult : pb::IMessage<UpPendingObjectsResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -47478,7 +48539,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[273]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[277]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -47650,7 +48711,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[274]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[278]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -47667,8 +48728,18 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpPendingPlacement(UpPendingPlacement other) : this() {
-      typeOp_ = other.typeOp_;
-      buildingId_ = other.buildingId_;
+      switch (other.BuildingIdCase) {
+        case BuildingIdOneofCase.InConstBuildingId:
+          InConstBuildingId = other.InConstBuildingId;
+          break;
+        case BuildingIdOneofCase.InGoalBuildingId:
+          InGoalBuildingId = other.InGoalBuildingId;
+          break;
+        case BuildingIdOneofCase.InSnBuildingId:
+          InSnBuildingId = other.InSnBuildingId;
+          break;
+      }
+
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -47677,26 +48748,57 @@ namespace Protos.Expert.Fact {
       return new UpPendingPlacement(this);
     }
 
-    /// <summary>Field number for the "typeOp" field.</summary>
-    public const int TypeOpFieldNumber = 1;
-    private int typeOp_;
+    /// <summary>Field number for the "inConstBuildingId" field.</summary>
+    public const int InConstBuildingIdFieldNumber = 1;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int TypeOp {
-      get { return typeOp_; }
+    public int InConstBuildingId {
+      get { return buildingIdCase_ == BuildingIdOneofCase.InConstBuildingId ? (int) buildingId_ : 0; }
       set {
-        typeOp_ = value;
+        buildingId_ = value;
+        buildingIdCase_ = BuildingIdOneofCase.InConstBuildingId;
       }
     }
 
-    /// <summary>Field number for the "buildingId" field.</summary>
-    public const int BuildingIdFieldNumber = 2;
-    private int buildingId_;
+    /// <summary>Field number for the "inGoalBuildingId" field.</summary>
+    public const int InGoalBuildingIdFieldNumber = 2;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int BuildingId {
-      get { return buildingId_; }
+    public int InGoalBuildingId {
+      get { return buildingIdCase_ == BuildingIdOneofCase.InGoalBuildingId ? (int) buildingId_ : 0; }
       set {
         buildingId_ = value;
+        buildingIdCase_ = BuildingIdOneofCase.InGoalBuildingId;
       }
+    }
+
+    /// <summary>Field number for the "inSnBuildingId" field.</summary>
+    public const int InSnBuildingIdFieldNumber = 3;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int InSnBuildingId {
+      get { return buildingIdCase_ == BuildingIdOneofCase.InSnBuildingId ? (int) buildingId_ : 0; }
+      set {
+        buildingId_ = value;
+        buildingIdCase_ = BuildingIdOneofCase.InSnBuildingId;
+      }
+    }
+
+    private object buildingId_;
+    /// <summary>Enum of possible cases for the "buildingId" oneof.</summary>
+    public enum BuildingIdOneofCase {
+      None = 0,
+      InConstBuildingId = 1,
+      InGoalBuildingId = 2,
+      InSnBuildingId = 3,
+    }
+    private BuildingIdOneofCase buildingIdCase_ = BuildingIdOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BuildingIdOneofCase BuildingIdCase {
+      get { return buildingIdCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void ClearBuildingId() {
+      buildingIdCase_ = BuildingIdOneofCase.None;
+      buildingId_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -47712,16 +48814,20 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (TypeOp != other.TypeOp) return false;
-      if (BuildingId != other.BuildingId) return false;
+      if (InConstBuildingId != other.InConstBuildingId) return false;
+      if (InGoalBuildingId != other.InGoalBuildingId) return false;
+      if (InSnBuildingId != other.InSnBuildingId) return false;
+      if (BuildingIdCase != other.BuildingIdCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (TypeOp != 0) hash ^= TypeOp.GetHashCode();
-      if (BuildingId != 0) hash ^= BuildingId.GetHashCode();
+      if (buildingIdCase_ == BuildingIdOneofCase.InConstBuildingId) hash ^= InConstBuildingId.GetHashCode();
+      if (buildingIdCase_ == BuildingIdOneofCase.InGoalBuildingId) hash ^= InGoalBuildingId.GetHashCode();
+      if (buildingIdCase_ == BuildingIdOneofCase.InSnBuildingId) hash ^= InSnBuildingId.GetHashCode();
+      hash ^= (int) buildingIdCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -47738,13 +48844,17 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (TypeOp != 0) {
+      if (buildingIdCase_ == BuildingIdOneofCase.InConstBuildingId) {
         output.WriteRawTag(8);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstBuildingId);
       }
-      if (BuildingId != 0) {
+      if (buildingIdCase_ == BuildingIdOneofCase.InGoalBuildingId) {
         output.WriteRawTag(16);
-        output.WriteInt32(BuildingId);
+        output.WriteInt32(InGoalBuildingId);
+      }
+      if (buildingIdCase_ == BuildingIdOneofCase.InSnBuildingId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(InSnBuildingId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -47755,13 +48865,17 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (TypeOp != 0) {
+      if (buildingIdCase_ == BuildingIdOneofCase.InConstBuildingId) {
         output.WriteRawTag(8);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstBuildingId);
       }
-      if (BuildingId != 0) {
+      if (buildingIdCase_ == BuildingIdOneofCase.InGoalBuildingId) {
         output.WriteRawTag(16);
-        output.WriteInt32(BuildingId);
+        output.WriteInt32(InGoalBuildingId);
+      }
+      if (buildingIdCase_ == BuildingIdOneofCase.InSnBuildingId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(InSnBuildingId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -47772,11 +48886,14 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (TypeOp != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TypeOp);
+      if (buildingIdCase_ == BuildingIdOneofCase.InConstBuildingId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstBuildingId);
       }
-      if (BuildingId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BuildingId);
+      if (buildingIdCase_ == BuildingIdOneofCase.InGoalBuildingId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalBuildingId);
+      }
+      if (buildingIdCase_ == BuildingIdOneofCase.InSnBuildingId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InSnBuildingId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -47789,12 +48906,18 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.TypeOp != 0) {
-        TypeOp = other.TypeOp;
+      switch (other.BuildingIdCase) {
+        case BuildingIdOneofCase.InConstBuildingId:
+          InConstBuildingId = other.InConstBuildingId;
+          break;
+        case BuildingIdOneofCase.InGoalBuildingId:
+          InGoalBuildingId = other.InGoalBuildingId;
+          break;
+        case BuildingIdOneofCase.InSnBuildingId:
+          InSnBuildingId = other.InSnBuildingId;
+          break;
       }
-      if (other.BuildingId != 0) {
-        BuildingId = other.BuildingId;
-      }
+
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -47810,11 +48933,15 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            TypeOp = input.ReadInt32();
+            InConstBuildingId = input.ReadInt32();
             break;
           }
           case 16: {
-            BuildingId = input.ReadInt32();
+            InGoalBuildingId = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            InSnBuildingId = input.ReadInt32();
             break;
           }
         }
@@ -47832,11 +48959,15 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            TypeOp = input.ReadInt32();
+            InConstBuildingId = input.ReadInt32();
             break;
           }
           case 16: {
-            BuildingId = input.ReadInt32();
+            InGoalBuildingId = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            InSnBuildingId = input.ReadInt32();
             break;
           }
         }
@@ -47858,7 +48989,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[275]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[279]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -48030,7 +49161,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[276]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[280]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -48047,7 +49178,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpPlayerDistance(UpPlayerDistance other) : this() {
-      player_ = other.player_;
+      inPlayerAnyPlayer_ = other.inPlayerAnyPlayer_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -48056,14 +49187,14 @@ namespace Protos.Expert.Fact {
       return new UpPlayerDistance(this);
     }
 
-    /// <summary>Field number for the "player" field.</summary>
-    public const int PlayerFieldNumber = 1;
-    private int player_;
+    /// <summary>Field number for the "inPlayerAnyPlayer" field.</summary>
+    public const int InPlayerAnyPlayerFieldNumber = 1;
+    private int inPlayerAnyPlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Player {
-      get { return player_; }
+    public int InPlayerAnyPlayer {
+      get { return inPlayerAnyPlayer_; }
       set {
-        player_ = value;
+        inPlayerAnyPlayer_ = value;
       }
     }
 
@@ -48080,14 +49211,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Player != other.Player) return false;
+      if (InPlayerAnyPlayer != other.InPlayerAnyPlayer) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Player != 0) hash ^= Player.GetHashCode();
+      if (InPlayerAnyPlayer != 0) hash ^= InPlayerAnyPlayer.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -48104,9 +49235,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Player != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(Player);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -48117,9 +49248,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Player != 0) {
+      if (InPlayerAnyPlayer != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(Player);
+        output.WriteInt32(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -48130,8 +49261,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Player != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Player);
+      if (InPlayerAnyPlayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InPlayerAnyPlayer);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -48144,8 +49275,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.Player != 0) {
-        Player = other.Player;
+      if (other.InPlayerAnyPlayer != 0) {
+        InPlayerAnyPlayer = other.InPlayerAnyPlayer;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -48162,7 +49293,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Player = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -48180,7 +49311,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Player = input.ReadInt32();
+            InPlayerAnyPlayer = input.ReadInt32();
             break;
           }
         }
@@ -48202,7 +49333,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[277]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[281]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -48374,7 +49505,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[278]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[282]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -48391,7 +49522,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpPlayersInGame(UpPlayersInGame other) : this() {
-      playerStance_ = other.playerStance_;
+      inConstPlayerStance_ = other.inConstPlayerStance_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -48400,14 +49531,14 @@ namespace Protos.Expert.Fact {
       return new UpPlayersInGame(this);
     }
 
-    /// <summary>Field number for the "playerStance" field.</summary>
-    public const int PlayerStanceFieldNumber = 1;
-    private int playerStance_;
+    /// <summary>Field number for the "inConstPlayerStance" field.</summary>
+    public const int InConstPlayerStanceFieldNumber = 1;
+    private int inConstPlayerStance_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int PlayerStance {
-      get { return playerStance_; }
+    public int InConstPlayerStance {
+      get { return inConstPlayerStance_; }
       set {
-        playerStance_ = value;
+        inConstPlayerStance_ = value;
       }
     }
 
@@ -48424,14 +49555,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerStance != other.PlayerStance) return false;
+      if (InConstPlayerStance != other.InConstPlayerStance) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerStance != 0) hash ^= PlayerStance.GetHashCode();
+      if (InConstPlayerStance != 0) hash ^= InConstPlayerStance.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -48448,9 +49579,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (PlayerStance != 0) {
+      if (InConstPlayerStance != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerStance);
+        output.WriteInt32(InConstPlayerStance);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -48461,9 +49592,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (PlayerStance != 0) {
+      if (InConstPlayerStance != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(PlayerStance);
+        output.WriteInt32(InConstPlayerStance);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -48474,8 +49605,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerStance != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerStance);
+      if (InConstPlayerStance != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstPlayerStance);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -48488,8 +49619,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.PlayerStance != 0) {
-        PlayerStance = other.PlayerStance;
+      if (other.InConstPlayerStance != 0) {
+        InConstPlayerStance = other.InConstPlayerStance;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -48506,7 +49637,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            PlayerStance = input.ReadInt32();
+            InConstPlayerStance = input.ReadInt32();
             break;
           }
         }
@@ -48524,7 +49655,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            PlayerStance = input.ReadInt32();
+            InConstPlayerStance = input.ReadInt32();
             break;
           }
         }
@@ -48546,7 +49677,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[279]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[283]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -48718,7 +49849,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[280]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[284]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -48735,9 +49866,19 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpPointContains(UpPointContains other) : this() {
-      goalPoint_ = other.goalPoint_;
-      typeOp_ = other.typeOp_;
-      objectId_ = other.objectId_;
+      inGoalPoint_ = other.inGoalPoint_;
+      switch (other.ObjectIdCase) {
+        case ObjectIdOneofCase.InConstObjectId:
+          InConstObjectId = other.InConstObjectId;
+          break;
+        case ObjectIdOneofCase.InGoalObjectId:
+          InGoalObjectId = other.InGoalObjectId;
+          break;
+        case ObjectIdOneofCase.InSnObjectId:
+          InSnObjectId = other.InSnObjectId;
+          break;
+      }
+
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -48746,37 +49887,68 @@ namespace Protos.Expert.Fact {
       return new UpPointContains(this);
     }
 
-    /// <summary>Field number for the "goalPoint" field.</summary>
-    public const int GoalPointFieldNumber = 1;
-    private int goalPoint_;
+    /// <summary>Field number for the "inGoalPoint" field.</summary>
+    public const int InGoalPointFieldNumber = 1;
+    private int inGoalPoint_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int GoalPoint {
-      get { return goalPoint_; }
+    public int InGoalPoint {
+      get { return inGoalPoint_; }
       set {
-        goalPoint_ = value;
+        inGoalPoint_ = value;
       }
     }
 
-    /// <summary>Field number for the "typeOp" field.</summary>
-    public const int TypeOpFieldNumber = 2;
-    private int typeOp_;
+    /// <summary>Field number for the "inConstObjectId" field.</summary>
+    public const int InConstObjectIdFieldNumber = 2;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int TypeOp {
-      get { return typeOp_; }
-      set {
-        typeOp_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "objectId" field.</summary>
-    public const int ObjectIdFieldNumber = 3;
-    private int objectId_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ObjectId {
-      get { return objectId_; }
+    public int InConstObjectId {
+      get { return objectIdCase_ == ObjectIdOneofCase.InConstObjectId ? (int) objectId_ : 0; }
       set {
         objectId_ = value;
+        objectIdCase_ = ObjectIdOneofCase.InConstObjectId;
       }
+    }
+
+    /// <summary>Field number for the "inGoalObjectId" field.</summary>
+    public const int InGoalObjectIdFieldNumber = 3;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int InGoalObjectId {
+      get { return objectIdCase_ == ObjectIdOneofCase.InGoalObjectId ? (int) objectId_ : 0; }
+      set {
+        objectId_ = value;
+        objectIdCase_ = ObjectIdOneofCase.InGoalObjectId;
+      }
+    }
+
+    /// <summary>Field number for the "inSnObjectId" field.</summary>
+    public const int InSnObjectIdFieldNumber = 4;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int InSnObjectId {
+      get { return objectIdCase_ == ObjectIdOneofCase.InSnObjectId ? (int) objectId_ : 0; }
+      set {
+        objectId_ = value;
+        objectIdCase_ = ObjectIdOneofCase.InSnObjectId;
+      }
+    }
+
+    private object objectId_;
+    /// <summary>Enum of possible cases for the "objectId" oneof.</summary>
+    public enum ObjectIdOneofCase {
+      None = 0,
+      InConstObjectId = 2,
+      InGoalObjectId = 3,
+      InSnObjectId = 4,
+    }
+    private ObjectIdOneofCase objectIdCase_ = ObjectIdOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ObjectIdOneofCase ObjectIdCase {
+      get { return objectIdCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void ClearObjectId() {
+      objectIdCase_ = ObjectIdOneofCase.None;
+      objectId_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -48792,18 +49964,22 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (GoalPoint != other.GoalPoint) return false;
-      if (TypeOp != other.TypeOp) return false;
-      if (ObjectId != other.ObjectId) return false;
+      if (InGoalPoint != other.InGoalPoint) return false;
+      if (InConstObjectId != other.InConstObjectId) return false;
+      if (InGoalObjectId != other.InGoalObjectId) return false;
+      if (InSnObjectId != other.InSnObjectId) return false;
+      if (ObjectIdCase != other.ObjectIdCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (GoalPoint != 0) hash ^= GoalPoint.GetHashCode();
-      if (TypeOp != 0) hash ^= TypeOp.GetHashCode();
-      if (ObjectId != 0) hash ^= ObjectId.GetHashCode();
+      if (InGoalPoint != 0) hash ^= InGoalPoint.GetHashCode();
+      if (objectIdCase_ == ObjectIdOneofCase.InConstObjectId) hash ^= InConstObjectId.GetHashCode();
+      if (objectIdCase_ == ObjectIdOneofCase.InGoalObjectId) hash ^= InGoalObjectId.GetHashCode();
+      if (objectIdCase_ == ObjectIdOneofCase.InSnObjectId) hash ^= InSnObjectId.GetHashCode();
+      hash ^= (int) objectIdCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -48820,17 +49996,21 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (GoalPoint != 0) {
+      if (InGoalPoint != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(GoalPoint);
+        output.WriteInt32(InGoalPoint);
       }
-      if (TypeOp != 0) {
+      if (objectIdCase_ == ObjectIdOneofCase.InConstObjectId) {
         output.WriteRawTag(16);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstObjectId);
       }
-      if (ObjectId != 0) {
+      if (objectIdCase_ == ObjectIdOneofCase.InGoalObjectId) {
         output.WriteRawTag(24);
-        output.WriteInt32(ObjectId);
+        output.WriteInt32(InGoalObjectId);
+      }
+      if (objectIdCase_ == ObjectIdOneofCase.InSnObjectId) {
+        output.WriteRawTag(32);
+        output.WriteInt32(InSnObjectId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -48841,17 +50021,21 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (GoalPoint != 0) {
+      if (InGoalPoint != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(GoalPoint);
+        output.WriteInt32(InGoalPoint);
       }
-      if (TypeOp != 0) {
+      if (objectIdCase_ == ObjectIdOneofCase.InConstObjectId) {
         output.WriteRawTag(16);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstObjectId);
       }
-      if (ObjectId != 0) {
+      if (objectIdCase_ == ObjectIdOneofCase.InGoalObjectId) {
         output.WriteRawTag(24);
-        output.WriteInt32(ObjectId);
+        output.WriteInt32(InGoalObjectId);
+      }
+      if (objectIdCase_ == ObjectIdOneofCase.InSnObjectId) {
+        output.WriteRawTag(32);
+        output.WriteInt32(InSnObjectId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -48862,14 +50046,17 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (GoalPoint != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(GoalPoint);
+      if (InGoalPoint != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalPoint);
       }
-      if (TypeOp != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TypeOp);
+      if (objectIdCase_ == ObjectIdOneofCase.InConstObjectId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstObjectId);
       }
-      if (ObjectId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ObjectId);
+      if (objectIdCase_ == ObjectIdOneofCase.InGoalObjectId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalObjectId);
+      }
+      if (objectIdCase_ == ObjectIdOneofCase.InSnObjectId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InSnObjectId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -48882,15 +50069,21 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.GoalPoint != 0) {
-        GoalPoint = other.GoalPoint;
+      if (other.InGoalPoint != 0) {
+        InGoalPoint = other.InGoalPoint;
       }
-      if (other.TypeOp != 0) {
-        TypeOp = other.TypeOp;
+      switch (other.ObjectIdCase) {
+        case ObjectIdOneofCase.InConstObjectId:
+          InConstObjectId = other.InConstObjectId;
+          break;
+        case ObjectIdOneofCase.InGoalObjectId:
+          InGoalObjectId = other.InGoalObjectId;
+          break;
+        case ObjectIdOneofCase.InSnObjectId:
+          InSnObjectId = other.InSnObjectId;
+          break;
       }
-      if (other.ObjectId != 0) {
-        ObjectId = other.ObjectId;
-      }
+
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -48906,15 +50099,19 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            GoalPoint = input.ReadInt32();
+            InGoalPoint = input.ReadInt32();
             break;
           }
           case 16: {
-            TypeOp = input.ReadInt32();
+            InConstObjectId = input.ReadInt32();
             break;
           }
           case 24: {
-            ObjectId = input.ReadInt32();
+            InGoalObjectId = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            InSnObjectId = input.ReadInt32();
             break;
           }
         }
@@ -48932,15 +50129,19 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            GoalPoint = input.ReadInt32();
+            InGoalPoint = input.ReadInt32();
             break;
           }
           case 16: {
-            TypeOp = input.ReadInt32();
+            InConstObjectId = input.ReadInt32();
             break;
           }
           case 24: {
-            ObjectId = input.ReadInt32();
+            InGoalObjectId = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            InSnObjectId = input.ReadInt32();
             break;
           }
         }
@@ -48962,7 +50163,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[281]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[285]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -49122,10 +50323,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpPointDistance : pb::IMessage<UpPointDistance>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -49138,7 +50335,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[282]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[286]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -49155,8 +50352,8 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpPointDistance(UpPointDistance other) : this() {
-      goalPoint1_ = other.goalPoint1_;
-      goalPoint2_ = other.goalPoint2_;
+      inGoalPoint1_ = other.inGoalPoint1_;
+      inGoalPoint2_ = other.inGoalPoint2_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -49165,25 +50362,25 @@ namespace Protos.Expert.Fact {
       return new UpPointDistance(this);
     }
 
-    /// <summary>Field number for the "goalPoint1" field.</summary>
-    public const int GoalPoint1FieldNumber = 1;
-    private int goalPoint1_;
+    /// <summary>Field number for the "inGoalPoint1" field.</summary>
+    public const int InGoalPoint1FieldNumber = 1;
+    private int inGoalPoint1_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int GoalPoint1 {
-      get { return goalPoint1_; }
+    public int InGoalPoint1 {
+      get { return inGoalPoint1_; }
       set {
-        goalPoint1_ = value;
+        inGoalPoint1_ = value;
       }
     }
 
-    /// <summary>Field number for the "goalPoint2" field.</summary>
-    public const int GoalPoint2FieldNumber = 2;
-    private int goalPoint2_;
+    /// <summary>Field number for the "inGoalPoint2" field.</summary>
+    public const int InGoalPoint2FieldNumber = 2;
+    private int inGoalPoint2_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int GoalPoint2 {
-      get { return goalPoint2_; }
+    public int InGoalPoint2 {
+      get { return inGoalPoint2_; }
       set {
-        goalPoint2_ = value;
+        inGoalPoint2_ = value;
       }
     }
 
@@ -49200,16 +50397,16 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (GoalPoint1 != other.GoalPoint1) return false;
-      if (GoalPoint2 != other.GoalPoint2) return false;
+      if (InGoalPoint1 != other.InGoalPoint1) return false;
+      if (InGoalPoint2 != other.InGoalPoint2) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (GoalPoint1 != 0) hash ^= GoalPoint1.GetHashCode();
-      if (GoalPoint2 != 0) hash ^= GoalPoint2.GetHashCode();
+      if (InGoalPoint1 != 0) hash ^= InGoalPoint1.GetHashCode();
+      if (InGoalPoint2 != 0) hash ^= InGoalPoint2.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -49226,13 +50423,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (GoalPoint1 != 0) {
+      if (InGoalPoint1 != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(GoalPoint1);
+        output.WriteInt32(InGoalPoint1);
       }
-      if (GoalPoint2 != 0) {
+      if (InGoalPoint2 != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(GoalPoint2);
+        output.WriteInt32(InGoalPoint2);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -49243,13 +50440,13 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (GoalPoint1 != 0) {
+      if (InGoalPoint1 != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(GoalPoint1);
+        output.WriteInt32(InGoalPoint1);
       }
-      if (GoalPoint2 != 0) {
+      if (InGoalPoint2 != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(GoalPoint2);
+        output.WriteInt32(InGoalPoint2);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -49260,11 +50457,11 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (GoalPoint1 != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(GoalPoint1);
+      if (InGoalPoint1 != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalPoint1);
       }
-      if (GoalPoint2 != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(GoalPoint2);
+      if (InGoalPoint2 != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalPoint2);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -49277,11 +50474,11 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.GoalPoint1 != 0) {
-        GoalPoint1 = other.GoalPoint1;
+      if (other.InGoalPoint1 != 0) {
+        InGoalPoint1 = other.InGoalPoint1;
       }
-      if (other.GoalPoint2 != 0) {
-        GoalPoint2 = other.GoalPoint2;
+      if (other.InGoalPoint2 != 0) {
+        InGoalPoint2 = other.InGoalPoint2;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -49298,11 +50495,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            GoalPoint1 = input.ReadInt32();
+            InGoalPoint1 = input.ReadInt32();
             break;
           }
           case 16: {
-            GoalPoint2 = input.ReadInt32();
+            InGoalPoint2 = input.ReadInt32();
             break;
           }
         }
@@ -49320,11 +50517,11 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            GoalPoint1 = input.ReadInt32();
+            InGoalPoint1 = input.ReadInt32();
             break;
           }
           case 16: {
-            GoalPoint2 = input.ReadInt32();
+            InGoalPoint2 = input.ReadInt32();
             break;
           }
         }
@@ -49334,10 +50531,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpPointDistanceResult : pb::IMessage<UpPointDistanceResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -49350,7 +50543,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[283]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[287]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -49510,10 +50703,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpPointElevation : pb::IMessage<UpPointElevation>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -49526,7 +50715,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[284]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[288]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -49543,7 +50732,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpPointElevation(UpPointElevation other) : this() {
-      goalPoint_ = other.goalPoint_;
+      inGoalPoint_ = other.inGoalPoint_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -49552,14 +50741,14 @@ namespace Protos.Expert.Fact {
       return new UpPointElevation(this);
     }
 
-    /// <summary>Field number for the "goalPoint" field.</summary>
-    public const int GoalPointFieldNumber = 1;
-    private int goalPoint_;
+    /// <summary>Field number for the "inGoalPoint" field.</summary>
+    public const int InGoalPointFieldNumber = 1;
+    private int inGoalPoint_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int GoalPoint {
-      get { return goalPoint_; }
+    public int InGoalPoint {
+      get { return inGoalPoint_; }
       set {
-        goalPoint_ = value;
+        inGoalPoint_ = value;
       }
     }
 
@@ -49576,14 +50765,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (GoalPoint != other.GoalPoint) return false;
+      if (InGoalPoint != other.InGoalPoint) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (GoalPoint != 0) hash ^= GoalPoint.GetHashCode();
+      if (InGoalPoint != 0) hash ^= InGoalPoint.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -49600,9 +50789,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (GoalPoint != 0) {
+      if (InGoalPoint != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(GoalPoint);
+        output.WriteInt32(InGoalPoint);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -49613,9 +50802,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (GoalPoint != 0) {
+      if (InGoalPoint != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(GoalPoint);
+        output.WriteInt32(InGoalPoint);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -49626,8 +50815,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (GoalPoint != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(GoalPoint);
+      if (InGoalPoint != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalPoint);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -49640,8 +50829,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.GoalPoint != 0) {
-        GoalPoint = other.GoalPoint;
+      if (other.InGoalPoint != 0) {
+        InGoalPoint = other.InGoalPoint;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -49658,7 +50847,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            GoalPoint = input.ReadInt32();
+            InGoalPoint = input.ReadInt32();
             break;
           }
         }
@@ -49676,7 +50865,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            GoalPoint = input.ReadInt32();
+            InGoalPoint = input.ReadInt32();
             break;
           }
         }
@@ -49686,10 +50875,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpPointElevationResult : pb::IMessage<UpPointElevationResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -49702,7 +50887,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[285]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[289]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -49862,10 +51047,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpPointExplored : pb::IMessage<UpPointExplored>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -49878,7 +51059,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[286]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[290]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -49895,7 +51076,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpPointExplored(UpPointExplored other) : this() {
-      goalPoint_ = other.goalPoint_;
+      inGoalPoint_ = other.inGoalPoint_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -49904,14 +51085,14 @@ namespace Protos.Expert.Fact {
       return new UpPointExplored(this);
     }
 
-    /// <summary>Field number for the "goalPoint" field.</summary>
-    public const int GoalPointFieldNumber = 1;
-    private int goalPoint_;
+    /// <summary>Field number for the "inGoalPoint" field.</summary>
+    public const int InGoalPointFieldNumber = 1;
+    private int inGoalPoint_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int GoalPoint {
-      get { return goalPoint_; }
+    public int InGoalPoint {
+      get { return inGoalPoint_; }
       set {
-        goalPoint_ = value;
+        inGoalPoint_ = value;
       }
     }
 
@@ -49928,14 +51109,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (GoalPoint != other.GoalPoint) return false;
+      if (InGoalPoint != other.InGoalPoint) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (GoalPoint != 0) hash ^= GoalPoint.GetHashCode();
+      if (InGoalPoint != 0) hash ^= InGoalPoint.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -49952,9 +51133,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (GoalPoint != 0) {
+      if (InGoalPoint != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(GoalPoint);
+        output.WriteInt32(InGoalPoint);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -49965,9 +51146,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (GoalPoint != 0) {
+      if (InGoalPoint != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(GoalPoint);
+        output.WriteInt32(InGoalPoint);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -49978,8 +51159,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (GoalPoint != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(GoalPoint);
+      if (InGoalPoint != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalPoint);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -49992,8 +51173,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.GoalPoint != 0) {
-        GoalPoint = other.GoalPoint;
+      if (other.InGoalPoint != 0) {
+        InGoalPoint = other.InGoalPoint;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -50010,7 +51191,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            GoalPoint = input.ReadInt32();
+            InGoalPoint = input.ReadInt32();
             break;
           }
         }
@@ -50028,7 +51209,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            GoalPoint = input.ReadInt32();
+            InGoalPoint = input.ReadInt32();
             break;
           }
         }
@@ -50038,10 +51219,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpPointExploredResult : pb::IMessage<UpPointExploredResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -50054,7 +51231,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[287]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[291]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -50214,10 +51391,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpPointTerrain : pb::IMessage<UpPointTerrain>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -50230,7 +51403,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[288]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[292]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -50247,7 +51420,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpPointTerrain(UpPointTerrain other) : this() {
-      goalPoint_ = other.goalPoint_;
+      inGoalPoint_ = other.inGoalPoint_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -50256,14 +51429,14 @@ namespace Protos.Expert.Fact {
       return new UpPointTerrain(this);
     }
 
-    /// <summary>Field number for the "goalPoint" field.</summary>
-    public const int GoalPointFieldNumber = 1;
-    private int goalPoint_;
+    /// <summary>Field number for the "inGoalPoint" field.</summary>
+    public const int InGoalPointFieldNumber = 1;
+    private int inGoalPoint_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int GoalPoint {
-      get { return goalPoint_; }
+    public int InGoalPoint {
+      get { return inGoalPoint_; }
       set {
-        goalPoint_ = value;
+        inGoalPoint_ = value;
       }
     }
 
@@ -50280,14 +51453,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (GoalPoint != other.GoalPoint) return false;
+      if (InGoalPoint != other.InGoalPoint) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (GoalPoint != 0) hash ^= GoalPoint.GetHashCode();
+      if (InGoalPoint != 0) hash ^= InGoalPoint.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -50304,9 +51477,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (GoalPoint != 0) {
+      if (InGoalPoint != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(GoalPoint);
+        output.WriteInt32(InGoalPoint);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -50317,9 +51490,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (GoalPoint != 0) {
+      if (InGoalPoint != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(GoalPoint);
+        output.WriteInt32(InGoalPoint);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -50330,8 +51503,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (GoalPoint != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(GoalPoint);
+      if (InGoalPoint != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalPoint);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -50344,8 +51517,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.GoalPoint != 0) {
-        GoalPoint = other.GoalPoint;
+      if (other.InGoalPoint != 0) {
+        InGoalPoint = other.InGoalPoint;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -50362,7 +51535,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            GoalPoint = input.ReadInt32();
+            InGoalPoint = input.ReadInt32();
             break;
           }
         }
@@ -50380,7 +51553,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            GoalPoint = input.ReadInt32();
+            InGoalPoint = input.ReadInt32();
             break;
           }
         }
@@ -50390,10 +51563,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpPointTerrainResult : pb::IMessage<UpPointTerrainResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -50406,7 +51575,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[289]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[293]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -50566,10 +51735,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpPointZone : pb::IMessage<UpPointZone>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -50582,7 +51747,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[290]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[294]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -50599,7 +51764,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpPointZone(UpPointZone other) : this() {
-      goalPoint_ = other.goalPoint_;
+      inGoalPoint_ = other.inGoalPoint_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -50608,14 +51773,14 @@ namespace Protos.Expert.Fact {
       return new UpPointZone(this);
     }
 
-    /// <summary>Field number for the "goalPoint" field.</summary>
-    public const int GoalPointFieldNumber = 1;
-    private int goalPoint_;
+    /// <summary>Field number for the "inGoalPoint" field.</summary>
+    public const int InGoalPointFieldNumber = 1;
+    private int inGoalPoint_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int GoalPoint {
-      get { return goalPoint_; }
+    public int InGoalPoint {
+      get { return inGoalPoint_; }
       set {
-        goalPoint_ = value;
+        inGoalPoint_ = value;
       }
     }
 
@@ -50632,14 +51797,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (GoalPoint != other.GoalPoint) return false;
+      if (InGoalPoint != other.InGoalPoint) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (GoalPoint != 0) hash ^= GoalPoint.GetHashCode();
+      if (InGoalPoint != 0) hash ^= InGoalPoint.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -50656,9 +51821,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (GoalPoint != 0) {
+      if (InGoalPoint != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(GoalPoint);
+        output.WriteInt32(InGoalPoint);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -50669,9 +51834,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (GoalPoint != 0) {
+      if (InGoalPoint != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(GoalPoint);
+        output.WriteInt32(InGoalPoint);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -50682,8 +51847,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (GoalPoint != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(GoalPoint);
+      if (InGoalPoint != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalPoint);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -50696,8 +51861,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.GoalPoint != 0) {
-        GoalPoint = other.GoalPoint;
+      if (other.InGoalPoint != 0) {
+        InGoalPoint = other.InGoalPoint;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -50714,7 +51879,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            GoalPoint = input.ReadInt32();
+            InGoalPoint = input.ReadInt32();
             break;
           }
         }
@@ -50732,7 +51897,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            GoalPoint = input.ReadInt32();
+            InGoalPoint = input.ReadInt32();
             break;
           }
         }
@@ -50742,10 +51907,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpPointZoneResult : pb::IMessage<UpPointZoneResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -50758,7 +51919,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[291]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[295]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -50918,10 +52079,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpProjectileDetected : pb::IMessage<UpProjectileDetected>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -50934,7 +52091,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[292]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[296]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -50951,7 +52108,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpProjectileDetected(UpProjectileDetected other) : this() {
-      projectileType_ = other.projectileType_;
+      inConstProjectileType_ = other.inConstProjectileType_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -50960,14 +52117,14 @@ namespace Protos.Expert.Fact {
       return new UpProjectileDetected(this);
     }
 
-    /// <summary>Field number for the "projectileType" field.</summary>
-    public const int ProjectileTypeFieldNumber = 1;
-    private int projectileType_;
+    /// <summary>Field number for the "inConstProjectileType" field.</summary>
+    public const int InConstProjectileTypeFieldNumber = 1;
+    private int inConstProjectileType_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ProjectileType {
-      get { return projectileType_; }
+    public int InConstProjectileType {
+      get { return inConstProjectileType_; }
       set {
-        projectileType_ = value;
+        inConstProjectileType_ = value;
       }
     }
 
@@ -50984,14 +52141,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (ProjectileType != other.ProjectileType) return false;
+      if (InConstProjectileType != other.InConstProjectileType) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (ProjectileType != 0) hash ^= ProjectileType.GetHashCode();
+      if (InConstProjectileType != 0) hash ^= InConstProjectileType.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -51008,9 +52165,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (ProjectileType != 0) {
+      if (InConstProjectileType != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ProjectileType);
+        output.WriteInt32(InConstProjectileType);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -51021,9 +52178,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (ProjectileType != 0) {
+      if (InConstProjectileType != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ProjectileType);
+        output.WriteInt32(InConstProjectileType);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -51034,8 +52191,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (ProjectileType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ProjectileType);
+      if (InConstProjectileType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstProjectileType);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -51048,8 +52205,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.ProjectileType != 0) {
-        ProjectileType = other.ProjectileType;
+      if (other.InConstProjectileType != 0) {
+        InConstProjectileType = other.InConstProjectileType;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -51066,7 +52223,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            ProjectileType = input.ReadInt32();
+            InConstProjectileType = input.ReadInt32();
             break;
           }
         }
@@ -51084,7 +52241,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            ProjectileType = input.ReadInt32();
+            InConstProjectileType = input.ReadInt32();
             break;
           }
         }
@@ -51094,10 +52251,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpProjectileDetectedResult : pb::IMessage<UpProjectileDetectedResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -51110,7 +52263,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[293]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[297]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -51270,10 +52423,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpProjectileTarget : pb::IMessage<UpProjectileTarget>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -51286,7 +52435,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[294]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[298]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -51303,7 +52452,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpProjectileTarget(UpProjectileTarget other) : this() {
-      projectileType_ = other.projectileType_;
+      inConstProjectileType_ = other.inConstProjectileType_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -51312,14 +52461,14 @@ namespace Protos.Expert.Fact {
       return new UpProjectileTarget(this);
     }
 
-    /// <summary>Field number for the "projectileType" field.</summary>
-    public const int ProjectileTypeFieldNumber = 1;
-    private int projectileType_;
+    /// <summary>Field number for the "inConstProjectileType" field.</summary>
+    public const int InConstProjectileTypeFieldNumber = 1;
+    private int inConstProjectileType_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ProjectileType {
-      get { return projectileType_; }
+    public int InConstProjectileType {
+      get { return inConstProjectileType_; }
       set {
-        projectileType_ = value;
+        inConstProjectileType_ = value;
       }
     }
 
@@ -51336,14 +52485,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (ProjectileType != other.ProjectileType) return false;
+      if (InConstProjectileType != other.InConstProjectileType) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (ProjectileType != 0) hash ^= ProjectileType.GetHashCode();
+      if (InConstProjectileType != 0) hash ^= InConstProjectileType.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -51360,9 +52509,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (ProjectileType != 0) {
+      if (InConstProjectileType != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ProjectileType);
+        output.WriteInt32(InConstProjectileType);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -51373,9 +52522,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (ProjectileType != 0) {
+      if (InConstProjectileType != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ProjectileType);
+        output.WriteInt32(InConstProjectileType);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -51386,8 +52535,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (ProjectileType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ProjectileType);
+      if (InConstProjectileType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstProjectileType);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -51400,8 +52549,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.ProjectileType != 0) {
-        ProjectileType = other.ProjectileType;
+      if (other.InConstProjectileType != 0) {
+        InConstProjectileType = other.InConstProjectileType;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -51418,7 +52567,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            ProjectileType = input.ReadInt32();
+            InConstProjectileType = input.ReadInt32();
             break;
           }
         }
@@ -51436,7 +52585,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            ProjectileType = input.ReadInt32();
+            InConstProjectileType = input.ReadInt32();
             break;
           }
         }
@@ -51446,10 +52595,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpProjectileTargetResult : pb::IMessage<UpProjectileTargetResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -51462,7 +52607,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[295]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[299]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -51622,10 +52767,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpRemainingBoarAmount : pb::IMessage<UpRemainingBoarAmount>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -51638,7 +52779,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[296]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[300]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -51762,10 +52903,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpRemainingBoarAmountResult : pb::IMessage<UpRemainingBoarAmountResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -51778,7 +52915,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[297]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[301]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -51938,10 +53075,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpResearchStatus : pb::IMessage<UpResearchStatus>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -51954,7 +53087,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[298]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[302]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -51971,8 +53104,18 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpResearchStatus(UpResearchStatus other) : this() {
-      typeOp_ = other.typeOp_;
-      techId_ = other.techId_;
+      switch (other.TechIdCase) {
+        case TechIdOneofCase.InConstTechId:
+          InConstTechId = other.InConstTechId;
+          break;
+        case TechIdOneofCase.InGoalTechId:
+          InGoalTechId = other.InGoalTechId;
+          break;
+        case TechIdOneofCase.InSnTechId:
+          InSnTechId = other.InSnTechId;
+          break;
+      }
+
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -51981,26 +53124,57 @@ namespace Protos.Expert.Fact {
       return new UpResearchStatus(this);
     }
 
-    /// <summary>Field number for the "typeOp" field.</summary>
-    public const int TypeOpFieldNumber = 1;
-    private int typeOp_;
+    /// <summary>Field number for the "inConstTechId" field.</summary>
+    public const int InConstTechIdFieldNumber = 1;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int TypeOp {
-      get { return typeOp_; }
+    public int InConstTechId {
+      get { return techIdCase_ == TechIdOneofCase.InConstTechId ? (int) techId_ : 0; }
       set {
-        typeOp_ = value;
+        techId_ = value;
+        techIdCase_ = TechIdOneofCase.InConstTechId;
       }
     }
 
-    /// <summary>Field number for the "techId" field.</summary>
-    public const int TechIdFieldNumber = 2;
-    private int techId_;
+    /// <summary>Field number for the "inGoalTechId" field.</summary>
+    public const int InGoalTechIdFieldNumber = 2;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int TechId {
-      get { return techId_; }
+    public int InGoalTechId {
+      get { return techIdCase_ == TechIdOneofCase.InGoalTechId ? (int) techId_ : 0; }
       set {
         techId_ = value;
+        techIdCase_ = TechIdOneofCase.InGoalTechId;
       }
+    }
+
+    /// <summary>Field number for the "inSnTechId" field.</summary>
+    public const int InSnTechIdFieldNumber = 3;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int InSnTechId {
+      get { return techIdCase_ == TechIdOneofCase.InSnTechId ? (int) techId_ : 0; }
+      set {
+        techId_ = value;
+        techIdCase_ = TechIdOneofCase.InSnTechId;
+      }
+    }
+
+    private object techId_;
+    /// <summary>Enum of possible cases for the "techId" oneof.</summary>
+    public enum TechIdOneofCase {
+      None = 0,
+      InConstTechId = 1,
+      InGoalTechId = 2,
+      InSnTechId = 3,
+    }
+    private TechIdOneofCase techIdCase_ = TechIdOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public TechIdOneofCase TechIdCase {
+      get { return techIdCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void ClearTechId() {
+      techIdCase_ = TechIdOneofCase.None;
+      techId_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -52016,16 +53190,20 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (TypeOp != other.TypeOp) return false;
-      if (TechId != other.TechId) return false;
+      if (InConstTechId != other.InConstTechId) return false;
+      if (InGoalTechId != other.InGoalTechId) return false;
+      if (InSnTechId != other.InSnTechId) return false;
+      if (TechIdCase != other.TechIdCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (TypeOp != 0) hash ^= TypeOp.GetHashCode();
-      if (TechId != 0) hash ^= TechId.GetHashCode();
+      if (techIdCase_ == TechIdOneofCase.InConstTechId) hash ^= InConstTechId.GetHashCode();
+      if (techIdCase_ == TechIdOneofCase.InGoalTechId) hash ^= InGoalTechId.GetHashCode();
+      if (techIdCase_ == TechIdOneofCase.InSnTechId) hash ^= InSnTechId.GetHashCode();
+      hash ^= (int) techIdCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -52042,13 +53220,17 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (TypeOp != 0) {
+      if (techIdCase_ == TechIdOneofCase.InConstTechId) {
         output.WriteRawTag(8);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstTechId);
       }
-      if (TechId != 0) {
+      if (techIdCase_ == TechIdOneofCase.InGoalTechId) {
         output.WriteRawTag(16);
-        output.WriteInt32(TechId);
+        output.WriteInt32(InGoalTechId);
+      }
+      if (techIdCase_ == TechIdOneofCase.InSnTechId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(InSnTechId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -52059,13 +53241,17 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (TypeOp != 0) {
+      if (techIdCase_ == TechIdOneofCase.InConstTechId) {
         output.WriteRawTag(8);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstTechId);
       }
-      if (TechId != 0) {
+      if (techIdCase_ == TechIdOneofCase.InGoalTechId) {
         output.WriteRawTag(16);
-        output.WriteInt32(TechId);
+        output.WriteInt32(InGoalTechId);
+      }
+      if (techIdCase_ == TechIdOneofCase.InSnTechId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(InSnTechId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -52076,11 +53262,14 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (TypeOp != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TypeOp);
+      if (techIdCase_ == TechIdOneofCase.InConstTechId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstTechId);
       }
-      if (TechId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TechId);
+      if (techIdCase_ == TechIdOneofCase.InGoalTechId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalTechId);
+      }
+      if (techIdCase_ == TechIdOneofCase.InSnTechId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InSnTechId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -52093,12 +53282,18 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.TypeOp != 0) {
-        TypeOp = other.TypeOp;
+      switch (other.TechIdCase) {
+        case TechIdOneofCase.InConstTechId:
+          InConstTechId = other.InConstTechId;
+          break;
+        case TechIdOneofCase.InGoalTechId:
+          InGoalTechId = other.InGoalTechId;
+          break;
+        case TechIdOneofCase.InSnTechId:
+          InSnTechId = other.InSnTechId;
+          break;
       }
-      if (other.TechId != 0) {
-        TechId = other.TechId;
-      }
+
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -52114,11 +53309,15 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            TypeOp = input.ReadInt32();
+            InConstTechId = input.ReadInt32();
             break;
           }
           case 16: {
-            TechId = input.ReadInt32();
+            InGoalTechId = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            InSnTechId = input.ReadInt32();
             break;
           }
         }
@@ -52136,11 +53335,15 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            TypeOp = input.ReadInt32();
+            InConstTechId = input.ReadInt32();
             break;
           }
           case 16: {
-            TechId = input.ReadInt32();
+            InGoalTechId = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            InSnTechId = input.ReadInt32();
             break;
           }
         }
@@ -52150,10 +53353,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpResearchStatusResult : pb::IMessage<UpResearchStatusResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -52166,7 +53365,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[299]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[303]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -52338,7 +53537,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[300]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[304]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -52355,7 +53554,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpResourceAmount(UpResourceAmount other) : this() {
-      resourceAmount_ = other.resourceAmount_;
+      inConstResourceAmount_ = other.inConstResourceAmount_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -52364,14 +53563,14 @@ namespace Protos.Expert.Fact {
       return new UpResourceAmount(this);
     }
 
-    /// <summary>Field number for the "resourceAmount" field.</summary>
-    public const int ResourceAmountFieldNumber = 1;
-    private int resourceAmount_;
+    /// <summary>Field number for the "inConstResourceAmount" field.</summary>
+    public const int InConstResourceAmountFieldNumber = 1;
+    private int inConstResourceAmount_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ResourceAmount {
-      get { return resourceAmount_; }
+    public int InConstResourceAmount {
+      get { return inConstResourceAmount_; }
       set {
-        resourceAmount_ = value;
+        inConstResourceAmount_ = value;
       }
     }
 
@@ -52388,14 +53587,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (ResourceAmount != other.ResourceAmount) return false;
+      if (InConstResourceAmount != other.InConstResourceAmount) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (ResourceAmount != 0) hash ^= ResourceAmount.GetHashCode();
+      if (InConstResourceAmount != 0) hash ^= InConstResourceAmount.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -52412,9 +53611,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (ResourceAmount != 0) {
+      if (InConstResourceAmount != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ResourceAmount);
+        output.WriteInt32(InConstResourceAmount);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -52425,9 +53624,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (ResourceAmount != 0) {
+      if (InConstResourceAmount != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ResourceAmount);
+        output.WriteInt32(InConstResourceAmount);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -52438,8 +53637,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (ResourceAmount != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ResourceAmount);
+      if (InConstResourceAmount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstResourceAmount);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -52452,8 +53651,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.ResourceAmount != 0) {
-        ResourceAmount = other.ResourceAmount;
+      if (other.InConstResourceAmount != 0) {
+        InConstResourceAmount = other.InConstResourceAmount;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -52470,7 +53669,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            ResourceAmount = input.ReadInt32();
+            InConstResourceAmount = input.ReadInt32();
             break;
           }
         }
@@ -52488,7 +53687,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            ResourceAmount = input.ReadInt32();
+            InConstResourceAmount = input.ReadInt32();
             break;
           }
         }
@@ -52510,7 +53709,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[301]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[305]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -52682,7 +53881,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[302]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[306]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -52699,7 +53898,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpResourcePercent(UpResourcePercent other) : this() {
-      resourceAmount_ = other.resourceAmount_;
+      inConstResourceAmount_ = other.inConstResourceAmount_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -52708,14 +53907,14 @@ namespace Protos.Expert.Fact {
       return new UpResourcePercent(this);
     }
 
-    /// <summary>Field number for the "resourceAmount" field.</summary>
-    public const int ResourceAmountFieldNumber = 1;
-    private int resourceAmount_;
+    /// <summary>Field number for the "inConstResourceAmount" field.</summary>
+    public const int InConstResourceAmountFieldNumber = 1;
+    private int inConstResourceAmount_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ResourceAmount {
-      get { return resourceAmount_; }
+    public int InConstResourceAmount {
+      get { return inConstResourceAmount_; }
       set {
-        resourceAmount_ = value;
+        inConstResourceAmount_ = value;
       }
     }
 
@@ -52732,14 +53931,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (ResourceAmount != other.ResourceAmount) return false;
+      if (InConstResourceAmount != other.InConstResourceAmount) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (ResourceAmount != 0) hash ^= ResourceAmount.GetHashCode();
+      if (InConstResourceAmount != 0) hash ^= InConstResourceAmount.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -52756,9 +53955,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (ResourceAmount != 0) {
+      if (InConstResourceAmount != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ResourceAmount);
+        output.WriteInt32(InConstResourceAmount);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -52769,9 +53968,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (ResourceAmount != 0) {
+      if (InConstResourceAmount != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(ResourceAmount);
+        output.WriteInt32(InConstResourceAmount);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -52782,8 +53981,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (ResourceAmount != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ResourceAmount);
+      if (InConstResourceAmount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstResourceAmount);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -52796,8 +53995,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.ResourceAmount != 0) {
-        ResourceAmount = other.ResourceAmount;
+      if (other.InConstResourceAmount != 0) {
+        InConstResourceAmount = other.InConstResourceAmount;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -52814,7 +54013,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            ResourceAmount = input.ReadInt32();
+            InConstResourceAmount = input.ReadInt32();
             break;
           }
         }
@@ -52832,7 +54031,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            ResourceAmount = input.ReadInt32();
+            InConstResourceAmount = input.ReadInt32();
             break;
           }
         }
@@ -52854,7 +54053,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[303]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[307]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -53014,19 +54213,25 @@ namespace Protos.Expert.Fact {
 
   }
 
-  public sealed partial class UpTimerStatus : pb::IMessage<UpTimerStatus>
+  /// <summary>
+  ///*
+  /// Custom fact. Retrieve a list of object IDs in the specified search source.
+  /// Note that if there is no target object set before calling this function, it
+  /// may set one itself.
+  /// </summary>
+  public sealed partial class UpSearchObjectIdList : pb::IMessage<UpSearchObjectIdList>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<UpTimerStatus> _parser = new pb::MessageParser<UpTimerStatus>(() => new UpTimerStatus());
+    private static readonly pb::MessageParser<UpSearchObjectIdList> _parser = new pb::MessageParser<UpSearchObjectIdList>(() => new UpSearchObjectIdList());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<UpTimerStatus> Parser { get { return _parser; } }
+    public static pb::MessageParser<UpSearchObjectIdList> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[304]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[308]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -53035,55 +54240,55 @@ namespace Protos.Expert.Fact {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public UpTimerStatus() {
+    public UpSearchObjectIdList() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public UpTimerStatus(UpTimerStatus other) : this() {
-      timerId_ = other.timerId_;
+    public UpSearchObjectIdList(UpSearchObjectIdList other) : this() {
+      inConstSearchSource_ = other.inConstSearchSource_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public UpTimerStatus Clone() {
-      return new UpTimerStatus(this);
+    public UpSearchObjectIdList Clone() {
+      return new UpSearchObjectIdList(this);
     }
 
-    /// <summary>Field number for the "timerId" field.</summary>
-    public const int TimerIdFieldNumber = 1;
-    private int timerId_;
+    /// <summary>Field number for the "inConstSearchSource" field.</summary>
+    public const int InConstSearchSourceFieldNumber = 1;
+    private int inConstSearchSource_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int TimerId {
-      get { return timerId_; }
+    public int InConstSearchSource {
+      get { return inConstSearchSource_; }
       set {
-        timerId_ = value;
+        inConstSearchSource_ = value;
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as UpTimerStatus);
+      return Equals(other as UpSearchObjectIdList);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(UpTimerStatus other) {
+    public bool Equals(UpSearchObjectIdList other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (TimerId != other.TimerId) return false;
+      if (InConstSearchSource != other.InConstSearchSource) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (TimerId != 0) hash ^= TimerId.GetHashCode();
+      if (InConstSearchSource != 0) hash ^= InConstSearchSource.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -53100,9 +54305,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (TimerId != 0) {
+      if (InConstSearchSource != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(TimerId);
+        output.WriteInt32(InConstSearchSource);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -53113,9 +54318,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (TimerId != 0) {
+      if (InConstSearchSource != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(TimerId);
+        output.WriteInt32(InConstSearchSource);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -53126,8 +54331,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (TimerId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TimerId);
+      if (InConstSearchSource != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstSearchSource);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -53136,12 +54341,12 @@ namespace Protos.Expert.Fact {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(UpTimerStatus other) {
+    public void MergeFrom(UpSearchObjectIdList other) {
       if (other == null) {
         return;
       }
-      if (other.TimerId != 0) {
-        TimerId = other.TimerId;
+      if (other.InConstSearchSource != 0) {
+        InConstSearchSource = other.InConstSearchSource;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -53158,7 +54363,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            TimerId = input.ReadInt32();
+            InConstSearchSource = input.ReadInt32();
             break;
           }
         }
@@ -53176,7 +54381,349 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            TimerId = input.ReadInt32();
+            InConstSearchSource = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  ///*
+  /// Response for the `UpSearchObjectIdList` custom fact.
+  /// </summary>
+  public sealed partial class UpSearchObjectIdListResult : pb::IMessage<UpSearchObjectIdListResult>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<UpSearchObjectIdListResult> _parser = new pb::MessageParser<UpSearchObjectIdListResult>(() => new UpSearchObjectIdListResult());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<UpSearchObjectIdListResult> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[309]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UpSearchObjectIdListResult() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UpSearchObjectIdListResult(UpSearchObjectIdListResult other) : this() {
+      result_ = other.result_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UpSearchObjectIdListResult Clone() {
+      return new UpSearchObjectIdListResult(this);
+    }
+
+    /// <summary>Field number for the "result" field.</summary>
+    public const int ResultFieldNumber = 1;
+    private static readonly pb::FieldCodec<int> _repeated_result_codec
+        = pb::FieldCodec.ForInt32(10);
+    private readonly pbc::RepeatedField<int> result_ = new pbc::RepeatedField<int>();
+    /// <summary>
+    /// list of objects' IDs that are in a specified search source
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<int> Result {
+      get { return result_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as UpSearchObjectIdListResult);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(UpSearchObjectIdListResult other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!result_.Equals(other.result_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= result_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      result_.WriteTo(output, _repeated_result_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      result_.WriteTo(ref output, _repeated_result_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += result_.CalculateSize(_repeated_result_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(UpSearchObjectIdListResult other) {
+      if (other == null) {
+        return;
+      }
+      result_.Add(other.result_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10:
+          case 8: {
+            result_.AddEntriesFrom(input, _repeated_result_codec);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10:
+          case 8: {
+            result_.AddEntriesFrom(ref input, _repeated_result_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  public sealed partial class UpTimerStatus : pb::IMessage<UpTimerStatus>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<UpTimerStatus> _parser = new pb::MessageParser<UpTimerStatus>(() => new UpTimerStatus());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<UpTimerStatus> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[310]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UpTimerStatus() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UpTimerStatus(UpTimerStatus other) : this() {
+      inConstTimerId_ = other.inConstTimerId_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UpTimerStatus Clone() {
+      return new UpTimerStatus(this);
+    }
+
+    /// <summary>Field number for the "inConstTimerId" field.</summary>
+    public const int InConstTimerIdFieldNumber = 1;
+    private int inConstTimerId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int InConstTimerId {
+      get { return inConstTimerId_; }
+      set {
+        inConstTimerId_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as UpTimerStatus);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(UpTimerStatus other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (InConstTimerId != other.InConstTimerId) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (InConstTimerId != 0) hash ^= InConstTimerId.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (InConstTimerId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(InConstTimerId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (InConstTimerId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(InConstTimerId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (InConstTimerId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstTimerId);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(UpTimerStatus other) {
+      if (other == null) {
+        return;
+      }
+      if (other.InConstTimerId != 0) {
+        InConstTimerId = other.InConstTimerId;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            InConstTimerId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            InConstTimerId = input.ReadInt32();
             break;
           }
         }
@@ -53198,7 +54745,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[305]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[311]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -53370,7 +54917,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[306]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[312]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -53387,8 +54934,18 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpTrainSiteReady(UpTrainSiteReady other) : this() {
-      typeOp_ = other.typeOp_;
-      unitId_ = other.unitId_;
+      switch (other.UnitIdCase) {
+        case UnitIdOneofCase.InConstUnitId:
+          InConstUnitId = other.InConstUnitId;
+          break;
+        case UnitIdOneofCase.InGoalUnitId:
+          InGoalUnitId = other.InGoalUnitId;
+          break;
+        case UnitIdOneofCase.InSnUnitId:
+          InSnUnitId = other.InSnUnitId;
+          break;
+      }
+
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -53397,26 +54954,57 @@ namespace Protos.Expert.Fact {
       return new UpTrainSiteReady(this);
     }
 
-    /// <summary>Field number for the "typeOp" field.</summary>
-    public const int TypeOpFieldNumber = 1;
-    private int typeOp_;
+    /// <summary>Field number for the "inConstUnitId" field.</summary>
+    public const int InConstUnitIdFieldNumber = 1;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int TypeOp {
-      get { return typeOp_; }
+    public int InConstUnitId {
+      get { return unitIdCase_ == UnitIdOneofCase.InConstUnitId ? (int) unitId_ : 0; }
       set {
-        typeOp_ = value;
+        unitId_ = value;
+        unitIdCase_ = UnitIdOneofCase.InConstUnitId;
       }
     }
 
-    /// <summary>Field number for the "unitId" field.</summary>
-    public const int UnitIdFieldNumber = 2;
-    private int unitId_;
+    /// <summary>Field number for the "inGoalUnitId" field.</summary>
+    public const int InGoalUnitIdFieldNumber = 2;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int UnitId {
-      get { return unitId_; }
+    public int InGoalUnitId {
+      get { return unitIdCase_ == UnitIdOneofCase.InGoalUnitId ? (int) unitId_ : 0; }
       set {
         unitId_ = value;
+        unitIdCase_ = UnitIdOneofCase.InGoalUnitId;
       }
+    }
+
+    /// <summary>Field number for the "inSnUnitId" field.</summary>
+    public const int InSnUnitIdFieldNumber = 3;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int InSnUnitId {
+      get { return unitIdCase_ == UnitIdOneofCase.InSnUnitId ? (int) unitId_ : 0; }
+      set {
+        unitId_ = value;
+        unitIdCase_ = UnitIdOneofCase.InSnUnitId;
+      }
+    }
+
+    private object unitId_;
+    /// <summary>Enum of possible cases for the "unitId" oneof.</summary>
+    public enum UnitIdOneofCase {
+      None = 0,
+      InConstUnitId = 1,
+      InGoalUnitId = 2,
+      InSnUnitId = 3,
+    }
+    private UnitIdOneofCase unitIdCase_ = UnitIdOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UnitIdOneofCase UnitIdCase {
+      get { return unitIdCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void ClearUnitId() {
+      unitIdCase_ = UnitIdOneofCase.None;
+      unitId_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -53432,16 +55020,20 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (TypeOp != other.TypeOp) return false;
-      if (UnitId != other.UnitId) return false;
+      if (InConstUnitId != other.InConstUnitId) return false;
+      if (InGoalUnitId != other.InGoalUnitId) return false;
+      if (InSnUnitId != other.InSnUnitId) return false;
+      if (UnitIdCase != other.UnitIdCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (TypeOp != 0) hash ^= TypeOp.GetHashCode();
-      if (UnitId != 0) hash ^= UnitId.GetHashCode();
+      if (unitIdCase_ == UnitIdOneofCase.InConstUnitId) hash ^= InConstUnitId.GetHashCode();
+      if (unitIdCase_ == UnitIdOneofCase.InGoalUnitId) hash ^= InGoalUnitId.GetHashCode();
+      if (unitIdCase_ == UnitIdOneofCase.InSnUnitId) hash ^= InSnUnitId.GetHashCode();
+      hash ^= (int) unitIdCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -53458,13 +55050,17 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (TypeOp != 0) {
+      if (unitIdCase_ == UnitIdOneofCase.InConstUnitId) {
         output.WriteRawTag(8);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstUnitId);
       }
-      if (UnitId != 0) {
+      if (unitIdCase_ == UnitIdOneofCase.InGoalUnitId) {
         output.WriteRawTag(16);
-        output.WriteInt32(UnitId);
+        output.WriteInt32(InGoalUnitId);
+      }
+      if (unitIdCase_ == UnitIdOneofCase.InSnUnitId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(InSnUnitId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -53475,13 +55071,17 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (TypeOp != 0) {
+      if (unitIdCase_ == UnitIdOneofCase.InConstUnitId) {
         output.WriteRawTag(8);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstUnitId);
       }
-      if (UnitId != 0) {
+      if (unitIdCase_ == UnitIdOneofCase.InGoalUnitId) {
         output.WriteRawTag(16);
-        output.WriteInt32(UnitId);
+        output.WriteInt32(InGoalUnitId);
+      }
+      if (unitIdCase_ == UnitIdOneofCase.InSnUnitId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(InSnUnitId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -53492,11 +55092,14 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (TypeOp != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TypeOp);
+      if (unitIdCase_ == UnitIdOneofCase.InConstUnitId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstUnitId);
       }
-      if (UnitId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(UnitId);
+      if (unitIdCase_ == UnitIdOneofCase.InGoalUnitId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalUnitId);
+      }
+      if (unitIdCase_ == UnitIdOneofCase.InSnUnitId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InSnUnitId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -53509,12 +55112,18 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.TypeOp != 0) {
-        TypeOp = other.TypeOp;
+      switch (other.UnitIdCase) {
+        case UnitIdOneofCase.InConstUnitId:
+          InConstUnitId = other.InConstUnitId;
+          break;
+        case UnitIdOneofCase.InGoalUnitId:
+          InGoalUnitId = other.InGoalUnitId;
+          break;
+        case UnitIdOneofCase.InSnUnitId:
+          InSnUnitId = other.InSnUnitId;
+          break;
       }
-      if (other.UnitId != 0) {
-        UnitId = other.UnitId;
-      }
+
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -53530,11 +55139,15 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            TypeOp = input.ReadInt32();
+            InConstUnitId = input.ReadInt32();
             break;
           }
           case 16: {
-            UnitId = input.ReadInt32();
+            InGoalUnitId = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            InSnUnitId = input.ReadInt32();
             break;
           }
         }
@@ -53552,11 +55165,15 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            TypeOp = input.ReadInt32();
+            InConstUnitId = input.ReadInt32();
             break;
           }
           case 16: {
-            UnitId = input.ReadInt32();
+            InGoalUnitId = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            InSnUnitId = input.ReadInt32();
             break;
           }
         }
@@ -53578,7 +55195,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[307]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[313]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -53738,10 +55355,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpUnitTypeInTown : pb::IMessage<UpUnitTypeInTown>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -53754,7 +55367,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[308]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[314]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -53771,8 +55384,18 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpUnitTypeInTown(UpUnitTypeInTown other) : this() {
-      typeOp_ = other.typeOp_;
-      unitId_ = other.unitId_;
+      switch (other.UnitIdCase) {
+        case UnitIdOneofCase.InConstUnitId:
+          InConstUnitId = other.InConstUnitId;
+          break;
+        case UnitIdOneofCase.InGoalUnitId:
+          InGoalUnitId = other.InGoalUnitId;
+          break;
+        case UnitIdOneofCase.InSnUnitId:
+          InSnUnitId = other.InSnUnitId;
+          break;
+      }
+
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -53781,26 +55404,57 @@ namespace Protos.Expert.Fact {
       return new UpUnitTypeInTown(this);
     }
 
-    /// <summary>Field number for the "typeOp" field.</summary>
-    public const int TypeOpFieldNumber = 1;
-    private int typeOp_;
+    /// <summary>Field number for the "inConstUnitId" field.</summary>
+    public const int InConstUnitIdFieldNumber = 1;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int TypeOp {
-      get { return typeOp_; }
+    public int InConstUnitId {
+      get { return unitIdCase_ == UnitIdOneofCase.InConstUnitId ? (int) unitId_ : 0; }
       set {
-        typeOp_ = value;
+        unitId_ = value;
+        unitIdCase_ = UnitIdOneofCase.InConstUnitId;
       }
     }
 
-    /// <summary>Field number for the "unitId" field.</summary>
-    public const int UnitIdFieldNumber = 2;
-    private int unitId_;
+    /// <summary>Field number for the "inGoalUnitId" field.</summary>
+    public const int InGoalUnitIdFieldNumber = 2;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int UnitId {
-      get { return unitId_; }
+    public int InGoalUnitId {
+      get { return unitIdCase_ == UnitIdOneofCase.InGoalUnitId ? (int) unitId_ : 0; }
       set {
         unitId_ = value;
+        unitIdCase_ = UnitIdOneofCase.InGoalUnitId;
       }
+    }
+
+    /// <summary>Field number for the "inSnUnitId" field.</summary>
+    public const int InSnUnitIdFieldNumber = 3;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int InSnUnitId {
+      get { return unitIdCase_ == UnitIdOneofCase.InSnUnitId ? (int) unitId_ : 0; }
+      set {
+        unitId_ = value;
+        unitIdCase_ = UnitIdOneofCase.InSnUnitId;
+      }
+    }
+
+    private object unitId_;
+    /// <summary>Enum of possible cases for the "unitId" oneof.</summary>
+    public enum UnitIdOneofCase {
+      None = 0,
+      InConstUnitId = 1,
+      InGoalUnitId = 2,
+      InSnUnitId = 3,
+    }
+    private UnitIdOneofCase unitIdCase_ = UnitIdOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UnitIdOneofCase UnitIdCase {
+      get { return unitIdCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void ClearUnitId() {
+      unitIdCase_ = UnitIdOneofCase.None;
+      unitId_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -53816,16 +55470,20 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (TypeOp != other.TypeOp) return false;
-      if (UnitId != other.UnitId) return false;
+      if (InConstUnitId != other.InConstUnitId) return false;
+      if (InGoalUnitId != other.InGoalUnitId) return false;
+      if (InSnUnitId != other.InSnUnitId) return false;
+      if (UnitIdCase != other.UnitIdCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (TypeOp != 0) hash ^= TypeOp.GetHashCode();
-      if (UnitId != 0) hash ^= UnitId.GetHashCode();
+      if (unitIdCase_ == UnitIdOneofCase.InConstUnitId) hash ^= InConstUnitId.GetHashCode();
+      if (unitIdCase_ == UnitIdOneofCase.InGoalUnitId) hash ^= InGoalUnitId.GetHashCode();
+      if (unitIdCase_ == UnitIdOneofCase.InSnUnitId) hash ^= InSnUnitId.GetHashCode();
+      hash ^= (int) unitIdCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -53842,13 +55500,17 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (TypeOp != 0) {
+      if (unitIdCase_ == UnitIdOneofCase.InConstUnitId) {
         output.WriteRawTag(8);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstUnitId);
       }
-      if (UnitId != 0) {
+      if (unitIdCase_ == UnitIdOneofCase.InGoalUnitId) {
         output.WriteRawTag(16);
-        output.WriteInt32(UnitId);
+        output.WriteInt32(InGoalUnitId);
+      }
+      if (unitIdCase_ == UnitIdOneofCase.InSnUnitId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(InSnUnitId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -53859,13 +55521,17 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (TypeOp != 0) {
+      if (unitIdCase_ == UnitIdOneofCase.InConstUnitId) {
         output.WriteRawTag(8);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstUnitId);
       }
-      if (UnitId != 0) {
+      if (unitIdCase_ == UnitIdOneofCase.InGoalUnitId) {
         output.WriteRawTag(16);
-        output.WriteInt32(UnitId);
+        output.WriteInt32(InGoalUnitId);
+      }
+      if (unitIdCase_ == UnitIdOneofCase.InSnUnitId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(InSnUnitId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -53876,11 +55542,14 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (TypeOp != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TypeOp);
+      if (unitIdCase_ == UnitIdOneofCase.InConstUnitId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstUnitId);
       }
-      if (UnitId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(UnitId);
+      if (unitIdCase_ == UnitIdOneofCase.InGoalUnitId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalUnitId);
+      }
+      if (unitIdCase_ == UnitIdOneofCase.InSnUnitId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InSnUnitId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -53893,12 +55562,18 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.TypeOp != 0) {
-        TypeOp = other.TypeOp;
+      switch (other.UnitIdCase) {
+        case UnitIdOneofCase.InConstUnitId:
+          InConstUnitId = other.InConstUnitId;
+          break;
+        case UnitIdOneofCase.InGoalUnitId:
+          InGoalUnitId = other.InGoalUnitId;
+          break;
+        case UnitIdOneofCase.InSnUnitId:
+          InSnUnitId = other.InSnUnitId;
+          break;
       }
-      if (other.UnitId != 0) {
-        UnitId = other.UnitId;
-      }
+
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -53914,11 +55589,15 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            TypeOp = input.ReadInt32();
+            InConstUnitId = input.ReadInt32();
             break;
           }
           case 16: {
-            UnitId = input.ReadInt32();
+            InGoalUnitId = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            InSnUnitId = input.ReadInt32();
             break;
           }
         }
@@ -53936,11 +55615,15 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            TypeOp = input.ReadInt32();
+            InConstUnitId = input.ReadInt32();
             break;
           }
           case 16: {
-            UnitId = input.ReadInt32();
+            InGoalUnitId = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            InSnUnitId = input.ReadInt32();
             break;
           }
         }
@@ -53950,10 +55633,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpUnitTypeInTownResult : pb::IMessage<UpUnitTypeInTownResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -53966,7 +55645,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[309]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[315]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -54126,10 +55805,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpVillagerTypeInTown : pb::IMessage<UpVillagerTypeInTown>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -54142,7 +55817,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[310]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[316]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -54159,8 +55834,18 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public UpVillagerTypeInTown(UpVillagerTypeInTown other) : this() {
-      typeOp_ = other.typeOp_;
-      unitId_ = other.unitId_;
+      switch (other.UnitIdCase) {
+        case UnitIdOneofCase.InConstUnitId:
+          InConstUnitId = other.InConstUnitId;
+          break;
+        case UnitIdOneofCase.InGoalUnitId:
+          InGoalUnitId = other.InGoalUnitId;
+          break;
+        case UnitIdOneofCase.InSnUnitId:
+          InSnUnitId = other.InSnUnitId;
+          break;
+      }
+
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -54169,26 +55854,57 @@ namespace Protos.Expert.Fact {
       return new UpVillagerTypeInTown(this);
     }
 
-    /// <summary>Field number for the "typeOp" field.</summary>
-    public const int TypeOpFieldNumber = 1;
-    private int typeOp_;
+    /// <summary>Field number for the "inConstUnitId" field.</summary>
+    public const int InConstUnitIdFieldNumber = 1;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int TypeOp {
-      get { return typeOp_; }
+    public int InConstUnitId {
+      get { return unitIdCase_ == UnitIdOneofCase.InConstUnitId ? (int) unitId_ : 0; }
       set {
-        typeOp_ = value;
+        unitId_ = value;
+        unitIdCase_ = UnitIdOneofCase.InConstUnitId;
       }
     }
 
-    /// <summary>Field number for the "unitId" field.</summary>
-    public const int UnitIdFieldNumber = 2;
-    private int unitId_;
+    /// <summary>Field number for the "inGoalUnitId" field.</summary>
+    public const int InGoalUnitIdFieldNumber = 2;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int UnitId {
-      get { return unitId_; }
+    public int InGoalUnitId {
+      get { return unitIdCase_ == UnitIdOneofCase.InGoalUnitId ? (int) unitId_ : 0; }
       set {
         unitId_ = value;
+        unitIdCase_ = UnitIdOneofCase.InGoalUnitId;
       }
+    }
+
+    /// <summary>Field number for the "inSnUnitId" field.</summary>
+    public const int InSnUnitIdFieldNumber = 3;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int InSnUnitId {
+      get { return unitIdCase_ == UnitIdOneofCase.InSnUnitId ? (int) unitId_ : 0; }
+      set {
+        unitId_ = value;
+        unitIdCase_ = UnitIdOneofCase.InSnUnitId;
+      }
+    }
+
+    private object unitId_;
+    /// <summary>Enum of possible cases for the "unitId" oneof.</summary>
+    public enum UnitIdOneofCase {
+      None = 0,
+      InConstUnitId = 1,
+      InGoalUnitId = 2,
+      InSnUnitId = 3,
+    }
+    private UnitIdOneofCase unitIdCase_ = UnitIdOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UnitIdOneofCase UnitIdCase {
+      get { return unitIdCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void ClearUnitId() {
+      unitIdCase_ = UnitIdOneofCase.None;
+      unitId_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -54204,16 +55920,20 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (TypeOp != other.TypeOp) return false;
-      if (UnitId != other.UnitId) return false;
+      if (InConstUnitId != other.InConstUnitId) return false;
+      if (InGoalUnitId != other.InGoalUnitId) return false;
+      if (InSnUnitId != other.InSnUnitId) return false;
+      if (UnitIdCase != other.UnitIdCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (TypeOp != 0) hash ^= TypeOp.GetHashCode();
-      if (UnitId != 0) hash ^= UnitId.GetHashCode();
+      if (unitIdCase_ == UnitIdOneofCase.InConstUnitId) hash ^= InConstUnitId.GetHashCode();
+      if (unitIdCase_ == UnitIdOneofCase.InGoalUnitId) hash ^= InGoalUnitId.GetHashCode();
+      if (unitIdCase_ == UnitIdOneofCase.InSnUnitId) hash ^= InSnUnitId.GetHashCode();
+      hash ^= (int) unitIdCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -54230,13 +55950,17 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (TypeOp != 0) {
+      if (unitIdCase_ == UnitIdOneofCase.InConstUnitId) {
         output.WriteRawTag(8);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstUnitId);
       }
-      if (UnitId != 0) {
+      if (unitIdCase_ == UnitIdOneofCase.InGoalUnitId) {
         output.WriteRawTag(16);
-        output.WriteInt32(UnitId);
+        output.WriteInt32(InGoalUnitId);
+      }
+      if (unitIdCase_ == UnitIdOneofCase.InSnUnitId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(InSnUnitId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -54247,13 +55971,17 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (TypeOp != 0) {
+      if (unitIdCase_ == UnitIdOneofCase.InConstUnitId) {
         output.WriteRawTag(8);
-        output.WriteInt32(TypeOp);
+        output.WriteInt32(InConstUnitId);
       }
-      if (UnitId != 0) {
+      if (unitIdCase_ == UnitIdOneofCase.InGoalUnitId) {
         output.WriteRawTag(16);
-        output.WriteInt32(UnitId);
+        output.WriteInt32(InGoalUnitId);
+      }
+      if (unitIdCase_ == UnitIdOneofCase.InSnUnitId) {
+        output.WriteRawTag(24);
+        output.WriteInt32(InSnUnitId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -54264,11 +55992,14 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (TypeOp != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TypeOp);
+      if (unitIdCase_ == UnitIdOneofCase.InConstUnitId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstUnitId);
       }
-      if (UnitId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(UnitId);
+      if (unitIdCase_ == UnitIdOneofCase.InGoalUnitId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalUnitId);
+      }
+      if (unitIdCase_ == UnitIdOneofCase.InSnUnitId) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InSnUnitId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -54281,12 +56012,18 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.TypeOp != 0) {
-        TypeOp = other.TypeOp;
+      switch (other.UnitIdCase) {
+        case UnitIdOneofCase.InConstUnitId:
+          InConstUnitId = other.InConstUnitId;
+          break;
+        case UnitIdOneofCase.InGoalUnitId:
+          InGoalUnitId = other.InGoalUnitId;
+          break;
+        case UnitIdOneofCase.InSnUnitId:
+          InSnUnitId = other.InSnUnitId;
+          break;
       }
-      if (other.UnitId != 0) {
-        UnitId = other.UnitId;
-      }
+
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -54302,11 +56039,15 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            TypeOp = input.ReadInt32();
+            InConstUnitId = input.ReadInt32();
             break;
           }
           case 16: {
-            UnitId = input.ReadInt32();
+            InGoalUnitId = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            InSnUnitId = input.ReadInt32();
             break;
           }
         }
@@ -54324,11 +56065,15 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            TypeOp = input.ReadInt32();
+            InConstUnitId = input.ReadInt32();
             break;
           }
           case 16: {
-            UnitId = input.ReadInt32();
+            InGoalUnitId = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            InSnUnitId = input.ReadInt32();
             break;
           }
         }
@@ -54338,10 +56083,6 @@ namespace Protos.Expert.Fact {
 
   }
 
-  /// <summary>
-  ///*
-  /// Currently unimplemented in AoC version.
-  /// </summary>
   public sealed partial class UpVillagerTypeInTownResult : pb::IMessage<UpVillagerTypeInTownResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -54354,7 +56095,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[311]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[317]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -54526,7 +56267,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[312]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[318]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -54543,7 +56284,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public VictoryCondition(VictoryCondition other) : this() {
-      victoryCondition_ = other.victoryCondition_;
+      inConstVictory_ = other.inConstVictory_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -54552,14 +56293,14 @@ namespace Protos.Expert.Fact {
       return new VictoryCondition(this);
     }
 
-    /// <summary>Field number for the "victoryCondition" field.</summary>
-    public const int VictoryCondition_FieldNumber = 1;
-    private int victoryCondition_;
+    /// <summary>Field number for the "inConstVictory" field.</summary>
+    public const int InConstVictoryFieldNumber = 1;
+    private int inConstVictory_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int VictoryCondition_ {
-      get { return victoryCondition_; }
+    public int InConstVictory {
+      get { return inConstVictory_; }
       set {
-        victoryCondition_ = value;
+        inConstVictory_ = value;
       }
     }
 
@@ -54576,14 +56317,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (VictoryCondition_ != other.VictoryCondition_) return false;
+      if (InConstVictory != other.InConstVictory) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (VictoryCondition_ != 0) hash ^= VictoryCondition_.GetHashCode();
+      if (InConstVictory != 0) hash ^= InConstVictory.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -54600,9 +56341,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (VictoryCondition_ != 0) {
+      if (InConstVictory != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(VictoryCondition_);
+        output.WriteInt32(InConstVictory);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -54613,9 +56354,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (VictoryCondition_ != 0) {
+      if (InConstVictory != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(VictoryCondition_);
+        output.WriteInt32(InConstVictory);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -54626,8 +56367,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (VictoryCondition_ != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(VictoryCondition_);
+      if (InConstVictory != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstVictory);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -54640,8 +56381,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.VictoryCondition_ != 0) {
-        VictoryCondition_ = other.VictoryCondition_;
+      if (other.InConstVictory != 0) {
+        InConstVictory = other.InConstVictory;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -54658,7 +56399,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            VictoryCondition_ = input.ReadInt32();
+            InConstVictory = input.ReadInt32();
             break;
           }
         }
@@ -54676,7 +56417,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            VictoryCondition_ = input.ReadInt32();
+            InConstVictory = input.ReadInt32();
             break;
           }
         }
@@ -54698,7 +56439,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[313]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[319]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -54874,7 +56615,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[314]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[320]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -54891,7 +56632,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public WallCompletedPercentage(WallCompletedPercentage other) : this() {
-      perimeter_ = other.perimeter_;
+      inConstPerimeter_ = other.inConstPerimeter_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -54900,14 +56641,14 @@ namespace Protos.Expert.Fact {
       return new WallCompletedPercentage(this);
     }
 
-    /// <summary>Field number for the "perimeter" field.</summary>
-    public const int PerimeterFieldNumber = 1;
-    private int perimeter_;
+    /// <summary>Field number for the "inConstPerimeter" field.</summary>
+    public const int InConstPerimeterFieldNumber = 1;
+    private int inConstPerimeter_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Perimeter {
-      get { return perimeter_; }
+    public int InConstPerimeter {
+      get { return inConstPerimeter_; }
       set {
-        perimeter_ = value;
+        inConstPerimeter_ = value;
       }
     }
 
@@ -54924,14 +56665,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Perimeter != other.Perimeter) return false;
+      if (InConstPerimeter != other.InConstPerimeter) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Perimeter != 0) hash ^= Perimeter.GetHashCode();
+      if (InConstPerimeter != 0) hash ^= InConstPerimeter.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -54948,9 +56689,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Perimeter != 0) {
+      if (InConstPerimeter != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(Perimeter);
+        output.WriteInt32(InConstPerimeter);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -54961,9 +56702,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Perimeter != 0) {
+      if (InConstPerimeter != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(Perimeter);
+        output.WriteInt32(InConstPerimeter);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -54974,8 +56715,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Perimeter != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Perimeter);
+      if (InConstPerimeter != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstPerimeter);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -54988,8 +56729,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.Perimeter != 0) {
-        Perimeter = other.Perimeter;
+      if (other.InConstPerimeter != 0) {
+        InConstPerimeter = other.InConstPerimeter;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -55006,7 +56747,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Perimeter = input.ReadInt32();
+            InConstPerimeter = input.ReadInt32();
             break;
           }
         }
@@ -55024,7 +56765,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Perimeter = input.ReadInt32();
+            InConstPerimeter = input.ReadInt32();
             break;
           }
         }
@@ -55050,7 +56791,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[315]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[321]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -55226,7 +56967,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[316]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[322]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -55243,7 +56984,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public WallInvisiblePercentage(WallInvisiblePercentage other) : this() {
-      perimeter_ = other.perimeter_;
+      inConstPerimeter_ = other.inConstPerimeter_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -55252,14 +56993,14 @@ namespace Protos.Expert.Fact {
       return new WallInvisiblePercentage(this);
     }
 
-    /// <summary>Field number for the "perimeter" field.</summary>
-    public const int PerimeterFieldNumber = 1;
-    private int perimeter_;
+    /// <summary>Field number for the "inConstPerimeter" field.</summary>
+    public const int InConstPerimeterFieldNumber = 1;
+    private int inConstPerimeter_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Perimeter {
-      get { return perimeter_; }
+    public int InConstPerimeter {
+      get { return inConstPerimeter_; }
       set {
-        perimeter_ = value;
+        inConstPerimeter_ = value;
       }
     }
 
@@ -55276,14 +57017,14 @@ namespace Protos.Expert.Fact {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Perimeter != other.Perimeter) return false;
+      if (InConstPerimeter != other.InConstPerimeter) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Perimeter != 0) hash ^= Perimeter.GetHashCode();
+      if (InConstPerimeter != 0) hash ^= InConstPerimeter.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -55300,9 +57041,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Perimeter != 0) {
+      if (InConstPerimeter != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(Perimeter);
+        output.WriteInt32(InConstPerimeter);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -55313,9 +57054,9 @@ namespace Protos.Expert.Fact {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Perimeter != 0) {
+      if (InConstPerimeter != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(Perimeter);
+        output.WriteInt32(InConstPerimeter);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -55326,8 +57067,8 @@ namespace Protos.Expert.Fact {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Perimeter != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Perimeter);
+      if (InConstPerimeter != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstPerimeter);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -55340,8 +57081,8 @@ namespace Protos.Expert.Fact {
       if (other == null) {
         return;
       }
-      if (other.Perimeter != 0) {
-        Perimeter = other.Perimeter;
+      if (other.InConstPerimeter != 0) {
+        InConstPerimeter = other.InConstPerimeter;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -55358,7 +57099,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Perimeter = input.ReadInt32();
+            InConstPerimeter = input.ReadInt32();
             break;
           }
         }
@@ -55376,7 +57117,7 @@ namespace Protos.Expert.Fact {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Perimeter = input.ReadInt32();
+            InConstPerimeter = input.ReadInt32();
             break;
           }
         }
@@ -55402,7 +57143,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[317]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[323]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -55574,7 +57315,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[318]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[324]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -55710,7 +57451,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[319]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[325]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -55882,7 +57623,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[320]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[326]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -56018,7 +57759,7 @@ namespace Protos.Expert.Fact {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[321]; }
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[327]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -56169,6 +57910,1035 @@ namespace Protos.Expert.Fact {
             break;
           case 8: {
             Result = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  public sealed partial class ModMapDimensions : pb::IMessage<ModMapDimensions>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<ModMapDimensions> _parser = new pb::MessageParser<ModMapDimensions>(() => new ModMapDimensions());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ModMapDimensions> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[328]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ModMapDimensions() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ModMapDimensions(ModMapDimensions other) : this() {
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ModMapDimensions Clone() {
+      return new ModMapDimensions(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ModMapDimensions);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ModMapDimensions other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ModMapDimensions other) {
+      if (other == null) {
+        return;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+        }
+      }
+    }
+    #endif
+
+  }
+
+  public sealed partial class ModMapDimensionsResult : pb::IMessage<ModMapDimensionsResult>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<ModMapDimensionsResult> _parser = new pb::MessageParser<ModMapDimensionsResult>(() => new ModMapDimensionsResult());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ModMapDimensionsResult> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[329]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ModMapDimensionsResult() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ModMapDimensionsResult(ModMapDimensionsResult other) : this() {
+      width_ = other.width_;
+      height_ = other.height_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ModMapDimensionsResult Clone() {
+      return new ModMapDimensionsResult(this);
+    }
+
+    /// <summary>Field number for the "width" field.</summary>
+    public const int WidthFieldNumber = 1;
+    private int width_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Width {
+      get { return width_; }
+      set {
+        width_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "height" field.</summary>
+    public const int HeightFieldNumber = 2;
+    private int height_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Height {
+      get { return height_; }
+      set {
+        height_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ModMapDimensionsResult);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ModMapDimensionsResult other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Width != other.Width) return false;
+      if (Height != other.Height) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Width != 0) hash ^= Width.GetHashCode();
+      if (Height != 0) hash ^= Height.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Width != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Width);
+      }
+      if (Height != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Height);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Width != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Width);
+      }
+      if (Height != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Height);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Width != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Width);
+      }
+      if (Height != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Height);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ModMapDimensionsResult other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Width != 0) {
+        Width = other.Width;
+      }
+      if (other.Height != 0) {
+        Height = other.Height;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Width = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            Height = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Width = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            Height = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  public sealed partial class ModMapTiles : pb::IMessage<ModMapTiles>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<ModMapTiles> _parser = new pb::MessageParser<ModMapTiles>(() => new ModMapTiles());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ModMapTiles> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[330]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ModMapTiles() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ModMapTiles(ModMapTiles other) : this() {
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ModMapTiles Clone() {
+      return new ModMapTiles(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ModMapTiles);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ModMapTiles other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ModMapTiles other) {
+      if (other == null) {
+        return;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+        }
+      }
+    }
+    #endif
+
+  }
+
+  public sealed partial class ModMapTilesResult : pb::IMessage<ModMapTilesResult>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<ModMapTilesResult> _parser = new pb::MessageParser<ModMapTilesResult>(() => new ModMapTilesResult());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ModMapTilesResult> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[331]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ModMapTilesResult() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ModMapTilesResult(ModMapTilesResult other) : this() {
+      mapWidth_ = other.mapWidth_;
+      mapHeight_ = other.mapHeight_;
+      tiles_ = other.tiles_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ModMapTilesResult Clone() {
+      return new ModMapTilesResult(this);
+    }
+
+    /// <summary>Field number for the "mapWidth" field.</summary>
+    public const int MapWidthFieldNumber = 1;
+    private int mapWidth_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int MapWidth {
+      get { return mapWidth_; }
+      set {
+        mapWidth_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "mapHeight" field.</summary>
+    public const int MapHeightFieldNumber = 2;
+    private int mapHeight_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int MapHeight {
+      get { return mapHeight_; }
+      set {
+        mapHeight_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "tiles" field.</summary>
+    public const int TilesFieldNumber = 3;
+    private static readonly pb::FieldCodec<global::Protos.Expert.Fact.Tile> _repeated_tiles_codec
+        = pb::FieldCodec.ForMessage(26, global::Protos.Expert.Fact.Tile.Parser);
+    private readonly pbc::RepeatedField<global::Protos.Expert.Fact.Tile> tiles_ = new pbc::RepeatedField<global::Protos.Expert.Fact.Tile>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::Protos.Expert.Fact.Tile> Tiles {
+      get { return tiles_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ModMapTilesResult);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ModMapTilesResult other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (MapWidth != other.MapWidth) return false;
+      if (MapHeight != other.MapHeight) return false;
+      if(!tiles_.Equals(other.tiles_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (MapWidth != 0) hash ^= MapWidth.GetHashCode();
+      if (MapHeight != 0) hash ^= MapHeight.GetHashCode();
+      hash ^= tiles_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (MapWidth != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(MapWidth);
+      }
+      if (MapHeight != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(MapHeight);
+      }
+      tiles_.WriteTo(output, _repeated_tiles_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (MapWidth != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(MapWidth);
+      }
+      if (MapHeight != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(MapHeight);
+      }
+      tiles_.WriteTo(ref output, _repeated_tiles_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (MapWidth != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MapWidth);
+      }
+      if (MapHeight != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MapHeight);
+      }
+      size += tiles_.CalculateSize(_repeated_tiles_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ModMapTilesResult other) {
+      if (other == null) {
+        return;
+      }
+      if (other.MapWidth != 0) {
+        MapWidth = other.MapWidth;
+      }
+      if (other.MapHeight != 0) {
+        MapHeight = other.MapHeight;
+      }
+      tiles_.Add(other.tiles_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            MapWidth = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            MapHeight = input.ReadInt32();
+            break;
+          }
+          case 26: {
+            tiles_.AddEntriesFrom(input, _repeated_tiles_codec);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            MapWidth = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            MapHeight = input.ReadInt32();
+            break;
+          }
+          case 26: {
+            tiles_.AddEntriesFrom(ref input, _repeated_tiles_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  public sealed partial class Tile : pb::IMessage<Tile>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<Tile> _parser = new pb::MessageParser<Tile>(() => new Tile());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<Tile> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protos.Expert.Fact.FactReflection.Descriptor.MessageTypes[332]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Tile() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Tile(Tile other) : this() {
+      x_ = other.x_;
+      y_ = other.y_;
+      height_ = other.height_;
+      terrain_ = other.terrain_;
+      visibility_ = other.visibility_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Tile Clone() {
+      return new Tile(this);
+    }
+
+    /// <summary>Field number for the "x" field.</summary>
+    public const int XFieldNumber = 1;
+    private int x_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int X {
+      get { return x_; }
+      set {
+        x_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "y" field.</summary>
+    public const int YFieldNumber = 2;
+    private int y_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Y {
+      get { return y_; }
+      set {
+        y_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "height" field.</summary>
+    public const int HeightFieldNumber = 3;
+    private int height_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Height {
+      get { return height_; }
+      set {
+        height_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "terrain" field.</summary>
+    public const int TerrainFieldNumber = 4;
+    private int terrain_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Terrain {
+      get { return terrain_; }
+      set {
+        terrain_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "visibility" field.</summary>
+    public const int VisibilityFieldNumber = 5;
+    private int visibility_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Visibility {
+      get { return visibility_; }
+      set {
+        visibility_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Tile);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Tile other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (X != other.X) return false;
+      if (Y != other.Y) return false;
+      if (Height != other.Height) return false;
+      if (Terrain != other.Terrain) return false;
+      if (Visibility != other.Visibility) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (X != 0) hash ^= X.GetHashCode();
+      if (Y != 0) hash ^= Y.GetHashCode();
+      if (Height != 0) hash ^= Height.GetHashCode();
+      if (Terrain != 0) hash ^= Terrain.GetHashCode();
+      if (Visibility != 0) hash ^= Visibility.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (X != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(X);
+      }
+      if (Y != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Y);
+      }
+      if (Height != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Height);
+      }
+      if (Terrain != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(Terrain);
+      }
+      if (Visibility != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(Visibility);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (X != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(X);
+      }
+      if (Y != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Y);
+      }
+      if (Height != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Height);
+      }
+      if (Terrain != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(Terrain);
+      }
+      if (Visibility != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(Visibility);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (X != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(X);
+      }
+      if (Y != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Y);
+      }
+      if (Height != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Height);
+      }
+      if (Terrain != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Terrain);
+      }
+      if (Visibility != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Visibility);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Tile other) {
+      if (other == null) {
+        return;
+      }
+      if (other.X != 0) {
+        X = other.X;
+      }
+      if (other.Y != 0) {
+        Y = other.Y;
+      }
+      if (other.Height != 0) {
+        Height = other.Height;
+      }
+      if (other.Terrain != 0) {
+        Terrain = other.Terrain;
+      }
+      if (other.Visibility != 0) {
+        Visibility = other.Visibility;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            X = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            Y = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            Height = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            Terrain = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            Visibility = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            X = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            Y = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            Height = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            Terrain = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            Visibility = input.ReadInt32();
             break;
           }
         }

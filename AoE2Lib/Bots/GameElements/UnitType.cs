@@ -29,17 +29,17 @@ namespace AoE2Lib.Bots.GameElements
 
         protected override IEnumerable<IMessage> RequestElementUpdate()
         {
-            yield return new BuildingAvailable() { BuildingType = Id };
-            yield return new BuildingTypeCount() { BuildingType = Id };
-            yield return new BuildingTypeCountTotal() { BuildingType = Id };
-            yield return new UpCanBuild() { EscrowState = 0, TypeOp = TypeOp.C, BuildingId = Id };
-            yield return new UpTrainSiteReady() { TypeOp = TypeOp.C, UnitId = Id };
-            yield return new UpSetupCostData() { ResetCost = 1, GoalId = 100 };
-            yield return new UpAddObjectCost() { TypeOp1 = TypeOp.C, ObjectId = Id, TypeOp2 = TypeOp.C, Value = 1 };
-            yield return new Goal() { GoalId = 100 };
-            yield return new Goal() { GoalId = 101 };
-            yield return new Goal() { GoalId = 102 };
-            yield return new Goal() { GoalId = 103 };
+            yield return new BuildingAvailable() { InConstBuildingId = Id };
+            yield return new BuildingTypeCount() { InConstBuildingId = Id };
+            yield return new BuildingTypeCountTotal() { InConstBuildingId = Id };
+            yield return new UpCanBuild() { InGoalEscrowState = 0, InConstBuildingId = Id };
+            yield return new UpTrainSiteReady() { InConstUnitId = Id };
+            yield return new UpSetupCostData() { InConstResetCost = 1, IoGoalId = 100 };
+            yield return new UpAddObjectCost() { InConstObjectId = Id, InConstValue = 1 };
+            yield return new Goal() { InConstGoalId = 100 };
+            yield return new Goal() { InConstGoalId = 101 };
+            yield return new Goal() { InConstGoalId = 102 };
+            yield return new Goal() { InConstGoalId = 103 };
         }
 
         protected override void UpdateElement(IReadOnlyList<Any> responses)

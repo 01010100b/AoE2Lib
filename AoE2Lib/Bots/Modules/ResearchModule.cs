@@ -41,7 +41,7 @@ namespace AoE2Lib.Bots.Modules
             }
 
             var command = new Command();
-            command.Add(new Protos.Expert.Action.Research() { ResearchType = id });
+            command.Add(new Protos.Expert.Action.Research() { InConstTechId = id });
             ResearchCommands.Add(command);
         }
 
