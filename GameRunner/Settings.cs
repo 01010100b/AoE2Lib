@@ -6,10 +6,10 @@ namespace GameRunner
 {
     public class Settings
     {
-        public string Exe { get; set; }
-        public string AiFolder { get; set; }
+        public string Exe { get; set; } = "";
+        public string AiFolder { get; set; } = "";
         public GameType GameType { get; set; }
-        public string Scenario { get; set; }
+        public string Scenario { get; set; } = "";
         public MapType MapType { get; set; }
         public MapSize MapSize { get; set; }
         public Difficulty Difficulty { get; set; }

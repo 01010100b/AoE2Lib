@@ -119,23 +119,23 @@ namespace GameRunner
             {
                 var settings = JsonSerializer.Deserialize<Settings>(File.ReadAllText(file), new JsonSerializerOptions() { WriteIndented = true });
 
-                TextExe.Text = settings.Exe;
-                TextAiFolder.Text = settings.AiFolder;
-                ComboGameType.SelectedItem = settings.GameType;
-                TextScenario.Text = settings.Scenario;
-                ComboMapType.SelectedItem = settings.MapType;
-                ComboMapSize.SelectedItem = settings.MapSize;
-                ComboDifficulty.SelectedItem = settings.Difficulty;
-                ComboStartingResources.SelectedItem = settings.StartingResources;
-                ComboRevealMap.SelectedItem = settings.RevealMap;
-                ComboStartingAge.SelectedItem = settings.StartingAge;
-                ComboVictoryType.SelectedItem = settings.VictoryType;
-                TextVictoryValue.Text = settings.VictoryValue.ToString();
-                ComboPopulationCap.SelectedItem = settings.PopulationLimit;
-                CheckTeamsTogether.Checked = settings.TeamsTogether;
-                CheckLockTeams.Checked = settings.LockTeams;
-                CheckAllTech.Checked = settings.AllTechs;
-                CheckRecorded.Checked = settings.Recorded;
+                TextExe.Text = settings?.Exe;
+                TextAiFolder.Text = settings?.AiFolder;
+                ComboGameType.SelectedItem = settings?.GameType;
+                TextScenario.Text = settings?.Scenario;
+                ComboMapType.SelectedItem = settings?.MapType;
+                ComboMapSize.SelectedItem = settings?.MapSize;
+                ComboDifficulty.SelectedItem = settings?.Difficulty;
+                ComboStartingResources.SelectedItem = settings?.StartingResources;
+                ComboRevealMap.SelectedItem = settings?.RevealMap;
+                ComboStartingAge.SelectedItem = settings?.StartingAge;
+                ComboVictoryType.SelectedItem = settings?.VictoryType;
+                TextVictoryValue.Text = settings?.VictoryValue.ToString();
+                ComboPopulationCap.SelectedItem = settings?.PopulationLimit;
+                CheckTeamsTogether.Checked = settings?.TeamsTogether ?? false;
+                CheckLockTeams.Checked = settings?.LockTeams ?? false;
+                CheckAllTech.Checked = settings?.AllTechs ?? false;
+                CheckRecorded.Checked = settings?.Recorded ?? false;
             }
         }
 
