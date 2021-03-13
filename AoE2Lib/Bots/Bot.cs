@@ -15,15 +15,10 @@ namespace AoE2Lib.Bots
 {
     public abstract class Bot
     {
-        public const int GOAL_ID = 420;
-
         public abstract string Name { get; }
-        public abstract int Id { get; }
         public int PlayerNumber { get; private set; } = -1;
         public int Tick { get; private set; } = 0;
         public Log Log { get; private set; }
-        public TypeOp TypeOp { get; internal set; }
-        public MathOp MathOp { get; internal set; }
 
         private Thread BotThread { get; set; } = null;
         private volatile bool Stopping = false;
@@ -115,13 +110,11 @@ namespace AoE2Lib.Bots
                 {
                     commands.AddRange(Update().Where(c => c.HasMessages));
                 }
-                
-                
 
-                List<Module> modules = null;
+                var modules = new List<Module>();
                 lock (Modules)
                 {
-                    modules = Modules.ToList();
+                    modules.AddRange(Modules);
                 }
                 
                 modules.Reverse(); // request modules update in reverse to allow later ones to use earlier ones

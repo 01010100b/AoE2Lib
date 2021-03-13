@@ -17,8 +17,6 @@ namespace AoE2Lib.Bots
         public int LastUpdateTick { get; private set; } = -1;
 
         protected readonly Bot Bot;
-        protected TypeOp TypeOp => Bot.TypeOp;
-        protected MathOp MathOp => Bot.MathOp;
 
         private readonly Command Command = new Command();
 
