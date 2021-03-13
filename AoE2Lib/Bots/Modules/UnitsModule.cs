@@ -1,8 +1,10 @@
 ﻿using AoE2Lib.Bots.GameElements;
+using AoE2Lib.Utils;
 using Protos.Expert.Action;
 using Protos.Expert.Fact;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -15,8 +17,11 @@ namespace AoE2Lib.Bots.Modules
         public IReadOnlyDictionary<int, Unit> Units => _Units;
         private readonly Dictionary<int, Unit> _Units = new Dictionary<int, Unit>();
         public bool AutoUpdateUnits { get; set; } = true;
+        public bool AutoFindUnits { get; set; } = true;
 
         private readonly List<Command> CreateCommands = new List<Command>();
+        private readonly List<Command> FindUnitCommands = new List<Command>();
+        private readonly Random Rng = new Random();
 
         public void AddUnitType(int id)
         {
@@ -45,6 +50,54 @@ namespace AoE2Lib.Bots.Modules
             CreateCommands.Add(command);
         }
 
+        public void FindUnits(int player, Position position, int range, CmdId cmdid)
+        {
+            var command = new Command();
+
+            command.Add(new SetGoal() { InConstGoalId = 100, InConstValue = position.PointX });
+            command.Add(new SetGoal() { InConstGoalId = 101, InConstValue = position.PointY });
+            command.Add(new UpSetTargetPoint() { InGoalPoint = 100 });
+            command.Add(new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, InConstValue = player });
+            command.Add(new UpFullResetSearch());
+
+            command.Add(new UpFilterInclude() { InConstCmdId = (int)cmdid, InConstActionId = -1, InConstOrderId = -1, InConstOnMainland = -1 });
+            command.Add(new UpFilterDistance() { InConstMinDistance = -1, InConstMaxDistance = range });
+            command.Add(new UpFindRemote() { InConstUnitId = -1, InConstCount = 40 });
+            command.Add(new UpFilterDistance() { InConstMinDistance = range - 1, InConstMaxDistance = -1 });
+            command.Add(new UpFindRemote() { InConstUnitId = -1, InConstCount = 40 });
+
+            command.Add(new UpSearchObjectIdList() { InConstSearchSource = 2 });
+
+            FindUnitCommands.Add(command);
+        }
+
+        public void FindResources(int player, Position position, int range, Resource resource)
+        {
+            var command = new Command();
+
+            command.Add(new SetGoal() { InConstGoalId = 100, InConstValue = position.PointX });
+            command.Add(new SetGoal() { InConstGoalId = 101, InConstValue = position.PointY });
+            command.Add(new UpSetTargetPoint() { InGoalPoint = 100 });
+            command.Add(new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, InConstValue = player });
+            command.Add(new UpFullResetSearch());
+
+            command.Add(new UpFilterDistance() { InConstMinDistance = -1, InConstMaxDistance = range });
+            command.Add(new UpFilterStatus() { InConstObjectStatus = 2, InConstObjectList = 0 });
+            command.Add(new UpFindResource() { InConstResource = (int)resource, InConstCount = 30 });
+            command.Add(new UpFilterStatus() { InConstObjectStatus = 3, InConstObjectList = 0 });
+            command.Add(new UpFindResource() { InConstResource = (int)resource, InConstCount = 40 });
+
+            command.Add(new UpFilterDistance() { InConstMinDistance = range - 1, InConstMaxDistance = -1 });
+            command.Add(new UpFilterStatus() { InConstObjectStatus = 3, InConstObjectList = 0 });
+            command.Add(new UpFindResource() { InConstResource = (int)resource, InConstCount = 40 });
+            command.Add(new UpFilterStatus() { InConstObjectStatus = 2, InConstObjectList = 0 });
+            command.Add(new UpFindResource() { InConstResource = (int)resource, InConstCount = 40 });
+
+            command.Add(new UpSearchObjectIdList() { InConstSearchSource = 2 });
+
+            FindUnitCommands.Add(command);
+        }
+
         protected override IEnumerable<Command> RequestUpdate()
         {
             foreach (var command in CreateCommands)
@@ -64,16 +117,147 @@ namespace AoE2Lib.Bots.Modules
                 var units = Units.Values.Where(u => u.Updated == false || u.Targetable == true).ToList();
                 units.Sort((a, b) => a.LastUpdateGameTime.CompareTo(b.LastUpdateGameTime));
 
-                for (int i = 0; i < Math.Min(units.Count, 20); i++)
+                for (int i = 0; i < Math.Min(units.Count, 100); i++)
                 {
                     units[i].RequestUpdate();
                 }
+
+                units.Clear();
+                units.AddRange(Units.Values.Where(u => u.Targetable == false));
+
+                if (units.Count > 0)
+                {
+                    for (int i = 0; i < 10; i++)
+                    {
+                        units[Rng.Next(units.Count)].RequestUpdate();
+                    }
+                }
+            }
+
+            if (AutoFindUnits)
+            {
+                for (int i = 0; i < 100; i++)
+                {
+                    AddAutoFindUnits();
+                }
+                
+            }
+
+            foreach (var command in FindUnitCommands)
+            {
+                yield return command;
             }
         }
 
         protected override void Update()
         {
+            foreach (var command in FindUnitCommands.Where(c => c.HasResponses))
+            {
+                var responses = command.GetResponses();
+                var ids = responses[responses.Count - 1].Unpack<UpSearchObjectIdListResult>().Result.ToArray();
 
+                foreach (var id in ids.Where(i => i > 0))
+                {
+                    if (!Units.ContainsKey(id))
+                    {
+                        _Units.Add(id, new Unit(Bot, id));
+                    }
+                }
+            }
+
+            FindUnitCommands.Clear();
+        }
+
+        private void AddAutoFindUnits()
+        {
+            var positions = new List<Position>();
+            var map = Bot.GetModule<MapModule>();
+            positions.AddRange(map.GetTiles().Where(t => t.Explored).Select(t => t.Position));
+            positions.Add(Bot.GetModule<InfoModule>().MyPosition);
+            var position = positions[Rng.Next(positions.Count)];
+
+            var range = 10;
+
+            var player = Bot.PlayerNumber;
+            if (Rng.NextDouble() < 0.5)
+            {
+                var players = Bot.GetModule<PlayersModule>().Players.Values.Where(p => p.InGame).Select(p => p.PlayerNumber).ToList();
+                players.Add(0);
+
+                player = players[Rng.Next(players.Count)];
+            }
+
+            if (player == 0)
+            {
+                if (Rng.NextDouble() < 0.5)
+                {
+                    FindResources(player, position, range, Resource.WOOD);
+                }
+                else if (Rng.NextDouble() < 0.5)
+                {
+                    FindResources(player, position, range, Resource.FOOD);
+                }
+                else if (Rng.NextDouble() < 0.5)
+                {
+                    FindResources(player, position, range, Resource.DEER);
+                }
+                else if (Rng.NextDouble() < 0.5)
+                {
+                    FindResources(player, position, range, Resource.BOAR);
+                }
+                else if (Rng.NextDouble() < 0.5)
+                {
+                    FindResources(player, position, range, Resource.GOLD);
+                }
+                else if (Rng.NextDouble() < 0.5)
+                {
+                    FindResources(player, position, range, Resource.STONE);
+                }
+                else
+                {
+                    FindUnits(player, position, range, CmdId.RELIC);
+                }
+            }
+            else
+            {
+                if (Rng.NextDouble() < 0.5)
+                {
+                    FindUnits(player, position, range, CmdId.MILITARY);
+                }
+                else if (Rng.NextDouble() < 0.5)
+                {
+                    FindUnits(player, position, range, CmdId.VILLAGER);
+                }
+                else if (Rng.NextDouble() < 0.5)
+                {
+                    FindUnits(player, position, range, CmdId.MILITARY_BUILDING);
+                }
+                else if (Rng.NextDouble() < 0.5)
+                {
+                    FindUnits(player, position, range, CmdId.CIVILIAN_BUILDING);
+                }
+                else if (Rng.NextDouble() < 0.5)
+                {
+                    FindUnits(player, position, range, CmdId.MONK);
+                }
+                else if(Rng.NextDouble() < 0.5)
+                {
+                    FindUnits(player, position, range, CmdId.LIVESTOCK_GAIA);
+                }
+                else if (Rng.NextDouble() < 0.5)
+                {
+                    FindUnits(player, position, range, CmdId.TRADE);
+                }
+                else if (Rng.NextDouble() < 0.5)
+                {
+                    FindUnits(player, position, range, CmdId.FISHING_SHIP);
+                }
+                else
+                {
+                    FindUnits(player, position, range, CmdId.TRANSPORT);
+                }
+                
+            }
         }
     }
 }

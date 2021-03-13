@@ -41,6 +41,7 @@ namespace ExampleBot
             this.TextProcess.Name = "TextProcess";
             this.TextProcess.Size = new System.Drawing.Size(145, 23);
             this.TextProcess.TabIndex = 0;
+            this.TextProcess.Text = "WK";
             // 
             // ButtonConnect
             // 
@@ -68,6 +69,7 @@ namespace ExampleBot
             this.TextPlayer.Name = "TextPlayer";
             this.TextPlayer.Size = new System.Drawing.Size(145, 23);
             this.TextPlayer.TabIndex = 2;
+            this.TextPlayer.Text = "1";
             // 
             // Form1
             // 
