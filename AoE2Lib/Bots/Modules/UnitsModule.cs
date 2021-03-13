@@ -176,7 +176,7 @@ namespace AoE2Lib.Bots.Modules
             positions.Add(Bot.GetModule<InfoModule>().MyPosition);
             var position = positions[Rng.Next(positions.Count)];
 
-            var range = 10;
+            var range = 20;
 
             var player = Bot.PlayerNumber;
             if (Rng.NextDouble() < 0.5)
