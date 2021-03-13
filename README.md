@@ -8,7 +8,7 @@ The `AoEInstance` class is the main way of interacting with an AoE process. It w
 
 ### Bot programming
 
-See the classes in the `Bots` namespace. A bot is created by deriving from the abstract `Bot` class and calling `AoEInstance.StartBot`. When the game is finished you then have to call `Bot.Stop` yourself as there is, as of now, no way of determining when a game has ended.
+See the classes in the `Bots` namespace. A bot is created by deriving from the abstract `Bot` class and calling `AoEInstance.StartBot`. When the game is finished you then have to call `Bot.Stop` yourself as there is, as of now, no way of determining when a game has ended. See the `ExampleBot` project.
 
 ### Game running
 
