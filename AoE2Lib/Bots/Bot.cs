@@ -1,4 +1,5 @@
-﻿using AoE2Lib.Utils;
+﻿using AoE2Lib.Bots.Modules;
+using AoE2Lib.Utils;
 using Google.Protobuf.WellKnownTypes;
 using Protos.Expert;
 using System;
@@ -28,6 +29,16 @@ namespace AoE2Lib.Bots
         private volatile bool Stopping = false;
         private readonly List<Module> Modules = new List<Module>();
         private readonly Dictionary<GameElement, Command> GameElementUpdates = new Dictionary<GameElement, Command>();
+
+        public Bot()
+        {
+            AddModule(new InfoModule());
+            AddModule(new MapModule());
+            AddModule(new PlayersModule());
+            AddModule(new UnitsModule());
+            AddModule(new ResearchModule());
+            AddModule(new MicroModule());
+        }
 
         public bool HasModule<T>() where T : Module
         {
