@@ -26,16 +26,6 @@ namespace AoE2Lib.Bots
         private readonly List<Module> Modules = new List<Module>();
         private readonly Dictionary<GameElement, Command> GameElementUpdates = new Dictionary<GameElement, Command>();
 
-        public Bot()
-        {
-            AddModule(new InfoModule());
-            AddModule(new MapModule());
-            AddModule(new PlayersModule());
-            AddModule(new UnitsModule());
-            AddModule(new ResearchModule());
-            AddModule(new MicroModule());
-        }
-
         public T GetModule<T>() where T: Module
         {
             return Modules.OfType<T>().FirstOrDefault();
@@ -60,6 +50,13 @@ namespace AoE2Lib.Bots
             PlayerNumber = player;
             Log = new Log(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"{Name} {PlayerNumber}.log"));
 
+            AddModule(new InfoModule());
+            AddModule(new MapModule());
+            AddModule(new PlayersModule());
+            AddModule(new UnitsModule());
+            AddModule(new ResearchModule());
+            AddModule(new MicroModule());
+
             BotThread = new Thread(() => Run()) { IsBackground = true };
             BotThread.Start();
         }
@@ -71,8 +68,11 @@ namespace AoE2Lib.Bots
 
         private void AddModule<T>(T module) where T : Module
         {
-            Modules.Add(module);
-            module.BotInternal = this;
+            if (GetModule<T>() == default(T))
+            {
+                Modules.Add(module);
+                module.BotInternal = this;
+            }
         }
 
         private void Run()

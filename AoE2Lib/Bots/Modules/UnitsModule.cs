@@ -29,6 +29,8 @@ namespace AoE2Lib.Bots.Modules
 
         public void Build(int id)
         {
+            AddUnitType(id);
+
             var command = new Command();
             command.Add(new Build() { InConstBuildingId = id });
             CreateCommands.Add(command);
@@ -36,6 +38,8 @@ namespace AoE2Lib.Bots.Modules
 
         public void Train(int id)
         {
+            AddUnitType(id);
+
             var command = new Command();
             command.Add(new Train() { InConstUnitId = id });
             CreateCommands.Add(command);
