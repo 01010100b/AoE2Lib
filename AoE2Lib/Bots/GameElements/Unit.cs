@@ -14,8 +14,8 @@ namespace AoE2Lib.Bots.GameElements
     {
         public readonly int Id;
         public int PlayerNumber => GetData(ObjectData.PLAYER);
-        public bool Targetable;
-        public bool Visible;
+        public bool Targetable { get; private set; } = false;
+        public bool Visible { get; private set; } = false;
         public Position Position => Position.FromPrecise(GetData(ObjectData.PRECISE_X), GetData(ObjectData.PRECISE_Y));
 
         private readonly Dictionary<ObjectData, int> Data = new Dictionary<ObjectData, int>();
@@ -53,6 +53,9 @@ namespace AoE2Lib.Bots.GameElements
             var id = data[(int)ObjectData.ID];
             var player = data[(int)ObjectData.PLAYER];
 
+            Targetable = true;
+            Visible = true;
+
             if (id != Id)
             {
                 Targetable = false;
@@ -67,9 +70,6 @@ namespace AoE2Lib.Bots.GameElements
 
                 return;
             }
-
-            Visible = true;
-            Targetable = true;
 
             for (int i = 0; i < data.Length; i++)
             {
