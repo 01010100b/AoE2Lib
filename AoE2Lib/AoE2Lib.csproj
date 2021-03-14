@@ -2,10 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-	  <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+	  <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 	  <Platforms>AnyCPU</Platforms>
-	  <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-	  <Version>0.1.3</Version>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <Version>0.1.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -28,15 +28,30 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="aimodule-aoc.dll">
+	  <Content Include="aimodule-aoc.dll">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="aimodule-de.dll">
+		  <PackageCopyToOutput>true</PackageCopyToOutput>
+	  </Content>
+	  <Content Include="aimodule-de.dll">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="aoc-auto-game.dll">
+		  <PackageCopyToOutput>true</PackageCopyToOutput>
+	  </Content>
+	  <Content Include="aoc-auto-game.dll">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
+		  <PackageCopyToOutput>true</PackageCopyToOutput>
+	  </Content>
+		<Content Include="FASM.DLL">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<PackageCopyToOutput>true</PackageCopyToOutput>
+		</Content>
+		<Content Include="FASMX64.DLL">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<PackageCopyToOutput>true</PackageCopyToOutput>
+		</Content>
+		<Content Include="FASM-LICENSE.TXT">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<PackageCopyToOutput>true</PackageCopyToOutput>
+		</Content>
 	</ItemGroup>
 
 </Project>
