@@ -35,16 +35,17 @@ jobs:
       uses: mathieudutour/github-tag-action@v5.3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        dry_run: true
         
     - name: Create release artifacts
       run: dotnet pack AoE2Lib\AoE2Lib.csproj --no-build -p:PackageVersion=${{ steps.tag_version.outputs.new_version }}
       
     - name: Create a GitHub release
       if: github.ref == 'refs/heads/master'
-      uses: actions/create-release@v1
+      uses: softprops/action-gh-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ steps.tag_version.outputs.new_tag }}
-        release_name: Release ${{ steps.tag_version.outputs.new_tag }}
+        name: Release ${{ steps.tag_version.outputs.new_tag }}
         body: ${{ steps.tag_version.outputs.changelog }}
