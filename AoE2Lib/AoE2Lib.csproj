@@ -5,7 +5,6 @@
 	  <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 	  <Platforms>AnyCPU</Platforms>
 	  <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-	  <Version>0.1.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
