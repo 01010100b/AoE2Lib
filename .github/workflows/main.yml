@@ -25,7 +25,7 @@ jobs:
     - name: Test
       run: dotnet test --no-restore --verbosity normal
       
-    # create release if on master 
+    # create release if on master
     
     - name: Bump version and push tag
       if: github.ref == 'refs/heads/master'
@@ -35,7 +35,7 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         
     - name: Create release artifacts
-      run: dotnet pack AoE2Lib.csproj --no-build -p:PackageVersion=${{ steps.tag_version.outputs.new_version }}
+      run: dotnet pack AoE2Lib\AoE2Lib.csproj --no-build -p:PackageVersion=${{ steps.tag_version.outputs.new_version }}
       
     - name: Create a GitHub release
       if: github.ref == 'refs/heads/master'
