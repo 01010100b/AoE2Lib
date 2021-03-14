@@ -35,7 +35,7 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         
     - name: Create release artifacts
-      run: dotnet pack --no-build -p:PackageVersion=${{ steps.tag_version.outputs.new_version }}
+      run: dotnet pack AoE2Lib.csproj --no-build -p:PackageVersion=${{ steps.tag_version.outputs.new_version }}
       
     - name: Create a GitHub release
       if: github.ref == 'refs/heads/master'
