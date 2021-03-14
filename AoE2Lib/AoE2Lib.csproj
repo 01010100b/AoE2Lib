@@ -4,8 +4,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
 	  <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 	  <Platforms>AnyCPU</Platforms>
-	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	  <Version>0.1.0</Version>
+	  <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
