@@ -3,16 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
 	  <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-	  <Platforms>AnyCPU;x64</Platforms>
-	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	  <Version>0.1.0</Version>
+	  <Platforms>AnyCPU</Platforms>
+	  <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+	  <Version>0.1.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>TRACE</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
 
@@ -31,8 +27,6 @@
 		<Protobuf Include="**/*.proto" OutputDir="" CompileOutputs="false" GrpcServices="Client" />
 	</ItemGroup>
 
-
-
 	<ItemGroup>
 	  <Content Include="aimodule-aoc.dll">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -43,20 +37,6 @@
 	  <Content Include="aoc-auto-game.dll">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
-	  <Content Include="grpc_csharp_ext.x64.dll">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </Content>
-	  <Content Include="grpc_csharp_ext.x86.dll">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </Content>
-	</ItemGroup>
-
-
-
-	<ItemGroup>
-	  <None Update="aimodule-aoc-verbose-debug.dll">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </None>
 	</ItemGroup>
 
 </Project>
