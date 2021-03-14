@@ -17,8 +17,9 @@ jobs:
         dotnet-version: '3.1' 
         
     - name: Install dependencies
-      run: dotnet restore AoE2Lib\AoE2Lib.csproj
-      run: dotnet restore
+      run: |
+        dotnet restore AoE2Lib\AoE2Lib.csproj
+        dotnet restore
       
     - name: Build
       run: dotnet build --configuration Debug --no-restore
