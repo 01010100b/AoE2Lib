@@ -47,5 +47,5 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ steps.tag_version.outputs.new_tag }}
-        name: Release ${{ steps.tag_version.outputs.new_tag }}
         body: ${{ steps.tag_version.outputs.changelog }}
+        files: AoE2Lib\bin\Debug\AoE2Lib.${{ steps.tag_version.outputs.new_version }}.nupkg
