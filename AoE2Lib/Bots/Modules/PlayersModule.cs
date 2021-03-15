@@ -3,6 +3,7 @@ using Protos.Expert.Action;
 using Protos.Expert.Fact;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AoE2Lib.Bots.Modules
@@ -51,6 +52,20 @@ namespace AoE2Lib.Bots.Modules
                     {
                         _Players.Add(player, new Player(Bot, player));
                     }
+                }
+            }
+
+            foreach (var player in Players.Values)
+            {
+                player.UnitsInternal.Clear();
+            }
+
+            var units = Bot.GetModule<UnitsModule>();
+            foreach (var unit in units.Units.Values.Where(u => u.Targetable))
+            {
+                if (Players.ContainsKey(unit.PlayerNumber))
+                {
+                    Players[unit.PlayerNumber].UnitsInternal.Add(unit);
                 }
             }
         }

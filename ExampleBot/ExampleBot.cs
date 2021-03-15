@@ -20,7 +20,7 @@ namespace ExampleBot
 
             Debug.WriteLine($"Tick {Tick} Game time {info.GameTime}");
             Debug.WriteLine($"Wood {info.WoodAmount} Food {info.FoodAmount} Gold {info.GoldAmount} Stone {info.StoneAmount}");
-            Debug.WriteLine($"Explored {map.GetTiles().Count(t => t.Explored):N0} tiles of {map.Width * map.Height:N0}");
+            Debug.WriteLine($"Explored {map.Tiles.Count(t => t.Explored):N0} tiles of {map.Width * map.Height:N0}");
             Debug.WriteLine($"I have {units.Units.Values.Count(u => u.PlayerNumber == PlayerNumber):N0} units");
             Debug.WriteLine($"Gaia has {units.Units.Values.Count(u => u.PlayerNumber == 0):N0} units");
             Debug.WriteLine("");

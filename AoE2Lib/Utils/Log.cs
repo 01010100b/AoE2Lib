@@ -111,7 +111,7 @@ namespace AoE2Lib.Utils
             var last = DateTime.UtcNow;
             while (true)
             {
-                while (DateTime.UtcNow - last < TimeSpan.FromSeconds(2))
+                while (DateTime.UtcNow - last < TimeSpan.FromSeconds(10))
                 {
                     Thread.Sleep(1000);
                 }

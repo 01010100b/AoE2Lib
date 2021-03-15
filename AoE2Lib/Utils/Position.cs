@@ -29,7 +29,7 @@ namespace AoE2Lib.Utils
         public int PreciseX => (int)Math.Floor(X * 100);
         public int PreciseY => (int)Math.Floor(Y * 100);
         public double Norm => DistanceTo(Zero);
-        public double Angle => AngleFrom(Zero);
+        public double Angle => AngleFrom(new Position(1, 0));
 
         public Position(double x, double y)
         {
