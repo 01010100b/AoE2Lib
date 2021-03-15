@@ -30,7 +30,7 @@ jobs:
     # create release if on master
     
     - name: Bump version
-      if:  ${{ github.ref == 'refs/heads/master' && github.repository = '01010100b/AoE2Lib' }}
+      if:  ${{ github.ref == 'refs/heads/master' && github.repository == '01010100b/AoE2Lib' }}
       id: tag_version
       uses: mathieudutour/github-tag-action@v5.3
       with:
@@ -38,7 +38,7 @@ jobs:
         dry_run: true
         
     - name: Package
-      if:  ${{ github.ref == 'refs/heads/master' && github.repository = '01010100b/AoE2Lib' }}
+      if:  ${{ github.ref == 'refs/heads/master' && github.repository == '01010100b/AoE2Lib' }}
       run: |
         dotnet pack AoE2Lib\AoE2Lib.csproj --no-build -p:PackageVersion=${{ steps.tag_version.outputs.new_version }}
         dotnet publish AoE2Lib\AoE2Lib.csproj --output AoE2Lib.${{ steps.tag_version.outputs.new_version }}
@@ -46,25 +46,25 @@ jobs:
         dotnet publish GameRunner\GameRunner.csproj --output GameRunner.${{ steps.tag_version.outputs.new_version }}
         
     - uses: papeloto/action-zip@v1
-      if:  ${{ github.ref == 'refs/heads/master' && github.repository = '01010100b/AoE2Lib' }}
+      if:  ${{ github.ref == 'refs/heads/master' && github.repository == '01010100b/AoE2Lib' }}
       with:
         files: ExampleBot.${{ steps.tag_version.outputs.new_version }}
         dest: ExampleBot.${{ steps.tag_version.outputs.new_version }}.zip
         
     - uses: papeloto/action-zip@v1
-      if:  ${{ github.ref == 'refs/heads/master' && github.repository = '01010100b/AoE2Lib' }}
+      if:  ${{ github.ref == 'refs/heads/master' && github.repository == '01010100b/AoE2Lib' }}
       with:
         files: GameRunner.${{ steps.tag_version.outputs.new_version }}
         dest: GameRunner.${{ steps.tag_version.outputs.new_version }}.zip
       
     - uses: papeloto/action-zip@v1
-      if:  ${{ github.ref == 'refs/heads/master' && github.repository = '01010100b/AoE2Lib' }}
+      if:  ${{ github.ref == 'refs/heads/master' && github.repository == '01010100b/AoE2Lib' }}
       with:
         files: AoE2Lib.${{ steps.tag_version.outputs.new_version }}
         dest: AoE2Lib.${{ steps.tag_version.outputs.new_version }}.zip
      
     - name: Create a GitHub release
-      if:  ${{ github.ref == 'refs/heads/master' && github.repository = '01010100b/AoE2Lib' }}
+      if:  ${{ github.ref == 'refs/heads/master' && github.repository == '01010100b/AoE2Lib' }}
       uses: softprops/action-gh-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
