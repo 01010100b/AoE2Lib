@@ -73,7 +73,7 @@ namespace AoE2Lib.Bots.Modules
                 Width = responses[3].Unpack<Protos.Expert.Fact.GoalResult>().Result + 1;
                 Height = responses[4].Unpack<Protos.Expert.Fact.GoalResult>().Result + 1;
             }
-
+             
             if (Width > 0 && Height > 0)
             {
                 if (_Tiles != null)
