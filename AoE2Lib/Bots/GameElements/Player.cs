@@ -23,6 +23,9 @@ namespace AoE2Lib.Bots.GameElements
         public int StoneAmount { get; private set; } = -1;
         public PlayerStance Stance { get; private set; } = PlayerStance.NEUTRAL;
         public int Population => CivilianPopulation + MilitaryPopulation;
+        public IEnumerable<Unit> Units => UnitsInternal;
+        
+        internal readonly List<Unit> UnitsInternal = new List<Unit>();
 
         internal Player(Bot bot, int player) : base(bot)
         {

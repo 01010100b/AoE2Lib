@@ -21,7 +21,7 @@ namespace AoE2Lib.Bots.Modules
         public int Height { get; private set; } = -1;
         public bool AutoUpdate { get; set; } = true;
 
-        private Tile[] _Tiles { get; set; }
+        private Tile[] _Tiles { get; set; } = new Tile[0];
         private readonly Command Command = new Command();
         private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode());
 
@@ -103,13 +103,13 @@ namespace AoE2Lib.Bots.Modules
 
             foreach (var tile in Tiles)
             {
-                tile.Units.Clear();
+                tile.UnitsInternal.Clear();
             }
 
             var units = Bot.GetModule<UnitsModule>();
-            foreach (var unit in units.Units.Values)
+            foreach (var unit in units.Units.Values.Where(u => IsOnMap(u.Position)))
             {
-                this[unit.Position].Units.Add(unit);
+                this[unit.Position].UnitsInternal.Add(unit);
             }
         }
 
