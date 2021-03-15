@@ -142,7 +142,7 @@ namespace AoE2Lib.Bots.Modules
             {
                 var positions = new List<Position>();
                 var map = Bot.GetModule<MapModule>();
-                positions.AddRange(map.GetTiles().Where(t => t.Explored).Select(t => t.Position));
+                positions.AddRange(map.Tiles.Where(t => t.Explored).Select(t => t.Position));
                 positions.Add(Bot.GetModule<InfoModule>().MyPosition);
                 
                 for (int i = 0; i < 100; i++)

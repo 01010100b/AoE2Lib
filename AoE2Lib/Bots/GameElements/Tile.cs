@@ -18,6 +18,7 @@ namespace AoE2Lib.Bots.GameElements
         public int Elevation { get; private set; } = -1;
         public int Terrain { get; private set; } = -1;
         public bool IsOnLand => Terrain != 1 && Terrain != 2 && Terrain != 4 && Terrain != 15 && Terrain != 22 && Terrain != 23 && Terrain != 28 && Terrain != 37;
+        public readonly List<Unit> Units = new List<Unit>();
 
         internal Tile(Bot bot, Point point) : base(bot)
         {

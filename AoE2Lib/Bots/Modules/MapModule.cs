@@ -15,35 +15,19 @@ namespace AoE2Lib.Bots.Modules
 {
     public class MapModule : Module
     {
-        public Tile this[Position position] { get { return GetTile(position); } }
+        public IEnumerable<Tile> Tiles => _Tiles;
+        public Tile this[Position position] { get { return GetTile(position.PointX, position.PointY); } }
         public int Width { get; private set; } = -1;
         public int Height { get; private set; } = -1;
         public bool AutoUpdate { get; set; } = true;
 
-        private Tile[] Tiles { get; set; }
+        private Tile[] _Tiles { get; set; }
         private readonly Command Command = new Command();
         private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode());
 
         public bool IsOnMap(Position position)
         {
             return IsOnMap(position.PointX, position.PointY);
-        }
-
-        public Tile GetTile(Position position)
-        {
-            return GetTile(position.PointX, position.PointY);
-        }
-
-        public IEnumerable<Tile> GetTiles()
-        {
-            if (Tiles != null)
-            {
-                return Tiles;
-            }
-            else
-            {
-                return Enumerable.Empty<Tile>();
-            }
         }
 
         public IEnumerable<Tile> GetTilesInRange(Position position, double range)
@@ -92,21 +76,21 @@ namespace AoE2Lib.Bots.Modules
 
             if (Width > 0 && Height > 0)
             {
-                if (Tiles != null)
+                if (_Tiles != null)
                 {
-                    if (Tiles.Length != (Width * Height))
+                    if (_Tiles.Length != (Width * Height))
                     {
-                        Tiles = null;
+                        _Tiles = null;
                     }
-                    else if (Tiles.Length == 0)
+                    else if (_Tiles.Length == 0)
                     {
-                        Tiles = null;
+                        _Tiles = null;
                     }
                 }
                 
-                if (Tiles == null)
+                if (_Tiles == null)
                 {
-                    Tiles = new Tile[Width * Height];
+                    _Tiles = new Tile[Width * Height];
                     for (int x = 0; x < Width; x++)
                     {
                         for (int y = 0; y < Height; y++)
@@ -115,6 +99,17 @@ namespace AoE2Lib.Bots.Modules
                         }
                     }
                 }
+            }
+
+            foreach (var tile in Tiles)
+            {
+                tile.Units.Clear();
+            }
+
+            var units = Bot.GetModule<UnitsModule>();
+            foreach (var unit in units.Units.Values)
+            {
+                this[unit.Position].Units.Add(unit);
             }
         }
 
@@ -131,13 +126,13 @@ namespace AoE2Lib.Bots.Modules
             }
 
             var index = (x * Height) + y;
-            return Tiles[index];
+            return _Tiles[index];
         }
 
         private void SetTile(int x, int y, Tile tile)
         {
             var index = (x * Height) + y;
-            Tiles[index] = tile;
+            _Tiles[index] = tile;
         }
 
         private IEnumerable<Tile> GetTilesByDistance(Position position)
@@ -212,7 +207,7 @@ namespace AoE2Lib.Bots.Modules
         {
             const int TILES_PER_COMMAND = 100;
 
-            if (Tiles != null)
+            if (_Tiles != null)
             {
                 var positions = new List<Position>();
                 positions.AddRange(Bot.GetModule<UnitsModule>().Units.Values.Where(u => u.PlayerNumber == Bot.PlayerNumber).Select(u => u.Position));
