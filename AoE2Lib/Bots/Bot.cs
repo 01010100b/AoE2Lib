@@ -16,7 +16,7 @@ namespace AoE2Lib.Bots
 {
     public abstract class Bot
     {
-        public abstract string Name { get; }
+        public virtual string Name { get { return GetType().Name; } }
         public int PlayerNumber { get; private set; } = -1;
         public int Tick { get; private set; } = 0;
         public Log Log { get; private set; }

@@ -32,12 +32,16 @@ namespace AoE2Lib.Bots.Modules
             }
         }
 
-        public void Build(int id)
+        public void Build(int id, Position position)
         {
             AddUnitType(id);
 
             var command = new Command();
+            command.Add(new SetGoal() { InConstGoalId = 100, InConstValue = position.PointX });
+            command.Add(new SetGoal() { InConstGoalId = 101, InConstValue = position.PointY });
+            command.Add(new UpBuildLine() { InConstBuildingId = id, InGoalPoint1 = 100, InGoalPoint2 = 100 });
             command.Add(new Build() { InConstBuildingId = id });
+
             CreateCommands.Add(command);
         }
 

@@ -14,7 +14,7 @@ namespace AoE2Lib.Bots.GameElements
         public bool IsAvailable { get; private set; }
         public int Count { get; private set; }
         public int CountTotal { get; private set; }
-        public bool CanCreate { get; private set; }
+        public bool CanBuild { get; private set; }
         public bool TrainSiteReady { get; private set; }
         public int WoodCost { get; private set; }
         public int FoodCost { get; private set; }
@@ -47,7 +47,7 @@ namespace AoE2Lib.Bots.GameElements
             IsAvailable = responses[0].Unpack<BuildingAvailableResult>().Result;
             Count = responses[1].Unpack<BuildingTypeCountResult>().Result;
             CountTotal = responses[2].Unpack<BuildingTypeCountTotalResult>().Result;
-            CanCreate = responses[3].Unpack<UpCanBuildResult>().Result;
+            CanBuild = responses[3].Unpack<UpCanBuildResult>().Result;
             TrainSiteReady = responses[4].Unpack<UpTrainSiteReadyResult>().Result;
             FoodCost = responses[7].Unpack<GoalResult>().Result;
             WoodCost = responses[8].Unpack<GoalResult>().Result;

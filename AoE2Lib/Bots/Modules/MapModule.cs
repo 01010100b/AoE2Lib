@@ -15,6 +15,7 @@ namespace AoE2Lib.Bots.Modules
 {
     public class MapModule : Module
     {
+        public Tile this[Position position] { get { return GetTile(position); } }
         public int Width { get; private set; } = -1;
         public int Height { get; private set; } = -1;
         public bool AutoUpdate { get; set; } = true;
@@ -28,31 +29,9 @@ namespace AoE2Lib.Bots.Modules
             return IsOnMap(position.PointX, position.PointY);
         }
 
-        public bool IsOnMap(int x, int y)
-        {
-            return x >= 0 && x < Width && y >= 0 && y < Height;
-        }
-
         public Tile GetTile(Position position)
         {
             return GetTile(position.PointX, position.PointY);
-        }
-
-        public Tile GetTile(int x, int y)
-        {
-            if (!IsOnMap(x, y))
-            {
-                return null;
-            }
-
-            var index = (x * Height) + y;
-            return Tiles[index];
-        }
-
-        private void SetTile(int x, int y, Tile tile)
-        {
-            var index = (x * Height) + y;
-            Tiles[index] = tile;
         }
 
         public IEnumerable<Tile> GetTiles()
@@ -137,6 +116,28 @@ namespace AoE2Lib.Bots.Modules
                     }
                 }
             }
+        }
+
+        private bool IsOnMap(int x, int y)
+        {
+            return x >= 0 && x < Width && y >= 0 && y < Height;
+        }
+
+        private Tile GetTile(int x, int y)
+        {
+            if (!IsOnMap(x, y))
+            {
+                return null;
+            }
+
+            var index = (x * Height) + y;
+            return Tiles[index];
+        }
+
+        private void SetTile(int x, int y, Tile tile)
+        {
+            var index = (x * Height) + y;
+            Tiles[index] = tile;
         }
 
         private IEnumerable<Tile> GetTilesByDistance(Position position)
