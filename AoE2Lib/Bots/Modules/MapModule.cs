@@ -274,21 +274,13 @@ namespace AoE2Lib.Bots.Modules
 
         private void AddDefaultCommands()
         {
-            const int TILES_PER_COMMAND = 50;
+            const int TILES_PER_COMMAND = 100;
 
             if (Tiles != null)
             {
-                var position = Bot.GetModule<InfoModule>().MyPosition;
-
-                if (RNG.NextDouble() < 0.5)
-                {
-                    var units = Bot.GetModule<UnitsModule>().Units.Values.Where(u => u.PlayerNumber == Bot.PlayerNumber).ToList();
-
-                    if (units.Count > 0)
-                    {
-                        position = units[RNG.Next(units.Count)].Position;
-                    }
-                }
+                var positions = new List<Position>();
+                positions.AddRange(Bot.GetModule<UnitsModule>().Units.Values.Where(u => u.PlayerNumber == Bot.PlayerNumber).Select(u => u.Position));
+                positions.Add(Bot.GetModule<InfoModule>().MyPosition);
 
                 var gametime = Bot.GetModule<InfoModule>().GameTime;
                 var tile_time = gametime - TimeSpan.FromMinutes(3);
@@ -303,26 +295,28 @@ namespace AoE2Lib.Bots.Modules
                 }
 
                 var tiles = new List<Tile>(TILES_PER_COMMAND);
-                foreach (var tile in GetTilesByDistance(position))
+
+                for (int i = 0; i < 10; i++)
                 {
-                    if (tile.LastUpdateGameTime < tile_time && !tile.Explored)
+                    var position = positions[RNG.Next(positions.Count)];
+                    foreach (var tile in GetTilesInRange(position, 20))
                     {
-                        tiles.Add(tile);
+                        if (tile.LastUpdateGameTime < tile_time && !tile.Explored)
+                        {
+                            tiles.Add(tile);
+                        }
+
+                        if (tiles.Count >= TILES_PER_COMMAND)
+                        {
+                            break;
+                        }
                     }
-                    
+
                     if (tiles.Count >= TILES_PER_COMMAND)
                     {
                         break;
                     }
                 }
-
-                tiles.Sort((a, b) =>
-                {
-                    var da = a.Position.DistanceTo(position);
-                    var db = b.Position.DistanceTo(position);
-
-                    return da.CompareTo(db);
-                });
 
                 for (int i = 0; i < Math.Min(tiles.Count, TILES_PER_COMMAND); i++)
                 {
