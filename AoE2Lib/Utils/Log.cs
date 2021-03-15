@@ -65,6 +65,12 @@ namespace AoE2Lib.Utils
             } 
         }
 
+        public void Exception(Exception e)
+        {
+            Write($"EXCEPTION: {e.Message}\n{e.StackTrace}");
+            Flush();
+        }
+
         public void Write(object message)
         {
             var str = $"{DateTime.UtcNow}: {message}";
