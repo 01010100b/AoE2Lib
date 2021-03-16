@@ -18,15 +18,16 @@ namespace AoE2Lib.Bots
     {
         public virtual string Name { get { return GetType().Name; } }
         public int PlayerNumber { get; private set; } = -1;
+        public GameVersion GameVersion { get; private set; }
         public int Tick { get; private set; } = 0;
         public Log Log { get; private set; }
+        public Random Rng { get; private set; } = new Random();
         public InfoModule InfoModule { get; private set; }
         public MapModule MapModule { get; private set; }
         public PlayersModule PlayersModule { get; private set; }
         public UnitsModule UnitsModule { get; private set; }
         public ResearchModule ResearchModule { get; private set; }
         public MicroModule MicroModule { get; private set; }
-        public Random Rng { get; private set; } = new Random();
 
         private Thread BotThread { get; set; } = null;
         private volatile bool Stopping = false;
@@ -44,9 +45,11 @@ namespace AoE2Lib.Bots
 
         protected abstract IEnumerable<Command> Update();
 
-        internal void Start(int player, int seed = -1)
+        internal void Start(int player, string endpoint, int seed, GameVersion version)
         {
             Stop();
+
+            GameVersion = version;
 
             if (seed < 0)
             {
@@ -65,7 +68,7 @@ namespace AoE2Lib.Bots
             ResearchModule = new ResearchModule();
             MicroModule = new MicroModule();
 
-            BotThread = new Thread(() => Run()) { IsBackground = true };
+            BotThread = new Thread(() => Run(endpoint)) { IsBackground = true };
             BotThread.Start();
         }
 
@@ -74,11 +77,11 @@ namespace AoE2Lib.Bots
             GameElementUpdates[element] = command;
         }
 
-        private void Run()
+        private void Run(string endpoint)
         {
             Log.Info($"Started");
 
-            var channel = new Channel("localhost:37412", ChannelCredentials.Insecure);
+            var channel = new Channel(endpoint, ChannelCredentials.Insecure);
             var api = new ExpertAPIClient(channel);
 
             Tick = 0;
