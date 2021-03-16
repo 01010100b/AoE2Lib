@@ -23,7 +23,6 @@ namespace AoE2Lib.Bots.Modules
 
         private Tile[] _Tiles { get; set; } = new Tile[0];
         private readonly Command Command = new Command();
-        private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode());
 
         public bool IsOnMap(Position position)
         {
@@ -229,7 +228,7 @@ namespace AoE2Lib.Bots.Modules
 
                 for (int i = 0; i < 10; i++)
                 {
-                    var position = positions[RNG.Next(positions.Count)];
+                    var position = positions[Bot.Rng.Next(positions.Count)];
                     foreach (var tile in GetTilesInRange(position, 30))
                     {
                         if (tile.LastUpdateGameTime < tile_time && !tile.Explored)
@@ -253,8 +252,8 @@ namespace AoE2Lib.Bots.Modules
                 {
                     for (int i = 0; i < 200; i++)
                     {
-                        var x = RNG.Next(Width);
-                        var y = RNG.Next(Height);
+                        var x = Bot.Rng.Next(Width);
+                        var y = Bot.Rng.Next(Height);
 
                         var tile = GetTile(x, y);
                         if (tile.LastUpdateGameTime < tile_time && !tile.Explored)

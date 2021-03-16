@@ -21,7 +21,6 @@ namespace AoE2Lib.Bots.Modules
 
         private readonly List<Command> CreateCommands = new List<Command>();
         private readonly List<Command> FindUnitCommands = new List<Command>();
-        private readonly Random Rng = new Random();
 
         public void AddUnitType(int id)
         {
@@ -133,7 +132,7 @@ namespace AoE2Lib.Bots.Modules
                 {
                     for (int i = 0; i < 10; i++)
                     {
-                        units[Rng.Next(units.Count)].RequestUpdate();
+                        units[Bot.Rng.Next(units.Count)].RequestUpdate();
                     }
                 }
             }
@@ -147,7 +146,7 @@ namespace AoE2Lib.Bots.Modules
                 
                 for (int i = 0; i < 100; i++)
                 {
-                    var position = positions[Rng.Next(positions.Count)];
+                    var position = positions[Bot.Rng.Next(positions.Count)];
                     AddAutoFindUnits(position);
                 }
                 
@@ -183,37 +182,37 @@ namespace AoE2Lib.Bots.Modules
             var range = 20;
 
             var player = Bot.PlayerNumber;
-            if (Rng.NextDouble() < 0.5)
+            if (Bot.Rng.NextDouble() < 0.5)
             {
                 var players = Bot.PlayersModule.Players.Values.Where(p => p.InGame).Select(p => p.PlayerNumber).ToList();
                 players.Add(0);
 
-                player = players[Rng.Next(players.Count)];
+                player = players[Bot.Rng.Next(players.Count)];
             }
 
             if (player == 0)
             {
-                if (Rng.NextDouble() < 0.5)
+                if (Bot.Rng.NextDouble() < 0.5)
                 {
                     FindResources(player, position, range, Resource.WOOD);
                 }
-                else if (Rng.NextDouble() < 0.5)
+                else if (Bot.Rng.NextDouble() < 0.5)
                 {
                     FindResources(player, position, range, Resource.FOOD);
                 }
-                else if (Rng.NextDouble() < 0.5)
+                else if (Bot.Rng.NextDouble() < 0.5)
                 {
                     FindResources(player, position, range, Resource.DEER);
                 }
-                else if (Rng.NextDouble() < 0.5)
+                else if (Bot.Rng.NextDouble() < 0.5)
                 {
                     FindResources(player, position, range, Resource.BOAR);
                 }
-                else if (Rng.NextDouble() < 0.5)
+                else if (Bot.Rng.NextDouble() < 0.5)
                 {
                     FindResources(player, position, range, Resource.GOLD);
                 }
-                else if (Rng.NextDouble() < 0.5)
+                else if (Bot.Rng.NextDouble() < 0.5)
                 {
                     FindResources(player, position, range, Resource.STONE);
                 }
@@ -224,35 +223,35 @@ namespace AoE2Lib.Bots.Modules
             }
             else
             {
-                if (Rng.NextDouble() < 0.5)
+                if (Bot.Rng.NextDouble() < 0.5)
                 {
                     FindUnits(player, position, range, CmdId.MILITARY);
                 }
-                else if (Rng.NextDouble() < 0.5)
+                else if (Bot.Rng.NextDouble() < 0.5)
                 {
                     FindUnits(player, position, range, CmdId.VILLAGER);
                 }
-                else if (Rng.NextDouble() < 0.5)
+                else if (Bot.Rng.NextDouble() < 0.5)
                 {
                     FindUnits(player, position, range, CmdId.MILITARY_BUILDING);
                 }
-                else if (Rng.NextDouble() < 0.5)
+                else if (Bot.Rng.NextDouble() < 0.5)
                 {
                     FindUnits(player, position, range, CmdId.CIVILIAN_BUILDING);
                 }
-                else if (Rng.NextDouble() < 0.5)
+                else if (Bot.Rng.NextDouble() < 0.5)
                 {
                     FindUnits(player, position, range, CmdId.MONK);
                 }
-                else if(Rng.NextDouble() < 0.5)
+                else if(Bot.Rng.NextDouble() < 0.5)
                 {
                     FindUnits(player, position, range, CmdId.LIVESTOCK_GAIA);
                 }
-                else if (Rng.NextDouble() < 0.5)
+                else if (Bot.Rng.NextDouble() < 0.5)
                 {
                     FindUnits(player, position, range, CmdId.TRADE);
                 }
-                else if (Rng.NextDouble() < 0.5)
+                else if (Bot.Rng.NextDouble() < 0.5)
                 {
                     FindUnits(player, position, range, CmdId.FISHING_SHIP);
                 }

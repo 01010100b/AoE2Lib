@@ -26,6 +26,7 @@ namespace AoE2Lib.Bots
         public UnitsModule UnitsModule { get; private set; }
         public ResearchModule ResearchModule { get; private set; }
         public MicroModule MicroModule { get; private set; }
+        public Random Rng { get; private set; } = new Random();
 
         private Thread BotThread { get; set; } = null;
         private volatile bool Stopping = false;
@@ -43,9 +44,16 @@ namespace AoE2Lib.Bots
 
         protected abstract IEnumerable<Command> Update();
 
-        internal void Start(int player)
+        internal void Start(int player, int seed = -1)
         {
             Stop();
+
+            if (seed < 0)
+            {
+                seed = Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.GetHashCode();
+            }
+
+            Rng = new Random(seed);
 
             PlayerNumber = player;
             Log = new Log(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"{Name} {PlayerNumber}.log"));
