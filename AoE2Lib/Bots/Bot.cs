@@ -192,7 +192,11 @@ namespace AoE2Lib.Bots
                         module.UpdateInternal();
                     }
 
-                    Tick++;
+                    if (commands.Count > 0)
+                    {
+                        Tick++;
+                    }
+                    
                     previous = DateTime.UtcNow;
 
                     Log.Info($"Update took {sw.ElapsedMilliseconds} ms");
