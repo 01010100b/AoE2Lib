@@ -139,12 +139,39 @@ namespace AoE2Lib.Bots.Modules
 
             if (AutoFindUnits)
             {
+                var player = Bot.PlayerNumber;
+                var pos = Bot.InfoModule.MyPosition;
+                var range = 25;
+                if (Bot.InfoModule.StrategicNumbers.TryGetValue(StrategicNumber.MAXIMUM_TOWN_SIZE, out int r))
+                {
+                    range = r;
+                }
+
+                FindUnits(player, pos, range, CmdId.VILLAGER);
+                FindUnits(player, pos, range, CmdId.MILITARY);
+                FindUnits(player, pos, range, CmdId.CIVILIAN_BUILDING);
+                FindUnits(player, pos, range, CmdId.MILITARY_BUILDING);
+                FindUnits(player, pos, range, CmdId.FISHING_SHIP);
+                FindUnits(player, pos, range, CmdId.LIVESTOCK_GAIA);
+                FindUnits(player, pos, range, CmdId.MONK);
+                FindUnits(player, pos, range, CmdId.TRADE);
+                FindUnits(player, pos, range, CmdId.TRANSPORT);
+
+                range += 10;
+
+                FindResources(0, pos, range, Resource.WOOD);
+                FindResources(0, pos, range, Resource.FOOD);
+                FindResources(0, pos, range, Resource.GOLD);
+                FindResources(0, pos, range, Resource.STONE);
+                FindResources(0, pos, range, Resource.BOAR);
+                FindResources(0, pos, range, Resource.DEER);
+
                 var positions = new List<Position>();
                 var map = Bot.MapModule;
                 positions.AddRange(map.Tiles.Where(t => t.Explored).Select(t => t.Position));
                 positions.Add(Bot.InfoModule.MyPosition);
                 
-                for (int i = 0; i < 100; i++)
+                for (int i = 0; i < 50; i++)
                 {
                     var position = positions[Bot.Rng.Next(positions.Count)];
                     AddAutoFindUnits(position);
