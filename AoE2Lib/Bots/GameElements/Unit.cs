@@ -39,6 +39,16 @@ namespace AoE2Lib.Bots.GameElements
             }
         }
 
+        public void TargetUnit(Unit target, UnitAction action, UnitFormation formation, UnitStance stance)
+        {
+            Bot.MicroModule.TargetUnit(this, target, action, formation, stance);
+        }
+
+        public void TargetPosition(Position target, UnitAction action, UnitFormation formation, UnitStance stance)
+        {
+            Bot.MicroModule.TargetPosition(this, target, action, formation, stance);
+        }
+
         protected override IEnumerable<IMessage> RequestElementUpdate()
         {
             yield return new UpSetTargetById() { InConstId = Id };
