@@ -73,7 +73,7 @@ namespace AoE2Lib.Bots.GameElements
                 return;
             }
 
-            var info = Bot.GetModule<InfoModule>();
+            var info = Bot.InfoModule;
             var old_pos = Position;
             var old_tick = LastUpdateTick;
 

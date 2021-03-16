@@ -60,7 +60,7 @@ namespace AoE2Lib.Bots.Modules
                 player.UnitsInternal.Clear();
             }
 
-            var units = Bot.GetModule<UnitsModule>();
+            var units = Bot.UnitsModule;
             foreach (var unit in units.Units.Values.Where(u => u.Targetable))
             {
                 if (Players.ContainsKey(unit.PlayerNumber))

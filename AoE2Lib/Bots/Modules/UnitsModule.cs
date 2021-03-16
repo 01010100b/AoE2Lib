@@ -141,9 +141,9 @@ namespace AoE2Lib.Bots.Modules
             if (AutoFindUnits)
             {
                 var positions = new List<Position>();
-                var map = Bot.GetModule<MapModule>();
+                var map = Bot.MapModule;
                 positions.AddRange(map.Tiles.Where(t => t.Explored).Select(t => t.Position));
-                positions.Add(Bot.GetModule<InfoModule>().MyPosition);
+                positions.Add(Bot.InfoModule.MyPosition);
                 
                 for (int i = 0; i < 100; i++)
                 {
@@ -185,7 +185,7 @@ namespace AoE2Lib.Bots.Modules
             var player = Bot.PlayerNumber;
             if (Rng.NextDouble() < 0.5)
             {
-                var players = Bot.GetModule<PlayersModule>().Players.Values.Where(p => p.InGame).Select(p => p.PlayerNumber).ToList();
+                var players = Bot.PlayersModule.Players.Values.Where(p => p.InGame).Select(p => p.PlayerNumber).ToList();
                 players.Add(0);
 
                 player = players[Rng.Next(players.Count)];

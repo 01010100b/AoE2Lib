@@ -20,16 +20,16 @@ namespace AoE2Lib.Bots
         public int PlayerNumber { get; private set; } = -1;
         public int Tick { get; private set; } = 0;
         public Log Log { get; private set; }
+        public InfoModule InfoModule { get; private set; }
+        public MapModule MapModule { get; private set; }
+        public PlayersModule PlayersModule { get; private set; }
+        public UnitsModule UnitsModule { get; private set; }
+        public ResearchModule ResearchModule { get; private set; }
+        public MicroModule MicroModule { get; private set; }
 
         private Thread BotThread { get; set; } = null;
         private volatile bool Stopping = false;
-        private readonly List<Module> Modules = new List<Module>();
         private readonly Dictionary<GameElement, Command> GameElementUpdates = new Dictionary<GameElement, Command>();
-
-        public T GetModule<T>() where T: Module
-        {
-            return Modules.OfType<T>().FirstOrDefault();
-        }
 
         public void Stop()
         {
@@ -50,12 +50,12 @@ namespace AoE2Lib.Bots
             PlayerNumber = player;
             Log = new Log(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"{Name} {PlayerNumber}.log"));
 
-            AddModule(new InfoModule());
-            AddModule(new MapModule());
-            AddModule(new PlayersModule());
-            AddModule(new UnitsModule());
-            AddModule(new ResearchModule());
-            AddModule(new MicroModule());
+            InfoModule = new InfoModule();
+            MapModule = new MapModule();
+            PlayersModule = new PlayersModule();
+            UnitsModule = new UnitsModule();
+            ResearchModule = new ResearchModule();
+            MicroModule = new MicroModule();
 
             BotThread = new Thread(() => Run()) { IsBackground = true };
             BotThread.Start();
@@ -64,15 +64,6 @@ namespace AoE2Lib.Bots
         internal void UpdateGameElement(GameElement element, Command command)
         {
             GameElementUpdates[element] = command;
-        }
-
-        private void AddModule<T>(T module) where T : Module
-        {
-            if (GetModule<T>() == default(T))
-            {
-                Modules.Add(module);
-                module.BotInternal = this;
-            }
         }
 
         private void Run()
@@ -101,12 +92,12 @@ namespace AoE2Lib.Bots
                     commands.AddRange(Update().Where(c => c.HasMessages));
                 }
 
-                Modules.Reverse(); // request modules update in reverse to allow later ones to use earlier ones
-                foreach (var module in Modules)
-                {
-                    commands.AddRange(module.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
-                }
-                Modules.Reverse(); // back in normal order
+                commands.AddRange(MicroModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
+                commands.AddRange(ResearchModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
+                commands.AddRange(UnitsModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
+                commands.AddRange(PlayersModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
+                commands.AddRange(MapModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
+                commands.AddRange(InfoModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
 
                 commands.AddRange(GameElementUpdates.Values);
 
@@ -192,10 +183,12 @@ namespace AoE2Lib.Bots
                     }
                     GameElementUpdates.Clear();
 
-                    foreach (var module in Modules)
-                    {
-                        module.UpdateInternal();
-                    }
+                    InfoModule.UpdateInternal();
+                    MapModule.UpdateInternal();
+                    PlayersModule.UpdateInternal();
+                    UnitsModule.UpdateInternal();
+                    ResearchModule.UpdateInternal();
+                    MicroModule.UpdateInternal();
 
                     previous = DateTime.UtcNow;
 

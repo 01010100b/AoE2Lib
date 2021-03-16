@@ -55,7 +55,7 @@ namespace AoE2Lib.Bots
             var responses = Command.GetResponses();
             UpdateElement(responses);
 
-            var gametime = Bot.GetModule<InfoModule>().GameTime;
+            var gametime = Bot.InfoModule.GameTime;
             LastUpdateGameTime = gametime;
             if (FirstUpdateGameTime == TimeSpan.MinValue)
             {
