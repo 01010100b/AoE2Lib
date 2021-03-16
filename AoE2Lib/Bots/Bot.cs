@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using static Protos.AIModuleAPI;
 using static Protos.Expert.ExpertAPI;
 
 namespace AoE2Lib.Bots
@@ -17,8 +18,9 @@ namespace AoE2Lib.Bots
     public abstract class Bot
     {
         public virtual string Name { get { return GetType().Name; } }
-        public int PlayerNumber { get; private set; } = -1;
         public GameVersion GameVersion { get; private set; }
+        public string DatFile { get; private set; } // Only available on AoC
+        public int PlayerNumber { get; private set; } = -1;
         public int Tick { get; private set; } = 0;
         public Log Log { get; private set; }
         public Random Rng { get; private set; } = new Random();
@@ -82,7 +84,13 @@ namespace AoE2Lib.Bots
             Log.Info($"Started");
 
             var channel = new Channel(endpoint, ChannelCredentials.Insecure);
+            var module_api = new AIModuleAPIClient(channel);
             var api = new ExpertAPIClient(channel);
+
+            if (GameVersion == GameVersion.AOC)
+            {
+                DatFile = module_api.GetGameDataFilePath(new Protos.GetGameDataFilePathRequest()).Result;
+            }
 
             Tick = 0;
             var sw = new Stopwatch();
