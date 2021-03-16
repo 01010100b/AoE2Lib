@@ -179,6 +179,11 @@ namespace AoE2Lib.Bots
                         offset += command.Responses.Count;
                     }
 
+                    if (commands.Count > 0)
+                    {
+                        Tick++;
+                    }
+
                     // perform update
 
                     foreach (var element in GameElementUpdates.Keys)
@@ -192,11 +197,6 @@ namespace AoE2Lib.Bots
                         module.UpdateInternal();
                     }
 
-                    if (commands.Count > 0)
-                    {
-                        Tick++;
-                    }
-                    
                     previous = DateTime.UtcNow;
 
                     Log.Info($"Update took {sw.ElapsedMilliseconds} ms");

@@ -1,4 +1,5 @@
-﻿using AoE2Lib.Utils;
+﻿using AoE2Lib.Bots.Modules;
+using AoE2Lib.Utils;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Protos.Expert.Action;
@@ -17,6 +18,7 @@ namespace AoE2Lib.Bots.GameElements
         public bool Targetable { get; private set; } = false;
         public bool Visible { get; private set; } = false;
         public Position Position => Position.FromPrecise(GetData(ObjectData.PRECISE_X), GetData(ObjectData.PRECISE_Y));
+        public Position Velocity { get; private set; } = Position.Zero;
 
         private readonly Dictionary<ObjectData, int> Data = new Dictionary<ObjectData, int>();
 
@@ -71,10 +73,22 @@ namespace AoE2Lib.Bots.GameElements
                 return;
             }
 
+            var info = Bot.GetModule<InfoModule>();
+            var old_pos = Position;
+            var old_tick = LastUpdateTick;
+
             for (int i = 0; i < data.Length; i++)
             {
                 Data[(ObjectData)i] = data[i];
             }
+
+            var new_pos = Position;
+            var new_tick = Bot.Tick;
+            var time = (new_tick - old_tick) * info.GameSecondsPerTick;
+            var v = (new_pos - old_pos) / time;
+
+            Velocity += v;
+            Velocity /= 2;
         }
     }
 }
