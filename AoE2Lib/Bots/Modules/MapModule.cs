@@ -248,23 +248,15 @@ namespace AoE2Lib.Bots.Modules
                     }
                 }
 
-                if (tiles.Count < TILES_PER_COMMAND)
+                for (int i = 0; i < TILES_PER_COMMAND; i++)
                 {
-                    for (int i = 0; i < 200; i++)
+                    var x = Bot.Rng.Next(Width);
+                    var y = Bot.Rng.Next(Height);
+
+                    var tile = GetTile(x, y);
+                    if (tile.LastUpdateGameTime < tile_time && !tile.Explored)
                     {
-                        var x = Bot.Rng.Next(Width);
-                        var y = Bot.Rng.Next(Height);
-
-                        var tile = GetTile(x, y);
-                        if (tile.LastUpdateGameTime < tile_time && !tile.Explored)
-                        {
-                            tiles.Add(tile);
-                        }
-
-                        if (tiles.Count >= TILES_PER_COMMAND)
-                        {
-                            break;
-                        }
+                        tiles.Add(tile);
                     }
                 }
 
