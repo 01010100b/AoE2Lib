@@ -39,7 +39,6 @@ namespace AoE2Lib.Bots.Modules
             command.Add(new SetGoal() { InConstGoalId = 100, InConstValue = position.PointX });
             command.Add(new SetGoal() { InConstGoalId = 101, InConstValue = position.PointY });
             command.Add(new UpBuildLine() { InConstBuildingId = id, InGoalPoint1 = 100, InGoalPoint2 = 100 });
-            command.Add(new Build() { InConstBuildingId = id });
 
             CreateCommands.Add(command);
         }
@@ -144,7 +143,7 @@ namespace AoE2Lib.Bots.Modules
                 var range = 25;
                 if (Bot.InfoModule.StrategicNumbers.TryGetValue(StrategicNumber.MAXIMUM_TOWN_SIZE, out int r))
                 {
-                    range = r;
+                    range = Math.Max(range, r);
                 }
 
                 FindUnits(player, pos, range, CmdId.VILLAGER);

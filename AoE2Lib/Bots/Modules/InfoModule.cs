@@ -71,7 +71,11 @@ namespace AoE2Lib.Bots.Modules
 
                 var x = responses[2].Unpack<GoalResult>().Result;
                 var y = responses[3].Unpack<GoalResult>().Result;
-                MyPosition = Position.FromPoint(x, y);
+                var pos = Position.FromPoint(x, y);
+                if (Bot.MapModule.IsOnMap(pos))
+                {
+                    MyPosition = pos;
+                }
 
                 WoodAmount = responses[4].Unpack<WoodAmountResult>().Result;
                 FoodAmount = responses[5].Unpack<FoodAmountResult>().Result;
