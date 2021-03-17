@@ -15,13 +15,13 @@ namespace AoE2Lib.Bots.Modules
 {
     public class MapModule : Module
     {
-        public IEnumerable<Tile> Tiles => _Tiles;
+        public IEnumerable<Tile> Tiles => _Tiles != null ? _Tiles : Enumerable.Empty<Tile>();
         public Tile this[Position position] { get { return GetTile(position.PointX, position.PointY); } }
         public int Width { get; private set; } = -1;
         public int Height { get; private set; } = -1;
         public bool AutoUpdate { get; set; } = true;
 
-        private Tile[] _Tiles { get; set; } = new Tile[0];
+        private Tile[] _Tiles { get; set; }
         private readonly Command Command = new Command();
 
         public bool IsOnMap(Position position)
