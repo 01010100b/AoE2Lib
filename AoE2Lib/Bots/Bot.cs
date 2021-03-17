@@ -63,12 +63,12 @@ namespace AoE2Lib.Bots
             PlayerNumber = player;
             Log = new Log(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"{Name} {PlayerNumber}.log"));
 
-            InfoModule = new InfoModule();
-            MapModule = new MapModule();
-            PlayersModule = new PlayersModule();
-            UnitsModule = new UnitsModule();
-            ResearchModule = new ResearchModule();
-            MicroModule = new MicroModule();
+            InfoModule = new InfoModule() { BotInternal = this };
+            MapModule = new MapModule() { BotInternal = this };
+            PlayersModule = new PlayersModule() { BotInternal = this };
+            UnitsModule = new UnitsModule() { BotInternal = this };
+            ResearchModule = new ResearchModule() { BotInternal = this };
+            MicroModule = new MicroModule() { BotInternal = this };
 
             BotThread = new Thread(() => Run(endpoint)) { IsBackground = true };
             BotThread.Start();
