@@ -22,7 +22,7 @@ namespace ExampleBot
 
         private void ButtonConnect_Click(object sender, EventArgs e)
         {
-            var name = TextProcess.Text.Replace(".exe", "");
+            var name = TextProcess.Text;
             var process = Process.GetProcessesByName(name)[0];
             Instance = new AoEInstance(process);
         }
