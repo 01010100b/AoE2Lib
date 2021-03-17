@@ -13,7 +13,8 @@ namespace AoE2Lib.Bots.Modules
     public class InfoModule : Module
     {
         public TimeSpan GameTime { get; private set; } = TimeSpan.Zero;
-        public double GameSecondsPerTick { get; private set; } = 1;
+        public double GameSecondsPerTick { get; private set; } = 0.7;
+        public TimeSpan GameTimePerTick => TimeSpan.FromSeconds(GameSecondsPerTick);
         public int PlayerNumber => Bot.PlayerNumber;
         public Position MyPosition { get; private set; }
         public int WoodAmount { get; private set; } = -1;
