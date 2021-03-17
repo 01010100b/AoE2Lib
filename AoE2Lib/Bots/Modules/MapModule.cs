@@ -23,7 +23,6 @@ namespace AoE2Lib.Bots.Modules
 
         private Tile[] _Tiles { get; set; } = new Tile[0];
         private readonly Command Command = new Command();
-        private readonly Random RNG = new Random(Guid.NewGuid().GetHashCode());
 
         public bool IsOnMap(Position position)
         {
@@ -106,7 +105,7 @@ namespace AoE2Lib.Bots.Modules
                 tile.UnitsInternal.Clear();
             }
 
-            var units = Bot.GetModule<UnitsModule>();
+            var units = Bot.UnitsModule;
             foreach (var unit in units.Units.Values.Where(u => IsOnMap(u.Position)))
             {
                 this[unit.Position].UnitsInternal.Add(unit);
@@ -210,10 +209,10 @@ namespace AoE2Lib.Bots.Modules
             if (_Tiles != null)
             {
                 var positions = new List<Position>();
-                positions.AddRange(Bot.GetModule<UnitsModule>().Units.Values.Where(u => u.PlayerNumber == Bot.PlayerNumber).Select(u => u.Position));
-                positions.Add(Bot.GetModule<InfoModule>().MyPosition);
+                positions.AddRange(Bot.UnitsModule.Units.Values.Where(u => u.PlayerNumber == Bot.PlayerNumber).Select(u => u.Position));
+                positions.Add(Bot.InfoModule.MyPosition);
 
-                var gametime = Bot.GetModule<InfoModule>().GameTime;
+                var gametime = Bot.InfoModule.GameTime;
                 var tile_time = gametime - TimeSpan.FromMinutes(3);
 
                 if (gametime < TimeSpan.FromMinutes(5))
@@ -229,8 +228,8 @@ namespace AoE2Lib.Bots.Modules
 
                 for (int i = 0; i < 10; i++)
                 {
-                    var position = positions[RNG.Next(positions.Count)];
-                    foreach (var tile in GetTilesInRange(position, 20))
+                    var position = positions[Bot.Rng.Next(positions.Count)];
+                    foreach (var tile in GetTilesInRange(position, 30))
                     {
                         if (tile.LastUpdateGameTime < tile_time && !tile.Explored)
                         {
@@ -246,6 +245,18 @@ namespace AoE2Lib.Bots.Modules
                     if (tiles.Count >= TILES_PER_COMMAND)
                     {
                         break;
+                    }
+                }
+
+                for (int i = 0; i < TILES_PER_COMMAND; i++)
+                {
+                    var x = Bot.Rng.Next(Width);
+                    var y = Bot.Rng.Next(Height);
+
+                    var tile = GetTile(x, y);
+                    if (tile.LastUpdateGameTime < tile_time && !tile.Explored)
+                    {
+                        tiles.Add(tile);
                     }
                 }
 

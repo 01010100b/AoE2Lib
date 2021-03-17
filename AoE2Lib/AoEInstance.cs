@@ -24,10 +24,10 @@ namespace AoE2Lib
             Process = process;
         }
 
-        public void StartBot(Bot bot, int player)
+        public void StartBot(Bot bot, int player, string endpoint = "localhost:37412", int seed = -1)
         {
             LoadAIModule();
-            bot.Start(player);
+            bot.Start(player, endpoint, seed, Version);
         }
 
         public void RunGame(Game game)

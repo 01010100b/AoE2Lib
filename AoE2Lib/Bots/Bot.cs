@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using static Protos.AIModuleAPI;
 using static Protos.Expert.ExpertAPI;
 
 namespace AoE2Lib.Bots
@@ -17,19 +18,22 @@ namespace AoE2Lib.Bots
     public abstract class Bot
     {
         public virtual string Name { get { return GetType().Name; } }
+        public GameVersion GameVersion { get; private set; }
+        public string DatFile { get; private set; } // Only available on AoC
         public int PlayerNumber { get; private set; } = -1;
         public int Tick { get; private set; } = 0;
         public Log Log { get; private set; }
+        public Random Rng { get; private set; } = new Random();
+        public InfoModule InfoModule { get; private set; }
+        public MapModule MapModule { get; private set; }
+        public PlayersModule PlayersModule { get; private set; }
+        public UnitsModule UnitsModule { get; private set; }
+        public ResearchModule ResearchModule { get; private set; }
+        public MicroModule MicroModule { get; private set; }
 
         private Thread BotThread { get; set; } = null;
         private volatile bool Stopping = false;
-        private readonly List<Module> Modules = new List<Module>();
         private readonly Dictionary<GameElement, Command> GameElementUpdates = new Dictionary<GameElement, Command>();
-
-        public T GetModule<T>() where T: Module
-        {
-            return Modules.OfType<T>().FirstOrDefault();
-        }
 
         public void Stop()
         {
@@ -43,21 +47,30 @@ namespace AoE2Lib.Bots
 
         protected abstract IEnumerable<Command> Update();
 
-        internal void Start(int player)
+        internal void Start(int player, string endpoint, int seed, GameVersion version)
         {
             Stop();
+
+            GameVersion = version;
+
+            if (seed < 0)
+            {
+                seed = Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.GetHashCode();
+            }
+
+            Rng = new Random(seed);
 
             PlayerNumber = player;
             Log = new Log(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"{Name} {PlayerNumber}.log"));
 
-            AddModule(new InfoModule());
-            AddModule(new MapModule());
-            AddModule(new PlayersModule());
-            AddModule(new UnitsModule());
-            AddModule(new ResearchModule());
-            AddModule(new MicroModule());
+            InfoModule = new InfoModule();
+            MapModule = new MapModule();
+            PlayersModule = new PlayersModule();
+            UnitsModule = new UnitsModule();
+            ResearchModule = new ResearchModule();
+            MicroModule = new MicroModule();
 
-            BotThread = new Thread(() => Run()) { IsBackground = true };
+            BotThread = new Thread(() => Run(endpoint)) { IsBackground = true };
             BotThread.Start();
         }
 
@@ -66,21 +79,18 @@ namespace AoE2Lib.Bots
             GameElementUpdates[element] = command;
         }
 
-        private void AddModule<T>(T module) where T : Module
-        {
-            if (GetModule<T>() == default(T))
-            {
-                Modules.Add(module);
-                module.BotInternal = this;
-            }
-        }
-
-        private void Run()
+        private void Run(string endpoint)
         {
             Log.Info($"Started");
 
-            var channel = new Channel("localhost:37412", ChannelCredentials.Insecure);
+            var channel = new Channel(endpoint, ChannelCredentials.Insecure);
+            var module_api = new AIModuleAPIClient(channel);
             var api = new ExpertAPIClient(channel);
+
+            if (GameVersion == GameVersion.AOC)
+            {
+                DatFile = module_api.GetGameDataFilePath(new Protos.GetGameDataFilePathRequest()).Result;
+            }
 
             Tick = 0;
             var sw = new Stopwatch();
@@ -101,12 +111,12 @@ namespace AoE2Lib.Bots
                     commands.AddRange(Update().Where(c => c.HasMessages));
                 }
 
-                Modules.Reverse(); // request modules update in reverse to allow later ones to use earlier ones
-                foreach (var module in Modules)
-                {
-                    commands.AddRange(module.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
-                }
-                Modules.Reverse(); // back in normal order
+                commands.AddRange(MicroModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
+                commands.AddRange(ResearchModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
+                commands.AddRange(UnitsModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
+                commands.AddRange(PlayersModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
+                commands.AddRange(MapModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
+                commands.AddRange(InfoModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
 
                 commands.AddRange(GameElementUpdates.Values);
 
@@ -179,6 +189,11 @@ namespace AoE2Lib.Bots
                         offset += command.Responses.Count;
                     }
 
+                    if (commands.Count > 0)
+                    {
+                        Tick++;
+                    }
+
                     // perform update
 
                     foreach (var element in GameElementUpdates.Keys)
@@ -187,16 +202,13 @@ namespace AoE2Lib.Bots
                     }
                     GameElementUpdates.Clear();
 
-                    foreach (var module in Modules)
-                    {
-                        module.UpdateInternal();
-                    }
+                    InfoModule.UpdateInternal();
+                    MapModule.UpdateInternal();
+                    PlayersModule.UpdateInternal();
+                    UnitsModule.UpdateInternal();
+                    ResearchModule.UpdateInternal();
+                    MicroModule.UpdateInternal();
 
-                    if (commands.Count > 0)
-                    {
-                        Tick++;
-                    }
-                    
                     previous = DateTime.UtcNow;
 
                     Log.Info($"Update took {sw.ElapsedMilliseconds} ms");

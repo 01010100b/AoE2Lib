@@ -14,9 +14,9 @@ namespace ExampleBot
 
         protected override IEnumerable<Command> Update()
         {
-            var info = GetModule<InfoModule>();
-            var map = GetModule<MapModule>();
-            var units = GetModule<UnitsModule>();
+            var info = InfoModule;
+            var map = MapModule;
+            var units = UnitsModule;
 
             Debug.WriteLine($"Tick {Tick} Game time {info.GameTime}");
             Debug.WriteLine($"Wood {info.WoodAmount} Food {info.FoodAmount} Gold {info.GoldAmount} Stone {info.StoneAmount}");
