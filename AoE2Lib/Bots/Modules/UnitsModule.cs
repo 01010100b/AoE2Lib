@@ -143,7 +143,7 @@ namespace AoE2Lib.Bots.Modules
                 var range = 25;
                 if (Bot.InfoModule.StrategicNumbers.TryGetValue(StrategicNumber.MAXIMUM_TOWN_SIZE, out int r))
                 {
-                    range = r;
+                    range = Math.Max(range, r);
                 }
 
                 FindUnits(player, pos, range, CmdId.VILLAGER);
