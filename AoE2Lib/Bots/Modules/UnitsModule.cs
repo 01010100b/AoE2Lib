@@ -1,5 +1,7 @@
 ﻿using AoE2Lib.Bots.GameElements;
 using AoE2Lib.Utils;
+using Google.Protobuf.WellKnownTypes;
+using Protos.Expert;
 using Protos.Expert.Action;
 using Protos.Expert.Fact;
 using System;
@@ -21,6 +23,7 @@ namespace AoE2Lib.Bots.Modules
 
         private readonly List<Command> CreateCommands = new List<Command>();
         private readonly List<Command> FindUnitCommands = new List<Command>();
+        private readonly Command ScanUnitsCommand = new Command();
 
         public void AddUnitType(int id)
         {
@@ -129,8 +132,6 @@ namespace AoE2Lib.Bots.Modules
                 yield return command;
             }
 
-            CreateCommands.Clear();
-
             foreach (var type in UnitTypes.Values)
             {
                 type.RequestUpdate();
@@ -198,12 +199,23 @@ namespace AoE2Lib.Bots.Modules
                     AddAutoFindUnits(position);
                 }
                 
+                for (int i = 1; i <= 8; i++)
+                {
+                    ScanUnitsCommand.Add(new PlayerValid() { InPlayerAnyPlayer = i }, "!=", 0,
+                        new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, InConstValue = i },
+                        new UpFullResetSearch(),
+                        new UpFindRemote() { InConstUnitId = -1, InConstCount = 40},
+                        new UpSearchObjectIdList() { InConstSearchSource = 2}
+                        );
+                }
             }
 
             foreach (var command in FindUnitCommands)
             {
                 yield return command;
             }
+
+            yield return ScanUnitsCommand;
         }
 
         protected override void Update()
@@ -213,7 +225,7 @@ namespace AoE2Lib.Bots.Modules
                 var responses = command.GetResponses();
                 var ids = responses[responses.Count - 1].Unpack<UpSearchObjectIdListResult>().Result.ToArray();
 
-                foreach (var id in ids.Where(i => i > 0))
+                foreach (var id in ids)
                 {
                     if (!Units.ContainsKey(id))
                     {
@@ -222,7 +234,32 @@ namespace AoE2Lib.Bots.Modules
                 }
             }
 
+            if (ScanUnitsCommand.HasResponses)
+            {
+                var responses = ScanUnitsCommand.GetResponses();
+
+                for (int i = 1; i <= 8; i++)
+                {
+                    var index = (i * 4) - 1;
+                    var cc = responses[index].Unpack<ConditionalCommandResult>();
+                    if (cc.Fired)
+                    {
+                        var ids = cc.Result.Unpack<UpSearchObjectIdListResult>().Result.ToList();
+
+                        foreach (var id in ids)
+                        {
+                            if (!Units.ContainsKey(id))
+                            {
+                                _Units.Add(id, new Unit(Bot, id));
+                            }
+                        }
+                    }
+                }
+            }
+
+            CreateCommands.Clear();
             FindUnitCommands.Clear();
+            ScanUnitsCommand.Reset();
         }
 
         private void AddAutoFindUnits(Position position)
