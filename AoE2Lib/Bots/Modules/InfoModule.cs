@@ -13,7 +13,7 @@ namespace AoE2Lib.Bots.Modules
     public class InfoModule : Module
     {
         public TimeSpan GameTime { get; private set; } = TimeSpan.Zero;
-        public double GameSecondsPerTick { get; private set; } = 1;
+        public TimeSpan GameTimePerTick { get; private set; } = TimeSpan.FromSeconds(1);
         public int PlayerNumber => Bot.PlayerNumber;
         public Position MyPosition { get; private set; }
         public int WoodAmount { get; private set; } = -1;
@@ -23,10 +23,10 @@ namespace AoE2Lib.Bots.Modules
         public int PopulationHeadroom { get; private set; } = -1;
         public int HousingHeadroom { get; private set; } = -1;
         public int PopulationCap { get; private set; } = -1;
-
         public readonly Dictionary<StrategicNumber, int> StrategicNumbers = new Dictionary<StrategicNumber, int>();
-        
+
         private readonly Command Command = new Command();
+        private readonly double[] TickTimes = new double[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
 
         protected override IEnumerable<Command> RequestUpdate()
         {
@@ -62,12 +62,13 @@ namespace AoE2Lib.Bots.Modules
             if (Command.HasResponses)
             {
                 var responses = Command.GetResponses();
-                var current_time = GameTime;
 
+                var current_time = GameTime;
                 GameTime = TimeSpan.FromSeconds(responses[0].Unpack<GameTimeResult>().Result);
-                GameSecondsPerTick *= 19;
-                GameSecondsPerTick += (GameTime - current_time).TotalSeconds;
-                GameSecondsPerTick /= 20;
+
+                TickTimes[Bot.Tick % TickTimes.Length] = (GameTime - current_time).TotalSeconds;
+                GameTimePerTick += TimeSpan.FromSeconds(TickTimes.Average());
+                GameTimePerTick /= 2;
 
                 var x = responses[2].Unpack<GoalResult>().Result;
                 var y = responses[3].Unpack<GoalResult>().Result;

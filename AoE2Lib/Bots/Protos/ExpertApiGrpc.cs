@@ -44,8 +44,6 @@ namespace Protos.Expert {
 
     static readonly grpc::Marshaller<global::Protos.Expert.CommandList> __Marshaller_protos_expert_CommandList = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Protos.Expert.CommandList.Parser));
     static readonly grpc::Marshaller<global::Protos.Expert.CommandResultList> __Marshaller_protos_expert_CommandResultList = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Protos.Expert.CommandResultList.Parser));
-    static readonly grpc::Marshaller<global::Protos.Expert.ResolveConstRequest> __Marshaller_protos_expert_ResolveConstRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Protos.Expert.ResolveConstRequest.Parser));
-    static readonly grpc::Marshaller<global::Protos.Expert.ResolveConstResponse> __Marshaller_protos_expert_ResolveConstResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Protos.Expert.ResolveConstResponse.Parser));
 
     static readonly grpc::Method<global::Protos.Expert.CommandList, global::Protos.Expert.CommandResultList> __Method_ExecuteCommandList = new grpc::Method<global::Protos.Expert.CommandList, global::Protos.Expert.CommandResultList>(
         grpc::MethodType.Unary,
@@ -53,13 +51,6 @@ namespace Protos.Expert {
         "ExecuteCommandList",
         __Marshaller_protos_expert_CommandList,
         __Marshaller_protos_expert_CommandResultList);
-
-    static readonly grpc::Method<global::Protos.Expert.ResolveConstRequest, global::Protos.Expert.ResolveConstResponse> __Method_ResolveConst = new grpc::Method<global::Protos.Expert.ResolveConstRequest, global::Protos.Expert.ResolveConstResponse>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "ResolveConst",
-        __Marshaller_protos_expert_ResolveConstRequest,
-        __Marshaller_protos_expert_ResolveConstResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -137,54 +128,6 @@ namespace Protos.Expert {
       public virtual grpc::AsyncUnaryCall<global::Protos.Expert.CommandResultList> ExecuteCommandListAsync(global::Protos.Expert.CommandList request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_ExecuteCommandList, null, options, request);
-      }
-      /// <summary>
-      ///*
-      /// Experimental. Currently unsupported.
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
-      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
-      /// <param name="cancellationToken">An optional token for canceling the call.</param>
-      /// <returns>The response received from the server.</returns>
-      public virtual global::Protos.Expert.ResolveConstResponse ResolveConst(global::Protos.Expert.ResolveConstRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return ResolveConst(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      /// <summary>
-      ///*
-      /// Experimental. Currently unsupported.
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="options">The options for the call.</param>
-      /// <returns>The response received from the server.</returns>
-      public virtual global::Protos.Expert.ResolveConstResponse ResolveConst(global::Protos.Expert.ResolveConstRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_ResolveConst, null, options, request);
-      }
-      /// <summary>
-      ///*
-      /// Experimental. Currently unsupported.
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
-      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
-      /// <param name="cancellationToken">An optional token for canceling the call.</param>
-      /// <returns>The call object.</returns>
-      public virtual grpc::AsyncUnaryCall<global::Protos.Expert.ResolveConstResponse> ResolveConstAsync(global::Protos.Expert.ResolveConstRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return ResolveConstAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      /// <summary>
-      ///*
-      /// Experimental. Currently unsupported.
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="options">The options for the call.</param>
-      /// <returns>The call object.</returns>
-      public virtual grpc::AsyncUnaryCall<global::Protos.Expert.ResolveConstResponse> ResolveConstAsync(global::Protos.Expert.ResolveConstRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_ResolveConst, null, options, request);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override ExpertAPIClient NewInstance(ClientBaseConfiguration configuration)

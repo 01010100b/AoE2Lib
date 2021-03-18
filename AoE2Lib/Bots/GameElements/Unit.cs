@@ -77,7 +77,7 @@ namespace AoE2Lib.Bots.GameElements
                 return;
             }
 
-            if (player != 0 && player != Bot.PlayerNumber && visible == false)
+            if (player != 0 && player != Bot.PlayerNumber && (visible == false || data[(int)ObjectData.GARRISONED] == 1))
             {
                 Visible = false;
 
@@ -95,8 +95,12 @@ namespace AoE2Lib.Bots.GameElements
 
             var new_pos = Position;
             var new_tick = Bot.Tick;
-            var time = (new_tick - old_tick) * info.GameSecondsPerTick;
+            var time = (new_tick - old_tick) * info.GameTimePerTick.TotalSeconds;
             var v = (new_pos - old_pos) / Math.Max(0.001, time);
+            if (v.Norm > this[ObjectData.SPEED] / 100d)
+            {
+                v /= v.Norm;
+            }
 
             Velocity += v;
             Velocity /= 2;

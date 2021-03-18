@@ -71,6 +71,28 @@ namespace AoE2Lib.Bots.Modules
             command.Add(new UpSearchObjectIdList() { InConstSearchSource = 2 });
 
             FindUnitCommands.Add(command);
+
+            if (cmdid == CmdId.CIVILIAN_BUILDING || cmdid == CmdId.MILITARY_BUILDING)
+            {
+                command = new Command();
+
+                command.Add(new SetGoal() { InConstGoalId = 100, InConstValue = position.PointX });
+                command.Add(new SetGoal() { InConstGoalId = 101, InConstValue = position.PointY });
+                command.Add(new UpSetTargetPoint() { InGoalPoint = 100 });
+                command.Add(new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, InConstValue = player });
+                command.Add(new UpFullResetSearch());
+
+                command.Add(new UpFilterStatus() { InConstObjectStatus = 0, InConstObjectList = 0 });
+                command.Add(new UpFilterInclude() { InConstCmdId = (int)cmdid, InConstActionId = -1, InConstOrderId = -1, InConstOnMainland = -1 });
+                command.Add(new UpFilterDistance() { InConstMinDistance = -1, InConstMaxDistance = range });
+                command.Add(new UpFindStatusRemote() { InConstUnitId = -1, InConstCount = 40 });
+                command.Add(new UpFilterDistance() { InConstMinDistance = range - 1, InConstMaxDistance = -1 });
+                command.Add(new UpFindStatusRemote() { InConstUnitId = -1, InConstCount = 40 });
+
+                command.Add(new UpSearchObjectIdList() { InConstSearchSource = 2 });
+
+                FindUnitCommands.Add(command);
+            }
         }
 
         public void FindResources(int player, Position position, int range, Resource resource)

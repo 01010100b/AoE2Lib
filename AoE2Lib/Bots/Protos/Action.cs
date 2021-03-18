@@ -551,7 +551,16 @@ namespace Protos.Expert.Action {
             "ImcKDFVwVW5nYXJyaXNvbhIZCg9pbkNvbnN0T2JqZWN0SWQYASABKAVIABIY",
             "Cg5pbkdvYWxPYmplY3RJZBgCIAEoBUgAEhYKDGluU25PYmplY3RJZBgDIAEo",
             "BUgAQgoKCG9iamVjdElkIhQKElVwVW5nYXJyaXNvblJlc3VsdCIRCg9VcFVw",
-            "ZGF0ZVRhcmdldHMiFwoVVXBVcGRhdGVUYXJnZXRzUmVzdWx0YgZwcm90bzM="));
+            "ZGF0ZVRhcmdldHMiFwoVVXBVcGRhdGVUYXJnZXRzUmVzdWx0Ij0KC0ZlR2V0",
+            "U2lnbmFsEg4KBnBhcmFtMRgBIAEoBRIOCgZwYXJhbTIYAiABKAUSDgoGcGFy",
+            "YW0zGAMgASgFIhMKEUZlR2V0U2lnbmFsUmVzdWx0Ik0KC0ZlU2V0U2lnbmFs",
+            "Eg4KBnBhcmFtMRgBIAEoBRIOCgZwYXJhbTIYAiABKAUSDgoGcGFyYW0zGAMg",
+            "ASgFEg4KBnBhcmFtNBgEIAEoBSITChFGZVNldFNpZ25hbFJlc3VsdCJSChBG",
+            "ZUNjRWZmZWN0QW1vdW50Eg4KBnBhcmFtMRgBIAEoBRIOCgZwYXJhbTIYAiAB",
+            "KAUSDgoGcGFyYW0zGAMgASgFEg4KBnBhcmFtNBgEIAEoBSIYChZGZUNjRWZm",
+            "ZWN0QW1vdW50UmVzdWx0IlMKEUZlQ2NFZmZlY3RQZXJjZW50Eg4KBnBhcmFt",
+            "MRgBIAEoBRIOCgZwYXJhbTIYAiABKAUSDgoGcGFyYW0zGAMgASgFEg4KBnBh",
+            "cmFtNBgEIAEoBSIZChdGZUNjRWZmZWN0UGVyY2VudFJlc3VsdGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -972,7 +981,15 @@ namespace Protos.Expert.Action {
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Action.UpUngarrison), global::Protos.Expert.Action.UpUngarrison.Parser, new[]{ "InConstObjectId", "InGoalObjectId", "InSnObjectId" }, new[]{ "ObjectId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Action.UpUngarrisonResult), global::Protos.Expert.Action.UpUngarrisonResult.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Action.UpUpdateTargets), global::Protos.Expert.Action.UpUpdateTargets.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Action.UpUpdateTargetsResult), global::Protos.Expert.Action.UpUpdateTargetsResult.Parser, null, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Action.UpUpdateTargetsResult), global::Protos.Expert.Action.UpUpdateTargetsResult.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Action.FeGetSignal), global::Protos.Expert.Action.FeGetSignal.Parser, new[]{ "Param1", "Param2", "Param3" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Action.FeGetSignalResult), global::Protos.Expert.Action.FeGetSignalResult.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Action.FeSetSignal), global::Protos.Expert.Action.FeSetSignal.Parser, new[]{ "Param1", "Param2", "Param3", "Param4" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Action.FeSetSignalResult), global::Protos.Expert.Action.FeSetSignalResult.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Action.FeCcEffectAmount), global::Protos.Expert.Action.FeCcEffectAmount.Parser, new[]{ "Param1", "Param2", "Param3", "Param4" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Action.FeCcEffectAmountResult), global::Protos.Expert.Action.FeCcEffectAmountResult.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Action.FeCcEffectPercent), global::Protos.Expert.Action.FeCcEffectPercent.Parser, new[]{ "Param1", "Param2", "Param3", "Param4" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.Action.FeCcEffectPercentResult), global::Protos.Expert.Action.FeCcEffectPercentResult.Parser, null, null, null, null, null)
           }));
     }
     #endregion
@@ -81837,6 +81854,1666 @@ namespace Protos.Expert.Action {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(UpUpdateTargetsResult other) {
+      if (other == null) {
+        return;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  ///*
+  /// Only available in DE.
+  /// </summary>
+  public sealed partial class FeGetSignal : pb::IMessage<FeGetSignal>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<FeGetSignal> _parser = new pb::MessageParser<FeGetSignal>(() => new FeGetSignal());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<FeGetSignal> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protos.Expert.Action.ActionReflection.Descriptor.MessageTypes[418]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeGetSignal() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeGetSignal(FeGetSignal other) : this() {
+      param1_ = other.param1_;
+      param2_ = other.param2_;
+      param3_ = other.param3_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeGetSignal Clone() {
+      return new FeGetSignal(this);
+    }
+
+    /// <summary>Field number for the "param1" field.</summary>
+    public const int Param1FieldNumber = 1;
+    private int param1_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Param1 {
+      get { return param1_; }
+      set {
+        param1_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "param2" field.</summary>
+    public const int Param2FieldNumber = 2;
+    private int param2_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Param2 {
+      get { return param2_; }
+      set {
+        param2_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "param3" field.</summary>
+    public const int Param3FieldNumber = 3;
+    private int param3_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Param3 {
+      get { return param3_; }
+      set {
+        param3_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as FeGetSignal);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(FeGetSignal other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Param1 != other.Param1) return false;
+      if (Param2 != other.Param2) return false;
+      if (Param3 != other.Param3) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Param1 != 0) hash ^= Param1.GetHashCode();
+      if (Param2 != 0) hash ^= Param2.GetHashCode();
+      if (Param3 != 0) hash ^= Param3.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Param1 != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Param1);
+      }
+      if (Param2 != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Param2);
+      }
+      if (Param3 != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Param3);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Param1 != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Param1);
+      }
+      if (Param2 != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Param2);
+      }
+      if (Param3 != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Param3);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Param1 != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Param1);
+      }
+      if (Param2 != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Param2);
+      }
+      if (Param3 != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Param3);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(FeGetSignal other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Param1 != 0) {
+        Param1 = other.Param1;
+      }
+      if (other.Param2 != 0) {
+        Param2 = other.Param2;
+      }
+      if (other.Param3 != 0) {
+        Param3 = other.Param3;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Param1 = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            Param2 = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            Param3 = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Param1 = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            Param2 = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            Param3 = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  ///*
+  /// Only available in DE.
+  /// </summary>
+  public sealed partial class FeGetSignalResult : pb::IMessage<FeGetSignalResult>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<FeGetSignalResult> _parser = new pb::MessageParser<FeGetSignalResult>(() => new FeGetSignalResult());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<FeGetSignalResult> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protos.Expert.Action.ActionReflection.Descriptor.MessageTypes[419]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeGetSignalResult() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeGetSignalResult(FeGetSignalResult other) : this() {
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeGetSignalResult Clone() {
+      return new FeGetSignalResult(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as FeGetSignalResult);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(FeGetSignalResult other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(FeGetSignalResult other) {
+      if (other == null) {
+        return;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  ///*
+  /// Only available in DE.
+  /// </summary>
+  public sealed partial class FeSetSignal : pb::IMessage<FeSetSignal>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<FeSetSignal> _parser = new pb::MessageParser<FeSetSignal>(() => new FeSetSignal());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<FeSetSignal> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protos.Expert.Action.ActionReflection.Descriptor.MessageTypes[420]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeSetSignal() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeSetSignal(FeSetSignal other) : this() {
+      param1_ = other.param1_;
+      param2_ = other.param2_;
+      param3_ = other.param3_;
+      param4_ = other.param4_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeSetSignal Clone() {
+      return new FeSetSignal(this);
+    }
+
+    /// <summary>Field number for the "param1" field.</summary>
+    public const int Param1FieldNumber = 1;
+    private int param1_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Param1 {
+      get { return param1_; }
+      set {
+        param1_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "param2" field.</summary>
+    public const int Param2FieldNumber = 2;
+    private int param2_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Param2 {
+      get { return param2_; }
+      set {
+        param2_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "param3" field.</summary>
+    public const int Param3FieldNumber = 3;
+    private int param3_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Param3 {
+      get { return param3_; }
+      set {
+        param3_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "param4" field.</summary>
+    public const int Param4FieldNumber = 4;
+    private int param4_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Param4 {
+      get { return param4_; }
+      set {
+        param4_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as FeSetSignal);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(FeSetSignal other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Param1 != other.Param1) return false;
+      if (Param2 != other.Param2) return false;
+      if (Param3 != other.Param3) return false;
+      if (Param4 != other.Param4) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Param1 != 0) hash ^= Param1.GetHashCode();
+      if (Param2 != 0) hash ^= Param2.GetHashCode();
+      if (Param3 != 0) hash ^= Param3.GetHashCode();
+      if (Param4 != 0) hash ^= Param4.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Param1 != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Param1);
+      }
+      if (Param2 != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Param2);
+      }
+      if (Param3 != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Param3);
+      }
+      if (Param4 != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(Param4);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Param1 != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Param1);
+      }
+      if (Param2 != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Param2);
+      }
+      if (Param3 != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Param3);
+      }
+      if (Param4 != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(Param4);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Param1 != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Param1);
+      }
+      if (Param2 != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Param2);
+      }
+      if (Param3 != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Param3);
+      }
+      if (Param4 != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Param4);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(FeSetSignal other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Param1 != 0) {
+        Param1 = other.Param1;
+      }
+      if (other.Param2 != 0) {
+        Param2 = other.Param2;
+      }
+      if (other.Param3 != 0) {
+        Param3 = other.Param3;
+      }
+      if (other.Param4 != 0) {
+        Param4 = other.Param4;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Param1 = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            Param2 = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            Param3 = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            Param4 = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Param1 = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            Param2 = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            Param3 = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            Param4 = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  ///*
+  /// Only available in DE.
+  /// </summary>
+  public sealed partial class FeSetSignalResult : pb::IMessage<FeSetSignalResult>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<FeSetSignalResult> _parser = new pb::MessageParser<FeSetSignalResult>(() => new FeSetSignalResult());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<FeSetSignalResult> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protos.Expert.Action.ActionReflection.Descriptor.MessageTypes[421]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeSetSignalResult() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeSetSignalResult(FeSetSignalResult other) : this() {
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeSetSignalResult Clone() {
+      return new FeSetSignalResult(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as FeSetSignalResult);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(FeSetSignalResult other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(FeSetSignalResult other) {
+      if (other == null) {
+        return;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  ///*
+  /// Only available in DE.
+  /// </summary>
+  public sealed partial class FeCcEffectAmount : pb::IMessage<FeCcEffectAmount>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<FeCcEffectAmount> _parser = new pb::MessageParser<FeCcEffectAmount>(() => new FeCcEffectAmount());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<FeCcEffectAmount> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protos.Expert.Action.ActionReflection.Descriptor.MessageTypes[422]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeCcEffectAmount() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeCcEffectAmount(FeCcEffectAmount other) : this() {
+      param1_ = other.param1_;
+      param2_ = other.param2_;
+      param3_ = other.param3_;
+      param4_ = other.param4_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeCcEffectAmount Clone() {
+      return new FeCcEffectAmount(this);
+    }
+
+    /// <summary>Field number for the "param1" field.</summary>
+    public const int Param1FieldNumber = 1;
+    private int param1_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Param1 {
+      get { return param1_; }
+      set {
+        param1_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "param2" field.</summary>
+    public const int Param2FieldNumber = 2;
+    private int param2_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Param2 {
+      get { return param2_; }
+      set {
+        param2_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "param3" field.</summary>
+    public const int Param3FieldNumber = 3;
+    private int param3_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Param3 {
+      get { return param3_; }
+      set {
+        param3_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "param4" field.</summary>
+    public const int Param4FieldNumber = 4;
+    private int param4_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Param4 {
+      get { return param4_; }
+      set {
+        param4_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as FeCcEffectAmount);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(FeCcEffectAmount other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Param1 != other.Param1) return false;
+      if (Param2 != other.Param2) return false;
+      if (Param3 != other.Param3) return false;
+      if (Param4 != other.Param4) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Param1 != 0) hash ^= Param1.GetHashCode();
+      if (Param2 != 0) hash ^= Param2.GetHashCode();
+      if (Param3 != 0) hash ^= Param3.GetHashCode();
+      if (Param4 != 0) hash ^= Param4.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Param1 != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Param1);
+      }
+      if (Param2 != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Param2);
+      }
+      if (Param3 != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Param3);
+      }
+      if (Param4 != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(Param4);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Param1 != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Param1);
+      }
+      if (Param2 != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Param2);
+      }
+      if (Param3 != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Param3);
+      }
+      if (Param4 != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(Param4);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Param1 != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Param1);
+      }
+      if (Param2 != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Param2);
+      }
+      if (Param3 != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Param3);
+      }
+      if (Param4 != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Param4);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(FeCcEffectAmount other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Param1 != 0) {
+        Param1 = other.Param1;
+      }
+      if (other.Param2 != 0) {
+        Param2 = other.Param2;
+      }
+      if (other.Param3 != 0) {
+        Param3 = other.Param3;
+      }
+      if (other.Param4 != 0) {
+        Param4 = other.Param4;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Param1 = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            Param2 = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            Param3 = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            Param4 = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Param1 = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            Param2 = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            Param3 = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            Param4 = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  ///*
+  /// Only available in DE.
+  /// </summary>
+  public sealed partial class FeCcEffectAmountResult : pb::IMessage<FeCcEffectAmountResult>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<FeCcEffectAmountResult> _parser = new pb::MessageParser<FeCcEffectAmountResult>(() => new FeCcEffectAmountResult());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<FeCcEffectAmountResult> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protos.Expert.Action.ActionReflection.Descriptor.MessageTypes[423]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeCcEffectAmountResult() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeCcEffectAmountResult(FeCcEffectAmountResult other) : this() {
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeCcEffectAmountResult Clone() {
+      return new FeCcEffectAmountResult(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as FeCcEffectAmountResult);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(FeCcEffectAmountResult other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(FeCcEffectAmountResult other) {
+      if (other == null) {
+        return;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  ///*
+  /// Only available in DE.
+  /// </summary>
+  public sealed partial class FeCcEffectPercent : pb::IMessage<FeCcEffectPercent>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<FeCcEffectPercent> _parser = new pb::MessageParser<FeCcEffectPercent>(() => new FeCcEffectPercent());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<FeCcEffectPercent> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protos.Expert.Action.ActionReflection.Descriptor.MessageTypes[424]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeCcEffectPercent() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeCcEffectPercent(FeCcEffectPercent other) : this() {
+      param1_ = other.param1_;
+      param2_ = other.param2_;
+      param3_ = other.param3_;
+      param4_ = other.param4_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeCcEffectPercent Clone() {
+      return new FeCcEffectPercent(this);
+    }
+
+    /// <summary>Field number for the "param1" field.</summary>
+    public const int Param1FieldNumber = 1;
+    private int param1_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Param1 {
+      get { return param1_; }
+      set {
+        param1_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "param2" field.</summary>
+    public const int Param2FieldNumber = 2;
+    private int param2_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Param2 {
+      get { return param2_; }
+      set {
+        param2_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "param3" field.</summary>
+    public const int Param3FieldNumber = 3;
+    private int param3_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Param3 {
+      get { return param3_; }
+      set {
+        param3_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "param4" field.</summary>
+    public const int Param4FieldNumber = 4;
+    private int param4_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Param4 {
+      get { return param4_; }
+      set {
+        param4_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as FeCcEffectPercent);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(FeCcEffectPercent other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Param1 != other.Param1) return false;
+      if (Param2 != other.Param2) return false;
+      if (Param3 != other.Param3) return false;
+      if (Param4 != other.Param4) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Param1 != 0) hash ^= Param1.GetHashCode();
+      if (Param2 != 0) hash ^= Param2.GetHashCode();
+      if (Param3 != 0) hash ^= Param3.GetHashCode();
+      if (Param4 != 0) hash ^= Param4.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Param1 != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Param1);
+      }
+      if (Param2 != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Param2);
+      }
+      if (Param3 != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Param3);
+      }
+      if (Param4 != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(Param4);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Param1 != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Param1);
+      }
+      if (Param2 != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Param2);
+      }
+      if (Param3 != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Param3);
+      }
+      if (Param4 != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(Param4);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Param1 != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Param1);
+      }
+      if (Param2 != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Param2);
+      }
+      if (Param3 != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Param3);
+      }
+      if (Param4 != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Param4);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(FeCcEffectPercent other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Param1 != 0) {
+        Param1 = other.Param1;
+      }
+      if (other.Param2 != 0) {
+        Param2 = other.Param2;
+      }
+      if (other.Param3 != 0) {
+        Param3 = other.Param3;
+      }
+      if (other.Param4 != 0) {
+        Param4 = other.Param4;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Param1 = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            Param2 = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            Param3 = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            Param4 = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Param1 = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            Param2 = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            Param3 = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            Param4 = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  ///*
+  /// Only available in DE.
+  /// </summary>
+  public sealed partial class FeCcEffectPercentResult : pb::IMessage<FeCcEffectPercentResult>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<FeCcEffectPercentResult> _parser = new pb::MessageParser<FeCcEffectPercentResult>(() => new FeCcEffectPercentResult());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<FeCcEffectPercentResult> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protos.Expert.Action.ActionReflection.Descriptor.MessageTypes[425]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeCcEffectPercentResult() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeCcEffectPercentResult(FeCcEffectPercentResult other) : this() {
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FeCcEffectPercentResult Clone() {
+      return new FeCcEffectPercentResult(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as FeCcEffectPercentResult);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(FeCcEffectPercentResult other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(FeCcEffectPercentResult other) {
       if (other == null) {
         return;
       }
