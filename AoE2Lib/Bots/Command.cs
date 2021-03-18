@@ -35,6 +35,19 @@ namespace AoE2Lib.Bots
             Messages.AddRange(commands);
         }
 
+        public void Add(IMessage fact, string op, int value, IMessage command)
+        {
+            var cc = new ConditionalCommand()
+            {
+                Fact = Any.Pack(fact),
+                CompareOp = op,
+                Value = value,
+                Command = Any.Pack(command)
+            };
+
+            Messages.Add(cc);
+        }
+
         public void Add(IMessage fact, string op, int value, params IMessage[] commands)
         {
             foreach (var command in commands)
