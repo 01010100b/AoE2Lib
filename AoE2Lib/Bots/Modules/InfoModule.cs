@@ -13,7 +13,7 @@ namespace AoE2Lib.Bots.Modules
     public class InfoModule : Module
     {
         public TimeSpan GameTime { get; private set; } = TimeSpan.Zero;
-        public TimeSpan GameTimePerTick { get; private set; } = TimeSpan.FromSeconds(1);
+        public TimeSpan GameTimePerTick { get; private set; } = TimeSpan.FromSeconds(0.7);
         public int PlayerNumber => Bot.PlayerNumber;
         public Position MyPosition { get; private set; }
         public int WoodAmount { get; private set; } = -1;
@@ -26,7 +26,7 @@ namespace AoE2Lib.Bots.Modules
         public readonly Dictionary<StrategicNumber, int> StrategicNumbers = new Dictionary<StrategicNumber, int>();
 
         private readonly Command Command = new Command();
-        private readonly double[] TickTimes = new double[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+        private readonly double[] TickTimes = new double[] { 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7 };
 
         protected override IEnumerable<Command> RequestUpdate()
         {
