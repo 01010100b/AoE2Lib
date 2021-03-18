@@ -29,20 +29,21 @@ namespace Protos.Expert {
             "DHBsYXllck51bWJlchgBIAEoBRImCghjb21tYW5kcxgCIAMoCzIULmdvb2ds",
             "ZS5wcm90b2J1Zi5BbnkiUAoRQ29tbWFuZFJlc3VsdExpc3QSFAoMcGxheWVy",
             "TnVtYmVyGAEgASgFEiUKB3Jlc3VsdHMYAiADKAsyFC5nb29nbGUucHJvdG9i",
-            "dWYuQW55Ii0KE1Jlc29sdmVDb25zdFJlcXVlc3QSFgoOY29uc3RUb1Jlc29s",
-            "dmUYASABKAkiKgoUUmVzb2x2ZUNvbnN0UmVzcG9uc2USEgoKY29uc3RWYWx1",
-            "ZRgBIAEoBTK8AQoJRXhwZXJ0QVBJElQKEkV4ZWN1dGVDb21tYW5kTGlzdBIa",
-            "LnByb3Rvcy5leHBlcnQuQ29tbWFuZExpc3QaIC5wcm90b3MuZXhwZXJ0LkNv",
-            "bW1hbmRSZXN1bHRMaXN0IgASWQoMUmVzb2x2ZUNvbnN0EiIucHJvdG9zLmV4",
-            "cGVydC5SZXNvbHZlQ29uc3RSZXF1ZXN0GiMucHJvdG9zLmV4cGVydC5SZXNv",
-            "bHZlQ29uc3RSZXNwb25zZSIAYgZwcm90bzM="));
+            "dWYuQW55IoEBChJDb25kaXRpb25hbENvbW1hbmQSIgoEZmFjdBgBIAEoCzIU",
+            "Lmdvb2dsZS5wcm90b2J1Zi5BbnkSEQoJY29tcGFyZU9wGAIgASgJEg0KBXZh",
+            "bHVlGAMgASgFEiUKB2NvbW1hbmQYBCABKAsyFC5nb29nbGUucHJvdG9idWYu",
+            "QW55Ik8KGENvbmRpdGlvbmFsQ29tbWFuZFJlc3VsdBINCgVmaXJlZBgBIAEo",
+            "CBIkCgZyZXN1bHQYAiABKAsyFC5nb29nbGUucHJvdG9idWYuQW55MmEKCUV4",
+            "cGVydEFQSRJUChJFeGVjdXRlQ29tbWFuZExpc3QSGi5wcm90b3MuZXhwZXJ0",
+            "LkNvbW1hbmRMaXN0GiAucHJvdG9zLmV4cGVydC5Db21tYW5kUmVzdWx0TGlz",
+            "dCIAYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.AnyReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.CommandList), global::Protos.Expert.CommandList.Parser, new[]{ "PlayerNumber", "Commands" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.CommandResultList), global::Protos.Expert.CommandResultList.Parser, new[]{ "PlayerNumber", "Results" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.ResolveConstRequest), global::Protos.Expert.ResolveConstRequest.Parser, new[]{ "ConstToResolve" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.ResolveConstResponse), global::Protos.Expert.ResolveConstResponse.Parser, new[]{ "ConstValue" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.ConditionalCommand), global::Protos.Expert.ConditionalCommand.Parser, new[]{ "Fact", "CompareOp", "Value", "Command" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.ConditionalCommandResult), global::Protos.Expert.ConditionalCommandResult.Parser, new[]{ "Fired", "Result" }, null, null, null, null)
           }));
     }
     #endregion
@@ -465,17 +466,19 @@ namespace Protos.Expert {
 
   /// <summary>
   ///*
-  /// Experimental. Currently unsupported.
+  /// An optional structure that can be put in the CommandList message commands list. The server
+  /// will evaluate the fact and compare it to the specified value using the operator given. The
+  /// command to be conditionally executed can be anything, including a fact.
   /// </summary>
-  public sealed partial class ResolveConstRequest : pb::IMessage<ResolveConstRequest>
+  public sealed partial class ConditionalCommand : pb::IMessage<ConditionalCommand>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<ResolveConstRequest> _parser = new pb::MessageParser<ResolveConstRequest>(() => new ResolveConstRequest());
+    private static readonly pb::MessageParser<ConditionalCommand> _parser = new pb::MessageParser<ConditionalCommand>(() => new ConditionalCommand());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<ResolveConstRequest> Parser { get { return _parser; } }
+    public static pb::MessageParser<ConditionalCommand> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -488,55 +491,97 @@ namespace Protos.Expert {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ResolveConstRequest() {
+    public ConditionalCommand() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ResolveConstRequest(ResolveConstRequest other) : this() {
-      constToResolve_ = other.constToResolve_;
+    public ConditionalCommand(ConditionalCommand other) : this() {
+      fact_ = other.fact_ != null ? other.fact_.Clone() : null;
+      compareOp_ = other.compareOp_;
+      value_ = other.value_;
+      command_ = other.command_ != null ? other.command_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ResolveConstRequest Clone() {
-      return new ResolveConstRequest(this);
+    public ConditionalCommand Clone() {
+      return new ConditionalCommand(this);
     }
 
-    /// <summary>Field number for the "constToResolve" field.</summary>
-    public const int ConstToResolveFieldNumber = 1;
-    private string constToResolve_ = "";
+    /// <summary>Field number for the "fact" field.</summary>
+    public const int FactFieldNumber = 1;
+    private global::Google.Protobuf.WellKnownTypes.Any fact_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string ConstToResolve {
-      get { return constToResolve_; }
+    public global::Google.Protobuf.WellKnownTypes.Any Fact {
+      get { return fact_; }
       set {
-        constToResolve_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        fact_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "compareOp" field.</summary>
+    public const int CompareOpFieldNumber = 2;
+    private string compareOp_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string CompareOp {
+      get { return compareOp_; }
+      set {
+        compareOp_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "value" field.</summary>
+    public const int ValueFieldNumber = 3;
+    private int value_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Value {
+      get { return value_; }
+      set {
+        value_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "command" field.</summary>
+    public const int CommandFieldNumber = 4;
+    private global::Google.Protobuf.WellKnownTypes.Any command_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Google.Protobuf.WellKnownTypes.Any Command {
+      get { return command_; }
+      set {
+        command_ = value;
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as ResolveConstRequest);
+      return Equals(other as ConditionalCommand);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(ResolveConstRequest other) {
+    public bool Equals(ConditionalCommand other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (ConstToResolve != other.ConstToResolve) return false;
+      if (!object.Equals(Fact, other.Fact)) return false;
+      if (CompareOp != other.CompareOp) return false;
+      if (Value != other.Value) return false;
+      if (!object.Equals(Command, other.Command)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (ConstToResolve.Length != 0) hash ^= ConstToResolve.GetHashCode();
+      if (fact_ != null) hash ^= Fact.GetHashCode();
+      if (CompareOp.Length != 0) hash ^= CompareOp.GetHashCode();
+      if (Value != 0) hash ^= Value.GetHashCode();
+      if (command_ != null) hash ^= Command.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -553,9 +598,21 @@ namespace Protos.Expert {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (ConstToResolve.Length != 0) {
+      if (fact_ != null) {
         output.WriteRawTag(10);
-        output.WriteString(ConstToResolve);
+        output.WriteMessage(Fact);
+      }
+      if (CompareOp.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(CompareOp);
+      }
+      if (Value != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Value);
+      }
+      if (command_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(Command);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -566,9 +623,21 @@ namespace Protos.Expert {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (ConstToResolve.Length != 0) {
+      if (fact_ != null) {
         output.WriteRawTag(10);
-        output.WriteString(ConstToResolve);
+        output.WriteMessage(Fact);
+      }
+      if (CompareOp.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(CompareOp);
+      }
+      if (Value != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Value);
+      }
+      if (command_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(Command);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -579,8 +648,17 @@ namespace Protos.Expert {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (ConstToResolve.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(ConstToResolve);
+      if (fact_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Fact);
+      }
+      if (CompareOp.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(CompareOp);
+      }
+      if (Value != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Value);
+      }
+      if (command_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Command);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -589,12 +667,27 @@ namespace Protos.Expert {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(ResolveConstRequest other) {
+    public void MergeFrom(ConditionalCommand other) {
       if (other == null) {
         return;
       }
-      if (other.ConstToResolve.Length != 0) {
-        ConstToResolve = other.ConstToResolve;
+      if (other.fact_ != null) {
+        if (fact_ == null) {
+          Fact = new global::Google.Protobuf.WellKnownTypes.Any();
+        }
+        Fact.MergeFrom(other.Fact);
+      }
+      if (other.CompareOp.Length != 0) {
+        CompareOp = other.CompareOp;
+      }
+      if (other.Value != 0) {
+        Value = other.Value;
+      }
+      if (other.command_ != null) {
+        if (command_ == null) {
+          Command = new global::Google.Protobuf.WellKnownTypes.Any();
+        }
+        Command.MergeFrom(other.Command);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -611,7 +704,25 @@ namespace Protos.Expert {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            ConstToResolve = input.ReadString();
+            if (fact_ == null) {
+              Fact = new global::Google.Protobuf.WellKnownTypes.Any();
+            }
+            input.ReadMessage(Fact);
+            break;
+          }
+          case 18: {
+            CompareOp = input.ReadString();
+            break;
+          }
+          case 24: {
+            Value = input.ReadInt32();
+            break;
+          }
+          case 34: {
+            if (command_ == null) {
+              Command = new global::Google.Protobuf.WellKnownTypes.Any();
+            }
+            input.ReadMessage(Command);
             break;
           }
         }
@@ -629,7 +740,25 @@ namespace Protos.Expert {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 10: {
-            ConstToResolve = input.ReadString();
+            if (fact_ == null) {
+              Fact = new global::Google.Protobuf.WellKnownTypes.Any();
+            }
+            input.ReadMessage(Fact);
+            break;
+          }
+          case 18: {
+            CompareOp = input.ReadString();
+            break;
+          }
+          case 24: {
+            Value = input.ReadInt32();
+            break;
+          }
+          case 34: {
+            if (command_ == null) {
+              Command = new global::Google.Protobuf.WellKnownTypes.Any();
+            }
+            input.ReadMessage(Command);
             break;
           }
         }
@@ -639,19 +768,15 @@ namespace Protos.Expert {
 
   }
 
-  /// <summary>
-  ///*
-  /// Experimental. Currently unsupported.
-  /// </summary>
-  public sealed partial class ResolveConstResponse : pb::IMessage<ResolveConstResponse>
+  public sealed partial class ConditionalCommandResult : pb::IMessage<ConditionalCommandResult>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<ResolveConstResponse> _parser = new pb::MessageParser<ResolveConstResponse>(() => new ResolveConstResponse());
+    private static readonly pb::MessageParser<ConditionalCommandResult> _parser = new pb::MessageParser<ConditionalCommandResult>(() => new ConditionalCommandResult());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<ResolveConstResponse> Parser { get { return _parser; } }
+    public static pb::MessageParser<ConditionalCommandResult> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -664,55 +789,69 @@ namespace Protos.Expert {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ResolveConstResponse() {
+    public ConditionalCommandResult() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ResolveConstResponse(ResolveConstResponse other) : this() {
-      constValue_ = other.constValue_;
+    public ConditionalCommandResult(ConditionalCommandResult other) : this() {
+      fired_ = other.fired_;
+      result_ = other.result_ != null ? other.result_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ResolveConstResponse Clone() {
-      return new ResolveConstResponse(this);
+    public ConditionalCommandResult Clone() {
+      return new ConditionalCommandResult(this);
     }
 
-    /// <summary>Field number for the "constValue" field.</summary>
-    public const int ConstValueFieldNumber = 1;
-    private int constValue_;
+    /// <summary>Field number for the "fired" field.</summary>
+    public const int FiredFieldNumber = 1;
+    private bool fired_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ConstValue {
-      get { return constValue_; }
+    public bool Fired {
+      get { return fired_; }
       set {
-        constValue_ = value;
+        fired_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "result" field.</summary>
+    public const int ResultFieldNumber = 2;
+    private global::Google.Protobuf.WellKnownTypes.Any result_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Google.Protobuf.WellKnownTypes.Any Result {
+      get { return result_; }
+      set {
+        result_ = value;
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as ResolveConstResponse);
+      return Equals(other as ConditionalCommandResult);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(ResolveConstResponse other) {
+    public bool Equals(ConditionalCommandResult other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (ConstValue != other.ConstValue) return false;
+      if (Fired != other.Fired) return false;
+      if (!object.Equals(Result, other.Result)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (ConstValue != 0) hash ^= ConstValue.GetHashCode();
+      if (Fired != false) hash ^= Fired.GetHashCode();
+      if (result_ != null) hash ^= Result.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -729,9 +868,13 @@ namespace Protos.Expert {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (ConstValue != 0) {
+      if (Fired != false) {
         output.WriteRawTag(8);
-        output.WriteInt32(ConstValue);
+        output.WriteBool(Fired);
+      }
+      if (result_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Result);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -742,9 +885,13 @@ namespace Protos.Expert {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (ConstValue != 0) {
+      if (Fired != false) {
         output.WriteRawTag(8);
-        output.WriteInt32(ConstValue);
+        output.WriteBool(Fired);
+      }
+      if (result_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Result);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -755,8 +902,11 @@ namespace Protos.Expert {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (ConstValue != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ConstValue);
+      if (Fired != false) {
+        size += 1 + 1;
+      }
+      if (result_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Result);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -765,12 +915,18 @@ namespace Protos.Expert {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(ResolveConstResponse other) {
+    public void MergeFrom(ConditionalCommandResult other) {
       if (other == null) {
         return;
       }
-      if (other.ConstValue != 0) {
-        ConstValue = other.ConstValue;
+      if (other.Fired != false) {
+        Fired = other.Fired;
+      }
+      if (other.result_ != null) {
+        if (result_ == null) {
+          Result = new global::Google.Protobuf.WellKnownTypes.Any();
+        }
+        Result.MergeFrom(other.Result);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -787,7 +943,14 @@ namespace Protos.Expert {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            ConstValue = input.ReadInt32();
+            Fired = input.ReadBool();
+            break;
+          }
+          case 18: {
+            if (result_ == null) {
+              Result = new global::Google.Protobuf.WellKnownTypes.Any();
+            }
+            input.ReadMessage(Result);
             break;
           }
         }
@@ -805,7 +968,14 @@ namespace Protos.Expert {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            ConstValue = input.ReadInt32();
+            Fired = input.ReadBool();
+            break;
+          }
+          case 18: {
+            if (result_ == null) {
+              Result = new global::Google.Protobuf.WellKnownTypes.Any();
+            }
+            input.ReadMessage(Result);
             break;
           }
         }

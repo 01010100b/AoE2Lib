@@ -24,22 +24,25 @@ namespace Protos {
     static AiModuleApiReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Ch9Cb3RzL1Byb3Rvcy9haV9tb2R1bGVfYXBpLnByb3RvEgZwcm90b3MiGgoY",
-            "SXNNYXRjaEluUHJvZ3Jlc3NSZXF1ZXN0IigKFklzTWF0Y2hJblByb2dyZXNz",
-            "UmVwbHkSDgoGcmVzdWx0GAEgASgIIhwKGkdldEdhbWVEYXRhRmlsZVBhdGhS",
-            "ZXF1ZXN0IioKGEdldEdhbWVEYXRhRmlsZVBhdGhSZXBseRIOCgZyZXN1bHQY",
-            "ASABKAkiDwoNVW5sb2FkUmVxdWVzdCINCgtVbmxvYWRSZXBseTL9AQoLQUlN",
-            "b2R1bGVBUEkSVwoRSXNNYXRjaEluUHJvZ3Jlc3MSIC5wcm90b3MuSXNNYXRj",
-            "aEluUHJvZ3Jlc3NSZXF1ZXN0Gh4ucHJvdG9zLklzTWF0Y2hJblByb2dyZXNz",
-            "UmVwbHkiABJdChNHZXRHYW1lRGF0YUZpbGVQYXRoEiIucHJvdG9zLkdldEdh",
-            "bWVEYXRhRmlsZVBhdGhSZXF1ZXN0GiAucHJvdG9zLkdldEdhbWVEYXRhRmls",
-            "ZVBhdGhSZXBseSIAEjYKBlVubG9hZBIVLnByb3Rvcy5VbmxvYWRSZXF1ZXN0",
-            "GhMucHJvdG9zLlVubG9hZFJlcGx5IgBiBnByb3RvMw=="));
+            "Ch9Cb3RzL1Byb3Rvcy9haV9tb2R1bGVfYXBpLnByb3RvEgZwcm90b3MiFwoV",
+            "R2V0TWF0Y2hTdGF0dXNSZXF1ZXN0IpwBChNHZXRNYXRjaFN0YXR1c1JlcGx5",
+            "EjwKC21hdGNoU3RhdHVzGAEgASgOMicucHJvdG9zLkdldE1hdGNoU3RhdHVz",
+            "UmVwbHkuTWF0Y2hTdGF0dXMiRwoLTWF0Y2hTdGF0dXMSDwoLSU5fUFJPR1JF",
+            "U1MQABIMCghGSU5JU0hFRBABEgwKCE5PX01BVENIEAISCwoHTE9BRElORxAD",
+            "IhwKGkdldEdhbWVEYXRhRmlsZVBhdGhSZXF1ZXN0IioKGEdldEdhbWVEYXRh",
+            "RmlsZVBhdGhSZXBseRIOCgZyZXN1bHQYASABKAkiDwoNVW5sb2FkUmVxdWVz",
+            "dCINCgtVbmxvYWRSZXBseTL0AQoLQUlNb2R1bGVBUEkSTgoOR2V0TWF0Y2hT",
+            "dGF0dXMSHS5wcm90b3MuR2V0TWF0Y2hTdGF0dXNSZXF1ZXN0GhsucHJvdG9z",
+            "LkdldE1hdGNoU3RhdHVzUmVwbHkiABJdChNHZXRHYW1lRGF0YUZpbGVQYXRo",
+            "EiIucHJvdG9zLkdldEdhbWVEYXRhRmlsZVBhdGhSZXF1ZXN0GiAucHJvdG9z",
+            "LkdldEdhbWVEYXRhRmlsZVBhdGhSZXBseSIAEjYKBlVubG9hZBIVLnByb3Rv",
+            "cy5VbmxvYWRSZXF1ZXN0GhMucHJvdG9zLlVubG9hZFJlcGx5IgBiBnByb3Rv",
+            "Mw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.IsMatchInProgressRequest), global::Protos.IsMatchInProgressRequest.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.IsMatchInProgressReply), global::Protos.IsMatchInProgressReply.Parser, new[]{ "Result" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.GetMatchStatusRequest), global::Protos.GetMatchStatusRequest.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.GetMatchStatusReply), global::Protos.GetMatchStatusReply.Parser, new[]{ "MatchStatus" }, null, new[]{ typeof(global::Protos.GetMatchStatusReply.Types.MatchStatus) }, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.GetGameDataFilePathRequest), global::Protos.GetGameDataFilePathRequest.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.GetGameDataFilePathReply), global::Protos.GetGameDataFilePathReply.Parser, new[]{ "Result" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.UnloadRequest), global::Protos.UnloadRequest.Parser, null, null, null, null, null),
@@ -52,17 +55,17 @@ namespace Protos {
   #region Messages
   /// <summary>
   ///*
-  /// `IsMatchInProgressRequest` call parameters.
+  /// `GetMatchStatusRequest` call parameters.
   /// </summary>
-  public sealed partial class IsMatchInProgressRequest : pb::IMessage<IsMatchInProgressRequest>
+  public sealed partial class GetMatchStatusRequest : pb::IMessage<GetMatchStatusRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<IsMatchInProgressRequest> _parser = new pb::MessageParser<IsMatchInProgressRequest>(() => new IsMatchInProgressRequest());
+    private static readonly pb::MessageParser<GetMatchStatusRequest> _parser = new pb::MessageParser<GetMatchStatusRequest>(() => new GetMatchStatusRequest());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<IsMatchInProgressRequest> Parser { get { return _parser; } }
+    public static pb::MessageParser<GetMatchStatusRequest> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -75,29 +78,29 @@ namespace Protos {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public IsMatchInProgressRequest() {
+    public GetMatchStatusRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public IsMatchInProgressRequest(IsMatchInProgressRequest other) : this() {
+    public GetMatchStatusRequest(GetMatchStatusRequest other) : this() {
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public IsMatchInProgressRequest Clone() {
-      return new IsMatchInProgressRequest(this);
+    public GetMatchStatusRequest Clone() {
+      return new GetMatchStatusRequest(this);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as IsMatchInProgressRequest);
+      return Equals(other as GetMatchStatusRequest);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(IsMatchInProgressRequest other) {
+    public bool Equals(GetMatchStatusRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -151,7 +154,7 @@ namespace Protos {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(IsMatchInProgressRequest other) {
+    public void MergeFrom(GetMatchStatusRequest other) {
       if (other == null) {
         return;
       }
@@ -192,17 +195,17 @@ namespace Protos {
 
   /// <summary>
   ///*
-  /// `IsMatchInProgressRequest` call reply.
+  /// `GetMatchStatusReply` call reply.
   /// </summary>
-  public sealed partial class IsMatchInProgressReply : pb::IMessage<IsMatchInProgressReply>
+  public sealed partial class GetMatchStatusReply : pb::IMessage<GetMatchStatusReply>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<IsMatchInProgressReply> _parser = new pb::MessageParser<IsMatchInProgressReply>(() => new IsMatchInProgressReply());
+    private static readonly pb::MessageParser<GetMatchStatusReply> _parser = new pb::MessageParser<GetMatchStatusReply>(() => new GetMatchStatusReply());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<IsMatchInProgressReply> Parser { get { return _parser; } }
+    public static pb::MessageParser<GetMatchStatusReply> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -215,55 +218,55 @@ namespace Protos {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public IsMatchInProgressReply() {
+    public GetMatchStatusReply() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public IsMatchInProgressReply(IsMatchInProgressReply other) : this() {
-      result_ = other.result_;
+    public GetMatchStatusReply(GetMatchStatusReply other) : this() {
+      matchStatus_ = other.matchStatus_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public IsMatchInProgressReply Clone() {
-      return new IsMatchInProgressReply(this);
+    public GetMatchStatusReply Clone() {
+      return new GetMatchStatusReply(this);
     }
 
-    /// <summary>Field number for the "result" field.</summary>
-    public const int ResultFieldNumber = 1;
-    private bool result_;
+    /// <summary>Field number for the "matchStatus" field.</summary>
+    public const int MatchStatusFieldNumber = 1;
+    private global::Protos.GetMatchStatusReply.Types.MatchStatus matchStatus_ = global::Protos.GetMatchStatusReply.Types.MatchStatus.InProgress;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Result {
-      get { return result_; }
+    public global::Protos.GetMatchStatusReply.Types.MatchStatus MatchStatus {
+      get { return matchStatus_; }
       set {
-        result_ = value;
+        matchStatus_ = value;
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as IsMatchInProgressReply);
+      return Equals(other as GetMatchStatusReply);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(IsMatchInProgressReply other) {
+    public bool Equals(GetMatchStatusReply other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Result != other.Result) return false;
+      if (MatchStatus != other.MatchStatus) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Result != false) hash ^= Result.GetHashCode();
+      if (MatchStatus != global::Protos.GetMatchStatusReply.Types.MatchStatus.InProgress) hash ^= MatchStatus.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -280,9 +283,9 @@ namespace Protos {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Result != false) {
+      if (MatchStatus != global::Protos.GetMatchStatusReply.Types.MatchStatus.InProgress) {
         output.WriteRawTag(8);
-        output.WriteBool(Result);
+        output.WriteEnum((int) MatchStatus);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -293,9 +296,9 @@ namespace Protos {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Result != false) {
+      if (MatchStatus != global::Protos.GetMatchStatusReply.Types.MatchStatus.InProgress) {
         output.WriteRawTag(8);
-        output.WriteBool(Result);
+        output.WriteEnum((int) MatchStatus);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -306,8 +309,8 @@ namespace Protos {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Result != false) {
-        size += 1 + 1;
+      if (MatchStatus != global::Protos.GetMatchStatusReply.Types.MatchStatus.InProgress) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) MatchStatus);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -316,12 +319,12 @@ namespace Protos {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(IsMatchInProgressReply other) {
+    public void MergeFrom(GetMatchStatusReply other) {
       if (other == null) {
         return;
       }
-      if (other.Result != false) {
-        Result = other.Result;
+      if (other.MatchStatus != global::Protos.GetMatchStatusReply.Types.MatchStatus.InProgress) {
+        MatchStatus = other.MatchStatus;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -338,7 +341,7 @@ namespace Protos {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Result = input.ReadBool();
+            MatchStatus = (global::Protos.GetMatchStatusReply.Types.MatchStatus) input.ReadEnum();
             break;
           }
         }
@@ -356,13 +359,27 @@ namespace Protos {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Result = input.ReadBool();
+            MatchStatus = (global::Protos.GetMatchStatusReply.Types.MatchStatus) input.ReadEnum();
             break;
           }
         }
       }
     }
     #endif
+
+    #region Nested types
+    /// <summary>Container for nested types declared in the GetMatchStatusReply message type.</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static partial class Types {
+      public enum MatchStatus {
+        [pbr::OriginalName("IN_PROGRESS")] InProgress = 0,
+        [pbr::OriginalName("FINISHED")] Finished = 1,
+        [pbr::OriginalName("NO_MATCH")] NoMatch = 2,
+        [pbr::OriginalName("LOADING")] Loading = 3,
+      }
+
+    }
+    #endregion
 
   }
 

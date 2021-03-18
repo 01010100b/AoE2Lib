@@ -1,5 +1,6 @@
 ﻿using AoE2Lib.Bots.GameElements;
 using AoE2Lib.Utils;
+using Protos.Expert;
 using System;
 using System.Collections.Generic;
 using System.Text;
