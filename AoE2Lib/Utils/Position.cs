@@ -87,6 +87,8 @@ namespace AoE2Lib.Utils
 
         public double AngleFrom(Position other)
         {
+            // CCW [0..2*pi]
+
             var a1 = Math.Atan2(other.Y, other.X);
             var a2 = Math.Atan2(Y, X);
 
@@ -95,22 +97,25 @@ namespace AoE2Lib.Utils
                 throw new Exception("Position has NaN");
             }
 
-            if (a1 < 0)
-            {
-                a1 += 2 * Math.PI;
-            }
-            if (a2 < 0)
-            {
-                a2 += 2 * Math.PI;
-            }
-
             var a = a2 - a1;
-            if (a < 0)
+            while (a < 0)
             {
                 a += 2 * Math.PI;
             }
 
             return a;
+        }
+
+        public Position Rotate(double angle)
+        {
+            // angle CCW
+
+            var r = Norm;
+            var theta = Math.Atan2(Y, X);
+
+            theta += angle;
+
+            return new Position(r * Math.Cos(theta), r * Math.Sin(theta));
         }
     }
 }
