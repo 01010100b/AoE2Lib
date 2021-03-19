@@ -33,7 +33,6 @@ jobs:
       id: tag_version
       uses: mathieudutour/github-tag-action@v5.3
       with:
-        pre_release_branches: dev
         github_token: ${{ secrets.GITHUB_TOKEN }}
         dry_run: true
         
