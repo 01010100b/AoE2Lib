@@ -16,52 +16,65 @@ namespace AoE2Lib.Bots.Modules
         public TimeSpan GameTimePerTick { get; private set; } = TimeSpan.FromSeconds(0.7);
         public int PlayerNumber => Bot.PlayerNumber;
         public Position MyPosition { get; private set; }
-        public int WoodAmount { get; private set; } = -1;
-        public int FoodAmount { get; private set; } = -1;
-        public int GoldAmount { get; private set; } = -1;
-        public int StoneAmount { get; private set; } = -1;
-        public int PopulationHeadroom { get; private set; } = -1;
-        public int HousingHeadroom { get; private set; } = -1;
-        public int PopulationCap { get; private set; } = -1;
+        public int WoodAmount { get; private set; }
+        public int FoodAmount { get; private set; }
+        public int GoldAmount { get; private set; }
+        public int StoneAmount { get; private set; }
+        public int WoodEscrowAmount { get; private set; }
+        public int FoodEscrowAmount { get; private set; }
+        public int GoldEscrowAmount { get; private set; }
+        public int StoneEscrowAmount { get; private set; }
+        public int PopulationHeadroom { get; private set; }
+        public int HousingHeadroom { get; private set; }
+        public int PopulationCap { get; private set; }
         public readonly Dictionary<StrategicNumber, int> StrategicNumbers = new Dictionary<StrategicNumber, int>();
 
-        private readonly Command Command = new Command();
+        private readonly Command CommandInfo = new Command();
+        private readonly Command CommandSn = new Command();
         private readonly double[] TickTimes = new double[] { 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7 };
 
         protected override IEnumerable<Command> RequestUpdate()
         {
-            Command.Reset();
+            CommandInfo.Reset();
 
-            Command.Add(new GameTime());
-            Command.Add(new UpGetPoint() { OutGoalPoint = 50, InConstPositionType = (int)PositionType.SELF });
-            Command.Add(new Goal() { InConstGoalId = 50 });
-            Command.Add(new Goal() { InConstGoalId = 51 });
-            Command.Add(new WoodAmount());
-            Command.Add(new FoodAmount());
-            Command.Add(new GoldAmount());
-            Command.Add(new StoneAmount());
-            Command.Add(new PopulationHeadroom());
-            Command.Add(new HousingHeadroom());
-            Command.Add(new PopulationCap());
+            CommandInfo.Add(new GameTime());
+            CommandInfo.Add(new UpGetPoint() { OutGoalPoint = 50, InConstPositionType = (int)PositionType.SELF });
+            CommandInfo.Add(new Goal() { InConstGoalId = 50 });
+            CommandInfo.Add(new Goal() { InConstGoalId = 51 });
+            CommandInfo.Add(new WoodAmount());
+            CommandInfo.Add(new FoodAmount());
+            CommandInfo.Add(new GoldAmount());
+            CommandInfo.Add(new StoneAmount());
+            CommandInfo.Add(new EscrowAmount() { InConstResource = (int)Resource.WOOD });
+            CommandInfo.Add(new EscrowAmount() { InConstResource = (int)Resource.WOOD });
+            CommandInfo.Add(new EscrowAmount() { InConstResource = (int)Resource.WOOD });
+            CommandInfo.Add(new EscrowAmount() { InConstResource = (int)Resource.WOOD });
+            CommandInfo.Add(new PopulationHeadroom());
+            CommandInfo.Add(new HousingHeadroom());
+            CommandInfo.Add(new PopulationCap());
 
             foreach (var sn in StrategicNumbers)
             {
-                Command.Add(new SetStrategicNumber() { InConstSnId = (int)sn.Key, InConstValue = sn.Value });
+                CommandInfo.Add(new SetStrategicNumber() { InConstSnId = (int)sn.Key, InConstValue = sn.Value });
             }
+
+            yield return CommandInfo;
+
+            CommandSn.Reset();
 
             foreach (var sn in Enum.GetValues(typeof(StrategicNumber)).Cast<StrategicNumber>())
             {
-                Command.Add(new Protos.Expert.Fact.StrategicNumber() { InConstSnId = (int)sn });
+                CommandSn.Add(new Protos.Expert.Fact.StrategicNumber() { InConstSnId = (int)sn });
             }
 
-            yield return Command;
+            yield return CommandSn;
         }
 
         protected override void Update()
         {
-            if (Command.HasResponses)
+            if (CommandInfo.HasResponses)
             {
-                var responses = Command.GetResponses();
+                var responses = CommandInfo.GetResponses();
 
                 var current_time = GameTime;
                 GameTime = TimeSpan.FromSeconds(responses[0].Unpack<GameTimeResult>().Result);
@@ -83,19 +96,27 @@ namespace AoE2Lib.Bots.Modules
                 GoldAmount = responses[6].Unpack<GoldAmountResult>().Result;
                 StoneAmount = responses[7].Unpack<StoneAmountResult>().Result;
 
-                PopulationHeadroom = responses[8].Unpack<PopulationHeadroomResult>().Result;
-                HousingHeadroom = responses[9].Unpack<HousingHeadroomResult>().Result;
-                PopulationCap = responses[10].Unpack<PopulationCapResult>().Result;
+                WoodEscrowAmount = responses[8].Unpack<EscrowAmountResult>().Result;
+                FoodEscrowAmount = responses[9].Unpack<EscrowAmountResult>().Result;
+                GoldEscrowAmount = responses[10].Unpack<EscrowAmountResult>().Result;
+                StoneEscrowAmount = responses[11].Unpack<EscrowAmountResult>().Result;
 
-                var index = 11 + StrategicNumbers.Count;
+                PopulationHeadroom = responses[12].Unpack<PopulationHeadroomResult>().Result;
+                HousingHeadroom = responses[13].Unpack<HousingHeadroomResult>().Result;
+                PopulationCap = responses[14].Unpack<PopulationCapResult>().Result;
+            }
+
+            if (CommandSn.HasResponses)
+            {
+                var responses = CommandSn.GetResponses();
+
+                var index = 0;
                 foreach (var sn in Enum.GetValues(typeof(StrategicNumber)).Cast<StrategicNumber>())
                 {
                     StrategicNumbers[sn] = responses[index].Unpack<StrategicNumberResult>().Result;
                     index++;
                 }
             }
-
-            Command.Reset();
         }
     }
 }
