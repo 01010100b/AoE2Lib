@@ -46,9 +46,9 @@ namespace AoE2Lib.Bots.Modules
             CommandInfo.Add(new GoldAmount());
             CommandInfo.Add(new StoneAmount());
             CommandInfo.Add(new EscrowAmount() { InConstResource = (int)Resource.WOOD });
-            CommandInfo.Add(new EscrowAmount() { InConstResource = (int)Resource.WOOD });
-            CommandInfo.Add(new EscrowAmount() { InConstResource = (int)Resource.WOOD });
-            CommandInfo.Add(new EscrowAmount() { InConstResource = (int)Resource.WOOD });
+            CommandInfo.Add(new EscrowAmount() { InConstResource = (int)Resource.FOOD });
+            CommandInfo.Add(new EscrowAmount() { InConstResource = (int)Resource.GOLD });
+            CommandInfo.Add(new EscrowAmount() { InConstResource = (int)Resource.STONE });
             CommandInfo.Add(new PopulationHeadroom());
             CommandInfo.Add(new HousingHeadroom());
             CommandInfo.Add(new PopulationCap());
