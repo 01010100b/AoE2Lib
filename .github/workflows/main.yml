@@ -38,7 +38,6 @@ jobs:
         dry_run: true
         
     - name: Package
-      if:  github.ref == 'refs/heads/master'
       run: |
         dotnet pack AoE2Lib\AoE2Lib.csproj --no-build -p:PackageVersion=${{ steps.tag_version.outputs.new_version }}
         dotnet publish AoE2Lib\AoE2Lib.csproj --output AoE2Lib.${{ steps.tag_version.outputs.new_version }}
