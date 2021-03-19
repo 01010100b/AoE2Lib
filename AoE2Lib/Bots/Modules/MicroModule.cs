@@ -26,6 +26,11 @@ namespace AoE2Lib.Bots.Modules
 
         public void TargetPosition(Unit unit, Position target, UnitAction action, UnitFormation formation, UnitStance stance)
         {
+            if (unit.Position.DistanceTo(target) < 0.1)
+            {
+                return;
+            }
+
             var command = new Command();
 
             command.Add(new UpFullResetSearch());
