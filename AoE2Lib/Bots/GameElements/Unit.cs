@@ -77,10 +77,15 @@ namespace AoE2Lib.Bots.GameElements
                 return;
             }
 
-            if (player != 0 && player != Bot.PlayerNumber && (visible == false || data[(int)ObjectData.GARRISONED] == 1))
+            if (player != 0 && data[(int)ObjectData.CATEGORY] != 80 && (visible == false || data[(int)ObjectData.GARRISONED] == 1))
             {
                 Visible = false;
+                
+                return;
+            }
 
+            if (player != 0 && visible == false)
+            {
                 return;
             }
 

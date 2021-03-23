@@ -23,7 +23,7 @@ namespace AoE2Lib.Bots.Modules
 
         private readonly List<Command> CreateCommands = new List<Command>();
         private readonly List<Command> FindUnitCommands = new List<Command>();
-        private readonly Command ScanUnitsCommand = new Command();
+        private readonly List<Command> FindAllUnitsCommands = new List<Command>();
 
         public void AddUnitType(int id)
         {
@@ -34,24 +34,55 @@ namespace AoE2Lib.Bots.Modules
             }
         }
 
-        public void Build(int id, Position position)
+        public void Build(int id, Position position, int max_count = 10000, int max_pending = 10000)
         {
-            AddUnitType(id);
-
-            var command = new Command();
-            command.Add(new SetGoal() { InConstGoalId = 100, InConstValue = position.PointX });
-            command.Add(new SetGoal() { InConstGoalId = 101, InConstValue = position.PointY });
-            command.Add(new UpBuildLine() { InConstBuildingId = id, InGoalPoint1 = 100, InGoalPoint2 = 100 });
-
-            CreateCommands.Add(command);
+            Build(id, new[] { position }, max_count, max_pending);
         }
 
-        public void Train(int id)
+        public void Build(int id, IEnumerable<Position> positions, int max_count = 10000, int max_pending = 10000)
         {
             AddUnitType(id);
 
+            const int GL_BUILT = 100;
+            const int GL_POINT_X = 101;
+            const int GL_POINT_Y = 102;
+
+            var op_add = Bot.GameVersion == GameVersion.AOC ? 1 : 25;
+
             var command = new Command();
-            command.Add(new Train() { InConstUnitId = id });
+            command.Add(new SetGoal() { InConstGoalId = GL_BUILT, InConstValue = 0 });
+            command.Add(new UpObjectTypeCountTotal() { InConstObjectId = id }, ">=", max_count,
+                new SetGoal() { InConstGoalId = GL_BUILT, InConstValue = 2 });
+            command.Add(new UpPendingObjects() { InConstObjectId = id }, ">=", max_pending,
+                new SetGoal() { InConstGoalId = GL_BUILT, InConstValue = 2 });
+
+            foreach (var pos in positions)
+            {
+                command.Add(new SetGoal() { InConstGoalId = GL_POINT_X, InConstValue = pos.PointX });
+                command.Add(new SetGoal() { InConstGoalId = GL_POINT_Y, InConstValue = pos.PointY });
+                command.Add(new UpCanBuildLine() { InConstBuildingId = id, InGoalEscrowState = 0, InGoalPoint = GL_POINT_X }, "!=", 0,
+                    new UpModifyGoal() { IoGoalId = GL_BUILT, MathOp = op_add, InOpValue = 1 });
+                command.Add(new Goal() { InConstGoalId = GL_BUILT }, "==", 1,
+                    new UpBuildLine() { InConstBuildingId = id, InGoalPoint1 = GL_POINT_X, InGoalPoint2 = GL_POINT_X });
+
+            }
+        }
+
+        public void Train(int id, int max_count = 10000, int max_pending = 10000)
+        {
+            AddUnitType(id);
+
+            const int GL_TRAINING = 100;
+
+            var command = new Command();
+            command.Add(new SetGoal() { InConstGoalId = GL_TRAINING, InConstValue = 0 });
+            command.Add(new UpObjectTypeCountTotal() { InConstObjectId = id }, ">=", max_count,
+                new SetGoal() { InConstGoalId = GL_TRAINING, InConstValue = 1 });
+            command.Add(new UpPendingObjects() { InConstObjectId = id }, ">=", max_pending,
+                new SetGoal() { InConstGoalId = GL_TRAINING, InConstValue = 1 });
+            command.Add(new Goal() { InConstGoalId = GL_TRAINING }, "==", 0,
+                new Train() { InConstUnitId = id });
+
             CreateCommands.Add(command);
         }
 
@@ -161,7 +192,23 @@ namespace AoE2Lib.Bots.Modules
 
             if (AutoFindUnits)
             {
-                var player = Bot.PlayerNumber;
+                foreach (var player in Bot.PlayersModule.Players.Values.Where(p => p.InGame))
+                {
+                    var command = new Command();
+                    command.Add(new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, InConstValue = player.PlayerNumber });
+                    command.Add(new UpFullResetSearch());
+
+                    for (int i = 0; i < 10; i++)
+                    {
+                        command.Add(new UpResetSearch() { InConstLocalIndex = 0, InConstLocalList = 0, InConstRemoteIndex = 0, InConstRemoteList = 1 });
+                        command.Add(new UpFindRemote() { InConstUnitId = -1, InConstCount = 40 });
+                        command.Add(new UpSearchObjectIdList() { InConstSearchSource = 2 });
+                    }
+
+                    FindAllUnitsCommands.Add(command);
+                }
+
+                var playernumber = Bot.PlayerNumber;
                 var pos = Bot.InfoModule.MyPosition;
                 var range = 25;
                 if (Bot.InfoModule.StrategicNumbers.TryGetValue(StrategicNumber.MAXIMUM_TOWN_SIZE, out int r))
@@ -169,15 +216,15 @@ namespace AoE2Lib.Bots.Modules
                     range = Math.Max(range, r);
                 }
 
-                FindUnits(player, pos, range, CmdId.VILLAGER);
-                FindUnits(player, pos, range, CmdId.MILITARY);
-                FindUnits(player, pos, range, CmdId.CIVILIAN_BUILDING);
-                FindUnits(player, pos, range, CmdId.MILITARY_BUILDING);
-                FindUnits(player, pos, range, CmdId.FISHING_SHIP);
-                FindUnits(player, pos, range, CmdId.LIVESTOCK_GAIA);
-                FindUnits(player, pos, range, CmdId.MONK);
-                FindUnits(player, pos, range, CmdId.TRADE);
-                FindUnits(player, pos, range, CmdId.TRANSPORT);
+                FindUnits(playernumber, pos, range, CmdId.VILLAGER);
+                FindUnits(playernumber, pos, range, CmdId.MILITARY);
+                FindUnits(playernumber, pos, range, CmdId.CIVILIAN_BUILDING);
+                FindUnits(playernumber, pos, range, CmdId.MILITARY_BUILDING);
+                FindUnits(playernumber, pos, range, CmdId.FISHING_SHIP);
+                FindUnits(playernumber, pos, range, CmdId.LIVESTOCK_GAIA);
+                FindUnits(playernumber, pos, range, CmdId.MONK);
+                FindUnits(playernumber, pos, range, CmdId.TRADE);
+                FindUnits(playernumber, pos, range, CmdId.TRANSPORT);
 
                 range += 10;
 
@@ -198,16 +245,6 @@ namespace AoE2Lib.Bots.Modules
                     var position = positions[Bot.Rng.Next(positions.Count)];
                     AddAutoFindUnits(position);
                 }
-                
-                for (int i = 1; i <= 8; i++)
-                {
-                    ScanUnitsCommand.Add(new PlayerValid() { InPlayerAnyPlayer = i }, "!=", 0,
-                        new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, InConstValue = i },
-                        new UpFullResetSearch(),
-                        new UpFindRemote() { InConstUnitId = -1, InConstCount = 40},
-                        new UpSearchObjectIdList() { InConstSearchSource = 2}
-                        );
-                }
             }
 
             foreach (var command in FindUnitCommands)
@@ -215,7 +252,10 @@ namespace AoE2Lib.Bots.Modules
                 yield return command;
             }
 
-            yield return ScanUnitsCommand;
+            foreach(var command in FindAllUnitsCommands)
+            {
+                yield return command;
+            }
         }
 
         protected override void Update()
@@ -234,24 +274,19 @@ namespace AoE2Lib.Bots.Modules
                 }
             }
 
-            if (ScanUnitsCommand.HasResponses)
+            foreach (var command in FindAllUnitsCommands.Where(c => c.HasResponses))
             {
-                var responses = ScanUnitsCommand.GetResponses();
-
-                for (int i = 1; i <= 8; i++)
+                var responses = command.GetResponses();
+                
+                for (int i = 4; i < responses.Count; i += 3)
                 {
-                    var index = (i * 4) - 1;
-                    var cc = responses[index].Unpack<ConditionalCommandResult>();
-                    if (cc.Fired)
-                    {
-                        var ids = cc.Result.Unpack<UpSearchObjectIdListResult>().Result.ToList();
+                    var ids = responses[i].Unpack<UpSearchObjectIdListResult>().Result;
 
-                        foreach (var id in ids)
+                    foreach (var id in ids)
+                    {
+                        if (!Units.ContainsKey(id))
                         {
-                            if (!Units.ContainsKey(id))
-                            {
-                                _Units.Add(id, new Unit(Bot, id));
-                            }
+                            _Units.Add(id, new Unit(Bot, id));
                         }
                     }
                 }
@@ -259,7 +294,7 @@ namespace AoE2Lib.Bots.Modules
 
             CreateCommands.Clear();
             FindUnitCommands.Clear();
-            ScanUnitsCommand.Reset();
+            FindAllUnitsCommands.Clear();
         }
 
         private void AddAutoFindUnits(Position position)
