@@ -14,6 +14,11 @@ namespace AoE2Lib.Bots.Modules
 
         public void TargetUnit(Unit unit, Unit target, UnitAction? action, UnitFormation? formation, UnitStance? stance, int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue, Unit backup = null)
         {
+            if (backup == null)
+            {
+                backup = target;
+            }
+
             var command = new Command();
 
             const int GL_CHECKS = 100;
