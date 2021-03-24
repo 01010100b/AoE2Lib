@@ -29,8 +29,13 @@ namespace ExampleBot
             Debug.WriteLine($"I have {foundations} foundations");
             Debug.WriteLine("");
 
-            var pos = info.MyPosition + new Position(Rng.Next(-10, 10), Rng.Next(-10, 10));
-            units.Build(70, pos);
+            if (Tick > 3)
+            {
+                var pos = info.MyPosition + new Position(Rng.Next(-10, 10), Rng.Next(-10, 10));
+                units.Build(70, pos, 1000, 3);
+            }
+
+            
             info.StrategicNumbers[StrategicNumber.CAP_CIVILIAN_BUILDERS] = -1;
             info.StrategicNumbers[StrategicNumber.DISABLE_BUILDER_ASSISTANCE] = 1;
 
