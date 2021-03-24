@@ -45,9 +45,9 @@ namespace AoE2Lib.Bots.GameElements
             Bot.MicroModule.TargetUnit(this, target, action, formation, stance);
         }
 
-        public void TargetPosition(Position target, UnitAction? action, UnitFormation? formation, UnitStance? stance)
+        public void TargetPosition(Position pos, UnitAction? action, UnitFormation? formation, UnitStance? stance)
         {
-            Bot.MicroModule.TargetPosition(this, target, action, formation, stance);
+            Bot.MicroModule.TargetPosition(this, pos, action, formation, stance);
         }
 
         protected override IEnumerable<IMessage> RequestElementUpdate()

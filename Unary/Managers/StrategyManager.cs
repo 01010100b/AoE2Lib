@@ -14,6 +14,7 @@ namespace Unary.Managers
     {
         private BuildOperation BuildingOperation { get; set; } = null;
         private BattleOperation BattleOperation { get; set; } = null;
+        private GuardOperation GuardOperation { get; set; } = null;
 
         public StrategyManager(Unary unary) : base(unary)
         {
@@ -52,6 +53,7 @@ namespace Unary.Managers
 
             DoBuilding();
             DoAttacking();
+            DoGuarding();
         }
 
         private void DoBuilding()
@@ -149,6 +151,38 @@ namespace Unary.Managers
             }
 
             Unary.Log.Info($"AttackOperation: {BattleOperation.Units.Count()} units");
+        }
+
+        private void DoGuarding()
+        {
+            var ops = Unary.OperationsManager;
+
+            if (GuardOperation == null && Unary.Tick > 10)
+            {
+                foreach (var unit in ops.FreeUnits.Where(u => u[ObjectData.CMDID] == (int)CmdId.MILITARY))
+                {
+                    if (unit.Position.DistanceTo(Unary.InfoModule.MyPosition) > 30)
+                    {
+                        GuardOperation = new GuardOperation(ops);
+                        GuardOperation.GuardedUnits.Add(unit);
+
+                        break;
+                    }
+                }
+            }
+
+            if (GuardOperation != null && GuardOperation.Units.Count() < 10)
+            {
+                foreach (var vill in ops.FreeUnits.Where(u => u[ObjectData.CMDID] == (int)CmdId.VILLAGER))
+                {
+                    if (vill.Position.DistanceTo(Unary.InfoModule.MyPosition) < 20)
+                    {
+                        GuardOperation.AddUnit(vill);
+
+                        break;
+                    }
+                }
+            }
         }
     }
 }

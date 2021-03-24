@@ -79,9 +79,14 @@ namespace AoE2Lib.Bots.Modules
             Commands.Add(command);
         }
 
-        public void TargetPosition(Unit unit, Position target, UnitAction? action, UnitFormation? formation, UnitStance? stance, int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue)
+        public void TargetPosition(Unit unit, Position pos, UnitAction? action, UnitFormation? formation, UnitStance? stance, int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue)
         {
-            if (action == UnitAction.MOVE && unit.Position == target)
+            if (action == UnitAction.MOVE && unit.Position == pos)
+            {
+                return;
+            }
+
+            if (action == UnitAction.MOVE && unit[ObjectData.PRECISE_MOVE_X] == pos.PreciseX && unit[ObjectData.PRECISE_MOVE_Y] == pos.PreciseY)
             {
                 return;
             }
@@ -98,33 +103,8 @@ namespace AoE2Lib.Bots.Modules
             command.Add(new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = 0 });
             command.Add(new SetGoal() { InConstGoalId = GL_TEMP, InConstValue = -1 });
 
-            var best_pos = target;
-            var best_cost = double.MaxValue;
-            for (int i = 0; i < 10; i++)
-            {
-                var dx = (Bot.Rng.NextDouble() * 4) - 2;
-                var dy = (Bot.Rng.NextDouble() * 4) - 2;
-                var pos = unit.Position + new Position(dx, dy);
-
-                if (Bot.MapModule.IsOnMap(pos) && pos.DistanceTo(target) < unit[ObjectData.RANGE] && pos.DistanceTo(unit.Position) > 1)
-                {
-                    var cost = 0d;
-
-                    cost += -1 * pos.DistanceTo(target);
-
-                    var angle = (pos - unit.Position).AngleFrom(target - unit.Position);
-                    cost += -1 * Math.Abs(Math.Sin(angle));
-
-                    if (cost < best_cost)
-                    {
-                        best_pos = pos;
-                        best_cost = cost;
-                    }
-                }
-            }
-
-            command.Add(new SetGoal() { InConstGoalId = GL_PRECISE_X, InConstValue = best_pos.PreciseX });
-            command.Add(new SetGoal() { InConstGoalId = GL_PRECISE_Y, InConstValue = best_pos.PreciseY });
+            command.Add(new SetGoal() { InConstGoalId = GL_PRECISE_X, InConstValue = pos.PreciseX });
+            command.Add(new SetGoal() { InConstGoalId = GL_PRECISE_Y, InConstValue = pos.PreciseY });
 
             // check 1: unit exists
 
