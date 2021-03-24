@@ -40,12 +40,12 @@ namespace AoE2Lib.Bots.GameElements
             }
         }
 
-        public void TargetUnit(Unit target, UnitAction action, UnitFormation formation, UnitStance stance)
+        public void TargetUnit(Unit target, UnitAction? action, UnitFormation? formation, UnitStance? stance)
         {
             Bot.MicroModule.TargetUnit(this, target, action, formation, stance);
         }
 
-        public void TargetPosition(Position target, UnitAction action, UnitFormation formation, UnitStance stance)
+        public void TargetPosition(Position target, UnitAction? action, UnitFormation? formation, UnitStance? stance)
         {
             Bot.MicroModule.TargetPosition(this, target, action, formation, stance);
         }
@@ -77,10 +77,15 @@ namespace AoE2Lib.Bots.GameElements
                 return;
             }
 
-            if (player != 0 && player != Bot.PlayerNumber && (visible == false || data[(int)ObjectData.GARRISONED] == 1))
+            if (player != 0 && data[(int)ObjectData.CATEGORY] != 80 && (visible == false || data[(int)ObjectData.GARRISONED] == 1))
             {
                 Visible = false;
+                
+                return;
+            }
 
+            if (player != 0 && visible == false)
+            {
                 return;
             }
 

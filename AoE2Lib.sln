@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AoE2Lib", "AoE2Lib\AoE2Lib.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameRunner", "GameRunner\GameRunner.csproj", "{5B6C28D4-62C9-458E-821A-0522966E040B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleBot", "ExampleBot\ExampleBot.csproj", "{3036FF68-B7F8-4F21-BF9F-91D3F1884BBE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unary", "Unary\Unary.csproj", "{5F54A290-EC83-4EDD-881C-2A72E960F5F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{5B6C28D4-62C9-458E-821A-0522966E040B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B6C28D4-62C9-458E-821A-0522966E040B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B6C28D4-62C9-458E-821A-0522966E040B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3036FF68-B7F8-4F21-BF9F-91D3F1884BBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3036FF68-B7F8-4F21-BF9F-91D3F1884BBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3036FF68-B7F8-4F21-BF9F-91D3F1884BBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3036FF68-B7F8-4F21-BF9F-91D3F1884BBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F54A290-EC83-4EDD-881C-2A72E960F5F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F54A290-EC83-4EDD-881C-2A72E960F5F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F54A290-EC83-4EDD-881C-2A72E960F5F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F54A290-EC83-4EDD-881C-2A72E960F5F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

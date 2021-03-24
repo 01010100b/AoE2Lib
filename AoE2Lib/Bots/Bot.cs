@@ -3,6 +3,7 @@ using AoE2Lib.Utils;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using Protos.Expert;
+using Protos.Expert.Fact;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -126,6 +127,8 @@ namespace AoE2Lib.Bots
                 {
                     commands.Clear();
                     GameElementUpdates.Clear();
+
+                    Log.Info("Clearing commands (more than 5 seconds since previous)");
                 }
 
                 // set up api call

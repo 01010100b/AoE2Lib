@@ -67,6 +67,16 @@ namespace AoE2Lib.Utils
             return v / a;
         }
 
+        public static bool operator ==(Position a, Position b)
+        {
+            return a.X == b.X && a.Y == b.Y;
+        }
+
+        public static bool operator !=(Position a, Position b)
+        {
+            return !(a == b);
+        }
+
         public static implicit operator Point(Position position)
         {
             return new Point(position.PointX, position.PointY);
@@ -116,6 +126,28 @@ namespace AoE2Lib.Utils
             theta += angle;
 
             return new Position(r * Math.Cos(theta), r * Math.Sin(theta));
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Position pos)
+            {
+                return pos == this;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public override string ToString()
+        {
+            return $"{X:2},{Y:2}";
         }
     }
 }

@@ -41,13 +41,13 @@ jobs:
       run: |
         dotnet pack AoE2Lib\AoE2Lib.csproj --no-build -p:PackageVersion=${{ steps.tag_version.outputs.new_version }}
         dotnet publish AoE2Lib\AoE2Lib.csproj --output AoE2Lib.${{ steps.tag_version.outputs.new_version }}
-        dotnet publish ExampleBot\ExampleBot.csproj --output ExampleBot.${{ steps.tag_version.outputs.new_version }}
+        dotnet publish Unary\Unary.csproj --output Unary.${{ steps.tag_version.outputs.new_version }}
         dotnet publish GameRunner\GameRunner.csproj --output GameRunner.${{ steps.tag_version.outputs.new_version }}
         
     - uses: papeloto/action-zip@v1
       with:
-        files: ExampleBot.${{ steps.tag_version.outputs.new_version }}
-        dest: ExampleBot.${{ steps.tag_version.outputs.new_version }}.zip
+        files: Unary.${{ steps.tag_version.outputs.new_version }}
+        dest: Unary.${{ steps.tag_version.outputs.new_version }}.zip
         
     - uses: papeloto/action-zip@v1
       with:
@@ -70,5 +70,5 @@ jobs:
         files: |
           AoE2Lib\bin\Debug\AoE2Lib.${{ steps.tag_version.outputs.new_version }}.nupkg
           AoE2Lib.${{ steps.tag_version.outputs.new_version }}.zip
-          ExampleBot.${{ steps.tag_version.outputs.new_version }}.zip
+          Unary.${{ steps.tag_version.outputs.new_version }}.zip
           GameRunner.${{ steps.tag_version.outputs.new_version }}.zip
