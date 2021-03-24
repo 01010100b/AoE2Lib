@@ -46,6 +46,11 @@ namespace Unary.Operations
                     || (u[ObjectData.CLASS] == (int)UnitClass.PredatorAnimal && u[ObjectData.CARRY] > 0))
                 .FirstOrDefault();
 
+            if (target != null)
+            {
+                Manager.Unary.Log.Info($"Kill animal");
+            }
+
             // eat current meat
 
             if (target == null)

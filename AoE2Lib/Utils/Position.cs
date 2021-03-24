@@ -147,7 +147,7 @@ namespace AoE2Lib.Utils
 
         public override string ToString()
         {
-            return $"{X:2},{Y:2}";
+            return $"{X:N2},{Y:N2}";
         }
     }
 }
