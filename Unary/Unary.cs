@@ -49,10 +49,6 @@ namespace Unary
         {
             Commands.Clear();
 
-            var pos = InfoModule.MyPosition;
-            pos += new Position(Rng.Next(-10, 10), Rng.Next(-10, 10));
-            UnitsModule.Build(70, pos);
-
             UpdateManagers();
 
             Log.Info($"Free units: {OperationsManager.FreeUnits.Count()}");

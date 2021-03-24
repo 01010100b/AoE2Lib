@@ -43,6 +43,8 @@ namespace AoE2Lib.Bots.Modules
         {
             AddUnitType(id);
 
+            Bot.Log.Info($"build {id} count {max_count} pending {max_pending}");
+                
             const int GL_BUILT = 100;
             const int GL_POINT_X = 101;
             const int GL_POINT_Y = 102;
