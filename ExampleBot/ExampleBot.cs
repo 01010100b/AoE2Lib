@@ -1,6 +1,7 @@
 ﻿using AoE2Lib;
 using AoE2Lib.Bots;
 using AoE2Lib.Bots.Modules;
+using AoE2Lib.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -28,7 +29,7 @@ namespace ExampleBot
             Debug.WriteLine($"I have {foundations} foundations");
             Debug.WriteLine("");
 
-            var pos = info.MyPosition + new AoE2Lib.Utils.Position(Rng.Next(-10, 10), Rng.Next(-10, 10));
+            var pos = info.MyPosition + new Position(Rng.Next(-10, 10), Rng.Next(-10, 10));
             units.Build(70, pos);
             info.StrategicNumbers[StrategicNumber.CAP_CIVILIAN_BUILDERS] = -1;
             info.StrategicNumbers[StrategicNumber.DISABLE_BUILDER_ASSISTANCE] = 1;

@@ -66,6 +66,8 @@ namespace AoE2Lib.Bots.Modules
                     new UpBuildLine() { InConstBuildingId = id, InGoalPoint1 = GL_POINT_X, InGoalPoint2 = GL_POINT_X });
 
             }
+
+            CreateCommands.Add(command);
         }
 
         public void Train(int id, int max_count = 10000, int max_pending = 10000)
