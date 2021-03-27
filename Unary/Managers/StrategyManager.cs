@@ -150,7 +150,7 @@ namespace Unary.Managers
                 }
             }
 
-            Unary.Log.Info($"AttackOperation: {BattleOperation.Units.Count()} units");
+            
         }
 
         private void DoGuarding()

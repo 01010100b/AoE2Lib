@@ -40,14 +40,14 @@ namespace AoE2Lib.Bots.GameElements
             }
         }
 
-        public void TargetUnit(Unit target, UnitAction? action, UnitFormation? formation, UnitStance? stance)
+        public void TargetUnit(Unit target, UnitAction? action, UnitFormation? formation, UnitStance? stance, int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue, Unit backup = null)
         {
-            Bot.MicroModule.TargetUnit(this, target, action, formation, stance);
+            Bot.MicroModule.TargetUnit(this, target, action, formation, stance, min_next_attack, max_next_attack, backup);
         }
 
-        public void TargetPosition(Position pos, UnitAction? action, UnitFormation? formation, UnitStance? stance)
+        public void TargetPosition(Position pos, UnitAction? action, UnitFormation? formation, UnitStance? stance, int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue)
         {
-            Bot.MicroModule.TargetPosition(this, pos, action, formation, stance);
+            Bot.MicroModule.TargetPosition(this, pos, action, formation, stance, min_next_attack, max_next_attack);
         }
 
         protected override IEnumerable<IMessage> RequestElementUpdate()

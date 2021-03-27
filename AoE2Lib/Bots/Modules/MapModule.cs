@@ -29,6 +29,19 @@ namespace AoE2Lib.Bots.Modules
             return IsOnMap(position.PointX, position.PointY);
         }
 
+        public Position Clamp(Position position)
+        {
+            if (IsOnMap(position))
+            {
+                return position;
+            }
+
+            var x = Math.Max(0, Math.Min(Width, position.X));
+            var y = Math.Max(0, Math.Min(Height, position.Y));
+
+            return new Position(x, y);
+        }
+
         public IEnumerable<Tile> GetTilesInRange(Position position, double range)
         {
             foreach (var tile in GetTilesByDistance(position))
