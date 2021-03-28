@@ -66,9 +66,9 @@ namespace Unary.Operations
                     delay = def.AttackDelay;
                 }
 
-                if (target[ObjectData.RANGE] > 2)
+                if (target[ObjectData.RANGE] > 2 && unit[ObjectData.RANGE] > 2)
                 {
-                    var angle = GetMovementAngle(unit, target);
+                    var angle = GetDodgeAngle(unit, target);
                     var pos = unit.Position + (target.Position - unit.Position).Rotate(angle);
 
                     unit.TargetPosition(pos, UnitAction.MOVE, null, null, 0, unit[ObjectData.RELOAD_TIME] - delay);
@@ -92,7 +92,7 @@ namespace Unary.Operations
             }
         }
 
-        private double GetMovementAngle(Unit unit, Unit target)
+        private double GetDodgeAngle(Unit unit, Unit target)
         {
             var angle = 0d;
             var tick = unit.Id + Manager.Unary.Tick;

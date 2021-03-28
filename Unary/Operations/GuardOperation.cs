@@ -46,11 +46,6 @@ namespace Unary.Operations
 
                 guard.RequestUpdate();
             }
-
-            foreach (var unit in Units)
-            {
-                
-            }
         }
     }
 }

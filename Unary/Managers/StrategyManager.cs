@@ -149,8 +149,6 @@ namespace Unary.Managers
                     BattleOperation.AddUnit(unit);
                 }
             }
-
-            
         }
 
         private void DoGuarding()
