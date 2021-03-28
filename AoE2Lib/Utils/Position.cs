@@ -22,9 +22,9 @@ namespace AoE2Lib.Utils
             return new Position(x / 100d, y / 100d);
         }
 
-        public static Position FromPolar(double theta, double norm)
+        public static Position FromPolar(double angle, double norm)
         {
-            return new Position(norm * Math.Cos(theta), norm * Math.Sin(theta));
+            return new Position(norm * Math.Cos(angle), norm * Math.Sin(angle));
         }
 
         public readonly double X;
@@ -33,7 +33,6 @@ namespace AoE2Lib.Utils
         public int PointY => (int)Math.Floor(Y);
         public int PreciseX => (int)Math.Floor(X * 100);
         public int PreciseY => (int)Math.Floor(Y * 100);
-        public double Theta => Math.Atan2(Y, X);
         public double Norm => DistanceTo(Zero);
         public double Angle => AngleFrom(new Position(1, 0));
 
@@ -66,11 +65,6 @@ namespace AoE2Lib.Utils
         public static Position operator /(Position v, double a)
         {
             return new Position(v.X / a, v.Y / a);
-        }
-
-        public static Position operator /(double a, Position v)
-        {
-            return v / a;
         }
 
         public static bool operator ==(Position a, Position b)
@@ -126,7 +120,7 @@ namespace AoE2Lib.Utils
         {
             // angle CCW
 
-            return FromPolar(Theta + angle, Norm);
+            return FromPolar(Angle + angle, Norm);
         }
 
         public override int GetHashCode()

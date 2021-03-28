@@ -70,15 +70,18 @@ namespace Unary.Operations
                     unit.TargetPosition(pos, UnitAction.MOVE, null, null, 0, unit[ObjectData.RELOAD_TIME] - (int)delay.TotalMilliseconds);
                 }
 
-                if (hp_remaining[target] > 0)
+                if (Manager.Unary.Rng.NextDouble() < 1)
                 {
-                    unit.TargetUnit(target, null, null, null, 0, 0, backup);
-                    hp_remaining[target] -= dmg;
-                }
-                else
-                {
-                    unit.TargetUnit(backup, null, null, null, 0, 0, target);
-                    hp_remaining[backup] -= dmg;
+                    if (hp_remaining[target] > 0)
+                    {
+                        unit.TargetUnit(target, null, null, null, 0, 0, backup);
+                        hp_remaining[target] -= dmg;
+                    }
+                    else
+                    {
+                        unit.TargetUnit(backup, null, null, null, 0, 0, target);
+                        hp_remaining[backup] -= dmg;
+                    }
                 }
             }
 
@@ -128,7 +131,7 @@ namespace Unary.Operations
 
             if (unit.Position.DistanceTo(target.Position) > unit[ObjectData.RANGE])
             {
-                angle = 0;
+                angle = (Manager.Unary.Rng.NextDouble() * Math.PI / 2) - (Math.PI / 4);
             }
 
             return angle;
