@@ -60,18 +60,14 @@ namespace Unary.Operations
                 var attack = unit[ObjectData.BASE_ATTACK];
                 var armor = unit[ObjectData.RANGE] > 2 ? target[ObjectData.PIERCE_ARMOR] : target[ObjectData.STRIKE_ARMOR];
                 var dmg = 0.8 * Math.Max(1, attack - armor);
-                var delay = 500;
-                if (Manager.Unary.Mod.Objects.TryGetValue(unit.GetData(ObjectData.UPGRADE_TYPE), out ObjectDef def))
-                {
-                    delay = def.AttackDelay;
-                }
+                var delay = Manager.Unary.Mod.GetAttackDelay(unit[ObjectData.UPGRADE_TYPE]);
 
                 if (target[ObjectData.RANGE] > 2 && unit[ObjectData.RANGE] > 2)
                 {
                     var angle = GetDodgeAngle(unit, target);
                     var pos = unit.Position + (target.Position - unit.Position).Rotate(angle);
 
-                    unit.TargetPosition(pos, UnitAction.MOVE, null, null, 0, unit[ObjectData.RELOAD_TIME] - delay);
+                    unit.TargetPosition(pos, UnitAction.MOVE, null, null, 0, unit[ObjectData.RELOAD_TIME] - (int)delay.TotalMilliseconds);
                 }
 
                 if (hp_remaining[target] > 0)
