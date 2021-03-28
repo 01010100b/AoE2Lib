@@ -22,12 +22,18 @@ namespace AoE2Lib.Utils
             return new Position(x / 100d, y / 100d);
         }
 
+        public static Position FromPolar(double theta, double norm)
+        {
+            return new Position(norm * Math.Cos(theta), norm * Math.Sin(theta));
+        }
+
         public readonly double X;
         public readonly double Y;
         public int PointX => (int)Math.Floor(X);
         public int PointY => (int)Math.Floor(Y);
         public int PreciseX => (int)Math.Floor(X * 100);
         public int PreciseY => (int)Math.Floor(Y * 100);
+        public double Theta => Math.Atan2(Y, X);
         public double Norm => DistanceTo(Zero);
         public double Angle => AngleFrom(new Position(1, 0));
 
@@ -120,12 +126,7 @@ namespace AoE2Lib.Utils
         {
             // angle CCW
 
-            var r = Norm;
-            var theta = Math.Atan2(Y, X);
-
-            theta += angle;
-
-            return new Position(r * Math.Cos(theta), r * Math.Sin(theta));
+            return FromPolar(Theta + angle, Norm);
         }
 
         public override int GetHashCode()
@@ -147,7 +148,7 @@ namespace AoE2Lib.Utils
 
         public override string ToString()
         {
-            return $"{X:2},{Y:2}";
+            return $"{X:N2},{Y:N2}";
         }
     }
 }

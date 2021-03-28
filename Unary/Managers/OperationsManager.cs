@@ -89,6 +89,8 @@ namespace Unary.Managers
             info.StrategicNumbers[StrategicNumber.MAXIMUM_WOOD_DROP_DISTANCE] = -2;
             info.StrategicNumbers[StrategicNumber.CAP_CIVILIAN_EXPLORERS] = 0;
             info.StrategicNumbers[StrategicNumber.CAP_CIVILIAN_BUILDERS] = -1;
+            info.StrategicNumbers[StrategicNumber.CAP_CIVILIAN_GATHERERS] = 0;
+            info.StrategicNumbers[StrategicNumber.MINIMUM_BOAR_HUNT_GROUP_SIZE] = 0;
             info.StrategicNumbers[StrategicNumber.DISABLE_BUILDER_ASSISTANCE] = 1;
 
             if (Unary.Tick == 5)

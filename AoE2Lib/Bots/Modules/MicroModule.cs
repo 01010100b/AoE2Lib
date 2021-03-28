@@ -71,7 +71,7 @@ namespace AoE2Lib.Bots.Modules
                 new UpFullResetSearch(),
                 new UpAddObjectById() { InConstSearchSource = 1, InConstId = unit.Id },
                 new UpTargetObjects() { InConstTarget = 1, 
-                    InConstTargetAction = action.HasValue ? (int)action.Value : -1, 
+                    InConstTargetAction = action.HasValue ? (int)action.Value : (int)UnitAction.DEFAULT, 
                     InConstFormation = formation.HasValue ? (int)formation.Value : -1, 
                     InConstAttackStance = stance.HasValue ? (int)stance.Value : -1 }
             );
@@ -79,12 +79,19 @@ namespace AoE2Lib.Bots.Modules
             Commands.Add(command);
         }
 
-        public void TargetPosition(Unit unit, Position target, UnitAction? action, UnitFormation? formation, UnitStance? stance, int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue)
+        public void TargetPosition(Unit unit, Position position, UnitAction? action, UnitFormation? formation, UnitStance? stance, int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue)
         {
-            if (action == UnitAction.MOVE && unit.Position == target)
+            if (action == UnitAction.MOVE && unit.Position == position)
             {
                 return;
             }
+
+            if (action == UnitAction.MOVE && unit[ObjectData.PRECISE_MOVE_X] == position.PreciseX && unit[ObjectData.PRECISE_MOVE_Y] == position.PreciseY)
+            {
+                return;
+            }
+
+            position = Bot.MapModule.Clamp(position);
 
             const int GL_CHECKS = 100;
             const int GL_TEMP = 101;
@@ -98,33 +105,8 @@ namespace AoE2Lib.Bots.Modules
             command.Add(new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = 0 });
             command.Add(new SetGoal() { InConstGoalId = GL_TEMP, InConstValue = -1 });
 
-            var best_pos = target;
-            var best_cost = double.MaxValue;
-            for (int i = 0; i < 10; i++)
-            {
-                var dx = (Bot.Rng.NextDouble() * 4) - 2;
-                var dy = (Bot.Rng.NextDouble() * 4) - 2;
-                var pos = unit.Position + new Position(dx, dy);
-
-                if (Bot.MapModule.IsOnMap(pos) && pos.DistanceTo(target) < unit[ObjectData.RANGE] && pos.DistanceTo(unit.Position) > 1)
-                {
-                    var cost = 0d;
-
-                    cost += -1 * pos.DistanceTo(target);
-
-                    var angle = (pos - unit.Position).AngleFrom(target - unit.Position);
-                    cost += -1 * Math.Abs(Math.Sin(angle));
-
-                    if (cost < best_cost)
-                    {
-                        best_pos = pos;
-                        best_cost = cost;
-                    }
-                }
-            }
-
-            command.Add(new SetGoal() { InConstGoalId = GL_PRECISE_X, InConstValue = best_pos.PreciseX });
-            command.Add(new SetGoal() { InConstGoalId = GL_PRECISE_Y, InConstValue = best_pos.PreciseY });
+            command.Add(new SetGoal() { InConstGoalId = GL_PRECISE_X, InConstValue = position.PreciseX });
+            command.Add(new SetGoal() { InConstGoalId = GL_PRECISE_Y, InConstValue = position.PreciseY });
 
             // check 1: unit exists
 

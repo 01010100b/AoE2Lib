@@ -14,6 +14,7 @@ namespace Unary.Managers
     {
         private BuildOperation BuildingOperation { get; set; } = null;
         private BattleOperation BattleOperation { get; set; } = null;
+        private GuardOperation GuardOperation { get; set; } = null;
 
         public StrategyManager(Unary unary) : base(unary)
         {
@@ -25,10 +26,15 @@ namespace Unary.Managers
             const int VILLAGER = 83;
             const int HOUSE = 70;
 
+            var units = Unary.UnitsModule;
+            var info = Unary.InfoModule;
+
+            units.AddUnitType(VILLAGER);
+            units.AddUnitType(HOUSE);
+
             Unary.ProductionManager.Train(VILLAGER);
 
-            var info = Unary.InfoModule;
-            if (info.PopulationHeadroom > 0 && info.HousingHeadroom < 5)
+            if (info.PopulationHeadroom > 0 && info.HousingHeadroom < 5 && units.UnitTypes[HOUSE].Pending == 0)
             {
                 var town = new HashSet<Tile>();
                 foreach (var tile in Unary.MapModule.GetTilesInRange(info.MyPosition, 10))
@@ -40,13 +46,14 @@ namespace Unary.Managers
                 if (places.Count > 0)
                 {
                     places.Sort((a, b) => a.Position.DistanceTo(info.MyPosition).CompareTo(b.Position.DistanceTo(info.MyPosition)));
-                    Unary.ProductionManager.Build(HOUSE, places[Unary.Rng.Next(places.Count)].Position, 1000, 3);
+                    Unary.ProductionManager.Build(HOUSE, places[Unary.Rng.Next(places.Count)].Position, 1000, 1);
                 }
                 
             }
 
             DoBuilding();
             DoAttacking();
+            DoGuarding();
         }
 
         private void DoBuilding()
@@ -142,8 +149,38 @@ namespace Unary.Managers
                     BattleOperation.AddUnit(unit);
                 }
             }
+        }
 
-            Unary.Log.Info($"AttackOperation: {BattleOperation.Units.Count()} units");
+        private void DoGuarding()
+        {
+            var ops = Unary.OperationsManager;
+
+            if (GuardOperation == null && Unary.Tick > 10)
+            {
+                foreach (var unit in ops.FreeUnits.Where(u => u[ObjectData.CMDID] == (int)CmdId.MILITARY))
+                {
+                    if (unit.Position.DistanceTo(Unary.InfoModule.MyPosition) > 30)
+                    {
+                        GuardOperation = new GuardOperation(ops);
+                        GuardOperation.GuardedUnits.Add(unit);
+
+                        break;
+                    }
+                }
+            }
+
+            if (GuardOperation != null && GuardOperation.Units.Count() < 10)
+            {
+                foreach (var vill in ops.FreeUnits.Where(u => u[ObjectData.CMDID] == (int)CmdId.VILLAGER))
+                {
+                    if (vill.Position.DistanceTo(Unary.InfoModule.MyPosition) < 20)
+                    {
+                        GuardOperation.AddUnit(vill);
+
+                        break;
+                    }
+                }
+            }
         }
     }
 }
