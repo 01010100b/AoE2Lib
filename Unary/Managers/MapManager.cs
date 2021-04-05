@@ -13,20 +13,49 @@ namespace Unary.Managers
 {
     class MapManager : Manager
     {
-        public const int REGION_SIZE = 8;
+        public class ScoutingState
+        {
+            public Tile Tile { get; set; }
+            public TimeSpan LastScoutedGameTime { get; set; } = TimeSpan.MinValue;
+            public TimeSpan LastAccessFailureGameTime { get; set; } = TimeSpan.MinValue;
+        }
 
-        public Region this[Position position] { get { return GetRegion(position); } }
-        public IEnumerable<Region> Regions => _Regions != null ? _Regions.SelectMany(r => r) : Enumerable.Empty<Region>();
-
-        private Region[][] _Regions { get; set; } = null;
-        private int Width { get; set; } = 0;
-        private int Height { get; set; } = 0;
+        private readonly Dictionary<Tile, ScoutingState> ScoutingStates = new Dictionary<Tile, ScoutingState>();
         private ScoutOperation ScoutingOperation { get; set; } = null;
-        private readonly List<ScoutOperation> SheepScoutingOperations = new List<ScoutOperation>();
 
         public MapManager(Unary unary) : base(unary)
         {
 
+        }
+
+        public IEnumerable<Tile> GetGrid(int size)
+        {
+            var map = Unary.MapModule;
+            var width = map.Width;
+            var height = map.Height;
+
+            for (int i = size / 2; i < width; i += size)
+            {
+                for (int j = size / 2; j < height; j += size)
+                {
+                    var pos = new Position(i, j);
+
+                    if (map.IsOnMap(pos))
+                    {
+                        yield return map[pos];
+                    }
+                }
+            }
+        }
+
+        public ScoutingState GetScoutingState(Tile tile)
+        {
+            if (!ScoutingStates.ContainsKey(tile))
+            {
+                ScoutingStates.Add(tile, new ScoutingState() { Tile = tile });
+            }
+
+            return ScoutingStates[tile];
         }
 
         public IEnumerable<Tile> GetPlacements(int building_id, HashSet<Tile> within)
@@ -172,55 +201,7 @@ namespace Unary.Managers
 
         public override void Update()
         {
-            if (_Regions == null)
-            {
-                var map = Unary.MapModule;
-                var width = map.Width;
-                var height = map.Height;
-
-                if (width <= 0 || height <= 0)
-                {
-                    return;
-                }
-
-                Width = width / REGION_SIZE;
-                if (width % REGION_SIZE != 0)
-                {
-                    Width++;
-                }
-
-                Height = height / REGION_SIZE;
-                if (height % REGION_SIZE != 0)
-                {
-                    Height++;
-                }
-
-                Unary.Log.Debug($"MapManager: Regions width {Width} height {Height}");
-
-                _Regions = new Region[Width][];
-                
-                for (int x = 0; x < Width; x++)
-                {
-                    _Regions[x] = new Region[Height];
-
-                    for (int y = 0; y < Height; y++)
-                    {
-                        _Regions[x][y] = new Region();
-                    }
-                }
-
-                for (int x = 0; x < width; x++)
-                {
-                    for (int y = 0; y < height; y++)
-                    {
-                        var pos = new Position(x, y);
-                        var tile = map[pos];
-                        var region = GetRegion(pos);
-
-                        region.Tiles.Add(tile);
-                    }
-                }
-            }
+            
 
             DoScouting();
         }
@@ -266,35 +247,6 @@ namespace Unary.Managers
                     Unary.Log.Info($"Scout with unit {best.Id}");
                 }
             }
-            /*
-            foreach (var sheep in ops.FreeUnits.Where(u => u[ObjectData.CLASS] == (int)UnitClass.Livestock && u[ObjectData.HITPOINTS] > 0).ToList())
-            {
-                var op = new ScoutOperation(ops)
-                {
-                    Focus = ScoutingOperation.Focus,
-                    MinExploredFraction = ScoutingOperation.MinExploredFraction
-                };
-
-                op.AddUnit(sheep);
-                SheepScoutingOperations.Add(op);
-
-                Unary.Log.Info($"Sheep scout with {sheep.Id}");
-            }
-
-            foreach (var sheepscouts in SheepScoutingOperations.Where(o => o.Units.Count() == 0).ToList())
-            {
-                sheepscouts.Stop();
-                SheepScoutingOperations.Remove(sheepscouts);
-            }
-            */
-        }
-
-        private Region GetRegion(Position position)
-        {
-            var x = position.PointX / REGION_SIZE;
-            var y = position.PointY / REGION_SIZE;
-
-            return _Regions[x][y];
         }
     }
 }

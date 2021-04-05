@@ -21,9 +21,14 @@ namespace Unary.Utils
             return 1;
         }
 
-        public double GetHillMode(int id)
+        public int GetHillMode(int id)
         {
             return 3;
+        }
+
+        public int GetLOS(int id)
+        {
+            return 4;
         }
 
         public void Load()
