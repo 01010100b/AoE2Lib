@@ -8,9 +8,9 @@ using Unary.Managers;
 
 namespace Unary.Operations
 {
-    class BuildOperation : Operation
+    class OldBuildOperation : Operation
     {
-        public BuildOperation(OperationsManager manager) : base(manager)
+        public OldBuildOperation(OperationsManager manager) : base(manager)
         {
 
         }

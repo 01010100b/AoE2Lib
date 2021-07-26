@@ -12,7 +12,7 @@ namespace Unary.Managers
 {
     class StrategyManager : Manager
     {
-        private BuildOperation BuildingOperation { get; set; } = null;
+        private OldBuildOperation BuildingOperation { get; set; } = null;
         private BattleOperation BattleOperation { get; set; } = null;
         private GuardOperation GuardOperation { get; set; } = null;
 
@@ -62,7 +62,7 @@ namespace Unary.Managers
 
             if (BuildingOperation == null)
             {
-                BuildingOperation = new BuildOperation(ops);
+                BuildingOperation = new OldBuildOperation(ops);
             }
 
             var foundations = ops.FreeUnits.Concat(BuildingOperation.Units)
@@ -97,7 +97,7 @@ namespace Unary.Managers
 
             if (BuildingOperation.Units.Count(u => u[ObjectData.CMDID] == (int)CmdId.VILLAGER) == 0)
             {
-                foreach (var unit in ops.Operations.Where(o => !(o is BuildOperation)).SelectMany(o => o.Units).Where(u => u[ObjectData.CMDID] == (int)CmdId.VILLAGER))
+                foreach (var unit in ops.Operations.Where(o => !(o is OldBuildOperation)).SelectMany(o => o.Units).Where(u => u[ObjectData.CMDID] == (int)CmdId.VILLAGER))
                 {
                     if (unit[ObjectData.CARRY] == 0)
                     {
