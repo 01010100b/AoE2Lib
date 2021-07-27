@@ -61,7 +61,7 @@ namespace AoE2Lib.Bots.Modules
             }
 
             var units = Bot.UnitsModule;
-            foreach (var unit in units.Units.Values.Where(u => u.Targetable))
+            foreach (var unit in units.Units.Values)
             {
                 if (Players.ContainsKey(unit.PlayerNumber))
                 {

@@ -60,11 +60,10 @@ namespace AoE2Lib.Bots.Modules
 
             if (positions.Count == 0)
             {
-                command.Add(new CanBuild() { InConstBuildingId = id}, "!=", 0,
+                command.Add(new CanBuild() { InConstBuildingId = id }, "!=", 0,
                     new UpModifyGoal() { IoGoalId = GL_BUILT, MathOp = op_add, InOpValue = 1 });
                 command.Add(new Goal() { InConstGoalId = GL_BUILT }, "==", 1,
                     new Build() { InConstBuildingId = id });
-                command.Add(new UpChatDataToAll() { InGoalValue = GL_BUILT, InTextFormattedString = "GL_BUILT %d" });
             }
             else
             {
@@ -87,14 +86,28 @@ namespace AoE2Lib.Bots.Modules
         {
             AddUnitType(id);
 
+            Bot.Log.Info($"train {id} count {max_count} pending {max_pending}");
+
             const int GL_TRAINING = 100;
 
             var command = new Command();
+
             command.Add(new SetGoal() { InConstGoalId = GL_TRAINING, InConstValue = 0 });
+
             command.Add(new UpObjectTypeCountTotal() { InConstObjectId = id }, ">=", max_count,
                 new SetGoal() { InConstGoalId = GL_TRAINING, InConstValue = 1 });
             command.Add(new UpPendingObjects() { InConstObjectId = id }, ">=", max_pending,
-                new SetGoal() { InConstGoalId = GL_TRAINING, InConstValue = 1 });
+                new SetGoal() { InConstGoalId = GL_TRAINING, InConstValue = 2 });
+            command.Add(new CanTrain() { InConstUnitId = id }, "==", 0,
+                new SetGoal() { InConstGoalId = GL_TRAINING, InConstValue = 3 });
+            command.Add(new UnitAvailable() { InConstUnitId = id }, "==", 0,
+                new SetGoal() { InConstGoalId = GL_TRAINING, InConstValue = 4 });
+            command.Add(new CanAffordUnit() { InConstUnitId = id }, "==", 0,
+                new SetGoal() { InConstGoalId = GL_TRAINING, InConstValue = 5 });
+            command.Add(new UpTrainSiteReady() { InConstUnitId = id }, "==", 0,
+                new SetGoal() { InConstGoalId = GL_TRAINING, InConstValue = 6 });
+
+            command.Add(new UpChatDataToAll() { InGoalValue = GL_TRAINING, InTextFormattedString = "GL_TRAINING %d" });
             command.Add(new Goal() { InConstGoalId = GL_TRAINING }, "==", 0,
                 new Train() { InConstUnitId = id });
 

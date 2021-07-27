@@ -81,22 +81,13 @@ namespace Unary.Managers
 
         public override void Update()
         {
-            
-
-            if (Unary.Tick == 5)
-            {
-                var command = new Command();
-                command.Add(new UpSetAttackStance() { InConstUnitId = -1, InConstAttackStance = (int)UnitStance.NO_ATTACK });
-
-                ExecuteCommand(command);
-            }
-
             var units = Unary.UnitsModule;
             var current_units = new HashSet<Unit>();
 
             foreach (var unit in units.Units.Values.Where(u => u.PlayerNumber == Unary.PlayerNumber && u.Updated && u.Targetable && u[ObjectData.HITPOINTS] > 0))
             {
                 current_units.Add(unit);
+                unit.RequestUpdate();
             }
 
             foreach (var op in _Operations.Values)

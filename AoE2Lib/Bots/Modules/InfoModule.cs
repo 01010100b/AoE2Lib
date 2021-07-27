@@ -27,11 +27,25 @@ namespace AoE2Lib.Bots.Modules
         public int PopulationHeadroom { get; private set; }
         public int HousingHeadroom { get; private set; }
         public int PopulationCap { get; private set; }
+        public readonly Dictionary<Resource, bool> ResourceFound = new Dictionary<Resource, bool>();
+        public readonly Dictionary<Resource, int> DropsiteMinDistance = new Dictionary<Resource, int>();
         public readonly Dictionary<StrategicNumber, int> StrategicNumbers = new Dictionary<StrategicNumber, int>();
 
         private readonly Command CommandInfo = new Command();
-        private readonly Command CommandSn = new Command();
         private readonly double[] TickTimes = new double[] { 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7 };
+
+        internal InfoModule() : base()
+        {
+            foreach (var resource in new[] { Resource.FOOD, Resource.WOOD, Resource.GOLD, Resource.STONE })
+            {
+                ResourceFound[resource] = false;
+            }
+
+            foreach (var resource in Enum.GetValues(typeof(Resource)).Cast<Resource>())
+            {
+                DropsiteMinDistance[resource] = -1;
+            }
+        }
 
         protected override IEnumerable<Command> RequestUpdate()
         {
@@ -41,33 +55,42 @@ namespace AoE2Lib.Bots.Modules
             CommandInfo.Add(new UpGetPoint() { OutGoalPoint = 50, InConstPositionType = (int)PositionType.SELF });
             CommandInfo.Add(new Goal() { InConstGoalId = 50 });
             CommandInfo.Add(new Goal() { InConstGoalId = 51 });
+
             CommandInfo.Add(new WoodAmount());
             CommandInfo.Add(new FoodAmount());
             CommandInfo.Add(new GoldAmount());
             CommandInfo.Add(new StoneAmount());
+
             CommandInfo.Add(new EscrowAmount() { InConstResource = (int)Resource.WOOD });
             CommandInfo.Add(new EscrowAmount() { InConstResource = (int)Resource.FOOD });
             CommandInfo.Add(new EscrowAmount() { InConstResource = (int)Resource.GOLD });
             CommandInfo.Add(new EscrowAmount() { InConstResource = (int)Resource.STONE });
+
             CommandInfo.Add(new PopulationHeadroom());
             CommandInfo.Add(new HousingHeadroom());
             CommandInfo.Add(new PopulationCap());
+
+            foreach (var resource in new[] {Resource.FOOD, Resource.WOOD, Resource.GOLD, Resource.STONE})
+            {
+                CommandInfo.Add(new ResourceFound() { InConstResource = (int)resource });
+            }
+
+            foreach (var resource in Enum.GetValues(typeof(Resource)).Cast<Resource>())
+            {
+                CommandInfo.Add(new DropsiteMinDistance() { InConstResource = (int)resource });
+            }
 
             foreach (var sn in StrategicNumbers)
             {
                 CommandInfo.Add(new SetStrategicNumber() { InConstSnId = (int)sn.Key, InConstValue = sn.Value });
             }
 
-            yield return CommandInfo;
-
-            CommandSn.Reset();
-
             foreach (var sn in Enum.GetValues(typeof(StrategicNumber)).Cast<StrategicNumber>())
             {
-                CommandSn.Add(new Protos.Expert.Fact.StrategicNumber() { InConstSnId = (int)sn });
+                CommandInfo.Add(new Protos.Expert.Fact.StrategicNumber() { InConstSnId = (int)sn });
             }
 
-            yield return CommandSn;
+            yield return CommandInfo;
         }
 
         protected override void Update()
@@ -104,13 +127,25 @@ namespace AoE2Lib.Bots.Modules
                 PopulationHeadroom = responses[12].Unpack<PopulationHeadroomResult>().Result;
                 HousingHeadroom = responses[13].Unpack<HousingHeadroomResult>().Result;
                 PopulationCap = responses[14].Unpack<PopulationCapResult>().Result;
-            }
 
-            if (CommandSn.HasResponses)
-            {
-                var responses = CommandSn.GetResponses();
+                var index = 15;
+                foreach (var resource in new[] { Resource.FOOD, Resource.WOOD, Resource.GOLD, Resource.STONE })
+                {
+                    ResourceFound[resource] = responses[index].Unpack<ResourceFoundResult>().Result;
+                    index++;
+                }
 
-                var index = 0;
+                foreach (var resource in Enum.GetValues(typeof(Resource)).Cast<Resource>())
+                {
+                    DropsiteMinDistance[resource] = responses[index].Unpack<DropsiteMinDistanceResult>().Result;
+                    index++;
+                }
+
+                foreach (var sn in StrategicNumbers)
+                {
+                    index++;
+                }
+
                 foreach (var sn in Enum.GetValues(typeof(StrategicNumber)).Cast<StrategicNumber>())
                 {
                     StrategicNumbers[sn] = responses[index].Unpack<StrategicNumberResult>().Result;

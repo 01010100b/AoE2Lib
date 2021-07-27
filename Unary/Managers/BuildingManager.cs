@@ -23,7 +23,7 @@ namespace Unary.Managers
             var info = Unary.InfoModule;
             info.StrategicNumbers[StrategicNumber.CAP_CIVILIAN_EXPLORERS] = 0;
             info.StrategicNumbers[StrategicNumber.CAP_CIVILIAN_BUILDERS] = 1;
-            info.StrategicNumbers[StrategicNumber.DISABLE_BUILDER_ASSISTANCE] = 1;
+            //info.StrategicNumbers[StrategicNumber.DISABLE_BUILDER_ASSISTANCE] = 1;
 
             BuildHouses();
             DoBuildingOperations();
@@ -40,7 +40,7 @@ namespace Unary.Managers
 
             if (info.PopulationHeadroom > 0 && info.HousingHeadroom < 5 && units.UnitTypes[HOUSE].Pending == 0)
             {
-                Unary.ProductionManager.Build(HOUSE, new List<Position>(), 1000, 1);
+                Unary.ProductionManager.Build(HOUSE, new List<Position>(), 1000, 1, 150);
                 Unary.Log.Info("Building house");
             }
         }
@@ -52,7 +52,7 @@ namespace Unary.Managers
                 BuildOperation = new BuildOperation(Unary.OperationsManager);
             }
 
-            var foundations = new HashSet<Unit>();
+            var free_foundations = new HashSet<Unit>();
             foreach (var unit in Unary.UnitsModule.Units.Values)
             {
                 if (unit.PlayerNumber != Unary.InfoModule.PlayerNumber)
@@ -75,21 +75,19 @@ namespace Unary.Managers
                     continue;
                 }
 
-                foundations.Add(unit);
+                free_foundations.Add(unit);
             }
 
             foreach (var build in Unary.OperationsManager.Operations.OfType<BuildOperation>().Cast<BuildOperation>())
             {
                 foreach (var foundation in build.Foundations)
                 {
-                    foundations.Remove(foundation);
+                    free_foundations.Remove(foundation);
                 }
             }
 
-            foreach (var foundation in foundations)
-            {
-                BuildOperation.Foundations.Add(foundation);
-            }
+            BuildOperation.Foundations.Clear();
+            BuildOperation.Foundations.AddRange(free_foundations);
 
             var builders = BuildOperation.Units.Count();
             if (builders < BuildOperation.Foundations.Count && builders < 4)
