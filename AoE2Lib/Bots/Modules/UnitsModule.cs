@@ -36,10 +36,10 @@ namespace AoE2Lib.Bots.Modules
 
         public void Build(int id, Position position, int max_count = 10000, int max_pending = 10000)
         {
-            Build(id, new[] { position }, max_count, max_pending);
+            Build(id, new List<Position>() { position }, max_count, max_pending);
         }
 
-        public void Build(int id, IEnumerable<Position> positions, int max_count = 10000, int max_pending = 10000)
+        public void Build(int id, List<Position> positions, int max_count = 10000, int max_pending = 10000)
         {
             AddUnitType(id);
 
@@ -58,15 +58,26 @@ namespace AoE2Lib.Bots.Modules
             command.Add(new UpPendingObjects() { InConstObjectId = id }, ">=", max_pending,
                 new SetGoal() { InConstGoalId = GL_BUILT, InConstValue = 2 });
 
-            foreach (var pos in positions)
+            if (positions.Count == 0)
             {
-                command.Add(new SetGoal() { InConstGoalId = GL_POINT_X, InConstValue = pos.PointX });
-                command.Add(new SetGoal() { InConstGoalId = GL_POINT_Y, InConstValue = pos.PointY });
-                command.Add(new UpCanBuildLine() { InConstBuildingId = id, InGoalEscrowState = 0, InGoalPoint = GL_POINT_X }, "!=", 0,
+                command.Add(new CanBuild() { InConstBuildingId = id}, "!=", 0,
                     new UpModifyGoal() { IoGoalId = GL_BUILT, MathOp = op_add, InOpValue = 1 });
                 command.Add(new Goal() { InConstGoalId = GL_BUILT }, "==", 1,
-                    new UpBuildLine() { InConstBuildingId = id, InGoalPoint1 = GL_POINT_X, InGoalPoint2 = GL_POINT_X });
+                    new Build() { InConstBuildingId = id });
+                command.Add(new UpChatDataToAll() { InGoalValue = GL_BUILT, InTextFormattedString = "GL_BUILT %d" });
+            }
+            else
+            {
+                foreach (var pos in positions)
+                {
+                    command.Add(new SetGoal() { InConstGoalId = GL_POINT_X, InConstValue = pos.PointX });
+                    command.Add(new SetGoal() { InConstGoalId = GL_POINT_Y, InConstValue = pos.PointY });
+                    command.Add(new UpCanBuildLine() { InConstBuildingId = id, InGoalEscrowState = 0, InGoalPoint = GL_POINT_X }, "!=", 0,
+                        new UpModifyGoal() { IoGoalId = GL_BUILT, MathOp = op_add, InOpValue = 1 });
+                    command.Add(new Goal() { InConstGoalId = GL_BUILT }, "==", 1,
+                        new UpBuildLine() { InConstBuildingId = id, InGoalPoint1 = GL_POINT_X, InGoalPoint2 = GL_POINT_X });
 
+                }
             }
 
             CreateCommands.Add(command);

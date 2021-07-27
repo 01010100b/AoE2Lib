@@ -23,6 +23,7 @@ namespace Unary
         public readonly MapManager MapManager;
         public readonly StrategyManager StrategyManager;
         public readonly EconomyManager EconomyManager;
+        public readonly BuildingManager BuildingManager;
         public readonly ProductionManager ProductionManager;
         public readonly OperationsManager OperationsManager;
 
@@ -36,11 +37,12 @@ namespace Unary
             MapManager = new MapManager(this);
             StrategyManager = new StrategyManager(this);
             EconomyManager = new EconomyManager(this);
+            BuildingManager = new BuildingManager(this);
             ProductionManager = new ProductionManager(this);
             OperationsManager = new OperationsManager(this);
         }
 
-        public void ExecuteCommand(Command command)
+        internal void ExecuteCommand(Command command)
         {
             Commands.Add(command);
         }
@@ -71,6 +73,7 @@ namespace Unary
             MapManager.Update();
             StrategyManager.Update();
             EconomyManager.Update();
+            BuildingManager.Update();
             ProductionManager.Update();
             OperationsManager.Update();
         }

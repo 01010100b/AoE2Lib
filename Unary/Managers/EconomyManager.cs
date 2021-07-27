@@ -10,8 +10,6 @@ namespace Unary.Managers
 {
     class EconomyManager : Manager
     {
-        private readonly List<Operation> Operations = new List<Operation>();
-
         public EconomyManager(Unary unary) : base(unary)
         {
 
@@ -19,64 +17,23 @@ namespace Unary.Managers
 
         public override void Update()
         {
-            var ops = Unary.OperationsManager;
-            var free_vills = ops.FreeUnits.Where(u => u[ObjectData.CMDID] == (int)CmdId.VILLAGER).ToList();
+            var info = Unary.InfoModule;
+            info.StrategicNumbers[StrategicNumber.MAXIMUM_FOOD_DROP_DISTANCE] = -2;
+            info.StrategicNumbers[StrategicNumber.MAXIMUM_GOLD_DROP_DISTANCE] = -2;
+            info.StrategicNumbers[StrategicNumber.MAXIMUM_HUNT_DROP_DISTANCE] = -2;
+            info.StrategicNumbers[StrategicNumber.MAXIMUM_STONE_DROP_DISTANCE] = -2;
+            info.StrategicNumbers[StrategicNumber.MAXIMUM_WOOD_DROP_DISTANCE] = -2;
+            info.StrategicNumbers[StrategicNumber.CAP_CIVILIAN_GATHERERS] = 0;
+            info.StrategicNumbers[StrategicNumber.MINIMUM_BOAR_HUNT_GROUP_SIZE] = 0;
 
-            if (free_vills.Count > 0)
-            {
-                if (Operations.OfType<EatOperation>().Count() == 0)
-                {
-                    var op = new EatOperation(ops);
-                    op.AddUnit(free_vills.First());
+            // train vills
+            const int VILLAGER = 83;
 
-                    Operations.Add(op);
-                }
-            }
+            var units = Unary.UnitsModule;
 
-            foreach (var op in Operations.ToList())
-            {
-                if (op is EatOperation eat)
-                {
-                    eat.Focus = Unary.InfoModule.MyPosition + new Position(-1, 1);
+            units.AddUnitType(VILLAGER);
 
-                    var sheep = eat.Units.FirstOrDefault(u => u[ObjectData.CLASS] == (int)UnitClass.Livestock && u[ObjectData.HITPOINTS] > 0);
-
-                    if (sheep == null)
-                    {
-                        sheep = ops.FreeUnits.FirstOrDefault(u => u[ObjectData.CLASS] == (int)UnitClass.Livestock && u[ObjectData.HITPOINTS] > 0);
-
-                        if (sheep == null)
-                        {
-                            foreach (var scout in ops.Operations.OfType<ScoutOperation>().SelectMany(o => o.Units))
-                            {
-                                if (scout[ObjectData.CLASS] == (int)UnitClass.Livestock && scout[ObjectData.HITPOINTS] > 0)
-                                {
-                                    sheep = scout;
-                                }
-                            }
-                        }
-
-                        eat.AddUnit(sheep);
-                    }
-
-                    if (sheep != null && eat.Units.Count(u => u[ObjectData.CMDID] == (int)CmdId.VILLAGER) < 6)
-                    {
-                        var vill = free_vills.FirstOrDefault(u => u[ObjectData.CMDID] == (int)CmdId.VILLAGER);
-                        eat.AddUnit(vill);
-                    }
-
-                    if (eat.Units.Count() == 0)
-                    {
-                        eat.Stop();
-                        Operations.Remove(eat);
-                    }
-                }
-                else
-                {
-                    op.Stop();
-                    Operations.Remove(op);
-                }
-            }
+            Unary.ProductionManager.Train(VILLAGER);
         }
     }
 }

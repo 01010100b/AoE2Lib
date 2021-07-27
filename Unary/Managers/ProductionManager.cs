@@ -94,10 +94,10 @@ namespace Unary.Managers
 
         public void Build(int id, Position position, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = false)
         {
-            Build(id, new[] { position }, max_count, max_pending, priority, blocking);
+            Build(id, new List<Position>() { position }, max_count, max_pending, priority, blocking);
         }
 
-        public void Build(int id, IEnumerable<Position> positions, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = false)
+        public void Build(int id, List<Position> positions, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = false)
         {
             var units = Unary.UnitsModule;
             units.AddUnitType(id);
@@ -175,7 +175,7 @@ namespace Unary.Managers
                     }
                     else if (prod.IsBuilding)
                     {
-                        Unary.Log.Debug($"building {prod.Id} at {prod.BuildPositions.Count} positions count {prod.MaxCount} pending {prod.MaxPending}");
+                        //Unary.Log.Debug($"building {prod.Id} at {prod.BuildPositions.Count} positions count {prod.MaxCount} pending {prod.MaxPending}");
                         units.Build(prod.Id, prod.BuildPositions, prod.MaxCount, prod.MaxPending);
                     }
                     else

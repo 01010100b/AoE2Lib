@@ -81,24 +81,14 @@ namespace Unary.Managers
 
         public override void Update()
         {
-            var info = Unary.InfoModule;
-            info.StrategicNumbers[StrategicNumber.MAXIMUM_FOOD_DROP_DISTANCE] = -2;
-            info.StrategicNumbers[StrategicNumber.MAXIMUM_GOLD_DROP_DISTANCE] = -2;
-            info.StrategicNumbers[StrategicNumber.MAXIMUM_HUNT_DROP_DISTANCE] = -2;
-            info.StrategicNumbers[StrategicNumber.MAXIMUM_STONE_DROP_DISTANCE] = -2;
-            info.StrategicNumbers[StrategicNumber.MAXIMUM_WOOD_DROP_DISTANCE] = -2;
-            info.StrategicNumbers[StrategicNumber.CAP_CIVILIAN_EXPLORERS] = 0;
-            info.StrategicNumbers[StrategicNumber.CAP_CIVILIAN_BUILDERS] = -1;
-            info.StrategicNumbers[StrategicNumber.CAP_CIVILIAN_GATHERERS] = 0;
-            info.StrategicNumbers[StrategicNumber.MINIMUM_BOAR_HUNT_GROUP_SIZE] = 0;
-            info.StrategicNumbers[StrategicNumber.DISABLE_BUILDER_ASSISTANCE] = 1;
+            
 
             if (Unary.Tick == 5)
             {
                 var command = new Command();
                 command.Add(new UpSetAttackStance() { InConstUnitId = -1, InConstAttackStance = (int)UnitStance.NO_ATTACK });
 
-                Unary.ExecuteCommand(command);
+                ExecuteCommand(command);
             }
 
             var units = Unary.UnitsModule;
