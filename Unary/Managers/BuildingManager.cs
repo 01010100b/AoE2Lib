@@ -23,6 +23,23 @@ namespace Unary.Managers
             //Unary.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, 0);
             Unary.SetStrategicNumber(StrategicNumber.DISABLE_BUILDER_ASSISTANCE, 1);
             Unary.SetStrategicNumber(StrategicNumber.ENABLE_NEW_BUILDING_SYSTEM, 1);
+            Unary.SetStrategicNumber(StrategicNumber.INITIAL_EXPLORATION_REQUIRED, 0);
+
+            Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 25);
+            if (Unary.GetTechnology(101).State == ResearchState.COMPLETE)
+            {
+                Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 30);
+            }
+
+            if (Unary.GetTechnology(102).State == ResearchState.COMPLETE)
+            {
+                Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 35);
+            }
+
+            if (Unary.GetTechnology(103).State == ResearchState.COMPLETE)
+            {
+                Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 40);
+            }
 
             BuildHouses();
             //DoBuildingOperations();
@@ -33,9 +50,22 @@ namespace Unary.Managers
             var house = Unary.GetUnitType(70);
             var info = Unary.InfoModule;
 
-            if (info.PopulationHeadroom > 0 && info.HousingHeadroom < 5 && house.Pending == 0)
+            var margin = 5;
+            var pending = 1;
+
+            if (Unary.GetTechnology(101).State == ResearchState.COMPLETE)
             {
-                house.Build(1000, 1, (int)Priority.HOUSING);
+                margin = 10;
+            }
+
+            if (Unary.GetTechnology(102).State == ResearchState.COMPLETE)
+            {
+                pending = 2;
+            }
+
+            if (info.PopulationHeadroom > 0 && info.HousingHeadroom < margin && house.Pending < pending)
+            {
+                house.Build(1000, pending, (int)Priority.HOUSING);
                 Unary.Log.Info("Building house");
             }
         }

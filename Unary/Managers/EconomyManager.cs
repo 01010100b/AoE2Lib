@@ -52,7 +52,7 @@ namespace Unary.Managers
             info.StrategicNumbers[StrategicNumber.CAP_CIVILIAN_GATHERERS] = 0;
             info.StrategicNumbers[StrategicNumber.MINIMUM_BOAR_HUNT_GROUP_SIZE] = 0;
             */
-
+            Unary.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_EXPLORERS, 0);
             Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_FOOD_DROP_DISTANCE, 4);
             Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_WOOD_DROP_DISTANCE, 4);
             Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_GOLD_DROP_DISTANCE, 4);
@@ -94,6 +94,8 @@ namespace Unary.Managers
             var lumber_camp = Unary.GetUnitType(562);
             var mining_camp = Unary.GetUnitType(584);
             var farm = Unary.GetUnitType(50);
+
+            Unary.SetStrategicNumber(StrategicNumber.MILL_MAX_DISTANCE, 30);
 
             if (Unary.MyPlayer.GetUnits().Count(u => u.Targetable && u[ObjectData.BASE_TYPE] == tc.Id) < TownCenters)
             {

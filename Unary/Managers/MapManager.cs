@@ -201,9 +201,10 @@ namespace Unary.Managers
 
         internal override void Update()
         {
-            
 
-            DoScouting();
+            Unary.SetStrategicNumber(StrategicNumber.HOME_EXPLORATION_TIME, 600);
+            Unary.SetStrategicNumber(StrategicNumber.NUMBER_EXPLORE_GROUPS, 1);
+            //DoScouting();
         }
 
         private void DoScouting()

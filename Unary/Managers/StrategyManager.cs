@@ -17,10 +17,25 @@ namespace Unary.Managers
 
         }
 
+        public void Attack(Player player)
+        {
+            Unary.SetStrategicNumber(StrategicNumber.ENABLE_PATROL_ATTACK, 1);
+            Unary.SetStrategicNumber(StrategicNumber.TARGET_PLAYER_NUMBER, player.PlayerNumber);
+            Unary.SetStrategicNumber(StrategicNumber.MINIMUM_ATTACK_GROUP_SIZE, 1);
+            Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_ATTACK_GROUP_SIZE, 1);
+            Unary.SetStrategicNumber(StrategicNumber.NUMBER_ATTACK_GROUPS, 100);
+        }
+
+        public void Retreat()
+        {
+            Unary.SetStrategicNumber(StrategicNumber.NUMBER_ATTACK_GROUPS, 0);
+        }
+
         internal override void Update()
         {
-            Unary.SetStrategicNumber(StrategicNumber.INITIAL_EXPLORATION_REQUIRED, 0);
-            Unary.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_EXPLORERS, 0);
+            Unary.SetStrategicNumber(StrategicNumber.TASK_UNGROUPED_SOLDIERS, 0);
+            Unary.SetStrategicNumber(StrategicNumber.DISABLE_DEFEND_GROUPS, 8);
+
             BasicStrategy();
         }
 
@@ -79,6 +94,16 @@ namespace Unary.Managers
                 {
                     blacksmith.Build(1, 1, (int)Priority.PRODUCTION_BUILDING);
                 }
+            }
+
+            if (Unary.MyPlayer.MilitaryPopulation > 20)
+            {
+                var target = Unary.GetPlayers().First(p => p.Stance == PlayerStance.ENEMY);
+                Attack(target);
+            }
+            else if (Unary.MyPlayer.MilitaryPopulation < 10)
+            {
+                Retreat();
             }
         }
     }
