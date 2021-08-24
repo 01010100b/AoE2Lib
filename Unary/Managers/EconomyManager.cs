@@ -36,9 +36,8 @@ namespace Unary.Managers
 
         private void ManagePopulation()
         {
-            const int VILLAGER = 83;
-
-            Unary.ProductionManager.Train(VILLAGER, (int)Math.Round(0.6 * Unary.InfoModule.PopulationCap), ConcurrentVillagers, 100, true);
+            var villager = Unary.GetUnitType(83);
+            villager.Train((int)Math.Round(0.6 * Unary.InfoModule.PopulationCap), ConcurrentVillagers, 100, true);
         }
 
         private void ManageGatherers()
@@ -103,18 +102,23 @@ namespace Unary.Managers
 
             if (town_centers < TownCenters)
             {
-                Unary.ProductionManager.Build(TC, new List<Position>(), TownCenters, 1, 200, true);
+                var tc = Unary.GetUnitType(TC);
+                tc.Build(new List<Position>(), TownCenters, 1, 200, true);
             }
-            
+
+            if (Unary.GetStrategicNumber(StrategicNumber.WOOD_GATHERER_PERCENTAGE) > 0)
+            {
+                var camp = Unary.GetUnitType(LUMBER_CAMP);
+            }
             
             if (Unary.GetStrategicNumber(StrategicNumber.FOOD_GATHERER_PERCENTAGE) > 0)
             {
-                var mill = Unary.UnitsModule.GetUnitType(MILL);
+                var mill = Unary.GetUnitType(MILL);
                 if (mill.CountTotal < 1)
                 {
                     if (Unary.GetResourceFound(Resource.FOOD) && Unary.GetDropsiteMinDistance(Resource.FOOD) > 2 && Unary.GetDropsiteMinDistance(Resource.FOOD) < 200)
                     {
-                        Unary.ProductionManager.Build(mill.Id, new List<Position>(), 100, 1, 200, true);
+                        mill.Build(new List<Position>(), 100, 1, 200, true);
                     }
                 }
             }
@@ -146,17 +150,17 @@ namespace Unary.Managers
                     }
                     else
                     {
-                        var camp = MINING_CAMP;
+                        var camp = Unary.GetUnitType(MINING_CAMP);
                         if (resource == Resource.FOOD)
                         {
-                            camp = MILL;
+                            camp = Unary.GetUnitType(MILL);
                         }
                         else if (resource == Resource.WOOD)
                         {
-                            camp = LUMBER_CAMP;
+                            camp = Unary.GetUnitType(LUMBER_CAMP);
                         }
 
-                        Unary.ProductionManager.Build(camp, new List<Position>(), 100, 1, 200, true);
+                        camp.Build(new List<Position>(), 100, 1, 200, true);
                     }
                 }
             }

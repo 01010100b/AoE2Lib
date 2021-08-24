@@ -23,6 +23,34 @@ namespace AoE2Lib.Bots.GameElements
             Id = id;
         }
 
+        public void Research(int priority = 10, bool blocking = false)
+        {
+            var research = Bot.ResearchModule;
+            research.Add(Id);
+
+            var tech = research.Researches[Id];
+
+            if (tech.Updated == false || tech.State != ResearchState.AVAILABLE)
+            {
+                return;
+            }
+
+            var prod = new ProductionTask()
+            {
+                Priority = priority,
+                Blocking = blocking,
+                WoodCost = tech.WoodCost,
+                FoodCost = tech.FoodCost,
+                GoldCost = tech.GoldCost,
+                StoneCost = tech.StoneCost,
+                Id = Id,
+                IsTech = true,
+                IsBuilding = false
+            };
+
+            Bot.AddProductionTask(prod);
+        }
+
         protected override IEnumerable<IMessage> RequestElementUpdate()
         {
             yield return new UpResearchStatus() { InConstTechId = Id };

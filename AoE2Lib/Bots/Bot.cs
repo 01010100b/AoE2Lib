@@ -1,4 +1,5 @@
-﻿using AoE2Lib.Bots.Modules;
+﻿using AoE2Lib.Bots.GameElements;
+using AoE2Lib.Bots.Modules;
 using AoE2Lib.Utils;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
@@ -68,6 +69,32 @@ namespace AoE2Lib.Bots
             InfoModule.SetStrategicNumber(sn, val);
         }
 
+        public Unit GetUnit(int id)
+        {
+            if (UnitsModule.Units.TryGetValue(id, out Unit unit))
+            {
+                return unit;
+            }
+            else
+            {
+                throw new Exception($"Unit {id} not found");
+            }
+        }
+
+        public UnitType GetUnitType(int id)
+        {
+            UnitsModule.AddUnitType(id);
+
+            return UnitsModule.UnitTypes[id];
+        }
+
+        public Technology GetTechnology(int id)
+        {
+            ResearchModule.Add(id);
+
+            return ResearchModule.Researches[id];
+        }
+
         internal void UpdateGameElement(GameElement element, Command command)
         {
             GameElementUpdates[element] = command;
@@ -76,6 +103,73 @@ namespace AoE2Lib.Bots
         internal void AddProductionTask(ProductionTask task)
         {
             ProductionTasks.Add(task);
+        }
+
+        private void DoProduction()
+        {
+            var info = InfoModule;
+            var remaining_wood = info.WoodAmount;
+            var remaining_food = info.FoodAmount;
+            var remaining_gold = info.GoldAmount;
+            var remaining_stone = info.StoneAmount;
+            var research = ResearchModule;
+            var units = UnitsModule;
+
+            ProductionTasks.Sort((a, b) => b.Priority.CompareTo(a.Priority));
+
+            foreach (var prod in ProductionTasks)
+            {
+                var can_afford = true;
+                if (prod.WoodCost > 0 && prod.WoodCost > remaining_wood)
+                {
+                    can_afford = false;
+                }
+                else if (prod.FoodCost > 0 && prod.FoodCost > remaining_food)
+                {
+                    can_afford = false;
+                }
+                else if (prod.GoldCost > 0 && prod.GoldCost > remaining_gold)
+                {
+                    can_afford = false;
+                }
+                else if (prod.StoneCost > 0 && prod.StoneCost > remaining_stone)
+                {
+                    can_afford = false;
+                }
+
+                var deduct = true;
+                if (can_afford == false && prod.Blocking == false)
+                {
+                    deduct = false;
+                }
+
+                if (can_afford)
+                {
+                    if (prod.IsTech)
+                    {
+                        research.Research(prod.Id);
+                    }
+                    else if (prod.IsBuilding)
+                    {
+                        //Unary.Log.Debug($"building {prod.Id} at {prod.BuildPositions.Count} positions count {prod.MaxCount} pending {prod.MaxPending}");
+                        units.Build(prod.Id, prod.BuildPositions, prod.MaxCount, prod.MaxPending);
+                    }
+                    else
+                    {
+                        units.Train(prod.Id, prod.MaxCount, prod.MaxPending);
+                    }
+                }
+
+                if (deduct)
+                {
+                    remaining_wood -= prod.WoodCost;
+                    remaining_food -= prod.FoodCost;
+                    remaining_gold -= prod.GoldCost;
+                    remaining_stone -= prod.StoneCost;
+                }
+            }
+
+            ProductionTasks.Clear();
         }
 
         protected abstract IEnumerable<Command> Update();
@@ -107,8 +201,6 @@ namespace AoE2Lib.Bots
             BotThread.Start();
         }
 
-        
-
         private void Run(string endpoint)
         {
             Log.Info($"Started");
@@ -139,6 +231,7 @@ namespace AoE2Lib.Bots
                 if (Tick > 0)
                 {
                     commands.AddRange(Update().Where(c => c.HasMessages));
+                    DoProduction();
                 }
 
                 commands.AddRange(MicroModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));

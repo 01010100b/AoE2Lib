@@ -31,16 +31,13 @@ namespace Unary.Managers
 
         private void BuildHouses()
         {
-            const int HOUSE = 70;
-
+            var house = Unary.GetUnitType(70);
             var units = Unary.UnitsModule;
             var info = Unary.InfoModule;
 
-            units.AddUnitType(HOUSE);
-
-            if (info.PopulationHeadroom > 0 && info.HousingHeadroom < 5 && units.UnitTypes[HOUSE].Pending == 0)
+            if (info.PopulationHeadroom > 0 && info.HousingHeadroom < 5 && house.Pending == 0)
             {
-                Unary.ProductionManager.Build(HOUSE, new List<Position>(), 1000, 1, 150);
+                house.Build(new List<Position>(), 1000, 1, 150);
                 Unary.Log.Info("Building house");
             }
         }

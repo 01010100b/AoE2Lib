@@ -34,13 +34,6 @@ namespace AoE2Lib.Bots.Modules
             }
         }
 
-        public UnitType GetUnitType(int id)
-        {
-            AddUnitType(id);
-
-            return UnitTypes[id];
-        }
-
         public void Build(int id, Position position, int max_count = 10000, int max_pending = 10000)
         {
             Build(id, new List<Position>() { position }, max_count, max_pending);

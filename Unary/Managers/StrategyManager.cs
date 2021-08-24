@@ -44,10 +44,10 @@ namespace Unary.Managers
             Unary.EconomyManager.ExtraWoodPercentage = 40;
             Unary.EconomyManager.ExtraGoldPercentage = 0;
             Unary.EconomyManager.ExtraStonePercentage = 0;
-            
-            Unary.ProductionManager.Research(FEUDAL_AGE, 300);
-            Unary.ProductionManager.Research(CASTLE_AGE, 300);
-            Unary.ProductionManager.Research(IMPERIAL_AGE, 300);
+
+            Unary.GetTechnology(FEUDAL_AGE).Research(300);
+            Unary.GetTechnology(CASTLE_AGE).Research(300);
+            Unary.GetTechnology(IMPERIAL_AGE).Research(300);
             
             if (Unary.ResearchModule.Researches[FEUDAL_AGE].State == ResearchState.COMPLETE)
             {
