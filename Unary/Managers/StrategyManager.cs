@@ -19,46 +19,58 @@ namespace Unary.Managers
 
         public override void Update()
         {
-            Unary.InfoModule.StrategicNumbers[StrategicNumber.INITIAL_EXPLORATION_REQUIRED] = 0;
+            Unary.SetStrategicNumber(StrategicNumber.INITIAL_EXPLORATION_REQUIRED, 0);
             BasicStrategy();
         }
 
         private void BasicStrategy()
         {
-            const int FEUDAL_AGE = 101;
-            const int CASTLE_AGE = 102;
-            const int IMPERIAL_AGE = 103;
-
-            if (!Unary.PlayersModule.Players.ContainsKey(Unary.InfoModule.PlayerNumber))
-            {
-                return;
-            }
-
-            var me = Unary.PlayersModule.Players[Unary.InfoModule.PlayerNumber];
+            var feudal_age = Unary.GetTechnology(101);
+            var castle_age = Unary.GetTechnology(102);
+            var imperial_age = Unary.GetTechnology(103);
 
             Unary.EconomyManager.MinFoodGatherers = 7;
             Unary.EconomyManager.MinWoodGatherers = 0;
             Unary.EconomyManager.MinGoldGatherers = 0;
             Unary.EconomyManager.MinStoneGatherers = 0;
-            Unary.EconomyManager.ExtraFoodPercentage = 60;
-            Unary.EconomyManager.ExtraWoodPercentage = 40;
+            Unary.EconomyManager.ExtraFoodPercentage = 30;
+            Unary.EconomyManager.ExtraWoodPercentage = 70;
             Unary.EconomyManager.ExtraGoldPercentage = 0;
             Unary.EconomyManager.ExtraStonePercentage = 0;
 
-            Unary.GetTechnology(FEUDAL_AGE).Research(300);
-            Unary.GetTechnology(CASTLE_AGE).Research(300);
-            Unary.GetTechnology(IMPERIAL_AGE).Research(300);
+            feudal_age.Research((int)Priority.AGE_UP, false);
+            castle_age.Research((int)Priority.AGE_UP, false);
+            imperial_age.Research((int)Priority.AGE_UP, false);
+
+            var barracks = Unary.GetUnitType(12);
+            var archery_range = Unary.GetUnitType(87);
+            var blacksmith = Unary.GetUnitType(103);
             
-            if (Unary.ResearchModule.Researches[FEUDAL_AGE].State == ResearchState.COMPLETE)
+            if (feudal_age.State == ResearchState.COMPLETE)
             {
                 Unary.EconomyManager.MinFoodGatherers = 7;
                 Unary.EconomyManager.MinWoodGatherers = 10;
                 Unary.EconomyManager.MinGoldGatherers = 0;
                 Unary.EconomyManager.MinStoneGatherers = 0;
-                Unary.EconomyManager.ExtraFoodPercentage = 30;
+                Unary.EconomyManager.ExtraFoodPercentage = 40;
                 Unary.EconomyManager.ExtraWoodPercentage = 20;
-                Unary.EconomyManager.ExtraGoldPercentage = 40;
+                Unary.EconomyManager.ExtraGoldPercentage = 30;
                 Unary.EconomyManager.ExtraStonePercentage = 10;
+
+                if (barracks.CountTotal < 1)
+                {
+                    barracks.Build(1, 1, (int)Priority.PRODUCTION_BUILDING);
+                }
+
+                if (barracks.CountTotal >= 1 && archery_range.CountTotal < 1)
+                {
+                    archery_range.Build(1, 1, (int)Priority.PRODUCTION_BUILDING);
+                }
+
+                if (archery_range.CountTotal >= 1 && blacksmith.CountTotal < 1)
+                {
+                    blacksmith.Build(1, 1, (int)Priority.PRODUCTION_BUILDING);
+                }
             }
         }
     }

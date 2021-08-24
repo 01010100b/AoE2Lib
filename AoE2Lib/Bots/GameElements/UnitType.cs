@@ -28,14 +28,9 @@ namespace AoE2Lib.Bots.GameElements
             Id = id;
         }
 
-        public void Train(int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = false)
+        public void Train(int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
         {
-            var units = Bot.UnitsModule;
-            units.AddUnitType(Id);
-
-            var type = units.UnitTypes[Id];
-
-            if (type.Updated == false || type.IsAvailable == false)
+            if (Updated == false || IsAvailable == false || CountTotal >= max_count || Pending >= max_pending)
             {
                 return;
             }
@@ -44,10 +39,10 @@ namespace AoE2Lib.Bots.GameElements
             {
                 Priority = priority,
                 Blocking = blocking,
-                WoodCost = type.WoodCost,
-                FoodCost = type.FoodCost,
-                GoldCost = type.GoldCost,
-                StoneCost = type.StoneCost,
+                WoodCost = WoodCost,
+                FoodCost = FoodCost,
+                GoldCost = GoldCost,
+                StoneCost = StoneCost,
                 Id = Id,
                 MaxCount = max_count,
                 MaxPending = max_pending,
@@ -58,19 +53,19 @@ namespace AoE2Lib.Bots.GameElements
             Bot.AddProductionTask(prod);
         }
 
-        public void Build(Position position, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = false)
+        public void Build(int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
+        {
+            Build(new List<Position>(), max_count, max_pending, priority, blocking);
+        }
+
+        public void Build(Position position, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
         {
             Build(new List<Position>() { position }, max_count, max_pending, priority, blocking);
         }
 
-        public void Build(List<Position> positions, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = false)
+        public void Build(List<Position> positions, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
         {
-            var units = Bot.UnitsModule;
-            units.AddUnitType(Id);
-
-            var type = units.UnitTypes[Id];
-
-            if (type.Updated == false || type.IsAvailable == false)
+            if (Updated == false || IsAvailable == false || CountTotal >= max_count || Pending >= max_pending)
             {
                 return;
             }
@@ -79,10 +74,10 @@ namespace AoE2Lib.Bots.GameElements
             {
                 Priority = priority,
                 Blocking = blocking,
-                WoodCost = type.WoodCost,
-                FoodCost = type.FoodCost,
-                GoldCost = type.GoldCost,
-                StoneCost = type.StoneCost,
+                WoodCost = WoodCost,
+                FoodCost = FoodCost,
+                GoldCost = GoldCost,
+                StoneCost = StoneCost,
                 Id = Id,
                 MaxCount = max_count,
                 MaxPending = max_pending,

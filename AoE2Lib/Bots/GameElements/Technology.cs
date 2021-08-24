@@ -23,14 +23,9 @@ namespace AoE2Lib.Bots.GameElements
             Id = id;
         }
 
-        public void Research(int priority = 10, bool blocking = false)
+        public void Research(int priority = 10, bool blocking = true)
         {
-            var research = Bot.ResearchModule;
-            research.Add(Id);
-
-            var tech = research.Researches[Id];
-
-            if (tech.Updated == false || tech.State != ResearchState.AVAILABLE)
+            if (Updated == false || State != ResearchState.AVAILABLE)
             {
                 return;
             }
@@ -39,10 +34,10 @@ namespace AoE2Lib.Bots.GameElements
             {
                 Priority = priority,
                 Blocking = blocking,
-                WoodCost = tech.WoodCost,
-                FoodCost = tech.FoodCost,
-                GoldCost = tech.GoldCost,
-                StoneCost = tech.StoneCost,
+                WoodCost = WoodCost,
+                FoodCost = FoodCost,
+                GoldCost = GoldCost,
+                StoneCost = StoneCost,
                 Id = Id,
                 IsTech = true,
                 IsBuilding = false

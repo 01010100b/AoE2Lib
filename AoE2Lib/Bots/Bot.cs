@@ -25,15 +25,20 @@ namespace AoE2Lib.Bots
         public int PlayerNumber { get; private set; } = -1;
         public int Tick { get; private set; } = 0;
         public Log Log { get; private set; }
-        public Random Rng { get; private set; } = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.GetHashCode());
+        public Random Rng { get; private set; }
+
+        public Player MyPlayer => GetPlayer(PlayerNumber);
+
         public InfoModule InfoModule { get; private set; }
         public MapModule MapModule { get; private set; }
-        public PlayersModule PlayersModule { get; private set; }
         public UnitsModule UnitsModule { get; private set; }
         public ResearchModule ResearchModule { get; private set; }
         public MicroModule MicroModule { get; private set; }
 
         private readonly List<ProductionTask> ProductionTasks = new List<ProductionTask>();
+        private readonly List<Player> Players = new List<Player>();
+        private readonly Dictionary<int, Technology> Technologies = new Dictionary<int, Technology>();
+        private readonly Dictionary<int, UnitType> UnitTypes = new Dictionary<int, UnitType>();
 
         private Thread BotThread { get; set; } = null;
         private volatile bool Stopping = false;
@@ -47,6 +52,48 @@ namespace AoE2Lib.Bots
             BotThread = null;
 
             Stopping = false;
+        }
+
+        public Player GetPlayer(int player_number)
+        {
+            return Players[player_number];
+        }
+
+        public IEnumerable<Player> GetPlayers()
+        {
+            return Players.Where(p => p.IsValid);
+        }
+
+        public Technology GetTechnology(int id)
+        {
+            if (!Technologies.ContainsKey(id))
+            {
+                Technologies.Add(id, new Technology(this, id));
+            }
+
+            return Technologies[id];
+        }
+
+        public UnitType GetUnitType(int id)
+        {
+            if (!UnitTypes.ContainsKey(id))
+            {
+                UnitTypes.Add(id, new UnitType(this, id));
+            }
+
+            return UnitTypes[id];
+        }
+
+        public Unit GetUnit(int id)
+        {
+            if (UnitsModule.Units.TryGetValue(id, out Unit unit))
+            {
+                return unit;
+            }
+            else
+            {
+                throw new Exception($"Unit {id} not found");
+            }
         }
 
         public bool GetResourceFound(Resource resource)
@@ -69,32 +116,6 @@ namespace AoE2Lib.Bots
             InfoModule.SetStrategicNumber(sn, val);
         }
 
-        public Unit GetUnit(int id)
-        {
-            if (UnitsModule.Units.TryGetValue(id, out Unit unit))
-            {
-                return unit;
-            }
-            else
-            {
-                throw new Exception($"Unit {id} not found");
-            }
-        }
-
-        public UnitType GetUnitType(int id)
-        {
-            UnitsModule.AddUnitType(id);
-
-            return UnitsModule.UnitTypes[id];
-        }
-
-        public Technology GetTechnology(int id)
-        {
-            ResearchModule.Add(id);
-
-            return ResearchModule.Researches[id];
-        }
-
         internal void UpdateGameElement(GameElement element, Command command)
         {
             GameElementUpdates[element] = command;
@@ -104,6 +125,8 @@ namespace AoE2Lib.Bots
         {
             ProductionTasks.Add(task);
         }
+
+        protected abstract IEnumerable<Command> Update();
 
         private void DoProduction()
         {
@@ -172,8 +195,6 @@ namespace AoE2Lib.Bots
             ProductionTasks.Clear();
         }
 
-        protected abstract IEnumerable<Command> Update();
-
         internal void Start(int player, string endpoint, int seed, GameVersion version)
         {
             Stop();
@@ -192,10 +213,14 @@ namespace AoE2Lib.Bots
 
             InfoModule = new InfoModule() { BotInternal = this };
             MapModule = new MapModule() { BotInternal = this };
-            PlayersModule = new PlayersModule() { BotInternal = this };
             UnitsModule = new UnitsModule() { BotInternal = this };
             ResearchModule = new ResearchModule() { BotInternal = this };
             MicroModule = new MicroModule() { BotInternal = this };
+
+            for (int i = 0; i <= 8; i++)
+            {
+                Players.Add(new Player(this, i));
+            }
 
             BotThread = new Thread(() => Run(endpoint)) { IsBackground = true };
             BotThread.Start();
@@ -230,14 +255,42 @@ namespace AoE2Lib.Bots
 
                 if (Tick > 0)
                 {
+                    foreach (var player in Players)
+                    {
+                        player.Units.Clear();
+                    }
+
+                    foreach (var unit in UnitsModule.Units.Values)
+                    {
+                        if (unit.Updated && unit[ObjectData.PLAYER] >= 0)
+                        {
+                            Players[unit[ObjectData.PLAYER]].Units.Add(unit);
+                        }
+                    }
+
                     commands.AddRange(Update().Where(c => c.HasMessages));
+
                     DoProduction();
+                }
+
+                foreach (var player in Players)
+                {
+                    player.RequestUpdate();
+                }
+
+                foreach (var tech in Technologies.Values)
+                {
+                    tech.RequestUpdate();
+                }
+
+                foreach (var type in UnitTypes.Values)
+                {
+                    type.RequestUpdate();
                 }
 
                 commands.AddRange(MicroModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
                 commands.AddRange(ResearchModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
                 commands.AddRange(UnitsModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
-                commands.AddRange(PlayersModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
                 commands.AddRange(MapModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
                 commands.AddRange(InfoModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
 
@@ -329,7 +382,6 @@ namespace AoE2Lib.Bots
 
                     InfoModule.UpdateInternal();
                     MapModule.UpdateInternal();
-                    PlayersModule.UpdateInternal();
                     UnitsModule.UpdateInternal();
                     ResearchModule.UpdateInternal();
                     MicroModule.UpdateInternal();

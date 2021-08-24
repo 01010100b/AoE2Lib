@@ -1,7 +1,7 @@
 name: main
 
 on: 
-  push:
+  workflow_dispatch:
     branches:
       - master
 
@@ -36,6 +36,7 @@ jobs:
       id: tag_version
       uses: mathieudutour/github-tag-action@v5.3
       with:
+        default_bump: minor
         append_to_pre_release_tag: beta
         github_token: ${{ secrets.GITHUB_TOKEN }}
         dry_run: true
@@ -63,7 +64,6 @@ jobs:
         dest: AoE2Lib.${{ steps.tag_version.outputs.new_version }}.zip
      
     - name: Create a GitHub release
-      if: ${{ github.ref == 'refs/heads/master' }}
       uses: softprops/action-gh-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

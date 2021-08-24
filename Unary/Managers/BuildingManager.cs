@@ -20,24 +20,21 @@ namespace Unary.Managers
 
         public override void Update()
         {
-            var info = Unary.InfoModule;
-            info.StrategicNumbers[StrategicNumber.CAP_CIVILIAN_EXPLORERS] = 0;
-            info.StrategicNumbers[StrategicNumber.CAP_CIVILIAN_BUILDERS] = 1;
-            //info.StrategicNumbers[StrategicNumber.DISABLE_BUILDER_ASSISTANCE] = 1;
+            //Unary.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, 0);
+            Unary.SetStrategicNumber(StrategicNumber.DISABLE_BUILDER_ASSISTANCE, 1);
 
             BuildHouses();
-            DoBuildingOperations();
+            //DoBuildingOperations();
         }
 
         private void BuildHouses()
         {
             var house = Unary.GetUnitType(70);
-            var units = Unary.UnitsModule;
             var info = Unary.InfoModule;
 
             if (info.PopulationHeadroom > 0 && info.HousingHeadroom < 5 && house.Pending == 0)
             {
-                house.Build(new List<Position>(), 1000, 1, 150);
+                house.Build(1000, 1, (int)Priority.HOUSING);
                 Unary.Log.Info("Building house");
             }
         }
