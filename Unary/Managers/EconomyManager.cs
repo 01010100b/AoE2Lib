@@ -36,14 +36,13 @@ namespace Unary.Managers
 
         private void ManagePopulation()
         {
-            const int VILLAGER = 83;
+            var villager = Unary.GetUnitType(83);
 
-            Unary.ProductionManager.Train(VILLAGER, (int)Math.Round(0.6 * Unary.InfoModule.PopulationCap), ConcurrentVillagers, 100, true);
+            villager.Train((int)Math.Round(0.6 * Unary.InfoModule.PopulationCap), ConcurrentVillagers, (int)Priority.VILLAGER);
         }
 
         private void ManageGatherers()
         {
-            var info = Unary.InfoModule;
             /* set auto gathering off
             info.StrategicNumbers[StrategicNumber.MAXIMUM_FOOD_DROP_DISTANCE] = -2;
             info.StrategicNumbers[StrategicNumber.MAXIMUM_GOLD_DROP_DISTANCE] = -2;
@@ -54,11 +53,9 @@ namespace Unary.Managers
             info.StrategicNumbers[StrategicNumber.MINIMUM_BOAR_HUNT_GROUP_SIZE] = 0;
             */
 
-            var pop = 0;
-            if (Unary.PlayersModule.Players.TryGetValue(info.PlayerNumber, out Player me))
-            {
-                pop = me.CivilianPopulation;
-            }
+            Unary.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_EXPLORERS, 0);
+
+            var pop = Unary.MyPlayer.CivilianPopulation;
 
             var food = MinFoodGatherers;
             var wood = MinWoodGatherers;
@@ -80,79 +77,105 @@ namespace Unary.Managers
 
             pop = food + wood + gold + stone;
 
-            info.StrategicNumbers[StrategicNumber.FOOD_GATHERER_PERCENTAGE] = food * 100 / pop;
-            info.StrategicNumbers[StrategicNumber.WOOD_GATHERER_PERCENTAGE] = wood * 100 / pop;
-            info.StrategicNumbers[StrategicNumber.GOLD_GATHERER_PERCENTAGE] = gold * 100 / pop;
-            info.StrategicNumbers[StrategicNumber.STONE_GATHERER_PERCENTAGE] = stone * 100 / pop;
+            Unary.SetStrategicNumber(StrategicNumber.FOOD_GATHERER_PERCENTAGE, food * 100 / pop);
+            Unary.SetStrategicNumber(StrategicNumber.WOOD_GATHERER_PERCENTAGE, wood * 100 / pop);
+            Unary.SetStrategicNumber(StrategicNumber.GOLD_GATHERER_PERCENTAGE, gold * 100 / pop);
+            Unary.SetStrategicNumber(StrategicNumber.STONE_GATHERER_PERCENTAGE, stone * 100 / pop);
         }
 
         private void ManageDropsites()
         {
-            const int TC = 109;
-            const int MILL = 68;
-            const int MINING_CAMP = 584;
-            const int LUMBER_CAMP = 562;
-            var info = Unary.InfoModule;
-            var camp_distance = info.StrategicNumbers[StrategicNumber.CAMP_MAX_DISTANCE];
+            var tc = Unary.GetUnitType(109);
+            var mill = Unary.GetUnitType(68);
+            var lumber_camp = Unary.GetUnitType(562);
+            var mining_camp = Unary.GetUnitType(584);
+            var farm = Unary.GetUnitType(50);
 
-            var town_centers = 0;
-            if (Unary.PlayersModule.Players.TryGetValue(info.PlayerNumber, out Player me))
+            if (Unary.MyPlayer.GetUnits().Count(u => u.Targetable && u[ObjectData.BASE_TYPE] == tc.Id) < TownCenters)
             {
-                town_centers = me.Units.Count(u => u.Targetable && u[ObjectData.BASE_TYPE] == TC);
+                tc.Build(TownCenters, 1, (int)Priority.DROPSITE);
             }
 
-            if (town_centers < TownCenters)
+            if (Unary.GetStrategicNumber(StrategicNumber.WOOD_GATHERER_PERCENTAGE) > 0)
             {
-                Unary.ProductionManager.Build(TC, new List<Position>(), TownCenters, 1, 200, true);
+                if (Unary.GetResourceFound(Resource.WOOD) && Unary.GetDropsiteMinDistance(Resource.WOOD) > 2 && Unary.GetDropsiteMinDistance(Resource.WOOD) < 200)
+                {
+                    var camp_distance = Unary.GetStrategicNumber(StrategicNumber.LUMBER_CAMP_MAX_DISTANCE);
+                    if (Unary.GetDropsiteMinDistance(Resource.WOOD) < camp_distance)
+                    {
+                        Unary.SetStrategicNumber(StrategicNumber.LUMBER_CAMP_MAX_DISTANCE, camp_distance + 1);
+                    }
+                    else
+                    {
+                        lumber_camp.Build(100, 1, (int)Priority.DROPSITE);
+                    }
+                }
+            }
+
+            if (lumber_camp.Count < 1)
+            {
+                return;
             }
             
-            var gathered = new List<Resource>();
-            if (info.StrategicNumbers[StrategicNumber.FOOD_GATHERER_PERCENTAGE] > 0)
+            if (Unary.GetStrategicNumber(StrategicNumber.FOOD_GATHERER_PERCENTAGE) > 0)
             {
-                var mill = Unary.UnitsModule.GetUnitType(MILL);
                 if (mill.CountTotal < 1)
                 {
-
+                    if (Unary.GetResourceFound(Resource.FOOD) && Unary.GetDropsiteMinDistance(Resource.FOOD) > 2 && Unary.GetDropsiteMinDistance(Resource.FOOD) < 200)
+                    {
+                        mill.Build(100, 1, (int)Priority.DROPSITE);
+                    }
                 }
-                gathered.Add(Resource.FOOD);
+                else if (mill.Count >= 1)
+                {
+                    var needed_farms = Unary.MyPlayer.CivilianPopulation * Unary.GetStrategicNumber(StrategicNumber.FOOD_GATHERER_PERCENTAGE) / 100;
+                    if (Unary.GetDropsiteMinDistance(Resource.FOOD) <= 3)
+                    {
+                        needed_farms -= 4;
+                    }
+
+                    if (Unary.MyPlayer.GetUnits().Count(u => u[ObjectData.CMDID] == (int)CmdId.LIVESTOCK_GAIA) >= 2)
+                    {
+                        needed_farms -= 6;
+                    }
+
+                    if (farm.CountTotal < needed_farms)
+                    {
+                        farm.Build(needed_farms, 3, (int)Priority.FARM);
+                    }
+
+                    var needed_mills = 1 + ((needed_farms - 5) / 4);
+                    if (mill.CountTotal < needed_mills)
+                    {
+                        mill.Build(needed_mills, 1, (int)Priority.FARM);
+                    }
+                }
             }
 
-            if (info.StrategicNumbers[StrategicNumber.WOOD_GATHERER_PERCENTAGE] > 0)
-            {
-                gathered.Add(Resource.WOOD);
-            }
+            var gathered = new List<Resource>();
 
-            if (info.StrategicNumbers[StrategicNumber.GOLD_GATHERER_PERCENTAGE] > 0)
+            if (Unary.GetStrategicNumber(StrategicNumber.GOLD_GATHERER_PERCENTAGE) > 0)
             {
                 gathered.Add(Resource.GOLD);
             }
 
-            if (info.StrategicNumbers[StrategicNumber.STONE_GATHERER_PERCENTAGE] > 0)
+            if (Unary.GetStrategicNumber(StrategicNumber.STONE_GATHERER_PERCENTAGE) > 0)
             {
                 gathered.Add(Resource.STONE);
             }
 
             foreach (var resource in gathered)
             {
-                if (info.ResourceFound[resource] && info.DropsiteMinDistance[resource] > 2 && info.DropsiteMinDistance[resource] < 200)
+                if (Unary.GetResourceFound(resource) && Unary.GetDropsiteMinDistance(resource) > 2 && Unary.GetDropsiteMinDistance(resource) < 200)
                 {
-                    if (info.DropsiteMinDistance[resource] > camp_distance)
+                    var camp_distance = Unary.GetStrategicNumber(StrategicNumber.MINING_CAMP_MAX_DISTANCE);
+                    if (Unary.GetDropsiteMinDistance(resource) < camp_distance)
                     {
-                        info.StrategicNumbers[StrategicNumber.CAMP_MAX_DISTANCE]++;
+                        Unary.SetStrategicNumber(StrategicNumber.MINING_CAMP_MAX_DISTANCE, camp_distance + 1);
                     }
                     else
                     {
-                        var camp = MINING_CAMP;
-                        if (resource == Resource.FOOD)
-                        {
-                            camp = MILL;
-                        }
-                        else if (resource == Resource.WOOD)
-                        {
-                            camp = LUMBER_CAMP;
-                        }
-
-                        Unary.ProductionManager.Build(camp, new List<Position>(), 100, 1, 200, true);
+                        mining_camp.Build(100, 1, (int)Priority.DROPSITE);
                     }
                 }
             }

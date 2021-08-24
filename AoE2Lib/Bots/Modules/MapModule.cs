@@ -15,7 +15,7 @@ namespace AoE2Lib.Bots.Modules
 {
     public class MapModule : Module
     {
-        public IEnumerable<Tile> Tiles => _Tiles != null ? _Tiles : Enumerable.Empty<Tile>();
+        public IEnumerable<Tile> Tiles => _Tiles ?? Enumerable.Empty<Tile>();
         public Tile this[Position position] { get { return GetTile(position.PointX, position.PointY); } }
         public int Width { get; private set; } = -1;
         public int Height { get; private set; } = -1;

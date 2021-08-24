@@ -1,4 +1,5 @@
-﻿using Google.Protobuf;
+﻿using AoE2Lib.Utils;
+using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Protos.Expert.Action;
 using Protos.Expert.Fact;
@@ -25,6 +26,68 @@ namespace AoE2Lib.Bots.GameElements
         internal UnitType(Bot bot, int id) : base(bot)
         {
             Id = id;
+        }
+
+        public void Train(int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
+        {
+            if (Updated == false || IsAvailable == false || CountTotal >= max_count || Pending >= max_pending)
+            {
+                return;
+            }
+
+            var prod = new ProductionTask()
+            {
+                Priority = priority,
+                Blocking = blocking,
+                WoodCost = WoodCost,
+                FoodCost = FoodCost,
+                GoldCost = GoldCost,
+                StoneCost = StoneCost,
+                Id = Id,
+                MaxCount = max_count,
+                MaxPending = max_pending,
+                IsTech = false,
+                IsBuilding = false
+            };
+
+            Bot.AddProductionTask(prod);
+        }
+
+        public void Build(int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
+        {
+            Build(new List<Position>(), max_count, max_pending, priority, blocking);
+        }
+
+        public void Build(Position position, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
+        {
+            Build(new List<Position>() { position }, max_count, max_pending, priority, blocking);
+        }
+
+        public void Build(List<Position> positions, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
+        {
+            if (Updated == false || IsAvailable == false || CountTotal >= max_count || Pending >= max_pending)
+            {
+                return;
+            }
+
+            var prod = new ProductionTask()
+            {
+                Priority = priority,
+                Blocking = blocking,
+                WoodCost = WoodCost,
+                FoodCost = FoodCost,
+                GoldCost = GoldCost,
+                StoneCost = StoneCost,
+                Id = Id,
+                MaxCount = max_count,
+                MaxPending = max_pending,
+                IsTech = false,
+                IsBuilding = true
+            };
+
+            prod.BuildPositions.AddRange(positions);
+
+            Bot.AddProductionTask(prod);
         }
 
         protected override IEnumerable<IMessage> RequestElementUpdate()

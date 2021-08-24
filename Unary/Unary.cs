@@ -24,7 +24,6 @@ namespace Unary
         public readonly StrategyManager StrategyManager;
         public readonly EconomyManager EconomyManager;
         public readonly BuildingManager BuildingManager;
-        public readonly ProductionManager ProductionManager;
         public readonly OperationsManager OperationsManager;
 
         private readonly List<Command> Commands = new List<Command>();
@@ -38,7 +37,6 @@ namespace Unary
             StrategyManager = new StrategyManager(this);
             EconomyManager = new EconomyManager(this);
             BuildingManager = new BuildingManager(this);
-            ProductionManager = new ProductionManager(this);
             OperationsManager = new OperationsManager(this);
         }
 
@@ -74,7 +72,6 @@ namespace Unary
             StrategyManager.Update();
             EconomyManager.Update();
             BuildingManager.Update();
-            ProductionManager.Update();
             OperationsManager.Update();
         }
     }

@@ -11,6 +11,7 @@ namespace AoE2Lib.Bots.GameElements
     public class Player : GameElement
     {
         public readonly int PlayerNumber;
+        public bool IsValid { get; private set; } = false;
         public bool InGame { get; private set; } = false;
         public int Civilization { get; private set; }
         public int Score { get; private set; }
@@ -23,17 +24,27 @@ namespace AoE2Lib.Bots.GameElements
         public int StoneAmount { get; private set; }
         public PlayerStance Stance { get; private set; } = PlayerStance.NEUTRAL;
         public int Population => CivilianPopulation + MilitaryPopulation;
-        public IEnumerable<Unit> Units => UnitsInternal;
         
-        internal readonly List<Unit> UnitsInternal = new List<Unit>();
+        internal readonly List<Unit> Units = new List<Unit>();
 
         internal Player(Bot bot, int player) : base(bot)
         {
             PlayerNumber = player;
         }
+
+        public IReadOnlyList<Unit> GetUnits()
+        {
+            return Units;
+        }
         
         protected override IEnumerable<IMessage> RequestElementUpdate()
         {
+            if (!IsValid)
+            {
+                yield return new PlayerValid() { InPlayerAnyPlayer = PlayerNumber };
+                yield break;
+            }
+
             // TODO use UpPlayerFact instead
             yield return new PlayerInGame() { InPlayerAnyPlayer = PlayerNumber };
             yield return new UpGetPlayerFact() { InPlayerAnyPlayer = PlayerNumber, InConstFactId = (int)FactId.CIVILIZATION, InConstParam = 0, OutGoalData = 100 };
@@ -61,6 +72,13 @@ namespace AoE2Lib.Bots.GameElements
 
         protected override void UpdateElement(IReadOnlyList<Any> responses)
         {
+            if (!IsValid)
+            {
+                IsValid = responses[0].Unpack<PlayerValidResult>().Result;
+
+                return;
+            }
+
             InGame = responses[0].Unpack<PlayerInGameResult>().Result;
             Civilization = responses[2].Unpack<GoalResult>().Result;
             Score = responses[4].Unpack<GoalResult>().Result;

@@ -9,15 +9,15 @@ namespace AoE2Lib.Bots.Modules
 {
     public class ResearchModule : Module
     {
-        public IReadOnlyDictionary<int, Research> Researches => _Researches;
-        private readonly Dictionary<int, Research> _Researches = new Dictionary<int, Research>();
+        public IReadOnlyDictionary<int, Technology> Researches => _Researches;
+        private readonly Dictionary<int, Technology> _Researches = new Dictionary<int, Technology>();
         private readonly List<Command> ResearchCommands = new List<Command>();
 
         public void Add(int id)
         {
             if (!Researches.ContainsKey(id))
             {
-                _Researches.Add(id, new Research(Bot, id));
+                _Researches.Add(id, new Technology(Bot, id));
                 Bot.Log.Info($"ResearchModule: Added research {id}");
             }
         }

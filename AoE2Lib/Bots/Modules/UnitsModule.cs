@@ -14,8 +14,6 @@ namespace AoE2Lib.Bots.Modules
 {
     public class UnitsModule : Module
     {
-        public IReadOnlyDictionary<int, UnitType> UnitTypes => _UnitTypes;
-        private readonly Dictionary<int, UnitType> _UnitTypes = new Dictionary<int, UnitType>();
         public IReadOnlyDictionary<int, Unit> Units => _Units;
         private readonly Dictionary<int, Unit> _Units = new Dictionary<int, Unit>();
         public bool AutoUpdateUnits { get; set; } = true;
@@ -25,22 +23,6 @@ namespace AoE2Lib.Bots.Modules
         private readonly List<Command> FindUnitCommands = new List<Command>();
         private readonly List<Command> FindAllUnitsCommands = new List<Command>();
 
-        public void AddUnitType(int id)
-        {
-            if (!UnitTypes.ContainsKey(id))
-            {
-                _UnitTypes.Add(id, new UnitType(Bot, id));
-                Bot.Log.Info($"InfoModule: Added unit {id}");
-            }
-        }
-
-        public UnitType GetUnitType(int id)
-        {
-            AddUnitType(id);
-
-            return UnitTypes[id];
-        }
-
         public void Build(int id, Position position, int max_count = 10000, int max_pending = 10000)
         {
             Build(id, new List<Position>() { position }, max_count, max_pending);
@@ -48,8 +30,6 @@ namespace AoE2Lib.Bots.Modules
 
         public void Build(int id, List<Position> positions, int max_count = 10000, int max_pending = 10000)
         {
-            AddUnitType(id);
-
             Bot.Log.Info($"build {id} count {max_count} pending {max_pending}");
                 
             const int GL_BUILT = 100;
@@ -91,8 +71,6 @@ namespace AoE2Lib.Bots.Modules
 
         public void Train(int id, int max_count = 10000, int max_pending = 10000)
         {
-            AddUnitType(id);
-
             Bot.Log.Info($"train {id} count {max_count} pending {max_pending}");
 
             const int GL_TRAINING = 100;
@@ -114,7 +92,6 @@ namespace AoE2Lib.Bots.Modules
             command.Add(new UpTrainSiteReady() { InConstUnitId = id }, "==", 0,
                 new SetGoal() { InConstGoalId = GL_TRAINING, InConstValue = 6 });
 
-            command.Add(new UpChatDataToAll() { InGoalValue = GL_TRAINING, InTextFormattedString = "GL_TRAINING %d" });
             command.Add(new Goal() { InConstGoalId = GL_TRAINING }, "==", 0,
                 new Train() { InConstUnitId = id });
 
@@ -198,11 +175,6 @@ namespace AoE2Lib.Bots.Modules
                 yield return command;
             }
 
-            foreach (var type in UnitTypes.Values)
-            {
-                type.RequestUpdate();
-            }
-
             if (AutoUpdateUnits && Units.Count > 0)
             {
                 var units = Units.Values.Where(u => u.Updated == false || u.Targetable == true).ToList();
@@ -227,7 +199,7 @@ namespace AoE2Lib.Bots.Modules
 
             if (AutoFindUnits)
             {
-                foreach (var player in Bot.PlayersModule.Players.Values.Where(p => p.InGame))
+                foreach (var player in Bot.GetPlayers().Where(p => p.InGame))
                 {
                     var command = new Command();
                     command.Add(new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, InConstValue = player.PlayerNumber });
@@ -339,8 +311,11 @@ namespace AoE2Lib.Bots.Modules
             var player = Bot.PlayerNumber;
             if (Bot.Rng.NextDouble() < 0.5)
             {
-                var players = Bot.PlayersModule.Players.Values.Where(p => p.InGame).Select(p => p.PlayerNumber).ToList();
-                players.Add(0);
+                var players = Bot.GetPlayers().Where(p => p.InGame).Select(p => p.PlayerNumber).ToList();
+                if (players.Count == 0)
+                {
+                    players.Add(0);
+                }
 
                 player = players[Bot.Rng.Next(players.Count)];
             }

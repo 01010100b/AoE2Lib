@@ -8,7 +8,7 @@ using System.Text;
 
 namespace AoE2Lib.Bots.GameElements
 {
-    public class Research : GameElement
+    public class Technology : GameElement
     {
         public readonly int Id;
         public ResearchState State { get; private set; }
@@ -18,9 +18,32 @@ namespace AoE2Lib.Bots.GameElements
         public int GoldCost { get; private set; }
         public int StoneCost { get; private set; }
 
-        internal Research(Bot bot, int id) : base(bot)
+        internal Technology(Bot bot, int id) : base(bot)
         {
             Id = id;
+        }
+
+        public void Research(int priority = 10, bool blocking = true)
+        {
+            if (Updated == false || State != ResearchState.AVAILABLE)
+            {
+                return;
+            }
+
+            var prod = new ProductionTask()
+            {
+                Priority = priority,
+                Blocking = blocking,
+                WoodCost = WoodCost,
+                FoodCost = FoodCost,
+                GoldCost = GoldCost,
+                StoneCost = StoneCost,
+                Id = Id,
+                IsTech = true,
+                IsBuilding = false
+            };
+
+            Bot.AddProductionTask(prod);
         }
 
         protected override IEnumerable<IMessage> RequestElementUpdate()
