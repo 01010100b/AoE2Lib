@@ -109,6 +109,11 @@ namespace Unary.Managers
             var gathered = new List<Resource>();
             if (info.StrategicNumbers[StrategicNumber.FOOD_GATHERER_PERCENTAGE] > 0)
             {
+                var mill = Unary.UnitsModule.GetUnitType(MILL);
+                if (mill.CountTotal < 1)
+                {
+
+                }
                 gathered.Add(Resource.FOOD);
             }
 

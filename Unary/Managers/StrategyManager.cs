@@ -20,6 +20,7 @@ namespace Unary.Managers
         public override void Update()
         {
             Unary.InfoModule.StrategicNumbers[StrategicNumber.INITIAL_EXPLORATION_REQUIRED] = 0;
+            BasicStrategy();
         }
 
         private void BasicStrategy()
