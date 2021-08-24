@@ -18,10 +18,11 @@ namespace Unary.Managers
 
         }
 
-        public override void Update()
+        internal override void Update()
         {
             //Unary.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, 0);
             Unary.SetStrategicNumber(StrategicNumber.DISABLE_BUILDER_ASSISTANCE, 1);
+            Unary.SetStrategicNumber(StrategicNumber.ENABLE_NEW_BUILDING_SYSTEM, 1);
 
             BuildHouses();
             //DoBuildingOperations();

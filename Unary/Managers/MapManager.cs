@@ -199,7 +199,7 @@ namespace Unary.Managers
             }
         }
 
-        public override void Update()
+        internal override void Update()
         {
             
 

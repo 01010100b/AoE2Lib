@@ -17,9 +17,10 @@ namespace Unary.Managers
 
         }
 
-        public override void Update()
+        internal override void Update()
         {
             Unary.SetStrategicNumber(StrategicNumber.INITIAL_EXPLORATION_REQUIRED, 0);
+            Unary.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_EXPLORERS, 0);
             BasicStrategy();
         }
 
@@ -29,12 +30,18 @@ namespace Unary.Managers
             var castle_age = Unary.GetTechnology(102);
             var imperial_age = Unary.GetTechnology(103);
 
+            var barracks = Unary.GetUnitType(12);
+            var archery_range = Unary.GetUnitType(87);
+            var blacksmith = Unary.GetUnitType(103);
+
+            var archer = Unary.GetUnitType(4);
+
             Unary.EconomyManager.MinFoodGatherers = 7;
             Unary.EconomyManager.MinWoodGatherers = 0;
             Unary.EconomyManager.MinGoldGatherers = 0;
             Unary.EconomyManager.MinStoneGatherers = 0;
-            Unary.EconomyManager.ExtraFoodPercentage = 30;
-            Unary.EconomyManager.ExtraWoodPercentage = 70;
+            Unary.EconomyManager.ExtraFoodPercentage = 40;
+            Unary.EconomyManager.ExtraWoodPercentage = 60;
             Unary.EconomyManager.ExtraGoldPercentage = 0;
             Unary.EconomyManager.ExtraStonePercentage = 0;
 
@@ -42,10 +49,6 @@ namespace Unary.Managers
             castle_age.Research((int)Priority.AGE_UP, false);
             imperial_age.Research((int)Priority.AGE_UP, false);
 
-            var barracks = Unary.GetUnitType(12);
-            var archery_range = Unary.GetUnitType(87);
-            var blacksmith = Unary.GetUnitType(103);
-            
             if (feudal_age.State == ResearchState.COMPLETE)
             {
                 Unary.EconomyManager.MinFoodGatherers = 7;
@@ -65,6 +68,11 @@ namespace Unary.Managers
                 if (barracks.CountTotal >= 1 && archery_range.CountTotal < 1)
                 {
                     archery_range.Build(1, 1, (int)Priority.PRODUCTION_BUILDING);
+                }
+
+                if (archery_range.Count >= 1)
+                {
+                    archer.Train(50, 3, (int)Priority.DEFAULT);
                 }
 
                 if (archery_range.CountTotal >= 1 && blacksmith.CountTotal < 1)

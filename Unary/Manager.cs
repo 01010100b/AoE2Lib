@@ -14,7 +14,7 @@ namespace Unary
             Unary = unary;
         }
 
-        public abstract void Update();
+        internal abstract void Update();
 
         protected void ExecuteCommand(Command command)
         {

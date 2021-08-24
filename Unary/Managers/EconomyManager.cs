@@ -27,7 +27,7 @@ namespace Unary.Managers
 
         }
 
-        public override void Update()
+        internal override void Update()
         {
             ManagePopulation();
             ManageGatherers();
@@ -53,7 +53,11 @@ namespace Unary.Managers
             info.StrategicNumbers[StrategicNumber.MINIMUM_BOAR_HUNT_GROUP_SIZE] = 0;
             */
 
-            Unary.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_EXPLORERS, 0);
+            Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_FOOD_DROP_DISTANCE, 4);
+            Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_WOOD_DROP_DISTANCE, 4);
+            Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_GOLD_DROP_DISTANCE, 4);
+            Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_STONE_DROP_DISTANCE, 4);
+            Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_HUNT_DROP_DISTANCE, 7);
 
             var pop = Unary.MyPlayer.CivilianPopulation;
 
@@ -101,11 +105,8 @@ namespace Unary.Managers
                 if (Unary.GetResourceFound(Resource.WOOD) && Unary.GetDropsiteMinDistance(Resource.WOOD) > 2 && Unary.GetDropsiteMinDistance(Resource.WOOD) < 200)
                 {
                     var camp_distance = Unary.GetStrategicNumber(StrategicNumber.LUMBER_CAMP_MAX_DISTANCE);
+                    Unary.SetStrategicNumber(StrategicNumber.LUMBER_CAMP_MAX_DISTANCE, camp_distance + 1);
                     if (Unary.GetDropsiteMinDistance(Resource.WOOD) < camp_distance)
-                    {
-                        Unary.SetStrategicNumber(StrategicNumber.LUMBER_CAMP_MAX_DISTANCE, camp_distance + 1);
-                    }
-                    else
                     {
                         lumber_camp.Build(100, 1, (int)Priority.DROPSITE);
                     }
@@ -169,11 +170,8 @@ namespace Unary.Managers
                 if (Unary.GetResourceFound(resource) && Unary.GetDropsiteMinDistance(resource) > 2 && Unary.GetDropsiteMinDistance(resource) < 200)
                 {
                     var camp_distance = Unary.GetStrategicNumber(StrategicNumber.MINING_CAMP_MAX_DISTANCE);
+                    Unary.SetStrategicNumber(StrategicNumber.MINING_CAMP_MAX_DISTANCE, camp_distance + 1);
                     if (Unary.GetDropsiteMinDistance(resource) < camp_distance)
-                    {
-                        Unary.SetStrategicNumber(StrategicNumber.MINING_CAMP_MAX_DISTANCE, camp_distance + 1);
-                    }
-                    else
                     {
                         mining_camp.Build(100, 1, (int)Priority.DROPSITE);
                     }

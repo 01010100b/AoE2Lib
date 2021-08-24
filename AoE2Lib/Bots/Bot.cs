@@ -32,7 +32,6 @@ namespace AoE2Lib.Bots
         public InfoModule InfoModule { get; private set; }
         public MapModule MapModule { get; private set; }
         public UnitsModule UnitsModule { get; private set; }
-        public ResearchModule ResearchModule { get; private set; }
         public MicroModule MicroModule { get; private set; }
 
         private readonly List<ProductionTask> ProductionTasks = new List<ProductionTask>();
@@ -128,14 +127,13 @@ namespace AoE2Lib.Bots
 
         protected abstract IEnumerable<Command> Update();
 
-        private void DoProduction()
+        private IEnumerable<Command> DoProduction()
         {
             var info = InfoModule;
             var remaining_wood = info.WoodAmount;
             var remaining_food = info.FoodAmount;
             var remaining_gold = info.GoldAmount;
             var remaining_stone = info.StoneAmount;
-            var research = ResearchModule;
             var units = UnitsModule;
 
             ProductionTasks.Sort((a, b) => b.Priority.CompareTo(a.Priority));
@@ -168,19 +166,7 @@ namespace AoE2Lib.Bots
 
                 if (can_afford)
                 {
-                    if (prod.IsTech)
-                    {
-                        research.Research(prod.Id);
-                    }
-                    else if (prod.IsBuilding)
-                    {
-                        //Unary.Log.Debug($"building {prod.Id} at {prod.BuildPositions.Count} positions count {prod.MaxCount} pending {prod.MaxPending}");
-                        units.Build(prod.Id, prod.BuildPositions, prod.MaxCount, prod.MaxPending);
-                    }
-                    else
-                    {
-                        units.Train(prod.Id, prod.MaxCount, prod.MaxPending);
-                    }
+                    yield return prod.GetCommand(this);
                 }
 
                 if (deduct)
@@ -214,7 +200,6 @@ namespace AoE2Lib.Bots
             InfoModule = new InfoModule() { BotInternal = this };
             MapModule = new MapModule() { BotInternal = this };
             UnitsModule = new UnitsModule() { BotInternal = this };
-            ResearchModule = new ResearchModule() { BotInternal = this };
             MicroModule = new MicroModule() { BotInternal = this };
 
             for (int i = 0; i <= 8; i++)
@@ -269,8 +254,7 @@ namespace AoE2Lib.Bots
                     }
 
                     commands.AddRange(Update().Where(c => c.HasMessages));
-
-                    DoProduction();
+                    commands.AddRange(DoProduction());
                 }
 
                 foreach (var player in Players)
@@ -289,7 +273,6 @@ namespace AoE2Lib.Bots
                 }
 
                 commands.AddRange(MicroModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
-                commands.AddRange(ResearchModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
                 commands.AddRange(UnitsModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
                 commands.AddRange(MapModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
                 commands.AddRange(InfoModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
@@ -383,7 +366,6 @@ namespace AoE2Lib.Bots
                     InfoModule.UpdateInternal();
                     MapModule.UpdateInternal();
                     UnitsModule.UpdateInternal();
-                    ResearchModule.UpdateInternal();
                     MicroModule.UpdateInternal();
 
                     previous = DateTime.UtcNow;

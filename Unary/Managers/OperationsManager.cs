@@ -79,7 +79,7 @@ namespace Unary.Managers
             }
         }
 
-        public override void Update()
+        internal override void Update()
         {
             var units = Unary.UnitsModule;
             var current_units = new HashSet<Unit>();
