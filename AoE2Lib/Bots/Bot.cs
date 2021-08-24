@@ -134,9 +134,10 @@ namespace AoE2Lib.Bots
             var remaining_food = info.FoodAmount;
             var remaining_gold = info.GoldAmount;
             var remaining_stone = info.StoneAmount;
-            var units = UnitsModule;
 
             ProductionTasks.Sort((a, b) => b.Priority.CompareTo(a.Priority));
+
+            var can_build = true;
 
             foreach (var prod in ProductionTasks)
             {
@@ -164,8 +165,13 @@ namespace AoE2Lib.Bots
                     deduct = false;
                 }
 
-                if (can_afford)
+                if (can_afford && (prod.IsBuilding == false || can_build == true))
                 {
+                    if (prod.IsBuilding)
+                    {
+                        //can_build = false;
+                    }
+
                     yield return prod.GetCommand(this);
                 }
 

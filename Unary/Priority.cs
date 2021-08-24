@@ -8,8 +8,9 @@ namespace Unary
     {
         DEFAULT = 10,
         FARM = 20,
-        DROPSITE = 150,
-        HOUSING = 200,
+        MILITARY = 100,
+        DROPSITE = 200,
+        HOUSING = 250,
         PRODUCTION_BUILDING = 300,
         VILLAGER = 400,
         AGE_UP = 500

@@ -50,6 +50,8 @@ namespace AoE2Lib.Bots
                     new SetGoal() { InConstGoalId = GL_BUILT, InConstValue = 2 });
                 command.Add(new UpPendingObjects() { InConstObjectId = Id }, ">=", MaxPending,
                     new SetGoal() { InConstGoalId = GL_BUILT, InConstValue = 2 });
+                command.Add(new UpPendingPlacement() { InConstBuildingId = Id }, "!=", 0,
+                    new SetGoal() { InConstGoalId = GL_BUILT, InConstValue = 2 });
 
                 if (BuildPositions.Count == 0)
                 {

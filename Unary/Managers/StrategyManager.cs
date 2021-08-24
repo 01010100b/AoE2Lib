@@ -24,6 +24,7 @@ namespace Unary.Managers
             Unary.SetStrategicNumber(StrategicNumber.MINIMUM_ATTACK_GROUP_SIZE, 1);
             Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_ATTACK_GROUP_SIZE, 1);
             Unary.SetStrategicNumber(StrategicNumber.NUMBER_ATTACK_GROUPS, 100);
+            Unary.SetStrategicNumber(StrategicNumber.ZERO_PRIORITY_DISTANCE, 250);
         }
 
         public void Retreat()
@@ -45,11 +46,33 @@ namespace Unary.Managers
             var castle_age = Unary.GetTechnology(102);
             var imperial_age = Unary.GetTechnology(103);
 
+            feudal_age.Research((int)Priority.AGE_UP, false);
+            castle_age.Research((int)Priority.AGE_UP, false);
+            imperial_age.Research((int)Priority.AGE_UP, false);
+
             var barracks = Unary.GetUnitType(12);
             var archery_range = Unary.GetUnitType(87);
             var blacksmith = Unary.GetUnitType(103);
 
+            var ranges = (Unary.MyPlayer.CivilianPopulation - 25) / 10;
+            ranges = Math.Max(1, ranges);
+
+            if (barracks.CountTotal >= 1 && archery_range.CountTotal < ranges)
+            {
+                archery_range.Build(ranges, 1, (int)Priority.PRODUCTION_BUILDING);
+            }
+
+            if (archery_range.CountTotal >= 1 && blacksmith.CountTotal < 1)
+            {
+                blacksmith.Build(1, 1, (int)Priority.PRODUCTION_BUILDING);
+            }
+
             var archer = Unary.GetUnitType(4);
+
+            if (archery_range.Count >= 1)
+            {
+                archer.Train(50, 3, (int)Priority.MILITARY);
+            }
 
             Unary.EconomyManager.MinFoodGatherers = 7;
             Unary.EconomyManager.MinWoodGatherers = 0;
@@ -59,10 +82,6 @@ namespace Unary.Managers
             Unary.EconomyManager.ExtraWoodPercentage = 60;
             Unary.EconomyManager.ExtraGoldPercentage = 0;
             Unary.EconomyManager.ExtraStonePercentage = 0;
-
-            feudal_age.Research((int)Priority.AGE_UP, false);
-            castle_age.Research((int)Priority.AGE_UP, false);
-            imperial_age.Research((int)Priority.AGE_UP, false);
 
             if (feudal_age.State == ResearchState.COMPLETE)
             {
@@ -78,21 +97,6 @@ namespace Unary.Managers
                 if (barracks.CountTotal < 1)
                 {
                     barracks.Build(1, 1, (int)Priority.PRODUCTION_BUILDING);
-                }
-
-                if (barracks.CountTotal >= 1 && archery_range.CountTotal < 1)
-                {
-                    archery_range.Build(1, 1, (int)Priority.PRODUCTION_BUILDING);
-                }
-
-                if (archery_range.Count >= 1)
-                {
-                    archer.Train(50, 3, (int)Priority.DEFAULT);
-                }
-
-                if (archery_range.CountTotal >= 1 && blacksmith.CountTotal < 1)
-                {
-                    blacksmith.Build(1, 1, (int)Priority.PRODUCTION_BUILDING);
                 }
             }
 

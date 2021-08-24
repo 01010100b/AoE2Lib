@@ -30,7 +30,7 @@ namespace AoE2Lib.Bots.GameElements
 
         public void Train(int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
         {
-            if (Updated == false || IsAvailable == false || CountTotal >= max_count || Pending >= max_pending)
+            if (Updated == false || IsAvailable == false || CountTotal >= max_count || Pending > max_pending)
             {
                 return;
             }
@@ -65,7 +65,7 @@ namespace AoE2Lib.Bots.GameElements
 
         public void Build(List<Position> positions, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
         {
-            if (Updated == false || IsAvailable == false || CountTotal >= max_count || Pending >= max_pending)
+            if (Updated == false || IsAvailable == false || CountTotal >= max_count || Pending > max_pending || CanBuild == false)
             {
                 return;
             }
