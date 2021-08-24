@@ -106,16 +106,20 @@ namespace Unary.Managers
                 Unary.ProductionManager.Build(TC, new List<Position>(), TownCenters, 1, 200, true);
             }
             
-            var gathered = new List<Resource>();
-            if (info.StrategicNumbers[StrategicNumber.FOOD_GATHERER_PERCENTAGE] > 0)
+            
+            if (Unary.GetStrategicNumber(StrategicNumber.FOOD_GATHERER_PERCENTAGE) > 0)
             {
                 var mill = Unary.UnitsModule.GetUnitType(MILL);
                 if (mill.CountTotal < 1)
                 {
-
+                    if (Unary.GetResourceFound(Resource.FOOD) && Unary.GetDropsiteMinDistance(Resource.FOOD) > 2 && Unary.GetDropsiteMinDistance(Resource.FOOD) < 200)
+                    {
+                        Unary.ProductionManager.Build(mill.Id, new List<Position>(), 100, 1, 200, true);
+                    }
                 }
-                gathered.Add(Resource.FOOD);
             }
+
+            var gathered = new List<Resource>();
 
             if (info.StrategicNumbers[StrategicNumber.WOOD_GATHERER_PERCENTAGE] > 0)
             {

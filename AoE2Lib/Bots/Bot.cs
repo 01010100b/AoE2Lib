@@ -24,13 +24,15 @@ namespace AoE2Lib.Bots
         public int PlayerNumber { get; private set; } = -1;
         public int Tick { get; private set; } = 0;
         public Log Log { get; private set; }
-        public Random Rng { get; private set; } = new Random();
+        public Random Rng { get; private set; } = new Random(Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.GetHashCode());
         public InfoModule InfoModule { get; private set; }
         public MapModule MapModule { get; private set; }
         public PlayersModule PlayersModule { get; private set; }
         public UnitsModule UnitsModule { get; private set; }
         public ResearchModule ResearchModule { get; private set; }
         public MicroModule MicroModule { get; private set; }
+
+        private readonly List<ProductionTask> ProductionTasks = new List<ProductionTask>();
 
         private Thread BotThread { get; set; } = null;
         private volatile bool Stopping = false;
@@ -44,6 +46,36 @@ namespace AoE2Lib.Bots
             BotThread = null;
 
             Stopping = false;
+        }
+
+        public bool GetResourceFound(Resource resource)
+        {
+            return InfoModule.GetResourceFound(resource);
+        }
+
+        public int GetDropsiteMinDistance(Resource resource)
+        {
+            return InfoModule.GetDropsiteMinDistance(resource);
+        }
+
+        public int GetStrategicNumber(StrategicNumber sn)
+        {
+            return InfoModule.GetStrategicNumber(sn);
+        }
+
+        public void SetStrategicNumber(StrategicNumber sn, int val)
+        {
+            InfoModule.SetStrategicNumber(sn, val);
+        }
+
+        internal void UpdateGameElement(GameElement element, Command command)
+        {
+            GameElementUpdates[element] = command;
+        }
+
+        internal void AddProductionTask(ProductionTask task)
+        {
+            ProductionTasks.Add(task);
         }
 
         protected abstract IEnumerable<Command> Update();
@@ -75,10 +107,7 @@ namespace AoE2Lib.Bots
             BotThread.Start();
         }
 
-        internal void UpdateGameElement(GameElement element, Command command)
-        {
-            GameElementUpdates[element] = command;
-        }
+        
 
         private void Run(string endpoint)
         {

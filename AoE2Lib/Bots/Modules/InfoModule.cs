@@ -47,6 +47,47 @@ namespace AoE2Lib.Bots.Modules
             }
         }
 
+        internal bool GetResourceFound(Resource resource)
+        {
+            if (ResourceFound.TryGetValue(resource, out bool found))
+            {
+                return found;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        internal int GetDropsiteMinDistance(Resource resource)
+        {
+            if (DropsiteMinDistance.TryGetValue(resource, out int d))
+            {
+                return d;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        internal int GetStrategicNumber(StrategicNumber sn)
+        {
+            if (StrategicNumbers.TryGetValue(sn, out int val))
+            {
+                return val;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        internal void SetStrategicNumber(StrategicNumber sn, int val)
+        {
+            StrategicNumbers[sn] = val;
+        }
+
         protected override IEnumerable<Command> RequestUpdate()
         {
             CommandInfo.Reset();
