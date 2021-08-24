@@ -79,6 +79,7 @@ namespace Unary
             this.TextMessages.Multiline = true;
             this.TextMessages.Name = "TextMessages";
             this.TextMessages.ReadOnly = true;
+            this.TextMessages.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.TextMessages.Size = new System.Drawing.Size(608, 266);
             this.TextMessages.TabIndex = 4;
             // 

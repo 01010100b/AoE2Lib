@@ -18,7 +18,7 @@ namespace Unary.Operations
 {
     class BattleOperation : Operation
     {
-        public readonly Dictionary<Unit, double> EnemyPriorities = new Dictionary<Unit, double>();
+        public readonly Dictionary<Unit, int> EnemyPriorities = new Dictionary<Unit, int>();
 
         public BattleOperation(OperationsManager manager) : base(manager)
         {
@@ -38,7 +38,8 @@ namespace Unary.Operations
             }
 
             var enemies = EnemyPriorities.Keys
-                .OrderBy(e => e[ObjectData.HITPOINTS])
+                .OrderByDescending(e => EnemyPriorities[e])
+                .ThenBy(e => e[ObjectData.HITPOINTS])
                 .ThenBy(e => e.Id)
                 .ToList();
             
@@ -59,7 +60,7 @@ namespace Unary.Operations
             {
                 var attack = unit[ObjectData.BASE_ATTACK];
                 var armor = unit[ObjectData.RANGE] > 2 ? target[ObjectData.PIERCE_ARMOR] : target[ObjectData.STRIKE_ARMOR];
-                var dmg = 0.8 * Math.Max(1, attack - armor);
+                var dmg = Math.Max(1, attack - armor);
                 var delay = Manager.Unary.Mod.GetAttackDelay(unit[ObjectData.UPGRADE_TYPE]);
 
                 if (target[ObjectData.RANGE] > 2 && unit[ObjectData.RANGE] > 2)
@@ -128,7 +129,7 @@ namespace Unary.Operations
 
             if (unit.Position.DistanceTo(target.Position) > unit[ObjectData.RANGE])
             {
-                angle = 0;
+                angle = (Manager.Unary.Rng.NextDouble() * Math.PI / 2) - (Math.PI / 4);
             }
 
             return angle;

@@ -12,10 +12,6 @@ namespace Unary.Managers
 {
     class StrategyManager : Manager
     {
-        private BuildOperation BuildingOperation { get; set; } = null;
-        private BattleOperation BattleOperation { get; set; } = null;
-        private GuardOperation GuardOperation { get; set; } = null;
-
         public StrategyManager(Unary unary) : base(unary)
         {
 
@@ -23,163 +19,46 @@ namespace Unary.Managers
 
         public override void Update()
         {
-            const int VILLAGER = 83;
-            const int HOUSE = 70;
-
-            var units = Unary.UnitsModule;
-            var info = Unary.InfoModule;
-
-            units.AddUnitType(VILLAGER);
-            units.AddUnitType(HOUSE);
-
-            Unary.ProductionManager.Train(VILLAGER);
-
-            if (info.PopulationHeadroom > 0 && info.HousingHeadroom < 5 && units.UnitTypes[HOUSE].Pending == 0)
-            {
-                var town = new HashSet<Tile>();
-                foreach (var tile in Unary.MapModule.GetTilesInRange(info.MyPosition, 10))
-                {
-                    town.Add(tile);
-                }
-
-                var places = Unary.MapManager.GetPlacements(HOUSE, town).ToList();
-                if (places.Count > 0)
-                {
-                    places.Sort((a, b) => a.Position.DistanceTo(info.MyPosition).CompareTo(b.Position.DistanceTo(info.MyPosition)));
-                    Unary.ProductionManager.Build(HOUSE, places[Unary.Rng.Next(places.Count)].Position, 1000, 1);
-                }
-                
-            }
-
-            DoBuilding();
-            DoAttacking();
-            DoGuarding();
+            Unary.InfoModule.StrategicNumbers[StrategicNumber.INITIAL_EXPLORATION_REQUIRED] = 0;
+            BasicStrategy();
         }
 
-        private void DoBuilding()
+        private void BasicStrategy()
         {
-            var ops = Unary.OperationsManager;
+            const int FEUDAL_AGE = 101;
+            const int CASTLE_AGE = 102;
+            const int IMPERIAL_AGE = 103;
 
-            if (BuildingOperation == null)
+            if (!Unary.PlayersModule.Players.ContainsKey(Unary.InfoModule.PlayerNumber))
             {
-                BuildingOperation = new BuildOperation(ops);
-            }
-
-            var foundations = ops.FreeUnits.Concat(BuildingOperation.Units)
-                .Where(u => u.GetData(ObjectData.STATUS) == 0 && u.GetData(ObjectData.CATEGORY) == 80)
-                .ToList();
-
-            if (foundations.Count == 0)
-            {
-                BuildingOperation.ClearUnits();
-                
                 return;
             }
 
-            Unary.Log.Info($"StrategyManager: Have {foundations.Count} foundations");
+            var me = Unary.PlayersModule.Players[Unary.InfoModule.PlayerNumber];
 
-            foreach (var foundation in foundations)
+            Unary.EconomyManager.MinFoodGatherers = 7;
+            Unary.EconomyManager.MinWoodGatherers = 0;
+            Unary.EconomyManager.MinGoldGatherers = 0;
+            Unary.EconomyManager.MinStoneGatherers = 0;
+            Unary.EconomyManager.ExtraFoodPercentage = 60;
+            Unary.EconomyManager.ExtraWoodPercentage = 40;
+            Unary.EconomyManager.ExtraGoldPercentage = 0;
+            Unary.EconomyManager.ExtraStonePercentage = 0;
+            
+            Unary.ProductionManager.Research(FEUDAL_AGE, 300);
+            Unary.ProductionManager.Research(CASTLE_AGE, 300);
+            Unary.ProductionManager.Research(IMPERIAL_AGE, 300);
+            
+            if (Unary.ResearchModule.Researches[FEUDAL_AGE].State == ResearchState.COMPLETE)
             {
-                BuildingOperation.AddUnit(foundation);
-
-                Unary.Log.Info($"Foundation type {foundation[ObjectData.TYPE]} pos {foundation.Position}");
-            }
-
-            if (BuildingOperation.Units.Count(u => u[ObjectData.CMDID] == (int)CmdId.VILLAGER) == 0)
-            {
-                var vill = ops.FreeUnits.FirstOrDefault(u => u.GetData(ObjectData.CMDID) == (int)CmdId.VILLAGER);
-
-                if (vill != null)
-                {
-                    BuildingOperation.AddUnit(vill);
-                }
-            }
-
-            if (BuildingOperation.Units.Count(u => u[ObjectData.CMDID] == (int)CmdId.VILLAGER) == 0)
-            {
-                foreach (var unit in ops.Operations.Where(o => !(o is BuildOperation)).SelectMany(o => o.Units).Where(u => u[ObjectData.CMDID] == (int)CmdId.VILLAGER))
-                {
-                    if (unit[ObjectData.CARRY] == 0)
-                    {
-                        BuildingOperation.AddUnit(unit);
-                        
-                        break;
-                    }
-                }
-            }
-        }
-
-        private void DoAttacking()
-        {
-            var ops = Unary.OperationsManager;
-
-            if (BattleOperation == null)
-            {
-                BattleOperation = new BattleOperation(ops);
-            }
-
-            BattleOperation.EnemyPriorities.Clear();
-
-            foreach (var player in Unary.PlayersModule.Players.Values.Where(p => p.Stance == PlayerStance.ENEMY))
-            {
-                foreach (var unit in player.Units.Where(u => u.Visible && u[ObjectData.HITPOINTS] > 0 && u.GetData(ObjectData.CATEGORY) == 70))
-                {
-                    BattleOperation.EnemyPriorities.Add(unit, 1);
-                }
-            }
-
-            Unary.Log.Info($"StrategyManager: {BattleOperation.EnemyPriorities.Count} enemies");
-
-            if (BattleOperation.EnemyPriorities.Count == 0)
-            {
-                BattleOperation.ClearUnits();
-
-                return;
-            }
-
-            foreach (var unit in BattleOperation.Manager.FreeUnits.Where(u => u.GetData(ObjectData.CMDID) == (int)CmdId.MILITARY).ToList())
-            {
-                BattleOperation.AddUnit(unit);
-            }
-
-            foreach (var scouting in BattleOperation.Manager.Operations.OfType<ScoutOperation>())
-            {
-                foreach (var unit in scouting.Units.ToList())
-                {
-                    BattleOperation.AddUnit(unit);
-                }
-            }
-        }
-
-        private void DoGuarding()
-        {
-            var ops = Unary.OperationsManager;
-
-            if (GuardOperation == null && Unary.Tick > 10)
-            {
-                foreach (var unit in ops.FreeUnits.Where(u => u[ObjectData.CMDID] == (int)CmdId.MILITARY))
-                {
-                    if (unit.Position.DistanceTo(Unary.InfoModule.MyPosition) > 30)
-                    {
-                        GuardOperation = new GuardOperation(ops);
-                        GuardOperation.GuardedUnits.Add(unit);
-
-                        break;
-                    }
-                }
-            }
-
-            if (GuardOperation != null && GuardOperation.Units.Count() < 10)
-            {
-                foreach (var vill in ops.FreeUnits.Where(u => u[ObjectData.CMDID] == (int)CmdId.VILLAGER))
-                {
-                    if (vill.Position.DistanceTo(Unary.InfoModule.MyPosition) < 20)
-                    {
-                        GuardOperation.AddUnit(vill);
-
-                        break;
-                    }
-                }
+                Unary.EconomyManager.MinFoodGatherers = 7;
+                Unary.EconomyManager.MinWoodGatherers = 10;
+                Unary.EconomyManager.MinGoldGatherers = 0;
+                Unary.EconomyManager.MinStoneGatherers = 0;
+                Unary.EconomyManager.ExtraFoodPercentage = 30;
+                Unary.EconomyManager.ExtraWoodPercentage = 20;
+                Unary.EconomyManager.ExtraGoldPercentage = 40;
+                Unary.EconomyManager.ExtraStonePercentage = 10;
             }
         }
     }

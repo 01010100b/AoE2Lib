@@ -12,39 +12,40 @@ namespace AoE2Lib.Utils
     {
         public int Level { get; set; } = 3;
 
-        private string LogFile { get; set; }
-        private readonly List<string> Lines = new List<string>();
-        private readonly Thread Thread;
+        private readonly StreamWriter Stream;
 
         public Log(string file)
         {
-            LogFile = file;
-
-            if (File.Exists(LogFile))
+            if (File.Exists(file))
             {
-                File.Delete(LogFile);
+                File.Delete(file);
             }
 
-            Thread = new Thread(() => FlushUpdate())
-            {
-                IsBackground = true
-            };
-            Thread.Start();
+            Stream = new StreamWriter(file);
         }
 
-        public void Info(object message)
+        public void Write(object message)
         {
-            if (Level >= 3)
-            {
-                Write($"INFO: {message}");
-            }
+            var str = $"{DateTime.Now}: {message}";
+
+            Stream.WriteLine(str);
+            Stream.Flush();
+            Trace.WriteLine(str);
         }
 
         public void Debug(object message)
         {
-            if (Level >= 2)
+            if (Level >= 3)
             {
                 Write($"DEBUG: {message}");
+            }
+        }
+
+        public void Info(object message)
+        {
+            if (Level >= 2)
+            {
+                Write($"INFO: {message}");
             }
         }
 
@@ -61,70 +62,12 @@ namespace AoE2Lib.Utils
             if (Level >= 0)
             {
                 Write($"ERROR: {message}");
-                Flush();
             } 
         }
 
         public void Exception(Exception e)
         {
             Write($"EXCEPTION: {e.Message}\n{e.StackTrace}");
-            Flush();
-        }
-
-        public void Write(object message)
-        {
-            var str = $"{DateTime.UtcNow}: {message}";
-
-            Trace.WriteLine(str);
-            lock (Lines)
-            {
-                Lines.Add(str);
-            }
-            
-            if (Lines.Count > 100)
-            {
-                Flush();
-            }
-        }
-
-        public void Flush()
-        {
-            if (Lines.Count == 0)
-            {
-                return;
-            }
-
-            var lines = new List<string>();
-            lock (Lines)
-            {
-                lines.AddRange(Lines);
-                Lines.Clear();
-            }
-
-            if (lines.Count == 0)
-            {
-                return;
-            }
-
-            lock (LogFile)
-            {
-                File.AppendAllLines(LogFile, lines);
-            }
-        }
-
-        private void FlushUpdate()
-        {
-            var last = DateTime.UtcNow;
-            while (true)
-            {
-                while (DateTime.UtcNow - last < TimeSpan.FromSeconds(10))
-                {
-                    Thread.Sleep(1000);
-                }
-
-                Flush();
-                last = DateTime.UtcNow;
-            }
         }
     }
 }

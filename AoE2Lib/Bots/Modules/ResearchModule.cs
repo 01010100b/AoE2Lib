@@ -41,8 +41,11 @@ namespace AoE2Lib.Bots.Modules
                 return;
             }
 
+            Bot.Log.Info($"research {id}");
+
             var command = new Command();
-            command.Add(new Protos.Expert.Action.Research() { InConstTechId = id });
+            command.Add(new Protos.Expert.Fact.CanResearch() { InConstTechId = id }, "!=", 0,
+                new Protos.Expert.Action.Research() { InConstTechId = id });
             ResearchCommands.Add(command);
         }
 

@@ -1,6 +1,9 @@
 name: main
 
-on: [push]
+on: 
+  push:
+    branches:
+      - master
 
 jobs:
   build:
@@ -60,11 +63,11 @@ jobs:
         dest: AoE2Lib.${{ steps.tag_version.outputs.new_version }}.zip
      
     - name: Create a GitHub release
+      if: ${{ github.ref == 'refs/heads/master' }}
       uses: softprops/action-gh-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        prerelease: ${{ github.ref != 'refs/heads/master' }}
         tag_name: ${{ steps.tag_version.outputs.new_tag }}
         body: ${{ steps.tag_version.outputs.changelog }}
         files: |

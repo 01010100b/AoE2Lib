@@ -1,5 +1,4 @@
-﻿using AoE2Lib;
-using AoE2Lib.Bots.GameElements;
+﻿using AoE2Lib.Bots.GameElements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,70 +9,71 @@ namespace Unary.Operations
 {
     class BuildOperation : Operation
     {
+        public readonly List<Unit> Foundations = new List<Unit>();
+
         public BuildOperation(OperationsManager manager) : base(manager)
         {
-
         }
 
         public override void Update()
         {
-            if (Units.Count() == 0)
+            var builders = Units.ToList();
+            Foundations.RemoveAll(f => f[AoE2Lib.ObjectData.STATUS] != 0 || f.Targetable == false);
+
+            if (builders.Count == 0 || Foundations.Count == 0)
             {
                 return;
             }
 
-            var foundations = new Dictionary<int, Unit>();
-            var builders = new HashSet<Unit>();
-            foreach (var unit in Units.ToList())
+            foreach (var builder in builders)
             {
-                if (unit.GetData(ObjectData.STATUS) == 0 && unit.GetData(ObjectData.CATEGORY) == 80)
-                {
-                    foundations.Add(unit.Id, unit);
-                }
-                else if (unit.GetData(ObjectData.CMDID) == (int)CmdId.VILLAGER)
-                {
-                    builders.Add(unit);
-                }
-                else
-                {
-                    RemoveUnit(unit);
-                }
+                builder.RequestUpdate();
             }
 
-            Manager.Unary.Log.Info($"BuildOperation with {builders.Count} builders");
-
-            foreach (var builder in builders.ToList())
+            foreach (var foundation in Foundations)
             {
-                if (foundations.TryGetValue(builder.GetData(ObjectData.TARGET_ID), out Unit foundation))
+                foundation.RequestUpdate();
+            }
+
+            var free_foundations = new HashSet<int>();
+            foreach (var foundation in Foundations)
+            {
+                free_foundations.Add(foundation.Id);
+            }
+
+            var free_builders = new HashSet<Unit>();
+            foreach (var builder in builders)
+            {
+                if (!free_foundations.Contains(builder[AoE2Lib.ObjectData.TARGET_ID]))
                 {
-                    foundations.Remove(foundation.Id);
-                    builders.Remove(builder);
+                    free_builders.Add(builder);
                 }
             }
 
             foreach (var builder in builders)
             {
-                if (foundations.Count > 0)
+                if (free_foundations.Contains(builder[AoE2Lib.ObjectData.TARGET_ID]))
                 {
-                    var best = foundations.Values.First();
-                    var cost = double.MaxValue;
-
-                    foreach (var foundation in foundations.Values)
-                    {
-                        var c = builder.Position.DistanceTo(foundation.Position);
-                        if (c < cost)
-                        {
-                            best = foundation;
-                            cost = c;
-                        }
-                    }
-
-                    builder.TargetUnit(best, UnitAction.DEFAULT, UnitFormation.LINE, UnitStance.NO_ATTACK);
-                    foundations.Remove(best.Id);
+                    free_foundations.Remove(builder[AoE2Lib.ObjectData.TARGET_ID]);
                 }
-                else
+            }
+
+            if (free_builders.Count == 0 || free_foundations.Count == 0)
+            {
+                return;
+            }
+
+            foreach (var builder in free_builders)
+            {
+                var id = free_foundations.First();
+                var foundation = Foundations.First(f => f.Id == id);
+
+                builder.TargetUnit(foundation, AoE2Lib.UnitAction.DEFAULT, null, null);
+                free_foundations.Remove(id);
+
+                if (free_foundations.Count == 0)
                 {
-                    RemoveUnit(builder);
+                    break;
                 }
             }
         }
