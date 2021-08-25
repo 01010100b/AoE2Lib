@@ -150,7 +150,7 @@ namespace AoE2Lib.Bots.Modules
                 var x = responses[2].Unpack<GoalResult>().Result;
                 var y = responses[3].Unpack<GoalResult>().Result;
                 var pos = Position.FromPoint(x, y);
-                if (Bot.MapModule.IsOnMap(pos))
+                if (pos.PointX >= 0 && pos.PointY >= 0 && pos.PointX < Bot.GameState.Map.Width && pos.PointY < Bot.GameState.Map.Height)
                 {
                     MyPosition = pos;
                 }

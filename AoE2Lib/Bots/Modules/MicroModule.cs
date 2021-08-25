@@ -91,7 +91,7 @@ namespace AoE2Lib.Bots.Modules
                 return;
             }
 
-            position = Bot.MapModule.Clamp(position);
+            position = new Position(Math.Max(0, Math.Min(Bot.GameState.Map.Width, position.X)), Math.Max(0, Math.Min(Bot.GameState.Map.Height, position.Y)));
 
             const int GL_CHECKS = 100;
             const int GL_TEMP = 101;

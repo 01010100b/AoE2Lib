@@ -34,6 +34,10 @@ namespace Unary.Managers
 
         internal override void Update()
         {
+            Unary.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_EXPLORERS, 0);
+            Unary.SetStrategicNumber(StrategicNumber.NUMBER_EXPLORE_GROUPS, 1);
+            Unary.SetStrategicNumber(StrategicNumber.HOME_EXPLORATION_TIME, 600);
+
             Unary.SetStrategicNumber(StrategicNumber.TASK_UNGROUPED_SOLDIERS, 0);
             Unary.SetStrategicNumber(StrategicNumber.DISABLE_DEFEND_GROUPS, 8);
 

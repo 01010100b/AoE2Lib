@@ -21,6 +21,7 @@ namespace AoE2Lib.Bots.GameElements
             public int Height;
             internal int Terrain;
             internal int Visibility;
+            public readonly List<Unit> Units = new List<Unit>();
 
             public bool IsOnLand => Terrain != 1 && Terrain != 2 && Terrain != 4 && Terrain != 15 && Terrain != 22 && Terrain != 23 && Terrain != 28 && Terrain != 37;
             public bool Explored => Visibility != 0;
@@ -36,9 +37,9 @@ namespace AoE2Lib.Bots.GameElements
         private struct BuildPosition
         {
             public readonly UnitType UnitType;
-            public readonly Tile Tile;
+            public readonly MapTile Tile;
 
-            public BuildPosition(UnitType building, Tile tile)
+            public BuildPosition(UnitType building, MapTile tile)
             {
                 UnitType = building;
                 Tile = tile;
@@ -53,8 +54,8 @@ namespace AoE2Lib.Bots.GameElements
         private readonly Dictionary<BuildPosition, bool> BuildPositions = new Dictionary<BuildPosition, bool>();
         private readonly List<BuildPosition> CheckBuildPositions = new List<BuildPosition>();
 
-        private readonly Dictionary<Tile, bool> ReachableTiles = new Dictionary<Tile, bool>();
-        private readonly List<Tile> CheckReachableTiles = new List<Tile>();
+        private readonly Dictionary<MapTile, bool> ReachableTiles = new Dictionary<MapTile, bool>();
+        private readonly List<MapTile> CheckReachableTiles = new List<MapTile>();
 
         public Map(Bot bot) : base(bot)
         {
@@ -93,9 +94,9 @@ namespace AoE2Lib.Bots.GameElements
             }
         }
 
-        public bool TryCanBuildAtPosition(UnitType building, Position position, out bool can_build)
+        public bool TryCanBuildAtPosition(UnitType building, int x, int y, out bool can_build)
         {
-            var buildposition = new BuildPosition(building, GetTile(position));
+            var buildposition = new BuildPosition(building, GetTile(x, y));
 
             CheckBuildPositions.Add(buildposition);
 
@@ -111,9 +112,9 @@ namespace AoE2Lib.Bots.GameElements
             }
         }
 
-        public bool TryCanReachPosition(Position position, out bool can_reach)
+        public bool TryCanReachPosition(int x, int y, out bool can_reach)
         {
-            var tile = GetTile(position);
+            var tile = GetTile(x, y);
 
             if (!tile.Explored)
             {
@@ -132,11 +133,6 @@ namespace AoE2Lib.Bots.GameElements
 
                 return false;
             }
-        }
-
-        private Tile GetTile(Position position)
-        {
-            return Bot.MapModule[position];
         }
 
         protected override IEnumerable<IMessage> RequestElementUpdate()

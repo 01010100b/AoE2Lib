@@ -27,7 +27,7 @@ namespace Unary.Operations
                 return;
             }
 
-            var units = Manager.Unary.MapModule.GetTilesInRange(Focus, 3).SelectMany(t => t.Units.Where(u => u.Targetable)).ToList();
+            var units = Manager.Unary.GameState.Map.GetTilesInRange(Focus.PointX, Focus.PointY, 3).SelectMany(t => t.Units.Where(u => u.Targetable)).ToList();
             var sheep = Units.FirstOrDefault(u => u[ObjectData.CLASS] == (int)UnitClass.Livestock && u[ObjectData.HITPOINTS] > 0);
 
             if (sheep != null && Focus.DistanceTo(sheep.Position) > 1)

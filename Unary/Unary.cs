@@ -20,7 +20,6 @@ namespace Unary
     {
         public readonly Mod Mod;
 
-        public readonly MapManager MapManager;
         public readonly StrategyManager StrategyManager;
         public readonly EconomyManager EconomyManager;
         public readonly BuildingManager BuildingManager;
@@ -33,7 +32,6 @@ namespace Unary
             Mod = new Mod();
             Mod.Load();
 
-            MapManager = new MapManager(this);
             StrategyManager = new StrategyManager(this);
             EconomyManager = new EconomyManager(this);
             BuildingManager = new BuildingManager(this);
@@ -56,7 +54,6 @@ namespace Unary
 
         private void UpdateManagers()
         {
-            MapManager.Update();
             StrategyManager.Update();
             EconomyManager.Update();
             BuildingManager.Update();
