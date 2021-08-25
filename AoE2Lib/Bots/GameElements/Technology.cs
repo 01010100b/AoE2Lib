@@ -43,7 +43,7 @@ namespace AoE2Lib.Bots.GameElements
                 IsBuilding = false
             };
 
-            Bot.AddProductionTask(prod);
+            Bot.GameState.AddProductionTask(prod);
         }
 
         protected override IEnumerable<IMessage> RequestElementUpdate()

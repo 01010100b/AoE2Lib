@@ -1,12 +1,5 @@
 ﻿using AoE2Lib;
-using AoE2Lib.Bots;
 using AoE2Lib.Bots.GameElements;
-using AoE2Lib.Utils;
-using Google.Protobuf;
-using Google.Protobuf.WellKnownTypes;
-using Protos.Expert;
-using Protos.Expert.Action;
-using Protos.Expert.Fact;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -89,7 +82,7 @@ namespace Unary.Operations
         private double GetDodgeAngle(Unit unit, Unit target)
         {
             double angle;
-            var tick = unit.Id + Manager.Unary.Tick;
+            var tick = unit.Id + Manager.Unary.GameState.Tick;
 
             if (target[ObjectData.BALLISTICS] == 0)
             {

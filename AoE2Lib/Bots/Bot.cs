@@ -1,6 +1,4 @@
-﻿using AoE2Lib.Bots.GameElements;
-using AoE2Lib.Utils;
-using Google.Protobuf.WellKnownTypes;
+﻿using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using Protos.Expert;
 using Protos.Expert.Fact;
@@ -24,21 +22,12 @@ namespace AoE2Lib.Bots
         public GameVersion GameVersion { get; private set; }
         public string DatFile { get; private set; } // Only available on AoC
         public int PlayerNumber { get; private set; } = -1;
-        public int Tick { get; private set; } = 0;
         public Log Log { get; private set; }
         public Random Rng { get; private set; }
-
         public GameState GameState { get; private set; }
-        public Player MyPlayer => GetPlayer(PlayerNumber);
-
-        private readonly List<ProductionTask> ProductionTasks = new List<ProductionTask>();
-        private readonly List<Player> Players = new List<Player>();
-        private readonly Dictionary<int, Technology> Technologies = new Dictionary<int, Technology>();
-        private readonly Dictionary<int, UnitType> UnitTypes = new Dictionary<int, UnitType>();
 
         private Thread BotThread { get; set; } = null;
         private volatile bool Stopping = false;
-        private readonly Dictionary<GameElement, Command> GameElementUpdates = new Dictionary<GameElement, Command>();
 
         public void Stop()
         {
@@ -52,124 +41,7 @@ namespace AoE2Lib.Bots
             Stopping = false;
         }
 
-        public Player GetPlayer(int player_number)
-        {
-            return Players[player_number];
-        }
-
-        public IEnumerable<Player> GetPlayers()
-        {
-            return Players.Where(p => p.PlayerNumber == 0 || p.IsValid);
-        }
-
-        public Technology GetTechnology(int id)
-        {
-            if (!Technologies.ContainsKey(id))
-            {
-                Technologies.Add(id, new Technology(this, id));
-            }
-
-            return Technologies[id];
-        }
-
-        public UnitType GetUnitType(int id)
-        {
-            if (!UnitTypes.ContainsKey(id))
-            {
-                UnitTypes.Add(id, new UnitType(this, id));
-            }
-
-            return UnitTypes[id];
-        }
-
-        public Unit GetUnit(int id)
-        {
-            return GameState.GetUnitById(id);
-        }
-
-        public bool GetResourceFound(Resource resource)
-        {
-            return GameState.GetResourceFound(resource);
-        }
-
-        public int GetDropsiteMinDistance(Resource resource)
-        {
-            return GameState.GetDropsiteMinDistance(resource);
-        }
-
-        public int GetStrategicNumber(StrategicNumber sn)
-        {
-            return GameState.GetStrategicNumber(sn);
-        }
-
-        public void SetStrategicNumber(StrategicNumber sn, int val)
-        {
-            GameState.SetStrategicNumber(sn, val);
-        }
-
-        internal void UpdateGameElement(GameElement element, Command command)
-        {
-            GameElementUpdates[element] = command;
-        }
-
-        internal void AddProductionTask(ProductionTask task)
-        {
-            ProductionTasks.Add(task);
-        }
-
         protected abstract IEnumerable<Command> Update();
-
-        private IEnumerable<Command> DoProduction()
-        {
-            var remaining_wood = GameState.MyPlayer.GetFact(FactId.WOOD_AMOUNT);
-            var remaining_food = GameState.MyPlayer.GetFact(FactId.FOOD_AMOUNT);
-            var remaining_gold = GameState.MyPlayer.GetFact(FactId.GOLD_AMOUNT);
-            var remaining_stone = GameState.MyPlayer.GetFact(FactId.STONE_AMOUNT);
-
-            ProductionTasks.Sort((a, b) => b.Priority.CompareTo(a.Priority));
-
-            foreach (var prod in ProductionTasks)
-            {
-                var can_afford = true;
-                if (prod.WoodCost > 0 && prod.WoodCost > remaining_wood)
-                {
-                    can_afford = false;
-                }
-                else if (prod.FoodCost > 0 && prod.FoodCost > remaining_food)
-                {
-                    can_afford = false;
-                }
-                else if (prod.GoldCost > 0 && prod.GoldCost > remaining_gold)
-                {
-                    can_afford = false;
-                }
-                else if (prod.StoneCost > 0 && prod.StoneCost > remaining_stone)
-                {
-                    can_afford = false;
-                }
-
-                var deduct = true;
-                if (can_afford == false && prod.Blocking == false)
-                {
-                    deduct = false;
-                }
-
-                if (can_afford)
-                {
-                    yield return prod.GetCommand(this);
-                }
-
-                if (deduct)
-                {
-                    remaining_wood -= prod.WoodCost;
-                    remaining_food -= prod.FoodCost;
-                    remaining_gold -= prod.GoldCost;
-                    remaining_stone -= prod.StoneCost;
-                }
-            }
-
-            ProductionTasks.Clear();
-        }
 
         internal void Start(int player, string endpoint, int seed, GameVersion version)
         {
@@ -182,17 +54,10 @@ namespace AoE2Lib.Bots
                 seed = Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.GetHashCode();
             }
 
-            Rng = new Random(seed);
-
             PlayerNumber = player;
             Log = new Log(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"{Name} {PlayerNumber}.log"));
-
+            Rng = new Random(seed);
             GameState = new GameState(this);
-
-            for (int i = 0; i <= 8; i++)
-            {
-                Players.Add(new Player(this, i));
-            }
 
             BotThread = new Thread(() => Run(endpoint)) { IsBackground = true };
             BotThread.Start();
@@ -211,15 +76,12 @@ namespace AoE2Lib.Bots
                 DatFile = module_api.GetGameDataFilePath(new Protos.GetGameDataFilePathRequest()).Result;
             }
 
-            Tick = 0;
             var sw = new Stopwatch();
             var commands = new List<Command>();
             var previous = DateTime.UtcNow;
 
             while (!Stopping)
             {
-                Log.Info($"Tick {Tick}");
-
                 sw.Restart();
                 commands.Clear();
 
@@ -231,40 +93,9 @@ namespace AoE2Lib.Bots
 
                 commands.Add(bot_command);
 
-                foreach (var player in Players)
-                {
-                    player.Units.Clear();
-                }
-
-                foreach (var unit in GameState.GetAllUnits())
-                {
-                    if (unit.Updated && unit[ObjectData.PLAYER] >= 0)
-                    {
-                        Players[unit[ObjectData.PLAYER]].Units.Add(unit);
-                    }
-                }
-
                 commands.AddRange(Update().Where(c => c.HasMessages));
-                commands.AddRange(DoProduction());
-
-                foreach (var player in Players)
-                {
-                    player.RequestUpdate();
-                }
-
-                foreach (var tech in Technologies.Values)
-                {
-                    tech.RequestUpdate();
-                }
-
-                foreach (var type in UnitTypes.Values)
-                {
-                    type.RequestUpdate();
-                }
-
                 commands.AddRange(GameState.RequestUpdate());
-                commands.AddRange(GameElementUpdates.Values);
-
+                
                 // don't send commands if it's been more than 5 seconds since previous update
 
                 if ((DateTime.UtcNow - previous) > TimeSpan.FromSeconds(5))
@@ -275,7 +106,6 @@ namespace AoE2Lib.Bots
                     }
 
                     commands.Clear();
-                    GameElementUpdates.Clear();
 
                     Log.Debug("Clearing commands (more than 5 seconds since previous)");
                 }
@@ -322,10 +152,9 @@ namespace AoE2Lib.Bots
                 }
                 else
                 {
-                    sw.Restart();
-
                     // update the results to the commands
 
+                    sw.Restart();
                     Debug.Assert(commands.Sum(c => c.Messages.Count) == resultlist.Results.Count);
 
                     var offset = 0;
@@ -341,23 +170,10 @@ namespace AoE2Lib.Bots
                         offset += command.Responses.Count;
                     }
 
-                    if (commands.Count > 0)
-                    {
-                        Tick++;
-                    }
-
                     // perform update
 
-                    foreach (var element in GameElementUpdates.Keys)
-                    {
-                        element.Update();
-                    }
-                    GameElementUpdates.Clear();
-
                     GameState.Update();
-
                     previous = DateTime.UtcNow;
-
                     Log.Debug($"Update took {sw.ElapsedMilliseconds} ms");
                 }
             }

@@ -1,5 +1,4 @@
-﻿using AoE2Lib.Utils;
-using Google.Protobuf;
+﻿using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Protos.Expert.Action;
 using Protos.Expert.Fact;
@@ -219,7 +218,7 @@ namespace AoE2Lib.Bots.GameElements
             }
 
             var new_pos = Position;
-            var new_tick = Bot.Tick;
+            var new_tick = Bot.GameState.Tick;
             var time = (new_tick - old_tick) * Bot.GameState.GameTimePerTick.TotalSeconds;
             Velocity = (new_pos - old_pos) / Math.Max(0.00001, time);
             if (Velocity.Norm > this[ObjectData.SPEED] / 100d)

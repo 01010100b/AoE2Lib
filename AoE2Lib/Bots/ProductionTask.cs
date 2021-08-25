@@ -1,5 +1,4 @@
-﻿using AoE2Lib.Utils;
-using Protos.Expert.Action;
+﻿using Protos.Expert.Action;
 using Protos.Expert.Fact;
 using System;
 using System.Collections.Generic;

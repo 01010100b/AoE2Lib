@@ -1,6 +1,5 @@
 ﻿using AoE2Lib;
 using AoE2Lib.Bots.GameElements;
-using AoE2Lib.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,46 +17,46 @@ namespace Unary.Managers
 
         public void Attack(Player player)
         {
-            Unary.SetStrategicNumber(StrategicNumber.ENABLE_PATROL_ATTACK, 1);
-            Unary.SetStrategicNumber(StrategicNumber.TARGET_PLAYER_NUMBER, player.PlayerNumber);
-            Unary.SetStrategicNumber(StrategicNumber.MINIMUM_ATTACK_GROUP_SIZE, 1);
-            Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_ATTACK_GROUP_SIZE, 1);
-            Unary.SetStrategicNumber(StrategicNumber.NUMBER_ATTACK_GROUPS, 100);
-            Unary.SetStrategicNumber(StrategicNumber.ZERO_PRIORITY_DISTANCE, 250);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.ENABLE_PATROL_ATTACK, 1);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.TARGET_PLAYER_NUMBER, player.PlayerNumber);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.MINIMUM_ATTACK_GROUP_SIZE, 1);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_ATTACK_GROUP_SIZE, 1);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.NUMBER_ATTACK_GROUPS, 100);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.ZERO_PRIORITY_DISTANCE, 250);
         }
 
         public void Retreat()
         {
-            Unary.SetStrategicNumber(StrategicNumber.NUMBER_ATTACK_GROUPS, 0);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.NUMBER_ATTACK_GROUPS, 0);
         }
 
         internal override void Update()
         {
-            Unary.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_EXPLORERS, 0);
-            Unary.SetStrategicNumber(StrategicNumber.NUMBER_EXPLORE_GROUPS, 1);
-            Unary.SetStrategicNumber(StrategicNumber.HOME_EXPLORATION_TIME, 600);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_EXPLORERS, 0);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.NUMBER_EXPLORE_GROUPS, 1);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.HOME_EXPLORATION_TIME, 600);
 
-            Unary.SetStrategicNumber(StrategicNumber.TASK_UNGROUPED_SOLDIERS, 0);
-            Unary.SetStrategicNumber(StrategicNumber.DISABLE_DEFEND_GROUPS, 8);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.TASK_UNGROUPED_SOLDIERS, 0);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.DISABLE_DEFEND_GROUPS, 8);
 
             BasicStrategy();
         }
 
         private void BasicStrategy()
         {
-            var feudal_age = Unary.GetTechnology(101);
-            var castle_age = Unary.GetTechnology(102);
-            var imperial_age = Unary.GetTechnology(103);
+            var feudal_age = Unary.GameState.GetTechnology(101);
+            var castle_age = Unary.GameState.GetTechnology(102);
+            var imperial_age = Unary.GameState.GetTechnology(103);
 
             feudal_age.Research((int)Priority.AGE_UP, false);
             castle_age.Research((int)Priority.AGE_UP, false);
             imperial_age.Research((int)Priority.AGE_UP, false);
 
-            var barracks = Unary.GetUnitType(12);
-            var archery_range = Unary.GetUnitType(87);
-            var blacksmith = Unary.GetUnitType(103);
+            var barracks = Unary.GameState.GetUnitType(12);
+            var archery_range = Unary.GameState.GetUnitType(87);
+            var blacksmith = Unary.GameState.GetUnitType(103);
 
-            var ranges = (Unary.MyPlayer.CivilianPopulation - 25) / 10;
+            var ranges = (Unary.GameState.MyPlayer.CivilianPopulation - 25) / 10;
             ranges = Math.Max(1, ranges);
 
             if (barracks.CountTotal >= 1 && archery_range.CountTotal < ranges)
@@ -70,7 +69,7 @@ namespace Unary.Managers
                 blacksmith.Build(1, 1, (int)Priority.PRODUCTION_BUILDING);
             }
 
-            var archer = Unary.GetUnitType(4);
+            var archer = Unary.GameState.GetUnitType(4);
 
             if (archery_range.Count >= 1)
             {
@@ -103,12 +102,12 @@ namespace Unary.Managers
                 }
             }
 
-            if (Unary.MyPlayer.MilitaryPopulation > 20)
+            if (Unary.GameState.MyPlayer.MilitaryPopulation > 20)
             {
-                var target = Unary.GetPlayers().First(p => p.Stance == PlayerStance.ENEMY);
+                var target = Unary.GameState.GetPlayers().First(p => p.Stance == PlayerStance.ENEMY);
                 Attack(target);
             }
-            else if (Unary.MyPlayer.MilitaryPopulation < 10)
+            else if (Unary.GameState.MyPlayer.MilitaryPopulation < 10)
             {
                 Retreat();
             }

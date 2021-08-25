@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
-namespace AoE2Lib.Utils
+namespace AoE2Lib
 {
     public class Log : IDisposable
     {

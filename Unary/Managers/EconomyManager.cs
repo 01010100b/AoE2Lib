@@ -1,6 +1,4 @@
 ﻿using AoE2Lib;
-using AoE2Lib.Bots.GameElements;
-using AoE2Lib.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +34,7 @@ namespace Unary.Managers
 
         private void ManagePopulation()
         {
-            var villager = Unary.GetUnitType(83);
+            var villager = Unary.GameState.GetUnitType(83);
 
             villager.Train((int)Math.Round(0.6 * Unary.GameState.MyPlayer.GetFact(FactId.POPULATION_CAP)), ConcurrentVillagers, (int)Priority.VILLAGER);
         }
@@ -52,21 +50,21 @@ namespace Unary.Managers
             info.StrategicNumbers[StrategicNumber.CAP_CIVILIAN_GATHERERS] = 0;
             info.StrategicNumbers[StrategicNumber.MINIMUM_BOAR_HUNT_GROUP_SIZE] = 0;
             */
-            Unary.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_EXPLORERS, 0);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_EXPLORERS, 0);
 
-            Unary.SetStrategicNumber(StrategicNumber.INTELLIGENT_GATHERING, 1);
-            Unary.SetStrategicNumber(StrategicNumber.USE_BY_TYPE_MAX_GATHERING, 1);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.INTELLIGENT_GATHERING, 1);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.USE_BY_TYPE_MAX_GATHERING, 1);
 
-            Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_WOOD_DROP_DISTANCE, 7);
-            Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_GOLD_DROP_DISTANCE, 7);
-            Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_STONE_DROP_DISTANCE, 7);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_WOOD_DROP_DISTANCE, 7);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_GOLD_DROP_DISTANCE, 7);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_STONE_DROP_DISTANCE, 7);
 
-            Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_FOOD_DROP_DISTANCE, 8);
-            Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_HUNT_DROP_DISTANCE, 8);
-            Unary.SetStrategicNumber(StrategicNumber.ENABLE_BOAR_HUNTING, 0);
-            Unary.SetStrategicNumber(StrategicNumber.LIVESTOCK_TO_TOWN_CENTER, 1);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_FOOD_DROP_DISTANCE, 8);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_HUNT_DROP_DISTANCE, 8);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.ENABLE_BOAR_HUNTING, 0);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.LIVESTOCK_TO_TOWN_CENTER, 1);
 
-            var pop = Unary.MyPlayer.CivilianPopulation;
+            var pop = Unary.GameState.MyPlayer.CivilianPopulation;
 
             var food = MinFoodGatherers;
             var wood = MinWoodGatherers;
@@ -88,34 +86,34 @@ namespace Unary.Managers
 
             pop = food + wood + gold + stone;
 
-            Unary.SetStrategicNumber(StrategicNumber.FOOD_GATHERER_PERCENTAGE, food * 100 / pop);
-            Unary.SetStrategicNumber(StrategicNumber.WOOD_GATHERER_PERCENTAGE, wood * 100 / pop);
-            Unary.SetStrategicNumber(StrategicNumber.GOLD_GATHERER_PERCENTAGE, gold * 100 / pop);
-            Unary.SetStrategicNumber(StrategicNumber.STONE_GATHERER_PERCENTAGE, stone * 100 / pop);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.FOOD_GATHERER_PERCENTAGE, food * 100 / pop);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.WOOD_GATHERER_PERCENTAGE, wood * 100 / pop);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.GOLD_GATHERER_PERCENTAGE, gold * 100 / pop);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.STONE_GATHERER_PERCENTAGE, stone * 100 / pop);
         }
 
         private void ManageDropsites()
         {
-            var tc = Unary.GetUnitType(109);
-            var mill = Unary.GetUnitType(68);
-            var lumber_camp = Unary.GetUnitType(562);
-            var mining_camp = Unary.GetUnitType(584);
-            var farm = Unary.GetUnitType(50);
+            var tc = Unary.GameState.GetUnitType(109);
+            var mill = Unary.GameState.GetUnitType(68);
+            var lumber_camp = Unary.GameState.GetUnitType(562);
+            var mining_camp = Unary.GameState.GetUnitType(584);
+            var farm = Unary.GameState.GetUnitType(50);
 
-            Unary.SetStrategicNumber(StrategicNumber.MILL_MAX_DISTANCE, 30);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.MILL_MAX_DISTANCE, 30);
 
-            if (Unary.MyPlayer.GetUnits().Count(u => u.Targetable && u[ObjectData.BASE_TYPE] == tc.Id) < TownCenters)
+            if (Unary.GameState.MyPlayer.GetUnits().Count(u => u.Targetable && u[ObjectData.BASE_TYPE] == tc.Id) < TownCenters)
             {
                 tc.Build(TownCenters, 1, (int)Priority.DROPSITE);
             }
 
-            if (Unary.GetStrategicNumber(StrategicNumber.WOOD_GATHERER_PERCENTAGE) > 0)
+            if (Unary.GameState.GetStrategicNumber(StrategicNumber.WOOD_GATHERER_PERCENTAGE) > 0)
             {
-                if (Unary.GetResourceFound(Resource.WOOD) && Unary.GetDropsiteMinDistance(Resource.WOOD) > 2 && Unary.GetDropsiteMinDistance(Resource.WOOD) < 200)
+                if (Unary.GameState.GetResourceFound(Resource.WOOD) && Unary.GameState.GetDropsiteMinDistance(Resource.WOOD) > 2 && Unary.GameState.GetDropsiteMinDistance(Resource.WOOD) < 200)
                 {
-                    var camp_distance = Unary.GetStrategicNumber(StrategicNumber.LUMBER_CAMP_MAX_DISTANCE);
-                    Unary.SetStrategicNumber(StrategicNumber.LUMBER_CAMP_MAX_DISTANCE, camp_distance + 1);
-                    if (Unary.GetDropsiteMinDistance(Resource.WOOD) < camp_distance)
+                    var camp_distance = Unary.GameState.GetStrategicNumber(StrategicNumber.LUMBER_CAMP_MAX_DISTANCE);
+                    Unary.GameState.SetStrategicNumber(StrategicNumber.LUMBER_CAMP_MAX_DISTANCE, camp_distance + 1);
+                    if (Unary.GameState.GetDropsiteMinDistance(Resource.WOOD) < camp_distance)
                     {
                         lumber_camp.Build(100, 1, (int)Priority.DROPSITE);
                     }
@@ -127,20 +125,20 @@ namespace Unary.Managers
                 return;
             }
             
-            if (Unary.GetStrategicNumber(StrategicNumber.FOOD_GATHERER_PERCENTAGE) > 0)
+            if (Unary.GameState.GetStrategicNumber(StrategicNumber.FOOD_GATHERER_PERCENTAGE) > 0)
             {
                 if (mill.CountTotal < 1)
                 {
-                    if (Unary.GetResourceFound(Resource.FOOD) && Unary.GetDropsiteMinDistance(Resource.FOOD) > 2 && Unary.GetDropsiteMinDistance(Resource.FOOD) < 200)
+                    if (Unary.GameState.GetResourceFound(Resource.FOOD) && Unary.GameState.GetDropsiteMinDistance(Resource.FOOD) > 2 && Unary.GameState.GetDropsiteMinDistance(Resource.FOOD) < 200)
                     {
                         mill.Build(100, 1, (int)Priority.DROPSITE);
                     }
                 }
                 else if (mill.Count >= 1)
                 {
-                    var needed_farms = Unary.MyPlayer.CivilianPopulation * Unary.GetStrategicNumber(StrategicNumber.FOOD_GATHERER_PERCENTAGE) / 100;
+                    var needed_farms = Unary.GameState.MyPlayer.CivilianPopulation * Unary.GameState.GetStrategicNumber(StrategicNumber.FOOD_GATHERER_PERCENTAGE) / 100;
 
-                    Unary.Log.Info($"I have {farm.CountTotal} farms and I want {needed_farms} with {Unary.GetStrategicNumber(StrategicNumber.FOOD_GATHERER_PERCENTAGE)} food perc");
+                    Unary.Log.Info($"I have {farm.CountTotal} farms and I want {needed_farms} with {Unary.GameState.GetStrategicNumber(StrategicNumber.FOOD_GATHERER_PERCENTAGE)} food perc");
 
                     if (farm.CountTotal < needed_farms)
                     {
@@ -157,23 +155,23 @@ namespace Unary.Managers
 
             var gathered = new List<Resource>();
 
-            if (Unary.GetStrategicNumber(StrategicNumber.GOLD_GATHERER_PERCENTAGE) > 0)
+            if (Unary.GameState.GetStrategicNumber(StrategicNumber.GOLD_GATHERER_PERCENTAGE) > 0)
             {
                 gathered.Add(Resource.GOLD);
             }
 
-            if (Unary.GetStrategicNumber(StrategicNumber.STONE_GATHERER_PERCENTAGE) > 0)
+            if (Unary.GameState.GetStrategicNumber(StrategicNumber.STONE_GATHERER_PERCENTAGE) > 0)
             {
                 gathered.Add(Resource.STONE);
             }
 
             foreach (var resource in gathered)
             {
-                if (Unary.GetResourceFound(resource) && Unary.GetDropsiteMinDistance(resource) > 2 && Unary.GetDropsiteMinDistance(resource) < 200)
+                if (Unary.GameState.GetResourceFound(resource) && Unary.GameState.GetDropsiteMinDistance(resource) > 2 && Unary.GameState.GetDropsiteMinDistance(resource) < 200)
                 {
-                    var camp_distance = Unary.GetStrategicNumber(StrategicNumber.MINING_CAMP_MAX_DISTANCE);
-                    Unary.SetStrategicNumber(StrategicNumber.MINING_CAMP_MAX_DISTANCE, camp_distance + 1);
-                    if (Unary.GetDropsiteMinDistance(resource) < camp_distance)
+                    var camp_distance = Unary.GameState.GetStrategicNumber(StrategicNumber.MINING_CAMP_MAX_DISTANCE);
+                    Unary.GameState.SetStrategicNumber(StrategicNumber.MINING_CAMP_MAX_DISTANCE, camp_distance + 1);
+                    if (Unary.GameState.GetDropsiteMinDistance(resource) < camp_distance)
                     {
                         mining_camp.Build(100, 1, (int)Priority.DROPSITE);
                     }

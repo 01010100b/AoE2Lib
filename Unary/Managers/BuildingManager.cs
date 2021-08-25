@@ -1,6 +1,5 @@
 ﻿using AoE2Lib;
 using AoE2Lib.Bots.GameElements;
-using AoE2Lib.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,24 +20,24 @@ namespace Unary.Managers
         internal override void Update()
         {
             //Unary.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, 0);
-            Unary.SetStrategicNumber(StrategicNumber.DISABLE_BUILDER_ASSISTANCE, 1);
-            Unary.SetStrategicNumber(StrategicNumber.ENABLE_NEW_BUILDING_SYSTEM, 1);
-            Unary.SetStrategicNumber(StrategicNumber.INITIAL_EXPLORATION_REQUIRED, 0);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.DISABLE_BUILDER_ASSISTANCE, 1);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.ENABLE_NEW_BUILDING_SYSTEM, 1);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.INITIAL_EXPLORATION_REQUIRED, 0);
 
-            Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 20);
-            if (Unary.GetTechnology(101).State == ResearchState.COMPLETE)
+            Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 20);
+            if (Unary.GameState.GetTechnology(101).State == ResearchState.COMPLETE)
             {
-                Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 25);
+                Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 25);
             }
 
-            if (Unary.GetTechnology(102).State == ResearchState.COMPLETE)
+            if (Unary.GameState.GetTechnology(102).State == ResearchState.COMPLETE)
             {
-                Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 30);
+                Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 30);
             }
 
-            if (Unary.GetTechnology(103).State == ResearchState.COMPLETE)
+            if (Unary.GameState.GetTechnology(103).State == ResearchState.COMPLETE)
             {
-                Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 35);
+                Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 35);
             }
 
             BuildHouses();
@@ -47,17 +46,17 @@ namespace Unary.Managers
 
         private void BuildHouses()
         {
-            var house = Unary.GetUnitType(70);
+            var house = Unary.GameState.GetUnitType(70);
 
             var margin = 5;
             var pending = 1;
 
-            if (Unary.GetTechnology(101).State == ResearchState.COMPLETE)
+            if (Unary.GameState.GetTechnology(101).State == ResearchState.COMPLETE)
             {
                 margin = 10;
             }
 
-            if (Unary.GetTechnology(102).State == ResearchState.COMPLETE)
+            if (Unary.GameState.GetTechnology(102).State == ResearchState.COMPLETE)
             {
                 pending = 2;
             }

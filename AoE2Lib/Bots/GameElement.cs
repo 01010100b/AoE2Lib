@@ -40,7 +40,7 @@ namespace AoE2Lib.Bots
 
             if (Command.HasMessages)
             {
-                Bot.UpdateGameElement(this, Command);
+                Bot.GameState.AddCommand(Command);
             }
         }
 
@@ -61,7 +61,7 @@ namespace AoE2Lib.Bots
                 FirstUpdateGameTime = gametime;
             }
             TimesUpdated++;
-            LastUpdateTick = Bot.Tick;
+            LastUpdateTick = Bot.GameState.Tick;
 
             Command.Reset();
         }

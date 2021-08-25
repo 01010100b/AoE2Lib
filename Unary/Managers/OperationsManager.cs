@@ -82,7 +82,7 @@ namespace Unary.Managers
         {
             var current_units = new HashSet<Unit>();
 
-            foreach (var unit in Unary.MyPlayer.GetUnits().Where(u => u.Updated && u.Targetable && u[ObjectData.HITPOINTS] > 0))
+            foreach (var unit in Unary.GameState.MyPlayer.GetUnits().Where(u => u.Updated && u.Targetable && u[ObjectData.HITPOINTS] > 0))
             {
                 current_units.Add(unit);
                 unit.RequestUpdate();

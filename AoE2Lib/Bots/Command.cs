@@ -1,5 +1,4 @@
-﻿using AoE2Lib.Utils;
-using Google.Protobuf;
+﻿using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Protos.Expert;
 using System;

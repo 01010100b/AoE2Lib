@@ -1,5 +1,4 @@
-﻿using AoE2Lib.Utils;
-using Google.Protobuf;
+﻿using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Protos.Expert.Action;
 using Protos.Expert.Command;
@@ -163,7 +162,7 @@ namespace AoE2Lib.Bots.GameElements
 
             CheckReachableTiles.RemoveAll(t => ReachableTiles.ContainsKey(t));
 
-            var unit = Bot.MyPlayer.GetUnits().FirstOrDefault();
+            var unit = Bot.GameState.MyPlayer.GetUnits().FirstOrDefault();
             if (unit == null)
             {
                 CheckReachableTiles.Clear();

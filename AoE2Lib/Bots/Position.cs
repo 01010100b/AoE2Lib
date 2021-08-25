@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Numerics;
 using System.Text;
 
-namespace AoE2Lib.Utils
+namespace AoE2Lib.Bots
 {
     public struct Position
     {

@@ -1,5 +1,4 @@
-﻿using AoE2Lib.Utils;
-using Google.Protobuf;
+﻿using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Protos.Expert.Action;
 using Protos.Expert.Fact;
@@ -50,7 +49,7 @@ namespace AoE2Lib.Bots.GameElements
                 IsBuilding = false
             };
 
-            Bot.AddProductionTask(prod);
+            Bot.GameState.AddProductionTask(prod);
         }
 
         public void Build(int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
@@ -87,7 +86,7 @@ namespace AoE2Lib.Bots.GameElements
 
             prod.BuildPositions.AddRange(positions);
 
-            Bot.AddProductionTask(prod);
+            Bot.GameState.AddProductionTask(prod);
         }
 
         protected override IEnumerable<IMessage> RequestElementUpdate()

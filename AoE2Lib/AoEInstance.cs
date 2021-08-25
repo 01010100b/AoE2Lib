@@ -1,5 +1,4 @@
 ﻿using AoE2Lib.Bots;
-using AoE2Lib.Utils;
 using Reloaded.Injector;
 using System;
 using System.Collections.Generic;

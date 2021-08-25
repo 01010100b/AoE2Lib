@@ -1,6 +1,6 @@
 ﻿using AoE2Lib;
 using AoE2Lib.Bots.GameElements;
-using AoE2Lib.Utils;
+using AoE2Lib.Bots;
 using System;
 using System.Collections.Generic;
 using System.Linq;

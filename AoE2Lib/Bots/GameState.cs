@@ -1,5 +1,4 @@
 ﻿using AoE2Lib.Bots.GameElements;
-using AoE2Lib.Utils;
 using Protos.Expert.Action;
 using Protos.Expert.Fact;
 using System;
@@ -12,8 +11,9 @@ namespace AoE2Lib.Bots
     public class GameState
     {
         public readonly Map Map;
-        public Player MyPlayer => Bot.MyPlayer;
+        public Player MyPlayer => Players.Single(p => p.PlayerNumber == Bot.PlayerNumber);
         public Position MyPosition { get; private set; } = Position.Zero;
+        public int Tick { get; private set; } = 0;
         public TimeSpan GameTime { get; private set; } = TimeSpan.Zero;
         public TimeSpan GameTimePerTick { get; private set; } = TimeSpan.FromSeconds(0.7);
 
@@ -21,22 +21,63 @@ namespace AoE2Lib.Bots
         public int AutoUpdateUnits { get; set; } = 100; // units to update per tick, set to 0 to disable
 
         private readonly Bot Bot;
+        private readonly List<Player> Players = new List<Player>();
+        private readonly Dictionary<int, Technology> Technologies = new Dictionary<int, Technology>();
+        private readonly Dictionary<int, UnitType> UnitTypes = new Dictionary<int, UnitType>();
         private readonly Dictionary<int, Unit> Units = new Dictionary<int, Unit>();
         private readonly Dictionary<Resource, bool> ResourceFound = new Dictionary<Resource, bool>();
         private readonly Dictionary<Resource, int> DropsiteMinDistance = new Dictionary<Resource, int>();
         private readonly Dictionary<StrategicNumber, int> StrategicNumbers = new Dictionary<StrategicNumber, int>();
+        private readonly List<ProductionTask> ProductionTasks = new List<ProductionTask>();
+        
         private readonly List<Command> Commands = new List<Command>();
         private readonly List<Command> FindCommands = new List<Command>();
         private readonly Command CommandInfo = new Command();
+        private readonly HashSet<GameElement> GameElementUpdates = new HashSet<GameElement>();
 
         public GameState(Bot bot)
         {
             Bot = bot;
 
             Map = new Map(Bot);
+
+            for (int i = 0; i <= 8; i++)
+            {
+                Players.Add(new Player(Bot, i));
+            }
         }
 
-        public Unit GetUnitById(int id)
+        public Player GetPlayer(int player_number)
+        {
+            return Players[player_number];
+        }
+
+        public IEnumerable<Player> GetPlayers()
+        {
+            return Players.Where(p => p.PlayerNumber == 0 || p.IsValid);
+        }
+
+        public Technology GetTechnology(int id)
+        {
+            if (!Technologies.ContainsKey(id))
+            {
+                Technologies.Add(id, new Technology(Bot, id));
+            }
+
+            return Technologies[id];
+        }
+
+        public UnitType GetUnitType(int id)
+        {
+            if (!UnitTypes.ContainsKey(id))
+            {
+                UnitTypes.Add(id, new UnitType(Bot, id));
+            }
+
+            return UnitTypes[id];
+        }
+
+        public Unit GetUnit(int id)
         {
             if (Units.TryGetValue(id, out Unit unit))
             {
@@ -92,6 +133,11 @@ namespace AoE2Lib.Bots
         public void SetStrategicNumber(StrategicNumber sn, int val)
         {
             StrategicNumbers[sn] = val;
+        }
+
+        internal void AddProductionTask(ProductionTask task)
+        {
+            ProductionTasks.Add(task);
         }
 
         internal void AddCommand(Command command)
@@ -177,10 +223,30 @@ namespace AoE2Lib.Bots
 
         internal IEnumerable<Command> RequestUpdate()
         {
+            foreach (var command in DoProduction())
+            {
+                yield return command;
+            }
+
             DoAutoFindUnits();
             DoAutoUpdateUnits();
 
             Map.RequestUpdate();
+
+            foreach (var player in Players)
+            {
+                player.RequestUpdate();
+            }
+
+            foreach (var tech in Technologies.Values)
+            {
+                tech.RequestUpdate();
+            }
+
+            foreach (var type in UnitTypes.Values)
+            {
+                type.RequestUpdate();
+            }
 
             foreach (var command in Commands)
             {
@@ -229,6 +295,26 @@ namespace AoE2Lib.Bots
         {
             Map.Update();
 
+            foreach (var player in Players)
+            {
+                player.Update();
+            }
+
+            foreach (var technology in Technologies.Values)
+            {
+                technology.Update();
+            }
+
+            foreach (var type in UnitTypes.Values)
+            {
+                type.Update();
+            }
+
+            foreach (var unit in Units.Values)
+            {
+                unit.Update();
+            }
+
             foreach (var command in FindCommands.Where(c => c.HasResponses))
             {
                 var responses = command.Responses;
@@ -262,10 +348,9 @@ namespace AoE2Lib.Bots
 
                 var x = responses[2].Unpack<GoalResult>().Result;
                 var y = responses[3].Unpack<GoalResult>().Result;
-                var pos = Position.FromPoint(x, y);
-                if (pos.PointX >= 0 && pos.PointY >= 0 && pos.PointX < Bot.GameState.Map.Width && pos.PointY < Bot.GameState.Map.Height)
+                if (x >= 0 && y >= 0 && x < Bot.GameState.Map.Width && y < Bot.GameState.Map.Height)
                 {
-                    MyPosition = pos;
+                    MyPosition = Position.FromPoint(x, y);
                 }
 
                 var index = 3;
@@ -293,7 +378,23 @@ namespace AoE2Lib.Bots
                 }
             }
 
-            var players = Bot.GetPlayers().ToList();
+            foreach (var player in Players)
+            {
+                player.Units.Clear();
+            }
+
+            foreach (var unit in GetAllUnits())
+            {
+                if (unit.Updated && unit[ObjectData.PLAYER] >= 0)
+                {
+                    Players[unit[ObjectData.PLAYER]].Units.Add(unit);
+                }
+            }
+
+            Tick++;
+            Bot.Log.Info($"Tick {Tick}");
+
+            var players = Bot.GameState.GetPlayers().ToList();
             players.Sort((a, b) => a.PlayerNumber.CompareTo(b.PlayerNumber));
             var num = new Dictionary<int, int>();
             foreach (var player in players)
@@ -315,6 +416,58 @@ namespace AoE2Lib.Bots
             }
         }
 
+        private IEnumerable<Command> DoProduction()
+        {
+            var remaining_wood = MyPlayer.GetFact(FactId.WOOD_AMOUNT);
+            var remaining_food = MyPlayer.GetFact(FactId.FOOD_AMOUNT);
+            var remaining_gold = MyPlayer.GetFact(FactId.GOLD_AMOUNT);
+            var remaining_stone = MyPlayer.GetFact(FactId.STONE_AMOUNT);
+
+            ProductionTasks.Sort((a, b) => b.Priority.CompareTo(a.Priority));
+
+            foreach (var prod in ProductionTasks)
+            {
+                var can_afford = true;
+                if (prod.WoodCost > 0 && prod.WoodCost > remaining_wood)
+                {
+                    can_afford = false;
+                }
+                else if (prod.FoodCost > 0 && prod.FoodCost > remaining_food)
+                {
+                    can_afford = false;
+                }
+                else if (prod.GoldCost > 0 && prod.GoldCost > remaining_gold)
+                {
+                    can_afford = false;
+                }
+                else if (prod.StoneCost > 0 && prod.StoneCost > remaining_stone)
+                {
+                    can_afford = false;
+                }
+
+                var deduct = true;
+                if (can_afford == false && prod.Blocking == false)
+                {
+                    deduct = false;
+                }
+
+                if (can_afford)
+                {
+                    yield return prod.GetCommand(Bot);
+                }
+
+                if (deduct)
+                {
+                    remaining_wood -= prod.WoodCost;
+                    remaining_food -= prod.FoodCost;
+                    remaining_gold -= prod.GoldCost;
+                    remaining_stone -= prod.StoneCost;
+                }
+            }
+
+            ProductionTasks.Clear();
+        }
+
         private void DoAutoFindUnits()
         {
             if (AutoFindUnits <= 0)
@@ -327,7 +480,7 @@ namespace AoE2Lib.Bots
                 return;
             }
 
-            var players = Bot.GetPlayers().ToList();
+            var players = Bot.GameState.GetPlayers().ToList();
 
             for (int i = 0; i < AutoFindUnits; i++)
             {
