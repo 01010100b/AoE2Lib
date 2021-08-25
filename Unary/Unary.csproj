@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Operations\BattleOperation.cs~RF7737776.TMP" />
     <None Remove="readme.txt" />
     <None Remove="Unary.ai" />
     <None Remove="Unary.per" />
