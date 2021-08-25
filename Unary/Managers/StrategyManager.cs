@@ -55,12 +55,12 @@ namespace Unary.Managers
             var archery_range = Unary.GameState.GetUnitType(87);
             var blacksmith = Unary.GameState.GetUnitType(103);
 
-            var ranges = (Unary.GameState.MyPlayer.CivilianPopulation - 25) / 10;
-            ranges = Math.Max(1, ranges);
+            var max_ranges = (Unary.GameState.MyPlayer.CivilianPopulation - 25) / 10;
+            max_ranges = Math.Max(1, max_ranges);
 
-            if (barracks.CountTotal >= 1 && archery_range.CountTotal < ranges)
+            if (barracks.CountTotal >= 1 && archery_range.CountTotal < max_ranges)
             {
-                archery_range.Build(ranges, 1, (int)Priority.PRODUCTION_BUILDING);
+                archery_range.Build(max_ranges, 1, (int)Priority.PRODUCTION_BUILDING);
             }
 
             if (archery_range.CountTotal >= 1 && blacksmith.CountTotal < 1)
@@ -103,7 +103,7 @@ namespace Unary.Managers
 
             if (Unary.GameState.MyPlayer.MilitaryPopulation > 20)
             {
-                var target = Unary.GameState.GetPlayers().First(p => p.Stance == PlayerStance.ENEMY);
+                var target = Unary.GameState.GetPlayers().First(p => p.InGame && p.Stance == PlayerStance.ENEMY);
                 Attack(target);
             }
             else if (Unary.GameState.MyPlayer.MilitaryPopulation < 10)

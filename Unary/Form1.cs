@@ -29,6 +29,11 @@ namespace Unary
             Instance = new AoEInstance(process);
 
             Message($"Connected to process {process.Id}");
+
+            ButtonConnect.Enabled = false;
+            TextProcess.Enabled = false;
+            ButtonStart.Enabled = true;
+            TextPlayer.Enabled = true;
         }
 
         private void ButtonStart_Click(object sender, EventArgs e)
@@ -47,17 +52,15 @@ namespace Unary
             Players.Add(player, bot);
 
             Message($"Started player {player}");
-        }
 
-        private void Message(string message)
-        {
-            var lines = TextMessages.Lines.ToList();
-            lines.Add(message);
-            TextMessages.Lines = lines.ToArray();
+            ButtonStop.Enabled = true;
         }
 
         private void ButtonStop_Click(object sender, EventArgs e)
         {
+            ButtonStop.Enabled = false;
+            Cursor = Cursors.WaitCursor;
+
             var tasks = new List<Task>();
             foreach (var bot in Players.Values)
             {
@@ -73,6 +76,15 @@ namespace Unary
 
             Message("Stopped all players");
             Players.Clear();
+
+            Cursor = Cursors.Default;
+        }
+
+        private void Message(string message)
+        {
+            var lines = TextMessages.Lines.ToList();
+            lines.Add(message);
+            TextMessages.Lines = lines.ToArray();
         }
     }
 }

@@ -33,7 +33,6 @@ namespace AoE2Lib.Bots
         private readonly List<Command> Commands = new List<Command>();
         private readonly List<Command> FindCommands = new List<Command>();
         private readonly Command CommandInfo = new Command();
-        private readonly HashSet<GameElement> GameElementUpdates = new HashSet<GameElement>();
 
         public GameState(Bot bot)
         {
@@ -59,6 +58,11 @@ namespace AoE2Lib.Bots
 
         public Technology GetTechnology(int id)
         {
+            if (id < 0)
+            {
+                return null;
+            }
+
             if (!Technologies.ContainsKey(id))
             {
                 Technologies.Add(id, new Technology(Bot, id));
@@ -69,6 +73,11 @@ namespace AoE2Lib.Bots
 
         public UnitType GetUnitType(int id)
         {
+            if (id < 0)
+            {
+                return null;
+            }
+
             if (!UnitTypes.ContainsKey(id))
             {
                 UnitTypes.Add(id, new UnitType(Bot, id));
@@ -390,13 +399,10 @@ namespace AoE2Lib.Bots
 
             foreach (var unit in GetAllUnits())
             {
-                if (unit.Updated && unit[ObjectData.PLAYER] >= 0)
-                {
-                    Players[unit[ObjectData.PLAYER]].Units.Add(unit);
+                Players[unit[ObjectData.PLAYER]].Units.Add(unit);
 
-                    var tile = Map.GetTile(unit.Position.PointX, unit.Position.PointY);
-                    tile.Units.Add(unit);
-                }
+                var tile = Map.GetTile(unit.Position.PointX, unit.Position.PointY);
+                tile.Units.Add(unit);
             }
 
             Tick++;
