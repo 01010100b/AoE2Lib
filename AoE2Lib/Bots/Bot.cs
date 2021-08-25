@@ -33,7 +33,6 @@ namespace AoE2Lib.Bots
         public Player MyPlayer => GetPlayer(PlayerNumber);
 
         public InfoModule InfoModule { get; private set; }
-        public MicroModule MicroModule { get; private set; }
 
         private readonly List<ProductionTask> ProductionTasks = new List<ProductionTask>();
         private readonly List<Player> Players = new List<Player>();
@@ -194,7 +193,6 @@ namespace AoE2Lib.Bots
 
             GameState = new GameState(this);
             InfoModule = new InfoModule() { BotInternal = this };
-            MicroModule = new MicroModule() { BotInternal = this };
 
             for (int i = 0; i <= 8; i++)
             {
@@ -271,7 +269,6 @@ namespace AoE2Lib.Bots
 
                 commands.AddRange(GameState.RequestUpdate());
 
-                commands.AddRange(MicroModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
                 commands.AddRange(InfoModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
 
                 commands.AddRange(GameElementUpdates.Values);
@@ -366,7 +363,6 @@ namespace AoE2Lib.Bots
                     GameElementUpdates.Clear();
 
                     InfoModule.UpdateInternal();
-                    MicroModule.UpdateInternal();
 
                     GameState.Update();
 

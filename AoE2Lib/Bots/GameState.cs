@@ -18,6 +18,7 @@ namespace AoE2Lib.Bots
 
         private readonly Bot Bot;
         private readonly Dictionary<int, Unit> Units = new Dictionary<int, Unit>();
+        private readonly List<Command> Commands = new List<Command>();
         private readonly List<Command> FindCommands = new List<Command>();
 
         public GameState(Bot bot)
@@ -42,6 +43,11 @@ namespace AoE2Lib.Bots
         public IEnumerable<Unit> GetAllUnits()
         {
             return Units.Values.Where(u => u.Updated);
+        }
+
+        internal void AddCommand(Command command)
+        {
+            Commands.Add(command);
         }
 
         internal void FindUnits(int player, Position position, int range)
@@ -126,6 +132,13 @@ namespace AoE2Lib.Bots
             DoAutoUpdateUnits();
 
             Map.RequestUpdate();
+
+            foreach (var command in Commands)
+            {
+                yield return command;
+            }
+
+            Commands.Clear();
 
             foreach (var command in FindCommands)
             {

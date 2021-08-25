@@ -42,12 +42,134 @@ namespace AoE2Lib.Bots.GameElements
 
         public void TargetUnit(Unit target, UnitAction? action, UnitFormation? formation, UnitStance? stance, int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue, Unit backup = null)
         {
-            Bot.MicroModule.TargetUnit(this, target, action, formation, stance, min_next_attack, max_next_attack, backup);
+            if (backup == null)
+            {
+                backup = target;
+            }
+
+            var command = new Command();
+
+            const int GL_CHECKS = 100;
+            const int GL_TEMP = 101;
+            const int GL_TARGET_ID = 102;
+
+            var op_add = Bot.GameVersion == GameVersion.AOC ? 1 : 25;
+            var op_g_min = Bot.GameVersion == GameVersion.AOC ? 14 : 14;
+
+            command.Add(new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = 0 });
+            command.Add(new SetGoal() { InConstGoalId = GL_TEMP, InConstValue = -1 });
+            command.Add(new SetGoal() { InConstGoalId = GL_TARGET_ID, InConstValue = -1 });
+
+            // check 1: unit exists
+
+            command.Add(new UpSetTargetById() { InConstId = Id });
+            command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.ID, OutGoalData = GL_TEMP });
+            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "==", Id, new UpModifyGoal() { IoGoalId = GL_CHECKS, MathOp = op_add, InOpValue = 1 });
+
+            // check 2: next_attack >= min_next_attack
+
+            command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.NEXT_ATTACK, OutGoalData = GL_TEMP });
+            command.Add(new Goal() { InConstGoalId = GL_TEMP }, ">=", min_next_attack, new UpModifyGoal() { IoGoalId = GL_CHECKS, MathOp = op_add, InOpValue = 1 });
+
+            // check 3: next_attack <= max_next_attack
+
+            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "<=", max_next_attack, new UpModifyGoal() { IoGoalId = GL_CHECKS, MathOp = op_add, InOpValue = 1 });
+
+            // check 4: target exists as GL_TARGET_ID
+
+            command.Add(new UpSetTargetById() { InConstId = backup.Id });
+            command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.ID, OutGoalData = GL_TEMP });
+            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "==", backup.Id, new SetGoal() { InConstGoalId = GL_TARGET_ID, InConstValue = backup.Id });
+            command.Add(new UpSetTargetById() { InConstId = target.Id });
+            command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.ID, OutGoalData = GL_TEMP });
+            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "==", target.Id, new SetGoal() { InConstGoalId = GL_TARGET_ID, InConstValue = target.Id });
+            command.Add(new Goal() { InConstGoalId = GL_TARGET_ID }, "!=", -1, new UpModifyGoal() { IoGoalId = GL_CHECKS, MathOp = op_add, InOpValue = 1 });
+
+            // check 5: unit is not already targeting GL_TARGET_ID
+
+            command.Add(new UpSetTargetById() { InConstId = Id });
+            command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.TARGET_ID, OutGoalData = GL_TEMP });
+            command.Add(new UpModifyGoal() { IoGoalId = GL_TEMP, MathOp = op_g_min, InOpValue = GL_TARGET_ID });
+            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "!=", 0, new UpModifyGoal() { IoGoalId = GL_CHECKS, MathOp = op_add, InOpValue = 1 });
+
+            // run if all checks passed
+
+            command.Add(new Goal() { InConstGoalId = GL_CHECKS }, "==", 5,
+                new UpSetTargetById() { InGoalId = GL_TARGET_ID },
+                new UpFullResetSearch(),
+                new UpAddObjectById() { InConstSearchSource = 1, InConstId = Id },
+                new UpTargetObjects()
+                {
+                    InConstTarget = 1,
+                    InConstTargetAction = action.HasValue ? (int)action.Value : (int)UnitAction.DEFAULT,
+                    InConstFormation = formation.HasValue ? (int)formation.Value : -1,
+                    InConstAttackStance = stance.HasValue ? (int)stance.Value : -1
+                }
+            );
+
+            Bot.GameState.AddCommand(command);
         }
 
-        public void TargetPosition(Position pos, UnitAction? action, UnitFormation? formation, UnitStance? stance, int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue)
+        public void TargetPosition(Position position, UnitAction? action, UnitFormation? formation, UnitStance? stance, int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue)
         {
-            Bot.MicroModule.TargetPosition(this, pos, action, formation, stance, min_next_attack, max_next_attack);
+            if (action == UnitAction.MOVE && Position == position)
+            {
+                return;
+            }
+
+            if (action == UnitAction.MOVE && this[ObjectData.PRECISE_MOVE_X] == position.PreciseX && this[ObjectData.PRECISE_MOVE_Y] == position.PreciseY)
+            {
+                return;
+            }
+
+            position = new Position(Math.Max(0, Math.Min(Bot.GameState.Map.Width, position.X)), Math.Max(0, Math.Min(Bot.GameState.Map.Height, position.Y)));
+
+            const int GL_CHECKS = 100;
+            const int GL_TEMP = 101;
+            const int GL_PRECISE_X = 102;
+            const int GL_PRECISE_Y = 103;
+
+            var op_add = Bot.GameVersion == GameVersion.AOC ? 1 : 25;
+
+            var command = new Command();
+
+            command.Add(new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = 0 });
+            command.Add(new SetGoal() { InConstGoalId = GL_TEMP, InConstValue = -1 });
+
+            command.Add(new SetGoal() { InConstGoalId = GL_PRECISE_X, InConstValue = position.PreciseX });
+            command.Add(new SetGoal() { InConstGoalId = GL_PRECISE_Y, InConstValue = position.PreciseY });
+
+            // check 1: unit exists
+
+            command.Add(new UpSetTargetById() { InConstId = Id });
+            command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.ID, OutGoalData = GL_TEMP });
+            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "==", Id, new UpModifyGoal() { IoGoalId = GL_CHECKS, MathOp = op_add, InOpValue = 1 });
+
+            // check 2: next_attack >= min_next_attack
+
+            command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.NEXT_ATTACK, OutGoalData = GL_TEMP });
+            command.Add(new Goal() { InConstGoalId = GL_TEMP }, ">=", min_next_attack, new UpModifyGoal() { IoGoalId = GL_CHECKS, MathOp = op_add, InOpValue = 1 });
+
+            // check 3: next_attack <= max_next_attack
+
+            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "<=", max_next_attack, new UpModifyGoal() { IoGoalId = GL_CHECKS, MathOp = op_add, InOpValue = 1 });
+
+            // run if all checks pass
+
+            command.Add(new Goal() { InConstGoalId = GL_CHECKS }, "==", 3,
+                new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.TARGET_POINT_ADJUSTMENT, InConstValue = 6 },
+                new UpFullResetSearch(),
+                new UpAddObjectById() { InConstSearchSource = 1, InConstId = Id },
+                new UpTargetPoint()
+                {
+                    InGoalPoint = GL_PRECISE_X,
+                    InConstTargetAction = action.HasValue ? (int)action.Value : -1,
+                    InConstFormation = formation.HasValue ? (int)formation.Value : -1,
+                    InConstAttackStance = stance.HasValue ? (int)stance.Value : -1
+                }
+            );
+
+            Bot.GameState.AddCommand(command);
         }
 
         protected override IEnumerable<IMessage> RequestElementUpdate()
