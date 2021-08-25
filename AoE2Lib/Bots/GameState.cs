@@ -383,11 +383,19 @@ namespace AoE2Lib.Bots
                 player.Units.Clear();
             }
 
+            foreach (var tile in Map.GetTiles())
+            {
+                tile.Units.Clear();
+            }
+
             foreach (var unit in GetAllUnits())
             {
                 if (unit.Updated && unit[ObjectData.PLAYER] >= 0)
                 {
                     Players[unit[ObjectData.PLAYER]].Units.Add(unit);
+
+                    var tile = Map.GetTile(unit.Position.PointX, unit.Position.PointY);
+                    tile.Units.Add(unit);
                 }
             }
 

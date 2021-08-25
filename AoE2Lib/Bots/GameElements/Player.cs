@@ -38,16 +38,10 @@ namespace AoE2Lib.Bots.GameElements
         public readonly int PlayerNumber;
         public bool IsValid { get; private set; } = false;
         public PlayerStance Stance { get; private set; } = PlayerStance.NEUTRAL;
-        public bool InGame => GetFact(FactId.PLAYER_IN_GAME) != 0;
-        public int Civilization => GetFact(FactId.CIVILIZATION);
+        public bool InGame => GetFact(FactId.PLAYER_IN_GAME) == 1;
         public int Score => GetFact(FactId.CURRENT_SCORE);
-        public int Age => GetFact(FactId.CURRENT_AGE);
         public int CivilianPopulation => GetFact(FactId.CIVILIAN_POPULATION);
         public int MilitaryPopulation => GetFact(FactId.MILITARY_POPULATION);
-        public int WoodAmount => GetFact(FactId.WOOD_AMOUNT);
-        public int FoodAmount => GetFact(FactId.FOOD_AMOUNT);
-        public int GoldAmount => GetFact(FactId.GOLD_AMOUNT);
-        public int StoneAmount => GetFact(FactId.STONE_AMOUNT);
         
         internal readonly List<Unit> Units = new List<Unit>();
         private readonly Dictionary<FactId, int> Facts = new Dictionary<FactId, int>();

@@ -74,14 +74,19 @@ namespace AoE2Lib.Bots.GameElements
             }
         }
 
+        public IEnumerable<Tile> GetTiles()
+        {
+            return GetTilesInRange(0, 0, 10000);
+        }
+
         public IEnumerable<Tile> GetTilesInRange(int x, int y, double range)
         {
             var r = (int)Math.Ceiling(range);
             var pos = Position.FromPoint(x, y);
 
-            for (int cx = Math.Max(0, x - r); cx <= Math.Min(Width, x + r); cx++)
+            for (int cx = Math.Max(0, x - r); cx <= Math.Min(Width - 1, x + r); cx++)
             {
-                for (int cy = Math.Max(0, y - r); cy <= Math.Min(Height, y + r); cy++)
+                for (int cy = Math.Max(0, y - r); cy <= Math.Min(Height - 1, y + r); cy++)
                 {
                     var p = Position.FromPoint(cx, cy);
 
