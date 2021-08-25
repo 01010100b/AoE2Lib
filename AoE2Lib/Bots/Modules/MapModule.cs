@@ -118,8 +118,7 @@ namespace AoE2Lib.Bots.Modules
                 tile.UnitsInternal.Clear();
             }
 
-            var units = Bot.UnitsModule;
-            foreach (var unit in units.Units.Values.Where(u => IsOnMap(u.Position)))
+            foreach (var unit in Bot.GameState.GetAllUnits().Where(u => IsOnMap(u.Position)))
             {
                 this[unit.Position].UnitsInternal.Add(unit);
             }
@@ -222,7 +221,7 @@ namespace AoE2Lib.Bots.Modules
             if (_Tiles != null)
             {
                 var positions = new List<Position>();
-                positions.AddRange(Bot.UnitsModule.Units.Values.Where(u => u.PlayerNumber == Bot.PlayerNumber).Select(u => u.Position));
+                positions.AddRange(Bot.GameState.GetAllUnits().Where(u => u.PlayerNumber == Bot.PlayerNumber).Select(u => u.Position));
                 positions.Add(Bot.InfoModule.MyPosition);
 
                 var gametime = Bot.InfoModule.GameTime;

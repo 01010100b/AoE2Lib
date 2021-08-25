@@ -121,7 +121,7 @@ namespace Unary.Operations
 
                 if (scout[ObjectData.CMDID] == (int)CmdId.MILITARY || scout[ObjectData.CMDID] == (int)CmdId.VILLAGER)
                 {
-                    var scouted_sheep = Manager.Unary.UnitsModule.Units.Values
+                    var scouted_sheep = Manager.Unary.GameState.GetAllUnits()
                         .Where(u => u.PlayerNumber == 0 && u[ObjectData.CLASS] == (int)UnitClass.Livestock && u[ObjectData.HITPOINTS] > 0).ToList();
 
                     if (scouted_sheep.Count > 0)

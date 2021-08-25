@@ -69,7 +69,7 @@ namespace AoE2Lib.Utils
 
         public static bool operator ==(Position a, Position b)
         {
-            return a.X == b.X && a.Y == b.Y;
+            return a.PreciseX == b.PreciseX && a.PreciseY == b.PreciseY;
         }
 
         public static bool operator !=(Position a, Position b)
@@ -125,7 +125,7 @@ namespace AoE2Lib.Utils
 
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            return PreciseX.GetHashCode() ^ PreciseY.GetHashCode();
         }
 
         public override bool Equals(object obj)

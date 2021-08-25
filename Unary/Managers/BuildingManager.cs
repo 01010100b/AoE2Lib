@@ -77,7 +77,7 @@ namespace Unary.Managers
             }
 
             var free_foundations = new HashSet<Unit>();
-            foreach (var unit in Unary.UnitsModule.Units.Values)
+            foreach (var unit in Unary.GameState.GetAllUnits())
             {
                 if (unit.PlayerNumber != Unary.InfoModule.PlayerNumber)
                 {

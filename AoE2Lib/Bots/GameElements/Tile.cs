@@ -13,6 +13,8 @@ namespace AoE2Lib.Bots.GameElements
     public class Tile : GameElement
     {
         public readonly Point Point;
+        public readonly int X;
+        public readonly int Y;
         public Position Position => Position.FromPoint(Point.X, Point.Y);
         public bool Explored { get; private set; } = false;
         public int Elevation { get; private set; } = -1;
@@ -25,6 +27,8 @@ namespace AoE2Lib.Bots.GameElements
         internal Tile(Bot bot, Point point) : base(bot)
         {
             Point = point;
+            X = point.X;
+            Y = point.Y;
             Explored = false;
             Elevation = -1;
             Terrain = -1;

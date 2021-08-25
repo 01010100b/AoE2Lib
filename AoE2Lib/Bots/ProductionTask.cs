@@ -21,6 +21,7 @@ namespace AoE2Lib.Bots
         public bool IsTech { get; set; }
         public bool IsBuilding { get; set; }
         public List<Position> BuildPositions = new List<Position>();
+        
 
         public Command GetCommand(Bot bot)
         {

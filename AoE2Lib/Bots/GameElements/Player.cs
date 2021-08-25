@@ -1,4 +1,5 @@
-﻿using Google.Protobuf;
+﻿using AoE2Lib.Utils;
+using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Protos.Expert.Action;
 using Protos.Expert.Fact;
@@ -32,9 +33,14 @@ namespace AoE2Lib.Bots.GameElements
             PlayerNumber = player;
         }
 
-        public IReadOnlyList<Unit> GetUnits()
+        public IEnumerable<Unit> GetUnits()
         {
             return Units;
+        }
+
+        public void FindUnits(Position position, int range)
+        {
+            Bot.GameState.FindUnits(PlayerNumber, position, range);
         }
         
         protected override IEnumerable<IMessage> RequestElementUpdate()

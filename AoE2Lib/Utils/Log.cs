@@ -8,9 +8,9 @@ using System.Threading;
 
 namespace AoE2Lib.Utils
 {
-    public class Log
+    public class Log : IDisposable
     {
-        public int Level { get; set; } = 2;
+        public int Level { get; set; } = 3;
 
         private readonly StreamWriter Stream;
 
@@ -68,6 +68,11 @@ namespace AoE2Lib.Utils
         public void Exception(Exception e)
         {
             Write($"EXCEPTION: {e.Message}\n{e.StackTrace}");
+        }
+
+        public void Dispose()
+        {
+            ((IDisposable)Stream).Dispose();
         }
     }
 }

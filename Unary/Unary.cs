@@ -51,10 +51,6 @@ namespace Unary
 
             UpdateManagers();
 
-            var info = InfoModule;
-            var map = MapModule;
-            var units = UnitsModule;
-
             return Commands;
         }
 

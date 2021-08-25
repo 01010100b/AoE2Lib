@@ -29,11 +29,11 @@ namespace AoE2Lib.Bots
         public Log Log { get; private set; }
         public Random Rng { get; private set; }
 
+        public GameState GameState { get; private set; }
         public Player MyPlayer => GetPlayer(PlayerNumber);
 
         public InfoModule InfoModule { get; private set; }
         public MapModule MapModule { get; private set; }
-        public UnitsModule UnitsModule { get; private set; }
         public MicroModule MicroModule { get; private set; }
 
         private readonly List<ProductionTask> ProductionTasks = new List<ProductionTask>();
@@ -52,6 +52,8 @@ namespace AoE2Lib.Bots
             BotThread?.Join();
             BotThread = null;
 
+            Log?.Dispose();
+
             Stopping = false;
         }
 
@@ -62,7 +64,7 @@ namespace AoE2Lib.Bots
 
         public IEnumerable<Player> GetPlayers()
         {
-            return Players.Where(p => p.IsValid);
+            return Players.Where(p => p.PlayerNumber == 0 || p.IsValid);
         }
 
         public Technology GetTechnology(int id)
@@ -87,14 +89,7 @@ namespace AoE2Lib.Bots
 
         public Unit GetUnit(int id)
         {
-            if (UnitsModule.Units.TryGetValue(id, out Unit unit))
-            {
-                return unit;
-            }
-            else
-            {
-                throw new Exception($"Unit {id} not found");
-            }
+            return GameState.GetUnitById(id);
         }
 
         public bool GetResourceFound(Resource resource)
@@ -198,9 +193,9 @@ namespace AoE2Lib.Bots
             PlayerNumber = player;
             Log = new Log(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"{Name} {PlayerNumber}.log"));
 
+            GameState = new GameState(this);
             InfoModule = new InfoModule() { BotInternal = this };
             MapModule = new MapModule() { BotInternal = this };
-            UnitsModule = new UnitsModule() { BotInternal = this };
             MicroModule = new MicroModule() { BotInternal = this };
 
             for (int i = 0; i <= 8; i++)
@@ -250,7 +245,7 @@ namespace AoE2Lib.Bots
                     player.Units.Clear();
                 }
 
-                foreach (var unit in UnitsModule.Units.Values)
+                foreach (var unit in GameState.GetAllUnits())
                 {
                     if (unit.Updated && unit[ObjectData.PLAYER] >= 0)
                     {
@@ -276,8 +271,9 @@ namespace AoE2Lib.Bots
                     type.RequestUpdate();
                 }
 
+                commands.AddRange(GameState.RequestUpdate());
+
                 commands.AddRange(MicroModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
-                commands.AddRange(UnitsModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
                 commands.AddRange(MapModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
                 commands.AddRange(InfoModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
 
@@ -287,6 +283,11 @@ namespace AoE2Lib.Bots
 
                 if ((DateTime.UtcNow - previous) > TimeSpan.FromSeconds(5))
                 {
+                    foreach (var command in commands)
+                    {
+                        command.Reset();
+                    }
+
                     commands.Clear();
                     GameElementUpdates.Clear();
 
@@ -369,8 +370,9 @@ namespace AoE2Lib.Bots
 
                     InfoModule.UpdateInternal();
                     MapModule.UpdateInternal();
-                    UnitsModule.UpdateInternal();
                     MicroModule.UpdateInternal();
+
+                    GameState.Update();
 
                     previous = DateTime.UtcNow;
 
