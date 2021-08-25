@@ -13,15 +13,15 @@ namespace AoE2Lib.Bots.GameElements
         public readonly int PlayerNumber;
         public bool IsValid { get; private set; } = false;
         public bool InGame { get; private set; } = false;
-        public int Civilization { get; private set; }
-        public int Score { get; private set; }
-        public int Age { get; private set; }
-        public int CivilianPopulation { get; private set; }
-        public int MilitaryPopulation { get; private set; }
-        public int WoodAmount { get; private set; }
-        public int FoodAmount { get; private set; }
-        public int GoldAmount { get; private set; }
-        public int StoneAmount { get; private set; }
+        public int Civilization { get; private set; } = -1;
+        public int Score { get; private set; } = -1;
+        public int Age { get; private set; } = -1;
+        public int CivilianPopulation { get; private set; } = -1;
+        public int MilitaryPopulation { get; private set; } = -1;
+        public int WoodAmount { get; private set; } = -1;
+        public int FoodAmount { get; private set; } = -1;
+        public int GoldAmount { get; private set; } = -1;
+        public int StoneAmount { get; private set; } = -1;
         public PlayerStance Stance { get; private set; } = PlayerStance.NEUTRAL;
         public int Population => CivilianPopulation + MilitaryPopulation;
         

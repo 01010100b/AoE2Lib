@@ -245,7 +245,6 @@ namespace Unary.Managers
                 if (best != null)
                 {
                     ScoutingOperation.AddUnit(best);
-                    Unary.Log.Info($"Scout with unit {best.Id}");
                 }
             }
         }

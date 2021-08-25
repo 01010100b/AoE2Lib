@@ -51,17 +51,9 @@ namespace Unary
 
             UpdateManagers();
 
-            Log.Info($"Free units: {OperationsManager.FreeUnits.Count()}");
-
             var info = InfoModule;
             var map = MapModule;
             var units = UnitsModule;
-
-            Log.Info($"Tick {Tick} Game time {info.GameTime}");
-            Log.Info($"Wood {info.WoodAmount} Food {info.FoodAmount} Gold {info.GoldAmount} Stone {info.StoneAmount}");
-            Log.Info($"Explored {map.Tiles.Count(t => t.Explored):N0} tiles of {map.Width * map.Height:N0}");
-            Log.Info($"I have {units.Units.Values.Count(u => u.PlayerNumber == PlayerNumber && u.Targetable):N0} units");
-            Log.Info($"Gaia has {units.Units.Values.Count(u => u.PlayerNumber == 0 && u.Targetable):N0} units");
 
             return Commands;
         }

@@ -26,7 +26,7 @@ namespace AoE2Lib.Bots
         {
             if (IsTech)
             {
-                bot.Log.Debug($"Researching {Id}");
+                bot.Log.Info($"Researching {Id}");
 
                 var command = new Command();
                 command.Add(new CanResearch() { InConstTechId = Id }, "!=", 0,
@@ -36,7 +36,7 @@ namespace AoE2Lib.Bots
             }
             else if (IsBuilding)
             {
-                bot.Log.Debug($"Building {Id}");
+                bot.Log.Info($"Building {Id}");
 
                 const int GL_BUILT = 100;
                 const int GL_POINT_X = 101;
@@ -52,13 +52,17 @@ namespace AoE2Lib.Bots
                     new SetGoal() { InConstGoalId = GL_BUILT, InConstValue = 2 });
                 command.Add(new UpPendingPlacement() { InConstBuildingId = Id }, "!=", 0,
                     new SetGoal() { InConstGoalId = GL_BUILT, InConstValue = 2 });
+                command.Add(new UpPendingPlacement() { InSnBuildingId = Bot.SN_PENDING_PLACEMENT}, "!=", 0,
+                    new SetGoal() { InConstGoalId = GL_BUILT, InConstValue = 2 });
 
                 if (BuildPositions.Count == 0)
                 {
                     command.Add(new CanBuild() { InConstBuildingId = Id }, "!=", 0,
                         new UpModifyGoal() { IoGoalId = GL_BUILT, MathOp = op_add, InOpValue = 1 });
                     command.Add(new Goal() { InConstGoalId = GL_BUILT }, "==", 1,
-                        new Build() { InConstBuildingId = Id });
+                        new Build() { InConstBuildingId = Id },
+                        new SetStrategicNumber() { InConstSnId = Bot.SN_PENDING_PLACEMENT, InConstValue = Id },
+                        new UpModifyGoal() { IoGoalId = GL_BUILT, MathOp = op_add, InOpValue = 1 });
                 }
                 else
                 {
@@ -69,7 +73,9 @@ namespace AoE2Lib.Bots
                         command.Add(new UpCanBuildLine() { InConstBuildingId = Id, InGoalEscrowState = 0, InGoalPoint = GL_POINT_X }, "!=", 0,
                             new UpModifyGoal() { IoGoalId = GL_BUILT, MathOp = op_add, InOpValue = 1 });
                         command.Add(new Goal() { InConstGoalId = GL_BUILT }, "==", 1,
-                            new UpBuildLine() { InConstBuildingId = Id, InGoalPoint1 = GL_POINT_X, InGoalPoint2 = GL_POINT_X });
+                            new UpBuildLine() { InConstBuildingId = Id, InGoalPoint1 = GL_POINT_X, InGoalPoint2 = GL_POINT_X },
+                            new SetStrategicNumber() { InConstSnId = Bot.SN_PENDING_PLACEMENT, InConstValue = Id },
+                            new UpModifyGoal() { IoGoalId = GL_BUILT, MathOp = op_add, InOpValue = 1 });
 
                     }
                 }
@@ -78,7 +84,7 @@ namespace AoE2Lib.Bots
             }
             else
             {
-                bot.Log.Debug($"Training {Id}");
+                bot.Log.Info($"Training {Id}");
 
                 const int GL_TRAINING = 100;
 
@@ -92,12 +98,12 @@ namespace AoE2Lib.Bots
                     new SetGoal() { InConstGoalId = GL_TRAINING, InConstValue = 2 });
                 command.Add(new CanTrain() { InConstUnitId = Id }, "==", 0,
                     new SetGoal() { InConstGoalId = GL_TRAINING, InConstValue = 3 });
-                command.Add(new UnitAvailable() { InConstUnitId = Id }, "==", 0,
+                /*command.Add(new UnitAvailable() { InConstUnitId = Id }, "==", 0,
                     new SetGoal() { InConstGoalId = GL_TRAINING, InConstValue = 4 });
                 command.Add(new CanAffordUnit() { InConstUnitId = Id }, "==", 0,
                     new SetGoal() { InConstGoalId = GL_TRAINING, InConstValue = 5 });
                 command.Add(new UpTrainSiteReady() { InConstUnitId = Id }, "==", 0,
-                    new SetGoal() { InConstGoalId = GL_TRAINING, InConstValue = 6 });
+                    new SetGoal() { InConstGoalId = GL_TRAINING, InConstValue = 6 });*/
 
                 command.Add(new Goal() { InConstGoalId = GL_TRAINING }, "==", 0,
                     new Train() { InConstUnitId = Id });

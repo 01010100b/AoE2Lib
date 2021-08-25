@@ -10,7 +10,7 @@ namespace AoE2Lib.Utils
 {
     public class Log
     {
-        public int Level { get; set; } = 3;
+        public int Level { get; set; } = 2;
 
         private readonly StreamWriter Stream;
 

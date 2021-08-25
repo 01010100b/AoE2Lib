@@ -53,11 +53,18 @@ namespace Unary.Managers
             info.StrategicNumbers[StrategicNumber.MINIMUM_BOAR_HUNT_GROUP_SIZE] = 0;
             */
             Unary.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_EXPLORERS, 0);
-            Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_FOOD_DROP_DISTANCE, 4);
-            Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_WOOD_DROP_DISTANCE, 4);
-            Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_GOLD_DROP_DISTANCE, 4);
-            Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_STONE_DROP_DISTANCE, 4);
-            Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_HUNT_DROP_DISTANCE, 7);
+
+            Unary.SetStrategicNumber(StrategicNumber.INTELLIGENT_GATHERING, 1);
+            Unary.SetStrategicNumber(StrategicNumber.USE_BY_TYPE_MAX_GATHERING, 1);
+
+            Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_WOOD_DROP_DISTANCE, 7);
+            Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_GOLD_DROP_DISTANCE, 7);
+            Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_STONE_DROP_DISTANCE, 7);
+
+            Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_FOOD_DROP_DISTANCE, 8);
+            Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_HUNT_DROP_DISTANCE, 8);
+            Unary.SetStrategicNumber(StrategicNumber.ENABLE_BOAR_HUNTING, 0);
+            Unary.SetStrategicNumber(StrategicNumber.LIVESTOCK_TO_TOWN_CENTER, 1);
 
             var pop = Unary.MyPlayer.CivilianPopulation;
 
@@ -132,22 +139,15 @@ namespace Unary.Managers
                 else if (mill.Count >= 1)
                 {
                     var needed_farms = Unary.MyPlayer.CivilianPopulation * Unary.GetStrategicNumber(StrategicNumber.FOOD_GATHERER_PERCENTAGE) / 100;
-                    if (Unary.GetDropsiteMinDistance(Resource.FOOD) <= 3)
-                    {
-                        needed_farms -= 4;
-                    }
 
-                    if (Unary.MyPlayer.GetUnits().Count(u => u[ObjectData.CMDID] == (int)CmdId.LIVESTOCK_GAIA) >= 2)
-                    {
-                        needed_farms -= 6;
-                    }
+                    Unary.Log.Info($"I have {farm.CountTotal} farms and I want {needed_farms} with {Unary.GetStrategicNumber(StrategicNumber.FOOD_GATHERER_PERCENTAGE)} food perc");
 
                     if (farm.CountTotal < needed_farms)
                     {
                         farm.Build(needed_farms, 3, (int)Priority.FARM);
                     }
 
-                    var needed_mills = 1 + ((needed_farms - 5) / 4);
+                    var needed_mills = 1 + ((needed_farms - 7) / 5);
                     if (mill.CountTotal < needed_mills)
                     {
                         mill.Build(needed_mills, 1, (int)Priority.FARM);

@@ -47,9 +47,6 @@ namespace Unary.Operations
             var target = enemies[0];
             var backup = enemies.Count > 1 ? enemies[1] : target;
 
-            Manager.Unary.Log.Info($"BattleOperation: {Units.Count()} units");
-            Manager.Unary.Log.Info($"BattleOperation: Targeting {target.Id}");
-
             var hp_remaining = new Dictionary<Unit, double>();
             foreach (var enemy in EnemyPriorities.Keys)
             {

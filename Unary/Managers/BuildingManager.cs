@@ -25,20 +25,20 @@ namespace Unary.Managers
             Unary.SetStrategicNumber(StrategicNumber.ENABLE_NEW_BUILDING_SYSTEM, 1);
             Unary.SetStrategicNumber(StrategicNumber.INITIAL_EXPLORATION_REQUIRED, 0);
 
-            Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 25);
+            Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 20);
             if (Unary.GetTechnology(101).State == ResearchState.COMPLETE)
             {
-                Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 30);
+                Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 25);
             }
 
             if (Unary.GetTechnology(102).State == ResearchState.COMPLETE)
             {
-                Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 35);
+                Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 30);
             }
 
             if (Unary.GetTechnology(103).State == ResearchState.COMPLETE)
             {
-                Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 40);
+                Unary.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 35);
             }
 
             BuildHouses();
@@ -66,7 +66,6 @@ namespace Unary.Managers
             if (info.PopulationHeadroom > 0 && info.HousingHeadroom < margin && house.Pending < pending)
             {
                 house.Build(1000, pending, (int)Priority.HOUSING);
-                Unary.Log.Info("Building house");
             }
         }
 

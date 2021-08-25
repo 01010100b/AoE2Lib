@@ -19,6 +19,8 @@ namespace AoE2Lib.Bots
 {
     public abstract class Bot
     {
+        public const int SN_PENDING_PLACEMENT = 450;
+
         public virtual string Name { get { return GetType().Name; } }
         public GameVersion GameVersion { get; private set; }
         public string DatFile { get; private set; } // Only available on AoC
@@ -137,8 +139,6 @@ namespace AoE2Lib.Bots
 
             ProductionTasks.Sort((a, b) => b.Priority.CompareTo(a.Priority));
 
-            var can_build = true;
-
             foreach (var prod in ProductionTasks)
             {
                 var can_afford = true;
@@ -165,13 +165,8 @@ namespace AoE2Lib.Bots
                     deduct = false;
                 }
 
-                if (can_afford && (prod.IsBuilding == false || can_build == true))
+                if (can_afford)
                 {
-                    if (prod.IsBuilding)
-                    {
-                        //can_build = false;
-                    }
-
                     yield return prod.GetCommand(this);
                 }
 
@@ -244,24 +239,27 @@ namespace AoE2Lib.Bots
 
                 // update
 
-                if (Tick > 0)
+                var bot_command = new Command();
+                bot_command.Add(new UpPendingPlacement() { InSnBuildingId = SN_PENDING_PLACEMENT }, "==", 0,
+                    new Protos.Expert.Action.SetStrategicNumber() { InConstSnId = SN_PENDING_PLACEMENT, InConstValue = 0 });
+
+                commands.Add(bot_command);
+
+                foreach (var player in Players)
                 {
-                    foreach (var player in Players)
-                    {
-                        player.Units.Clear();
-                    }
-
-                    foreach (var unit in UnitsModule.Units.Values)
-                    {
-                        if (unit.Updated && unit[ObjectData.PLAYER] >= 0)
-                        {
-                            Players[unit[ObjectData.PLAYER]].Units.Add(unit);
-                        }
-                    }
-
-                    commands.AddRange(Update().Where(c => c.HasMessages));
-                    commands.AddRange(DoProduction());
+                    player.Units.Clear();
                 }
+
+                foreach (var unit in UnitsModule.Units.Values)
+                {
+                    if (unit.Updated && unit[ObjectData.PLAYER] >= 0)
+                    {
+                        Players[unit[ObjectData.PLAYER]].Units.Add(unit);
+                    }
+                }
+
+                commands.AddRange(Update().Where(c => c.HasMessages));
+                commands.AddRange(DoProduction());
 
                 foreach (var player in Players)
                 {
@@ -292,7 +290,7 @@ namespace AoE2Lib.Bots
                     commands.Clear();
                     GameElementUpdates.Clear();
 
-                    Log.Info("Clearing commands (more than 5 seconds since previous)");
+                    Log.Debug("Clearing commands (more than 5 seconds since previous)");
                 }
 
                 // set up api call
@@ -307,7 +305,7 @@ namespace AoE2Lib.Bots
                     }
                 }
 
-                Log.Info($"RequestUpdate took {sw.ElapsedMilliseconds} ms");
+                Log.Debug($"RequestUpdate took {sw.ElapsedMilliseconds} ms");
 
                 // make the call
 
@@ -322,11 +320,11 @@ namespace AoE2Lib.Bots
                 }
                 catch (Exception e)
                 {
-                    Log.Info($"{e.Message}");
+                    Log.Debug($"{e.Message}");
                     resultlist = null;
                 }
 
-                Log.Info($"Call took {sw.ElapsedMilliseconds} ms");
+                Log.Debug($"Call took {sw.ElapsedMilliseconds} ms");
 
                 if (resultlist == null)
                 {
@@ -376,7 +374,7 @@ namespace AoE2Lib.Bots
 
                     previous = DateTime.UtcNow;
 
-                    Log.Info($"Update took {sw.ElapsedMilliseconds} ms");
+                    Log.Debug($"Update took {sw.ElapsedMilliseconds} ms");
                 }
             }
 

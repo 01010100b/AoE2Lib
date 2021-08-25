@@ -48,7 +48,7 @@ namespace Unary.Operations
 
             if (target != null)
             {
-                Manager.Unary.Log.Info($"Kill animal");
+
             }
 
             // eat current meat

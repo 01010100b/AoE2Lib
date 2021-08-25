@@ -81,10 +81,9 @@ namespace Unary.Managers
 
         internal override void Update()
         {
-            var units = Unary.UnitsModule;
             var current_units = new HashSet<Unit>();
 
-            foreach (var unit in units.Units.Values.Where(u => u.PlayerNumber == Unary.PlayerNumber && u.Updated && u.Targetable && u[ObjectData.HITPOINTS] > 0))
+            foreach (var unit in Unary.MyPlayer.GetUnits().Where(u => u.Updated && u.Targetable && u[ObjectData.HITPOINTS] > 0))
             {
                 current_units.Add(unit);
                 unit.RequestUpdate();
@@ -111,14 +110,9 @@ namespace Unary.Managers
                 _FreeUnits.Add(unit);
             }
 
-            foreach (var operation in Operations.ToList())
+            foreach (var operation in Operations)
             {
                 operation.Update();
-
-                foreach (var unit in operation.Units)
-                {
-                    unit.RequestUpdate();
-                }
             }
         }
     }
