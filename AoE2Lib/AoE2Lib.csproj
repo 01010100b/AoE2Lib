@@ -27,10 +27,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Bots\Modules\PlayersModule.cs~RF3515d5ae.TMP" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Content Include="aimodule-aoc.dll">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		  <PackageCopyToOutput>true</PackageCopyToOutput>

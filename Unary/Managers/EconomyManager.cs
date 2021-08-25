@@ -38,7 +38,7 @@ namespace Unary.Managers
         {
             var villager = Unary.GetUnitType(83);
 
-            villager.Train((int)Math.Round(0.6 * Unary.InfoModule.PopulationCap), ConcurrentVillagers, (int)Priority.VILLAGER);
+            villager.Train((int)Math.Round(0.6 * Unary.GameState.MyPlayer.GetFact(FactId.POPULATION_CAP)), ConcurrentVillagers, (int)Priority.VILLAGER);
         }
 
         private void ManageGatherers()

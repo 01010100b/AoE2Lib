@@ -1,5 +1,4 @@
-﻿using AoE2Lib.Bots.Modules;
-using Google.Protobuf;
+﻿using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using System;
 using System.Collections.Generic;
@@ -55,7 +54,7 @@ namespace AoE2Lib.Bots
             var responses = Command.GetResponses();
             UpdateElement(responses);
 
-            var gametime = Bot.InfoModule.GameTime;
+            var gametime = Bot.GameState.GameTime;
             LastUpdateGameTime = gametime;
             if (FirstUpdateGameTime == TimeSpan.MinValue)
             {

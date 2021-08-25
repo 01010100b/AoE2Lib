@@ -48,7 +48,6 @@ namespace Unary.Managers
         private void BuildHouses()
         {
             var house = Unary.GetUnitType(70);
-            var info = Unary.InfoModule;
 
             var margin = 5;
             var pending = 1;
@@ -63,7 +62,7 @@ namespace Unary.Managers
                 pending = 2;
             }
 
-            if (info.PopulationHeadroom > 0 && info.HousingHeadroom < margin && house.Pending < pending)
+            if (Unary.GameState.MyPlayer.GetFact(FactId.POPULATION_HEADROOM) > 0 && Unary.GameState.MyPlayer.GetFact(FactId.HOUSING_HEADROOM) < margin && house.Pending < pending)
             {
                 house.Build(1000, pending, (int)Priority.HOUSING);
             }
@@ -79,7 +78,7 @@ namespace Unary.Managers
             var free_foundations = new HashSet<Unit>();
             foreach (var unit in Unary.GameState.GetAllUnits())
             {
-                if (unit.PlayerNumber != Unary.InfoModule.PlayerNumber)
+                if (unit.PlayerNumber != Unary.PlayerNumber)
                 {
                     continue;
                 }

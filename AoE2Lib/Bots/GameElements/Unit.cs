@@ -1,5 +1,4 @@
-﻿using AoE2Lib.Bots.Modules;
-using AoE2Lib.Utils;
+﻿using AoE2Lib.Utils;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Protos.Expert.Action;
@@ -211,7 +210,6 @@ namespace AoE2Lib.Bots.GameElements
                 return;
             }
 
-            var info = Bot.InfoModule;
             var old_pos = Position;
             var old_tick = LastUpdateTick;
 
@@ -222,15 +220,12 @@ namespace AoE2Lib.Bots.GameElements
 
             var new_pos = Position;
             var new_tick = Bot.Tick;
-            var time = (new_tick - old_tick) * info.GameTimePerTick.TotalSeconds;
-            var v = (new_pos - old_pos) / Math.Max(0.00001, time);
-            if (v.Norm > this[ObjectData.SPEED] / 100d)
+            var time = (new_tick - old_tick) * Bot.GameState.GameTimePerTick.TotalSeconds;
+            Velocity = (new_pos - old_pos) / Math.Max(0.00001, time);
+            if (Velocity.Norm > this[ObjectData.SPEED] / 100d)
             {
-                v /= this[ObjectData.SPEED] / 100d;
+                Velocity /= this[ObjectData.SPEED] / 100d;
             }
-
-            Velocity += v;
-            Velocity /= 2;
         }
     }
 }

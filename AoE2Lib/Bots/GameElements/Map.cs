@@ -14,7 +14,7 @@ namespace AoE2Lib.Bots.GameElements
 {
     public class Map : GameElement
     {
-        public class MapTile
+        public class Tile
         {
             public readonly int X;
             public readonly int Y;
@@ -27,7 +27,7 @@ namespace AoE2Lib.Bots.GameElements
             public bool Explored => Visibility != 0;
             public bool Visible => Visibility == 15;
 
-            internal MapTile(int x, int y)
+            internal Tile(int x, int y)
             {
                 X = x;
                 Y = y;
@@ -37,9 +37,9 @@ namespace AoE2Lib.Bots.GameElements
         private struct BuildPosition
         {
             public readonly UnitType UnitType;
-            public readonly MapTile Tile;
+            public readonly Tile Tile;
 
-            public BuildPosition(UnitType building, MapTile tile)
+            public BuildPosition(UnitType building, Tile tile)
             {
                 UnitType = building;
                 Tile = tile;
@@ -49,19 +49,19 @@ namespace AoE2Lib.Bots.GameElements
         public int Height { get; private set; } = -1;
         public int Width { get; private set; } = -1;
 
-        private MapTile[] Tiles { get; set; }
+        private Tile[] Tiles { get; set; }
 
         private readonly Dictionary<BuildPosition, bool> BuildPositions = new Dictionary<BuildPosition, bool>();
         private readonly List<BuildPosition> CheckBuildPositions = new List<BuildPosition>();
 
-        private readonly Dictionary<MapTile, bool> ReachableTiles = new Dictionary<MapTile, bool>();
-        private readonly List<MapTile> CheckReachableTiles = new List<MapTile>();
+        private readonly Dictionary<Tile, bool> ReachableTiles = new Dictionary<Tile, bool>();
+        private readonly List<Tile> CheckReachableTiles = new List<Tile>();
 
         public Map(Bot bot) : base(bot)
         {
         }
 
-        public MapTile GetTile(int x, int y)
+        public Tile GetTile(int x, int y)
         {
             var pos = GetIndex(x, y);
 
@@ -75,7 +75,7 @@ namespace AoE2Lib.Bots.GameElements
             }
         }
 
-        public IEnumerable<MapTile> GetTilesInRange(int x, int y, double range)
+        public IEnumerable<Tile> GetTilesInRange(int x, int y, double range)
         {
             var r = (int)Math.Ceiling(range);
             var pos = Position.FromPoint(x, y);
@@ -232,14 +232,14 @@ namespace AoE2Lib.Bots.GameElements
                 return;
             }
 
-            Tiles = new MapTile[Width * Height];
+            Tiles = new Tile[Width * Height];
 
             for (int x = 0; x < Width; x++)
             {
                 for (int y = 0; y < Height; y++)
                 {
                     var index = GetIndex(x, y);
-                    Tiles[index] = new MapTile(x, y);
+                    Tiles[index] = new Tile(x, y);
                 }
             }
 

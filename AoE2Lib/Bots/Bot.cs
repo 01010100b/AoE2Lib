@@ -1,5 +1,4 @@
 ﻿using AoE2Lib.Bots.GameElements;
-using AoE2Lib.Bots.Modules;
 using AoE2Lib.Utils;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
@@ -31,8 +30,6 @@ namespace AoE2Lib.Bots
 
         public GameState GameState { get; private set; }
         public Player MyPlayer => GetPlayer(PlayerNumber);
-
-        public InfoModule InfoModule { get; private set; }
 
         private readonly List<ProductionTask> ProductionTasks = new List<ProductionTask>();
         private readonly List<Player> Players = new List<Player>();
@@ -92,22 +89,22 @@ namespace AoE2Lib.Bots
 
         public bool GetResourceFound(Resource resource)
         {
-            return InfoModule.GetResourceFound(resource);
+            return GameState.GetResourceFound(resource);
         }
 
         public int GetDropsiteMinDistance(Resource resource)
         {
-            return InfoModule.GetDropsiteMinDistance(resource);
+            return GameState.GetDropsiteMinDistance(resource);
         }
 
         public int GetStrategicNumber(StrategicNumber sn)
         {
-            return InfoModule.GetStrategicNumber(sn);
+            return GameState.GetStrategicNumber(sn);
         }
 
         public void SetStrategicNumber(StrategicNumber sn, int val)
         {
-            InfoModule.SetStrategicNumber(sn, val);
+            GameState.SetStrategicNumber(sn, val);
         }
 
         internal void UpdateGameElement(GameElement element, Command command)
@@ -124,11 +121,10 @@ namespace AoE2Lib.Bots
 
         private IEnumerable<Command> DoProduction()
         {
-            var info = InfoModule;
-            var remaining_wood = info.WoodAmount;
-            var remaining_food = info.FoodAmount;
-            var remaining_gold = info.GoldAmount;
-            var remaining_stone = info.StoneAmount;
+            var remaining_wood = GameState.MyPlayer.GetFact(FactId.WOOD_AMOUNT);
+            var remaining_food = GameState.MyPlayer.GetFact(FactId.FOOD_AMOUNT);
+            var remaining_gold = GameState.MyPlayer.GetFact(FactId.GOLD_AMOUNT);
+            var remaining_stone = GameState.MyPlayer.GetFact(FactId.STONE_AMOUNT);
 
             ProductionTasks.Sort((a, b) => b.Priority.CompareTo(a.Priority));
 
@@ -192,7 +188,6 @@ namespace AoE2Lib.Bots
             Log = new Log(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"{Name} {PlayerNumber}.log"));
 
             GameState = new GameState(this);
-            InfoModule = new InfoModule() { BotInternal = this };
 
             for (int i = 0; i <= 8; i++)
             {
@@ -268,9 +263,6 @@ namespace AoE2Lib.Bots
                 }
 
                 commands.AddRange(GameState.RequestUpdate());
-
-                commands.AddRange(InfoModule.RequestUpdateInternal().Where(c => c.Messages.Count > 0));
-
                 commands.AddRange(GameElementUpdates.Values);
 
                 // don't send commands if it's been more than 5 seconds since previous update
@@ -361,8 +353,6 @@ namespace AoE2Lib.Bots
                         element.Update();
                     }
                     GameElementUpdates.Clear();
-
-                    InfoModule.UpdateInternal();
 
                     GameState.Update();
 

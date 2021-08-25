@@ -1,6 +1,5 @@
 ﻿using AoE2Lib;
 using AoE2Lib.Bots;
-using AoE2Lib.Bots.Modules;
 using AoE2Lib.Utils;
 using Protos.Expert.Action;
 using Protos.Expert.Fact;

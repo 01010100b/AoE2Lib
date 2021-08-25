@@ -12,14 +12,22 @@ namespace AoE2Lib.Bots
     public class GameState
     {
         public readonly Map Map;
-        public Position MyPosition => Bot.InfoModule.MyPosition;
+        public Player MyPlayer => Bot.MyPlayer;
+        public Position MyPosition { get; private set; } = Position.Zero;
+        public TimeSpan GameTime { get; private set; } = TimeSpan.Zero;
+        public TimeSpan GameTimePerTick { get; private set; } = TimeSpan.FromSeconds(0.7);
+
         public int AutoFindUnits { get; set; } = 1; // players to find units for per tick, set to 0 to disable
         public int AutoUpdateUnits { get; set; } = 100; // units to update per tick, set to 0 to disable
 
         private readonly Bot Bot;
         private readonly Dictionary<int, Unit> Units = new Dictionary<int, Unit>();
+        private readonly Dictionary<Resource, bool> ResourceFound = new Dictionary<Resource, bool>();
+        private readonly Dictionary<Resource, int> DropsiteMinDistance = new Dictionary<Resource, int>();
+        private readonly Dictionary<StrategicNumber, int> StrategicNumbers = new Dictionary<StrategicNumber, int>();
         private readonly List<Command> Commands = new List<Command>();
         private readonly List<Command> FindCommands = new List<Command>();
+        private readonly Command CommandInfo = new Command();
 
         public GameState(Bot bot)
         {
@@ -43,6 +51,47 @@ namespace AoE2Lib.Bots
         public IEnumerable<Unit> GetAllUnits()
         {
             return Units.Values.Where(u => u.Updated);
+        }
+
+        public bool GetResourceFound(Resource resource)
+        {
+            if (ResourceFound.TryGetValue(resource, out bool found))
+            {
+                return found;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public int GetDropsiteMinDistance(Resource resource)
+        {
+            if (DropsiteMinDistance.TryGetValue(resource, out int d))
+            {
+                return d;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        public int GetStrategicNumber(StrategicNumber sn)
+        {
+            if (StrategicNumbers.TryGetValue(sn, out int val))
+            {
+                return val;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        public void SetStrategicNumber(StrategicNumber sn, int val)
+        {
+            StrategicNumbers[sn] = val;
         }
 
         internal void AddCommand(Command command)
@@ -145,7 +194,35 @@ namespace AoE2Lib.Bots
                 yield return command;
             }
 
-            yield break;
+            CommandInfo.Reset();
+
+            CommandInfo.Add(new GameTime());
+            CommandInfo.Add(new UpGetPoint() { OutGoalPoint = 50, InConstPositionType = (int)PositionType.SELF });
+            CommandInfo.Add(new Goal() { InConstGoalId = 50 });
+            CommandInfo.Add(new Goal() { InConstGoalId = 51 });
+            
+
+            foreach (var resource in new[] { Resource.FOOD, Resource.WOOD, Resource.GOLD, Resource.STONE })
+            {
+                CommandInfo.Add(new ResourceFound() { InConstResource = (int)resource });
+            }
+
+            foreach (var resource in Enum.GetValues(typeof(Resource)).Cast<Resource>())
+            {
+                CommandInfo.Add(new DropsiteMinDistance() { InConstResource = (int)resource });
+            }
+
+            foreach (var sn in StrategicNumbers)
+            {
+                CommandInfo.Add(new SetStrategicNumber() { InConstSnId = (int)sn.Key, InConstValue = sn.Value });
+            }
+
+            foreach (var sn in Enum.GetValues(typeof(StrategicNumber)).Cast<StrategicNumber>())
+            {
+                CommandInfo.Add(new Protos.Expert.Fact.StrategicNumber() { InConstSnId = (int)sn });
+            }
+
+            yield return CommandInfo;
         }
 
         internal void Update()
@@ -173,6 +250,49 @@ namespace AoE2Lib.Bots
 
             FindCommands.Clear();
 
+            if (CommandInfo.HasResponses)
+            {
+                var responses = CommandInfo.GetResponses();
+
+                var current_time = GameTime;
+                GameTime = TimeSpan.FromSeconds(responses[0].Unpack<GameTimeResult>().Result);
+                GameTimePerTick *= 19;
+                GameTimePerTick += GameTime - current_time;
+                GameTimePerTick /= 20;
+
+                var x = responses[2].Unpack<GoalResult>().Result;
+                var y = responses[3].Unpack<GoalResult>().Result;
+                var pos = Position.FromPoint(x, y);
+                if (pos.PointX >= 0 && pos.PointY >= 0 && pos.PointX < Bot.GameState.Map.Width && pos.PointY < Bot.GameState.Map.Height)
+                {
+                    MyPosition = pos;
+                }
+
+                var index = 3;
+                foreach (var resource in new[] { Resource.FOOD, Resource.WOOD, Resource.GOLD, Resource.STONE })
+                {
+                    index++;
+                    ResourceFound[resource] = responses[index].Unpack<ResourceFoundResult>().Result;
+                }
+
+                foreach (var resource in Enum.GetValues(typeof(Resource)).Cast<Resource>())
+                {
+                    index++;
+                    DropsiteMinDistance[resource] = responses[index].Unpack<DropsiteMinDistanceResult>().Result;
+                }
+
+                foreach (var sn in StrategicNumbers)
+                {
+                    index++;
+                }
+
+                foreach (var sn in Enum.GetValues(typeof(StrategicNumber)).Cast<StrategicNumber>())
+                {
+                    index++;
+                    StrategicNumbers[sn] = responses[index].Unpack<StrategicNumberResult>().Result;
+                }
+            }
+
             var players = Bot.GetPlayers().ToList();
             players.Sort((a, b) => a.PlayerNumber.CompareTo(b.PlayerNumber));
             var num = new Dictionary<int, int>();
@@ -191,7 +311,7 @@ namespace AoE2Lib.Bots
 
             foreach (var player in players)
             {
-                Bot.Log.Debug($"Player {player.PlayerNumber} units {num[player.PlayerNumber]}");
+                Bot.Log.Debug($"Player {player.PlayerNumber} units {num[player.PlayerNumber]} score {player.Score}");
             }
         }
 

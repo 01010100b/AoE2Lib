@@ -88,7 +88,7 @@ namespace Unary.Operations
 
         private double GetDodgeAngle(Unit unit, Unit target)
         {
-            var angle = 0d;
+            double angle;
             var tick = unit.Id + Manager.Unary.Tick;
 
             if (target[ObjectData.BALLISTICS] == 0)
