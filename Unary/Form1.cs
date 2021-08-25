@@ -58,12 +58,20 @@ namespace Unary
 
         private void ButtonStop_Click(object sender, EventArgs e)
         {
+            var tasks = new List<Task>();
             foreach (var bot in Players.Values)
             {
-                bot.Stop();
-                Message($"Stopped player {bot.PlayerNumber}");
+                var task = new Task(() => bot.Stop());
+                tasks.Add(task);
+                task.Start();
             }
 
+            foreach (var task in tasks)
+            {
+                task.Wait();
+            }
+
+            Message("Stopped all players");
             Players.Clear();
         }
     }
