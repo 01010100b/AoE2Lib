@@ -4,8 +4,9 @@ using System.Text;
 
 namespace Unary
 {
-    enum Priority
+    static class Priority
     {
+        public const int 
         DEFAULT = 10,
         FARM = 20,
         MILITARY = 100,
@@ -13,6 +14,6 @@ namespace Unary
         HOUSING = 250,
         PRODUCTION_BUILDING = 300,
         VILLAGER = 400,
-        AGE_UP = 500
+        AGE_UP = 500;
     }
 }

@@ -60,7 +60,7 @@ namespace Unary.Managers
 
             if (Unary.GameState.MyPlayer.GetFact(FactId.POPULATION_HEADROOM) > 0 && Unary.GameState.MyPlayer.GetFact(FactId.HOUSING_HEADROOM) < margin && house.Pending < pending)
             {
-                house.Build(1000, pending, (int)Priority.HOUSING);
+                house.Build(1000, pending, Priority.HOUSING);
             }
         }
     }

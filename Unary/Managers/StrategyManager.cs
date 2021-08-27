@@ -47,9 +47,9 @@ namespace Unary.Managers
             var castle_age = Unary.GameState.GetTechnology(102);
             var imperial_age = Unary.GameState.GetTechnology(103);
 
-            feudal_age.Research((int)Priority.AGE_UP, false);
-            castle_age.Research((int)Priority.AGE_UP, false);
-            imperial_age.Research((int)Priority.AGE_UP, false);
+            feudal_age.Research(Priority.AGE_UP, false);
+            castle_age.Research(Priority.AGE_UP, false);
+            imperial_age.Research(Priority.AGE_UP, false);
 
             var barracks = Unary.GameState.GetUnitType(12);
             var archery_range = Unary.GameState.GetUnitType(87);
@@ -60,19 +60,19 @@ namespace Unary.Managers
 
             if (barracks.CountTotal >= 1 && archery_range.CountTotal < max_ranges)
             {
-                archery_range.Build(max_ranges, 1, (int)Priority.PRODUCTION_BUILDING);
+                archery_range.Build(max_ranges, 1, Priority.PRODUCTION_BUILDING);
             }
 
             if (archery_range.CountTotal >= 1 && blacksmith.CountTotal < 1)
             {
-                blacksmith.Build(1, 1, (int)Priority.PRODUCTION_BUILDING);
+                blacksmith.Build(1, 1, Priority.PRODUCTION_BUILDING);
             }
 
             var archer = Unary.GameState.GetUnitType(4);
 
             if (archery_range.Count >= 1)
             {
-                archer.Train(50, 3, (int)Priority.MILITARY);
+                archer.Train(50, 3, Priority.MILITARY);
             }
 
             Unary.EconomyManager.MinFoodGatherers = 7;
@@ -97,7 +97,7 @@ namespace Unary.Managers
 
                 if (barracks.CountTotal < 1)
                 {
-                    barracks.Build(1, 1, (int)Priority.PRODUCTION_BUILDING);
+                    barracks.Build(1, 1, Priority.PRODUCTION_BUILDING);
                 }
             }
 

@@ -35,7 +35,7 @@ namespace Unary.Managers
         {
             var villager = Unary.GameState.GetUnitType(83);
 
-            villager.Train((int)Math.Round(0.6 * Unary.GameState.MyPlayer.GetFact(FactId.POPULATION_CAP)), ConcurrentVillagers, (int)Priority.VILLAGER);
+            villager.Train((int)Math.Round(0.6 * Unary.GameState.MyPlayer.GetFact(FactId.POPULATION_CAP)), ConcurrentVillagers, Priority.VILLAGER);
         }
 
         private void ManageGatherers()
@@ -103,7 +103,7 @@ namespace Unary.Managers
 
             if (Unary.GameState.MyPlayer.GetUnits().Count(u => u.Targetable && u[ObjectData.BASE_TYPE] == tc.Id) < TownCenters)
             {
-                tc.Build(TownCenters, 1, (int)Priority.DROPSITE);
+                tc.Build(TownCenters, 1, Priority.DROPSITE);
             }
 
             if (Unary.GameState.GetStrategicNumber(StrategicNumber.WOOD_GATHERER_PERCENTAGE) > 0)
@@ -114,7 +114,7 @@ namespace Unary.Managers
                     Unary.GameState.SetStrategicNumber(StrategicNumber.LUMBER_CAMP_MAX_DISTANCE, camp_distance + 1);
                     if (Unary.GameState.GetDropsiteMinDistance(Resource.WOOD) < camp_distance)
                     {
-                        lumber_camp.Build(100, 1, (int)Priority.DROPSITE);
+                        lumber_camp.Build(100, 1, Priority.DROPSITE);
                     }
                 }
             }
@@ -130,7 +130,7 @@ namespace Unary.Managers
                 {
                     if (Unary.GameState.GetResourceFound(Resource.FOOD) && Unary.GameState.GetDropsiteMinDistance(Resource.FOOD) > 2 && Unary.GameState.GetDropsiteMinDistance(Resource.FOOD) < 200)
                     {
-                        mill.Build(100, 1, (int)Priority.DROPSITE);
+                        mill.Build(100, 1, Priority.DROPSITE);
                     }
                 }
                 else if (mill.Count >= 1)
@@ -141,13 +141,13 @@ namespace Unary.Managers
 
                     if (farm.CountTotal < needed_farms)
                     {
-                        farm.Build(needed_farms, 3, (int)Priority.FARM);
+                        farm.Build(needed_farms, 3, Priority.FARM);
                     }
 
                     var needed_mills = 1 + ((needed_farms - 7) / 5);
                     if (mill.CountTotal < needed_mills)
                     {
-                        mill.Build(needed_mills, 1, (int)Priority.FARM);
+                        mill.Build(needed_mills, 1, Priority.FARM);
                     }
                 }
             }
@@ -172,7 +172,7 @@ namespace Unary.Managers
                     Unary.GameState.SetStrategicNumber(StrategicNumber.MINING_CAMP_MAX_DISTANCE, camp_distance + 1);
                     if (Unary.GameState.GetDropsiteMinDistance(resource) < camp_distance)
                     {
-                        mining_camp.Build(100, 1, (int)Priority.DROPSITE);
+                        mining_camp.Build(100, 1, Priority.DROPSITE);
                     }
                 }
             }
