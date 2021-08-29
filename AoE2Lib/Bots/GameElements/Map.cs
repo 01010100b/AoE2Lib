@@ -50,10 +50,6 @@ namespace AoE2Lib.Bots.GameElements
         public int Width { get; private set; } = -1;
 
         private Tile[] Tiles { get; set; }
-
-        private readonly Dictionary<BuildPosition, bool> BuildPositions = new Dictionary<BuildPosition, bool>();
-        private readonly List<BuildPosition> CheckBuildPositions = new List<BuildPosition>();
-
         private readonly Dictionary<Tile, bool> ReachableTiles = new Dictionary<Tile, bool>();
         private readonly List<Tile> CheckReachableTiles = new List<Tile>();
 
@@ -97,24 +93,6 @@ namespace AoE2Lib.Bots.GameElements
             }
         }
 
-        public bool TryCanBuildAtPosition(UnitType building, int x, int y, out bool can_build)
-        {
-            var buildposition = new BuildPosition(building, GetTile(x, y));
-
-            CheckBuildPositions.Add(buildposition);
-
-            if (BuildPositions.TryGetValue(buildposition, out can_build))
-            {
-                return true;
-            }
-            else
-            {
-                can_build = false;
-
-                return false;
-            }
-        }
-
         public bool TryCanReachPosition(int x, int y, out bool can_reach)
         {
             var tile = GetTile(x, y);
@@ -143,38 +121,41 @@ namespace AoE2Lib.Bots.GameElements
             yield return new GetMapDimensions();
             yield return new GetTiles();
 
-            BuildPositions.Clear();
-
-            foreach (var buildposition in CheckBuildPositions)
+            foreach (var tile in ReachableTiles.Keys.ToList())
             {
-                yield return new SetGoal() { InConstGoalId = 100, InConstValue = buildposition.Tile.X };
-                yield return new SetGoal() { InConstGoalId = 101, InConstValue = buildposition.Tile.Y };
-                yield return new UpCanBuildLine() { InConstBuildingId = buildposition.UnitType.Id, InGoalPoint = 100, InGoalEscrowState = 0 };
-            }
-
-            foreach (var kvp in ReachableTiles.ToList())
-            {
-                if (kvp.Value == true)
+                if (Bot.Rng.NextDouble() < 0.01)
                 {
-                    ReachableTiles.Remove(kvp.Key);
-                }
-                else if (Bot.Rng.NextDouble() < 0.01)
-                {
-                    ReachableTiles.Remove(kvp.Key);
+                    ReachableTiles.Remove(tile);
                 }
             }
 
-            CheckReachableTiles.RemoveAll(t => ReachableTiles.ContainsKey(t));
-
-            var unit = Bot.GameState.MyPlayer.GetUnits().FirstOrDefault();
-            if (unit == null)
+            var checked_tiles = new List<Tile>();
+            foreach (var tile in CheckReachableTiles.Distinct().Where(t => !ReachableTiles.ContainsKey(t)))
             {
-                CheckReachableTiles.Clear();
+                checked_tiles.Add(tile);
+
+                if (checked_tiles.Count >= 100)
+                {
+                    break;
+                }
             }
+
+            CheckReachableTiles.Clear();
+            CheckReachableTiles.AddRange(checked_tiles);
+
+            Bot.Log.Info($"Check can reach {CheckReachableTiles.Count} tiles.");
+
+            if (CheckReachableTiles.Count == 0)
+            {
+                yield break;
+            }
+
+            yield return new UpFullResetSearch();
+            yield return new UpFindLocal() { InConstUnitId = 904, InConstCount = 1 };
+            yield return new UpSetTargetObject() { InConstIndex = 0, InConstSearchSource = 1 };
 
             foreach (var tile in CheckReachableTiles)
             {
-                yield return new UpSetTargetById() { InConstId = unit.Id };
                 yield return new SetGoal() { InConstGoalId = 100, InConstValue = tile.X };
                 yield return new SetGoal() { InConstGoalId = 101, InConstValue = tile.Y };
                 yield return new UpPathDistance() { InGoalPoint = 100, InConstStrict = 1 };
@@ -200,24 +181,13 @@ namespace AoE2Lib.Bots.GameElements
                 }
             }
 
-            var index = 4;
-            foreach (var buildposition in CheckBuildPositions)
-            {
-                var can_build = responses[index].Unpack<UpCanBuildLineResult>().Result;
-                BuildPositions.Add(buildposition, can_build);
-
-                index += 3;
-            }
-
-            CheckBuildPositions.Clear();
-
-            index += 1;
+            var index = 7;
             foreach (var tile in CheckReachableTiles)
             {
                 var can_reach = responses[index].Unpack<UpPathDistanceResult>().Result != 65535;
                 ReachableTiles[tile] = can_reach;
 
-                index += 4;
+                index += 3;
             }
 
             CheckReachableTiles.Clear();

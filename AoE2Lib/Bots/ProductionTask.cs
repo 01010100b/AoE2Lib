@@ -86,17 +86,9 @@ namespace AoE2Lib.Bots
             const int GL_BUILD = 101;
             const int GL_X = 102;
             const int GL_Y = 103;
-            const int GL_TOTAL_LOCAL = 104;
 
             var command = new Command();
-            command.Add(new SetGoal() { InConstGoalId = GL_WAS_BUILT, InConstValue = -1 });
-
-            command.Add(new UpFullResetSearch());
-            command.Add(new UpFindLocal() { InConstUnitId = 904, InConstCount = 1 });
-            command.Add(new UpGetSearchState() { OutGoalState = GL_TOTAL_LOCAL });
-            command.Add(new Goal() { InConstGoalId = GL_TOTAL_LOCAL }, ">", 0,
-                new UpSetTargetObject() { InConstIndex = 0, InConstSearchSource = 1 },
-                new SetGoal() { InConstGoalId = GL_WAS_BUILT, InConstValue = 0 });
+            command.Add(new SetGoal() { InConstGoalId = GL_WAS_BUILT, InConstValue = 0 });
 
             foreach (var tile in Tiles)
             {
@@ -114,8 +106,6 @@ namespace AoE2Lib.Bots
                     new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -4 });
                 command.Add(new UpPendingPlacement() { InSnBuildingId = Bot.SN_PENDING_PLACEMENT }, "!=", 0,
                     new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -5 });
-                command.Add(new UpPathDistance() { InConstStrict = 1, InGoalPoint = GL_X }, "==", 65353,
-                    new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -6 });
 
                 var icommand = new Command();
                 icommand.Add(new Goal() { InConstGoalId = GL_BUILD }, "==", 0,

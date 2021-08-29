@@ -4,6 +4,7 @@ using Protos.Expert.Action;
 using Protos.Expert.Fact;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AoE2Lib.Bots.GameElements
@@ -46,10 +47,26 @@ namespace AoE2Lib.Bots.GameElements
             Bot.GameState.AddProductionTask(prod);
         }
 
-        public void BuildLine(List<Tile> tiles, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
+        public void BuildLine(IEnumerable<Tile> tiles, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
         {
-            var prod = new BuildLineTask(Id, tiles, priority, blocking, WoodCost, FoodCost, GoldCost, StoneCost, max_count, max_pending);
+            var good_tiles = new List<Tile>();
+            foreach (var tile in tiles)
+            {
+                if (Bot.GameState.Map.TryCanReachPosition(tile.X, tile.Y, out bool can_reach))
+                {
+                    if (can_reach)
+                    {
+                        good_tiles.Add(tile);
+                    }
+                }
+            }
 
+            if (good_tiles.Count == 0)
+            {
+                return;
+            }
+
+            var prod = new BuildLineTask(Id, good_tiles, priority, blocking, WoodCost, FoodCost, GoldCost, StoneCost, max_count, max_pending);
             Bot.GameState.AddProductionTask(prod);
         }
 

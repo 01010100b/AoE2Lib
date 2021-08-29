@@ -44,7 +44,7 @@ namespace Unary
             this.TextProcess.Name = "TextProcess";
             this.TextProcess.Size = new System.Drawing.Size(96, 23);
             this.TextProcess.TabIndex = 0;
-            this.TextProcess.Text = "WK";
+            this.TextProcess.Text = "age2_x1.5";
             // 
             // ButtonConnect
             // 

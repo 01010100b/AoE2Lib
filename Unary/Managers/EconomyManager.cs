@@ -123,11 +123,11 @@ namespace Unary.Managers
                         {
                             var tree = trees[10];
 
-                            var positions = Unary.GameState.Map.GetTilesInRange(tree.Position.PointX, tree.Position.PointY, 5).ToList();
-                            positions.Sort((a, b) => a.Position.DistanceTo(tree.Position).CompareTo(b.Position.DistanceTo(tree.Position)));
+                            var tiles = Unary.GameState.Map.GetTilesInRange(tree.Position.PointX, tree.Position.PointY, 10).ToList();
+                            tiles.Sort((a, b) => a.Position.DistanceTo(tree.Position).CompareTo(b.Position.DistanceTo(tree.Position)));
 
                             Unary.Log.Info("Building lumber camp");
-                            lumber_camp.BuildLine(positions, 100, 1, Priority.DROPSITE);
+                            lumber_camp.BuildLine(tiles, 100, 1, Priority.DROPSITE);
                         }
                     }
                 }
