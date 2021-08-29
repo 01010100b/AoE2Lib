@@ -65,7 +65,7 @@ namespace AoE2Lib.Bots.GameElements
         {
             if (x < 0 || x >= Width || y < 0 || y >= Height)
             {
-                return null;
+                throw new IndexOutOfRangeException($"Tile {x},{y} is not on map");
             }
             else
             {

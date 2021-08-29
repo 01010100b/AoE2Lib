@@ -401,8 +401,15 @@ namespace AoE2Lib.Bots
             {
                 Players[unit[ObjectData.PLAYER]].Units.Add(unit);
 
-                var tile = Map.GetTile(unit.Position.PointX, unit.Position.PointY);
-                tile.Units.Add(unit);
+                try
+                {
+                    var tile = Map.GetTile(unit.Position.PointX, unit.Position.PointY);
+                    tile.Units.Add(unit);
+                }
+                catch (ArgumentException)
+                {
+                    continue;
+                }
             }
 
             Tick++;
