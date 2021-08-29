@@ -42,8 +42,8 @@ namespace AoE2Lib.Bots.GameElements
         public int Score => GetFact(FactId.CURRENT_SCORE);
         public int CivilianPopulation => GetFact(FactId.CIVILIAN_POPULATION);
         public int MilitaryPopulation => GetFact(FactId.MILITARY_POPULATION);
-        
-        internal readonly List<Unit> Units = new List<Unit>();
+        public readonly List<Unit> Units = new List<Unit>();
+
         private readonly Dictionary<FactId, int> Facts = new Dictionary<FactId, int>();
 
         internal Player(Bot bot, int player) : base(bot)

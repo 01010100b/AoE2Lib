@@ -111,24 +111,20 @@ namespace Unary.Managers
             {
                 if (Unary.GameState.GetResourceFound(Resource.WOOD) && Unary.GameState.GetDropsiteMinDistance(Resource.WOOD) > 2 && Unary.GameState.GetDropsiteMinDistance(Resource.WOOD) < 200)
                 {
-                    var camp_distance = Unary.GameState.GetStrategicNumber(StrategicNumber.LUMBER_CAMP_MAX_DISTANCE);
-                    Unary.GameState.SetStrategicNumber(StrategicNumber.LUMBER_CAMP_MAX_DISTANCE, camp_distance + 1);
-                    if (Unary.GameState.GetDropsiteMinDistance(Resource.WOOD) < camp_distance)
+                    var trees = Unary.GameState.GetPlayer(0).GetUnits().Where(u => u[ObjectData.CLASS] == (int)UnitClass.Tree).ToList();
+
+                    if (trees.Count > 10)
                     {
-                        var trees = Unary.GameState.GetPlayer(0).GetUnits().Where(u => u[ObjectData.CLASS] == (int)UnitClass.Tree).ToList();
                         var pos = Unary.GameState.MyPosition;
                         trees.Sort((a, b) => a.Position.DistanceTo(pos).CompareTo(b.Position.DistanceTo(pos)));
 
-                        if (trees.Count > 10)
-                        {
-                            var tree = trees[10];
+                        var tree = trees[10];
 
-                            var tiles = Unary.GameState.Map.GetTilesInRange(tree.Position.PointX, tree.Position.PointY, 10).ToList();
-                            tiles.Sort((a, b) => a.Position.DistanceTo(tree.Position).CompareTo(b.Position.DistanceTo(tree.Position)));
+                        var tiles = Unary.GameState.Map.GetTilesInRange(tree.Position.PointX, tree.Position.PointY, 10).ToList();
+                        tiles.Sort((a, b) => a.Position.DistanceTo(tree.Position).CompareTo(b.Position.DistanceTo(tree.Position)));
 
-                            Unary.Log.Info("Building lumber camp");
-                            lumber_camp.BuildLine(tiles, 100, 1, Priority.DROPSITE);
-                        }
+                        Unary.Log.Info("Building lumber camp");
+                        lumber_camp.BuildLine(tiles, 100, 1, Priority.DROPSITE);
                     }
                 }
             }

@@ -3,6 +3,7 @@ using Protos.Expert.Action;
 using Protos.Expert.Fact;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AoE2Lib.Bots
@@ -90,7 +91,7 @@ namespace AoE2Lib.Bots
             var command = new Command();
             command.Add(new SetGoal() { InConstGoalId = GL_WAS_BUILT, InConstValue = 0 });
 
-            foreach (var tile in Tiles)
+            foreach (var tile in Tiles.Where(t => t.Explored))
             {
                 command.Add(new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = 0 });
                 command.Add(new SetGoal() { InConstGoalId = GL_X, InConstValue = tile.X });
