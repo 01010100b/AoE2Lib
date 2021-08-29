@@ -8,12 +8,12 @@ namespace Unary
     {
         public const int 
         DEFAULT = 10,
-        FARM = 20,
-        MILITARY = 100,
-        DROPSITE = 200,
-        HOUSING = 250,
+        FARM = 100,
+        MILITARY = 200,
         PRODUCTION_BUILDING = 300,
-        VILLAGER = 400,
-        AGE_UP = 500;
+        DROPSITE = 400,
+        HOUSING = 500,
+        VILLAGER = 600,
+        AGE_UP = 700;
     }
 }

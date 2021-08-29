@@ -20,7 +20,7 @@ namespace Unary.Managers
             Unary.GameState.SetStrategicNumber(StrategicNumber.TARGET_PLAYER_NUMBER, player.PlayerNumber);
             Unary.GameState.SetStrategicNumber(StrategicNumber.MINIMUM_ATTACK_GROUP_SIZE, 1);
             Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_ATTACK_GROUP_SIZE, 1);
-            Unary.GameState.SetStrategicNumber(StrategicNumber.NUMBER_ATTACK_GROUPS, 100);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.NUMBER_ATTACK_GROUPS, 1000);
             Unary.GameState.SetStrategicNumber(StrategicNumber.ZERO_PRIORITY_DISTANCE, 250);
         }
 
@@ -51,6 +51,11 @@ namespace Unary.Managers
             castle_age.Research(Priority.AGE_UP, false);
             imperial_age.Research(Priority.AGE_UP, false);
 
+            if (castle_age.State == ResearchState.COMPLETE)
+            {
+                Unary.EconomyManager.MaxTownCenters = 3;
+            }
+
             var barracks = Unary.GameState.GetUnitType(12);
             var archery_range = Unary.GameState.GetUnitType(87);
             var blacksmith = Unary.GameState.GetUnitType(103);
@@ -60,12 +65,12 @@ namespace Unary.Managers
 
             if (barracks.CountTotal >= 1 && archery_range.CountTotal < max_ranges)
             {
-                archery_range.Build(max_ranges, 1, Priority.PRODUCTION_BUILDING);
+                archery_range.BuildNormal(max_ranges, 1, Priority.PRODUCTION_BUILDING);
             }
 
             if (archery_range.CountTotal >= 1 && blacksmith.CountTotal < 1)
             {
-                blacksmith.Build(1, 1, Priority.PRODUCTION_BUILDING);
+                blacksmith.BuildNormal(1, 1, Priority.PRODUCTION_BUILDING);
             }
 
             var archer = Unary.GameState.GetUnitType(4);
@@ -97,7 +102,7 @@ namespace Unary.Managers
 
                 if (barracks.CountTotal < 1)
                 {
-                    barracks.Build(1, 1, Priority.PRODUCTION_BUILDING);
+                    barracks.BuildNormal(1, 1, Priority.PRODUCTION_BUILDING);
                 }
             }
 

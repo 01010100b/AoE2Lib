@@ -34,57 +34,14 @@ namespace AoE2Lib.Bots.GameElements
                 return;
             }
 
-            var prod = new ProductionTask()
-            {
-                Priority = priority,
-                Blocking = blocking,
-                WoodCost = WoodCost,
-                FoodCost = FoodCost,
-                GoldCost = GoldCost,
-                StoneCost = StoneCost,
-                Id = Id,
-                MaxCount = max_count,
-                MaxPending = max_pending,
-                IsTech = false,
-                IsBuilding = false
-            };
+            var prod = new TrainTask(Id, priority, blocking, WoodCost, FoodCost, GoldCost, StoneCost, max_count, max_pending);
 
             Bot.GameState.AddProductionTask(prod);
         }
 
-        public void Build(int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
+        public void BuildNormal(int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
         {
-            Build(new List<Position>(), max_count, max_pending, priority, blocking);
-        }
-
-        public void Build(Position position, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
-        {
-            Build(new List<Position>() { position }, max_count, max_pending, priority, blocking);
-        }
-
-        public void Build(List<Position> positions, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
-        {
-            if (Updated == false || IsAvailable == false || CountTotal >= max_count || Pending > max_pending || CanBuild == false)
-            {
-                return;
-            }
-
-            var prod = new ProductionTask()
-            {
-                Priority = priority,
-                Blocking = blocking,
-                WoodCost = WoodCost,
-                FoodCost = FoodCost,
-                GoldCost = GoldCost,
-                StoneCost = StoneCost,
-                Id = Id,
-                MaxCount = max_count,
-                MaxPending = max_pending,
-                IsTech = false,
-                IsBuilding = true
-            };
-
-            prod.BuildPositions.AddRange(positions);
+            var prod = new BuildNormalTask(Id, priority, blocking, WoodCost, FoodCost, GoldCost, StoneCost, max_count, max_pending);
 
             Bot.GameState.AddProductionTask(prod);
         }

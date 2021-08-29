@@ -29,19 +29,7 @@ namespace AoE2Lib.Bots.GameElements
             {
                 return;
             }
-
-            var prod = new ProductionTask()
-            {
-                Priority = priority,
-                Blocking = blocking,
-                WoodCost = WoodCost,
-                FoodCost = FoodCost,
-                GoldCost = GoldCost,
-                StoneCost = StoneCost,
-                Id = Id,
-                IsTech = true,
-                IsBuilding = false
-            };
+            var prod = new ResearchTask(Id, priority, blocking, WoodCost, FoodCost, GoldCost, StoneCost, -1, -1);
 
             Bot.GameState.AddProductionTask(prod);
         }

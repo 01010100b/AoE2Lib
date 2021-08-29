@@ -62,26 +62,24 @@ namespace AoE2Lib.Bots.GameElements
 
         public Tile GetTile(int x, int y)
         {
-            var pos = GetIndex(x, y);
-
-            if (pos >= 0 && pos < Tiles.Length)
+            if (x < 0 || x >= Width || y < 0 || y >= Height)
             {
-                return Tiles[pos];
+                return null;
             }
             else
             {
-                return null;
+                return Tiles[GetIndex(x, y)];
             }
         }
 
         public IEnumerable<Tile> GetTiles()
         {
-            return GetTilesInRange(0, 0, 10000);
+            return GetTilesInRange(0, 0, Width + Height);
         }
 
         public IEnumerable<Tile> GetTilesInRange(int x, int y, double range)
         {
-            var r = (int)Math.Ceiling(range);
+            var r = Math.Max(0, (int)Math.Ceiling(range));
             var pos = Position.FromPoint(x, y);
 
             for (int cx = Math.Max(0, x - r); cx <= Math.Min(Width - 1, x + r); cx++)

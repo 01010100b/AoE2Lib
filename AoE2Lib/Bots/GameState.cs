@@ -397,7 +397,7 @@ namespace AoE2Lib.Bots
                 tile.Units.Clear();
             }
 
-            foreach (var unit in GetAllUnits())
+            foreach (var unit in GetAllUnits().Where(u => u.PlayerNumber >= 0))
             {
                 Players[unit[ObjectData.PLAYER]].Units.Add(unit);
 
@@ -441,6 +441,8 @@ namespace AoE2Lib.Bots
 
             foreach (var prod in ProductionTasks)
             {
+                Bot.Log.Debug($"Checking production: {prod.Id}");
+
                 var can_afford = true;
                 if (prod.WoodCost > 0 && prod.WoodCost > remaining_wood)
                 {
@@ -467,7 +469,9 @@ namespace AoE2Lib.Bots
 
                 if (can_afford)
                 {
-                    yield return prod.GetCommand(Bot);
+                    Bot.Log.Debug($"Production: {prod.Id}");
+
+                    yield return prod.GetCommand();
                 }
 
                 if (deduct)
