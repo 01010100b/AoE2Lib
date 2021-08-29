@@ -76,7 +76,7 @@ namespace AoE2Lib.Bots.GameElements
 
         public IEnumerable<Tile> GetTilesInRange(int x, int y, double range)
         {
-            var r = Math.Max(0, (int)Math.Ceiling(range));
+            var r = Math.Max(0, (int)Math.Ceiling(range) + 1);
             var pos = Position.FromPoint(x, y);
 
             for (int cx = Math.Max(0, x - r); cx <= Math.Min(Width - 1, x + r); cx++)
@@ -143,7 +143,7 @@ namespace AoE2Lib.Bots.GameElements
             CheckReachableTiles.Clear();
             CheckReachableTiles.AddRange(checked_tiles);
 
-            Bot.Log.Info($"Check can reach {CheckReachableTiles.Count} tiles.");
+            Bot.Log.Debug($"Check can reach {CheckReachableTiles.Count} tiles with {ReachableTiles.Count} cached.");
 
             if (CheckReachableTiles.Count == 0)
             {

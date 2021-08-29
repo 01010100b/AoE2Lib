@@ -100,7 +100,7 @@ namespace AoE2Lib.Bots
 
         public IEnumerable<Unit> GetAllUnits()
         {
-            return Units.Values.Where(u => u.Updated);
+            return Units.Values;
         }
 
         public bool GetResourceFound(Resource resource)
@@ -397,7 +397,7 @@ namespace AoE2Lib.Bots
                 tile.Units.Clear();
             }
 
-            foreach (var unit in GetAllUnits().Where(u => u.PlayerNumber >= 0))
+            foreach (var unit in GetAllUnits().Where(u => u.Updated && u.PlayerNumber >= 0))
             {
                 Players[unit[ObjectData.PLAYER]].Units.Add(unit);
 
@@ -530,7 +530,7 @@ namespace AoE2Lib.Bots
                     }
                 }
 
-                var range = 1000;
+                var range = Map.Width + Map.Height;
                 if (Bot.Rng.NextDouble() < 0.5)
                 {
                     range = 10;
