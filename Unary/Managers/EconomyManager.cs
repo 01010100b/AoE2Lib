@@ -115,8 +115,20 @@ namespace Unary.Managers
                     Unary.GameState.SetStrategicNumber(StrategicNumber.LUMBER_CAMP_MAX_DISTANCE, camp_distance + 1);
                     if (Unary.GameState.GetDropsiteMinDistance(Resource.WOOD) < camp_distance)
                     {
-                        Unary.Log.Info("Building lumber camp");
-                        lumber_camp.BuildNormal(100, 1, Priority.DROPSITE);
+                        var trees = Unary.GameState.GetPlayer(0).GetUnits().Where(u => u[ObjectData.CLASS] == (int)UnitClass.Tree).ToList();
+                        var pos = Unary.GameState.MyPosition;
+                        trees.Sort((a, b) => a.Position.DistanceTo(pos).CompareTo(b.Position.DistanceTo(pos)));
+
+                        if (trees.Count > 10)
+                        {
+                            var tree = trees[10];
+
+                            var positions = Unary.GameState.Map.GetTilesInRange(tree.Position.PointX, tree.Position.PointY, 5).ToList();
+                            positions.Sort((a, b) => a.Position.DistanceTo(tree.Position).CompareTo(b.Position.DistanceTo(tree.Position)));
+
+                            Unary.Log.Info("Building lumber camp");
+                            lumber_camp.BuildLine(positions, 100, 1, Priority.DROPSITE);
+                        }
                     }
                 }
             }

@@ -46,6 +46,13 @@ namespace AoE2Lib.Bots.GameElements
             Bot.GameState.AddProductionTask(prod);
         }
 
+        public void BuildLine(List<Tile> tiles, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
+        {
+            var prod = new BuildLineTask(Id, tiles, priority, blocking, WoodCost, FoodCost, GoldCost, StoneCost, max_count, max_pending);
+
+            Bot.GameState.AddProductionTask(prod);
+        }
+
         protected override IEnumerable<IMessage> RequestElementUpdate()
         {
             yield return new BuildingAvailable() { InConstBuildingId = Id };

@@ -1,4 +1,5 @@
-﻿using Protos.Expert.Action;
+﻿using AoE2Lib.Bots.GameElements;
+using Protos.Expert.Action;
 using Protos.Expert.Fact;
 using System;
 using System.Collections.Generic;
@@ -6,115 +7,6 @@ using System.Text;
 
 namespace AoE2Lib.Bots
 {
-    internal class ProductionTask3
-    {
-        public int Priority { get; set; }
-        public bool Blocking { get; set; }
-        public int WoodCost { get; set; }
-        public int FoodCost { get; set; }
-        public int GoldCost { get; set; }
-        public int StoneCost { get; set; }
-        public int Id { get; set; }
-        public int MaxCount { get; set; }
-        public int MaxPending { get; set; }
-        public bool IsTech { get; set; }
-        public bool IsBuilding { get; set; }
-        public List<Position> BuildPositions = new List<Position>();
-        
-
-        public Command GetCommand(Bot bot)
-        {
-            if (IsTech)
-            {
-                bot.Log.Info($"Researching {Id}");
-
-                var command = new Command();
-                command.Add(new CanResearch() { InConstTechId = Id }, "!=", 0,
-                    new Research() { InConstTechId = Id });
-
-                return command;
-            }
-            else if (IsBuilding)
-            {
-                bot.Log.Info($"Building {Id}");
-
-                const int GL_BUILT = 100;
-                const int GL_POINT_X = 101;
-                const int GL_POINT_Y = 102;
-
-                var op_add = bot.GameVersion == GameVersion.AOC ? 1 : 25;
-
-                var command = new Command();
-                command.Add(new SetGoal() { InConstGoalId = GL_BUILT, InConstValue = 0 });
-                command.Add(new UpObjectTypeCountTotal() { InConstObjectId = Id }, ">=", MaxCount,
-                    new SetGoal() { InConstGoalId = GL_BUILT, InConstValue = 2 });
-                command.Add(new UpPendingObjects() { InConstObjectId = Id }, ">=", MaxPending,
-                    new SetGoal() { InConstGoalId = GL_BUILT, InConstValue = 2 });
-                command.Add(new UpPendingPlacement() { InConstBuildingId = Id }, "!=", 0,
-                    new SetGoal() { InConstGoalId = GL_BUILT, InConstValue = 2 });
-                command.Add(new UpPendingPlacement() { InSnBuildingId = Bot.SN_PENDING_PLACEMENT}, "!=", 0,
-                    new SetGoal() { InConstGoalId = GL_BUILT, InConstValue = 2 });
-
-                if (BuildPositions.Count == 0)
-                {
-                    command.Add(new CanBuild() { InConstBuildingId = Id }, "!=", 0,
-                        new UpModifyGoal() { IoGoalId = GL_BUILT, MathOp = op_add, InOpValue = 1 });
-                    command.Add(new Goal() { InConstGoalId = GL_BUILT }, "==", 1,
-                        new Build() { InConstBuildingId = Id },
-                        new SetStrategicNumber() { InConstSnId = Bot.SN_PENDING_PLACEMENT, InConstValue = Id },
-                        new UpModifyGoal() { IoGoalId = GL_BUILT, MathOp = op_add, InOpValue = 1 });
-                }
-                else
-                {
-                    foreach (var pos in BuildPositions)
-                    {
-                        command.Add(new SetGoal() { InConstGoalId = GL_POINT_X, InConstValue = pos.PointX });
-                        command.Add(new SetGoal() { InConstGoalId = GL_POINT_Y, InConstValue = pos.PointY });
-                        command.Add(new UpCanBuildLine() { InConstBuildingId = Id, InGoalEscrowState = 0, InGoalPoint = GL_POINT_X }, "!=", 0,
-                            new UpModifyGoal() { IoGoalId = GL_BUILT, MathOp = op_add, InOpValue = 1 });
-                        command.Add(new Goal() { InConstGoalId = GL_BUILT }, "==", 1,
-                            new UpBuildLine() { InConstBuildingId = Id, InGoalPoint1 = GL_POINT_X, InGoalPoint2 = GL_POINT_X },
-                            new SetStrategicNumber() { InConstSnId = Bot.SN_PENDING_PLACEMENT, InConstValue = Id },
-                            new UpModifyGoal() { IoGoalId = GL_BUILT, MathOp = op_add, InOpValue = 1 });
-
-                    }
-                }
-
-                return command;
-            }
-            else
-            {
-                bot.Log.Info($"Training {Id}");
-
-                const int GL_TRAINING = 100;
-
-                var command = new Command();
-
-                command.Add(new SetGoal() { InConstGoalId = GL_TRAINING, InConstValue = 0 });
-
-                command.Add(new UpObjectTypeCountTotal() { InConstObjectId = Id }, ">=", MaxCount,
-                    new SetGoal() { InConstGoalId = GL_TRAINING, InConstValue = 1 });
-                command.Add(new UpPendingObjects() { InConstObjectId = Id }, ">=", MaxPending,
-                    new SetGoal() { InConstGoalId = GL_TRAINING, InConstValue = 2 });
-                command.Add(new CanTrain() { InConstUnitId = Id }, "==", 0,
-                    new SetGoal() { InConstGoalId = GL_TRAINING, InConstValue = 3 });
-                /*command.Add(new UnitAvailable() { InConstUnitId = Id }, "==", 0,
-                    new SetGoal() { InConstGoalId = GL_TRAINING, InConstValue = 4 });
-                command.Add(new CanAffordUnit() { InConstUnitId = Id }, "==", 0,
-                    new SetGoal() { InConstGoalId = GL_TRAINING, InConstValue = 5 });
-                command.Add(new UpTrainSiteReady() { InConstUnitId = Id }, "==", 0,
-                    new SetGoal() { InConstGoalId = GL_TRAINING, InConstValue = 6 });*/
-
-                command.Add(new Goal() { InConstGoalId = GL_TRAINING }, "==", 0,
-                    new Train() { InConstUnitId = Id });
-
-                return command;
-            }
-        }
-
-        
-    }
-
     internal abstract class ProductionTask
     {
         public readonly int Id;
@@ -153,27 +45,86 @@ namespace AoE2Lib.Bots
 
         public override Command GetCommand()
         {
-            const int GL_BUILT = 100;
+            const int GL_BUILD = 100;
 
             var command = new Command();
 
-            command.Add(new SetGoal() { InConstGoalId = GL_BUILT, InConstValue = 0 });
+            command.Add(new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = 0 });
 
             command.Add(new UpObjectTypeCountTotal() { InConstObjectId = Id }, ">=", MaxCount,
-                new SetGoal() { InConstGoalId = GL_BUILT, InConstValue = -1 });
+                new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -1 });
             command.Add(new UpPendingObjects() { InConstObjectId = Id }, ">=", MaxPending,
-                new SetGoal() { InConstGoalId = GL_BUILT, InConstValue = -2 });
+                new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -2 });
             command.Add(new CanBuild() { InConstBuildingId = Id }, "!=", 1,
-                new SetGoal() { InConstGoalId = GL_BUILT, InConstValue = -3 });
+                new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -3 });
             command.Add(new UpPendingPlacement() { InConstBuildingId = Id }, "!=", 0,
-                new SetGoal() { InConstGoalId = GL_BUILT, InConstValue = -4 });
+                new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -4 });
             command.Add(new UpPendingPlacement() { InSnBuildingId = Bot.SN_PENDING_PLACEMENT }, "!=", 0,
-                new SetGoal() { InConstGoalId = GL_BUILT, InConstValue = -5 });
+                new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -5 });
 
-            command.Add(new Goal() { InConstGoalId = GL_BUILT }, "==", 0,
+            command.Add(new Goal() { InConstGoalId = GL_BUILD }, "==", 0,
                  new Build() { InConstBuildingId = Id },
-                 new SetStrategicNumber() { InConstSnId = Bot.SN_PENDING_PLACEMENT, InConstValue = Id },
-                 new SetGoal() { InConstGoalId = GL_BUILT, InConstValue = 1 });
+                 new SetStrategicNumber() { InConstSnId = Bot.SN_PENDING_PLACEMENT, InConstValue = Id });
+
+            return command;
+        }
+    }
+
+    internal class BuildLineTask : ProductionTask
+    {
+        private readonly List<Tile> Tiles;
+
+        public BuildLineTask(int id, List<Tile> tiles, int priority, bool blocking, int wood_cost, int food_cost, int gold_cost, int stone_cost, int max_count, int max_pending)
+            : base(id, priority, blocking, wood_cost, food_cost, gold_cost, stone_cost, max_count, max_pending)
+        {
+            Tiles = tiles;
+        }
+
+        public override Command GetCommand()
+        {
+            const int GL_WAS_BUILT = 100;
+            const int GL_BUILD = 101;
+            const int GL_X = 102;
+            const int GL_Y = 103;
+            const int GL_TOTAL_LOCAL = 104;
+
+            var command = new Command();
+            command.Add(new SetGoal() { InConstGoalId = GL_WAS_BUILT, InConstValue = -1 });
+
+            command.Add(new UpFullResetSearch());
+            command.Add(new UpFindLocal() { InConstUnitId = 904, InConstCount = 1 });
+            command.Add(new UpGetSearchState() { OutGoalState = GL_TOTAL_LOCAL });
+            command.Add(new Goal() { InConstGoalId = GL_TOTAL_LOCAL }, ">", 0,
+                new UpSetTargetObject() { InConstIndex = 0, InConstSearchSource = 1 },
+                new SetGoal() { InConstGoalId = GL_WAS_BUILT, InConstValue = 0 });
+
+            foreach (var tile in Tiles)
+            {
+                command.Add(new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = 0 });
+                command.Add(new SetGoal() { InConstGoalId = GL_X, InConstValue = tile.X });
+                command.Add(new SetGoal() { InConstGoalId = GL_Y, InConstValue = tile.Y });
+
+                command.Add(new UpObjectTypeCountTotal() { InConstObjectId = Id }, ">=", MaxCount,
+                    new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -1 });
+                command.Add(new UpPendingObjects() { InConstObjectId = Id }, ">=", MaxPending,
+                    new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -2 });
+                command.Add(new UpCanBuildLine() { InConstBuildingId = Id, InGoalPoint = GL_X, InGoalEscrowState = 0 }, "!=", 1,
+                    new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -3 });
+                command.Add(new UpPendingPlacement() { InConstBuildingId = Id }, "!=", 0,
+                    new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -4 });
+                command.Add(new UpPendingPlacement() { InSnBuildingId = Bot.SN_PENDING_PLACEMENT }, "!=", 0,
+                    new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -5 });
+                command.Add(new UpPathDistance() { InConstStrict = 1, InGoalPoint = GL_X }, "==", 65353,
+                    new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -6 });
+
+                var icommand = new Command();
+                icommand.Add(new Goal() { InConstGoalId = GL_BUILD }, "==", 0,
+                     new UpBuildLine() { InConstBuildingId = Id, InGoalPoint1 = GL_X, InGoalPoint2 = GL_X },
+                     new SetStrategicNumber() { InConstSnId = Bot.SN_PENDING_PLACEMENT, InConstValue = Id },
+                     new SetGoal() { InConstGoalId = GL_WAS_BUILT, InConstValue = 1 });
+
+                command.Add(new Goal() { InConstGoalId = GL_WAS_BUILT }, "==", 0, icommand.Messages.ToArray());
+            }
 
             return command;
         }

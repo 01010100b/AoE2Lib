@@ -47,19 +47,19 @@ namespace AoE2Lib.Bots
             Messages.Add(cc);
         }
 
-        public void Add(IMessage fact, string op, int value, params IMessage[] commands)
+        public void Add(IMessage fact, string op, int value, params IMessage[] messages)
         {
-            foreach (var command in commands)
+            foreach (var message in messages)
             {
-                var cc = new ConditionalCommand()
+                var m = new ConditionalCommand()
                 {
                     Fact = Any.Pack(fact),
                     CompareOp = op,
                     Value = value,
-                    Command = Any.Pack(command)
+                    Command = Any.Pack(message)
                 };
 
-                Messages.Add(cc);
+                Messages.Add(m);
             }
         }
 
