@@ -15,10 +15,5 @@ namespace Unary
         }
 
         internal abstract void Update();
-
-        protected void ExecuteCommand(Command command)
-        {
-            Unary.ExecuteCommand(command);
-        }
     }
 }

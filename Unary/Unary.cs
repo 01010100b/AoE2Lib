@@ -16,8 +16,6 @@ namespace Unary
         public readonly EconomyManager EconomyManager;
         public readonly BuildingManager BuildingManager;
 
-        private readonly List<Command> Commands = new List<Command>();
-
         public Unary() : base()
         {
             StrategyManager = new StrategyManager(this);
@@ -25,20 +23,18 @@ namespace Unary
             BuildingManager = new BuildingManager(this);
         }
 
-        internal void ExecuteCommand(Command command)
-        {
-            Commands.Add(command);
-        }
-
         protected override IEnumerable<Command> Update()
         {
-            Commands.Clear();
-
             StrategyManager.Update();
             EconomyManager.Update();
             BuildingManager.Update();
 
-            return Commands;
+            foreach (var op in Operation.GetOperations(this))
+            {
+                op.UpdateInternal();
+            }
+
+            yield break;
         }
     }
 }

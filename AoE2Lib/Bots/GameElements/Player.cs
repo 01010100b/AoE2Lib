@@ -63,11 +63,6 @@ namespace AoE2Lib.Bots.GameElements
             }
         }
 
-        public IEnumerable<Unit> GetUnits()
-        {
-            return Units;
-        }
-
         public void FindUnits(Position position, int range)
         {
             Bot.GameState.FindUnits(PlayerNumber, position, range);

@@ -58,6 +58,10 @@ namespace AoE2Lib.Bots.GameElements
                         good_tiles.Add(tile);
                     }
                 }
+                else
+                {
+                    break;
+                }
             }
 
             if (good_tiles.Count == 0)

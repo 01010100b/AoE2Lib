@@ -101,7 +101,7 @@ namespace Unary.Managers
 
             Unary.GameState.SetStrategicNumber(StrategicNumber.MILL_MAX_DISTANCE, 30);
 
-            if (Unary.GameState.MyPlayer.GetUnits().Count(u => u[ObjectData.BASE_TYPE] == tc.Id) < MaxTownCenters)
+            if (Unary.GameState.MyPlayer.Units.Count(u => u.Targetable && u[ObjectData.BASE_TYPE] == tc.Id) < MaxTownCenters)
             {
                 Unary.Log.Info("Building TC");
                 tc.BuildNormal(MaxTownCenters, 1, Priority.DROPSITE);
@@ -111,7 +111,7 @@ namespace Unary.Managers
             {
                 if (Unary.GameState.GetResourceFound(Resource.WOOD) && Unary.GameState.GetDropsiteMinDistance(Resource.WOOD) > 2 && Unary.GameState.GetDropsiteMinDistance(Resource.WOOD) < 200)
                 {
-                    var trees = Unary.GameState.GetPlayer(0).GetUnits().Where(u => u[ObjectData.CLASS] == (int)UnitClass.Tree).ToList();
+                    var trees = Unary.GameState.GetPlayer(0).Units.Where(u => u[ObjectData.CLASS] == (int)UnitClass.Tree).ToList();
 
                     if (trees.Count > 10)
                     {
@@ -140,6 +140,7 @@ namespace Unary.Managers
                 {
                     if (Unary.GameState.GetResourceFound(Resource.FOOD) && Unary.GameState.GetDropsiteMinDistance(Resource.FOOD) > 2 && Unary.GameState.GetDropsiteMinDistance(Resource.FOOD) < 200)
                     {
+                        Unary.Log.Info("Building mill");
                         mill.BuildNormal(100, 1, Priority.DROPSITE);
                     }
                 }
@@ -151,12 +152,15 @@ namespace Unary.Managers
 
                     if (farm.CountTotal < needed_farms)
                     {
-                        farm.BuildNormal(needed_farms, 3, Priority.FARM);
+                        Unary.Log.Info("Building farm");
+                        farm.BuildLine(Unary.BuildingManager.GetBuildingPlacements(farm), needed_farms, 3, Priority.FARM);
+                        //farm.BuildNormal(needed_farms, 3, Priority.FARM);
                     }
 
                     var needed_mills = 1 + ((needed_farms - 7) / 5);
                     if (mill.CountTotal < needed_mills)
                     {
+                        Unary.Log.Info("Building mill");
                         mill.BuildNormal(needed_mills, 1, Priority.FARM);
                     }
                 }

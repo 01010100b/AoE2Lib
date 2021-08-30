@@ -3,6 +3,7 @@ using AoE2Lib.Bots;
 using AoE2Lib.Bots.GameElements;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 
@@ -38,6 +39,16 @@ namespace Unary.Managers
                     yield return Unary.GameState.Map.GetTile(cx, cy);
                 }
             }
+        }
+
+        public IEnumerable<Tile> GetBuildingPlacements(UnitType building)
+        {
+            if (building.Id == 50)
+            {
+                return GetFarmPlacements();
+            }
+
+            throw new NotImplementedException();
         }
 
         internal override void Update()
@@ -89,6 +100,44 @@ namespace Unary.Managers
             if (Unary.GameState.MyPlayer.GetFact(FactId.POPULATION_HEADROOM) > 0 && Unary.GameState.MyPlayer.GetFact(FactId.HOUSING_HEADROOM) < margin && house.Pending < pending)
             {
                 house.BuildNormal(1000, pending, Priority.HOUSING);
+            }
+        }
+
+        private IEnumerable<Tile> GetFarmPlacements()
+        {
+            var sites = new List<Unit>();
+
+            foreach (var unit in Unary.GameState.MyPlayer.Units.Where(u => u.Targetable))
+            {
+                if (unit[ObjectData.BASE_TYPE] == 109)
+                {
+                    sites.Add(unit);
+                }
+            }
+
+            if (sites.Count == 0)
+            {
+                Unary.Log.Warning("Could not find site for farms");
+
+                yield break;
+            }
+
+            var site = sites[Unary.Rng.Next(sites.Count)];
+            var deltas = new[] { new Point(3, 3) };
+
+            foreach (var delta in deltas)
+            {
+                var x = site.Position.PointX + delta.X;
+                var y = site.Position.PointY + delta.Y;
+
+                try
+                {
+                    yield return Unary.GameState.Map.GetTile(x, y);
+                }
+                finally
+                {
+
+                }
             }
         }
     }

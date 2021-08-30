@@ -8,7 +8,7 @@ namespace Unary
 {
     internal abstract class Operation
     {
-        public static IEnumerable<Operation> GetOperations(Unary unary) => Operations.ContainsKey(unary) ? Operations[unary] : Enumerable.Empty<Operation>();
+        public static List<Operation> GetOperations(Unary unary) => Operations.ContainsKey(unary) ? Operations[unary].ToList() : new List<Operation>();
         private static readonly Dictionary<Unary, HashSet<Operation>> Operations = new Dictionary<Unary, HashSet<Operation>>();
 
         public static IEnumerable<Unit> GetFreeUnits(Unary unary)
@@ -47,6 +47,8 @@ namespace Unary
             Operations[Unary].Add(this);
         }
 
+        public abstract void Update();
+
         public void AddUnit(Unit unit)
         {
             foreach (var op in Operations[Unary])
@@ -55,11 +57,22 @@ namespace Unary
             }
 
             _Units.Add(unit);
+            Operations[Unary].Add(this);
         }
 
         public void RemoveUnit(Unit unit)
         {
             _Units.Remove(unit);
+
+            if (_Units.Count == 0)
+            {
+                Operations[Unary].Remove(this);
+            }
+        }
+
+        internal void UpdateInternal()
+        {
+            Update();
         }
     }
 }

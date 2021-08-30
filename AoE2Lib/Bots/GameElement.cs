@@ -56,7 +56,7 @@ namespace AoE2Lib.Bots
 
             var gametime = Bot.GameState.GameTime;
             LastUpdateGameTime = gametime;
-            if (FirstUpdateGameTime == TimeSpan.MinValue)
+            if (TimesUpdated == 0)
             {
                 FirstUpdateGameTime = gametime;
             }
