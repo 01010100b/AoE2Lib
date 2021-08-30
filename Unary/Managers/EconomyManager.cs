@@ -109,7 +109,7 @@ namespace Unary.Managers
 
             if (Unary.GameState.GetStrategicNumber(StrategicNumber.WOOD_GATHERER_PERCENTAGE) > 0)
             {
-                if (Unary.GameState.GetResourceFound(Resource.WOOD) && Unary.GameState.GetDropsiteMinDistance(Resource.WOOD) >= 2 && Unary.GameState.GetDropsiteMinDistance(Resource.WOOD) < 200)
+                if (Unary.GameState.GetResourceFound(Resource.WOOD) && Unary.GameState.GetDropsiteMinDistance(Resource.WOOD) > 2 && Unary.GameState.GetDropsiteMinDistance(Resource.WOOD) < 200)
                 {
                     Unary.Log.Info("Building lumber camp");
                     lumber_camp.BuildNormal(100, 1, Priority.DROPSITE);

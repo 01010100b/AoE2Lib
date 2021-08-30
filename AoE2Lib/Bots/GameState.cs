@@ -531,9 +531,19 @@ namespace AoE2Lib.Bots
                 }
 
                 var range = Map.Width + Map.Height;
-                if (Bot.Rng.NextDouble() < 0.5)
+                if (player.PlayerNumber == 0)
                 {
-                    range = 10;
+                    if (Bot.Rng.NextDouble() < 0.8)
+                    {
+                        range = 10;
+                    }
+                }
+                else
+                {
+                    if (Bot.Rng.NextDouble() < 0.1)
+                    {
+                        range = 10;
+                    }
                 }
 
                 player.FindUnits(position, range);

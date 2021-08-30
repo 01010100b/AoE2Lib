@@ -39,7 +39,7 @@ namespace AoE2Lib.Bots.GameElements
             }
         }
 
-        public void TargetUnit(Unit target, UnitAction? action, UnitFormation? formation, UnitStance? stance, int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue, Unit backup = null)
+        public void TargetUnit(Unit target, UnitAction? action = null, UnitFormation? formation = null, UnitStance? stance = null, int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue, Unit backup = null)
         {
             if (backup == null)
             {

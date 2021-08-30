@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using Unary.Operations;
 
 namespace Unary.Managers
 {
@@ -13,6 +14,9 @@ namespace Unary.Managers
     {
         private static readonly Point[] TC_FARM_DELTAS = new[] { new Point(2, 3), new Point(-1, 3), new Point(3, 0), new Point(3, -3), new Point(-4, 2), new Point(-4, -1), new Point(0, -4), new Point(-3, -4) };
         private static readonly Point[] MILL_FARM_DELTAS = new[] { new Point(-1, 2), new Point(2, -1), new Point(2, 2), new Point(-3, -1), new Point(-1, -3) };
+
+        private readonly HashSet<Unit> BuildingFoundations = new HashSet<Unit>();
+        private readonly List<BuildOperation> BuildOperations = new List<BuildOperation>();
 
         public BuildingManager(Unary unary) : base(unary)
         {
@@ -60,27 +64,28 @@ namespace Unary.Managers
             Unary.GameState.SetStrategicNumber(StrategicNumber.ENABLE_NEW_BUILDING_SYSTEM, 1);
             Unary.GameState.SetStrategicNumber(StrategicNumber.INITIAL_EXPLORATION_REQUIRED, 0);
 
-            Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, 4);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, 1);
             Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 20);
             if (Unary.GameState.GetTechnology(101).State == ResearchState.COMPLETE)
             {
-                Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, 8);
+                Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, 1);
                 Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 25);
             }
 
             if (Unary.GameState.GetTechnology(102).State == ResearchState.COMPLETE)
             {
-                Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, 12);
+                Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, 1);
                 Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 30);
             }
 
             if (Unary.GameState.GetTechnology(103).State == ResearchState.COMPLETE)
             {
-                Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, 16);
+                Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, 1);
                 Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 35);
             }
 
             BuildHouses();
+            DoBuildOperations();
         }
 
         private void BuildHouses()
@@ -104,6 +109,92 @@ namespace Unary.Managers
             {
                 house.BuildNormal(1000, pending, Priority.HOUSING);
             }
+        }
+
+        private void DoBuildOperations()
+        {
+            // available foundations
+
+            foreach (var unit in Unary.GameState.MyPlayer.Units.Where(u => u.Targetable && u[ObjectData.STATUS] == 0))
+            {
+                if (unit[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || unit[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING)
+                {
+                    BuildingFoundations.Add(unit);
+                }
+            }
+
+            var units = new HashSet<Unit>();
+            foreach (var f in BuildingFoundations)
+            {
+                units.Add(f);
+            }
+
+            foreach (var foundation in units)
+            {
+                if (foundation.Targetable == false || foundation[ObjectData.STATUS] != 0)
+                {
+                    BuildingFoundations.Remove(foundation);
+                }
+            }
+
+            // check for finished ops
+
+            units.Clear();
+            foreach (var op in BuildOperations)
+            {
+                if (op.Building.Targetable == false || op.Building[ObjectData.STATUS] != 0)
+                {
+                    foreach (var unit in op.Units)
+                    {
+                        op.RemoveUnit(unit);
+                        units.Add(unit);
+                    }
+                }
+            }
+
+            BuildOperations.RemoveAll(op => op.Count == 0);
+
+            // assign new ops
+
+            while (BuildOperations.Count < 5)
+            {
+                if (BuildingFoundations.Count == 0)
+                {
+                    break;
+                }
+
+                if (units.Count == 0)
+                {
+                    foreach (var unit in Operation.GetFreeUnits(Unary).Where(u => u.Targetable && u[ObjectData.CMDID] == (int)CmdId.VILLAGER))
+                    {
+                        units.Add(unit);
+                    }
+                }
+
+                if (units.Count == 0)
+                {
+                    Unary.Log.Info($"Could not find enough builders");
+                    break;
+                }
+
+                var builder = units.First();
+                var foundation = BuildingFoundations.First();
+                foreach (var f in BuildingFoundations)
+                {
+                    if (f.Position.DistanceTo(builder.Position) < foundation.Position.DistanceTo(builder.Position))
+                    {
+                        foundation = f;
+                    }
+                }
+
+                var op = new BuildOperation(Unary) { Building = foundation };
+                BuildOperations.Add(op);
+
+                BuildingFoundations.Remove(foundation);
+                units.Remove(builder);
+            }
+
+            Unary.Log.Info($"Build operations: {BuildOperations.Count} foundations: {BuildingFoundations.Count}");
         }
 
         private IEnumerable<Tile> GetFarmPlacements()
@@ -137,13 +228,9 @@ namespace Unary.Managers
                 var x = site.Position.PointX + delta.X;
                 var y = site.Position.PointY + delta.Y;
 
-                try
+                if (x >= 0 && x < Unary.GameState.Map.Width && y >= 0 && y < Unary.GameState.Map.Height)
                 {
                     yield return Unary.GameState.Map.GetTile(x, y);
-                }
-                finally
-                {
-
                 }
             }
         }

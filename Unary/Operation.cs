@@ -32,11 +32,17 @@ namespace Unary
         }
 
         public List<Unit> Units => _Units.ToList();
+        public int Count => _Units.Count;
         private readonly Unary Unary;
         private readonly HashSet<Unit> _Units = new HashSet<Unit>();
 
         public Operation(Unary unary)
         {
+            if (unary == null)
+            {
+                throw new ArgumentNullException(nameof(unary));
+            }
+
             Unary = unary;
 
             if (!Operations.ContainsKey(Unary))
@@ -72,6 +78,16 @@ namespace Unary
 
         internal void UpdateInternal()
         {
+            if (_Units.Count == 0)
+            {
+                return;
+            }
+
+            foreach (var unit in _Units)
+            {
+                unit.RequestUpdate();
+            }
+
             Update();
         }
     }

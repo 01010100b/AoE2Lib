@@ -82,35 +82,40 @@ namespace AoE2Lib.Bots
 
             while (!Stopping)
             {
-                sw.Restart();
-                commands.Clear();
-
                 // update
 
-                var bot_command = new Command();
-                bot_command.Add(new UpPendingPlacement() { InSnBuildingId = SN_PENDING_PLACEMENT }, "==", 0,
+                sw.Restart();
+
+                GameState.Update();
+
+                commands.Clear();
+
+                var first_command = new Command();
+                first_command.Add(new UpPendingPlacement() { InSnBuildingId = SN_PENDING_PLACEMENT }, "==", 0,
                     new Protos.Expert.Action.SetStrategicNumber() { InConstSnId = SN_PENDING_PLACEMENT, InConstValue = 0 });
 
-                commands.Add(bot_command);
-
+                commands.Add(first_command);
                 commands.AddRange(Update().Where(c => c.HasMessages));
                 commands.AddRange(GameState.RequestUpdate());
-                
-                // don't send commands if it's been more than 5 seconds since previous update
 
                 if ((DateTime.UtcNow - previous) > TimeSpan.FromSeconds(5))
                 {
+                    // don't send commands if it's been more than 5 seconds since previous update
+
                     foreach (var command in commands)
                     {
                         command.Reset();
                     }
 
                     commands.Clear();
-
                     Log.Debug("Clearing commands (more than 5 seconds since previous)");
                 }
 
-                // set up api call
+                Log.Debug($"Update took {sw.ElapsedMilliseconds} ms");
+
+                // make the call
+
+                sw.Restart();
 
                 var commandlist = new CommandList() { PlayerNumber = PlayerNumber };
 
@@ -121,12 +126,6 @@ namespace AoE2Lib.Bots
                         commandlist.Commands.Add(Any.Pack(message));
                     }
                 }
-
-                Log.Debug($"RequestUpdate took {sw.ElapsedMilliseconds} ms");
-
-                // make the call
-
-                sw.Restart();
 
                 CommandResultList resultlist;
                 try
@@ -141,8 +140,6 @@ namespace AoE2Lib.Bots
                     resultlist = null;
                 }
 
-                Log.Debug($"Call took {sw.ElapsedMilliseconds} ms");
-
                 if (resultlist == null)
                 {
                     foreach (var command in commands)
@@ -152,9 +149,6 @@ namespace AoE2Lib.Bots
                 }
                 else
                 {
-                    // update the results to the commands
-
-                    sw.Restart();
                     Debug.Assert(commands.Sum(c => c.Messages.Count) == resultlist.Results.Count);
 
                     var offset = 0;
@@ -170,16 +164,13 @@ namespace AoE2Lib.Bots
                         offset += command.Responses.Count;
                     }
 
-                    // perform update
-
-                    GameState.Update();
                     previous = DateTime.UtcNow;
-                    Log.Debug($"Update took {sw.ElapsedMilliseconds} ms");
                 }
+
+                Log.Debug($"Call took {sw.ElapsedMilliseconds} ms");
             }
 
             channel.ShutdownAsync().Wait();
-
             Log.Info($"Stopped");
         }
     }
