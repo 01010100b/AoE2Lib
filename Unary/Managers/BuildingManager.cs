@@ -11,6 +11,9 @@ namespace Unary.Managers
 {
     class BuildingManager : Manager
     {
+        private static readonly Point[] TC_FARM_DELTAS = new[] { new Point(2, 3), new Point(-1, 3), new Point(3, 0), new Point(3, -3), new Point(-4, 2), new Point(-4, -1), new Point(0, -4), new Point(-3, -4) };
+        private static readonly Point[] MILL_FARM_DELTAS = new[] { new Point(-1, 2), new Point(2, -1), new Point(2, 2), new Point(-3, -1), new Point(-1, -3) };
+
         public BuildingManager(Unary unary) : base(unary)
         {
 
@@ -109,7 +112,7 @@ namespace Unary.Managers
 
             foreach (var unit in Unary.GameState.MyPlayer.Units.Where(u => u.Targetable))
             {
-                if (unit[ObjectData.BASE_TYPE] == 109)
+                if (unit[ObjectData.BASE_TYPE] == 109 || unit[ObjectData.BASE_TYPE] == 68)
                 {
                     sites.Add(unit);
                 }
@@ -123,7 +126,11 @@ namespace Unary.Managers
             }
 
             var site = sites[Unary.Rng.Next(sites.Count)];
-            var deltas = new[] { new Point(3, 3) };
+            var deltas = TC_FARM_DELTAS;
+            if (site[ObjectData.BASE_TYPE] == 68)
+            {
+                deltas = MILL_FARM_DELTAS;
+            }
 
             foreach (var delta in deltas)
             {

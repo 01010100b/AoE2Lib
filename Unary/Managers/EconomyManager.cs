@@ -109,23 +109,10 @@ namespace Unary.Managers
 
             if (Unary.GameState.GetStrategicNumber(StrategicNumber.WOOD_GATHERER_PERCENTAGE) > 0)
             {
-                if (Unary.GameState.GetResourceFound(Resource.WOOD) && Unary.GameState.GetDropsiteMinDistance(Resource.WOOD) > 2 && Unary.GameState.GetDropsiteMinDistance(Resource.WOOD) < 200)
+                if (Unary.GameState.GetResourceFound(Resource.WOOD) && Unary.GameState.GetDropsiteMinDistance(Resource.WOOD) >= 2 && Unary.GameState.GetDropsiteMinDistance(Resource.WOOD) < 200)
                 {
-                    var trees = Unary.GameState.GetPlayer(0).Units.Where(u => u[ObjectData.CLASS] == (int)UnitClass.Tree).ToList();
-
-                    if (trees.Count > 10)
-                    {
-                        var pos = Unary.GameState.MyPosition;
-                        trees.Sort((a, b) => a.Position.DistanceTo(pos).CompareTo(b.Position.DistanceTo(pos)));
-
-                        var tree = trees[10];
-
-                        var tiles = Unary.GameState.Map.GetTilesInRange(tree.Position.PointX, tree.Position.PointY, 10).ToList();
-                        tiles.Sort((a, b) => a.Position.DistanceTo(tree.Position).CompareTo(b.Position.DistanceTo(tree.Position)));
-
-                        Unary.Log.Info("Building lumber camp");
-                        lumber_camp.BuildLine(tiles, 100, 1, Priority.DROPSITE);
-                    }
+                    Unary.Log.Info("Building lumber camp");
+                    lumber_camp.BuildNormal(100, 1, Priority.DROPSITE);
                 }
             }
 
@@ -138,7 +125,7 @@ namespace Unary.Managers
             {
                 if (mill.CountTotal < 1)
                 {
-                    if (Unary.GameState.GetResourceFound(Resource.FOOD) && Unary.GameState.GetDropsiteMinDistance(Resource.FOOD) > 2 && Unary.GameState.GetDropsiteMinDistance(Resource.FOOD) < 200)
+                    if (Unary.GameState.MyPlayer.CivilianPopulation >= 11 && Unary.GameState.GetResourceFound(Resource.FOOD) && Unary.GameState.GetDropsiteMinDistance(Resource.FOOD) < 200)
                     {
                         Unary.Log.Info("Building mill");
                         mill.BuildNormal(100, 1, Priority.DROPSITE);
@@ -154,10 +141,9 @@ namespace Unary.Managers
                     {
                         Unary.Log.Info("Building farm");
                         farm.BuildLine(Unary.BuildingManager.GetBuildingPlacements(farm), needed_farms, 3, Priority.FARM);
-                        //farm.BuildNormal(needed_farms, 3, Priority.FARM);
                     }
 
-                    var needed_mills = 1 + ((needed_farms - 7) / 5);
+                    var needed_mills = 1 + ((needed_farms - 8) / 4);
                     if (mill.CountTotal < needed_mills)
                     {
                         Unary.Log.Info("Building mill");
