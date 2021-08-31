@@ -36,6 +36,7 @@ namespace Unary
             this.TextMessages = new System.Windows.Forms.TextBox();
             this.ButtonStop = new System.Windows.Forms.Button();
             this.Label1 = new System.Windows.Forms.Label();
+            this.ButtonDev = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // TextProcess
@@ -106,11 +107,22 @@ namespace Unary
             this.Label1.TabIndex = 6;
             this.Label1.Text = "may take up to 5 seconds";
             // 
+            // ButtonDev
+            // 
+            this.ButtonDev.Location = new System.Drawing.Point(502, 30);
+            this.ButtonDev.Name = "ButtonDev";
+            this.ButtonDev.Size = new System.Drawing.Size(77, 29);
+            this.ButtonDev.TabIndex = 7;
+            this.ButtonDev.Text = "Simulations";
+            this.ButtonDev.UseVisualStyleBackColor = true;
+            this.ButtonDev.Click += new System.EventHandler(this.ButtonDev_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ButtonDev);
             this.Controls.Add(this.Label1);
             this.Controls.Add(this.ButtonStop);
             this.Controls.Add(this.TextMessages);
@@ -134,6 +146,7 @@ namespace Unary
         private System.Windows.Forms.TextBox TextMessages;
         private System.Windows.Forms.Button ButtonStop;
         private System.Windows.Forms.Label Label1;
+        private System.Windows.Forms.Button ButtonDev;
     }
 }
 

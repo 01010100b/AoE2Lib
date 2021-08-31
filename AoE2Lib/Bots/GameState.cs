@@ -30,7 +30,7 @@ namespace AoE2Lib.Bots
         private readonly Dictionary<StrategicNumber, int> StrategicNumbers = new Dictionary<StrategicNumber, int>();
         private readonly List<ProductionTask> ProductionTasks = new List<ProductionTask>();
         
-        private readonly List<Command> Commands = new List<Command>();
+        private readonly HashSet<Command> Commands = new HashSet<Command>();
         private readonly List<Command> FindCommands = new List<Command>();
         private readonly Command CommandInfo = new Command();
 

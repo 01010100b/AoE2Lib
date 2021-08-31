@@ -86,5 +86,11 @@ namespace Unary
             lines.Add(message);
             TextMessages.Lines = lines.ToArray();
         }
+
+        private void ButtonDev_Click(object sender, EventArgs e)
+        {
+            var form = new FormSimulations();
+            form.Show();
+        }
     }
 }

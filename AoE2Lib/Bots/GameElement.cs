@@ -28,6 +28,8 @@ namespace AoE2Lib.Bots
         {
             if (Command.HasMessages)
             {
+                Bot.GameState.AddCommand(Command);
+
                 return;
             }
 
@@ -48,6 +50,8 @@ namespace AoE2Lib.Bots
         {
             if (!Command.HasResponses)
             {
+                Command.Reset();
+
                 return;
             }
 
