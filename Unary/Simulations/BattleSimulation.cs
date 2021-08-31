@@ -128,9 +128,11 @@ namespace Unary.Simulations
                 kvp.Value.Update(this, kvp.Key);
             }
 
+            // units
+
             foreach (var unit in Units.Where(u => u.CurrentHitpoints > 0))
             {
-                // unit
+                
 
                 unit.NextAttack -= time;
                 if (unit.NextAttack < TimeSpan.Zero)
@@ -195,9 +197,11 @@ namespace Unary.Simulations
                 }
             }
 
+            // projectiles
+
             foreach (var unit in Units.Where(u => u.CurrentHitpoints > 0))
             {
-                // projectile
+                
 
                 if (unit.HasProjectileInFlight)
                 {
