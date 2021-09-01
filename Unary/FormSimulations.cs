@@ -36,9 +36,15 @@ namespace Unary
             BattleSimulation.SetPolicy(0, red_policy);
             BattleSimulation.SetPolicy(1, blue_policy);
             
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 10; i++)
             {
-                var unit = CreateUnit(i % 2);
+                var unit = CreateUnit(0);
+                BattleSimulation.AddUnit(unit);
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                var unit = CreateUnit(1);
                 BattleSimulation.AddUnit(unit);
             }
         }
@@ -63,7 +69,7 @@ namespace Unary
                 return;
             }
 
-            BattleSimulation.Tick(TimeSpan.FromMilliseconds(2 * TimerTick.Interval));
+            BattleSimulation.Tick(TimeSpan.FromMilliseconds(TimerTick.Interval));
         }
 
         private void FormSimulations_Paint(object sender, PaintEventArgs e)
@@ -137,6 +143,7 @@ namespace Unary
         {
             Invoke(new Action(() =>
             {
+                Tick();
                 Tick();
                 Refresh();
 

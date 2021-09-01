@@ -12,6 +12,9 @@ namespace Unary.Simulations
 
         private readonly Dictionary<BattleUnit, BattleUnit> TargetAssignments = new Dictionary<BattleUnit, BattleUnit>();
         private readonly Random Rng = new Random();
+        private BattleUnit FocusTarget { get; set; }
+        private BattleUnit FocusBackup { get; set; }
+        private double TargetRegisteredDamage { get; set; }
 
         public void Restart()
         {
@@ -47,7 +50,7 @@ namespace Unary.Simulations
 
             foreach (var unit in units)
             {
-                if (unit.CurrentHitpoints <= 0)
+                if (!unit.Alive)
                 {
                     TargetAssignments.Remove(unit);
 
@@ -55,26 +58,27 @@ namespace Unary.Simulations
                 }
 
                 var target = TargetAssignments[unit];
-                if (target == null || target.CurrentHitpoints <= 0)
+                if (FocusFire)
                 {
-                    target = enemies[0];
-                    for (int i = 1; i < enemies.Count; i++)
-                    {
-                        var t = enemies[i];
-                        if (FocusFire)
-                        {
-                            if (t.GetHashCode() < target.GetHashCode())
-                            {
-                                target = t;
-                            }
-                        }
-                        else if (t.CurrentPosition.DistanceTo(unit.CurrentPosition) < target.CurrentPosition.DistanceTo(unit.CurrentPosition))
-                        {
-                            target = t;
-                        }
-                    }
+                    target = FocusTarget;
+                }
 
-                    TargetAssignments[unit] = target;
+                if (target == null || !target.Alive)
+                {
+                    enemies.Sort((a, b) => a.CurrentPosition.DistanceTo(unit.CurrentPosition).CompareTo(b.CurrentPosition.DistanceTo(unit.CurrentPosition)));
+
+                    if (FocusFire)
+                    {
+                        FocusTarget = enemies[0];
+
+                        target = FocusTarget;
+                    }
+                    else
+                    {
+                        target = enemies[Rng.Next(enemies.Count)];
+                        TargetAssignments[unit] = target;
+                    }
+                    
                 }
 
                 if (target.CurrentPosition.DistanceTo(unit.CurrentPosition) <= unit.Range)

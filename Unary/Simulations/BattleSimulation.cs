@@ -22,6 +22,7 @@ namespace Unary.Simulations
             public readonly Position InitialPosition;
             public readonly Func<BattleUnit, double> GetDamage;
 
+            public bool Alive => (int)Math.Round(CurrentHitpoints) > 0;
             public Position CurrentPosition { get; internal set; }
             public double CurrentHitpoints { get; internal set; }
             public TimeSpan NextAttack { get; internal set; }
@@ -152,7 +153,7 @@ namespace Unary.Simulations
 
             // units
 
-            foreach (var unit in Units.Where(u => u.CurrentHitpoints > 0))
+            foreach (var unit in Units.Where(u => u.Alive))
             {
                 unit.NextAttack -= time;
                 if (unit.NextAttack < TimeSpan.Zero)
@@ -160,7 +161,7 @@ namespace Unary.Simulations
                     unit.NextAttack = TimeSpan.Zero;
                 }
 
-                if (unit.Target != null && unit.Target.CurrentHitpoints <= 0)
+                if (unit.Target != null && !unit.Target.Alive)
                 {
                     unit.Attack(null);
                 }
@@ -173,6 +174,8 @@ namespace Unary.Simulations
                         unit.ProjectilePosition = unit.CurrentPosition;
                         unit.ProjectileTarget = unit.Target.CurrentPosition;
                         unit.NextAttack = unit.ReloadTime;
+
+                        //Debug.WriteLine($"player {unit.Player} unit {unit.GetHashCode()} attack {unit.Target.GetHashCode()}");
                     }
                 }
                 else
@@ -225,7 +228,7 @@ namespace Unary.Simulations
 
             // projectiles
 
-            foreach (var unit in Units.Where(u => u.CurrentHitpoints > 0))
+            foreach (var unit in Units.Where(u => u.Alive))
             {
                 if (unit.HasProjectileInFlight)
                 {
@@ -244,6 +247,8 @@ namespace Unary.Simulations
                     {
                         collider.CurrentHitpoints -= unit.GetDamage(collider);
                         unit.HasProjectileInFlight = false;
+
+                        //Debug.WriteLine($"player {collider.Player} unit {collider.GetHashCode()} was hit by {unit.GetHashCode()} hp {collider.CurrentHitpoints:N1}");
                     }
                     else
                     {
@@ -260,7 +265,7 @@ namespace Unary.Simulations
 
         public IEnumerable<BattleUnit> GetUnits(int player = -1)
         {
-            return Units.Where(u => (player == -1 || u.Player == player) && u.CurrentHitpoints > 0);
+            return Units.Where(u => (player == -1 || u.Player == player) && u.Alive);
         }
 
         private void SetUnitPosition(BattleUnit unit, Position position)
@@ -296,7 +301,7 @@ namespace Unary.Simulations
 
                     foreach (var other in MapUnits[point])
                     {
-                        if (other == unit || other.CurrentHitpoints <= 0)
+                        if (other == unit || other.Alive == false)
                         {
                             continue;
                         }
@@ -310,11 +315,12 @@ namespace Unary.Simulations
                         if (!projectile)
                         {
                             radius += unit.Radius;
+                            radius *= 2;
                         }
 
                         if (position.DistanceTo(other.CurrentPosition) <= radius)
                         {
-                            return unit;
+                            return other;
                         }
                     }
                 }
