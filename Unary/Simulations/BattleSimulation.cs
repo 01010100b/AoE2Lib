@@ -122,9 +122,6 @@ namespace Unary.Simulations
             {
                 unit.CurrentHitpoints = unit.MaxHitpoints;
                 SetUnitPosition(unit, unit.InitialPosition);
-                unit.NextAttack = TimeSpan.Zero;
-                unit.Attack(null);
-                unit.HasProjectileInFlight = false;
             }
 
             foreach (var unit in Units)
@@ -139,6 +136,11 @@ namespace Unary.Simulations
 
                     SetUnitPosition(unit, pos);
                 }
+
+                unit.NextAttack = TimeSpan.Zero;
+                unit.Attack(null);
+                unit.Move(unit.CurrentPosition);
+                unit.HasProjectileInFlight = false;
             }
         }
 
@@ -315,7 +317,7 @@ namespace Unary.Simulations
                         if (!projectile)
                         {
                             radius += unit.Radius;
-                            radius *= 2;
+                            radius *= 1;
                         }
 
                         if (position.DistanceTo(other.CurrentPosition) <= radius)

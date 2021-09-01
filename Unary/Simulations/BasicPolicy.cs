@@ -78,14 +78,37 @@ namespace Unary.Simulations
                         target = enemies[Rng.Next(enemies.Count)];
                         TargetAssignments[unit] = target;
                     }
-                    
                 }
 
-                if (target.CurrentPosition.DistanceTo(unit.CurrentPosition) <= unit.Range)
+                if (unit.NextAttack <= TimeSpan.Zero)
                 {
-                    unit.Attack(target);
+                    if (target.CurrentPosition.DistanceTo(unit.CurrentPosition) <= unit.Range)
+                    {
+                        unit.Attack(target);
+                    }
+                    else if (Rng.NextDouble() < 0.5)
+                    {
+                        var btarget = enemies[Rng.Next(enemies.Count)];
+                        for (int i = 0; i < 3; i++)
+                        {
+                            var t = enemies[Rng.Next(enemies.Count)];
+                            if (t.CurrentPosition.DistanceTo(unit.CurrentPosition) < btarget.CurrentPosition.DistanceTo(unit.CurrentPosition))
+                            {
+                                btarget = t;
+                            }
+                        }
+
+                        if (btarget.CurrentPosition.DistanceTo(unit.CurrentPosition) <= unit.Range)
+                        {
+                            unit.Attack(btarget);
+                        }
+                        else if (target.CurrentPosition.DistanceTo(unit.CurrentPosition) > unit.Range)
+                        {
+                            unit.Move(target.CurrentPosition);
+                        }
+                    }
                 }
-                else
+                else if (target.CurrentPosition.DistanceTo(unit.CurrentPosition) > unit.Range)
                 {
                     unit.Move(target.CurrentPosition);
                 }
