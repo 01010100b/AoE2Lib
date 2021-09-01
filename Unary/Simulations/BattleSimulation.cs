@@ -93,6 +93,14 @@ namespace Unary.Simulations
         public void AddUnit(BattleUnit unit)
         {
             Units.Add(unit);
+
+            var point = new Point(unit.CurrentPosition.PointX, unit.CurrentPosition.PointY);
+            if (!MapUnits.ContainsKey(point))
+            {
+                MapUnits.Add(point, new HashSet<BattleUnit>());
+            }
+
+            MapUnits[point].Add(unit);
         }
 
         public void Restart()
@@ -117,6 +125,20 @@ namespace Unary.Simulations
                 unit.Attack(null);
                 unit.HasProjectileInFlight = false;
             }
+
+            foreach (var unit in Units)
+            {
+                while (GetCollision(unit, unit.CurrentPosition, false) != null)
+                {
+                    var pos = unit.CurrentPosition + new Position((Rng.NextDouble() * 4) - 2, (Rng.NextDouble() * 4) - 2);
+                    if (IsObstructed(pos))
+                    {
+                        pos = unit.CurrentPosition;
+                    }
+
+                    SetUnitPosition(unit, pos);
+                }
+            }
         }
 
         public void Tick(TimeSpan time)
@@ -132,8 +154,6 @@ namespace Unary.Simulations
 
             foreach (var unit in Units.Where(u => u.CurrentHitpoints > 0))
             {
-                
-
                 unit.NextAttack -= time;
                 if (unit.NextAttack < TimeSpan.Zero)
                 {
@@ -173,12 +193,7 @@ namespace Unary.Simulations
                         if (IsObstructed(next_pos) || GetCollision(unit, next_pos, false) != null)
                         {
                             next_pos -= unit.CurrentPosition;
-                            var rotate = 0.6 * Math.PI;
-                            if (unit.GetHashCode() % 2 == 0)
-                            {
-                                //rotate *= -1;
-                            }
-                            next_pos = next_pos.Rotate(rotate);
+                            next_pos = next_pos.Rotate(0.6 * Math.PI);
                             if (Rng.NextDouble() < 0.1)
                             {
                                 next_pos = next_pos.Rotate(Rng.NextDouble() * 2 * Math.PI);
@@ -195,14 +210,23 @@ namespace Unary.Simulations
                         }
                     }
                 }
+
+                while (GetCollision(unit, unit.CurrentPosition, false) != null)
+                {
+                    var pos = unit.CurrentPosition + new Position((Rng.NextDouble() * 4) - 2, (Rng.NextDouble() * 4) - 2);
+                    if (IsObstructed(pos))
+                    {
+                        pos = unit.CurrentPosition;
+                    }
+
+                    SetUnitPosition(unit, pos);
+                }
             }
 
             // projectiles
 
             foreach (var unit in Units.Where(u => u.CurrentHitpoints > 0))
             {
-                
-
                 if (unit.HasProjectileInFlight)
                 {
                     var next_pos = unit.ProjectileTarget;
@@ -249,6 +273,10 @@ namespace Unary.Simulations
 
             MapUnits[point].Remove(unit);
             point = new Point(position.PointX, position.PointY);
+            if (!MapUnits.ContainsKey(point))
+            {
+                MapUnits.Add(point, new HashSet<BattleUnit>());
+            }
             MapUnits[point].Add(unit);
 
             unit.CurrentPosition = position;
