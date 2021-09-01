@@ -20,19 +20,18 @@ namespace Unary.Simulations
             public readonly TimeSpan ReloadTime;
             public readonly double Range;
             public readonly Position InitialPosition;
-            public readonly Func<BattleUnit, double> GetDamage;
 
             public bool Alive => (int)Math.Round(CurrentHitpoints) > 0;
             public Position CurrentPosition { get; internal set; }
             public double CurrentHitpoints { get; internal set; }
             public TimeSpan NextAttack { get; internal set; }
             public BattleUnit Target { get; private set; }
-            public Position MoveTo { get; private set; }
+            public Position MoveTarget { get; private set; }
             public bool HasProjectileInFlight { get; internal set; }
             public Position ProjectilePosition { get; internal set; }
             public Position ProjectileTarget { get; internal set; }
 
-            public BattleUnit(int player, double max_hitpoints, double radius, double speed, double projectile_speed, TimeSpan reload_time, double range, Position position, Func<BattleUnit, double> get_damage)
+            public BattleUnit(int player, double max_hitpoints, double radius, double speed, double projectile_speed, TimeSpan reload_time, double range, Position position)
             {
                 Player = player;
                 MaxHitpoints = max_hitpoints;
@@ -42,7 +41,6 @@ namespace Unary.Simulations
                 ReloadTime = reload_time;
                 Range = range;
                 InitialPosition = position;
-                GetDamage = get_damage;
 
                 CurrentPosition = position;
                 CurrentHitpoints = MaxHitpoints;
@@ -54,13 +52,13 @@ namespace Unary.Simulations
 
             public void Attack(BattleUnit target)
             {
-                MoveTo = CurrentPosition;
+                MoveTarget = CurrentPosition;
                 Target = target;
             }
 
-            public void Move(Position position)
+            public void MoveTo(Position position)
             {
-                MoveTo = position;
+                MoveTarget = position;
                 Target = null;
             }
         }
@@ -73,17 +71,21 @@ namespace Unary.Simulations
 
         public readonly Func<Position, double> GetHeight;
         public readonly Func<Position, bool> IsObstructed;
+        public readonly Func<BattleUnit, BattleUnit, double> GetDamage;
+        public TimeSpan GameTimeBetweenPolicyUpdates { get; private set; } = TimeSpan.FromSeconds(0.7);
         public TimeSpan GameTime { get; private set; }
+        public TimeSpan GameTimeSincePolicyUpdate { get; private set; }
 
         private readonly Dictionary<int, IBattlePolicy> PlayerPolicies = new Dictionary<int, IBattlePolicy>();
         private readonly List<BattleUnit> Units = new List<BattleUnit>();
         private readonly Dictionary<Point, HashSet<BattleUnit>> MapUnits = new Dictionary<Point, HashSet<BattleUnit>>();
         private readonly Random Rng = new Random();
 
-        public BattleSimulation(Func<Position, double> get_height, Func<Position, bool> is_obstructed)
+        public BattleSimulation(Func<Position, double> get_height, Func<Position, bool> is_obstructed, Func<BattleUnit, BattleUnit, double> get_damage)
         {
             GetHeight = get_height;
             IsObstructed = is_obstructed;
+            GetDamage = get_damage;
         }
 
         public void SetPolicy(int player, IBattlePolicy policy)
@@ -94,19 +96,12 @@ namespace Unary.Simulations
         public void AddUnit(BattleUnit unit)
         {
             Units.Add(unit);
-
-            var point = new Point(unit.CurrentPosition.PointX, unit.CurrentPosition.PointY);
-            if (!MapUnits.ContainsKey(point))
-            {
-                MapUnits.Add(point, new HashSet<BattleUnit>());
-            }
-
-            MapUnits[point].Add(unit);
         }
 
         public void Restart()
         {
             GameTime = TimeSpan.Zero;
+            GameTimeSincePolicyUpdate = TimeSpan.FromDays(1);
 
             foreach (var policy in PlayerPolicies.Values)
             {
@@ -139,18 +134,29 @@ namespace Unary.Simulations
 
                 unit.NextAttack = TimeSpan.Zero;
                 unit.Attack(null);
-                unit.Move(unit.CurrentPosition);
+                unit.MoveTo(unit.CurrentPosition);
                 unit.HasProjectileInFlight = false;
             }
         }
 
         public void Tick(TimeSpan time)
         {
-            GameTime += time;
-
-            foreach (var kvp in PlayerPolicies)
+            if (MapUnits.Count == 0)
             {
-                kvp.Value.Update(this, kvp.Key);
+                Restart();
+            }
+
+            GameTime += time;
+            GameTimeSincePolicyUpdate += time;
+
+            if (GameTimeSincePolicyUpdate > GameTimeBetweenPolicyUpdates)
+            {
+                foreach (var kvp in PlayerPolicies)
+                {
+                    kvp.Value.Update(this, kvp.Key);
+                }
+
+                GameTimeSincePolicyUpdate = TimeSpan.FromMilliseconds(100 * Rng.NextDouble());
             }
 
             // units
@@ -168,6 +174,8 @@ namespace Unary.Simulations
                     unit.Attack(null);
                 }
 
+                var next_pos = unit.CurrentPosition;
+
                 if (unit.Target != null)
                 {
                     if (unit.NextAttack <= TimeSpan.Zero && unit.CurrentPosition.DistanceTo(unit.Target.CurrentPosition) <= unit.Range)
@@ -182,37 +190,37 @@ namespace Unary.Simulations
                 }
                 else
                 {
-                    if (unit.MoveTo.DistanceTo(unit.CurrentPosition) > 0.01)
+                    if (unit.MoveTarget.DistanceTo(unit.CurrentPosition) > 0.01)
                     {
-                        var next_pos = unit.MoveTo;
+                        next_pos = unit.MoveTarget;
+                    }
+                }
 
-                        var dist = unit.Speed * time.TotalSeconds;
-                        if (unit.MoveTo.DistanceTo(unit.CurrentPosition) > dist)
-                        {
-                            next_pos = unit.MoveTo - unit.CurrentPosition;
-                            next_pos /= next_pos.Norm;
-                            next_pos *= dist;
-                            next_pos += unit.CurrentPosition;
-                        }
+                if (next_pos.DistanceTo(unit.CurrentPosition) > 0.01)
+                {
+                    var dist = unit.Speed * time.TotalSeconds;
+                    if (next_pos.DistanceTo(unit.CurrentPosition) > dist)
+                    {
+                        next_pos -= unit.CurrentPosition;
+                        next_pos /= next_pos.Norm;
+                        next_pos *= dist;
+                        next_pos += unit.CurrentPosition;
+                    }
 
-                        if (IsObstructed(next_pos) || GetCollision(unit, next_pos, false) != null)
+                    if (IsObstructed(next_pos) || GetCollision(unit, next_pos, false) != null)
+                    {
+                        next_pos -= unit.CurrentPosition;
+                        next_pos = next_pos.Rotate(0.6 * Math.PI);
+                        if (Rng.NextDouble() < 0.1)
                         {
-                            next_pos -= unit.CurrentPosition;
-                            next_pos = next_pos.Rotate(0.6 * Math.PI);
-                            if (Rng.NextDouble() < 0.1)
-                            {
-                                next_pos = next_pos.Rotate(Rng.NextDouble() * 2 * Math.PI);
-                            }
-                            next_pos += unit.CurrentPosition;
+                            next_pos = next_pos.Rotate(Rng.NextDouble() * 2 * Math.PI);
                         }
+                        next_pos += unit.CurrentPosition;
+                    }
 
-                        if (!IsObstructed(next_pos))
-                        {
-                            if (GetCollision(unit, next_pos, false) == null)
-                            {
-                                SetUnitPosition(unit, next_pos);
-                            }
-                        }
+                    if (IsObstructed(next_pos) == false && GetCollision(unit, next_pos, false) == null)
+                    {
+                        SetUnitPosition(unit, next_pos);
                     }
                 }
 
@@ -247,7 +255,7 @@ namespace Unary.Simulations
                     var collider = GetCollision(unit, next_pos, true);
                     if (collider != null)
                     {
-                        collider.CurrentHitpoints -= unit.GetDamage(collider);
+                        collider.CurrentHitpoints -= GetDamage(unit, collider);
                         unit.HasProjectileInFlight = false;
 
                         //Debug.WriteLine($"player {collider.Player} unit {collider.GetHashCode()} was hit by {unit.GetHashCode()} hp {collider.CurrentHitpoints:N1}");
@@ -257,7 +265,7 @@ namespace Unary.Simulations
                         unit.ProjectilePosition = next_pos;
                     }
 
-                    if (unit.ProjectilePosition == unit.ProjectileTarget)
+                    if (unit.ProjectilePosition.DistanceTo(unit.ProjectileTarget) < 0.01)
                     {
                         unit.HasProjectileInFlight = false;
                     }
@@ -277,8 +285,8 @@ namespace Unary.Simulations
             {
                 MapUnits.Add(point, new HashSet<BattleUnit>());
             }
-
             MapUnits[point].Remove(unit);
+            
             point = new Point(position.PointX, position.PointY);
             if (!MapUnits.ContainsKey(point))
             {
@@ -317,7 +325,7 @@ namespace Unary.Simulations
                         if (!projectile)
                         {
                             radius += unit.Radius;
-                            radius *= 1;
+                            radius *= 1.1;
                         }
 
                         if (position.DistanceTo(other.CurrentPosition) <= radius)

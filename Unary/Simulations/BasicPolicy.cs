@@ -75,7 +75,15 @@ namespace Unary.Simulations
                     }
                     else
                     {
-                        target = enemies[Rng.Next(enemies.Count)];
+                        target = enemies[0];
+                        if (enemies.Count > 1 && Rng.NextDouble() < 0.5)
+                        {
+                            target = enemies[1];
+                            if (enemies.Count > 2 && Rng.NextDouble() < 0.5)
+                            {
+                                target = enemies[2];
+                            }
+                        }
                         TargetAssignments[unit] = target;
                     }
                 }
@@ -104,13 +112,13 @@ namespace Unary.Simulations
                         }
                         else if (target.CurrentPosition.DistanceTo(unit.CurrentPosition) > unit.Range)
                         {
-                            unit.Move(target.CurrentPosition);
+                            unit.MoveTo(target.CurrentPosition);
                         }
                     }
                 }
                 else if (target.CurrentPosition.DistanceTo(unit.CurrentPosition) > unit.Range)
                 {
-                    unit.Move(target.CurrentPosition);
+                    unit.MoveTo(target.CurrentPosition);
                 }
             }
         }

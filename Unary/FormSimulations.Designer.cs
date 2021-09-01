@@ -43,7 +43,7 @@ namespace Unary
             this.ButtonTick.Name = "ButtonTick";
             this.ButtonTick.Size = new System.Drawing.Size(180, 46);
             this.ButtonTick.TabIndex = 0;
-            this.ButtonTick.Text = "Start/Stop";
+            this.ButtonTick.Text = "Start/Stop visual (2x speed)";
             this.ButtonTick.UseVisualStyleBackColor = true;
             this.ButtonTick.Click += new System.EventHandler(this.ButtonTick_Click);
             // 
@@ -66,7 +66,7 @@ namespace Unary
             this.ButtonTest.Name = "ButtonTest";
             this.ButtonTest.Size = new System.Drawing.Size(180, 46);
             this.ButtonTest.TabIndex = 2;
-            this.ButtonTest.Text = "Test 10 seconds";
+            this.ButtonTest.Text = "Run max speed for 10 seconds";
             this.ButtonTest.UseVisualStyleBackColor = true;
             this.ButtonTest.Click += new System.EventHandler(this.ButtonTest_Click);
             // 
@@ -76,7 +76,6 @@ namespace Unary
             this.TextOutput.Multiline = true;
             this.TextOutput.Name = "TextOutput";
             this.TextOutput.ReadOnly = true;
-            this.TextOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.TextOutput.Size = new System.Drawing.Size(178, 228);
             this.TextOutput.TabIndex = 3;
             // 

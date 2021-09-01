@@ -29,7 +29,7 @@ namespace Unary
 
         private void CreateSimulation()
         {
-            BattleSimulation = new BattleSimulation(p => 0, p => p.X < 0 || p.X > SIM_SIZE || p.Y < 0 || p.Y > SIM_SIZE);
+            BattleSimulation = new BattleSimulation(p => 0, p => p.X < 0 || p.X > SIM_SIZE || p.Y < 0 || p.Y > SIM_SIZE, (u, t) => 4);
 
             var red_policy = new BasicPolicy() { FocusFire = true };
             var blue_policy = new BasicPolicy() { FocusFire = false };
@@ -57,7 +57,7 @@ namespace Unary
                 pos = new Position(SIM_SIZE, SIM_SIZE) - pos;
             }
 
-            var unit = new BattleUnit(player, 30, 0.25, 0.96, 7, TimeSpan.FromSeconds(2), 4, pos, u => 4);
+            var unit = new BattleUnit(player, 30, 0.25, 0.96, 7, TimeSpan.FromSeconds(2), 4, pos);
 
             return unit;
         }
@@ -75,7 +75,7 @@ namespace Unary
         private void FormSimulations_Paint(object sender, PaintEventArgs e)
         {
             var g = e.Graphics;
-            var scale = 0.9f * Math.Min(g.VisibleClipBounds.Width, g.VisibleClipBounds.Height) / (float)SIM_SIZE;
+            var scale = 0.99f * Math.Min(g.VisibleClipBounds.Width, g.VisibleClipBounds.Height) / (float)SIM_SIZE;
             g.DrawRectangle(Pens.Black, 0, 0, scale * SIM_SIZE, scale * SIM_SIZE);
             var brush0 = new SolidBrush(Color.Red);
             var brush1 = new SolidBrush(Color.Blue);
