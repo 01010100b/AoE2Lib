@@ -9,20 +9,25 @@ namespace Unary.Simulations
     class BasicPolicy : IBattlePolicy
     {
         public bool FocusFire { get; set; } = false;
+        public bool NoOverkill { get; set; } = false;
+        public bool Avoid { get; set; } = false;
 
         private readonly Dictionary<BattleUnit, BattleUnit> TargetAssignments = new Dictionary<BattleUnit, BattleUnit>();
         private readonly Random Rng = new Random();
         private BattleUnit FocusTarget { get; set; }
-        private BattleUnit FocusBackup { get; set; }
-        private double TargetRegisteredDamage { get; set; }
+        private double FocusRegisteredDamage { get; set; }
 
         public void Restart()
         {
             TargetAssignments.Clear();
+            FocusTarget = null;
+            FocusRegisteredDamage = 0;
         }
 
         public void Update(BattleSimulation sim, int player)
         {
+            FocusRegisteredDamage = 0;
+
             var enemies = new List<BattleUnit>();
 
             foreach (var unit in sim.GetUnits())
@@ -61,6 +66,24 @@ namespace Unary.Simulations
                 if (FocusFire)
                 {
                     target = FocusTarget;
+
+                    if (FocusTarget != null && NoOverkill == true && FocusRegisteredDamage > FocusTarget.CurrentHitpoints)
+                    {
+                        target = enemies[Rng.Next(enemies.Count)];
+                        for (int i = 0; i < 5; i++)
+                        {
+                            var t = enemies[Rng.Next(enemies.Count)];
+                            if (t.CurrentPosition.DistanceTo(unit.CurrentPosition) < target.CurrentPosition.DistanceTo(unit.CurrentPosition))
+                            {
+                                target = t;
+                            }
+                        }
+
+                        if (target.CurrentPosition.DistanceTo(unit.CurrentPosition) > unit.Range)
+                        {
+                            target = FocusTarget;
+                        }
+                    }
                 }
 
                 if (target == null || !target.Alive)
@@ -92,6 +115,11 @@ namespace Unary.Simulations
                 {
                     if (target.CurrentPosition.DistanceTo(unit.CurrentPosition) <= unit.Range)
                     {
+                        if (target == FocusTarget)
+                        {
+                            FocusRegisteredDamage += 1 * sim.GetDamage(unit, target);
+                        }
+                        
                         unit.Attack(target);
                     }
                     else if (Rng.NextDouble() < 0.5)
@@ -115,11 +143,36 @@ namespace Unary.Simulations
                             unit.MoveTo(target.CurrentPosition);
                         }
                     }
+                    else if (target.CurrentPosition.DistanceTo(unit.CurrentPosition) > unit.Range)
+                    {
+                        unit.MoveTo(target.CurrentPosition);
+                    }
                 }
                 else if (target.CurrentPosition.DistanceTo(unit.CurrentPosition) > unit.Range)
                 {
                     unit.MoveTo(target.CurrentPosition);
                 }
+                else if (Avoid)
+                {
+                    if (target.CurrentPosition.DistanceTo(unit.CurrentPosition) < unit.Range - 1)
+                    {
+                        var next_pos = target.CurrentPosition - unit.CurrentPosition;
+                        next_pos /= next_pos.Norm;
+                        next_pos = next_pos.Rotate(0.1 * Math.PI);
+                        next_pos *= -1;
+                        next_pos += unit.CurrentPosition;
+                        unit.MoveTo(next_pos);
+                    }
+                    else
+                    {
+                        var next_pos = target.CurrentPosition - unit.CurrentPosition;
+                        next_pos /= next_pos.Norm;
+                        next_pos = next_pos.Rotate(0.4 * Math.PI);
+                        next_pos += unit.CurrentPosition;
+                        unit.MoveTo(next_pos);
+                    }
+                }
+                
             }
         }
     }

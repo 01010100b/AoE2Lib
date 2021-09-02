@@ -10,6 +10,12 @@ namespace Unary.Simulations
 {
     class BattleSimulation
     {
+        public interface IBattlePolicy
+        {
+            public void Restart();
+            public void Update(BattleSimulation sim, int player);
+        }
+
         public class BattleUnit
         {
             public readonly int Player;
@@ -29,7 +35,8 @@ namespace Unary.Simulations
             public Position MoveTarget { get; private set; }
             public bool HasProjectileInFlight { get; internal set; }
             public Position ProjectilePosition { get; internal set; }
-            public Position ProjectileTarget { get; internal set; }
+            public Position ProjectileTargetPosition { get; internal set; }
+            public BattleUnit ProjectileTarget { get; internal set; }
 
             public BattleUnit(int player, double max_hitpoints, double radius, double speed, double projectile_speed, TimeSpan reload_time, double range, Position position)
             {
@@ -47,7 +54,8 @@ namespace Unary.Simulations
                 NextAttack = TimeSpan.Zero;
                 HasProjectileInFlight = false;
                 ProjectilePosition = position;
-                ProjectileTarget = position;
+                ProjectileTargetPosition = position;
+                ProjectileTarget = null;
             }
 
             public void Attack(BattleUnit target)
@@ -61,12 +69,6 @@ namespace Unary.Simulations
                 MoveTarget = position;
                 Target = null;
             }
-        }
-
-        public interface IBattlePolicy
-        {
-            public void Restart();
-            public void Update(BattleSimulation sim, int player);
         }
 
         public readonly Func<Position, double> GetHeight;
@@ -113,6 +115,8 @@ namespace Unary.Simulations
                 units.Clear();
             }
 
+            Units.Sort((a, b) => a.GetHashCode().CompareTo(b.GetHashCode()));
+
             foreach (var unit in Units)
             {
                 unit.CurrentHitpoints = unit.MaxHitpoints;
@@ -149,6 +153,8 @@ namespace Unary.Simulations
             GameTime += time;
             GameTimeSincePolicyUpdate += time;
 
+            // policies
+
             if (GameTimeSincePolicyUpdate > GameTimeBetweenPolicyUpdates)
             {
                 foreach (var kvp in PlayerPolicies)
@@ -157,6 +163,39 @@ namespace Unary.Simulations
                 }
 
                 GameTimeSincePolicyUpdate = TimeSpan.FromMilliseconds(100 * Rng.NextDouble());
+            }
+
+            // projectiles
+
+            foreach (var unit in Units.Where(u => u.Alive && u.HasProjectileInFlight))
+            {
+                var next_pos = unit.ProjectileTargetPosition;
+                var dist = unit.ProjectileSpeed * time.TotalSeconds;
+                if (next_pos.DistanceTo(unit.ProjectilePosition) > dist)
+                {
+                    next_pos -= unit.ProjectilePosition;
+                    next_pos /= next_pos.Norm;
+                    next_pos *= dist;
+                    next_pos += unit.ProjectilePosition;
+                }
+
+                var collider = GetCollision(unit, next_pos, true);
+                if (collider != null)
+                {
+                    collider.CurrentHitpoints -= GetDamage(unit, collider);
+                    unit.HasProjectileInFlight = false;
+
+                    //Debug.WriteLine($"player {collider.Player} unit {collider.GetHashCode()} was hit by {unit.GetHashCode()} hp {collider.CurrentHitpoints:N1}");
+                }
+                else
+                {
+                    unit.ProjectilePosition = next_pos;
+                }
+
+                if (unit.ProjectilePosition.DistanceTo(unit.ProjectileTargetPosition) < 0.01)
+                {
+                    unit.HasProjectileInFlight = false;
+                }
             }
 
             // units
@@ -178,14 +217,22 @@ namespace Unary.Simulations
 
                 if (unit.Target != null)
                 {
-                    if (unit.NextAttack <= TimeSpan.Zero && unit.CurrentPosition.DistanceTo(unit.Target.CurrentPosition) <= unit.Range)
+                    if (unit.CurrentPosition.DistanceTo(unit.Target.CurrentPosition) <= unit.Range)
                     {
-                        unit.HasProjectileInFlight = true;
-                        unit.ProjectilePosition = unit.CurrentPosition;
-                        unit.ProjectileTarget = unit.Target.CurrentPosition;
-                        unit.NextAttack = unit.ReloadTime;
+                        if (unit.NextAttack <= TimeSpan.Zero)
+                        {
+                            unit.HasProjectileInFlight = true;
+                            unit.ProjectilePosition = unit.CurrentPosition;
+                            unit.ProjectileTargetPosition = unit.Target.CurrentPosition;
+                            unit.ProjectileTarget = unit.Target;
+                            unit.NextAttack = unit.ReloadTime;
 
-                        //Debug.WriteLine($"player {unit.Player} unit {unit.GetHashCode()} attack {unit.Target.GetHashCode()}");
+                            //Debug.WriteLine($"player {unit.Player} unit {unit.GetHashCode()} attack {unit.Target.GetHashCode()}");
+                        }
+                    }
+                    else
+                    {
+                        next_pos = unit.Target.CurrentPosition;
                     }
                 }
                 else
@@ -198,6 +245,7 @@ namespace Unary.Simulations
 
                 if (next_pos.DistanceTo(unit.CurrentPosition) > 0.01)
                 {
+                    // move the unit
                     var dist = unit.Speed * time.TotalSeconds;
                     if (next_pos.DistanceTo(unit.CurrentPosition) > dist)
                     {
@@ -207,17 +255,30 @@ namespace Unary.Simulations
                         next_pos += unit.CurrentPosition;
                     }
 
+                    
+                    // avoid collision
                     if (IsObstructed(next_pos) || GetCollision(unit, next_pos, false) != null)
                     {
                         next_pos -= unit.CurrentPosition;
-                        next_pos = next_pos.Rotate(0.6 * Math.PI);
+
+                        var rotate = 0.6 * Math.PI;
                         if (Rng.NextDouble() < 0.1)
                         {
-                            next_pos = next_pos.Rotate(Rng.NextDouble() * 2 * Math.PI);
+                            rotate *= -1;
                         }
+                        
+                        // small chance to "jump"
+                        if (Rng.NextDouble() < 0.1)
+                        {
+                            next_pos *= 5;
+                            rotate *= 1.1;
+                        }
+                        
+                        next_pos = next_pos.Rotate(rotate);
+
                         next_pos += unit.CurrentPosition;
                     }
-
+                    
                     if (IsObstructed(next_pos) == false && GetCollision(unit, next_pos, false) == null)
                     {
                         SetUnitPosition(unit, next_pos);
@@ -226,49 +287,14 @@ namespace Unary.Simulations
 
                 while (GetCollision(unit, unit.CurrentPosition, false) != null)
                 {
-                    var pos = unit.CurrentPosition + new Position((Rng.NextDouble() * 4) - 2, (Rng.NextDouble() * 4) - 2);
+                    // teleport from collisions
+                    var pos = unit.CurrentPosition + new Position((Rng.NextDouble() * 2) - 1, (Rng.NextDouble() * 2) - 1);
                     if (IsObstructed(pos))
                     {
                         pos = unit.CurrentPosition;
                     }
 
                     SetUnitPosition(unit, pos);
-                }
-            }
-
-            // projectiles
-
-            foreach (var unit in Units.Where(u => u.Alive))
-            {
-                if (unit.HasProjectileInFlight)
-                {
-                    var next_pos = unit.ProjectileTarget;
-                    var dist = unit.ProjectileSpeed * time.TotalSeconds;
-                    if (next_pos.DistanceTo(unit.ProjectilePosition) > dist)
-                    {
-                        next_pos -= unit.ProjectilePosition;
-                        next_pos /= next_pos.Norm;
-                        next_pos *= dist;
-                        next_pos += unit.ProjectilePosition;
-                    }
-
-                    var collider = GetCollision(unit, next_pos, true);
-                    if (collider != null)
-                    {
-                        collider.CurrentHitpoints -= GetDamage(unit, collider);
-                        unit.HasProjectileInFlight = false;
-
-                        //Debug.WriteLine($"player {collider.Player} unit {collider.GetHashCode()} was hit by {unit.GetHashCode()} hp {collider.CurrentHitpoints:N1}");
-                    }
-                    else
-                    {
-                        unit.ProjectilePosition = next_pos;
-                    }
-
-                    if (unit.ProjectilePosition.DistanceTo(unit.ProjectileTarget) < 0.01)
-                    {
-                        unit.HasProjectileInFlight = false;
-                    }
                 }
             }
         }

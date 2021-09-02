@@ -31,8 +31,8 @@ namespace Unary
         {
             BattleSimulation = new BattleSimulation(p => 0, p => p.X < 0 || p.X > SIM_SIZE || p.Y < 0 || p.Y > SIM_SIZE, (u, t) => 4);
 
-            var red_policy = new BasicPolicy() { FocusFire = true };
-            var blue_policy = new BasicPolicy() { FocusFire = false };
+            var red_policy = new BasicPolicy() { FocusFire = true, NoOverkill = false, Avoid = true };
+            var blue_policy = new BasicPolicy() { FocusFire = true, NoOverkill = false, Avoid = true };
             BattleSimulation.SetPolicy(0, red_policy);
             BattleSimulation.SetPolicy(1, blue_policy);
             
@@ -57,7 +57,7 @@ namespace Unary
                 pos = new Position(SIM_SIZE, SIM_SIZE) - pos;
             }
 
-            var unit = new BattleUnit(player, 30, 0.25, 0.96, 7, TimeSpan.FromSeconds(2), 4, pos);
+            var unit = new BattleUnit(player, 30, 0.2, 0.96, 7, TimeSpan.FromSeconds(2), 4, pos);
 
             return unit;
         }
@@ -69,7 +69,7 @@ namespace Unary
                 return;
             }
 
-            BattleSimulation.Tick(TimeSpan.FromMilliseconds(TimerTick.Interval));
+            BattleSimulation.Tick(TimeSpan.FromMilliseconds(100));
         }
 
         private void FormSimulations_Paint(object sender, PaintEventArgs e)
@@ -98,7 +98,7 @@ namespace Unary
 
                 if (unit.HasProjectileInFlight)
                 {
-                    var to = unit.ProjectileTarget - unit.ProjectilePosition;
+                    var to = unit.ProjectileTargetPosition - unit.ProjectilePosition;
                     to /= 2 * to.Norm;
                     to += unit.ProjectilePosition;
 
@@ -165,6 +165,7 @@ namespace Unary
 
         private void ButtonTest_Click(object sender, EventArgs e)
         {
+            ButtonTest.Enabled = false;
             Cursor = Cursors.WaitCursor;
 
             var gametime = TimeSpan.Zero;
@@ -199,6 +200,7 @@ namespace Unary
             Refresh();
 
             Cursor = Cursors.Default;
+            ButtonTest.Enabled = true;
         }
     }
 }
