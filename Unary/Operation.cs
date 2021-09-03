@@ -1,4 +1,5 @@
-﻿using AoE2Lib.Bots.GameElements;
+﻿using AoE2Lib.Bots;
+using AoE2Lib.Bots.GameElements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,9 +32,10 @@ namespace Unary
             }
         }
 
+        public abstract Position Position { get; }
         public List<Unit> Units => _Units.ToList();
         public int Count => _Units.Count;
-        private readonly Unary Unary;
+        protected readonly Unary Unary;
         private readonly HashSet<Unit> _Units = new HashSet<Unit>();
 
         public Operation(Unary unary)
@@ -69,17 +71,15 @@ namespace Unary
         public void RemoveUnit(Unit unit)
         {
             _Units.Remove(unit);
-
-            if (_Units.Count == 0)
-            {
-                Operations[Unary].Remove(this);
-            }
         }
 
         internal void UpdateInternal()
         {
+            Unary.Log.Info($"Updating op");
             if (_Units.Count == 0)
             {
+                Operations[Unary].Remove(this);
+
                 return;
             }
 

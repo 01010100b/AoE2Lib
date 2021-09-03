@@ -64,23 +64,23 @@ namespace Unary.Managers
             Unary.GameState.SetStrategicNumber(StrategicNumber.ENABLE_NEW_BUILDING_SYSTEM, 1);
             Unary.GameState.SetStrategicNumber(StrategicNumber.INITIAL_EXPLORATION_REQUIRED, 0);
 
-            Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, 1);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, 0);
             Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 20);
             if (Unary.GameState.GetTechnology(101).State == ResearchState.COMPLETE)
             {
-                Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, 1);
+                Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, 0);
                 Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 25);
             }
 
             if (Unary.GameState.GetTechnology(102).State == ResearchState.COMPLETE)
             {
-                Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, 1);
+                Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, 0);
                 Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 30);
             }
 
             if (Unary.GameState.GetTechnology(103).State == ResearchState.COMPLETE)
             {
-                Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, 1);
+                Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, 0);
                 Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 35);
             }
 
@@ -163,14 +163,15 @@ namespace Unary.Managers
                     }
                 }
 
-                var op = new BuildOperation(Unary) { Building = foundation };
+                var op = new BuildOperation(Unary, foundation);
+                op.AddUnit(builder);
                 BuildOperations.Add(op);
 
                 BuildingFoundations.Remove(foundation);
                 units.Remove(builder);
             }
 
-            Unary.Log.Info($"Build operations: {BuildOperations.Count} foundations: {BuildingFoundations.Count}");
+            Unary.Log.Info($"Build operations: {BuildOperations.Count} free foundations: {BuildingFoundations.Count}");
         }
 
         private IEnumerable<Tile> GetFarmPlacements()

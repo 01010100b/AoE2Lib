@@ -487,7 +487,7 @@ namespace AoE2Lib.Bots
 
             foreach (var player in Players.Where(p => p.IsValid && p.Updated))
             {
-                Bot.Log.Info($"Player {player.PlayerNumber} has {player.Units.Count} units and {player.Score} score");
+                Bot.Log.Debug($"Player {player.PlayerNumber} has {player.Units.Count} units and {player.Score} score");
             }
         }
 
@@ -559,7 +559,7 @@ namespace AoE2Lib.Bots
                 return;
             }
 
-            Bot.Log.Info($"Auto finding units");
+            Bot.Log.Debug($"Auto finding units");
 
             var position = MyPosition;
             for (int i = 0; i < 100; i++)
@@ -708,7 +708,7 @@ namespace AoE2Lib.Bots
                 }
             }
 
-            Bot.Log.Info($"Auto updating {first} first units");
+            Bot.Log.Debug($"Auto updating {first} first units");
 
             foreach (var player in GetPlayers())
             {
@@ -735,7 +735,7 @@ namespace AoE2Lib.Bots
                     player.Units[i].RequestUpdate();
                 }
 
-                Bot.Log.Info($"Auto updating {count} units for player {player.PlayerNumber}");
+                Bot.Log.Debug($"Auto updating {count} units for player {player.PlayerNumber}");
             }
             /*
             var units = Units.Values.ToList();

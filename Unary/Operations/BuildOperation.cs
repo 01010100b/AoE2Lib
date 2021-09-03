@@ -1,4 +1,5 @@
 ﻿using AoE2Lib;
+using AoE2Lib.Bots;
 using AoE2Lib.Bots.GameElements;
 using System;
 using System.Collections.Generic;
@@ -8,15 +9,19 @@ namespace Unary.Operations
 {
     internal class BuildOperation : Operation
     {
-        public Unit Building { get; set; }
+        public override Position Position => Building != null ? Building.Position : Unary.GameState.MyPosition;
 
-        public BuildOperation(Unary unary) : base(unary)
+        public readonly Unit Building;
+
+        public BuildOperation(Unary unary, Unit building) : base(unary)
         {
-
+            Building = building;
         }
 
         public override void Update()
         {
+            Unary.Log.Info($"Building {Building.Id}");
+
             if (Building == null)
             {
                 return;
