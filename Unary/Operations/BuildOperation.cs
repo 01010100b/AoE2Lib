@@ -16,6 +16,11 @@ namespace Unary.Operations
 
         public BuildOperation(Unary unary, Unit building) : base(unary)
         {
+            if (building == null)
+            {
+                throw new ArgumentNullException(nameof(building));
+            }
+
             Building = building;
         }
 

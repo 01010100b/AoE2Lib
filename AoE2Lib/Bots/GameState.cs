@@ -577,7 +577,7 @@ namespace AoE2Lib.Bots
             foreach (var player in Players)
             {
                 var range = Map.Width + Map.Height;
-                if (Bot.Rng.NextDouble() < 0.1)
+                if (Tick % 10 == 9)
                 {
                     range = 20;
                 }

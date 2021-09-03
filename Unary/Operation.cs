@@ -88,6 +88,11 @@ namespace Unary
             _Units.Remove(unit);
         }
 
+        public void Clear()
+        {
+            _Units.Clear();
+        }
+
         internal void UpdateInternal()
         {
             Unary.Log.Debug($"Updating op");
