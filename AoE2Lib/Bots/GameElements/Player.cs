@@ -63,11 +63,6 @@ namespace AoE2Lib.Bots.GameElements
             }
         }
 
-        public void FindUnits(Position position, int range)
-        {
-            Bot.GameState.FindUnits(PlayerNumber, position, range);
-        }
-        
         protected override IEnumerable<IMessage> RequestElementUpdate()
         {
             if (!IsValid)

@@ -41,7 +41,7 @@ namespace AoE2Lib.Bots
             Stopping = false;
         }
 
-        protected abstract IEnumerable<Command> Update();
+        protected abstract IEnumerable<Command> Tick();
 
         internal void Start(int player, string endpoint, int seed, GameVersion version)
         {
@@ -85,17 +85,15 @@ namespace AoE2Lib.Bots
                 // update
 
                 sw.Restart();
-
-                GameState.Update();
-
                 commands.Clear();
+                GameState.Update();
 
                 var first_command = new Command();
                 first_command.Add(new UpPendingPlacement() { InSnBuildingId = SN_PENDING_PLACEMENT }, "==", 0,
                     new Protos.Expert.Action.SetStrategicNumber() { InConstSnId = SN_PENDING_PLACEMENT, InConstValue = 0 });
-
                 commands.Add(first_command);
-                commands.AddRange(Update().Where(c => c.HasMessages));
+
+                commands.AddRange(Tick().Where(c => c.HasMessages));
                 commands.AddRange(GameState.RequestUpdate());
 
                 if ((DateTime.UtcNow - previous) > TimeSpan.FromSeconds(5))

@@ -23,7 +23,7 @@ namespace Unary
             BuildingManager = new BuildingManager(this);
         }
 
-        protected override IEnumerable<Command> Update()
+        protected override IEnumerable<Command> Tick()
         {
             StrategyManager.Update();
             EconomyManager.Update();

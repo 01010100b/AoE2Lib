@@ -11,7 +11,7 @@ namespace AoE2Lib.Bots
     public class GameState
     {
         public readonly Map Map;
-        public Player MyPlayer => Players.Single(p => p.PlayerNumber == Bot.PlayerNumber);
+        public Player MyPlayer => Players[Bot.PlayerNumber];
         public Position MyPosition { get; private set; } = Position.Zero;
         public int Tick { get; private set; } = 0;
         public TimeSpan GameTime { get; private set; } = TimeSpan.Zero;
@@ -94,7 +94,7 @@ namespace AoE2Lib.Bots
             }
             else
             {
-                return null;
+                throw new ArgumentOutOfRangeException(nameof(id));
             }
         }
 
@@ -144,6 +144,74 @@ namespace AoE2Lib.Bots
             StrategicNumbers[sn] = val;
         }
 
+        public void FindUnits(int player, Position position, int range)
+        {
+            var command = new Command();
+
+            command.Add(new SetGoal() { InConstGoalId = 100, InConstValue = position.PointX });
+            command.Add(new SetGoal() { InConstGoalId = 101, InConstValue = position.PointY });
+            command.Add(new UpSetTargetPoint() { InGoalPoint = 100 });
+            command.Add(new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, InConstValue = player });
+            command.Add(new UpFullResetSearch());
+
+            command.Add(new UpFilterDistance() { InConstMinDistance = -1, InConstMaxDistance = range });
+
+            for (int i = 0; i < 10; i++)
+            {
+                command.Add(new UpResetSearch() { InConstLocalIndex = 0, InConstLocalList = 0, InConstRemoteIndex = 0, InConstRemoteList = 1 });
+                command.Add(new UpFindRemote() { InConstUnitId = -1, InConstCount = 40 });
+                command.Add(new UpSearchObjectIdList() { InConstSearchSource = 2 });
+            }
+
+            FindCommands.Add(command);
+
+            command = new Command();
+
+            command.Add(new SetGoal() { InConstGoalId = 100, InConstValue = position.PointX });
+            command.Add(new SetGoal() { InConstGoalId = 101, InConstValue = position.PointY });
+            command.Add(new UpSetTargetPoint() { InGoalPoint = 100 });
+            command.Add(new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, InConstValue = player });
+            command.Add(new UpFullResetSearch());
+
+            command.Add(new UpFilterStatus() { InConstObjectStatus = 0, InConstObjectList = 0 });
+            command.Add(new UpFilterDistance() { InConstMinDistance = -1, InConstMaxDistance = range });
+
+            for (int i = 0; i < 10; i++)
+            {
+                command.Add(new UpResetSearch() { InConstLocalIndex = 0, InConstLocalList = 0, InConstRemoteIndex = 0, InConstRemoteList = 1 });
+                command.Add(new UpFindStatusRemote() { InConstUnitId = -1, InConstCount = 40 });
+                command.Add(new UpSearchObjectIdList() { InConstSearchSource = 2 });
+            }
+
+            FindCommands.Add(command);
+        }
+
+        public void FindResources(Resource resource, int player, Position position, int range)
+        {
+            foreach (var status in new[] { 2, 3 })
+            {
+                var command = new Command();
+
+                command.Add(new SetGoal() { InConstGoalId = 100, InConstValue = position.PointX });
+                command.Add(new SetGoal() { InConstGoalId = 101, InConstValue = position.PointY });
+                command.Add(new UpSetTargetPoint() { InGoalPoint = 100 });
+                command.Add(new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, InConstValue = player });
+                command.Add(new UpFullResetSearch());
+
+                command.Add(new UpFilterDistance() { InConstMinDistance = -1, InConstMaxDistance = range });
+                command.Add(new UpFilterStatus() { InConstObjectStatus = status, InConstObjectList = 0 });
+
+                for (int i = 0; i < 10; i++)
+                {
+                    command.Add(new UpResetSearch() { InConstLocalIndex = 0, InConstLocalList = 0, InConstRemoteIndex = 0, InConstRemoteList = 1 });
+                    command.Add(new UpFindResource() { InConstResource = (int)resource, InConstCount = 40 });
+                    command.Add(new UpSearchObjectIdList() { InConstSearchSource = 2 });
+                }
+
+                FindCommands.Add(command);
+            }
+        }
+
         internal void AddProductionTask(ProductionTask task)
         {
             ProductionTasks.Add(task);
@@ -154,7 +222,7 @@ namespace AoE2Lib.Bots
             Commands.Add(command);
         }
 
-        internal void FindUnits(int player, Position position, int range)
+        internal void FindUnitsOld(int player, Position position, int range)
         {
             foreach (var cmdid in (IEnumerable<CmdId>)Enum.GetValues(typeof(CmdId)))
             {
@@ -202,7 +270,7 @@ namespace AoE2Lib.Bots
                     FindCommands.Add(command);
                 }
             }
-
+            /*
             foreach (var resource in (IEnumerable<Resource>)Enum.GetValues(typeof(Resource)))
             {
                 foreach (var status in new[] {2, 3})
@@ -228,6 +296,7 @@ namespace AoE2Lib.Bots
                     FindCommands.Add(command);
                 }
             }
+            */
         }
 
         internal IEnumerable<Command> RequestUpdate()
@@ -385,6 +454,8 @@ namespace AoE2Lib.Bots
                     index++;
                     StrategicNumbers[sn] = responses[index].Unpack<StrategicNumberResult>().Result;
                 }
+
+                Tick++;
             }
 
             foreach (var player in Players)
@@ -397,7 +468,7 @@ namespace AoE2Lib.Bots
                 tile.Units.Clear();
             }
 
-            foreach (var unit in GetAllUnits().Where(u => u.Updated && u.PlayerNumber >= 0))
+            foreach (var unit in GetAllUnits().Where(u => u.Updated && u.PlayerNumber >= 0 && u.Targetable))
             {
                 Players[unit[ObjectData.PLAYER]].Units.Add(unit);
 
@@ -406,34 +477,17 @@ namespace AoE2Lib.Bots
                     var tile = Map.GetTile(unit.Position.PointX, unit.Position.PointY);
                     tile.Units.Add(unit);
                 }
-                catch (ArgumentException)
+                catch (Exception)
                 {
                     continue;
                 }
             }
 
-            Tick++;
             Bot.Log.Info($"Tick {Tick}");
 
-            var players = Bot.GameState.GetPlayers().ToList();
-            players.Sort((a, b) => a.PlayerNumber.CompareTo(b.PlayerNumber));
-            var num = new Dictionary<int, int>();
-            foreach (var player in players)
+            foreach (var player in Players.Where(p => p.IsValid && p.Updated))
             {
-                num.Add(player.PlayerNumber, 0);
-            }
-
-            foreach (var unit in GetAllUnits())
-            {
-                if (num.ContainsKey(unit.PlayerNumber))
-                {
-                    num[unit.PlayerNumber]++;
-                }
-            }
-
-            foreach (var player in players)
-            {
-                Bot.Log.Debug($"Player {player.PlayerNumber} units {num[player.PlayerNumber]} score {player.Score}");
+                Bot.Log.Info($"Player {player.PlayerNumber} has {player.Units.Count} units and {player.Score} score");
             }
         }
 
@@ -505,6 +559,80 @@ namespace AoE2Lib.Bots
                 return;
             }
 
+            var position = MyPosition;
+            for (int i = 0; i < 100; i++)
+            {
+                var x = Bot.Rng.Next(Map.Width);
+                var y = Bot.Rng.Next(Map.Height);
+                var tile = Map.GetTile(x, y);
+
+                if (tile.Explored)
+                {
+                    position = tile.Position;
+                }
+            }
+
+            foreach (var player in Players)
+            {
+                var range = Map.Width + Map.Height;
+                if (player.PlayerNumber > 0)
+                {
+                    if (Bot.Rng.NextDouble() < 0.1)
+                    {
+                        range = 20;
+                    }
+
+                    FindUnits(player.PlayerNumber, position, range);
+                }
+                else
+                {
+                    var resource = Resource.NONE;
+
+                    if (Bot.Rng.NextDouble() < 0.5)
+                    {
+                        resource = Resource.WOOD;
+                    }
+                    else if (Bot.Rng.NextDouble() < 0.5)
+                    {
+                        resource = Resource.FOOD;
+                    }
+                    else if (Bot.Rng.NextDouble() < 0.5)
+                    {
+                        resource = Resource.BOAR;
+                    }
+                    else if (Bot.Rng.NextDouble() < 0.5)
+                    {
+                        resource = Resource.DEER;
+                    }
+                    else if (Bot.Rng.NextDouble() < 0.5)
+                    {
+                        resource = Resource.GOLD;
+                    }
+                    else
+                    {
+                        resource = Resource.STONE;
+                    }
+
+                    if (resource == Resource.WOOD)
+                    {
+                        if (Bot.Rng.NextDouble() < 0.9)
+                        {
+                            range = 10;
+                        }
+                    }
+                    else
+                    {
+                        if (Bot.Rng.NextDouble() < 0.1)
+                        {
+                            range = 20;
+                        }
+                    }
+
+                    FindResources(resource, 0, position, range);
+                }
+            }
+
+            /*
             var players = Bot.GameState.GetPlayers().ToList();
 
             for (int i = 0; i < AutoFindUnits; i++)
@@ -517,7 +645,7 @@ namespace AoE2Lib.Bots
                 var player = players[Bot.Rng.Next(players.Count)];
                 players.Remove(player);
 
-                var position = MyPosition;
+                var pos = MyPosition;
                 for (int j = 0; j < 100; j++)
                 {
                     var x = Bot.Rng.Next(Map.Width);
@@ -526,7 +654,7 @@ namespace AoE2Lib.Bots
 
                     if (tile.Explored)
                     {
-                        position = Position.FromPoint(x, y);
+                        pos = Position.FromPoint(x, y);
                     }
                 }
 
@@ -546,8 +674,9 @@ namespace AoE2Lib.Bots
                     }
                 }
 
-                player.FindUnits(position, range);
+                player.FindUnits(pos, range);
             }
+            */
         }
 
         private void DoAutoUpdateUnits()
