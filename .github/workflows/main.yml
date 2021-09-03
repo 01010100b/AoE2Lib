@@ -45,24 +45,18 @@ jobs:
         dotnet pack AoE2Lib\AoE2Lib.csproj -p:PackageVersion=${{ steps.tag_version.outputs.new_version }}
         dotnet publish AoE2Lib\AoE2Lib.csproj --output AoE2Lib.${{ steps.tag_version.outputs.new_version }}
         dotnet publish Unary\Unary.csproj --output Unary.${{ steps.tag_version.outputs.new_version }}
-        dotnet publish GameRunner\GameRunner.csproj --output GameRunner.${{ steps.tag_version.outputs.new_version }}
         Remove-Item 'Unary.${{ steps.tag_version.outputs.new_version }}\runtimes\linux' -Recurse
         Remove-Item 'Unary.${{ steps.tag_version.outputs.new_version }}\runtimes\osx' -Recurse
+
+    - uses: papeloto/action-zip@v1
+      with:
+        files: AoE2Lib.${{ steps.tag_version.outputs.new_version }}
+        dest: AoE2Lib.${{ steps.tag_version.outputs.new_version }}.zip
         
     - uses: papeloto/action-zip@v1
       with:
         files: Unary.${{ steps.tag_version.outputs.new_version }}
         dest: Unary.${{ steps.tag_version.outputs.new_version }}.zip
-        
-    - uses: papeloto/action-zip@v1
-      with:
-        files: GameRunner.${{ steps.tag_version.outputs.new_version }}
-        dest: GameRunner.${{ steps.tag_version.outputs.new_version }}.zip
-      
-    - uses: papeloto/action-zip@v1
-      with:
-        files: AoE2Lib.${{ steps.tag_version.outputs.new_version }}
-        dest: AoE2Lib.${{ steps.tag_version.outputs.new_version }}.zip
      
     - name: Create a GitHub release
       uses: softprops/action-gh-release@v1
@@ -75,4 +69,3 @@ jobs:
           AoE2Lib\bin\Debug\AoE2Lib.${{ steps.tag_version.outputs.new_version }}.nupkg
           AoE2Lib.${{ steps.tag_version.outputs.new_version }}.zip
           Unary.${{ steps.tag_version.outputs.new_version }}.zip
-          GameRunner.${{ steps.tag_version.outputs.new_version }}.zip

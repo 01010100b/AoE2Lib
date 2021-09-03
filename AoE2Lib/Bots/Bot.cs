@@ -52,6 +52,9 @@ namespace AoE2Lib.Bots
         {
             Stop();
 
+            var lib = GetType().BaseType.Assembly.GetName();
+            Log.Info($"Using {lib.Name} {lib.Version}");
+
             GameVersion = version;
 
             if (seed < 0)
@@ -60,7 +63,7 @@ namespace AoE2Lib.Bots
             }
 
             PlayerNumber = player;
-            Log = new Log(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"{Name} {PlayerNumber}.log"));
+            Log = new Log(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"{PlayerNumber}.log"));
             Rng = new Random(seed);
             GameState = new GameState(this);
 
@@ -72,7 +75,11 @@ namespace AoE2Lib.Bots
 
         private void Run(string endpoint)
         {
-            Log.Info($"Started");
+            var lib = GetType().BaseType.Assembly.GetName();
+            Log.Info($"Using {lib.Name} {lib.Version}");
+
+            lib = GetType().Assembly.GetName();
+            Log.Info($"Started {Name} {lib.Version} for player {PlayerNumber}");
 
             var channel = new Channel(endpoint, ChannelCredentials.Insecure);
             var module_api = new AIModuleAPIClient(channel);
