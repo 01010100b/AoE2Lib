@@ -31,8 +31,9 @@ namespace Unary.Managers
 
         internal override void Update()
         {
+            var explorers = Math.Max(1, Unary.GameState.MyPlayer.MilitaryPopulation / 5);
             Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_EXPLORERS, 0);
-            Unary.GameState.SetStrategicNumber(StrategicNumber.NUMBER_EXPLORE_GROUPS, 1);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.NUMBER_EXPLORE_GROUPS, explorers);
             Unary.GameState.SetStrategicNumber(StrategicNumber.HOME_EXPLORATION_TIME, 600);
 
             Unary.GameState.SetStrategicNumber(StrategicNumber.TASK_UNGROUPED_SOLDIERS, 0);
@@ -47,6 +48,11 @@ namespace Unary.Managers
             var castle_age = Unary.GameState.GetTechnology(102);
             var imperial_age = Unary.GameState.GetTechnology(103);
 
+            var barracks = Unary.GameState.GetUnitType(12);
+            var archery_range = Unary.GameState.GetUnitType(87);
+            var blacksmith = Unary.GameState.GetUnitType(103);
+            var archer = Unary.GameState.GetUnitType(4);
+
             feudal_age.Research(Priority.AGE_UP, false);
             castle_age.Research(Priority.AGE_UP, false);
             imperial_age.Research(Priority.AGE_UP, false);
@@ -55,10 +61,6 @@ namespace Unary.Managers
             {
                 Unary.EconomyManager.MaxTownCenters = 3;
             }
-
-            var barracks = Unary.GameState.GetUnitType(12);
-            var archery_range = Unary.GameState.GetUnitType(87);
-            var blacksmith = Unary.GameState.GetUnitType(103);
 
             var max_ranges = (Unary.GameState.MyPlayer.CivilianPopulation - 25) / 10;
             max_ranges = Math.Max(1, max_ranges);
@@ -72,8 +74,6 @@ namespace Unary.Managers
             {
                 blacksmith.BuildNormal(1, 1, Priority.PRODUCTION_BUILDING);
             }
-
-            var archer = Unary.GameState.GetUnitType(4);
 
             if (archery_range.Count >= 1)
             {

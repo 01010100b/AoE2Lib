@@ -17,8 +17,8 @@ namespace AoE2Lib.Bots
         public TimeSpan GameTime { get; private set; } = TimeSpan.Zero;
         public TimeSpan GameTimePerTick { get; private set; } = TimeSpan.FromSeconds(0.7);
 
-        public int AutoFindUnits { get; set; } = 1; // players to find units for per tick, set to 0 to disable
-        public int AutoUpdateUnits { get; set; } = 100; // units to update per tick, set to 0 to disable
+        public bool AutoFindUnits { get; set; } = true;
+        public int AutoUpdateUnits { get; set; } = 100; // units to update per tick per player
 
         private readonly Bot Bot;
         private readonly List<Player> Players = new List<Player>();
@@ -53,7 +53,7 @@ namespace AoE2Lib.Bots
 
         public IEnumerable<Player> GetPlayers()
         {
-            return Players.Where(p => p.PlayerNumber == 0 || p.IsValid);
+            return Players.Where(p => p.IsValid);
         }
 
         public Technology GetTechnology(int id)
@@ -301,42 +301,8 @@ namespace AoE2Lib.Bots
 
         internal IEnumerable<Command> RequestUpdate()
         {
-            foreach (var command in DoProduction())
-            {
-                yield return command;
-            }
-
             DoAutoFindUnits();
             DoAutoUpdateUnits();
-
-            Map.RequestUpdate();
-
-            foreach (var player in Players)
-            {
-                player.RequestUpdate();
-            }
-
-            foreach (var tech in Technologies.Values)
-            {
-                tech.RequestUpdate();
-            }
-
-            foreach (var type in UnitTypes.Values)
-            {
-                type.RequestUpdate();
-            }
-
-            foreach (var command in Commands)
-            {
-                yield return command;
-            }
-
-            Commands.Clear();
-
-            foreach (var command in FindCommands)
-            {
-                yield return command;
-            }
 
             CommandInfo.Reset();
 
@@ -367,6 +333,40 @@ namespace AoE2Lib.Bots
             }
 
             yield return CommandInfo;
+
+            Map.RequestUpdate();
+
+            foreach (var player in Players)
+            {
+                player.RequestUpdate();
+            }
+
+            foreach (var tech in Technologies.Values)
+            {
+                tech.RequestUpdate();
+            }
+
+            foreach (var type in UnitTypes.Values)
+            {
+                type.RequestUpdate();
+            }
+
+            foreach (var command in FindCommands)
+            {
+                yield return command;
+            }
+
+            foreach (var command in DoProduction())
+            {
+                yield return command;
+            }
+
+            foreach (var command in Commands)
+            {
+                yield return command;
+            }
+
+            Commands.Clear();
         }
 
         internal void Update()
@@ -549,7 +549,7 @@ namespace AoE2Lib.Bots
 
         private void DoAutoFindUnits()
         {
-            if (AutoFindUnits <= 0)
+            if (AutoFindUnits == false)
             {
                 return;
             }
@@ -558,6 +558,8 @@ namespace AoE2Lib.Bots
             {
                 return;
             }
+
+            Bot.Log.Info($"Auto finding units");
 
             var position = MyPosition;
             for (int i = 0; i < 100; i++)
@@ -575,17 +577,17 @@ namespace AoE2Lib.Bots
             foreach (var player in Players)
             {
                 var range = Map.Width + Map.Height;
-                if (player.PlayerNumber > 0)
+                if (Bot.Rng.NextDouble() < 0.1)
                 {
-                    if (Bot.Rng.NextDouble() < 0.1)
-                    {
-                        range = 20;
-                    }
-
-                    FindUnits(player.PlayerNumber, position, range);
+                    range = 20;
                 }
-                else
+
+                FindUnits(player.PlayerNumber, position, range);
+
+                if (player.PlayerNumber == 0)
                 {
+                    range = Map.Width + Map.Height;
+
                     var resource = Resource.NONE;
 
                     if (Bot.Rng.NextDouble() < 0.5)
@@ -691,6 +693,51 @@ namespace AoE2Lib.Bots
                 return;
             }
 
+            var first = 0;
+            foreach (var unit in Units.Values)
+            {
+                if (unit.Updated == false)
+                {
+                    unit.RequestUpdate();
+                    first++;
+                }
+
+                if (first >= AutoUpdateUnits)
+                {
+                    break;
+                }
+            }
+
+            Bot.Log.Info($"Auto updating {first} first units");
+
+            foreach (var player in GetPlayers())
+            {
+                player.Units.Sort((a, b) =>
+                {
+                    if (b.Updated && !a.Updated)
+                    {
+                        return -1;
+                    }
+                    else if (a.Updated && !b.Updated)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return a.LastUpdateTick.CompareTo(b.LastUpdateTick);
+                    }
+                });
+
+                var count = Math.Min(player.Units.Count, AutoUpdateUnits);
+
+                for (int i = 0; i < count; i++)
+                {
+                    player.Units[i].RequestUpdate();
+                }
+
+                Bot.Log.Info($"Auto updating {count} units for player {player.PlayerNumber}");
+            }
+            /*
             var units = Units.Values.ToList();
             units.Sort((a, b) =>
             {
@@ -716,6 +763,7 @@ namespace AoE2Lib.Bots
                 units[i].RequestUpdate();
                 units[Bot.Rng.Next(units.Count)].RequestUpdate();
             }
+            */
         }
     }
 }
