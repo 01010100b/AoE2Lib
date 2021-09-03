@@ -52,9 +52,6 @@ namespace AoE2Lib.Bots
         {
             Stop();
 
-            var lib = GetType().BaseType.Assembly.GetName();
-            Log.Info($"Using {lib.Name} {lib.Version}");
-
             GameVersion = version;
 
             if (seed < 0)
