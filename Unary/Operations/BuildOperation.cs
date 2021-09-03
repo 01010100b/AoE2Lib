@@ -21,7 +21,7 @@ namespace Unary.Operations
 
         public override void Update()
         {
-            Unary.Log.Info($"Building {Building.Id}");
+            Unary.Log.Debug($"Building {Building.Id}");
 
             if (Building == null)
             {

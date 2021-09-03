@@ -11,7 +11,18 @@ namespace Unary
     {
         private static readonly Dictionary<Unary, HashSet<Operation>> Operations = new Dictionary<Unary, HashSet<Operation>>();
 
-        public static List<Operation> GetOperations(Unary unary) => Operations.ContainsKey(unary) ? Operations[unary].ToList() : new List<Operation>();
+        public static void ClearOperations(Unary unary)
+        {
+            if (Operations.TryGetValue(unary, out HashSet<Operation> ops))
+            {
+                ops.Clear();
+            }
+        }
+
+        public static List<Operation> GetOperations(Unary unary)
+        {
+            return Operations.ContainsKey(unary) ? Operations[unary].ToList() : new List<Operation>();
+        }
 
         public static IEnumerable<Unit> GetFreeUnits(Unary unary)
         {
@@ -78,7 +89,7 @@ namespace Unary
 
         internal void UpdateInternal()
         {
-            Unary.Log.Info($"Updating op");
+            Unary.Log.Debug($"Updating op");
             if (_Units.Count == 0)
             {
                 Operations[Unary].Remove(this);

@@ -12,15 +12,22 @@ namespace Unary
 {
     class Unary : Bot
     {
-        public readonly StrategyManager StrategyManager;
-        public readonly EconomyManager EconomyManager;
-        public readonly BuildingManager BuildingManager;
+        public StrategyManager StrategyManager { get; private set; }
+        public EconomyManager EconomyManager { get; private set; }
+        public BuildingManager BuildingManager { get; private set; }
 
         public Unary() : base()
+        {
+            NewGame();
+        }
+
+        protected override void NewGame()
         {
             StrategyManager = new StrategyManager(this);
             EconomyManager = new EconomyManager(this);
             BuildingManager = new BuildingManager(this);
+
+            Operation.ClearOperations(this);
         }
 
         protected override IEnumerable<Command> Tick()

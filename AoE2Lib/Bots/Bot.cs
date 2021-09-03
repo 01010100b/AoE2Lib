@@ -36,11 +36,16 @@ namespace AoE2Lib.Bots
             BotThread?.Join();
             BotThread = null;
 
+            Stopped();
+
             Log?.Dispose();
 
             Stopping = false;
         }
 
+        protected virtual void Started() { }
+        protected virtual void Stopped() { }
+        protected virtual void NewGame() { }
         protected abstract IEnumerable<Command> Tick();
 
         internal void Start(int player, string endpoint, int seed, GameVersion version)
@@ -58,6 +63,8 @@ namespace AoE2Lib.Bots
             Log = new Log(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"{Name} {PlayerNumber}.log"));
             Rng = new Random(seed);
             GameState = new GameState(this);
+
+            Started();
 
             BotThread = new Thread(() => Run(endpoint)) { IsBackground = true };
             BotThread.Start();
@@ -79,6 +86,7 @@ namespace AoE2Lib.Bots
             var sw = new Stopwatch();
             var commands = new List<Command>();
             var previous = DateTime.UtcNow;
+            var game_time = 0;
 
             while (!Stopping)
             {
@@ -86,9 +94,10 @@ namespace AoE2Lib.Bots
 
                 sw.Restart();
                 commands.Clear();
-                GameState.Update();
+                
 
                 var first_command = new Command();
+                first_command.Add(new GameTime());
                 first_command.Add(new UpPendingPlacement() { InSnBuildingId = SN_PENDING_PLACEMENT }, "==", 0,
                     new Protos.Expert.Action.SetStrategicNumber() { InConstSnId = SN_PENDING_PLACEMENT, InConstValue = 0 });
                 commands.Add(first_command);
@@ -163,6 +172,27 @@ namespace AoE2Lib.Bots
                     }
 
                     previous = DateTime.UtcNow;
+                    
+                    if (first_command.HasResponses)
+                    {
+                        var ngt = first_command.Responses[0].Unpack<GameTimeResult>().Result;
+                        if (ngt >= 0)
+                        {
+                            if (ngt < game_time)
+                            {
+                                GameState = new GameState(this);
+                                NewGame();
+
+                                Log.Info("New Game");
+                            }
+
+                            game_time = ngt;
+                        }
+
+                        Log.Debug($"Bot Game time {game_time}");
+                    }
+
+                    GameState.Update();
                 }
 
                 Log.Debug($"Call took {sw.ElapsedMilliseconds} ms");

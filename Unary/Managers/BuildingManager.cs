@@ -99,13 +99,13 @@ namespace Unary.Managers
                 }
             }
 
-            var units = new HashSet<Unit>();
+            var foundations = new HashSet<Unit>();
             foreach (var f in BuildingFoundations)
             {
-                units.Add(f);
+                foundations.Add(f);
             }
 
-            foreach (var foundation in units)
+            foreach (var foundation in foundations)
             {
                 if (foundation.Targetable == false || foundation[ObjectData.STATUS] != 0)
                 {
@@ -113,17 +113,19 @@ namespace Unary.Managers
                 }
             }
 
-            // check for finished ops
+            // check for finished ops and remove foundations already worked on
 
-            units.Clear();
+            var builders = new HashSet<Unit>();
             foreach (var op in BuildOperations)
             {
+                foundations.Remove(op.Building);
+
                 if (op.Building.Targetable == false || op.Building[ObjectData.STATUS] != 0)
                 {
                     foreach (var unit in op.Units)
                     {
                         op.RemoveUnit(unit);
-                        units.Add(unit);
+                        builders.Add(unit);
                     }
                 }
             }
@@ -134,28 +136,28 @@ namespace Unary.Managers
 
             while (BuildOperations.Count < 5)
             {
-                if (BuildingFoundations.Count == 0)
+                if (foundations.Count == 0)
                 {
                     break;
                 }
 
-                if (units.Count == 0)
+                if (builders.Count == 0)
                 {
                     foreach (var unit in Operation.GetFreeUnits(Unary).Where(u => u.Targetable && u[ObjectData.CMDID] == (int)CmdId.VILLAGER))
                     {
-                        units.Add(unit);
+                        builders.Add(unit);
                     }
                 }
 
-                if (units.Count == 0)
+                if (builders.Count == 0)
                 {
                     Unary.Log.Info($"Could not find enough builders");
                     break;
                 }
 
-                var builder = units.First();
-                var foundation = BuildingFoundations.First();
-                foreach (var f in BuildingFoundations)
+                var builder = builders.First();
+                var foundation = foundations.First();
+                foreach (var f in foundations)
                 {
                     if (f.Position.DistanceTo(builder.Position) < foundation.Position.DistanceTo(builder.Position))
                     {
@@ -167,11 +169,11 @@ namespace Unary.Managers
                 op.AddUnit(builder);
                 BuildOperations.Add(op);
 
-                BuildingFoundations.Remove(foundation);
-                units.Remove(builder);
+                foundations.Remove(foundation);
+                builders.Remove(builder);
             }
 
-            Unary.Log.Info($"Build operations: {BuildOperations.Count} free foundations: {BuildingFoundations.Count}");
+            Unary.Log.Info($"Build operations: {BuildOperations.Count}");
         }
 
         private IEnumerable<Tile> GetFarmPlacements()
