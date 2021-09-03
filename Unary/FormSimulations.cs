@@ -32,7 +32,7 @@ namespace Unary
             BattleSimulation = new BattleSimulation(p => 0, p => p.X < 0 || p.X > SIM_SIZE || p.Y < 0 || p.Y > SIM_SIZE, (u, t) => 4);
 
             var red_policy = new BasicPolicy() { FocusFire = true, NoOverkill = false, Avoid = true };
-            var blue_policy = new BasicPolicy() { FocusFire = true, NoOverkill = false, Avoid = true };
+            var blue_policy = new BasicPolicy() { FocusFire = true, NoOverkill = false, Avoid = false };
             BattleSimulation.SetPolicy(0, red_policy);
             BattleSimulation.SetPolicy(1, blue_policy);
             
@@ -69,7 +69,7 @@ namespace Unary
                 return;
             }
 
-            BattleSimulation.Tick(TimeSpan.FromMilliseconds(100));
+            BattleSimulation.Tick(TimeSpan.FromMilliseconds((double)NumericTicktime.Value));
         }
 
         private void FormSimulations_Paint(object sender, PaintEventArgs e)
@@ -144,7 +144,6 @@ namespace Unary
             Invoke(new Action(() =>
             {
                 Tick();
-                Tick();
                 Refresh();
 
                 if (BattleSimulation == null)
@@ -201,6 +200,11 @@ namespace Unary
 
             Cursor = Cursors.Default;
             ButtonTest.Enabled = true;
+        }
+
+        private void NumericTicktime_ValueChanged(object sender, EventArgs e)
+        {
+            TimerTick.Interval = (int)NumericTicktime.Value;
         }
     }
 }
