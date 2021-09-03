@@ -10,6 +10,7 @@ namespace Unary.Operations
     internal class BuildOperation : Operation
     {
         public override Position Position => Building != null ? Building.Position : Unary.GameState.MyPosition;
+        public override int UnitCapacity => 1;
 
         public readonly Unit Building;
 

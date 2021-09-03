@@ -9,8 +9,9 @@ namespace Unary
 {
     internal abstract class Operation
     {
-        public static List<Operation> GetOperations(Unary unary) => Operations.ContainsKey(unary) ? Operations[unary].ToList() : new List<Operation>();
         private static readonly Dictionary<Unary, HashSet<Operation>> Operations = new Dictionary<Unary, HashSet<Operation>>();
+
+        public static List<Operation> GetOperations(Unary unary) => Operations.ContainsKey(unary) ? Operations[unary].ToList() : new List<Operation>();
 
         public static IEnumerable<Unit> GetFreeUnits(Unary unary)
         {
@@ -33,8 +34,10 @@ namespace Unary
         }
 
         public abstract Position Position { get; }
+        public abstract int UnitCapacity { get; }
+        public int UnitCount => _Units.Count;
         public List<Unit> Units => _Units.ToList();
-        public int Count => _Units.Count;
+
         protected readonly Unary Unary;
         private readonly HashSet<Unit> _Units = new HashSet<Unit>();
 
