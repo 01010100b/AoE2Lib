@@ -8,8 +8,8 @@ namespace Unary
     {
         public const int 
         DEFAULT = 10,
-        FARM = 100,
-        MILITARY = 200,
+        MILITARY = 100,
+        FARM = 200,
         PRODUCTION_BUILDING = 300,
         DROPSITE = 400,
         HOUSING = 500,

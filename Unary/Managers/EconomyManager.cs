@@ -34,8 +34,27 @@ namespace Unary.Managers
         private void ManagePopulation()
         {
             var villager = Unary.GameState.GetUnitType(83);
+            var house = Unary.GameState.GetUnitType(70);
 
             villager.Train((int)Math.Round(0.6 * Unary.GameState.MyPlayer.GetFact(FactId.POPULATION_CAP)), ConcurrentVillagers, Priority.VILLAGER);
+
+            var margin = 5;
+            var pending = 1;
+
+            if (Unary.GameState.GetTechnology(101).State == ResearchState.COMPLETE)
+            {
+                margin = 10;
+            }
+
+            if (Unary.GameState.GetTechnology(102).State == ResearchState.COMPLETE)
+            {
+                pending = 2;
+            }
+
+            if (Unary.GameState.MyPlayer.GetFact(FactId.POPULATION_HEADROOM) > 0 && Unary.GameState.MyPlayer.GetFact(FactId.HOUSING_HEADROOM) < margin && house.Pending < pending)
+            {
+                house.BuildNormal(1000, pending, Priority.HOUSING);
+            }
         }
 
         private void ManageGatherers()

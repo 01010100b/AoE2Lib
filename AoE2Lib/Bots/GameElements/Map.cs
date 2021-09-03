@@ -57,9 +57,14 @@ namespace AoE2Lib.Bots.GameElements
         {
         }
 
+        public bool IsOnMap(int x, int y)
+        {
+            return x >= 0 && x < Width && y >= 0 && y < Height;
+        }
+
         public Tile GetTile(int x, int y)
         {
-            if (x < 0 || x >= Width || y < 0 || y >= Height)
+            if (!IsOnMap(x, y))
             {
                 throw new IndexOutOfRangeException($"Tile {x},{y} is not on map");
             }
