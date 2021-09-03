@@ -39,6 +39,13 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         dry_run: true
         
+    - name: Set version in script
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          find: "$UNARY_VERSION$"
+          replace: "${{ steps.tag_version.outputs.new_version }}"
+          include: "Unary.per"
+        
     - name: Package
       run: |
         dotnet tool install -g dotnet-setversion

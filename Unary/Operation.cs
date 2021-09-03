@@ -95,7 +95,6 @@ namespace Unary
 
         internal void UpdateInternal()
         {
-            Unary.Log.Debug($"Updating op");
             if (_Units.Count == 0)
             {
                 Operations[Unary].Remove(this);
@@ -108,6 +107,7 @@ namespace Unary
                 unit.RequestUpdate();
             }
 
+            Unary.Log.Debug($"Updating operation {GetHashCode()}");
             Update();
         }
     }
