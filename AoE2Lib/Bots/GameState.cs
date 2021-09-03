@@ -590,23 +590,23 @@ namespace AoE2Lib.Bots
 
                     var resource = Resource.NONE;
 
-                    if (Bot.Rng.NextDouble() < 0.5)
+                    if (Tick % 2 == 0)
                     {
                         resource = Resource.WOOD;
                     }
-                    else if (Bot.Rng.NextDouble() < 0.5)
+                    else if (Tick % 3 == 0)
                     {
                         resource = Resource.FOOD;
                     }
-                    else if (Bot.Rng.NextDouble() < 0.5)
+                    else if (Tick % 5 == 0)
                     {
                         resource = Resource.BOAR;
                     }
-                    else if (Bot.Rng.NextDouble() < 0.5)
+                    else if (Tick % 7 == 0)
                     {
                         resource = Resource.DEER;
                     }
-                    else if (Bot.Rng.NextDouble() < 0.5)
+                    else if (Tick % 11 == 0)
                     {
                         resource = Resource.GOLD;
                     }

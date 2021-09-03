@@ -34,6 +34,17 @@ namespace Unary
             TextProcess.Enabled = false;
             ButtonStart.Enabled = true;
             TextPlayer.Enabled = true;
+            /*
+            for (int i = 1; i <= 8; i++)
+            {
+                var bot = new Unary();
+                Instance.StartBot(bot, i);
+
+                Players.Add(i, bot);
+
+                Message($"Started player {i}");
+            }
+            */
         }
 
         private void ButtonStart_Click(object sender, EventArgs e)
@@ -80,6 +91,12 @@ namespace Unary
             Cursor = Cursors.Default;
         }
 
+        private void ButtonDev_Click(object sender, EventArgs e)
+        {
+            var form = new FormSimulations();
+            form.Show();
+        }
+
         private void Message(string message)
         {
             var lines = TextMessages.Lines.ToList();
@@ -87,10 +104,6 @@ namespace Unary
             TextMessages.Lines = lines.ToArray();
         }
 
-        private void ButtonDev_Click(object sender, EventArgs e)
-        {
-            var form = new FormSimulations();
-            form.Show();
-        }
+        
     }
 }

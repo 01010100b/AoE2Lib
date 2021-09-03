@@ -16,6 +16,7 @@ namespace Unary
             if (Operations.TryGetValue(unary, out HashSet<Operation> ops))
             {
                 ops.Clear();
+                Operations.Remove(unary);
             }
         }
 

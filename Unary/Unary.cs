@@ -21,6 +21,11 @@ namespace Unary
             NewGame();
         }
 
+        protected override void Stopped()
+        {
+            Operation.ClearOperations(this);
+        }
+
         protected override void NewGame()
         {
             StrategyManager = new StrategyManager(this);

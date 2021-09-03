@@ -128,7 +128,7 @@ namespace AoE2Lib.Bots.GameElements
 
             foreach (var tile in ReachableTiles.Keys.ToList())
             {
-                if (Bot.Rng.NextDouble() < 0.01)
+                if (Bot.GameState.Tick % 101 == tile.GetHashCode() % 101)
                 {
                     ReachableTiles.Remove(tile);
                 }
