@@ -60,7 +60,7 @@ namespace AoE2Lib.Bots
             }
 
             PlayerNumber = player;
-            Log = new Log(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"{PlayerNumber}.log"));
+            Log = new Log(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"Player {PlayerNumber}.log"));
             Rng = new Random(seed);
             GameState = new GameState(this);
 
