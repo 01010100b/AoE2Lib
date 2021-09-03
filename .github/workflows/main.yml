@@ -36,13 +36,13 @@ jobs:
       id: tag_version
       uses: mathieudutour/github-tag-action@v5.3
       with:
-        default_bump: minor
-        append_to_pre_release_tag: beta
         github_token: ${{ secrets.GITHUB_TOKEN }}
         dry_run: true
         
     - name: Package
       run: |
+        dotnet tool install -g dotnet-setversion
+        setversion -r ${{ steps.tag_version.outputs.new_version }}
         dotnet pack AoE2Lib\AoE2Lib.csproj --no-build -p:PackageVersion=${{ steps.tag_version.outputs.new_version }}
         dotnet publish AoE2Lib\AoE2Lib.csproj --output AoE2Lib.${{ steps.tag_version.outputs.new_version }}
         dotnet publish Unary\Unary.csproj --output Unary.${{ steps.tag_version.outputs.new_version }}
