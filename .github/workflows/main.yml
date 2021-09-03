@@ -29,8 +29,6 @@ jobs:
       
     - name: Test
       run: dotnet test --no-restore --verbosity normal
-      
-    # create release if on master
     
     - name: Bump version
       id: tag_version
@@ -39,15 +37,9 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         dry_run: true
         
-    - name: Set version in script
-      uses: jacobtomlinson/gha-find-replace@master
-      with:
-        find: "$UNARY_VERSION$"
-        replace: "${{ steps.tag_version.outputs.new_version }}"
-        include: "Unary.per"
-        
     - name: Package
       run: |
+        (Get-Content Unary\Unary.per) -replace '$UNARY_VERSION$', '${{ steps.tag_version.outputs.new_version }}' | Out-File -encoding ASCII Unary\Unary.per
         dotnet tool install -g dotnet-setversion
         setversion -r ${{ steps.tag_version.outputs.new_version }}
         dotnet pack AoE2Lib\AoE2Lib.csproj --no-build -p:PackageVersion=${{ steps.tag_version.outputs.new_version }}
