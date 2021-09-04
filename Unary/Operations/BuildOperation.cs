@@ -11,7 +11,6 @@ namespace Unary.Operations
     {
         public override Position Position => Building != null ? Building.Position : Unary.GameState.MyPosition;
         public override int UnitCapacity => 1;
-
         public readonly Unit Building;
 
         public BuildOperation(Unary unary, Unit building) : base(unary)
@@ -27,11 +26,6 @@ namespace Unary.Operations
         public override void Update()
         {
             Unary.Log.Debug($"Building {Building.Id}");
-
-            if (Building == null)
-            {
-                return;
-            }
 
             Building.RequestUpdate();
 

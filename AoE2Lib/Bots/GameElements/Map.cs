@@ -15,15 +15,15 @@ namespace AoE2Lib.Bots.GameElements
     {
         public readonly int X;
         public readonly int Y;
-        public int Height;
-        internal int Terrain;
-        internal int Visibility;
-        public readonly List<Unit> Units = new List<Unit>();
+        public int Height { get; internal set; }
         public Position Position => Position.FromPoint(X, Y);
-
         public bool IsOnLand => Terrain != 1 && Terrain != 2 && Terrain != 4 && Terrain != 15 && Terrain != 22 && Terrain != 23 && Terrain != 28 && Terrain != 37;
         public bool Explored => Visibility != 0;
         public bool Visible => Visibility == 15;
+        public readonly List<Unit> Units = new List<Unit>();
+
+        internal int Terrain { get; set; }
+        internal int Visibility { get; set; }
 
         internal Tile(int x, int y)
         {
@@ -34,18 +34,6 @@ namespace AoE2Lib.Bots.GameElements
 
     public class Map : GameElement
     {
-        private struct BuildPosition
-        {
-            public readonly UnitType UnitType;
-            public readonly Tile Tile;
-
-            public BuildPosition(UnitType building, Tile tile)
-            {
-                UnitType = building;
-                Tile = tile;
-            }
-        }
-
         public int Height { get; private set; } = -1;
         public int Width { get; private set; } = -1;
 

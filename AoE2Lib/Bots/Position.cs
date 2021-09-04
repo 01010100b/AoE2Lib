@@ -77,16 +77,6 @@ namespace AoE2Lib.Bots
             return !(a == b);
         }
 
-        public static implicit operator Point(Position position)
-        {
-            return new Point(position.PointX, position.PointY);
-        }
-
-        public static implicit operator Position(Point point)
-        {
-            return Position.FromPoint(point.X, point.Y);
-        }
-
         public double DistanceTo(Position other)
         {
             var dx = X - other.X;

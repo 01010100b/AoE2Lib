@@ -17,6 +17,7 @@ namespace AoE2Lib.Bots.GameElements
         public int PlayerNumber => GetData(ObjectData.PLAYER);
         public bool Targetable { get; private set; } = false;
         public bool Visible { get; private set; } = false;
+        public TimeSpan LastSeenGameTime { get; private set; } = TimeSpan.Zero;
         public Position Position => Position.FromPrecise(GetData(ObjectData.PRECISE_X), GetData(ObjectData.PRECISE_Y));
         public Position Velocity { get; private set; } = Position.Zero;
 
@@ -45,6 +46,10 @@ namespace AoE2Lib.Bots.GameElements
             {
                 backup = target;
             }
+
+            RequestUpdate();
+            target.RequestUpdate();
+            backup.RequestUpdate();
 
             var command = new Command();
 
@@ -109,8 +114,10 @@ namespace AoE2Lib.Bots.GameElements
             Bot.GameState.AddCommand(command);
         }
 
-        public void TargetPosition(Position position, UnitAction? action, UnitFormation? formation, UnitStance? stance, int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue)
+        public void TargetPosition(Position position, UnitAction? action = null, UnitFormation? formation = null, UnitStance? stance = null, int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue)
         {
+            RequestUpdate();
+
             if (action == UnitAction.MOVE && Position == position)
             {
                 return;
@@ -206,6 +213,11 @@ namespace AoE2Lib.Bots.GameElements
                 }
                 
                 return;
+            }
+
+            if (visible)
+            {
+                LastSeenGameTime = Bot.GameState.GameTime;
             }
 
             var old_pos = Position;

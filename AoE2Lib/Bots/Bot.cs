@@ -109,8 +109,6 @@ namespace AoE2Lib.Bots
                 commands.AddRange(Tick().Where(c => c.HasMessages));
                 commands.AddRange(GameState.RequestUpdate());
 
-                
-
                 Log.Debug($"Update took {sw.ElapsedMilliseconds} ms");
 
                 // make the call
@@ -177,8 +175,6 @@ namespace AoE2Lib.Bots
                         offset += command.Responses.Count;
                     }
 
-                    previous = DateTime.UtcNow;
-                    
                     if (first_command.HasResponses)
                     {
                         var ngt = first_command.Responses[0].Unpack<GameTimeResult>().Result;
@@ -195,6 +191,8 @@ namespace AoE2Lib.Bots
                             game_time = ngt;
                         }
                     }
+
+                    previous = DateTime.UtcNow;
                 }
 
                 Log.Debug($"Bot Game time {game_time}");

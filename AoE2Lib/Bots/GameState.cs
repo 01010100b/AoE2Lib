@@ -34,7 +34,7 @@ namespace AoE2Lib.Bots
         private readonly List<Command> FindCommands = new List<Command>();
         private readonly Command CommandInfo = new Command();
 
-        public GameState(Bot bot)
+        internal GameState(Bot bot)
         {
             Bot = bot;
 
@@ -60,7 +60,7 @@ namespace AoE2Lib.Bots
         {
             if (id < 0)
             {
-                return null;
+                throw new ArgumentOutOfRangeException(nameof(id));
             }
 
             if (!Technologies.ContainsKey(id))
@@ -75,7 +75,7 @@ namespace AoE2Lib.Bots
         {
             if (id < 0)
             {
-                return null;
+                throw new ArgumentOutOfRangeException(nameof(id));
             }
 
             if (!UnitTypes.ContainsKey(id))
@@ -96,11 +96,6 @@ namespace AoE2Lib.Bots
             {
                 throw new ArgumentOutOfRangeException(nameof(id));
             }
-        }
-
-        public IEnumerable<Unit> GetAllUnits()
-        {
-            return Units.Values;
         }
 
         public bool GetResourceFound(Resource resource)
@@ -301,6 +296,11 @@ namespace AoE2Lib.Bots
 
         internal IEnumerable<Command> RequestUpdate()
         {
+            foreach (var command in Commands)
+            {
+                yield return command;
+            }
+
             DoAutoFindUnits();
             DoAutoUpdateUnits();
 
@@ -334,6 +334,11 @@ namespace AoE2Lib.Bots
 
             yield return CommandInfo;
 
+            foreach (var command in DoProduction())
+            {
+                yield return command;
+            }
+
             Map.RequestUpdate();
 
             foreach (var player in Players)
@@ -356,64 +361,13 @@ namespace AoE2Lib.Bots
                 yield return command;
             }
 
-            foreach (var command in DoProduction())
-            {
-                yield return command;
-            }
-
-            foreach (var command in Commands)
-            {
-                yield return command;
-            }
+            
 
             Commands.Clear();
         }
 
         internal void Update()
         {
-            Map.Update();
-
-            foreach (var player in Players)
-            {
-                player.Update();
-            }
-
-            foreach (var technology in Technologies.Values)
-            {
-                technology.Update();
-            }
-
-            foreach (var type in UnitTypes.Values)
-            {
-                type.Update();
-            }
-
-            foreach (var unit in Units.Values)
-            {
-                unit.Update();
-            }
-
-            foreach (var command in FindCommands.Where(c => c.HasResponses))
-            {
-                var responses = command.Responses;
-
-                for (int i = 0; i < 10; i++)
-                {
-                    var index = responses.Count - 1 - (i * 3);
-
-                    var ids = responses[index].Unpack<UpSearchObjectIdListResult>().Result;
-                    foreach (var id in ids.Where(d => d >= 0))
-                    {
-                        if (!Units.ContainsKey(id))
-                        {
-                            Units.Add(id, new Unit(Bot, id));
-                        }
-                    }
-                }
-            }
-
-            FindCommands.Clear();
-
             if (CommandInfo.HasResponses)
             {
                 var responses = CommandInfo.GetResponses();
@@ -458,6 +412,49 @@ namespace AoE2Lib.Bots
                 Tick++;
             }
 
+            Map.Update();
+
+            foreach (var player in Players)
+            {
+                player.Update();
+            }
+
+            foreach (var technology in Technologies.Values)
+            {
+                technology.Update();
+            }
+
+            foreach (var type in UnitTypes.Values)
+            {
+                type.Update();
+            }
+
+            foreach (var unit in Units.Values)
+            {
+                unit.Update();
+            }
+
+            foreach (var command in FindCommands.Where(c => c.HasResponses))
+            {
+                var responses = command.Responses;
+
+                for (int i = 0; i < 10; i++)
+                {
+                    var index = responses.Count - 1 - (i * 3);
+
+                    var ids = responses[index].Unpack<UpSearchObjectIdListResult>().Result;
+                    foreach (var id in ids.Where(d => d >= 0))
+                    {
+                        if (!Units.ContainsKey(id))
+                        {
+                            Units.Add(id, new Unit(Bot, id));
+                        }
+                    }
+                }
+            }
+
+            FindCommands.Clear();
+
             foreach (var player in Players)
             {
                 player.Units.Clear();
@@ -468,18 +465,14 @@ namespace AoE2Lib.Bots
                 tile.Units.Clear();
             }
 
-            foreach (var unit in GetAllUnits().Where(u => u.Updated && u.PlayerNumber >= 0 && u.Targetable))
+            foreach (var unit in Units.Values.Where(u => u.Updated && u.PlayerNumber >= 0))
             {
                 Players[unit[ObjectData.PLAYER]].Units.Add(unit);
 
-                try
+                if (Map.IsOnMap(unit.Position.PointX, unit.Position.PointY))
                 {
                     var tile = Map.GetTile(unit.Position.PointX, unit.Position.PointY);
                     tile.Units.Add(unit);
-                }
-                catch (Exception)
-                {
-                    continue;
                 }
             }
 
@@ -577,7 +570,7 @@ namespace AoE2Lib.Bots
             foreach (var player in Players)
             {
                 var range = Map.Width + Map.Height;
-                if (Tick % 10 == 9)
+                if (Tick % 10 == player.PlayerNumber % 10)
                 {
                     range = 20;
                 }

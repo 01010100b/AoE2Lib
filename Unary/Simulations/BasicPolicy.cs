@@ -157,7 +157,6 @@ namespace Unary.Simulations
                     if (target.CurrentPosition.DistanceTo(unit.CurrentPosition) < unit.Range - 1)
                     {
                         var next_pos = target.CurrentPosition - unit.CurrentPosition;
-                        next_pos /= next_pos.Norm;
                         next_pos = next_pos.Rotate(0.1 * Math.PI);
                         next_pos *= -1;
                         next_pos += unit.CurrentPosition;
@@ -166,7 +165,6 @@ namespace Unary.Simulations
                     else
                     {
                         var next_pos = target.CurrentPosition - unit.CurrentPosition;
-                        next_pos /= next_pos.Norm;
                         next_pos = next_pos.Rotate(0.4 * Math.PI);
                         next_pos += unit.CurrentPosition;
                         unit.MoveTo(next_pos);

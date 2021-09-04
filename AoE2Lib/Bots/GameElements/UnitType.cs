@@ -12,15 +12,15 @@ namespace AoE2Lib.Bots.GameElements
     public class UnitType : GameElement
     {
         public readonly int Id;
-        public bool IsAvailable { get; private set; }
-        public int Count { get; private set; }
-        public int CountTotal { get; private set; }
-        public bool CanBuild { get; private set; }
-        public bool TrainSiteReady { get; private set; }
-        public int WoodCost { get; private set; }
-        public int FoodCost { get; private set; }
-        public int GoldCost { get; private set; }
-        public int StoneCost { get; private set; }
+        public bool IsAvailable { get; private set; } = false;
+        public int Count { get; private set; } = 0;
+        public int CountTotal { get; private set; } = 0;
+        public bool CanBuild { get; private set; } = false;
+        public bool TrainSiteReady { get; private set; } = false;
+        public int WoodCost { get; private set; } = 0;
+        public int FoodCost { get; private set; } = 0;
+        public int GoldCost { get; private set; } = 0;
+        public int StoneCost { get; private set; } = 0;
         public int Pending => CountTotal - Count;
 
         internal UnitType(Bot bot, int id) : base(bot)

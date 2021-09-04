@@ -46,7 +46,7 @@ namespace AoE2Lib.Bots
             }
         }
 
-        public void Update()
+        internal void Update()
         {
             if (!Command.HasResponses)
             {
