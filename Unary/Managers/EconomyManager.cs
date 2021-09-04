@@ -120,7 +120,7 @@ namespace Unary.Managers
 
             Unary.GameState.SetStrategicNumber(StrategicNumber.MILL_MAX_DISTANCE, 30);
 
-            if (Unary.GameState.MyPlayer.Units.Count(u => u.Targetable && u[ObjectData.BASE_TYPE] == tc.Id) < MaxTownCenters)
+            if (Unary.GameState.MyPlayer.GetUnits().Count(u => u.Targetable && u[ObjectData.BASE_TYPE] == tc.Id) < MaxTownCenters)
             {
                 Unary.Log.Info("Building TC");
                 tc.BuildNormal(MaxTownCenters, 1, Priority.DROPSITE);

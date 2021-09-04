@@ -42,13 +42,20 @@ namespace AoE2Lib.Bots.GameElements
         public int Score => GetFact(FactId.CURRENT_SCORE);
         public int CivilianPopulation => GetFact(FactId.CIVILIAN_POPULATION);
         public int MilitaryPopulation => GetFact(FactId.MILITARY_POPULATION);
-        public readonly List<Unit> Units = new List<Unit>();
 
+        internal readonly List<Unit> Units = new List<Unit>();
         private readonly Dictionary<FactId, int> Facts = new Dictionary<FactId, int>();
+        private readonly Dictionary<int, int> Goals = new Dictionary<int, int>();
+        private readonly Dictionary<int, int> StrategicNumbers = new Dictionary<int, int>();
 
         internal Player(Bot bot, int player) : base(bot)
         {
             PlayerNumber = player;
+        }
+
+        public IEnumerable<Unit> GetUnits()
+        {
+            return Units;
         }
 
         public int GetFact(FactId fact)
@@ -61,6 +68,50 @@ namespace AoE2Lib.Bots.GameElements
             {
                 return -1;
             }
+        }
+
+        public int GetGoal(int id)
+        {
+            if (id < 1 || id > 512)
+            {
+                throw new IndexOutOfRangeException(nameof(id));
+            }
+
+            if (PlayerNumber != Bot.PlayerNumber && Stance != PlayerStance.ALLY)
+            {
+                Goals.Clear();
+
+                return -1;
+            }
+
+            if (!Goals.ContainsKey(id))
+            {
+                Goals.Add(id, -1);
+            }
+
+            return Goals[id];
+        }
+
+        public int GetStrategicNumber(int id)
+        {
+            if (id < 0 || id > 511)
+            {
+                throw new IndexOutOfRangeException(nameof(id));
+            }
+
+            if (PlayerNumber != Bot.PlayerNumber && Stance != PlayerStance.ALLY)
+            {
+                StrategicNumbers.Clear();
+
+                return -1;
+            }
+
+            if (!StrategicNumbers.ContainsKey(id))
+            {
+                StrategicNumbers.Add(id, -1);
+            }
+
+            return StrategicNumbers[id];
         }
 
         protected override IEnumerable<IMessage> RequestElementUpdate()
@@ -80,7 +131,22 @@ namespace AoE2Lib.Bots.GameElements
                 yield return new UpGetPlayerFact() { InPlayerAnyPlayer = PlayerNumber, InConstFactId = (int)fact, InConstParam = 0, OutGoalData = 100 };
                 yield return new Goal() { InConstGoalId = 100 };
             }
-            
+
+            var ids = new List<int>();
+            ids.AddRange(Goals.Keys);
+            ids.Sort();
+            foreach (var id in ids)
+            {
+                yield return new UpAlliedGoal() { InGoalId = id, InPlayerComputerAllyPlayer = PlayerNumber };
+            }
+
+            ids.Clear();
+            ids.AddRange(StrategicNumbers.Keys);
+            ids.Sort();
+            foreach (var id in ids)
+            {
+                yield return new UpAlliedSn() { InSnId = id, InPlayerComputerAllyPlayer = PlayerNumber };
+            }
         }
 
         protected override void UpdateElement(IReadOnlyList<Any> responses)
@@ -105,12 +171,32 @@ namespace AoE2Lib.Bots.GameElements
                 Stance = PlayerStance.NEUTRAL;
             }
 
-            var index = 2;
+            var index = 3;
             foreach (var fact in FACTS)
             {
-                index += 2;
-                var val = responses[index].Unpack<GoalResult>().Result;
+                var val = responses[index + 1].Unpack<GoalResult>().Result;
                 Facts[fact] = val;
+                index += 2;
+            }
+
+            var ids = new List<int>();
+            ids.AddRange(Goals.Keys);
+            ids.Sort();
+            foreach (var id in ids)
+            {
+                var val = responses[index].Unpack<UpAlliedGoalResult>().Result;
+                Goals[id] = val;
+                index++;
+            }
+
+            ids.Clear();
+            ids.AddRange(StrategicNumbers.Keys);
+            ids.Sort();
+            foreach (var id in ids)
+            {
+                var val = responses[index].Unpack<UpAlliedSnResult>().Result;
+                StrategicNumbers[id] = val;
+                index++;
             }
         }
     }

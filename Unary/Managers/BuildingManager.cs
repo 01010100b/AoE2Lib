@@ -91,7 +91,7 @@ namespace Unary.Managers
         {
             // available foundations
 
-            foreach (var unit in Unary.GameState.MyPlayer.Units.Where(u => u.Targetable && u[ObjectData.STATUS] == 0))
+            foreach (var unit in Unary.GameState.MyPlayer.GetUnits().Where(u => u.Targetable && u[ObjectData.STATUS] == 0))
             {
                 if (unit[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || unit[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING)
                 {
@@ -180,7 +180,7 @@ namespace Unary.Managers
         {
             var sites = new List<Unit>();
 
-            foreach (var unit in Unary.GameState.MyPlayer.Units.Where(u => u.Targetable))
+            foreach (var unit in Unary.GameState.MyPlayer.GetUnits().Where(u => u.Targetable))
             {
                 if (unit[ObjectData.BASE_TYPE] == 109 || unit[ObjectData.BASE_TYPE] == 68)
                 {

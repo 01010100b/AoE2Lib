@@ -36,7 +36,7 @@ namespace Unary
                 }
             }
 
-            foreach (var unit in unary.GameState.MyPlayer.Units.Where(u => u.Targetable))
+            foreach (var unit in unary.GameState.MyPlayer.GetUnits().Where(u => u.Targetable))
             {
                 if (!taken.Contains(unit))
                 {
