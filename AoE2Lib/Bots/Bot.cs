@@ -97,8 +97,8 @@ namespace AoE2Lib.Bots
                 // update
 
                 sw.Restart();
+                GameState.Update();
                 commands.Clear();
-                
 
                 var first_command = new Command();
                 first_command.Add(new GameTime());
@@ -108,6 +108,16 @@ namespace AoE2Lib.Bots
 
                 commands.AddRange(Tick().Where(c => c.HasMessages));
                 commands.AddRange(GameState.RequestUpdate());
+
+                
+
+                Log.Debug($"Update took {sw.ElapsedMilliseconds} ms");
+
+                // make the call
+
+                sw.Restart();
+
+                var commandlist = new CommandList() { PlayerNumber = PlayerNumber };
 
                 if ((DateTime.UtcNow - previous) > TimeSpan.FromSeconds(5))
                 {
@@ -121,14 +131,6 @@ namespace AoE2Lib.Bots
                     commands.Clear();
                     Log.Debug("Clearing commands (more than 5 seconds since previous)");
                 }
-
-                Log.Debug($"Update took {sw.ElapsedMilliseconds} ms");
-
-                // make the call
-
-                sw.Restart();
-
-                var commandlist = new CommandList() { PlayerNumber = PlayerNumber };
 
                 foreach (var command in commands)
                 {
@@ -192,13 +194,10 @@ namespace AoE2Lib.Bots
 
                             game_time = ngt;
                         }
-
-                        Log.Debug($"Bot Game time {game_time}");
                     }
-
-                    GameState.Update();
                 }
 
+                Log.Debug($"Bot Game time {game_time}");
                 Log.Debug($"Call took {sw.ElapsedMilliseconds} ms");
             }
 

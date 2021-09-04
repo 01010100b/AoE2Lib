@@ -420,9 +420,9 @@ namespace AoE2Lib.Bots
 
                 var current_time = GameTime;
                 GameTime = TimeSpan.FromSeconds(responses[0].Unpack<GameTimeResult>().Result);
-                GameTimePerTick *= 19;
+                GameTimePerTick *= 49;
                 GameTimePerTick += GameTime - current_time;
-                GameTimePerTick /= 20;
+                GameTimePerTick /= 50;
 
                 var x = responses[2].Unpack<GoalResult>().Result;
                 var y = responses[3].Unpack<GoalResult>().Result;
@@ -483,7 +483,7 @@ namespace AoE2Lib.Bots
                 }
             }
 
-            Bot.Log.Info($"Tick {Tick}");
+            Bot.Log.Info($"Tick {Tick} Game time {GameTime:g} with {GameTimePerTick:c} game time per tick");
 
             foreach (var player in Players.Where(p => p.IsValid && p.Updated))
             {
