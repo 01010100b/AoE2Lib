@@ -84,7 +84,7 @@ namespace Unary.Operations
                 {
                     if (Unary.Rng.NextDouble() < 0.1)
                     {
-                        gatherer.TargetPosition(Dropsite.Position, UnitAction.MOVE);
+                        gatherer.Target(Dropsite.Position, UnitAction.MOVE);
                     }
                 }
                 else if (target_id <= 0)
@@ -109,7 +109,7 @@ namespace Unary.Operations
                     }
 
                     var gatherer = unassigned_gatherers[unassigned_gatherers.Count - 1];
-                    gatherer.TargetUnit(resource);
+                    gatherer.Target(resource);
                     unassigned_gatherers.RemoveAt(unassigned_gatherers.Count - 1);
                 }
             }

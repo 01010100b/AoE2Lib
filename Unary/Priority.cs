@@ -9,11 +9,12 @@ namespace Unary
         public const int 
         DEFAULT = 10,
         MILITARY = 100,
-        FARM = 200,
-        PRODUCTION_BUILDING = 300,
-        DROPSITE = 400,
-        HOUSING = 500,
-        VILLAGER = 600,
-        AGE_UP = 700;
+        TECH = 200,
+        FARM = 300,
+        PRODUCTION_BUILDING = 400,
+        DROPSITE = 500,
+        HOUSING = 600,
+        VILLAGER = 700,
+        AGE_UP = 800;
     }
 }

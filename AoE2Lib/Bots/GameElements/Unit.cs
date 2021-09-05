@@ -40,8 +40,13 @@ namespace AoE2Lib.Bots.GameElements
             }
         }
 
-        public void TargetUnit(Unit target, UnitAction? action = null, UnitFormation? formation = null, UnitStance? stance = null, int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue, Unit backup = null)
+        public void Target(Unit target, UnitAction? action = null, UnitFormation? formation = null, UnitStance? stance = null, int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue, Unit backup = null)
         {
+            if (target == null)
+            {
+                throw new ArgumentNullException(nameof(target));
+            }
+
             if (backup == null)
             {
                 backup = target;
@@ -50,6 +55,11 @@ namespace AoE2Lib.Bots.GameElements
             RequestUpdate();
             target.RequestUpdate();
             backup.RequestUpdate();
+
+            if (Updated == false || target.Updated == false || backup.Updated == false)
+            {
+                return;
+            }
 
             var command = new Command();
 
@@ -114,9 +124,19 @@ namespace AoE2Lib.Bots.GameElements
             Bot.GameState.AddCommand(command);
         }
 
-        public void TargetPosition(Position position, UnitAction? action = null, UnitFormation? formation = null, UnitStance? stance = null, int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue)
+        public void Target(Position position, UnitAction? action = null, UnitFormation? formation = null, UnitStance? stance = null, int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue)
         {
             RequestUpdate();
+
+            if (!Bot.GameState.Map.IsOnMap(position.PointX, position.PointY))
+            {
+                throw new ArgumentOutOfRangeException(nameof(position));
+            }
+
+            if (Updated == false)
+            {
+                return;
+            }
 
             if (action == UnitAction.MOVE && Position == position)
             {
@@ -127,8 +147,6 @@ namespace AoE2Lib.Bots.GameElements
             {
                 return;
             }
-
-            position = new Position(Math.Max(0, Math.Min(Bot.GameState.Map.Width, position.X)), Math.Max(0, Math.Min(Bot.GameState.Map.Height, position.Y)));
 
             const int GL_CHECKS = 100;
             const int GL_TEMP = 101;
@@ -149,16 +167,19 @@ namespace AoE2Lib.Bots.GameElements
 
             command.Add(new UpSetTargetById() { InConstId = Id });
             command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.ID, OutGoalData = GL_TEMP });
-            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "==", Id, new UpModifyGoal() { IoGoalId = GL_CHECKS, MathOp = op_add, InOpValue = 1 });
+            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "==", Id, 
+                new UpModifyGoal() { IoGoalId = GL_CHECKS, MathOp = op_add, InOpValue = 1 });
 
             // check 2: next_attack >= min_next_attack
 
             command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.NEXT_ATTACK, OutGoalData = GL_TEMP });
-            command.Add(new Goal() { InConstGoalId = GL_TEMP }, ">=", min_next_attack, new UpModifyGoal() { IoGoalId = GL_CHECKS, MathOp = op_add, InOpValue = 1 });
+            command.Add(new Goal() { InConstGoalId = GL_TEMP }, ">=", min_next_attack, 
+                new UpModifyGoal() { IoGoalId = GL_CHECKS, MathOp = op_add, InOpValue = 1 });
 
             // check 3: next_attack <= max_next_attack
 
-            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "<=", max_next_attack, new UpModifyGoal() { IoGoalId = GL_CHECKS, MathOp = op_add, InOpValue = 1 });
+            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "<=", max_next_attack, 
+                new UpModifyGoal() { IoGoalId = GL_CHECKS, MathOp = op_add, InOpValue = 1 });
 
             // run if all checks pass
 

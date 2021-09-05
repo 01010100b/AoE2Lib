@@ -48,14 +48,25 @@ namespace Unary.Managers
             var castle_age = Unary.GameState.GetTechnology(102);
             var imperial_age = Unary.GameState.GetTechnology(103);
 
+            var horse_collar = Unary.GameState.GetTechnology(14);
+            var heavy_plow = Unary.GameState.GetTechnology(13);
+            var crop_rotation = Unary.GameState.GetTechnology(12);
+
             var barracks = Unary.GameState.GetUnitType(12);
             var archery_range = Unary.GameState.GetUnitType(87);
             var blacksmith = Unary.GameState.GetUnitType(103);
+            var castle = Unary.GameState.GetUnitType(82);
             var archer = Unary.GameState.GetUnitType(4);
 
             feudal_age.Research(Priority.AGE_UP, false);
             castle_age.Research(Priority.AGE_UP, false);
             imperial_age.Research(Priority.AGE_UP, false);
+
+            castle.BuildNormal();
+
+            horse_collar.Research(Priority.TECH);
+            heavy_plow.Research(Priority.TECH);
+            crop_rotation.Research(Priority.TECH);
 
             if (castle_age.State == ResearchState.COMPLETE)
             {
@@ -64,6 +75,7 @@ namespace Unary.Managers
 
             var max_ranges = (Unary.GameState.MyPlayer.CivilianPopulation - 25) / 10;
             max_ranges = Math.Max(1, max_ranges);
+            max_ranges = Math.Min(3, max_ranges);
 
             if (barracks.CountTotal >= 1 && archery_range.CountTotal < max_ranges)
             {

@@ -33,7 +33,7 @@ namespace Unary.Operations
             {
                 if (unit[ObjectData.TARGET_ID] != Building.Id)
                 {
-                    unit.TargetUnit(Building);
+                    unit.Target(Building);
                 }
             }
         }
