@@ -62,6 +62,8 @@ namespace AoE2Lib.Bots
                 new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -4 });
             command.Add(new UpPendingPlacement() { InSnBuildingId = Bot.SN_PENDING_PLACEMENT }, "!=", 0,
                 new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -5 });
+            command.Add(new Protos.Expert.Fact.StrategicNumber() { InConstSnId = Bot.SN_PENDING_PLACEMENT }, "!=", 0,
+                new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -6 });
 
             command.Add(new Goal() { InConstGoalId = GL_BUILD }, "==", 0,
                  new Build() { InConstBuildingId = Id },
@@ -107,6 +109,8 @@ namespace AoE2Lib.Bots
                     new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -4 });
                 command.Add(new UpPendingPlacement() { InSnBuildingId = Bot.SN_PENDING_PLACEMENT }, "!=", 0,
                     new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -5 });
+                command.Add(new Protos.Expert.Fact.StrategicNumber() { InConstSnId = Bot.SN_PENDING_PLACEMENT }, "!=", 0,
+                    new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -6 });
 
                 var icommand = new Command();
                 icommand.Add(new Goal() { InConstGoalId = GL_BUILD }, "==", 0,

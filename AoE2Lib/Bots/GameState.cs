@@ -296,11 +296,6 @@ namespace AoE2Lib.Bots
 
         internal IEnumerable<Command> RequestUpdate()
         {
-            foreach (var command in Commands)
-            {
-                yield return command;
-            }
-
             DoAutoFindUnits();
             DoAutoUpdateUnits();
 
@@ -361,7 +356,10 @@ namespace AoE2Lib.Bots
                 yield return command;
             }
 
-            
+            foreach (var command in Commands)
+            {
+                yield return command;
+            }
 
             Commands.Clear();
         }

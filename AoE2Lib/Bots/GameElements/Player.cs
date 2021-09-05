@@ -4,7 +4,7 @@ using Protos.Expert.Action;
 using Protos.Expert.Fact;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace AoE2Lib.Bots.GameElements
 {
@@ -46,7 +46,7 @@ namespace AoE2Lib.Bots.GameElements
         internal readonly List<Unit> Units = new List<Unit>();
         private readonly Dictionary<FactId, int> Facts = new Dictionary<FactId, int>();
         private readonly Dictionary<int, int> Goals = new Dictionary<int, int>();
-        private readonly Dictionary<int, int> StrategicNumbers = new Dictionary<int, int>();
+        private readonly Dictionary<StrategicNumber, int> StrategicNumbers = new Dictionary<StrategicNumber, int>();
 
         internal Player(Bot bot, int player) : base(bot)
         {
@@ -70,11 +70,11 @@ namespace AoE2Lib.Bots.GameElements
             }
         }
 
-        public int GetGoal(int id)
+        public int GetGoal(int goal)
         {
-            if (id < 1 || id > 512)
+            if (goal < 1 || goal > 512)
             {
-                throw new IndexOutOfRangeException(nameof(id));
+                throw new IndexOutOfRangeException(nameof(goal));
             }
 
             if (PlayerNumber != Bot.PlayerNumber && Stance != PlayerStance.ALLY)
@@ -84,21 +84,16 @@ namespace AoE2Lib.Bots.GameElements
                 return -1;
             }
 
-            if (!Goals.ContainsKey(id))
+            if (!Goals.ContainsKey(goal))
             {
-                Goals.Add(id, -1);
+                Goals.Add(goal, -1);
             }
 
-            return Goals[id];
+            return Goals[goal];
         }
 
-        public int GetStrategicNumber(int id)
+        public int GetStrategicNumber(StrategicNumber sn)
         {
-            if (id < 0 || id > 511)
-            {
-                throw new IndexOutOfRangeException(nameof(id));
-            }
-
             if (PlayerNumber != Bot.PlayerNumber && Stance != PlayerStance.ALLY)
             {
                 StrategicNumbers.Clear();
@@ -106,12 +101,12 @@ namespace AoE2Lib.Bots.GameElements
                 return -1;
             }
 
-            if (!StrategicNumbers.ContainsKey(id))
+            if (!StrategicNumbers.ContainsKey(sn))
             {
-                StrategicNumbers.Add(id, -1);
+                StrategicNumbers.Add(sn, -1);
             }
 
-            return StrategicNumbers[id];
+            return StrategicNumbers[sn];
         }
 
         protected override IEnumerable<IMessage> RequestElementUpdate()
@@ -141,7 +136,7 @@ namespace AoE2Lib.Bots.GameElements
             }
 
             ids.Clear();
-            ids.AddRange(StrategicNumbers.Keys);
+            ids.AddRange(StrategicNumbers.Keys.Cast<int>());
             ids.Sort();
             foreach (var id in ids)
             {
@@ -190,12 +185,12 @@ namespace AoE2Lib.Bots.GameElements
             }
 
             ids.Clear();
-            ids.AddRange(StrategicNumbers.Keys);
+            ids.AddRange(StrategicNumbers.Keys.Cast<int>());
             ids.Sort();
             foreach (var id in ids)
             {
                 var val = responses[index].Unpack<UpAlliedSnResult>().Result;
-                StrategicNumbers[id] = val;
+                StrategicNumbers[(StrategicNumber)id] = val;
                 index++;
             }
         }
