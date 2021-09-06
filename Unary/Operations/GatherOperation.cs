@@ -38,21 +38,26 @@ namespace Unary.Operations
             {
                 resources = GetWoodResources();
                 UnitCapacity = Math.Min(6, resources.Count * 2);
+                DoGathering(Units, resources);
+            }
+            else if (Resource == Resource.GOLD)
+            {
+                resources = GetGoldResources();
+                UnitCapacity = Math.Min(8, resources.Count * 2);
+                DoGathering(Units, resources);
             }
             else
             {
                 throw new NotImplementedException();
             }
 
-            DoGathering(Units, resources);
-
-            Unary.Log.Debug($"Gathering {Resource} at {Dropsite.UnitType.Id}({Dropsite.Position}) with {UnitCount}/{UnitCapacity} units for {resources.Count} resources");
+            Unary.Log.Debug($"Gathering {Resource} at {Dropsite[ObjectData.BASE_TYPE]}({Dropsite.Position}) with {UnitCount}/{UnitCapacity} units for {resources.Count} resources");
         }
 
         private List<Unit> GetWoodResources()
         {
             var range = 4;
-            if (Dropsite.UnitType.Id == 109)
+            if (Dropsite[ObjectData.BASE_TYPE] == 109)
             {
                 range = 7;
             }
@@ -71,6 +76,30 @@ namespace Unary.Operations
             }
 
             return trees;
+        }
+
+        private List<Unit> GetGoldResources()
+        {
+            var range = 4;
+            if (Dropsite[ObjectData.BASE_TYPE] == 109)
+            {
+                range = 7;
+            }
+
+            var golds = new List<Unit>();
+            foreach (var tile in Unary.GameState.Map.GetTilesInRange(Dropsite.Position.PointX, Dropsite.Position.PointY, range + 1))
+            {
+                foreach (var unit in tile.Units.Where(u => u.Targetable && u[ObjectData.CLASS] == (int)UnitClass.GoldMine))
+                {
+                    if (unit.Position.DistanceTo(Dropsite.Position) <= range)
+                    {
+                        golds.Add(unit);
+                        unit.RequestUpdate();
+                    }
+                }
+            }
+
+            return golds;
         }
 
         private void DoGathering(List<Unit> units, List<Unit> resources)

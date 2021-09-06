@@ -13,7 +13,6 @@ namespace AoE2Lib.Bots.GameElements
     {
         public readonly int Id;
         public int this[ObjectData data] { get { return GetData(data); } }
-        public UnitType UnitType => Bot.GameState.GetUnitType(this[ObjectData.UPGRADE_TYPE]);
         public int PlayerNumber => GetData(ObjectData.PLAYER);
         public bool Targetable { get; private set; } = false;
         public bool Visible { get; private set; } = false;

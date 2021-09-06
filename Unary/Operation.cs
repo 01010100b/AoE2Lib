@@ -86,26 +86,31 @@ namespace Unary
             _Units.Add(unit);
             Operations[Unary].Add(this);
 
-            Unary.Log.Debug($"Added unit {unit.Id} to operation {GetId()}");
+            Unary.Log.Debug($"Added unit {unit.Id} to operation {ToString()}");
         }
 
         public void RemoveUnit(Unit unit)
         {
             _Units.Remove(unit);
-            Unary.Log.Debug($"Removed unit {unit.Id} from operation {GetId()}");
+            Unary.Log.Debug($"Removed unit {unit.Id} from operation {ToString()}");
         }
 
         public void Clear()
         {
             _Units.Clear();
-            Unary.Log.Debug($"Cleared operation {GetId()}");
+            Unary.Log.Debug($"Cleared operation {ToString()}");
         }
 
         public void Stop()
         {
             Clear();
             Operations[Unary].Remove(this);
-            Unary.Log.Debug($"Stopped operation {GetId()}");
+            Unary.Log.Debug($"Stopped operation {ToString()}");
+        }
+
+        public override string ToString()
+        {
+            return $"{GetType().Name}({Position.PointX},{Position.PointY})";
         }
 
         internal void UpdateInternal()
@@ -115,13 +120,8 @@ namespace Unary
                 unit.RequestUpdate();
             }
 
-            Unary.Log.Debug($"Updating operation {GetId()}");
+            Unary.Log.Debug($"Updating operation {ToString()}");
             Update();
-        }
-
-        private string GetId()
-        {
-            return $"{GetType().Name}({Position})";
         }
     }
 }

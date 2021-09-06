@@ -79,7 +79,7 @@ namespace Unary.Managers
             Unary.GameState.SetStrategicNumber(StrategicNumber.USE_BY_TYPE_MAX_GATHERING, 1);
 
             Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_WOOD_DROP_DISTANCE, -2);
-            Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_GOLD_DROP_DISTANCE, 7);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_GOLD_DROP_DISTANCE, -2);
             Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_STONE_DROP_DISTANCE, 7);
 
             Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_FOOD_DROP_DISTANCE, 8);
@@ -205,7 +205,7 @@ namespace Unary.Managers
 
         private void ManageGatherOperations()
         {
-            // assign operations
+            // assign/remove operations to dropsites
 
             var dropsites = new HashSet<Unit>();
             foreach (var unit in GatherOperations.Keys)
@@ -215,16 +215,18 @@ namespace Unary.Managers
 
             foreach (var unit in Unary.GameState.MyPlayer.GetUnits().Where(u => u.Targetable))
             {
-                if (unit.UnitType.Id == 109 || unit.UnitType.Id == 562)
+                var type = unit[ObjectData.BASE_TYPE];
+                if (type == 109 || type == 562 || type == 584)
                 {
                     dropsites.Add(unit);
-                }    
+                }
             }
 
             foreach (var site in dropsites)
             {
                 if (!site.Targetable)
                 {
+                    // dropsite disappeared, stop all gather operations here
                     if (GatherOperations.TryGetValue(site, out List<GatherOperation> ops))
                     {
                         foreach (var op in ops)
@@ -233,7 +235,6 @@ namespace Unary.Managers
                         }
 
                         ops.Clear();
-
                         GatherOperations.Remove(site);
                     }
                 }
@@ -244,13 +245,26 @@ namespace Unary.Managers
                         GatherOperations.Add(site, new List<GatherOperation>());
                     }
 
-                    if (site.UnitType.Id == 109 || site.UnitType.Id == 562)
+                    var type = site[ObjectData.BASE_TYPE];
+                    if (type == 109 || type == 562)
                     {
                         var op = GatherOperations[site].FirstOrDefault(o => o.Resource == Resource.WOOD);
                         if (op == null)
                         {
                             op = new GatherOperation(Unary, site, Resource.WOOD);
                             GatherOperations[site].Add(op);
+                        }
+                    }
+                    if (type == 109 || type == 584)
+                    {
+                        foreach (var res in new[] { Resource.GOLD })
+                        {
+                            var op = GatherOperations[site].FirstOrDefault(o => o.Resource == res);
+                            if (op == null)
+                            {
+                                op = new GatherOperation(Unary, site, res);
+                                GatherOperations[site].Add(op);
+                            }
                         }
                     }
                 }
@@ -265,6 +279,7 @@ namespace Unary.Managers
                     var free = op.Units.FirstOrDefault(u => u[ObjectData.CARRY] == 0);
                     if (free != null && Unary.Rng.NextDouble() < 0.1)
                     {
+                        free.Target(op.Dropsite.Position);
                         op.RemoveUnit(free);
                     }
                 }
@@ -278,7 +293,53 @@ namespace Unary.Managers
                 return;
             }
 
-            var min_wood_gatherers = Unary.GameState.GetStrategicNumber(StrategicNumber.WOOD_GATHERER_PERCENTAGE) * Unary.GameState.MyPlayer.CivilianPopulation / 100;
+            var resources = new[] { Resource.WOOD, Resource.GOLD };
+            foreach (var resource in resources)
+            {
+                if (free_vills.Count == 0)
+                {
+                    break;
+                }
+
+                var min_gatherers = 0;
+                switch (resource)
+                {
+                    case Resource.WOOD: min_gatherers = Unary.GameState.GetStrategicNumber(StrategicNumber.WOOD_GATHERER_PERCENTAGE); break;
+                    case Resource.FOOD: min_gatherers = Unary.GameState.GetStrategicNumber(StrategicNumber.FOOD_GATHERER_PERCENTAGE); break;
+                    case Resource.GOLD: min_gatherers = Unary.GameState.GetStrategicNumber(StrategicNumber.GOLD_GATHERER_PERCENTAGE); break;
+                    case Resource.STONE: min_gatherers = Unary.GameState.GetStrategicNumber(StrategicNumber.STONE_GATHERER_PERCENTAGE); break;
+                }
+
+                min_gatherers *= Unary.GameState.MyPlayer.CivilianPopulation;
+                min_gatherers = (int)Math.Floor(min_gatherers / 100d);
+
+                var gatherers = 0;
+                var open_ops = new List<GatherOperation>();
+                foreach (var op in GatherOperations.Values.SelectMany(g => g).Where(o => o.Resource == resource))
+                {
+                    gatherers += op.UnitCount;
+                    if (op.UnitCount < op.UnitCapacity)
+                    {
+                        open_ops.Add(op);
+                    }
+                }
+
+                if (open_ops.Count == 0)
+                {
+                    continue;
+                }
+
+                if (gatherers < min_gatherers)
+                {
+                    var op = open_ops[0];
+                    var vill = free_vills[free_vills.Count - 1];
+                    op.AddUnit(vill);
+
+                    free_vills.RemoveAt(free_vills.Count - 1);
+                }
+            }
+            /*
+            var min_wood_gatherers = Unary.GameState.GetStrategicNumber(StrategicNumber.WOOD_GATHERER_PERCENTAGE) * Unary.GameState.MyPlayer.CivilianPopulation / 100d;
 
             var wood_gatherers = 0;
             var wood_ops = new List<GatherOperation>();
@@ -308,7 +369,7 @@ namespace Unary.Managers
                 wood_ops.RemoveAt(wood_ops.Count - 1);
                 free_vills.RemoveAt(free_vills.Count - 1);
             }
-
+            */
             Unary.Log.Debug($"Gather operations: {GatherOperations.SelectMany(g => g.Value).Count()}");
         }
     }

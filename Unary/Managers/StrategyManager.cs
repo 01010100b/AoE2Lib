@@ -22,6 +22,8 @@ namespace Unary.Managers
             Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_ATTACK_GROUP_SIZE, 1);
             Unary.GameState.SetStrategicNumber(StrategicNumber.NUMBER_ATTACK_GROUPS, 1000);
             Unary.GameState.SetStrategicNumber(StrategicNumber.ZERO_PRIORITY_DISTANCE, 250);
+
+            Unary.Log.Info($"Attacking player {player.PlayerNumber}");
         }
 
         public void Retreat()
@@ -73,13 +75,20 @@ namespace Unary.Managers
                 Unary.EconomyManager.MaxTownCenters = 3;
             }
 
-            var max_ranges = (Unary.GameState.MyPlayer.CivilianPopulation - 25) / 10;
-            max_ranges = Math.Max(1, max_ranges);
-            max_ranges = Math.Min(3, max_ranges);
-
-            if (barracks.CountTotal >= 1 && archery_range.CountTotal < max_ranges)
+            if (barracks.CountTotal >= 1)
             {
-                archery_range.BuildNormal(max_ranges, 1, Priority.PRODUCTION_BUILDING);
+                var max_ranges = (Unary.GameState.MyPlayer.CivilianPopulation - 25) / 10;
+                max_ranges = Math.Max(1, max_ranges);
+                max_ranges = Math.Min(3, max_ranges);
+
+                if (archery_range.CountTotal < max_ranges)
+                {
+                    archery_range.BuildNormal(max_ranges, 1, Priority.PRODUCTION_BUILDING);
+                }
+                else if (archery_range.Count > 1 && archer.TrainSiteReady == false && Unary.Rng.NextDouble() < 0.1)
+                {
+                    archery_range.BuildNormal(max_ranges, 1, Priority.PRODUCTION_BUILDING);
+                }
             }
 
             if (archery_range.CountTotal >= 1 && blacksmith.CountTotal < 1)
@@ -116,6 +125,18 @@ namespace Unary.Managers
                 {
                     barracks.BuildNormal(1, 1, Priority.PRODUCTION_BUILDING);
                 }
+            }
+
+            if (castle_age.State == ResearchState.COMPLETE && Unary.GameState.MyPlayer.CivilianPopulation > 40)
+            {
+                Unary.EconomyManager.MinFoodGatherers = 25;
+                Unary.EconomyManager.MinWoodGatherers = 15;
+                Unary.EconomyManager.MinGoldGatherers = 0;
+                Unary.EconomyManager.MinStoneGatherers = 0;
+                Unary.EconomyManager.ExtraFoodPercentage = 10;
+                Unary.EconomyManager.ExtraWoodPercentage = 40;
+                Unary.EconomyManager.ExtraGoldPercentage = 40;
+                Unary.EconomyManager.ExtraStonePercentage = 10;
             }
 
             if (Unary.GameState.MyPlayer.MilitaryPopulation > 20)
