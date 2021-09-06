@@ -3,6 +3,7 @@ using Protos.Expert.Action;
 using Protos.Expert.Fact;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -296,6 +297,8 @@ namespace AoE2Lib.Bots
 
         internal IEnumerable<Command> RequestUpdate()
         {
+            var sw = new Stopwatch();
+
             DoAutoFindUnits();
             DoAutoUpdateUnits();
 
@@ -306,7 +309,6 @@ namespace AoE2Lib.Bots
             CommandInfo.Add(new Goal() { InConstGoalId = 50 });
             CommandInfo.Add(new Goal() { InConstGoalId = 51 });
             
-
             foreach (var resource in new[] { Resource.FOOD, Resource.WOOD, Resource.GOLD, Resource.STONE })
             {
                 CommandInfo.Add(new ResourceFound() { InConstResource = (int)resource });
@@ -334,6 +336,8 @@ namespace AoE2Lib.Bots
                 yield return command;
             }
 
+            sw.Restart();
+
             Map.RequestUpdate();
 
             foreach (var player in Players)
@@ -351,6 +355,9 @@ namespace AoE2Lib.Bots
                 type.RequestUpdate();
             }
 
+            sw.Stop();
+            Bot.Log.Debug($"GameElement RequestUpdate took {sw.ElapsedMilliseconds} ms");
+
             foreach (var command in FindCommands)
             {
                 yield return command;
@@ -366,6 +373,16 @@ namespace AoE2Lib.Bots
 
         internal void Update()
         {
+            Bot.Log.Info("");
+            Bot.Log.Info($"Tick {Tick} Game time {GameTime:g} with {GameTimePerTick:c} game time per tick");
+
+            foreach (var player in Players.Where(p => p.IsValid && p.Updated))
+            {
+                Bot.Log.Debug($"Player {player.PlayerNumber} has {player.Units.Count} units and {player.Score} score");
+            }
+
+            var sw = new Stopwatch();
+
             if (CommandInfo.HasResponses)
             {
                 var responses = CommandInfo.GetResponses();
@@ -410,6 +427,8 @@ namespace AoE2Lib.Bots
                 Tick++;
             }
 
+            sw.Restart();
+
             Map.Update();
 
             foreach (var player in Players)
@@ -431,6 +450,11 @@ namespace AoE2Lib.Bots
             {
                 unit.Update();
             }
+
+            sw.Stop();
+            Bot.Log.Debug($"GameElement Update took {sw.ElapsedMilliseconds} ms");
+
+            sw.Restart();
 
             foreach (var command in FindCommands.Where(c => c.HasResponses))
             {
@@ -474,16 +498,15 @@ namespace AoE2Lib.Bots
                 }
             }
 
-            Bot.Log.Info($"Tick {Tick} Game time {GameTime:g} with {GameTimePerTick:c} game time per tick");
-
-            foreach (var player in Players.Where(p => p.IsValid && p.Updated))
-            {
-                Bot.Log.Debug($"Player {player.PlayerNumber} has {player.Units.Count} units and {player.Score} score");
-            }
+            sw.Stop();
+            Bot.Log.Debug($"GameState Update took {sw.ElapsedMilliseconds} ms");
         }
 
         private IEnumerable<Command> DoProduction()
         {
+            var sw = new Stopwatch();
+            sw.Start();
+
             var remaining_wood = MyPlayer.GetFact(FactId.WOOD_AMOUNT);
             var remaining_food = MyPlayer.GetFact(FactId.FOOD_AMOUNT);
             var remaining_gold = MyPlayer.GetFact(FactId.GOLD_AMOUNT);
@@ -536,6 +559,9 @@ namespace AoE2Lib.Bots
             }
 
             ProductionTasks.Clear();
+
+            sw.Stop();
+            Bot.Log.Debug($"DoProduction took {sw.ElapsedMilliseconds} ms");
         }
 
         private void DoAutoFindUnits()
@@ -549,6 +575,9 @@ namespace AoE2Lib.Bots
             {
                 return;
             }
+
+            var sw = new Stopwatch();
+            sw.Start();
 
             Bot.Log.Debug($"Auto finding units");
 
@@ -568,7 +597,7 @@ namespace AoE2Lib.Bots
             foreach (var player in Players)
             {
                 var range = Map.Width + Map.Height;
-                if (Tick % 10 == player.PlayerNumber % 10)
+                if (Tick > 100 && Tick % 10 == 0)
                 {
                     range = 20;
                 }
@@ -581,95 +610,45 @@ namespace AoE2Lib.Bots
 
                     var resource = Resource.NONE;
 
-                    if (Tick % 2 == 0)
-                    {
-                        resource = Resource.WOOD;
-                    }
-                    else if (Tick % 3 == 0)
-                    {
-                        resource = Resource.FOOD;
-                    }
-                    else if (Tick % 5 == 0)
-                    {
-                        resource = Resource.BOAR;
-                    }
-                    else if (Tick % 7 == 0)
-                    {
-                        resource = Resource.DEER;
-                    }
-                    else if (Tick % 11 == 0)
-                    {
-                        resource = Resource.GOLD;
-                    }
-                    else
+                    if (Tick % 32 == 0)
                     {
                         resource = Resource.STONE;
                     }
-
-                    if (resource == Resource.WOOD)
+                    else if (Tick % 16 == 0)
                     {
-                        if (Bot.Rng.NextDouble() < 0.9)
+                        resource = Resource.GOLD;
+                    }
+                    else if (Tick % 8 == 0)
+                    {
+                        resource = Resource.DEER;
+                    }
+                    else if (Tick % 4 == 0)
+                    {
+                        resource = Resource.BOAR;
+                    }
+                    else if (Tick % 2 == 0)
+                    {
+                        resource = Resource.FOOD;
+                    }
+                    else
+                    {
+                        resource = Resource.WOOD;
+                    }
+
+                    if (Tick > 100)
+                    {
+                        if (Bot.Rng.NextDouble() < 0.5)
                         {
                             range = 10;
                         }
                     }
-                    else
-                    {
-                        if (Bot.Rng.NextDouble() < 0.1)
-                        {
-                            range = 20;
-                        }
-                    }
-
+                    
                     FindResources(resource, 0, position, range);
                 }
             }
 
-            /*
-            var players = Bot.GameState.GetPlayers().ToList();
-
-            for (int i = 0; i < AutoFindUnits; i++)
-            {
-                if (players.Count == 0)
-                {
-                    break;
-                }
-
-                var player = players[Bot.Rng.Next(players.Count)];
-                players.Remove(player);
-
-                var pos = MyPosition;
-                for (int j = 0; j < 100; j++)
-                {
-                    var x = Bot.Rng.Next(Map.Width);
-                    var y = Bot.Rng.Next(Map.Height);
-                    var tile = Map.GetTile(x, y);
-
-                    if (tile.Explored)
-                    {
-                        pos = Position.FromPoint(x, y);
-                    }
-                }
-
-                var range = Map.Width + Map.Height;
-                if (player.PlayerNumber == 0)
-                {
-                    if (Bot.Rng.NextDouble() < 0.8)
-                    {
-                        range = 10;
-                    }
-                }
-                else
-                {
-                    if (Bot.Rng.NextDouble() < 0.1)
-                    {
-                        range = 10;
-                    }
-                }
-
-                player.FindUnits(pos, range);
-            }
-            */
+            sw.Stop();
+            Bot.Log.Debug($"DoAutoFindUnits took {sw.ElapsedMilliseconds} ms");
         }
 
         private void DoAutoUpdateUnits()
@@ -683,6 +662,9 @@ namespace AoE2Lib.Bots
             {
                 return;
             }
+
+            var sw = new Stopwatch();
+            sw.Start();
 
             var first = 0;
             foreach (var unit in Units.Values)
@@ -728,33 +710,9 @@ namespace AoE2Lib.Bots
 
                 Bot.Log.Debug($"Auto updating {count} units for player {player.PlayerNumber}");
             }
-            /*
-            var units = Units.Values.ToList();
-            units.Sort((a, b) =>
-            {
-                if (b.Updated && !a.Updated)
-                {
-                    return -1;
-                }
-                else if (a.Updated && !b.Updated)
-                {
-                    return 1;
-                }
-                else
-                {
-                    return a.LastUpdateTick.CompareTo(b.LastUpdateTick);
-                }
-            });
 
-            var count = Math.Max(1, AutoUpdateUnits / 2);
-            count = Math.Min(units.Count, count);
-
-            for (int i = 0; i < count; i++)
-            {
-                units[i].RequestUpdate();
-                units[Bot.Rng.Next(units.Count)].RequestUpdate();
-            }
-            */
+            sw.Stop();
+            Bot.Log.Debug($"DoAutoUpdateUnits took {sw.ElapsedMilliseconds} ms");
         }
     }
 }

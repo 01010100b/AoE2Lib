@@ -11,8 +11,7 @@ namespace Unary.Operations
     class GatherOperation : Operation
     {
         public override Position Position => Dropsite.Position;
-        public override int UnitCapacity => _UnitCapacity;
-        private int _UnitCapacity { get; set; } = 0;
+        public int UnitCapacity { get; private set; } = 0;
 
         public readonly Unit Dropsite;
         public readonly Resource Resource;
@@ -46,7 +45,7 @@ namespace Unary.Operations
 
         private void DoWood()
         {
-            var range = 3;
+            var range = 4;
             var trees = new List<Unit>();
             foreach (var tile in Unary.GameState.Map.GetTilesInRange(Dropsite.Position.PointX, Dropsite.Position.PointY, range + 1))
             {
@@ -55,30 +54,38 @@ namespace Unary.Operations
                     if (unit.Position.DistanceTo(Dropsite.Position) <= range)
                     {
                         trees.Add(unit);
+                        unit.RequestUpdate();
                     }
                 }
             }
 
-            _UnitCapacity = Math.Max(6, trees.Count);
+            UnitCapacity = Math.Max(6, trees.Count * 2);
 
             DoGathering(trees);
         }
 
         private void DoGathering(List<Unit> resources)
         {
-            resources.Sort((a, b) => a.Position.DistanceTo(Dropsite.Position).CompareTo(b.Position.DistanceTo(Dropsite.Position)));
-
             var assigned = new Dictionary<int, int>();
             var unassigned_gatherers = new List<Unit>();
+
+            resources.Sort((a, b) => a.Position.DistanceTo(Dropsite.Position).CompareTo(b.Position.DistanceTo(Dropsite.Position)));
+            foreach (var resource in resources)
+            {
+                assigned.Add(resource.Id, 0);
+            }
+            
             foreach (var gatherer in Units)
             {
                 var target_id = gatherer[ObjectData.TARGET_ID];
-                if (!assigned.ContainsKey(target_id))
+                if (target_id <= 0 || assigned.ContainsKey(target_id) == false)
                 {
-                    assigned.Add(target_id, 0);
+                    unassigned_gatherers.Add(gatherer);
                 }
-
-                assigned[target_id]++;
+                else
+                {
+                    assigned[target_id]++;
+                }
 
                 if (gatherer.Position.DistanceTo(Dropsite.Position) > 10)
                 {
@@ -86,10 +93,6 @@ namespace Unary.Operations
                     {
                         gatherer.Target(Dropsite.Position, UnitAction.MOVE);
                     }
-                }
-                else if (target_id <= 0)
-                {
-                    unassigned_gatherers.Add(gatherer);
                 }
             }
 

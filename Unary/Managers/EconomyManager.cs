@@ -197,5 +197,10 @@ namespace Unary.Managers
                 }
             }
         }
+
+        private void ManageGatherOperations()
+        {
+
+        }
     }
 }

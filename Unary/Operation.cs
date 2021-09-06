@@ -46,7 +46,6 @@ namespace Unary
         }
 
         public abstract Position Position { get; }
-        public abstract int UnitCapacity { get; }
         public int UnitCount => _Units.Count;
         public List<Unit> Units => _Units.ToList();
 

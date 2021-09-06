@@ -112,7 +112,6 @@ namespace AoE2Lib.Bots
                 Log.Debug($"Update took {sw.ElapsedMilliseconds} ms");
 
                 // make the call
-
                 sw.Restart();
 
                 var commandlist = new CommandList() { PlayerNumber = PlayerNumber };
