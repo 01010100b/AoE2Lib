@@ -1,6 +1,7 @@
 ﻿using AoE2Lib.Bots;
 using AoE2Lib.Bots.GameElements;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,20 +10,27 @@ namespace Unary
 {
     internal abstract class Operation
     {
-        private static readonly Dictionary<Unary, HashSet<Operation>> Operations = new Dictionary<Unary, HashSet<Operation>>();
+        private static readonly ConcurrentDictionary<Unary, HashSet<Operation>> Operations = new ConcurrentDictionary<Unary, HashSet<Operation>>();
 
         public static void ClearOperations(Unary unary)
         {
             if (Operations.TryGetValue(unary, out HashSet<Operation> ops))
             {
                 ops.Clear();
-                Operations.Remove(unary);
+                Operations.Remove(unary, out _);
             }
         }
 
         public static List<Operation> GetOperations(Unary unary)
         {
-            return Operations.ContainsKey(unary) ? Operations[unary].ToList() : new List<Operation>();
+            if (Operations.TryGetValue(unary, out HashSet<Operation> ops))
+            {
+                return ops.ToList();
+            }
+            else
+            {
+                return new List<Operation>();
+            }
         }
 
         public static IEnumerable<Unit> GetFreeUnits(Unary unary)
@@ -61,10 +69,7 @@ namespace Unary
 
             Unary = unary;
 
-            if (!Operations.ContainsKey(Unary))
-            {
-                Operations.Add(Unary, new HashSet<Operation>());
-            }
+            Operations.TryAdd(Unary, new HashSet<Operation>());
 
             Operations[Unary].Add(this);
         }
@@ -80,34 +85,43 @@ namespace Unary
 
             _Units.Add(unit);
             Operations[Unary].Add(this);
+
+            Unary.Log.Debug($"Added unit {unit.Id} to operation {GetId()}");
         }
 
         public void RemoveUnit(Unit unit)
         {
             _Units.Remove(unit);
+            Unary.Log.Debug($"Removed unit {unit.Id} from operation {GetId()}");
         }
 
         public void Clear()
         {
             _Units.Clear();
+            Unary.Log.Debug($"Cleared operation {GetId()}");
+        }
+
+        public void Stop()
+        {
+            Clear();
+            Operations[Unary].Remove(this);
+            Unary.Log.Debug($"Stopped operation {GetId()}");
         }
 
         internal void UpdateInternal()
         {
-            if (_Units.Count == 0)
-            {
-                Operations[Unary].Remove(this);
-
-                return;
-            }
-
             foreach (var unit in _Units)
             {
                 unit.RequestUpdate();
             }
 
-            Unary.Log.Debug($"Updating operation {GetHashCode()}");
+            Unary.Log.Debug($"Updating operation {GetId()}");
             Update();
+        }
+
+        private string GetId()
+        {
+            return $"{GetType().Name}({Position})";
         }
     }
 }

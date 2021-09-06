@@ -33,23 +33,34 @@ namespace Unary.Operations
 
         public override void Update()
         {
+            List<Unit> resources;
             if (Resource == Resource.WOOD)
             {
-                DoWood();
+                resources = GetWoodResources();
+                UnitCapacity = Math.Min(6, resources.Count * 2);
             }
             else
             {
                 throw new NotImplementedException();
             }
+
+            DoGathering(Units, resources);
+
+            Unary.Log.Debug($"Gathering {Resource} at {Dropsite.UnitType.Id}({Dropsite.Position}) with {UnitCount}/{UnitCapacity} units for {resources.Count} resources");
         }
 
-        private void DoWood()
+        private List<Unit> GetWoodResources()
         {
             var range = 4;
+            if (Dropsite.UnitType.Id == 109)
+            {
+                range = 7;
+            }
+
             var trees = new List<Unit>();
             foreach (var tile in Unary.GameState.Map.GetTilesInRange(Dropsite.Position.PointX, Dropsite.Position.PointY, range + 1))
             {
-                foreach (var unit in tile.Units.Where(u => u.Targetable && u[ObjectData.CLASS] == (int)UnitClass.Tree && u[ObjectData.HITPOINTS] > 0))
+                foreach (var unit in tile.Units.Where(u => u.Targetable && u[ObjectData.CLASS] == (int)UnitClass.Tree))
                 {
                     if (unit.Position.DistanceTo(Dropsite.Position) <= range)
                     {
@@ -59,12 +70,10 @@ namespace Unary.Operations
                 }
             }
 
-            UnitCapacity = Math.Max(6, trees.Count * 2);
-
-            DoGathering(trees);
+            return trees;
         }
 
-        private void DoGathering(List<Unit> resources)
+        private void DoGathering(List<Unit> units, List<Unit> resources)
         {
             var assigned = new Dictionary<int, int>();
             var unassigned_gatherers = new List<Unit>();
@@ -75,7 +84,7 @@ namespace Unary.Operations
                 assigned.Add(resource.Id, 0);
             }
             
-            foreach (var gatherer in Units)
+            foreach (var gatherer in units)
             {
                 var target_id = gatherer[ObjectData.TARGET_ID];
                 if (target_id <= 0 || assigned.ContainsKey(target_id) == false)

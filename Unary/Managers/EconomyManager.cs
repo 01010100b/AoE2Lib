@@ -1,8 +1,10 @@
 ﻿using AoE2Lib;
+using AoE2Lib.Bots.GameElements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Unary.Operations;
 
 namespace Unary.Managers
 {
@@ -19,6 +21,8 @@ namespace Unary.Managers
         public int MaxTownCenters { get; set; } = 1;
         public int ConcurrentVillagers { get; set; } = 3;
 
+        private readonly Dictionary<Unit, List<GatherOperation>> GatherOperations = new Dictionary<Unit, List<GatherOperation>>();
+
         public EconomyManager(Unary unary) : base(unary)
         {
 
@@ -29,6 +33,7 @@ namespace Unary.Managers
             ManagePopulation();
             ManageGatherers();
             ManageDropsites();
+            ManageGatherOperations();
         }
 
         private void ManagePopulation()
@@ -73,7 +78,7 @@ namespace Unary.Managers
             Unary.GameState.SetStrategicNumber(StrategicNumber.INTELLIGENT_GATHERING, 1);
             Unary.GameState.SetStrategicNumber(StrategicNumber.USE_BY_TYPE_MAX_GATHERING, 1);
 
-            Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_WOOD_DROP_DISTANCE, 7);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_WOOD_DROP_DISTANCE, -2);
             Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_GOLD_DROP_DISTANCE, 7);
             Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_STONE_DROP_DISTANCE, 7);
 
@@ -200,7 +205,111 @@ namespace Unary.Managers
 
         private void ManageGatherOperations()
         {
+            // assign operations
 
+            var dropsites = new HashSet<Unit>();
+            foreach (var unit in GatherOperations.Keys)
+            {
+                dropsites.Add(unit);
+            }
+
+            foreach (var unit in Unary.GameState.MyPlayer.GetUnits().Where(u => u.Targetable))
+            {
+                if (unit.UnitType.Id == 109 || unit.UnitType.Id == 562)
+                {
+                    dropsites.Add(unit);
+                }    
+            }
+
+            foreach (var site in dropsites)
+            {
+                if (!site.Targetable)
+                {
+                    if (GatherOperations.TryGetValue(site, out List<GatherOperation> ops))
+                    {
+                        foreach (var op in ops)
+                        {
+                            op.Stop();
+                        }
+
+                        ops.Clear();
+
+                        GatherOperations.Remove(site);
+                    }
+                }
+                else
+                {
+                    if (!GatherOperations.ContainsKey(site))
+                    {
+                        GatherOperations.Add(site, new List<GatherOperation>());
+                    }
+
+                    if (site.UnitType.Id == 109 || site.UnitType.Id == 562)
+                    {
+                        var op = GatherOperations[site].FirstOrDefault(o => o.Resource == Resource.WOOD);
+                        if (op == null)
+                        {
+                            op = new GatherOperation(Unary, site, Resource.WOOD);
+                            GatherOperations[site].Add(op);
+                        }
+                    }
+                }
+            }
+
+            // remove excess vills
+
+            foreach (var op in GatherOperations.Values.SelectMany(g => g))
+            {
+                if (op.UnitCount > op.UnitCapacity)
+                {
+                    var free = op.Units.FirstOrDefault(u => u[ObjectData.CARRY] == 0);
+                    if (free != null && Unary.Rng.NextDouble() < 0.1)
+                    {
+                        op.RemoveUnit(free);
+                    }
+                }
+            }
+
+            // assign new vills
+
+            var free_vills = Operation.GetFreeUnits(Unary).Where(u => u[ObjectData.CMDID] == (int)CmdId.VILLAGER).ToList();
+            if (free_vills.Count == 0)
+            {
+                return;
+            }
+
+            var min_wood_gatherers = Unary.GameState.GetStrategicNumber(StrategicNumber.WOOD_GATHERER_PERCENTAGE) * Unary.GameState.MyPlayer.CivilianPopulation / 100;
+
+            var wood_gatherers = 0;
+            var wood_ops = new List<GatherOperation>();
+            foreach (var ops in GatherOperations.Values)
+            {
+                foreach (var op in ops.Where(o => o.Resource == Resource.WOOD))
+                {
+                    wood_gatherers += op.UnitCount;
+                    if (op.UnitCount < op.UnitCapacity)
+                    {
+                        wood_ops.Add(op);
+                    }
+                }
+            }
+
+            while (wood_gatherers < min_wood_gatherers)
+            {
+                if (wood_ops.Count == 0 || free_vills.Count == 0)
+                {
+                    break;
+                }
+
+                var op = wood_ops[wood_ops.Count - 1];
+                var vill = free_vills[free_vills.Count - 1];
+                op.AddUnit(vill);
+
+                wood_ops.RemoveAt(wood_ops.Count - 1);
+                free_vills.RemoveAt(free_vills.Count - 1);
+            }
+
+            Unary.Log.Debug($"Gather operations: {GatherOperations.SelectMany(g => g.Value).Count()}");
         }
     }
 }

@@ -102,7 +102,7 @@ namespace Unary.Managers
 
         private void DoBuildOperations()
         {
-            // available foundations
+            // get available foundations
 
             foreach (var unit in Unary.GameState.MyPlayer.GetUnits().Where(u => u.Targetable && u[ObjectData.STATUS] == 0))
             {
@@ -141,6 +141,11 @@ namespace Unary.Managers
                         builders.Add(unit);
                     }
                 }
+
+                if (op.UnitCount == 0)
+                {
+                    op.Stop();
+                }
             }
 
             BuildOperations.RemoveAll(op => op.UnitCount == 0);
@@ -156,7 +161,7 @@ namespace Unary.Managers
 
                 if (builders.Count == 0)
                 {
-                    foreach (var unit in Operation.GetFreeUnits(Unary).Where(u => u.Targetable && u[ObjectData.CMDID] == (int)CmdId.VILLAGER))
+                    foreach (var unit in Operation.GetFreeUnits(Unary).Where(u => u[ObjectData.CMDID] == (int)CmdId.VILLAGER))
                     {
                         builders.Add(unit);
                     }
