@@ -68,7 +68,7 @@ namespace Unary
             if (ChattedOK == false && GameState.GameTime.TotalSeconds >= 10 + PlayerNumber)
             {
                 var command = new Command();
-                command.Add(new ChatToAll() { InTextString = $"Unary {PlayerNumber} OK!" });
+                command.Add(new ChatToAll() { InTextString = $"Unary {PlayerNumber} working OK!" });
                 ChattedOK = true;
 
                 yield return command;

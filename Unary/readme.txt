@@ -25,7 +25,7 @@ The process name is normally the filename of the game executable without the ".e
 4. For each player you want controlled by Unary, enter the player number and click "Start for player".
 
 5. Start the game in AoE2.
-If everything works then each Unary player should chat an OK message in game around 10-20 seconds in.
+If everything works then each Unary player will chat an OK confirmation message in-game around 10-20 seconds in.
 
 6. When the game is finished, click "Stop all players".
 If you want to start a new game, go back to step 4. 
