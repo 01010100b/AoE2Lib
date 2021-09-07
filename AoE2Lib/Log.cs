@@ -10,6 +10,11 @@ namespace AoE2Lib
 {
     public class Log : IDisposable
     {
+        public const int DEBUG = 3;
+        public const int INFO = 2;
+        public const int WARNING = 1;
+        public const int ERROR = 0;
+
         public int Level { get; set; } = 3;
 
         private readonly StreamWriter Stream;

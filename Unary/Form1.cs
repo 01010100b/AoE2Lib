@@ -25,6 +25,8 @@ namespace Unary
         private void ButtonConnect_Click(object sender, EventArgs e)
         {
             var name = TextProcess.Text;
+            Message($"Connecting to process {name}...");
+
             try
             {
                 var process = Process.GetProcessesByName(name)[0];
@@ -33,32 +35,34 @@ namespace Unary
             }
             catch (Exception ex)
             {
+                Message($"Failed to find/connect process with name {name}");
+                Program.Log.Exception(ex);
+
                 throw new Exception($"Failed to find process with name {name}", ex);
             }
 
             ButtonConnect.Enabled = false;
             TextProcess.Enabled = false;
             ButtonStart.Enabled = true;
-            TextPlayer.Enabled = true;
+            NumericPlayer.Enabled = true;
         }
 
         private void ButtonStart_Click(object sender, EventArgs e)
         {
-            var player = int.Parse(TextPlayer.Text);
+            var player = (int)NumericPlayer.Value;
+            Message($"Starting for player {player}...");
 
             if (Players.ContainsKey(player))
             {
                 Message($"Player {player} is already playing.");
+
                 return;
             }
 
             var bot = new Unary();
             Instance.StartBot(bot, player);
-
             Players.Add(player, bot);
-
             Message($"Started player {player}");
-
             ButtonStop.Enabled = true;
         }
 
@@ -66,6 +70,8 @@ namespace Unary
         {
             ButtonStop.Enabled = false;
             Cursor = Cursors.WaitCursor;
+
+            Message("Stopping all players...");
 
             var tasks = new List<Task>();
             foreach (var bot in Players.Values)
@@ -94,11 +100,11 @@ namespace Unary
 
         private void Message(string message)
         {
+            Program.Log.Debug(message);
+
             var lines = TextMessages.Lines.ToList();
             lines.Add(message);
             TextMessages.Lines = lines.ToArray();
         }
-
-        
     }
 }
