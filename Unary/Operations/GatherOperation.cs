@@ -33,28 +33,27 @@ namespace Unary.Operations
 
         public override void Update()
         {
-            List<Unit> resources;
             if (Resource == Resource.WOOD)
             {
-                resources = GetWoodResources();
-                UnitCapacity = Math.Min(6, resources.Count * 2);
-                DoGathering(Units, resources);
+                DoWood();
             }
             else if (Resource == Resource.GOLD)
             {
-                resources = GetGoldResources();
-                UnitCapacity = Math.Min(8, resources.Count * 2);
-                DoGathering(Units, resources);
+                DoGold();
+            }
+            else if (Resource == Resource.STONE)
+            {
+                DoStone();
             }
             else
             {
                 throw new NotImplementedException();
             }
 
-            Unary.Log.Debug($"Gathering {Resource} at {Dropsite[ObjectData.BASE_TYPE]}({Dropsite.Position}) with {UnitCount}/{UnitCapacity} units for {resources.Count} resources");
+            Unary.Log.Debug($"Gathering {Resource} at {Dropsite[ObjectData.BASE_TYPE]}({Dropsite.Position}) with {UnitCount}/{UnitCapacity} units");
         }
 
-        private List<Unit> GetWoodResources()
+        private void DoWood()
         {
             var range = 4;
             if (Dropsite[ObjectData.BASE_TYPE] == 109)
@@ -75,10 +74,11 @@ namespace Unary.Operations
                 }
             }
 
-            return trees;
+            UnitCapacity = Math.Min(6, trees.Count * 2);
+            DoGathering(Units, trees);
         }
 
-        private List<Unit> GetGoldResources()
+        private void DoGold()
         {
             var range = 4;
             if (Dropsite[ObjectData.BASE_TYPE] == 109)
@@ -99,7 +99,33 @@ namespace Unary.Operations
                 }
             }
 
-            return golds;
+            UnitCapacity = Math.Min(8, golds.Count * 2);
+            DoGathering(Units, golds);
+        }
+
+        private void DoStone()
+        {
+            var range = 4;
+            if (Dropsite[ObjectData.BASE_TYPE] == 109)
+            {
+                range = 7;
+            }
+
+            var stones = new List<Unit>();
+            foreach (var tile in Unary.GameState.Map.GetTilesInRange(Dropsite.Position.PointX, Dropsite.Position.PointY, range + 1))
+            {
+                foreach (var unit in tile.Units.Where(u => u.Targetable && u[ObjectData.CLASS] == (int)UnitClass.StoneMine))
+                {
+                    if (unit.Position.DistanceTo(Dropsite.Position) <= range)
+                    {
+                        stones.Add(unit);
+                        unit.RequestUpdate();
+                    }
+                }
+            }
+
+            UnitCapacity = Math.Min(8, stones.Count * 2);
+            DoGathering(Units, stones);
         }
 
         private void DoGathering(List<Unit> units, List<Unit> resources)

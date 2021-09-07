@@ -109,7 +109,7 @@ namespace AoE2Lib.Bots
                 commands.AddRange(Tick().Where(c => c.HasMessages));
                 commands.AddRange(GameState.RequestUpdate());
 
-                Log.Debug($"Update took {sw.ElapsedMilliseconds} ms");
+                Log.Info($"Update took {sw.ElapsedMilliseconds} ms");
 
                 // make the call
                 sw.Restart();
@@ -194,8 +194,8 @@ namespace AoE2Lib.Bots
                     previous = DateTime.UtcNow;
                 }
 
+                Log.Info($"Call took {sw.ElapsedMilliseconds} ms");
                 Log.Debug($"Bot Game time {game_time}");
-                Log.Debug($"Call took {sw.ElapsedMilliseconds} ms");
             }
 
             channel.ShutdownAsync().Wait();

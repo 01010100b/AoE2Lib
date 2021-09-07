@@ -80,7 +80,7 @@ namespace Unary.Managers
 
             Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_WOOD_DROP_DISTANCE, -2);
             Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_GOLD_DROP_DISTANCE, -2);
-            Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_STONE_DROP_DISTANCE, 7);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_STONE_DROP_DISTANCE, -2);
 
             Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_FOOD_DROP_DISTANCE, 8);
             Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_HUNT_DROP_DISTANCE, 8);
@@ -257,7 +257,7 @@ namespace Unary.Managers
                     }
                     if (type == 109 || type == 584)
                     {
-                        foreach (var res in new[] { Resource.GOLD })
+                        foreach (var res in new[] { Resource.GOLD, Resource.STONE })
                         {
                             var op = GatherOperations[site].FirstOrDefault(o => o.Resource == res);
                             if (op == null)
@@ -293,7 +293,7 @@ namespace Unary.Managers
                 return;
             }
 
-            var resources = new[] { Resource.WOOD, Resource.GOLD };
+            var resources = new[] { Resource.WOOD, Resource.GOLD, Resource.STONE };
             foreach (var resource in resources)
             {
                 if (free_vills.Count == 0)
@@ -338,38 +338,7 @@ namespace Unary.Managers
                     free_vills.RemoveAt(free_vills.Count - 1);
                 }
             }
-            /*
-            var min_wood_gatherers = Unary.GameState.GetStrategicNumber(StrategicNumber.WOOD_GATHERER_PERCENTAGE) * Unary.GameState.MyPlayer.CivilianPopulation / 100d;
 
-            var wood_gatherers = 0;
-            var wood_ops = new List<GatherOperation>();
-            foreach (var ops in GatherOperations.Values)
-            {
-                foreach (var op in ops.Where(o => o.Resource == Resource.WOOD))
-                {
-                    wood_gatherers += op.UnitCount;
-                    if (op.UnitCount < op.UnitCapacity)
-                    {
-                        wood_ops.Add(op);
-                    }
-                }
-            }
-
-            while (wood_gatherers < min_wood_gatherers)
-            {
-                if (wood_ops.Count == 0 || free_vills.Count == 0)
-                {
-                    break;
-                }
-
-                var op = wood_ops[wood_ops.Count - 1];
-                var vill = free_vills[free_vills.Count - 1];
-                op.AddUnit(vill);
-
-                wood_ops.RemoveAt(wood_ops.Count - 1);
-                free_vills.RemoveAt(free_vills.Count - 1);
-            }
-            */
             Unary.Log.Debug($"Gather operations: {GatherOperations.SelectMany(g => g.Value).Count()}");
         }
     }

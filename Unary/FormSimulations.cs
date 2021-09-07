@@ -57,7 +57,7 @@ namespace Unary
                 pos = new Position(SIM_SIZE, SIM_SIZE) - pos;
             }
 
-            var unit = new BattleUnit(player, 30, 0.2, 0.96, 7, TimeSpan.FromSeconds(2), 4, pos);
+            var unit = new BattleUnit(player, 30, 0.3, 0.96, 7, TimeSpan.FromSeconds(2), 4, pos);
 
             return unit;
         }

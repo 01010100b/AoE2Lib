@@ -30,7 +30,7 @@ namespace AoE2Lib
 
             Stream.WriteLine(str);
             Stream.Flush();
-            Trace.WriteLine(str);
+            //Trace.WriteLine(str);
         }
 
         public void Debug(object message)

@@ -41,22 +41,22 @@ namespace Unary
             
             sw.Start();
             StrategyManager.Update();
-            Log.Debug($"Strategy Manager took {sw.ElapsedMilliseconds} ms");
+            Log.Info($"Strategy Manager took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
             EconomyManager.Update();
-            Log.Debug($"Economy Manager took {sw.ElapsedMilliseconds} ms");
+            Log.Info($"Economy Manager took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
             BuildingManager.Update();
-            Log.Debug($"Building Manager took {sw.ElapsedMilliseconds} ms");
+            Log.Info($"Building Manager took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
             foreach (var op in Operation.GetOperations(this))
             {
                 op.UpdateInternal();
             }
-            Log.Debug($"Operations took {sw.ElapsedMilliseconds} ms");
+            Log.Info($"Operations took {sw.ElapsedMilliseconds} ms");
 
             sw.Stop();
 
