@@ -45,8 +45,8 @@ jobs:
         dotnet pack AoE2Lib\AoE2Lib.csproj -p:PackageVersion=${{ steps.tag_version.outputs.new_version }}
         dotnet publish AoE2Lib\AoE2Lib.csproj --output AoE2Lib.${{ steps.tag_version.outputs.new_version }}
         dotnet publish Unary\Unary.csproj --output Unary.${{ steps.tag_version.outputs.new_version }}
-        Remove-Item 'Unary.${{ steps.tag_version.outputs.new_version }}\runtimes\linux' -Recurse
-        Remove-Item 'Unary.${{ steps.tag_version.outputs.new_version }}\runtimes\osx' -Recurse
+        #Remove-Item 'Unary.${{ steps.tag_version.outputs.new_version }}\runtimes\linux' -Recurse
+        #Remove-Item 'Unary.${{ steps.tag_version.outputs.new_version }}\runtimes\osx' -Recurse
 
     - uses: papeloto/action-zip@v1
       with:
