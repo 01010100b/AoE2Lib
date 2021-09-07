@@ -10,12 +10,12 @@ namespace AoE2Lib
 {
     public class Log : IDisposable
     {
-        public const int DEBUG = 3;
-        public const int INFO = 2;
-        public const int WARNING = 1;
-        public const int ERROR = 0;
+        public const int LEVEL_DEBUG = 3;
+        public const int LEVEL_INFO = 2;
+        public const int LEVEL_WARNING = 1;
+        public const int LEVEL_ERROR = 0;
 
-        public int Level { get; set; } = 3;
+        public int Level { get; set; } = LEVEL_DEBUG;
 
         private readonly StreamWriter Stream;
 
@@ -40,7 +40,7 @@ namespace AoE2Lib
 
         public void Debug(object message)
         {
-            if (Level >= 3)
+            if (Level >= LEVEL_DEBUG)
             {
                 Write($"DEBUG: {message}");
             }
@@ -48,7 +48,7 @@ namespace AoE2Lib
 
         public void Info(object message)
         {
-            if (Level >= 2)
+            if (Level >= LEVEL_INFO)
             {
                 Write($"INFO: {message}");
             }
@@ -56,7 +56,7 @@ namespace AoE2Lib
 
         public void Warning(object message)
         {
-            if (Level >= 1)
+            if (Level >= LEVEL_WARNING)
             {
                 Write($"WARNING: {message}");
             }
@@ -64,7 +64,7 @@ namespace AoE2Lib
 
         public void Error(object message)
         {
-            if (Level >= 0)
+            if (Level >= LEVEL_ERROR)
             {
                 Write($"ERROR: {message}");
             } 

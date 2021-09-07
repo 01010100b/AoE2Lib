@@ -19,7 +19,8 @@ namespace Unary
         [STAThread]
         static void Main()
         {
-            Log.Level = Log.DEBUG;
+            Log.Level = Log.LEVEL_DEBUG;
+            Log.Info($"Using AoE2Lib {typeof(AoEInstance).Assembly.GetName().Version}");
             Log.Info($"Started Unary {typeof(Program).Assembly.GetName().Version}");
 
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
