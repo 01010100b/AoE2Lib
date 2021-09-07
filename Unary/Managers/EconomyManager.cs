@@ -118,6 +118,7 @@ namespace Unary.Managers
         private void ManageDropsites()
         {
             var tc = Unary.GameState.GetUnitType(109);
+            var tc_foundation = Unary.GameState.GetUnitType(621);
             var mill = Unary.GameState.GetUnitType(68);
             var lumber_camp = Unary.GameState.GetUnitType(562);
             var mining_camp = Unary.GameState.GetUnitType(584);
@@ -128,7 +129,13 @@ namespace Unary.Managers
             if (Unary.GameState.MyPlayer.GetUnits().Count(u => u.Targetable && u[ObjectData.BASE_TYPE] == tc.Id) < MaxTownCenters)
             {
                 Unary.Log.Info("Building TC");
-                tc.BuildNormal(MaxTownCenters, 1, Priority.DROPSITE);
+                var count = tc.CountTotal + tc_foundation.CountTotal;
+                var pending = tc.Pending + tc_foundation.Pending;
+
+                if (count < MaxTownCenters && pending < 1)
+                {
+                    tc.BuildNormal(MaxTownCenters, 1, Priority.DROPSITE);
+                }
             }
 
             if (Unary.GameState.GetStrategicNumber(StrategicNumber.WOOD_GATHERER_PERCENTAGE) > 0)

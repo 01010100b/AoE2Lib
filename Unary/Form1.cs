@@ -25,26 +25,21 @@ namespace Unary
         private void ButtonConnect_Click(object sender, EventArgs e)
         {
             var name = TextProcess.Text;
-            var process = Process.GetProcessesByName(name)[0];
-            Instance = new AoEInstance(process);
-
-            Message($"Connected to process {process.Id}");
+            try
+            {
+                var process = Process.GetProcessesByName(name)[0];
+                Instance = new AoEInstance(process);
+                Message($"Connected to process {process.Id}");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Failed to find process with name {name}", ex);
+            }
 
             ButtonConnect.Enabled = false;
             TextProcess.Enabled = false;
             ButtonStart.Enabled = true;
             TextPlayer.Enabled = true;
-            /*
-            for (int i = 1; i <= 8; i++)
-            {
-                var bot = new Unary();
-                Instance.StartBot(bot, i);
-
-                Players.Add(i, bot);
-
-                Message($"Started player {i}");
-            }
-            */
         }
 
         private void ButtonStart_Click(object sender, EventArgs e)

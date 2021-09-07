@@ -251,11 +251,15 @@ namespace AoE2Lib.Bots.GameElements
             var new_pos = Position;
             var new_tick = Bot.GameState.Tick;
             var time = (new_tick - old_tick) * Bot.GameState.GameTimePerTick.TotalSeconds;
-            Velocity = (new_pos - old_pos) / Math.Max(0.00001, time);
-            if (Velocity.Norm > this[ObjectData.SPEED] / 80d)
+            var v = (new_pos - old_pos) / Math.Max(0.00001, time);
+            if (v.Norm > this[ObjectData.SPEED] / 80d)
             {
-                Velocity /= Velocity.Norm;
+                v /= v.Norm;
+                v *= this[ObjectData.SPEED] / 100d;
             }
+
+            Velocity += v;
+            Velocity /= 2;
         }
     }
 }

@@ -87,7 +87,7 @@ namespace Unary.Managers
                 }
                 else if (archery_range.Count > 1 && archer.TrainSiteReady == false && Unary.Rng.NextDouble() < 0.1)
                 {
-                    archery_range.BuildNormal(max_ranges, 1, Priority.PRODUCTION_BUILDING);
+                    archery_range.BuildNormal(10, 1, Priority.PRODUCTION_BUILDING);
                 }
             }
 

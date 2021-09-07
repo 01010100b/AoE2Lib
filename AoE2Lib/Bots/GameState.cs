@@ -218,83 +218,6 @@ namespace AoE2Lib.Bots
             Commands.Add(command);
         }
 
-        internal void FindUnitsOld(int player, Position position, int range)
-        {
-            foreach (var cmdid in (IEnumerable<CmdId>)Enum.GetValues(typeof(CmdId)))
-            {
-                var command = new Command();
-
-                command.Add(new SetGoal() { InConstGoalId = 100, InConstValue = position.PointX });
-                command.Add(new SetGoal() { InConstGoalId = 101, InConstValue = position.PointY });
-                command.Add(new UpSetTargetPoint() { InGoalPoint = 100 });
-                command.Add(new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, InConstValue = player });
-                command.Add(new UpFullResetSearch());
-
-                command.Add(new UpFilterInclude() { InConstCmdId = (int)cmdid, InConstActionId = -1, InConstOrderId = -1, InConstOnMainland = -1 });
-                command.Add(new UpFilterDistance() { InConstMinDistance = -1, InConstMaxDistance = range });
-                
-                for (int i = 0; i < 10; i++)
-                {
-                    command.Add(new UpResetSearch() { InConstLocalIndex = 0, InConstLocalList = 0, InConstRemoteIndex = 0, InConstRemoteList = 1 });
-                    command.Add(new UpFindRemote() { InConstUnitId = -1, InConstCount = 40 });
-                    command.Add(new UpSearchObjectIdList() { InConstSearchSource = 2 });
-                }
-
-                FindCommands.Add(command);
-
-                if (cmdid == CmdId.CIVILIAN_BUILDING || cmdid == CmdId.MILITARY_BUILDING)
-                {
-                    command = new Command();
-
-                    command.Add(new SetGoal() { InConstGoalId = 100, InConstValue = position.PointX });
-                    command.Add(new SetGoal() { InConstGoalId = 101, InConstValue = position.PointY });
-                    command.Add(new UpSetTargetPoint() { InGoalPoint = 100 });
-                    command.Add(new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, InConstValue = player });
-                    command.Add(new UpFullResetSearch());
-
-                    command.Add(new UpFilterStatus() { InConstObjectStatus = 0, InConstObjectList = 0 });
-                    command.Add(new UpFilterInclude() { InConstCmdId = (int)cmdid, InConstActionId = -1, InConstOrderId = -1, InConstOnMainland = -1 });
-                    command.Add(new UpFilterDistance() { InConstMinDistance = -1, InConstMaxDistance = range });
-                    
-                    for (int i = 0; i < 10; i++)
-                    {
-                        command.Add(new UpResetSearch() { InConstLocalIndex = 0, InConstLocalList = 0, InConstRemoteIndex = 0, InConstRemoteList = 1 });
-                        command.Add(new UpFindStatusRemote() { InConstUnitId = -1, InConstCount = 40 });
-                        command.Add(new UpSearchObjectIdList() { InConstSearchSource = 2 });
-                    }
-
-                    FindCommands.Add(command);
-                }
-            }
-            /*
-            foreach (var resource in (IEnumerable<Resource>)Enum.GetValues(typeof(Resource)))
-            {
-                foreach (var status in new[] {2, 3})
-                {
-                    var command = new Command();
-
-                    command.Add(new SetGoal() { InConstGoalId = 100, InConstValue = position.PointX });
-                    command.Add(new SetGoal() { InConstGoalId = 101, InConstValue = position.PointY });
-                    command.Add(new UpSetTargetPoint() { InGoalPoint = 100 });
-                    command.Add(new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, InConstValue = player });
-                    command.Add(new UpFullResetSearch());
-
-                    command.Add(new UpFilterDistance() { InConstMinDistance = -1, InConstMaxDistance = range });
-                    command.Add(new UpFilterStatus() { InConstObjectStatus = status, InConstObjectList = 0 });
-
-                    for (int i = 0; i < 10; i++)
-                    {
-                        command.Add(new UpResetSearch() { InConstLocalIndex = 0, InConstLocalList = 0, InConstRemoteIndex = 0, InConstRemoteList = 1 });
-                        command.Add(new UpFindResource() { InConstResource = (int)resource, InConstCount = 40 });
-                        command.Add(new UpSearchObjectIdList() { InConstSearchSource = 2 });
-                    }
-
-                    FindCommands.Add(command);
-                }
-            }
-            */
-        }
-
         internal IEnumerable<Command> RequestUpdate()
         {
             var sw = new Stopwatch();
@@ -582,7 +505,7 @@ namespace AoE2Lib.Bots
             Bot.Log.Debug($"Auto finding units");
 
             var position = MyPosition;
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 1000; i++)
             {
                 var x = Bot.Rng.Next(Map.Width);
                 var y = Bot.Rng.Next(Map.Height);

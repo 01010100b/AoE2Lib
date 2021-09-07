@@ -41,6 +41,11 @@ namespace AoE2Lib.Bots.GameElements
 
         public void BuildNormal(int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
         {
+            if (Updated == false || IsAvailable == false || CountTotal >= max_count || Pending > max_pending)
+            {
+                return;
+            }
+
             var prod = new BuildNormalTask(Id, priority, blocking, WoodCost, FoodCost, GoldCost, StoneCost, max_count, max_pending);
 
             Bot.GameState.AddProductionTask(prod);
@@ -48,6 +53,11 @@ namespace AoE2Lib.Bots.GameElements
 
         public void BuildLine(IEnumerable<Tile> tiles, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
         {
+            if (Updated == false || IsAvailable == false || CountTotal >= max_count || Pending > max_pending)
+            {
+                return;
+            }
+
             var good_tiles = new List<Tile>();
             foreach (var tile in tiles.Where(t => t.Explored))
             {

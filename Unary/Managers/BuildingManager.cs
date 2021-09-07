@@ -23,8 +23,14 @@ namespace Unary.Managers
 
         }
 
-        public IEnumerable<Tile> GetBuildingFootprint(int x, int y, int width, int height)
+        public bool TryGetUnitFootprint(int id, int x, int y, int extra, out Rectangle footprint)
         {
+            var width = 1;
+            var height = 1;
+
+            width += 2 * extra;
+            height += 2 * extra;
+
             var x_start = x - (width / 2);
             var x_end = x + (width / 2);
             if (width % 2 == 0)
@@ -39,12 +45,18 @@ namespace Unary.Managers
                 y_end--;
             }
 
-            for (int cx = x_start; cx <= x_end; cx++)
+            var map = Unary.GameState.Map;
+            if (x_start >= 0 && x_end < map.Width && y_start >= 0 && y_end < map.Height)
             {
-                for (int cy = y_start; cy <= y_end; cy++)
-                {
-                    yield return Unary.GameState.Map.GetTile(cx, cy);
-                }
+                footprint = new Rectangle(x_start, y_start, x_end - x_start + 1, y_end - y_start + 1);
+
+                return true;
+            }
+            else
+            {
+                footprint = new Rectangle(-1, -1, 0, 0);
+
+                return false;
             }
         }
 
