@@ -1,5 +1,6 @@
 ﻿using AoE2Lib;
 using AoE2Lib.Bots;
+using Protos.Expert.Action;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,6 +17,8 @@ namespace Unary
         public EconomyManager EconomyManager { get; private set; }
         public BuildingManager BuildingManager { get; private set; }
 
+        private bool ChattedOK { get; set; } = false;
+
         public Unary() : base()
         {
             NewGame();
@@ -31,6 +34,8 @@ namespace Unary
             StrategyManager = new StrategyManager(this);
             EconomyManager = new EconomyManager(this);
             BuildingManager = new BuildingManager(this);
+
+            ChattedOK = false;
 
             Operation.ClearOperations(this);
         }
@@ -59,6 +64,15 @@ namespace Unary
             Log.Info($"Operations took {sw.ElapsedMilliseconds} ms");
 
             sw.Stop();
+
+            if (ChattedOK == false && GameState.GameTime.TotalSeconds >= 10 + PlayerNumber)
+            {
+                var command = new Command();
+                command.Add(new ChatToAll() { InTextString = $"Unary {PlayerNumber} OK!" });
+                ChattedOK = true;
+
+                yield return command;
+            }
 
             yield break;
         }
