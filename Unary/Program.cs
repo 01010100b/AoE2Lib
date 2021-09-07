@@ -19,14 +19,40 @@ namespace Unary
         [STAThread]
         static void Main()
         {
-            Log.Level = Log.LEVEL_DEBUG;
-            Log.Info($"Using AoE2Lib {typeof(AoEInstance).Assembly.GetName().Version}");
-            Log.Info($"Started Unary {typeof(Program).Assembly.GetName().Version}");
+            try
+            {
+                AppDomain.CurrentDomain.UnhandledException += (sender, e) => Handle(e.ExceptionObject);
+                Application.ThreadException += (sender, e) => Handle(e.Exception);
 
-            Application.SetHighDpiMode(HighDpiMode.SystemAware);
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+                Log.Level = Log.LEVEL_DEBUG;
+                Log.Info($"Using AoE2Lib {typeof(AoEInstance).Assembly.GetName().Version}");
+                Log.Info($"Started Unary {typeof(Program).Assembly.GetName().Version}");
+
+                Application.SetHighDpiMode(HighDpiMode.SystemAware);
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new Form1());
+            }
+            catch (Exception e)
+            {
+                Handle(e);
+            }
+        }
+
+        private static void Handle(object exc)
+        {
+            Log.Error("Unhandled exception");
+
+            if (exc is Exception e)
+            {
+                Log.Exception(e);
+            }
+            else
+            {
+                Log.Error(exc);
+            }
+
+            MessageBox.Show("An unexpected error occurred. Unary will now exit.");
         }
     }
 }
