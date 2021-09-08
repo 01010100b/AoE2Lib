@@ -30,7 +30,7 @@ jobs:
         dotnet restore
       
     - name: Build
-      run: dotnet build --configuration Debug --no-restore
+      run: dotnet build --configuration Release --no-restore
       
     - name: Test
       run: dotnet test --no-restore --verbosity normal
@@ -50,8 +50,6 @@ jobs:
         dotnet pack AoE2Lib\AoE2Lib.csproj -c Release -p:PackageVersion=${{ steps.tag_version.outputs.new_version }}
         dotnet publish AoE2Lib\AoE2Lib.csproj -c Release --output AoE2Lib.${{ steps.tag_version.outputs.new_version }}
         dotnet publish Unary\Unary.csproj -c Release --output Unary.${{ steps.tag_version.outputs.new_version }}
-        #Remove-Item 'Unary.${{ steps.tag_version.outputs.new_version }}\runtimes\linux' -Recurse
-        #Remove-Item 'Unary.${{ steps.tag_version.outputs.new_version }}\runtimes\osx' -Recurse
 
     - uses: papeloto/action-zip@v1
       with:
@@ -71,6 +69,6 @@ jobs:
         tag_name: ${{ steps.tag_version.outputs.new_tag }}
         body: ${{ steps.tag_version.outputs.changelog }}
         files: |
-          AoE2Lib\bin\Debug\AoE2Lib.${{ steps.tag_version.outputs.new_version }}.nupkg
+          AoE2Lib\bin\Release\AoE2Lib.${{ steps.tag_version.outputs.new_version }}.nupkg
           AoE2Lib.${{ steps.tag_version.outputs.new_version }}.zip
           Unary.${{ steps.tag_version.outputs.new_version }}.zip
