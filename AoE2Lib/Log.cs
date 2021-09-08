@@ -31,11 +31,11 @@ namespace AoE2Lib
 
         public void Write(object message)
         {
-            var str = $"{DateTime.Now}: {message}";
+            var str = $"{DateTime.Now:u}: {message}";
 
             Stream.WriteLine(str);
             Stream.Flush();
-            //Trace.WriteLine(str);
+            //Trace.WriteLine(str); // Why the hell is writing to Trace a gazillion times slower than writing to disk? :s
         }
 
         public void Debug(object message)
