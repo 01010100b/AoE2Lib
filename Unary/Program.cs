@@ -27,6 +27,7 @@ namespace Unary
                 Log.Level = Log.LEVEL_DEBUG;
                 Log.Info($"Using AoE2Lib {typeof(AoEInstance).Assembly.GetName().Version}");
                 Log.Info($"Started Unary {typeof(Program).Assembly.GetName().Version}");
+                Log.Info($"Directory: {Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName)}");
 
                 Application.SetHighDpiMode(HighDpiMode.SystemAware);
                 Application.EnableVisualStyles();
@@ -43,16 +44,23 @@ namespace Unary
         {
             Log.Error("Unhandled exception");
 
-            if (exc is Exception e)
+            try
             {
-                Log.Exception(e);
+                if (exc is Exception e)
+                {
+                    Log.Exception(e);
+                }
+                else
+                {
+                    Log.Error(exc);
+                }
             }
-            else
+            catch
             {
-                Log.Error(exc);
+
             }
 
-            MessageBox.Show("An unexpected error occurred. Unary will now exit.");
+            MessageBox.Show("An unexpected error occurred. Unary will now exit. See the log for details.", "Unexpected error");
         }
     }
 }

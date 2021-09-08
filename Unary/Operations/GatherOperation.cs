@@ -75,6 +75,11 @@ namespace Unary.Operations
             }
 
             UnitCapacity = Math.Min(6, trees.Count * 2);
+            if (Dropsite[ObjectData.BASE_TYPE] == 109)
+            {
+                UnitCapacity = Math.Min(1, UnitCapacity);
+            }
+
             DoGathering(Units, trees);
         }
 

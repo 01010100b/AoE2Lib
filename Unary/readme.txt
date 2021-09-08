@@ -2,22 +2,22 @@
 ====================
 
 For DE: The ai API module used by Unary may (about 50% of the time in my experience) trip the tampering detection or even just crash the game. 
-Unary is hence not supported on DE, though there's nothing stopping you from trying.
+Unary is hence not supported on DE. Other than the possible API crashes at game start, it should work just fine though.
 
 Installation
 ------------
 
-Unzip Unary anywhere you want except for the "Program Files" folder (it makes logging, and thereby Unary itself, extremely slow).
+Unzip Unary anywhere you want.
 Copy Unary.ai and Unary.per to your AoE2 scripts folder. 
 
 Playing a game
 --------------
 
-Perform the following steps in sequence:
+Perform the following steps in order:
 
 1. Start Age of Empires 2.
 
-2. Start Unary.
+2. Start Unary.exe
 
 3. Enter the AoE2 process name and click "Connect to process". 
 The process name is normally the filename of the game executable without the ".exe" part, usually "WK" for WK or "AoE2DE_s" for DE.
