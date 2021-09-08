@@ -24,7 +24,7 @@ namespace Unary.Operations
 
         public override void Update()
         {
-            Unary.Log.Debug($"Building {Building.Id}");
+            Unary.Log.Debug($"Building {Building[ObjectData.BASE_TYPE]}({Building.Position})");
 
             Building.RequestUpdate();
 

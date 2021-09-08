@@ -91,8 +91,11 @@ namespace Unary
 
         public void RemoveUnit(Unit unit)
         {
-            _Units.Remove(unit);
-            Unary.Log.Debug($"Removed unit {unit.Id} from operation {ToString()}");
+            if (_Units.Contains(unit))
+            {
+                _Units.Remove(unit);
+                Unary.Log.Debug($"Removed unit {unit.Id} from operation {ToString()}");
+            }
         }
 
         public void Clear()
@@ -110,7 +113,7 @@ namespace Unary
 
         public override string ToString()
         {
-            return $"{GetType().Name}({Position.PointX},{Position.PointY})";
+            return $"{GetType().Name}({Position})-{GetHashCode()}";
         }
 
         internal void UpdateInternal()

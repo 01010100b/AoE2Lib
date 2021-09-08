@@ -132,7 +132,14 @@ namespace AoE2Lib.Bots
 
         public override string ToString()
         {
-            return $"{X:N2},{Y:N2}";
+            if (PreciseX % 100 == 0 && PreciseY % 100 == 0)
+            {
+                return $"{X:N0},{Y:N0}";
+            }
+            else
+            {
+                return $"{X:N2},{Y:N2}";
+            }
         }
     }
 }

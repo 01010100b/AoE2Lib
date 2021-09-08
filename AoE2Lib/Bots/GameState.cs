@@ -279,7 +279,7 @@ namespace AoE2Lib.Bots
             }
 
             sw.Stop();
-            Bot.Log.Debug($"GameElement RequestUpdate took {sw.ElapsedMilliseconds} ms");
+            Bot.Log.Info($"GameElement RequestUpdate took {sw.ElapsedMilliseconds} ms");
 
             foreach (var command in FindCommands)
             {
@@ -298,10 +298,9 @@ namespace AoE2Lib.Bots
         {
             Bot.Log.Info("");
             Bot.Log.Info($"Tick {Tick} Game time {GameTime:g} with {GameTimePerTick:c} game time per tick");
-
             foreach (var player in Players.Where(p => p.IsValid && p.Updated))
             {
-                Bot.Log.Debug($"Player {player.PlayerNumber} has {player.Units.Count} units and {player.Score} score");
+                Bot.Log.Debug($"Player {player.PlayerNumber} has {player.Units.Count(u => u.Targetable)} units and {player.Score} score");
             }
 
             var sw = new Stopwatch();
@@ -375,7 +374,7 @@ namespace AoE2Lib.Bots
             }
 
             sw.Stop();
-            Bot.Log.Debug($"GameElement Update took {sw.ElapsedMilliseconds} ms");
+            Bot.Log.Info($"GameElement Update took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
 
@@ -422,7 +421,7 @@ namespace AoE2Lib.Bots
             }
 
             sw.Stop();
-            Bot.Log.Debug($"GameState Update took {sw.ElapsedMilliseconds} ms");
+            Bot.Log.Info($"GameState Update took {sw.ElapsedMilliseconds} ms");
         }
 
         private IEnumerable<Command> DoProduction()
@@ -484,7 +483,7 @@ namespace AoE2Lib.Bots
             ProductionTasks.Clear();
 
             sw.Stop();
-            Bot.Log.Debug($"DoProduction took {sw.ElapsedMilliseconds} ms");
+            Bot.Log.Info($"DoProduction took {sw.ElapsedMilliseconds} ms");
         }
 
         private void DoAutoFindUnits()
@@ -571,7 +570,7 @@ namespace AoE2Lib.Bots
             }
 
             sw.Stop();
-            Bot.Log.Debug($"DoAutoFindUnits took {sw.ElapsedMilliseconds} ms");
+            Bot.Log.Info($"DoAutoFindUnits took {sw.ElapsedMilliseconds} ms");
         }
 
         private void DoAutoUpdateUnits()
@@ -635,7 +634,7 @@ namespace AoE2Lib.Bots
             }
 
             sw.Stop();
-            Bot.Log.Debug($"DoAutoUpdateUnits took {sw.ElapsedMilliseconds} ms");
+            Bot.Log.Info($"DoAutoUpdateUnits took {sw.ElapsedMilliseconds} ms");
         }
     }
 }

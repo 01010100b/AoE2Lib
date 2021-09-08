@@ -203,7 +203,7 @@ namespace Unary.Managers
                 builders.Remove(builder);
             }
 
-            Unary.Log.Info($"Build operations: {BuildOperations.Count}");
+            Unary.Log.Debug($"Build operations: {BuildOperations.Count}");
         }
 
         private IEnumerable<Tile> GetFarmPlacements()
