@@ -165,6 +165,7 @@ namespace Unary
         private void ButtonTest_Click(object sender, EventArgs e)
         {
             ButtonTest.Enabled = false;
+            TimerTick.Enabled = false;
             Cursor = Cursors.WaitCursor;
 
             var gametime = TimeSpan.Zero;
