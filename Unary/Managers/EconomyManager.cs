@@ -126,7 +126,7 @@ namespace Unary.Managers
 
             Unary.GameState.SetStrategicNumber(StrategicNumber.MILL_MAX_DISTANCE, 30);
 
-            if (Unary.GameState.MyPlayer.GetUnits().Count(u => u.Targetable && u[ObjectData.BASE_TYPE] == tc.Id) < MaxTownCenters)
+            if (Unary.GameState.MyPlayer.Units.Count(u => u.Targetable && u[ObjectData.BASE_TYPE] == tc.Id) < MaxTownCenters)
             {
                 Unary.Log.Info("Building TC");
                 var count = tc.CountTotal + tc_foundation.CountTotal;
@@ -220,7 +220,7 @@ namespace Unary.Managers
                 dropsites.Add(unit);
             }
 
-            foreach (var unit in Unary.GameState.MyPlayer.GetUnits().Where(u => u.Targetable))
+            foreach (var unit in Unary.GameState.MyPlayer.Units.Where(u => u.Targetable))
             {
                 var type = unit[ObjectData.BASE_TYPE];
                 if (type == 109 || type == 562 || type == 584)

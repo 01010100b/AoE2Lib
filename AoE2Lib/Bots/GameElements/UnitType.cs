@@ -61,7 +61,7 @@ namespace AoE2Lib.Bots.GameElements
             var good_tiles = new List<Tile>();
             foreach (var tile in tiles.Where(t => t.Explored))
             {
-                if (Bot.GameState.Map.TryCanReachPosition(tile.X, tile.Y, out bool can_reach))
+                if (Bot.GameState.Map.TryCanReach(tile.X, tile.Y, out bool can_reach))
                 {
                     if (can_reach)
                     {
