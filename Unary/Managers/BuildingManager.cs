@@ -12,8 +12,8 @@ namespace Unary.Managers
 {
     class BuildingManager : Manager
     {
-        private static readonly Point[] TC_FARM_DELTAS = new[] { new Point(2, 3), new Point(-1, 3), new Point(3, 0), new Point(3, -3), new Point(-4, 2), new Point(-4, -1), new Point(0, -4), new Point(-3, -4) };
-        private static readonly Point[] MILL_FARM_DELTAS = new[] { new Point(-1, 2), new Point(2, -1), new Point(2, 2), new Point(-3, -1), new Point(-1, -3) };
+        internal static readonly Point[] TC_FARM_DELTAS = new[] { new Point(2, 3), new Point(-1, 3), new Point(3, 0), new Point(3, -3), new Point(-4, 2), new Point(-4, -1), new Point(0, -4), new Point(-3, -4) };
+        internal static readonly Point[] MILL_FARM_DELTAS = new[] { new Point(-1, 2), new Point(2, -1), new Point(2, 2), new Point(-3, -1), new Point(-1, -3) };
 
         private readonly HashSet<Unit> BuildingFoundations = new HashSet<Unit>();
         private readonly List<BuildOperation> BuildOperations = new List<BuildOperation>();
@@ -68,6 +68,26 @@ namespace Unary.Managers
             }
 
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<Tile> GetFarmPlacements(Unit dropsite)
+        {
+            var deltas = TC_FARM_DELTAS;
+            if (dropsite[ObjectData.BASE_TYPE] == 68)
+            {
+                deltas = MILL_FARM_DELTAS;
+            }
+
+            foreach (var delta in deltas)
+            {
+                var x = dropsite.Position.PointX + delta.X;
+                var y = dropsite.Position.PointY + delta.Y;
+
+                if (Unary.GameState.Map.IsOnMap(x, y))
+                {
+                    yield return Unary.GameState.Map.GetTile(x, y);
+                }
+            }
         }
 
         internal override void Update()
@@ -182,6 +202,7 @@ namespace Unary.Managers
                 if (builders.Count == 0)
                 {
                     Unary.Log.Info($"Could not find enough builders");
+
                     break;
                 }
 

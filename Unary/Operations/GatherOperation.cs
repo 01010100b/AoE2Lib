@@ -142,6 +142,7 @@ namespace Unary.Operations
             UnitCapacity = 0;
 
             var units = Units;
+            units.Sort((a, b) => a[ObjectData.ID].CompareTo(b[ObjectData.ID]));
 
             var meat = GetMeat();
             if (meat.Count > 0)
@@ -182,7 +183,31 @@ namespace Unary.Operations
 
             var berries = GetBerries();
             UnitCapacity += Math.Min(4, berries.Count * 2);
-            DoGathering(units, berries);
+            if (berries.Count > 0)
+            {
+                var gatherers = new List<Unit>();
+                for (int i = 0; i < 4; i++)
+                {
+                    if (units.Count == 0)
+                    {
+                        break;
+                    }
+
+                    gatherers.Add(units[0]);
+                    units.RemoveAt(0);
+                }
+                DoGathering(gatherers, berries);
+            }
+            
+            var farms = GetFarms();
+            UnitCapacity += farms.Count;
+            for (int i = 0; i < Math.Min(farms.Count, units.Count); i++)
+            {
+                if (units[i][ObjectData.TARGET_ID] != farms[i].Id)
+                {
+                    units[i].Target(farms[i]);
+                }
+            }
         }
 
         private List<Unit> GetMeat()
@@ -233,6 +258,21 @@ namespace Unary.Operations
             }
 
             return berries;
+        }
+
+        private List<Unit> GetFarms()
+        {
+            var farms = new List<Unit>();
+            foreach (var tile in Unary.BuildingManager.GetFarmPlacements(Dropsite))
+            {
+                var farm = tile.Units.FirstOrDefault(u => u.Targetable && u[ObjectData.CLASS] == (int)UnitClass.Farm);
+                if (farm != null)
+                {
+                    farms.Add(farm);
+                }
+            }
+
+            return farms;
         }
 
         private void DoGathering(List<Unit> units, List<Unit> resources)

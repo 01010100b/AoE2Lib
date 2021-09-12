@@ -83,7 +83,7 @@ namespace Unary.Managers
             Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_STONE_DROP_DISTANCE, -2);
 
             Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_FOOD_DROP_DISTANCE, -2);
-            Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_HUNT_DROP_DISTANCE, 8);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_HUNT_DROP_DISTANCE, -2);
             Unary.GameState.SetStrategicNumber(StrategicNumber.ENABLE_BOAR_HUNTING, 0);
             Unary.GameState.SetStrategicNumber(StrategicNumber.LIVESTOCK_TO_TOWN_CENTER, 1);
 
@@ -295,7 +295,7 @@ namespace Unary.Managers
                     var free = op.Units.FirstOrDefault(u => u[ObjectData.CARRY] == 0);
                     if (free != null && Unary.Rng.NextDouble() < 0.1)
                     {
-                        free.Target(op.Dropsite.Position);
+                        free.Target(op.Dropsite);
                         op.RemoveUnit(free);
                     }
                 }
