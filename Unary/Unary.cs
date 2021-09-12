@@ -13,6 +13,7 @@ namespace Unary
 {
     class Unary : Bot
     {
+        public Mod Mod { get; private set; }
         public StrategyManager StrategyManager { get; private set; }
         public EconomyManager EconomyManager { get; private set; }
         public BuildingManager BuildingManager { get; private set; }
@@ -31,6 +32,8 @@ namespace Unary
 
         protected override void NewGame()
         {
+            Mod = new Mod();
+
             StrategyManager = new StrategyManager(this);
             EconomyManager = new EconomyManager(this);
             BuildingManager = new BuildingManager(this);

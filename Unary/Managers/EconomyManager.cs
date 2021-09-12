@@ -82,7 +82,7 @@ namespace Unary.Managers
             Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_GOLD_DROP_DISTANCE, -2);
             Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_STONE_DROP_DISTANCE, -2);
 
-            Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_FOOD_DROP_DISTANCE, 8);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_FOOD_DROP_DISTANCE, -2);
             Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_HUNT_DROP_DISTANCE, 8);
             Unary.GameState.SetStrategicNumber(StrategicNumber.ENABLE_BOAR_HUNTING, 0);
             Unary.GameState.SetStrategicNumber(StrategicNumber.LIVESTOCK_TO_TOWN_CENTER, 1);
@@ -223,7 +223,7 @@ namespace Unary.Managers
             foreach (var unit in Unary.GameState.MyPlayer.Units.Where(u => u.Targetable))
             {
                 var type = unit[ObjectData.BASE_TYPE];
-                if (type == 109 || type == 562 || type == 584)
+                if (type == 109 || type == 562 || type == 584 || type == 68)
                 {
                     dropsites.Add(unit);
                 }
@@ -253,6 +253,15 @@ namespace Unary.Managers
                     }
 
                     var type = site[ObjectData.BASE_TYPE];
+                    if (type == 109 || type == 68)
+                    {
+                        var op = GatherOperations[site].FirstOrDefault(o => o.Resource == Resource.FOOD);
+                        if (op == null)
+                        {
+                            op = new GatherOperation(Unary, site, Resource.FOOD);
+                            GatherOperations[site].Add(op);
+                        }
+                    }
                     if (type == 109 || type == 562)
                     {
                         var op = GatherOperations[site].FirstOrDefault(o => o.Resource == Resource.WOOD);
@@ -300,7 +309,7 @@ namespace Unary.Managers
                 return;
             }
 
-            var resources = new[] { Resource.WOOD, Resource.GOLD, Resource.STONE };
+            var resources = new[] { Resource.WOOD, Resource.FOOD, Resource.GOLD, Resource.STONE };
             foreach (var resource in resources)
             {
                 if (free_vills.Count == 0)

@@ -64,7 +64,14 @@ namespace AoE2Lib.Bots.GameElements
 
         public IEnumerable<Tile> GetTiles()
         {
-            return Tiles;
+            if (Tiles == null)
+            {
+                return Enumerable.Empty<Tile>();
+            }
+            else
+            {
+                return Tiles;
+            }
         }
 
         public IEnumerable<Tile> GetTilesInRange(int x, int y, double range)
@@ -204,7 +211,7 @@ namespace AoE2Lib.Bots.GameElements
                 }
             }
 
-            var index = 7;
+            var index = 11;
             foreach (var tile in CheckPathDistances)
             {
                 PathDistances[tile] = responses[index].Unpack<UpPathDistanceResult>().Result;

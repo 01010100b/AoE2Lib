@@ -45,6 +45,10 @@ namespace Unary.Operations
             {
                 DoStone();
             }
+            else if (Resource == Resource.FOOD)
+            {
+                DoFood();
+            }
             else
             {
                 throw new NotImplementedException();
@@ -133,8 +137,111 @@ namespace Unary.Operations
             DoGathering(Units, stones);
         }
 
+        private void DoFood()
+        {
+            UnitCapacity = 0;
+
+            var units = Units;
+
+            var meat = GetMeat();
+            if (meat.Count > 0)
+            {
+                UnitCapacity += 7;
+
+                meat.Sort((a, b) =>
+                {
+                    if (a[ObjectData.HITPOINTS] < b[ObjectData.HITPOINTS])
+                    {
+                        return -1;
+                    }
+                    else if (a[ObjectData.HITPOINTS] > b[ObjectData.HITPOINTS])
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return a[ObjectData.CARRY].CompareTo(b[ObjectData.CARRY]);
+                    }
+                });
+
+                for (int i = 0; i < 7; i++)
+                {
+                    if (units.Count == 0)
+                    {
+                        break;
+                    }
+
+                    if (units[0][ObjectData.TARGET_ID] != meat[0].Id)
+                    {
+                        units[0].Target(meat[0]);
+                    }
+
+                    units.RemoveAt(0);
+                }
+            }
+
+            var berries = GetBerries();
+            UnitCapacity += Math.Min(4, berries.Count * 2);
+            DoGathering(units, berries);
+        }
+
+        private List<Unit> GetMeat()
+        {
+            var meat = new List<Unit>();
+
+            if (Dropsite[ObjectData.BASE_TYPE] != 109)
+            {
+                return meat;
+            }
+
+            var range = 4;
+
+            foreach (var tile in Unary.GameState.Map.GetTilesInRange(Dropsite.Position.PointX, Dropsite.Position.PointY, range + 1))
+            {
+                foreach (var unit in tile.Units.Where(u => u.Targetable && u[ObjectData.CLASS] == (int)UnitClass.Livestock))
+                {
+                    if (unit.Position.DistanceTo(Dropsite.Position) <= range)
+                    {
+                        meat.Add(unit);
+                        unit.RequestUpdate();
+                    }
+                }
+            }
+
+            return meat;
+        }
+
+        private List<Unit> GetBerries()
+        {
+            var range = 4;
+            if (Dropsite[ObjectData.BASE_TYPE] == 109)
+            {
+                range = 7;
+            }
+
+            var berries = new List<Unit>();
+            foreach (var tile in Unary.GameState.Map.GetTilesInRange(Dropsite.Position.PointX, Dropsite.Position.PointY, range + 1))
+            {
+                foreach (var unit in tile.Units.Where(u => u.Targetable && u[ObjectData.CLASS] == (int)UnitClass.BerryBush))
+                {
+                    if (unit.Position.DistanceTo(Dropsite.Position) <= range)
+                    {
+                        berries.Add(unit);
+                        unit.RequestUpdate();
+                    }
+                }
+            }
+
+            return berries;
+        }
+
         private void DoGathering(List<Unit> units, List<Unit> resources)
         {
+            if (units.Count == 0 || resources.Count == 0)
+            {
+                return;
+            }
+
             var assigned = new Dictionary<int, int>();
             var unassigned_gatherers = new List<Unit>();
 

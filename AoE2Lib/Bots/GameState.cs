@@ -557,12 +557,9 @@ namespace AoE2Lib.Bots
                         resource = Resource.WOOD;
                     }
 
-                    if (Tick > 100)
+                    if (Tick > 100 && Bot.Rng.NextDouble() < 0.5)
                     {
-                        if (Bot.Rng.NextDouble() < 0.5)
-                        {
-                            range = 10;
-                        }
+                        range = 10;
                     }
                     
                     FindResources(resource, 0, position, range);
@@ -607,22 +604,7 @@ namespace AoE2Lib.Bots
 
             foreach (var player in GetPlayers())
             {
-                player.Units.Sort((a, b) =>
-                {
-                    if (b.Updated && !a.Updated)
-                    {
-                        return -1;
-                    }
-                    else if (a.Updated && !b.Updated)
-                    {
-                        return 1;
-                    }
-                    else
-                    {
-                        return a.LastUpdateTick.CompareTo(b.LastUpdateTick);
-                    }
-                });
-
+                player.Units.Sort((a, b) => a.LastUpdateTick.CompareTo(b.LastUpdateTick));
                 var count = Math.Min(player.Units.Count, AutoUpdateUnits);
 
                 for (int i = 0; i < count; i++)
