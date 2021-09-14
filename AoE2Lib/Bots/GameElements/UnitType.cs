@@ -12,6 +12,7 @@ namespace AoE2Lib.Bots.GameElements
     public class UnitType : GameElement
     {
         public readonly int Id;
+        public int this[ObjectData data] => GetData(data);
         public bool IsAvailable { get; private set; } = false;
         public int Count { get; private set; } = 0;
         public int CountTotal { get; private set; } = 0;
@@ -26,6 +27,11 @@ namespace AoE2Lib.Bots.GameElements
         internal UnitType(Bot bot, int id) : base(bot)
         {
             Id = id;
+        }
+
+        public int GetData(ObjectData data)
+        {
+            throw new NotImplementedException();
         }
 
         public void Train(int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)

@@ -12,7 +12,7 @@ namespace AoE2Lib.Bots.GameElements
     public class Unit : GameElement
     {
         public readonly int Id;
-        public int this[ObjectData data] { get { return GetData(data); } }
+        public int this[ObjectData data] => GetData(data);
         public int PlayerNumber => GetData(ObjectData.PLAYER);
         public bool Targetable { get; private set; } = false;
         public bool Visible { get; private set; } = false;

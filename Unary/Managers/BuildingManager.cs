@@ -15,6 +15,8 @@ namespace Unary.Managers
         internal static readonly Point[] TC_FARM_DELTAS = new[] { new Point(2, 3), new Point(-1, 3), new Point(3, 0), new Point(3, -3), new Point(-4, 2), new Point(-4, -1), new Point(0, -4), new Point(-3, -4) };
         internal static readonly Point[] MILL_FARM_DELTAS = new[] { new Point(-1, 2), new Point(2, -1), new Point(2, 2), new Point(-3, -1), new Point(-1, -3) };
 
+        private readonly HashSet<Tile> ObstructedTiles = new();
+        private readonly HashSet<Tile> ExcludedTiles = new();
         private readonly HashSet<Unit> BuildingFoundations = new();
         private readonly List<BuildOperation> BuildOperations = new();
 
@@ -23,13 +25,15 @@ namespace Unary.Managers
 
         }
 
-        public bool TryGetUnitFootprint(int id, int x, int y, int extra, out Rectangle footprint)
+        public Rectangle GetUnitFootprint(UnitType type, Position position, int exclusion)
         {
-            var width = Unary.Mod.GetUnitSize(id);
-            var height = Unary.Mod.GetUnitSize(id);
+            var width = Unary.Mod.GetUnitSize(type.Id);
+            var height = Unary.Mod.GetUnitSize(type.Id);
+            var x = position.PointX;
+            var y = position.PointY;
 
-            width += 2 * extra;
-            height += 2 * extra;
+            width += 2 * exclusion;
+            height += 2 * exclusion;
 
             var x_start = x - (width / 2);
             var x_end = x + (width / 2);
@@ -45,19 +49,44 @@ namespace Unary.Managers
                 y_end--;
             }
 
-            var map = Unary.GameState.Map;
-            if (x_start >= 0 && x_end < map.Width && y_start >= 0 && y_end < map.Height)
-            {
-                footprint = new Rectangle(x_start, y_start, x_end - x_start + 1, y_end - y_start + 1);
+            return new Rectangle(x_start, y_start, x_end - x_start + 1, y_end - y_start + 1);
+        }
 
-                return true;
+        public int GetExclusionZoneSize(UnitType type)
+        {
+            var t = type[ObjectData.BASE_TYPE];
+            if (t == Unary.Mod.TownCenter || t == Unary.Mod.TownCenterFoundation || t == Unary.Mod.Mill)
+            {
+                return 3;
+            }
+            else if (t == Unary.Mod.LumberCamp || t == Unary.Mod.MiningCamp || t == Unary.Mod.Dock)
+            {
+                return 3;
             }
             else
             {
-                footprint = new Rectangle(-1, -1, 0, 0);
+                return 1;
+            }
+        }
 
+        public bool IsObstructed(Tile tile)
+        {
+            if (!tile.IsOnLand)
+            {
                 return false;
             }
+
+            return ObstructedTiles.Contains(tile);
+        }
+
+        public bool IsExcluded(Tile tile)
+        {
+            if (!tile.IsOnLand)
+            {
+                return false;
+            }
+
+            return ExclusionTiles.Contains(tile);
         }
 
         public IEnumerable<Tile> GetBuildingPlacements(UnitType building)
@@ -92,6 +121,45 @@ namespace Unary.Managers
 
         internal override void Update()
         {
+            ObstructedTiles.Clear();
+            ExcludedTiles.Clear();
+
+            var map = Unary.GameState.Map;
+            foreach (var player in Unary.GameState.GetPlayers())
+            {
+                foreach (var unit in player.Units.Where(u => u.Targetable && u[ObjectData.SPEED] <= 0))
+                {
+                    var type = Unary.GameState.GetUnitType(unit[ObjectData.BASE_TYPE]);
+                    if (type.Updated)
+                    {
+                        var footprint = GetUnitFootprint(type, unit.Position, 0);
+                        for (int x = footprint.X; x < footprint.Right; x++)
+                        {
+                            for (int y = footprint.Y; y < footprint.Bottom; y++)
+                            {
+                                if (map.IsOnMap(x, y))
+                                {
+                                    ObstructedTiles.Add(map.GetTile(x, y));
+                                }
+                            }
+                        }
+
+                        var excl = GetExclusionZoneSize(type);
+                        footprint = GetUnitFootprint(type, unit.Position, excl);
+                        for (int x = footprint.X; x < footprint.Right; x++)
+                        {
+                            for (int y = footprint.Y; y < footprint.Bottom; y++)
+                            {
+                                if (map.IsOnMap(x, y))
+                                {
+                                    ExcludedTiles.Add(map.GetTile(x, y));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
             Unary.GameState.SetStrategicNumber(StrategicNumber.DISABLE_BUILDER_ASSISTANCE, 1);
             Unary.GameState.SetStrategicNumber(StrategicNumber.ENABLE_NEW_BUILDING_SYSTEM, 1);
             Unary.GameState.SetStrategicNumber(StrategicNumber.INITIAL_EXPLORATION_REQUIRED, 0);
