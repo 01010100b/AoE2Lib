@@ -15,8 +15,8 @@ namespace Unary.Managers
         internal static readonly Point[] TC_FARM_DELTAS = new[] { new Point(2, 3), new Point(-1, 3), new Point(3, 0), new Point(3, -3), new Point(-4, 2), new Point(-4, -1), new Point(0, -4), new Point(-3, -4) };
         internal static readonly Point[] MILL_FARM_DELTAS = new[] { new Point(-1, 2), new Point(2, -1), new Point(2, 2), new Point(-3, -1), new Point(-1, -3) };
 
-        private readonly HashSet<Unit> BuildingFoundations = new HashSet<Unit>();
-        private readonly List<BuildOperation> BuildOperations = new List<BuildOperation>();
+        private readonly HashSet<Unit> BuildingFoundations = new();
+        private readonly List<BuildOperation> BuildOperations = new();
 
         public BuildingManager(Unary unary) : base(unary)
         {
@@ -25,8 +25,8 @@ namespace Unary.Managers
 
         public bool TryGetUnitFootprint(int id, int x, int y, int extra, out Rectangle footprint)
         {
-            var width = 1;
-            var height = 1;
+            var width = Unary.Mod.GetUnitSize(id);
+            var height = Unary.Mod.GetUnitSize(id);
 
             width += 2 * extra;
             height += 2 * extra;
