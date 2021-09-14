@@ -8,6 +8,15 @@ namespace Unary
 {
     class Mod
     {
+        public int TownCenter { get; set; } = 109;
+        public int TownCenterFoundation { get; set; } = 621;
+        public int House { get; set; } = 70;
+        public int Mill { get; set; } = 68;
+        public int MiningCamp { get; set; } = 584;
+        public int LumberCamp { get; set; } = 562;
+        public int Farm { get; set; } = 50;
+        public int Dock { get; set; } = 45;
+
         public void SetAoC()
         {
             throw new NotImplementedException();
