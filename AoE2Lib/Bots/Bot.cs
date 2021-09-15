@@ -43,9 +43,8 @@ namespace AoE2Lib.Bots
             Stopping = false;
         }
 
-        protected virtual void Started() { }
-        protected virtual void Stopped() { }
-        protected virtual void NewGame() { }
+        protected abstract void NewGame();
+        protected abstract void Stopped();
         protected abstract IEnumerable<Command> Tick();
 
         internal void Start(int player, string endpoint, int seed, GameVersion version)
@@ -64,7 +63,7 @@ namespace AoE2Lib.Bots
             Rng = new Random(seed);
             GameState = new GameState(this);
 
-            Started();
+            NewGame();
 
             BotThread = new Thread(() => Run(endpoint)) { IsBackground = true };
             BotThread.Start();
