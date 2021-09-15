@@ -59,7 +59,7 @@ namespace Unary.Operations
 
         private void DoWood()
         {
-            var range = 4;
+            var range = 5;
             if (Dropsite[ObjectData.BASE_TYPE] == 109)
             {
                 range = 7;
@@ -89,7 +89,7 @@ namespace Unary.Operations
 
         private void DoGold()
         {
-            var range = 4;
+            var range = 5;
             if (Dropsite[ObjectData.BASE_TYPE] == 109)
             {
                 range = 7;
@@ -114,7 +114,7 @@ namespace Unary.Operations
 
         private void DoStone()
         {
-            var range = 4;
+            var range = 5;
             if (Dropsite[ObjectData.BASE_TYPE] == 109)
             {
                 range = 7;
@@ -238,7 +238,7 @@ namespace Unary.Operations
 
         private List<Unit> GetBerries()
         {
-            var range = 4;
+            var range = 5;
             if (Dropsite[ObjectData.BASE_TYPE] == 109)
             {
                 range = 7;
@@ -282,6 +282,7 @@ namespace Unary.Operations
                 return;
             }
 
+            units.Sort((a, b) => a[ObjectData.ID].CompareTo(b[ObjectData.ID]));
             var assigned = new Dictionary<int, int>();
             var unassigned_gatherers = new List<Unit>();
 
