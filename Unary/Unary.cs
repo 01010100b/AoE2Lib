@@ -14,9 +14,10 @@ namespace Unary
     class Unary : Bot
     {
         public Mod Mod { get; private set; }
+        public BuildingManager BuildingManager { get; private set; }
         public StrategyManager StrategyManager { get; private set; }
         public EconomyManager EconomyManager { get; private set; }
-        public BuildingManager BuildingManager { get; private set; }
+        public MilitaryManager MilitaryManager { get; private set; }
 
         private bool ChattedOK { get; set; } = false;
 
@@ -33,13 +34,11 @@ namespace Unary
         protected override void NewGame()
         {
             Mod = new Mod();
-
+            BuildingManager = new BuildingManager(this);
             StrategyManager = new StrategyManager(this);
             EconomyManager = new EconomyManager(this);
-            BuildingManager = new BuildingManager(this);
-
+            MilitaryManager = new MilitaryManager(this);
             ChattedOK = false;
-
             Operation.ClearOperations(this);
         }
 
@@ -48,17 +47,21 @@ namespace Unary
             var sw = new Stopwatch();
             
             sw.Start();
+            BuildingManager.Update();
+            Log.Info($"Building Manager took {sw.ElapsedMilliseconds} ms");
+
+            sw.Restart();
             StrategyManager.Update();
             Log.Info($"Strategy Manager took {sw.ElapsedMilliseconds} ms");
-            
+
             sw.Restart();
             EconomyManager.Update();
             Log.Info($"Economy Manager took {sw.ElapsedMilliseconds} ms");
-            
+
             sw.Restart();
-            BuildingManager.Update();
-            Log.Info($"Building Manager took {sw.ElapsedMilliseconds} ms");
-            
+            MilitaryManager.Update();
+            Log.Info($"Military Manager took {sw.ElapsedMilliseconds} ms");
+
             sw.Restart();
             foreach (var op in Operation.GetOperations(this))
             {

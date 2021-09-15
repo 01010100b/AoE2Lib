@@ -15,7 +15,7 @@ namespace Unary.Managers
 
         internal override void Update()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
