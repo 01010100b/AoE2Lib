@@ -50,15 +50,15 @@ namespace Unary
             sw.Start();
             StrategyManager.Update();
             Log.Info($"Strategy Manager took {sw.ElapsedMilliseconds} ms");
-
+            
             sw.Restart();
             EconomyManager.Update();
             Log.Info($"Economy Manager took {sw.ElapsedMilliseconds} ms");
-
+            
             sw.Restart();
             BuildingManager.Update();
             Log.Info($"Building Manager took {sw.ElapsedMilliseconds} ms");
-
+            
             sw.Restart();
             foreach (var op in Operation.GetOperations(this))
             {

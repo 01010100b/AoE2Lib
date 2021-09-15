@@ -11,6 +11,8 @@ namespace AoE2Lib.Bots.GameElements
 {
     public class UnitType : GameElement
     {
+        private static readonly ObjectData[] OBJECT_DATAS = new[] { ObjectData.BASE_TYPE };
+
         public readonly int Id;
         public int this[ObjectData data] => GetData(data);
         public bool IsAvailable { get; private set; } = false;
@@ -24,6 +26,8 @@ namespace AoE2Lib.Bots.GameElements
         public int StoneCost { get; private set; } = 0;
         public int Pending => CountTotal - Count;
 
+        private readonly Dictionary<ObjectData, int> Data = new Dictionary<ObjectData, int>();
+
         internal UnitType(Bot bot, int id) : base(bot)
         {
             Id = id;
@@ -31,7 +35,14 @@ namespace AoE2Lib.Bots.GameElements
 
         public int GetData(ObjectData data)
         {
-            throw new NotImplementedException();
+            if (Data.TryGetValue(data, out int val))
+            {
+                return val;
+            }
+            else
+            {
+                return -1;
+            }
         }
 
         public void Train(int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
@@ -102,6 +113,12 @@ namespace AoE2Lib.Bots.GameElements
             yield return new Goal() { InConstGoalId = 101 };
             yield return new Goal() { InConstGoalId = 102 };
             yield return new Goal() { InConstGoalId = 103 };
+
+            foreach (var data in OBJECT_DATAS)
+            {
+                yield return new UpGetObjectTypeData() { InConstTypeId = Id, InConstObjectData = (int)data, OutGoalData = 100 };
+                yield return new Goal() { InConstGoalId = 100 };
+            }
         }
 
         protected override void UpdateElement(IReadOnlyList<Any> responses)
@@ -115,6 +132,13 @@ namespace AoE2Lib.Bots.GameElements
             WoodCost = responses[8].Unpack<GoalResult>().Result;
             StoneCost = responses[9].Unpack<GoalResult>().Result;
             GoldCost = responses[10].Unpack<GoalResult>().Result;
+
+            var index = 11;
+            foreach (var data in OBJECT_DATAS)
+            {
+                var val = responses[index + 1].Unpack<GoalResult>().Result;
+                Data[data] = val;
+            }
         }
     }
 }

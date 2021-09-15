@@ -83,12 +83,12 @@ namespace Unary.Managers
             Unary.GameState.SetStrategicNumber(StrategicNumber.GOLD_GATHERER_PERCENTAGE, 0);
             Unary.GameState.SetStrategicNumber(StrategicNumber.STONE_GATHERER_PERCENTAGE, 0);
 
-            var pop = Unary.GameState.MyPlayer.CivilianPopulation;
+            double pop = Unary.GameState.MyPlayer.CivilianPopulation;
 
-            var food = MinFoodGatherers;
-            var wood = MinWoodGatherers;
-            var gold = MinGoldGatherers;
-            var stone = MinStoneGatherers;
+            double food = MinFoodGatherers;
+            double wood = MinWoodGatherers;
+            double gold = MinGoldGatherers;
+            double stone = MinStoneGatherers;
 
             pop -= food;
             pop -= wood;
@@ -97,18 +97,16 @@ namespace Unary.Managers
 
             if (pop > 0)
             {
-                food += (int)Math.Round(pop * ExtraFoodPercentage / 100d);
-                wood += (int)Math.Round(pop * ExtraWoodPercentage / 100d);
-                gold += (int)Math.Round(pop * ExtraGoldPercentage / 100d);
-                stone += (int)Math.Round(pop * ExtraStonePercentage / 100d);
+                food += pop * ExtraFoodPercentage / 100d;
+                wood += pop * ExtraWoodPercentage / 100d;
+                gold += pop * ExtraGoldPercentage / 100d;
+                stone += pop * ExtraStonePercentage / 100d;
             }
 
-            pop = food + wood + gold + stone;
-
-            FoodGatherers = food * 100 / pop;
-            WoodGatherers = wood * 100 / pop;
-            GoldGatherers = gold * 100 / pop;
-            StoneGatherers = stone * 100 / pop;
+            FoodGatherers = (int)Math.Round(food);
+            WoodGatherers = (int)Math.Round(wood);
+            GoldGatherers = (int)Math.Round(gold);
+            StoneGatherers = (int)Math.Round(stone);
         }
 
         private void ManageDropsites()
@@ -134,7 +132,7 @@ namespace Unary.Managers
                 }
             }
 
-            if (Unary.GameState.GetStrategicNumber(StrategicNumber.WOOD_GATHERER_PERCENTAGE) > 0)
+            if (WoodGatherers > 0)
             {
                 if (Unary.GameState.GetResourceFound(Resource.WOOD) && Unary.GameState.GetDropsiteMinDistance(Resource.WOOD) > 2 && Unary.GameState.GetDropsiteMinDistance(Resource.WOOD) < 200)
                 {
@@ -148,7 +146,7 @@ namespace Unary.Managers
                 return;
             }
             
-            if (Unary.GameState.GetStrategicNumber(StrategicNumber.FOOD_GATHERER_PERCENTAGE) > 0)
+            if (FoodGatherers > 0)
             {
                 if (mill.CountTotal < 1)
                 {
@@ -160,9 +158,9 @@ namespace Unary.Managers
                 }
                 else if (mill.Count >= 1)
                 {
-                    var needed_farms = Unary.GameState.MyPlayer.CivilianPopulation * Unary.GameState.GetStrategicNumber(StrategicNumber.FOOD_GATHERER_PERCENTAGE) / 100;
+                    var needed_farms = FoodGatherers;
 
-                    Unary.Log.Info($"I have {farm.CountTotal} farms and I want {needed_farms} with {Unary.GameState.GetStrategicNumber(StrategicNumber.FOOD_GATHERER_PERCENTAGE)} food perc");
+                    Unary.Log.Info($"I have {farm.CountTotal} farms and I want {needed_farms}");
 
                     if (farm.CountTotal < needed_farms)
                     {
@@ -181,12 +179,12 @@ namespace Unary.Managers
 
             var gathered = new List<Resource>();
 
-            if (Unary.GameState.GetStrategicNumber(StrategicNumber.GOLD_GATHERER_PERCENTAGE) > 0)
+            if (GoldGatherers > 0)
             {
                 gathered.Add(Resource.GOLD);
             }
 
-            if (Unary.GameState.GetStrategicNumber(StrategicNumber.STONE_GATHERER_PERCENTAGE) > 0)
+            if (StoneGatherers > 0)
             {
                 gathered.Add(Resource.STONE);
             }
@@ -321,9 +319,6 @@ namespace Unary.Managers
                     case Resource.GOLD: min_gatherers = GoldGatherers; break;
                     case Resource.STONE: min_gatherers = StoneGatherers; break;
                 }
-
-                min_gatherers *= Unary.GameState.MyPlayer.CivilianPopulation;
-                min_gatherers = (int)Math.Floor(min_gatherers / 100d);
 
                 var gatherers = 0;
                 var open_ops = new List<GatherOperation>();

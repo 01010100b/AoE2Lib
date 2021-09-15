@@ -25,10 +25,10 @@ namespace Unary.Managers
 
         }
 
-        public Rectangle GetUnitFootprint(UnitType type, Position position, int exclusion)
+        public Rectangle GetUnitFootprint(int type_id, Position position, int exclusion)
         {
-            var width = Unary.Mod.GetUnitSize(type.Id);
-            var height = Unary.Mod.GetUnitSize(type.Id);
+            var width = Unary.Mod.GetUnitSize(type_id);
+            var height = Unary.Mod.GetUnitSize(type_id);
             var x = position.PointX;
             var y = position.PointY;
 
@@ -52,14 +52,13 @@ namespace Unary.Managers
             return new Rectangle(x_start, y_start, x_end - x_start + 1, y_end - y_start + 1);
         }
 
-        public int GetExclusionZoneSize(UnitType type)
+        public int GetExclusionZoneSize(int type_id)
         {
-            var t = type[ObjectData.BASE_TYPE];
-            if (t == Unary.Mod.TownCenter || t == Unary.Mod.TownCenterFoundation || t == Unary.Mod.Mill)
+            if (type_id == Unary.Mod.TownCenter || type_id == Unary.Mod.TownCenterFoundation || type_id == Unary.Mod.Mill)
             {
                 return 3;
             }
-            else if (t == Unary.Mod.LumberCamp || t == Unary.Mod.MiningCamp || t == Unary.Mod.Dock)
+            else if (type_id == Unary.Mod.LumberCamp || type_id == Unary.Mod.MiningCamp || type_id == Unary.Mod.Dock)
             {
                 return 3;
             }
@@ -86,7 +85,7 @@ namespace Unary.Managers
                 return false;
             }
 
-            return ExclusionTiles.Contains(tile);
+            return ExcludedTiles.Contains(tile);
         }
 
         public IEnumerable<Tile> GetBuildingPlacements(UnitType building)
@@ -129,31 +128,27 @@ namespace Unary.Managers
             {
                 foreach (var unit in player.Units.Where(u => u.Targetable && u[ObjectData.SPEED] <= 0))
                 {
-                    var type = Unary.GameState.GetUnitType(unit[ObjectData.BASE_TYPE]);
-                    if (type.Updated)
+                    var footprint = GetUnitFootprint(unit[ObjectData.BASE_TYPE], unit.Position, 0);
+                    for (int x = footprint.X; x < footprint.Right; x++)
                     {
-                        var footprint = GetUnitFootprint(type, unit.Position, 0);
-                        for (int x = footprint.X; x < footprint.Right; x++)
+                        for (int y = footprint.Y; y < footprint.Bottom; y++)
                         {
-                            for (int y = footprint.Y; y < footprint.Bottom; y++)
+                            if (map.IsOnMap(x, y))
                             {
-                                if (map.IsOnMap(x, y))
-                                {
-                                    ObstructedTiles.Add(map.GetTile(x, y));
-                                }
+                                ObstructedTiles.Add(map.GetTile(x, y));
                             }
                         }
+                    }
 
-                        var excl = GetExclusionZoneSize(type);
-                        footprint = GetUnitFootprint(type, unit.Position, excl);
-                        for (int x = footprint.X; x < footprint.Right; x++)
+                    var excl = GetExclusionZoneSize(unit[ObjectData.BASE_TYPE]);
+                    footprint = GetUnitFootprint(unit[ObjectData.BASE_TYPE], unit.Position, excl);
+                    for (int x = footprint.X; x < footprint.Right; x++)
+                    {
+                        for (int y = footprint.Y; y < footprint.Bottom; y++)
                         {
-                            for (int y = footprint.Y; y < footprint.Bottom; y++)
+                            if (map.IsOnMap(x, y))
                             {
-                                if (map.IsOnMap(x, y))
-                                {
-                                    ExcludedTiles.Add(map.GetTile(x, y));
-                                }
+                                ExcludedTiles.Add(map.GetTile(x, y));
                             }
                         }
                     }
