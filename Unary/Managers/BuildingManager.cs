@@ -72,7 +72,7 @@ namespace Unary.Managers
         {
             if (!tile.IsOnLand)
             {
-                return false;
+                return true;
             }
 
             return ObstructedTiles.Contains(tile);
@@ -82,7 +82,7 @@ namespace Unary.Managers
         {
             if (!tile.IsOnLand)
             {
-                return false;
+                return true;
             }
 
             return ExcludedTiles.Contains(tile);
@@ -101,7 +101,7 @@ namespace Unary.Managers
         public IEnumerable<Tile> GetFarmPlacements(Unit dropsite)
         {
             var deltas = TC_FARM_DELTAS;
-            if (dropsite[ObjectData.BASE_TYPE] == 68)
+            if (dropsite[ObjectData.BASE_TYPE] == Unary.Mod.Mill)
             {
                 deltas = MILL_FARM_DELTAS;
             }
