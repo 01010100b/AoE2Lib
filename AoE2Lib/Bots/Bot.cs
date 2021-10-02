@@ -181,6 +181,10 @@ namespace AoE2Lib.Bots
                             if (ngt < game_time)
                             {
                                 GameState = new GameState(this);
+                                if (GameVersion == GameVersion.AOC)
+                                {
+                                    DatFile = module_api.GetGameDataFilePath(new Protos.GetGameDataFilePathRequest()).Result;
+                                }
                                 NewGame();
 
                                 Log.Info("New Game");

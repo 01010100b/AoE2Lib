@@ -33,14 +33,6 @@ namespace Unary.Managers
 
         internal override void Update()
         {
-            var explorers = Math.Max(1, Unary.GameState.MyPlayer.MilitaryPopulation / 5);
-            Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_EXPLORERS, 0);
-            Unary.GameState.SetStrategicNumber(StrategicNumber.NUMBER_EXPLORE_GROUPS, explorers);
-            Unary.GameState.SetStrategicNumber(StrategicNumber.HOME_EXPLORATION_TIME, 600);
-
-            Unary.GameState.SetStrategicNumber(StrategicNumber.TASK_UNGROUPED_SOLDIERS, 0);
-            Unary.GameState.SetStrategicNumber(StrategicNumber.DISABLE_DEFEND_GROUPS, 8);
-
             BasicStrategy();
         }
 

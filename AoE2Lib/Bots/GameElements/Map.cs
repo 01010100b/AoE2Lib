@@ -5,12 +5,35 @@ using Protos.Expert.Command;
 using Protos.Expert.Fact;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 
 namespace AoE2Lib.Bots.GameElements
 {
+    public class Tile
+    {
+        public readonly int X;
+        public readonly int Y;
+        public int Height { get; internal set; }
+        public Position Position => Position.FromPoint(X, Y);
+        public Position Center => new Position(X + 0.5, Y + 0.5);
+        public bool IsOnLand => Terrain != 1 && Terrain != 2 && Terrain != 4 && Terrain != 15 && Terrain != 22 && Terrain != 23 && Terrain != 28 && Terrain != 37;
+        public bool Explored => Visibility != 0;
+        public bool Visible => Visibility == 15;
+        public readonly List<Unit> Units = new List<Unit>();
+
+        internal int Terrain { get; set; } = 0;
+        internal int Visibility { get; set; } = 0;
+
+        internal Tile(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+    }
+
     public class Map : GameElement
     {
         public int Height { get; private set; } = -1;
@@ -177,7 +200,7 @@ namespace AoE2Lib.Bots.GameElements
             Height = dims.Height;
             Width = dims.Width;
             CreateMap();
-            
+
             var tiles = responses[1].Unpack<GetTilesResult>().Tiles;
             foreach (var tile in tiles)
             {

@@ -1,9 +1,12 @@
-﻿using AoE2Lib.Bots.GameElements;
+﻿using AoE2Lib;
+using AoE2Lib.Bots.GameElements;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unary.UnitControllers;
 
 namespace Unary.Managers
 {
@@ -21,7 +24,7 @@ namespace Unary.Managers
             }
         }
 
-        private readonly Dictionary<Tile, ScoutingState> ScoutingStates = new Dictionary<Tile, ScoutingState>();
+        private readonly Dictionary<Tile, ScoutingState> ScoutingStates = new();
 
         public MilitaryManager(Unary unary) : base(unary)
         {
@@ -53,7 +56,35 @@ namespace Unary.Managers
 
         internal override void Update()
         {
-            
+            Unary.GameState.SetStrategicNumber(StrategicNumber.NUMBER_EXPLORE_GROUPS, 0);
+            DoScouting();
+        }
+
+        private void DoScouting()
+        {
+            var scouts = Unary.UnitsManager.GetControllers<ScoutController>();
+            if (scouts.Count == 0)
+            {
+                Unit scout = null;
+                var idlers = Unary.UnitsManager.GetControllers<IdleController>();
+                foreach (var idler in idlers)
+                {
+                    if (idler.Unit[ObjectData.CMDID] == (int)CmdId.MILITARY)
+                    {
+                        if (scout == null || idler.Unit[ObjectData.SPEED] > scout[ObjectData.SPEED])
+                        {
+                            scout = idler.Unit;
+                        }
+                    }
+                }
+
+                if (scout != null)
+                {
+                    var ctrl = new ScoutController(scout, Unary);
+                    ctrl.AttractorPosition = Unary.GameState.MyPosition;
+                    scouts.Add(ctrl);
+                }
+            }
         }
     }
 }

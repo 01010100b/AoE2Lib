@@ -18,6 +18,7 @@ namespace Unary
         public StrategyManager StrategyManager { get; private set; }
         public EconomyManager EconomyManager { get; private set; }
         public MilitaryManager MilitaryManager { get; private set; }
+        public UnitsManager UnitsManager { get; private set; }
 
         private bool ChattedOK { get; set; } = false;
 
@@ -38,6 +39,7 @@ namespace Unary
             StrategyManager = new StrategyManager(this);
             EconomyManager = new EconomyManager(this);
             MilitaryManager = new MilitaryManager(this);
+            UnitsManager = new UnitsManager(this);
             ChattedOK = false;
             Operation.ClearOperations(this);
         }
@@ -61,6 +63,10 @@ namespace Unary
             sw.Restart();
             MilitaryManager.Update();
             Log.Info($"Military Manager took {sw.ElapsedMilliseconds} ms");
+
+            sw.Restart();
+            UnitsManager.Update();
+            Log.Info($"Units Manager took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
             foreach (var op in Operation.GetOperations(this))
