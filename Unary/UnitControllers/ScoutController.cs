@@ -41,7 +41,6 @@ namespace Unary.UnitControllers
 
         private void FindState()
         {
-            Debug.WriteLine("Finding state");
             var los = 4;
 
             ScoutingState best = null;
@@ -51,8 +50,7 @@ namespace Unary.UnitControllers
 
             foreach (var state in Unary.MilitaryManager.GetScoutingStatesForLos(los))
             {
-                
-                if (state.LastAccessGameTime > TimeSpan.Zero || state.LastAttemptGameTime > TimeSpan.Zero)
+                if (state.LastAttemptGameTime > TimeSpan.Zero)
                 {
                     continue;
                 }
@@ -73,7 +71,9 @@ namespace Unary.UnitControllers
                 if (explored < ExploredFraction)
                 {
                     
-                    var cost = state.Tile.Position.DistanceTo(my_pos) + Math.Abs(AttractorRadius - state.Tile.Position.DistanceTo(AttractorPosition));
+                    var cost = state.Tile.Position.DistanceTo(my_pos) 
+                        + Math.Abs(AttractorRadius - state.Tile.Position.DistanceTo(AttractorPosition));
+                    
                     if (best == null || cost < best_cost)
                     {
                         best = state;
@@ -91,11 +91,10 @@ namespace Unary.UnitControllers
 
         private void ExploreState()
         {
-            Debug.WriteLine("Exploring state");
             State.LastAttemptGameTime = Unary.GameState.GameTime;
-
             var target_pos = State.Tile.Center;
             var distance = target_pos.DistanceTo(Unit.Position);
+
             if (Math.Abs(distance - LastDistance) > 1)
             {
                 LastDistanceChangeGameTime = Unary.GameState.GameTime;
@@ -110,8 +109,6 @@ namespace Unary.UnitControllers
             }
             else
             {
-                Debug.WriteLine("Done exploring state");
-                State.LastAccessGameTime = Unary.GameState.GameTime;
                 State = null;
             }
         }

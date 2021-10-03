@@ -45,7 +45,7 @@ namespace Unary.Managers
                         {
                             if (!Units.ContainsKey(unit))
                             {
-                                Units[unit] = new IdleController(unit, Unary);
+                                Units[unit] = new IdlerController(unit, Unary);
                                 Unary.Log.Info($"New unit control {unit.Id}");
                             }
                         }; break;

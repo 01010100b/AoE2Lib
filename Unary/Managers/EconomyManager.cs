@@ -20,8 +20,15 @@ namespace Unary.Managers
         public int ExtraStonePercentage { get; set; } = 0;
         public int MaxTownCenters { get; set; } = 1;
         public int ConcurrentVillagers { get; set; } = 3;
+
+        public readonly List<Unit> Wood = new();
+        public readonly List<Unit> Food = new();
+        public readonly List<Unit> Gold = new();
+        public readonly List<Unit> Stone = new();
+        public readonly List<Unit> Farms = new();
+        public readonly List<Unit> Dropsites = new();
         
-        private readonly Dictionary<Unit, List<GatherOperation>> GatherOperations = new Dictionary<Unit, List<GatherOperation>>();
+        private readonly Dictionary<Unit, List<GatherOperation>> GatherOperations = new();
         private int FoodGatherers { get; set; } = 0;
         private int WoodGatherers { get; set; } = 0;
         private int GoldGatherers { get; set; } = 0;
@@ -34,6 +41,26 @@ namespace Unary.Managers
 
         internal override void Update()
         {
+            Wood.Clear();
+            Food.Clear();
+            Gold.Clear();
+            Stone.Clear();
+            Farms.Clear();
+            Dropsites.Clear();
+
+            foreach (var unit in Unary.GameState.MyPlayer.Units.Where(u => u.Targetable))
+            {
+                var type = unit[ObjectData.BASE_TYPE];
+                if (type == Unary.Mod.TownCenter || type == Unary.Mod.LumberCamp || type == Unary.Mod.MiningCamp || type == Unary.Mod.Mill || type == Unary.Mod.Dock)
+                {
+                    Dropsites.Add(unit);
+                }
+                else if (type == Unary.Mod.Farm)
+                {
+                    Farms.Add(unit);
+                }
+            }
+
             ManagePopulation();
             ManageGatherers();
             ManageDropsites();

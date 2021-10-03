@@ -16,7 +16,6 @@ namespace Unary.Managers
         {
             public readonly Tile Tile;
             public TimeSpan LastAttemptGameTime { get; set; } = TimeSpan.MinValue;
-            public TimeSpan LastAccessGameTime { get; set; } = TimeSpan.MinValue;
 
             public ScoutingState(Tile tile)
             {
@@ -66,7 +65,7 @@ namespace Unary.Managers
             if (scouts.Count == 0)
             {
                 Unit scout = null;
-                var idlers = Unary.UnitsManager.GetControllers<IdleController>();
+                var idlers = Unary.UnitsManager.GetControllers<IdlerController>();
                 foreach (var idler in idlers)
                 {
                     if (idler.Unit[ObjectData.CMDID] == (int)CmdId.MILITARY)

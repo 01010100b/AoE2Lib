@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Unary.UnitControllers
 {
-    class IdleController : UnitController
+    class IdlerController : UnitController
     {
-        public IdleController(Unit unit, Unary unary) : base(unit, unary)
+        public IdlerController(Unit unit, Unary unary) : base(unit, unary)
         {
 
         }
