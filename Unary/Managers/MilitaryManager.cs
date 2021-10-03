@@ -55,8 +55,22 @@ namespace Unary.Managers
 
         internal override void Update()
         {
+            var scenario = true;
+
             Unary.GameState.SetStrategicNumber(StrategicNumber.NUMBER_EXPLORE_GROUPS, 0);
-            DoScouting();
+
+            if (scenario)
+            {
+                foreach (var soldier in Unary.UnitsManager.GetControllers<IdlerController>().Where(c => c.Unit[ObjectData.CMDID] == (int)CmdId.MILITARY))
+                {
+                    var ctrl = new AttackerController(soldier.Unit, Unary);
+                }
+            }
+            else
+            {
+                DoScouting();
+            }
+            
         }
 
         private void DoScouting()

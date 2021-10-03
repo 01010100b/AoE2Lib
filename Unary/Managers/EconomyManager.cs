@@ -24,10 +24,11 @@ namespace Unary.Managers
         public int ConcurrentVillagers { get; set; } = 3;
 
         public readonly List<Unit> Wood = new();
-        public readonly List<Unit> Food = new();
+        public readonly List<Unit> Berries = new();
         public readonly List<Unit> Gold = new();
         public readonly List<Unit> Stone = new();
         public readonly List<Unit> Farms = new();
+        public readonly List<Unit> Meat = new();
         public readonly List<Unit> Dropsites = new();
         
         private readonly Dictionary<Unit, List<GatherOperation>> GatherOperations = new();
@@ -44,7 +45,7 @@ namespace Unary.Managers
         internal override void Update()
         {
             Wood.Clear();
-            Food.Clear();
+            Berries.Clear();
             Gold.Clear();
             Stone.Clear();
             Farms.Clear();

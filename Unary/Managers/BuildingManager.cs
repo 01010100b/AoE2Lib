@@ -27,8 +27,8 @@ namespace Unary.Managers
 
         public Rectangle GetUnitFootprint(int type_id, Position position, int exclusion)
         {
-            var width = Unary.Mod.GetUnitSize(type_id);
-            var height = Unary.Mod.GetUnitSize(type_id);
+            var width = Unary.Mod.GetBuildingSize(type_id);
+            var height = Unary.Mod.GetBuildingSize(type_id);
             var x = position.PointX;
             var y = position.PointY;
 

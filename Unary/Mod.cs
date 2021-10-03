@@ -33,7 +33,7 @@ namespace Unary
             throw new NotImplementedException();
         }
 
-        public int GetUnitSize(int type_id)
+        public int GetBuildingSize(int type_id)
         {
             switch (type_id)
             {

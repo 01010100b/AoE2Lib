@@ -129,7 +129,7 @@ namespace AoE2Lib.Bots.GameElements
 
             if (!Bot.GameState.Map.IsOnMap(position.PointX, position.PointY))
             {
-                throw new ArgumentOutOfRangeException(nameof(position));
+                return;
             }
 
             if (Updated == false)
