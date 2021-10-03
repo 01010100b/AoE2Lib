@@ -8,6 +8,7 @@ namespace Unary
 {
     class Mod
     {
+        public int Villager { get; set; } = 83;
         public int TownCenter { get; set; } = 109;
         public int TownCenterFoundation { get; set; } = 621;
         public int House { get; set; } = 70;
