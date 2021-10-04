@@ -23,7 +23,7 @@ namespace Unary.Managers
             return Units.Values.OfType<T>().Cast<T>().ToList();
         }
 
-        internal void SetController(Unit unit, UnitController controller)
+        public void SetController(Unit unit, UnitController controller)
         {
             Units[unit] = controller;
         }

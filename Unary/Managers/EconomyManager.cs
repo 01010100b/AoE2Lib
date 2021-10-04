@@ -127,6 +127,7 @@ namespace Unary.Managers
 
                     var tile = Unary.GameState.Map.GetTile(idle_farm.Position.PointX, idle_farm.Position.PointY);
                     var ctrl = new FarmerController(tile, idler.Unit, Unary);
+                    Unary.UnitsManager.SetController(idler.Unit, ctrl);
                 }
             }
         }

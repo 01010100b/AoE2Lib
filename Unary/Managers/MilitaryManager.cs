@@ -64,6 +64,7 @@ namespace Unary.Managers
                 foreach (var soldier in Unary.UnitsManager.GetControllers<IdlerController>().Where(c => c.Unit[ObjectData.CMDID] == (int)CmdId.MILITARY))
                 {
                     var ctrl = new AttackerController(soldier.Unit, Unary);
+                    Unary.UnitsManager.SetController(soldier.Unit, ctrl);
                 }
             }
             else
@@ -95,6 +96,7 @@ namespace Unary.Managers
                 {
                     var ctrl = new ScoutController(scout, Unary);
                     ctrl.AttractorPosition = Unary.GameState.MyPosition;
+                    Unary.UnitsManager.SetController(scout, ctrl);
                     scouts.Add(ctrl);
                 }
             }
