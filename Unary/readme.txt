@@ -1,7 +1,7 @@
 ﻿Unary AI by 01010100
 ====================
 
-For DE: The ai API module used by Unary may (about 50% of the time in my experience) trip the tampering detection or even just crash the game. 
+For DE: The API module used by Unary may (about 50% of the time in my experience) trip the tampering detection or otherwise just crash the game. 
 Unary is hence not supported on DE. Other than the possible API crashes at game start, it should work just fine though.
 
 Installation
@@ -35,7 +35,7 @@ Troubleshooting
 ---------------
 
 Several log files are created in Unary's folder. 
-The main Unary application will write to "Unary.log" and each Unary player p will write to "Player p.log".
+The main Unary application will write to "Unary.log" and each Unary player {p} will write to "Player {p}.log".
 Please provide the relevant log files (preferably zipped, they can get quite large) when making a bug report.
 
 Various

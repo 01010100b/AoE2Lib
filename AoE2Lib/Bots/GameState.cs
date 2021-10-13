@@ -13,6 +13,7 @@ namespace AoE2Lib.Bots
     {
         public readonly Map Map;
         public Player MyPlayer => Players[Bot.PlayerNumber];
+        public Player Gaia => Players[0];
         public Position MyPosition { get; private set; } = Position.Zero;
         public int Tick { get; private set; } = 0;
         public TimeSpan GameTime { get; private set; } = TimeSpan.Zero;
@@ -38,7 +39,6 @@ namespace AoE2Lib.Bots
         internal GameState(Bot bot)
         {
             Bot = bot;
-
             Map = new Map(Bot);
 
             for (int i = 0; i <= 8; i++)

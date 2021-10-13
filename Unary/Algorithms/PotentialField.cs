@@ -9,19 +9,41 @@ namespace Unary.Algorithms
 {
     class PotentialField
     {
-        public Position TargetPosition { get; set; } = new Position(-1, -1);
+        public double FriendlyStrength { get; set; } = -5;
+        public double FriendlyMaxRange { get; set; } = 2;
+        public double EnemyStrength { get; set; } = 0;
 
-        public double GetStrength(Position position)
+        public double GetStrengthAtPosition(Position position, Position move_position, double move_radius,
+            IEnumerable<KeyValuePair<double, Position>> friendlies = null,
+            IEnumerable<ValueTuple<double, Position, double>> enemies = null)
         {
             var field = 0d;
 
-            var strength = TargetPosition.PointX >= 0 && TargetPosition.PointY >= 0 ? 1d : 0d;
-            var min_range = 0;
-            var max_range = 1e6;
-            var charge = 1d;
-            var charge_position = TargetPosition;
+            // movement field
+            field += GetContribution(position, 1d, move_position, 1d, move_radius, double.MaxValue);
 
-            field += GetContribution(position, charge, charge_position, strength, min_range, max_range);
+            // friendlies field
+            if (friendlies != null)
+            {
+                foreach (var friendly in friendlies)
+                {
+                    field += GetContribution(position, friendly.Key, friendly.Value, FriendlyStrength, 0, FriendlyMaxRange);
+                }
+            }
+
+            // enemies field
+            if (enemies != null)
+            {
+                var val = 0d;
+
+                foreach (var enemy in enemies)
+                {
+                    var v = GetContribution(position, enemy.Item1, enemy.Item2, EnemyStrength, 0, enemy.Item3);
+                    val = Math.Max(v, val);
+                }
+
+                field += val;
+            }
 
             return field;
         }

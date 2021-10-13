@@ -20,11 +20,17 @@ namespace Unary
         public MilitaryManager MilitaryManager { get; private set; }
         public UnitsManager UnitsManager { get; private set; }
 
+        private readonly List<Command> Commands = new List<Command>();
         private bool ChattedOK { get; set; } = false;
 
         public Unary() : base()
         {
             NewGame();
+        }
+
+        public void ExecuteCommand(Command command)
+        {
+            Commands.Add(command);
         }
 
         protected override void Stopped()
@@ -46,6 +52,8 @@ namespace Unary
 
         protected override IEnumerable<Command> Tick()
         {
+            Commands.Clear();
+
             var sw = new Stopwatch();
             
             sw.Start();
@@ -86,7 +94,10 @@ namespace Unary
                 yield return command;
             }
 
-            yield break;
+            foreach (var command in Commands)
+            {
+                yield return command;
+            }
         }
     }
 }

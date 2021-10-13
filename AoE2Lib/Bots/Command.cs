@@ -63,6 +63,11 @@ namespace AoE2Lib.Bots
             }
         }
 
+        public void Add(IMessage fact, string op, int value, Command command)
+        {
+            Add(fact, op, value, command.Messages.ToArray());
+        }
+
         public IReadOnlyList<Any> GetResponses()
         {
             if (Responses.Count != Messages.Count)

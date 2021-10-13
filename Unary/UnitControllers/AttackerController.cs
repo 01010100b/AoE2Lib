@@ -11,8 +11,6 @@ namespace Unary.UnitControllers
 {
     class AttackerController : UnitController
     {
-        public Unit Target { get; private set; } = null;
-
         public AttackerController(Unit unit, Unary unary) : base(unit, unary)
         {
 
@@ -73,47 +71,13 @@ namespace Unary.UnitControllers
 
         private void AttackTarget()
         {
-            const int ATTACK_MS = 100;
+            const int ATTACK_MS = 10;
             var max_next_attack = Unit[ObjectData.RELOAD_TIME] - 500;
 
             Debug.WriteLine($"attacking target {Target.Id} with {Unit.Id}");
             Unit.Target(Target, null, null, null, 0, ATTACK_MS);
 
-            var range = (double)Unit[ObjectData.RANGE];
-            
-            var dir = 1d;
-            if (Unary.GameState.Tick % 2 == 0)
-            {
-                dir = -1d;
-            }
-
-            if (Unit.Position.DistanceTo(Target.Position) > range)
-            {
-                var pos = Target.Position;
-                pos -= Unit.Position;
-                pos /= pos.Norm * 0.5;
-                //pos = pos.Rotate(dir * Math.PI / 4);
-                pos += Unit.Position;
-                Unit.Target(pos, UnitAction.MOVE, null, UnitStance.NO_ATTACK, ATTACK_MS + 1, max_next_attack);
-            }
-            else if (Unit.Position.DistanceTo(Target.Position) < range - 1)
-            {
-                var pos = Target.Position;
-                pos -= Unit.Position;
-                pos /= pos.Norm * 0.5;
-                pos = pos.Rotate(Math.PI);
-                pos += Unit.Position;
-                Unit.Target(pos, UnitAction.MOVE, null, UnitStance.NO_ATTACK, ATTACK_MS + 1, max_next_attack);
-            }
-            else
-            {
-                var pos = Target.Position;
-                pos -= Unit.Position;
-                pos /= pos.Norm * 0.5;
-                pos = pos.Rotate(dir * Math.PI / 2);
-                pos += Unit.Position;
-                Unit.Target(pos, UnitAction.MOVE, null, UnitStance.NO_ATTACK, ATTACK_MS + 1, max_next_attack);
-            }
+            PerformPotentialFieldStep(ATTACK_MS + 1, max_next_attack);
         }
     }
 }

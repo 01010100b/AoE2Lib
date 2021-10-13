@@ -35,10 +35,10 @@ namespace Unary
             }
             catch (Exception ex)
             {
-                Message($"Failed to find/connect process with name {name}");
+                Message($"ERROR: Failed to find/connect process with name {name}");
                 Program.Log.Exception(ex);
 
-                throw new Exception($"Failed to find process with name {name}", ex);
+                return;
             }
 
             ButtonConnect.Enabled = false;

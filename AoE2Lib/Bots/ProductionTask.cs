@@ -118,7 +118,7 @@ namespace AoE2Lib.Bots
                      new SetStrategicNumber() { InConstSnId = Bot.SN_PENDING_PLACEMENT, InConstValue = Id },
                      new SetGoal() { InConstGoalId = GL_WAS_BUILT, InConstValue = 1 });
 
-                command.Add(new Goal() { InConstGoalId = GL_WAS_BUILT }, "==", 0, icommand.Messages.ToArray());
+                command.Add(new Goal() { InConstGoalId = GL_WAS_BUILT }, "==", 0, icommand);
             }
 
             return command;
