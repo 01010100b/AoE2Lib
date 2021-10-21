@@ -14,6 +14,11 @@ namespace Unary.Managers
 
         }
 
+        public IEnumerable<Resource> GetGatherers()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Attack(Player player)
         {
             Unary.GameState.SetStrategicNumber(StrategicNumber.ENABLE_PATROL_ATTACK, 1);

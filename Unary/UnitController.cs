@@ -19,7 +19,6 @@ namespace Unary
         public readonly PotentialField PotentialField = new();
         public Position MovePosition { get; protected set; } = Position.Zero;
         public double MoveRadius { get; protected set; } = 1e5;
-        public Unit Target { get; protected set; } = null;
 
         private readonly List<Unit> RelevantUnits = new();
         private readonly Command MoveCommand = new();
@@ -50,6 +49,8 @@ namespace Unary
             {
                 ActualMovementPosition = Unit.Position;
             }
+
+            MoveCommand.Reset();
 
             UpdateRelevantUnits();
             Tick();
@@ -200,12 +201,6 @@ namespace Unary
 
         private Position GetMovementPosition(Position current)
         {
-            if (Target != null)
-            {
-                MovePosition = Target.Position;
-                MoveRadius = Math.Max(0, Unit[ObjectData.RANGE]);
-            }
-
             var friendlies = RelevantUnits
                 .Where(u => u.Targetable && u.PlayerNumber == Unary.PlayerNumber && u != Unit)
                 .Select(u => new KeyValuePair<double, Position>(1, u.Position))

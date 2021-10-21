@@ -11,6 +11,8 @@ namespace Unary.UnitControllers
 {
     class AttackerController : UnitController
     {
+        public Unit Target { get; set; } = null;
+
         public AttackerController(Unit unit, Unary unary) : base(unit, unary)
         {
 
@@ -25,8 +27,10 @@ namespace Unary.UnitControllers
 
             if (Target != null)
             {
-                Target.RequestUpdate();
+                MovePosition = Target.Position;
+                MoveRadius = Math.Max(0, Unit[ObjectData.RANGE]);
                 AttackTarget();
+                Target.RequestUpdate();
             }
         }
 

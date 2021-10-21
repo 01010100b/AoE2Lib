@@ -55,11 +55,11 @@ namespace Unary.Managers
 
         internal override void Update()
         {
-            var scenario = true;
+            const bool SCENARIO = false;
 
             Unary.GameState.SetStrategicNumber(StrategicNumber.NUMBER_EXPLORE_GROUPS, 0);
 
-            if (scenario)
+            if (SCENARIO)
             {
                 foreach (var soldier in Unary.UnitsManager.GetControllers<IdlerController>().Where(c => c.Unit[ObjectData.CMDID] == (int)CmdId.MILITARY))
                 {

@@ -35,7 +35,7 @@ namespace Unary
 
         protected override void Stopped()
         {
-            Operation.ClearOperations(this);
+
         }
 
         protected override void NewGame()
@@ -47,7 +47,6 @@ namespace Unary
             MilitaryManager = new MilitaryManager(this);
             UnitsManager = new UnitsManager(this);
             ChattedOK = false;
-            Operation.ClearOperations(this);
         }
 
         protected override IEnumerable<Command> Tick()
@@ -75,13 +74,6 @@ namespace Unary
             sw.Restart();
             UnitsManager.Update();
             Log.Info($"Units Manager took {sw.ElapsedMilliseconds} ms");
-
-            sw.Restart();
-            foreach (var op in Operation.GetOperations(this))
-            {
-                op.UpdateInternal();
-            }
-            Log.Info($"Operations took {sw.ElapsedMilliseconds} ms");
 
             sw.Stop();
 

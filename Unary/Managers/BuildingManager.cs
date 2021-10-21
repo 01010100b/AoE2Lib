@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using Unary.Operations;
+using Unary.UnitControllers;
 
 namespace Unary.Managers
 {
@@ -17,55 +17,26 @@ namespace Unary.Managers
 
         private readonly HashSet<Tile> ObstructedTiles = new();
         private readonly HashSet<Tile> ExcludedTiles = new();
-        private readonly HashSet<Unit> BuildingFoundations = new();
-        private readonly List<BuildOperation> BuildOperations = new();
+        private readonly List<Unit> Foundations = new();
 
         public BuildingManager(Unary unary) : base(unary)
         {
 
         }
 
-        public Rectangle GetUnitFootprint(int type_id, Position position, int exclusion)
+        public int GetMaximumBuilders()
         {
-            var width = Unary.Mod.GetBuildingSize(type_id);
-            var height = Unary.Mod.GetBuildingSize(type_id);
-            var x = position.PointX;
-            var y = position.PointY;
-
-            width += 2 * exclusion;
-            height += 2 * exclusion;
-
-            var x_start = x - (width / 2);
-            var x_end = x + (width / 2);
-            if (width % 2 == 0)
-            {
-                x_end--;
-            }
-
-            var y_start = y - (height / 2);
-            var y_end = y + (height / 2);
-            if (height % 2 == 0)
-            {
-                y_end--;
-            }
-
-            return new Rectangle(x_start, y_start, x_end - x_start + 1, y_end - y_start + 1);
+            return 4;
         }
 
-        public int GetExclusionZoneSize(int type_id)
+        public IEnumerable<Unit> GetFoundations()
         {
-            if (type_id == Unary.Mod.TownCenter || type_id == Unary.Mod.TownCenterFoundation || type_id == Unary.Mod.Mill)
-            {
-                return 3;
-            }
-            else if (type_id == Unary.Mod.LumberCamp || type_id == Unary.Mod.MiningCamp || type_id == Unary.Mod.Dock)
-            {
-                return 3;
-            }
-            else
-            {
-                return 1;
-            }
+            return Foundations;
+        }
+
+        public bool TryCanBuildAt(UnitType type, Tile tile, out bool build)
+        {
+            throw new NotImplementedException();
         }
 
         public bool IsObstructed(Tile tile)
@@ -76,6 +47,11 @@ namespace Unary.Managers
             }
 
             return ObstructedTiles.Contains(tile);
+        }
+
+        public IEnumerable<Tile> GetObstructedTiles()
+        {
+            return ObstructedTiles;
         }
 
         public bool IsExcluded(Tile tile)
@@ -126,7 +102,7 @@ namespace Unary.Managers
             var map = Unary.GameState.Map;
             foreach (var player in Unary.GameState.GetPlayers())
             {
-                foreach (var unit in player.Units.Where(u => u.Targetable && u[ObjectData.SPEED] <= 0))
+                foreach (var unit in player.Units.Where(u => u.Targetable && u[ObjectData.SPEED] <= 0 && u[ObjectData.BASE_TYPE] != Unary.Mod.Farm))
                 {
                     var footprint = GetUnitFootprint(unit[ObjectData.BASE_TYPE], unit.Position, 0);
                     for (int x = footprint.X; x < footprint.Right; x++)
@@ -152,6 +128,31 @@ namespace Unary.Managers
                             }
                         }
                     }
+                }
+            }
+
+            Foundations.Clear();
+            foreach (var unit in Unary.GameState.MyPlayer.Units.Where(u => u.Targetable && u[ObjectData.STATUS] == 0))
+            {
+                if (unit[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || unit[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING)
+                {
+                    Foundations.Add(unit);
+                }
+            }
+
+            var max_builders = Math.Min(GetMaximumBuilders(), Foundations.Count);
+            var builders = Unary.UnitsManager.GetControllers<BuilderController>().Count;
+            if (builders < max_builders)
+            {
+                var foundation = Foundations[Unary.Rng.Next(Foundations.Count)];
+                var gatherers = Unary.UnitsManager.GetControllers<GathererController>();
+                gatherers.Sort((a, b) => a.Unit.Position.DistanceTo(foundation.Position).CompareTo(b.Unit.Position.DistanceTo(foundation.Position)));
+
+                if (gatherers.Count > 0)
+                {
+                    var builder = gatherers[0].Unit;
+                    var ctrl = new BuilderController(builder, Unary);
+                    Unary.UnitsManager.SetController(builder, ctrl);
                 }
             }
 
@@ -192,102 +193,50 @@ namespace Unary.Managers
                 Unary.GameState.SetStrategicNumber(StrategicNumber.MILL_MAX_DISTANCE, 50);
             }
 
-            DoBuildOperations();
+            //DoBuildOperations();
         }
 
-        private void DoBuildOperations()
+        private Rectangle GetUnitFootprint(int type_id, Position position, int exclusion_zone_size)
         {
-            // get available foundations
+            var width = Unary.Mod.GetBuildingSize(type_id);
+            var height = Unary.Mod.GetBuildingSize(type_id);
+            var x = position.PointX;
+            var y = position.PointY;
 
-            foreach (var unit in Unary.GameState.MyPlayer.Units.Where(u => u.Targetable && u[ObjectData.STATUS] == 0))
+            width += 2 * exclusion_zone_size;
+            height += 2 * exclusion_zone_size;
+
+            var x_start = x - (width / 2);
+            var x_end = x + (width / 2);
+            if (width % 2 == 0)
             {
-                if (unit[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || unit[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING)
-                {
-                    BuildingFoundations.Add(unit);
-                }
+                x_end--;
             }
 
-            var foundations = new HashSet<Unit>();
-            foreach (var f in BuildingFoundations)
+            var y_start = y - (height / 2);
+            var y_end = y + (height / 2);
+            if (height % 2 == 0)
             {
-                foundations.Add(f);
+                y_end--;
             }
 
-            foreach (var foundation in foundations)
+            return new Rectangle(x_start, y_start, x_end - x_start + 1, y_end - y_start + 1);
+        }
+
+        private int GetExclusionZoneSize(int type_id)
+        {
+            if (type_id == Unary.Mod.TownCenter || type_id == Unary.Mod.TownCenterFoundation || type_id == Unary.Mod.Mill)
             {
-                if (foundation.Targetable == false || foundation[ObjectData.STATUS] != 0)
-                {
-                    BuildingFoundations.Remove(foundation);
-                }
+                return 3;
             }
-
-            // check for finished ops and remove foundations already worked on
-
-            var builders = new HashSet<Unit>();
-            foreach (var op in BuildOperations)
+            else if (type_id == Unary.Mod.LumberCamp || type_id == Unary.Mod.MiningCamp || type_id == Unary.Mod.Dock)
             {
-                foundations.Remove(op.Building);
-
-                if (op.Building.Targetable == false || op.Building[ObjectData.STATUS] != 0)
-                {
-                    foreach (var unit in op.Units)
-                    {
-                        op.RemoveUnit(unit);
-                        builders.Add(unit);
-                    }
-                }
-
-                if (op.UnitCount == 0)
-                {
-                    op.Stop();
-                }
+                return 3;
             }
-
-            BuildOperations.RemoveAll(op => op.UnitCount == 0);
-
-            // assign new ops
-
-            while (BuildOperations.Count < 5)
+            else
             {
-                if (foundations.Count == 0)
-                {
-                    break;
-                }
-
-                if (builders.Count == 0)
-                {
-                    foreach (var unit in Operation.GetFreeUnits(Unary).Where(u => u[ObjectData.CMDID] == (int)CmdId.VILLAGER))
-                    {
-                        builders.Add(unit);
-                    }
-                }
-
-                if (builders.Count == 0)
-                {
-                    Unary.Log.Info($"Could not find enough builders");
-
-                    break;
-                }
-
-                var builder = builders.First();
-                var foundation = foundations.First();
-                foreach (var f in foundations)
-                {
-                    if (f.Position.DistanceTo(builder.Position) < foundation.Position.DistanceTo(builder.Position))
-                    {
-                        foundation = f;
-                    }
-                }
-
-                var op = new BuildOperation(Unary, foundation);
-                op.AddUnit(builder);
-                BuildOperations.Add(op);
-
-                foundations.Remove(foundation);
-                builders.Remove(builder);
+                return 1;
             }
-
-            Unary.Log.Debug($"Build operations: {BuildOperations.Count}");
         }
 
         private IEnumerable<Tile> GetFarmPlacements()

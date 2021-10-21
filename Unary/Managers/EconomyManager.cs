@@ -3,9 +3,9 @@ using AoE2Lib.Bots;
 using AoE2Lib.Bots.GameElements;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
-using Unary.Operations;
 using Unary.UnitControllers;
 
 namespace Unary.Managers
@@ -23,10 +23,8 @@ namespace Unary.Managers
         public int MaxTownCenters { get; set; } = 1;
         public int ConcurrentVillagers { get; set; } = 3;
 
-        public readonly List<Unit> Farms = new();
-        public readonly List<Unit> Dropsites = new();
-        
-        private readonly Dictionary<Unit, List<GatherOperation>> GatherOperations = new();
+        private readonly List<Unit> Farms = new();
+        private readonly List<Unit> Dropsites = new();
         private int FoodGatherers { get; set; } = 0;
         private int WoodGatherers { get; set; } = 0;
         private int GoldGatherers { get; set; } = 0;
@@ -35,6 +33,82 @@ namespace Unary.Managers
         public EconomyManager(Unary unary) : base(unary)
         {
 
+        }
+
+        public int GetMinimumGatherers(Resource resource)
+        {
+            return resource switch
+            {
+                Resource.FOOD => FoodGatherers,
+                Resource.WOOD => WoodGatherers,
+                Resource.GOLD => GoldGatherers,
+                Resource.STONE => StoneGatherers,
+                _ => throw new ArgumentOutOfRangeException(nameof(resource))
+            };
+        }
+
+        public int GetMaximumGatherers(Resource resource)
+        {
+            var min = GetMinimumGatherers(resource);
+
+            return Math.Max(min + 2, (int)Math.Round(min * 1.1));
+        }
+
+        public IEnumerable<Unit> GetFarms()
+        {
+            return Farms;
+        }
+
+        public IEnumerable<Unit> GetDropsites(Resource resource)
+        {
+            return resource switch
+            {
+                Resource.WOOD => Dropsites.Where(u => u[ObjectData.BASE_TYPE] == Unary.Mod.TownCenter || u[ObjectData.BASE_TYPE] == Unary.Mod.LumberCamp),
+                Resource.FOOD => Dropsites.Where(u => u[ObjectData.BASE_TYPE] == Unary.Mod.TownCenter || u[ObjectData.BASE_TYPE] == Unary.Mod.Mill),
+                Resource.GOLD or Resource.STONE => Dropsites.Where(u => u[ObjectData.BASE_TYPE] == Unary.Mod.TownCenter || u[ObjectData.BASE_TYPE] == Unary.Mod.MiningCamp),
+                _ => throw new ArgumentOutOfRangeException(nameof(resource)),
+            };
+        }
+
+        public IEnumerable<KeyValuePair<Tile, Unit>> GetGatherableResources(Resource resource, Unit dropsite)
+        {
+            var deltas = new[] { new Point(-1, 0), new Point(1, 0), new Point(0, -1), new Point(0, 1) };
+
+            var range = 30;
+            var type = UnitClass.Tree;
+            type = resource switch
+            {
+                Resource.WOOD => UnitClass.Tree,
+                Resource.FOOD => UnitClass.BerryBush,
+                Resource.GOLD => UnitClass.GoldMine,
+                Resource.STONE => UnitClass.StoneMine,
+                _ => throw new ArgumentOutOfRangeException(nameof(resource)),
+            };
+
+            foreach (var tile in Unary.GameState.Map.GetTilesInRange(dropsite.Position.PointX, dropsite.Position.PointY, range))
+            {
+                foreach (var unit in tile.Units.Where(u => u.Targetable))
+                {
+                    if (unit[ObjectData.CLASS] == (int)type)
+                    {
+                        foreach (var delta in deltas)
+                        {
+                            var x = tile.X + delta.X;
+                            var y = tile.Y + delta.Y;
+
+                            if (Unary.GameState.Map.IsOnMap(x, y))
+                            {
+                                var t = Unary.GameState.Map.GetTile(x, y);
+
+                                if (!Unary.BuildingManager.IsObstructed(t))
+                                {
+                                    yield return new KeyValuePair<Tile, Unit>(t, unit);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         internal override void Update()
@@ -60,7 +134,7 @@ namespace Unary.Managers
             ManagePopulation();
             ManageGatherers();
             ManageDropsites();
-            ManageGatherOperations();
+            //ManageGatherOperations();
         }
 
         private void ManageFarmers()
@@ -285,151 +359,6 @@ namespace Unary.Managers
                     }
                 }
             }
-        }
-
-        private void ManageGatherOperations()
-        {
-            // assign/remove operations to dropsites
-
-            var dropsites = new HashSet<Unit>();
-            foreach (var unit in GatherOperations.Keys)
-            {
-                dropsites.Add(unit);
-            }
-
-            foreach (var unit in Unary.GameState.MyPlayer.Units.Where(u => u.Targetable))
-            {
-                var type = unit[ObjectData.BASE_TYPE];
-                if (type == 109 || type == 562 || type == 584 || type == 68)
-                {
-                    dropsites.Add(unit);
-                }
-            }
-
-            foreach (var site in dropsites)
-            {
-                if (!site.Targetable)
-                {
-                    // dropsite disappeared, stop all gather operations here
-                    if (GatherOperations.TryGetValue(site, out List<GatherOperation> ops))
-                    {
-                        foreach (var op in ops)
-                        {
-                            op.Stop();
-                        }
-
-                        ops.Clear();
-                        GatherOperations.Remove(site);
-                    }
-                }
-                else
-                {
-                    if (!GatherOperations.ContainsKey(site))
-                    {
-                        GatherOperations.Add(site, new List<GatherOperation>());
-                    }
-
-                    var type = site[ObjectData.BASE_TYPE];
-                    if (type == 109 || type == 68)
-                    {
-                        var op = GatherOperations[site].FirstOrDefault(o => o.Resource == Resource.FOOD);
-                        if (op == null)
-                        {
-                            op = new GatherOperation(Unary, site, Resource.FOOD);
-                            GatherOperations[site].Add(op);
-                        }
-                    }
-                    if (type == 109 || type == 562)
-                    {
-                        var op = GatherOperations[site].FirstOrDefault(o => o.Resource == Resource.WOOD);
-                        if (op == null)
-                        {
-                            op = new GatherOperation(Unary, site, Resource.WOOD);
-                            GatherOperations[site].Add(op);
-                        }
-                    }
-                    if (type == 109 || type == 584)
-                    {
-                        foreach (var res in new[] { Resource.GOLD, Resource.STONE })
-                        {
-                            var op = GatherOperations[site].FirstOrDefault(o => o.Resource == res);
-                            if (op == null)
-                            {
-                                op = new GatherOperation(Unary, site, res);
-                                GatherOperations[site].Add(op);
-                            }
-                        }
-                    }
-                }
-            }
-
-            // remove excess vills
-
-            foreach (var op in GatherOperations.Values.SelectMany(g => g))
-            {
-                if (op.UnitCount > op.UnitCapacity)
-                {
-                    var free = op.Units.FirstOrDefault(u => u[ObjectData.CARRY] == 0);
-                    if (free != null && Unary.Rng.NextDouble() < 0.1)
-                    {
-                        free.Target(op.Dropsite);
-                        op.RemoveUnit(free);
-                    }
-                }
-            }
-
-            // assign new vills
-
-            var free_vills = Operation.GetFreeUnits(Unary).Where(u => u[ObjectData.CMDID] == (int)CmdId.VILLAGER).ToList();
-            if (free_vills.Count == 0)
-            {
-                return;
-            }
-
-            var resources = new[] { Resource.WOOD, Resource.FOOD, Resource.GOLD, Resource.STONE };
-            foreach (var resource in resources)
-            {
-                if (free_vills.Count == 0)
-                {
-                    break;
-                }
-
-                var min_gatherers = 0;
-                switch (resource)
-                {
-                    case Resource.WOOD: min_gatherers = WoodGatherers; break;
-                    case Resource.FOOD: min_gatherers = FoodGatherers; break;
-                    case Resource.GOLD: min_gatherers = GoldGatherers; break;
-                    case Resource.STONE: min_gatherers = StoneGatherers; break;
-                }
-
-                var gatherers = 0;
-                var open_ops = new List<GatherOperation>();
-                foreach (var op in GatherOperations.Values.SelectMany(g => g).Where(o => o.Resource == resource))
-                {
-                    gatherers += op.UnitCount;
-                    if (op.UnitCount < op.UnitCapacity)
-                    {
-                        open_ops.Add(op);
-                    }
-                }
-
-                if (open_ops.Count == 0)
-                {
-                    continue;
-                }
-
-                if (gatherers < min_gatherers)
-                {
-                    var op = open_ops[0];
-                    var vill = free_vills[free_vills.Count - 1];
-                    op.AddUnit(vill);
-
-                    free_vills.RemoveAt(free_vills.Count - 1);
-                }
-            }
-
-            Unary.Log.Debug($"Gather operations: {GatherOperations.SelectMany(g => g.Value).Count()}");
         }
     }
 }
