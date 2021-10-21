@@ -94,6 +94,7 @@ namespace Unary.UnitControllers
                     }
 
                     var distance = dropsite.Position.DistanceTo(res.Key.Position);
+                    distance += Unit.Position.DistanceTo(res.Key.Position) / 10;
                     if (distance < best_distance)
                     {
                         Tile = res.Key;
@@ -110,7 +111,13 @@ namespace Unary.UnitControllers
             }
             else
             {
-                Unary.Log.Info($"Gatherer {Unit.Id} failed choosing target");
+                Unary.Log.Debug($"Gatherer {Unit.Id} failed choosing target");
+
+                if (Resource == Resource.FOOD)
+                {
+                    var ctrl = new FarmerController(Unit, Unary);
+                    Unary.UnitsManager.SetController(Unit, ctrl);
+                }
             }
         }
 

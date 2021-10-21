@@ -18,6 +18,7 @@ namespace AoE2Lib.Bots.GameElements
         public bool Visible { get; private set; } = false;
         public TimeSpan LastSeenGameTime { get; private set; } = TimeSpan.Zero;
         public Position Position => Position.FromPrecise(GetData(ObjectData.PRECISE_X), GetData(ObjectData.PRECISE_Y));
+        public Tile Tile => Bot.GameState.Map.GetTile(Position.PointX, Position.PointY);
         public Position Velocity { get; private set; } = Position.Zero;
 
         private readonly Dictionary<ObjectData, int> Data = new Dictionary<ObjectData, int>();

@@ -129,72 +129,9 @@ namespace Unary.Managers
                 }
             }
 
-            //ManageFarmers();
-
             ManagePopulation();
             ManageGatherers();
             ManageDropsites();
-            //ManageGatherOperations();
-        }
-
-        private void ManageFarmers()
-        {
-            // build farms & mills
-
-            var farm = Unary.GameState.GetUnitType(Unary.Mod.Farm);
-            if (farm.Updated == false)
-            {
-                return;
-            }
-            var mill = Unary.GameState.GetUnitType(Unary.Mod.Mill);
-            if (mill.Updated == false || mill.Count < 1)
-            {
-                return;
-            }
-
-            var needed_farms = FoodGatherers;
-
-            Unary.Log.Info($"I have {farm.CountTotal} farms and I want {needed_farms}");
-
-            if (farm.CountTotal < needed_farms)
-            {
-                Unary.Log.Info("Building farm");
-                farm.BuildLine(Unary.BuildingManager.GetBuildingPlacements(farm), needed_farms, 3, Priority.FARM);
-            }
-
-            var needed_mills = 1 + ((needed_farms - 6) / 4);
-            if (mill.CountTotal < needed_mills)
-            {
-                Unary.Log.Info("Building mill");
-                mill.BuildNormal(needed_mills, 1, Priority.FARM);
-            }
-
-            // manage farmers
-
-            var farms = Unary.GameState.MyPlayer.Units.Where(u => u.Targetable && u[ObjectData.BASE_TYPE] == Unary.Mod.Farm).ToList();
-            var farmers = Unary.UnitsManager.GetControllers<FarmerController>();
-            var farmed_positions = new HashSet<Position>();
-            foreach (var farmer in farmers)
-            {
-                farmed_positions.Add(farmer.Tile.Position);
-            }
-
-            farms.RemoveAll(u => farmed_positions.Contains(u.Position));
-
-            if (farms.Count > 0)
-            {
-                var idlers = Unary.UnitsManager.GetControllers<IdlerController>().Where(c => c.Unit[ObjectData.CMDID] == (int)CmdId.VILLAGER).ToList();
-                if (idlers.Count > 0)
-                {
-                    var idle_farm = farms[0];
-                    idlers.Sort((a, b) => a.Unit.Position.DistanceTo(idle_farm.Position).CompareTo(b.Unit.Position.DistanceTo(idle_farm.Position)));
-                    var idler = idlers[0];
-
-                    var tile = Unary.GameState.Map.GetTile(idle_farm.Position.PointX, idle_farm.Position.PointY);
-                    var ctrl = new FarmerController(tile, idler.Unit, Unary);
-                    Unary.UnitsManager.SetController(idler.Unit, ctrl);
-                }
-            }
         }
 
         private void ManagePopulation()
