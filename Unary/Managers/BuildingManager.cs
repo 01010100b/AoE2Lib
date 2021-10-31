@@ -34,9 +34,34 @@ namespace Unary.Managers
             return Foundations;
         }
 
-        public bool TryCanBuildAt(UnitType type, Tile tile, out bool build)
+        public bool CanBuildAt(UnitType type, Tile tile, bool ignore_exclusion = false)
         {
-            throw new NotImplementedException();
+            var footprint = GetUnitFootprint(type[ObjectData.BASE_TYPE], tile.Position, 0);
+
+            for (int x = footprint.X; x < footprint.Right; x++)
+            {
+                for (int y = footprint.Y; y < footprint.Bottom; y++)
+                {
+                    if (!Unary.GameState.Map.IsOnMap(x, y))
+                    {
+                        return false;
+                    }
+
+                    var t = Unary.GameState.Map.GetTile(x, y);
+
+                    if (IsObstructed(t))
+                    {
+                        return false;
+                    }
+
+                    if (IsExcluded(t) && !ignore_exclusion)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
         public bool IsObstructed(Tile tile)
@@ -102,7 +127,7 @@ namespace Unary.Managers
             var map = Unary.GameState.Map;
             foreach (var player in Unary.GameState.GetPlayers())
             {
-                foreach (var unit in player.Units.Where(u => u.Targetable && u[ObjectData.SPEED] <= 0 && u[ObjectData.BASE_TYPE] != Unary.Mod.Farm))
+                foreach (var unit in player.Units.Where(u => u.Targetable && u[ObjectData.SPEED] <= 0))
                 {
                     var footprint = GetUnitFootprint(unit[ObjectData.BASE_TYPE], unit.Position, 0);
                     for (int x = footprint.X; x < footprint.Right; x++)

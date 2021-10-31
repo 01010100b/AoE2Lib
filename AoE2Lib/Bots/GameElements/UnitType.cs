@@ -41,7 +41,7 @@ namespace AoE2Lib.Bots.GameElements
             }
             else
             {
-                return -1;
+                return -2;
             }
         }
 

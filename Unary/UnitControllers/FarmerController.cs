@@ -70,6 +70,8 @@ namespace Unary.UnitControllers
             {
                 Unit.Target(farm);
             }
+
+            farm.RequestUpdate();
         }
     }
 }
