@@ -14,8 +14,6 @@ namespace AoE2Lib.Bots.GameElements
         public readonly int Id;
         public int this[ObjectData data] => GetData(data);
         public int PlayerNumber => GetData(ObjectData.PLAYER);
-        public UnitType Type => Bot.GameState.GetUnitType(this[ObjectData.UPGRADE_TYPE]);
---
         public bool Targetable { get; private set; } = false;
         public bool Visible { get; private set; } = false;
         public TimeSpan LastSeenGameTime { get; private set; } = TimeSpan.Zero;
@@ -284,9 +282,6 @@ namespace AoE2Lib.Bots.GameElements
 
             Velocity += v;
             Velocity /= 2;
-
-            Bot.GameState.GetUnitType(this[ObjectData.UPGRADE_TYPE]);
-            Bot.GameState.GetUnitType(this[ObjectData.BASE_TYPE]);
         }
     }
 }

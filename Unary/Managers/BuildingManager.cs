@@ -53,7 +53,7 @@ namespace Unary.Managers
             return ExcludedTiles.Contains(tile);
         }
 
-        public List<Tile> GetFarmPlacements()
+        public IReadOnlyList<Tile> GetFarmPlacements()
         {
             return FarmPlacements;
         }
@@ -78,14 +78,14 @@ namespace Unary.Managers
             return tiles;
         }
 
-        public List<Unit> GetFoundations()
+        public IReadOnlyList<Unit> GetFoundations()
         {
             return Foundations;
         }
 
         public bool CanBuildAt(UnitType type, Tile tile, bool ignore_exclusion = false)
         {
-            var footprint = GetUnitFootprint(type.BaseType, tile, 0);
+            var footprint = GetUnitFootprint(type[ObjectData.BASE_TYPE], tile, 0);
 
             for (int x = footprint.X; x < footprint.Right; x++)
             {
@@ -113,10 +113,10 @@ namespace Unary.Managers
             return true;
         }
 
-        public Rectangle GetUnitFootprint(UnitType base_type, Tile tile, int exclusion_zone_size)
+        public Rectangle GetUnitFootprint(int base_type_id, Tile tile, int exclusion_zone_size)
         {
-            var width = Unary.Mod.GetBuildingSize(base_type.Id);
-            var height = Unary.Mod.GetBuildingSize(base_type.Id);
+            var width = Unary.Mod.GetBuildingSize(base_type_id);
+            var height = Unary.Mod.GetBuildingSize(base_type_id);
             var x = tile.X;
             var y = tile.Y;
 
@@ -140,13 +140,13 @@ namespace Unary.Managers
             return new Rectangle(x_start, y_start, x_end - x_start + 1, y_end - y_start + 1);
         }
 
-        public int GetExclusionZoneSize(UnitType base_type)
+        public int GetExclusionZoneSize(int base_type_id)
         {
-            if (base_type.Id == Unary.Mod.TownCenter || base_type.Id == Unary.Mod.TownCenterFoundation || base_type.Id == Unary.Mod.Mill)
+            if (base_type_id == Unary.Mod.TownCenter || base_type_id == Unary.Mod.TownCenterFoundation || base_type_id == Unary.Mod.Mill)
             {
                 return 3;
             }
-            else if (base_type.Id == Unary.Mod.LumberCamp || base_type.Id == Unary.Mod.MiningCamp || base_type.Id == Unary.Mod.Dock)
+            else if (base_type_id == Unary.Mod.LumberCamp || base_type_id == Unary.Mod.MiningCamp || base_type_id == Unary.Mod.Dock)
             {
                 return 3;
             }
@@ -212,9 +212,9 @@ namespace Unary.Managers
             var map = Unary.GameState.Map;
             foreach (var player in Unary.GameState.GetPlayers())
             {
-                foreach (var unit in player.Units.Where(u => u.Targetable && u[ObjectData.SPEED] <= 0))
+                foreach (var unit in player.Units.Where(u => BlocksConstruction(u)))
                 {
-                    var footprint = GetUnitFootprint(unit.Type.BaseType, unit.Tile, 0);
+                    var footprint = GetUnitFootprint(unit[ObjectData.BASE_TYPE], unit.Tile, 0);
                     for (int x = footprint.X; x < footprint.Right; x++)
                     {
                         for (int y = footprint.Y; y < footprint.Bottom; y++)
@@ -226,10 +226,10 @@ namespace Unary.Managers
                         }
                     }
 
-                    if (unit.Type.IsBuilding)
+                    if (unit[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || unit[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING)
                     {
-                        var excl = GetExclusionZoneSize(unit.Type.BaseType);
-                        footprint = GetUnitFootprint(unit.Type.BaseType, unit.Tile, excl);
+                        var excl = GetExclusionZoneSize(unit[ObjectData.BASE_TYPE]);
+                        footprint = GetUnitFootprint(unit[ObjectData.BASE_TYPE], unit.Tile, excl);
                         for (int x = footprint.X; x < footprint.Right; x++)
                         {
                             for (int y = footprint.Y; y < footprint.Bottom; y++)
@@ -375,6 +375,21 @@ namespace Unary.Managers
                     Unary.UnitsManager.SetController(builder, ctrl);
                 }
             }
+        }
+
+        private bool BlocksConstruction(Unit unit)
+        {
+            if (!unit.Targetable)
+            {
+                return false;
+            }
+
+            if (unit[ObjectData.SPEED] > 0)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

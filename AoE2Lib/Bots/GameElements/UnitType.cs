@@ -15,7 +15,6 @@ namespace AoE2Lib.Bots.GameElements
 
         public readonly int Id;
         public int this[ObjectData data] => GetData(data);
-        public UnitType BaseType => Bot.GameState.GetUnitType(this[ObjectData.BASE_TYPE]);
         public bool IsBuilding => this[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || this[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING;
         public bool IsAvailable { get; private set; } = false;
         public int Count { get; private set; } = 0;
@@ -104,6 +103,12 @@ namespace AoE2Lib.Bots.GameElements
 
         protected override IEnumerable<IMessage> RequestElementUpdate()
         {
+            foreach (var data in OBJECT_DATAS)
+            {
+                yield return new UpGetObjectTypeData() { InConstTypeId = Id, InConstObjectData = (int)data, OutGoalData = 100 };
+                yield return new Goal() { InConstGoalId = 100 };
+            }
+
             yield return new BuildingAvailable() { InConstBuildingId = Id };
             yield return new BuildingTypeCount() { InConstBuildingId = Id };
             yield return new BuildingTypeCountTotal() { InConstBuildingId = Id };
@@ -115,34 +120,27 @@ namespace AoE2Lib.Bots.GameElements
             yield return new Goal() { InConstGoalId = 101 };
             yield return new Goal() { InConstGoalId = 102 };
             yield return new Goal() { InConstGoalId = 103 };
-
-            foreach (var data in OBJECT_DATAS)
-            {
-                yield return new UpGetObjectTypeData() { InConstTypeId = Id, InConstObjectData = (int)data, OutGoalData = 100 };
-                yield return new Goal() { InConstGoalId = 100 };
-            }
         }
 
         protected override void UpdateElement(IReadOnlyList<Any> responses)
         {
-            IsAvailable = responses[0].Unpack<BuildingAvailableResult>().Result;
-            Count = responses[1].Unpack<BuildingTypeCountResult>().Result;
-            CountTotal = responses[2].Unpack<BuildingTypeCountTotalResult>().Result;
-            CanBuild = responses[3].Unpack<UpCanBuildResult>().Result;
-            TrainSiteReady = responses[4].Unpack<UpTrainSiteReadyResult>().Result;
-            FoodCost = responses[7].Unpack<GoalResult>().Result;
-            WoodCost = responses[8].Unpack<GoalResult>().Result;
-            StoneCost = responses[9].Unpack<GoalResult>().Result;
-            GoldCost = responses[10].Unpack<GoalResult>().Result;
-
-            var index = 11;
+            var index = 0;
             foreach (var data in OBJECT_DATAS)
             {
                 var val = responses[index + 1].Unpack<GoalResult>().Result;
                 Data[data] = val;
+                index += 2;
             }
 
-            Bot.GameState.GetUnitType(this[ObjectData.BASE_TYPE]);
+            IsAvailable = responses[index + 0].Unpack<BuildingAvailableResult>().Result;
+            Count = responses[index + 1].Unpack<BuildingTypeCountResult>().Result;
+            CountTotal = responses[index + 2].Unpack<BuildingTypeCountTotalResult>().Result;
+            CanBuild = responses[index + 3].Unpack<UpCanBuildResult>().Result;
+            TrainSiteReady = responses[index + 4].Unpack<UpTrainSiteReadyResult>().Result;
+            FoodCost = responses[index + 7].Unpack<GoalResult>().Result;
+            WoodCost = responses[index + 8].Unpack<GoalResult>().Result;
+            StoneCost = responses[index + 9].Unpack<GoalResult>().Result;
+            GoldCost = responses[index + 10].Unpack<GoalResult>().Result;
         }
     }
 }

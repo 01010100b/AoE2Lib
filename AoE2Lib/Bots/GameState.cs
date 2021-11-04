@@ -67,6 +67,7 @@ namespace AoE2Lib.Bots
             if (!Technologies.ContainsKey(id))
             {
                 Technologies.Add(id, new Technology(Bot, id));
+                Bot.Log.Info($"Added technology {id}");
             }
 
             return Technologies[id];
@@ -82,6 +83,7 @@ namespace AoE2Lib.Bots
             if (!UnitTypes.ContainsKey(id))
             {
                 UnitTypes.Add(id, new UnitType(Bot, id));
+                Bot.Log.Info($"Added unit type {id}");
             }
 
             return UnitTypes[id];
