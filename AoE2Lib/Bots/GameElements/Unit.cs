@@ -14,11 +14,13 @@ namespace AoE2Lib.Bots.GameElements
         public readonly int Id;
         public int this[ObjectData data] => GetData(data);
         public int PlayerNumber => GetData(ObjectData.PLAYER);
+        public UnitType Type => Bot.GameState.GetUnitType(this[ObjectData.UPGRADE_TYPE]);
+--
         public bool Targetable { get; private set; } = false;
         public bool Visible { get; private set; } = false;
         public TimeSpan LastSeenGameTime { get; private set; } = TimeSpan.Zero;
         public Position Position => Position.FromPrecise(GetData(ObjectData.PRECISE_X), GetData(ObjectData.PRECISE_Y));
-        public Tile Tile => Bot.GameState.Map.GetTile(Position.PointX, Position.PointY);
+        public Tile Tile => Bot.GameState.Map.GetTile(Position);
         public Position Velocity { get; private set; } = Position.Zero;
 
         private readonly Dictionary<ObjectData, int> Data = new Dictionary<ObjectData, int>();
@@ -36,7 +38,28 @@ namespace AoE2Lib.Bots.GameElements
             }
             else
             {
-                return -1;
+                return -2;
+            }
+        }
+
+        public Unit GetTarget()
+        {
+            if (!Updated)
+            {
+                return null;
+            }
+
+            var id = this[ObjectData.TARGET_ID];
+
+            try
+            {
+                var target = Bot.GameState.GetUnit(id);
+
+                return target;
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                return null;
             }
         }
 
@@ -128,7 +151,7 @@ namespace AoE2Lib.Bots.GameElements
         {
             RequestUpdate();
 
-            if (!Bot.GameState.Map.IsOnMap(position.PointX, position.PointY))
+            if (!Bot.GameState.Map.IsOnMap(position))
             {
                 return;
             }
@@ -261,6 +284,9 @@ namespace AoE2Lib.Bots.GameElements
 
             Velocity += v;
             Velocity /= 2;
+
+            Bot.GameState.GetUnitType(this[ObjectData.UPGRADE_TYPE]);
+            Bot.GameState.GetUnitType(this[ObjectData.BASE_TYPE]);
         }
     }
 }

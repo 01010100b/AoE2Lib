@@ -90,11 +90,10 @@ namespace AoE2Lib
                 }
 
                 InjectedDlls.Add(file);
+                Thread.Sleep(1000);
 
                 Debug.WriteLine($"Injected dll {Path.GetFileName(file)}");
             }
-
-            Thread.Sleep(1000);
         }
 
         public byte[] ReadMemory(IntPtr addr, int length)

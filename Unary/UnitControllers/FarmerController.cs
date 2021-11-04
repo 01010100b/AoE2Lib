@@ -66,7 +66,7 @@ namespace Unary.UnitControllers
                 return;
             }
 
-            if (Unit[ObjectData.TARGET_ID] != farm.Id)
+            if (Unit.GetTarget() != farm)
             {
                 Unit.Target(farm);
             }

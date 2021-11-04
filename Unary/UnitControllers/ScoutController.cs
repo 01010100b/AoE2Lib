@@ -58,7 +58,7 @@ namespace Unary.UnitControllers
                 var total = 0d;
                 var explored = 0d;
 
-                foreach (var tile in Unary.GameState.Map.GetTilesInRange(state.Tile.X, state.Tile.Y, los))
+                foreach (var tile in Unary.GameState.Map.GetTilesInRange(state.Tile.Position, los))
                 {
                     total++;
                     if (tile.Explored)

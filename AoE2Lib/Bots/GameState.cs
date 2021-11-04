@@ -317,7 +317,7 @@ namespace AoE2Lib.Bots
 
                 var x = responses[2].Unpack<GoalResult>().Result;
                 var y = responses[3].Unpack<GoalResult>().Result;
-                if (x >= 0 && y >= 0 && x < Bot.GameState.Map.Width && y < Bot.GameState.Map.Height)
+                if (Map.IsOnMap(x, y))
                 {
                     MyPosition = Position.FromPoint(x, y);
                 }
@@ -411,11 +411,11 @@ namespace AoE2Lib.Bots
 
             foreach (var unit in Units.Values.Where(u => u.Updated && u.PlayerNumber >= 0))
             {
-                Players[unit[ObjectData.PLAYER]].Units.Add(unit);
+                Players[unit.PlayerNumber].Units.Add(unit);
 
-                if (Map.IsOnMap(unit.Position.PointX, unit.Position.PointY))
+                if (Map.IsOnMap(unit.Position))
                 {
-                    var tile = Map.GetTile(unit.Position.PointX, unit.Position.PointY);
+                    var tile = Map.GetTile(unit.Position);
                     tile.Units.Add(unit);
                 }
             }

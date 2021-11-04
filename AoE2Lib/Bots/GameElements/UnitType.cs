@@ -11,10 +11,12 @@ namespace AoE2Lib.Bots.GameElements
 {
     public class UnitType : GameElement
     {
-        private static readonly ObjectData[] OBJECT_DATAS = new[] { ObjectData.BASE_TYPE };
+        private static readonly ObjectData[] OBJECT_DATAS = new[] { ObjectData.BASE_TYPE, ObjectData.CMDID };
 
         public readonly int Id;
         public int this[ObjectData data] => GetData(data);
+        public UnitType BaseType => Bot.GameState.GetUnitType(this[ObjectData.BASE_TYPE]);
+        public bool IsBuilding => this[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || this[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING;
         public bool IsAvailable { get; private set; } = false;
         public int Count { get; private set; } = 0;
         public int CountTotal { get; private set; } = 0;
@@ -139,6 +141,8 @@ namespace AoE2Lib.Bots.GameElements
                 var val = responses[index + 1].Unpack<GoalResult>().Result;
                 Data[data] = val;
             }
+
+            Bot.GameState.GetUnitType(this[ObjectData.BASE_TYPE]);
         }
     }
 }

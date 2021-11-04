@@ -11,6 +11,7 @@ namespace AoE2Lib.Bots
     public struct Position
     {
         public static readonly Position Zero = new Position(0, 0);
+        public static readonly Position One = new Position(1, 0);
 
         public static Position FromPoint(int x, int y)
         {
@@ -34,7 +35,7 @@ namespace AoE2Lib.Bots
         public int PreciseX => (int)Math.Floor(X * 100);
         public int PreciseY => (int)Math.Floor(Y * 100);
         public double Norm => DistanceTo(Zero);
-        public double Angle => AngleFrom(new Position(1, 0));
+        public double Angle => AngleFrom(One);
 
         public Position(double x, double y)
         {

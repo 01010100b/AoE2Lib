@@ -38,7 +38,7 @@ namespace Unary.UnitControllers
 
         private void ChooseResource()
         {
-            foreach (var res in new[] {Resource.WOOD, Resource.FOOD, Resource.GOLD, Resource.STONE})
+            foreach (var res in new[] {Resource.WOOD, Resource.FOOD, Resource.GOLD, Resource.STONE })
             {
                 var min = Unary.EconomyManager.GetMinimumGatherers(res);
                 var max = Unary.EconomyManager.GetMaximumGatherers(res);

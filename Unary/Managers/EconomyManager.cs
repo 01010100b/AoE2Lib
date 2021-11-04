@@ -85,7 +85,7 @@ namespace Unary.Managers
                 _ => throw new ArgumentOutOfRangeException(nameof(resource)),
             };
 
-            foreach (var tile in Unary.GameState.Map.GetTilesInRange(dropsite.Position.PointX, dropsite.Position.PointY, range))
+            foreach (var tile in Unary.GameState.Map.GetTilesInRange(dropsite.Position, range))
             {
                 foreach (var unit in tile.Units.Where(u => u.Targetable))
                 {
@@ -258,15 +258,19 @@ namespace Unary.Managers
 
                     if (farm.CountTotal < needed_farms)
                     {
-                        Unary.Log.Info("Building farm");
-                        farm.BuildLine(Unary.BuildingManager.GetBuildingPlacements(farm), needed_farms, 3, Priority.FARM);
-                    }
-
-                    var needed_mills = 1 + ((needed_farms - 8) / 4);
-                    if (mill.CountTotal < needed_mills)
-                    {
-                        Unary.Log.Info("Building mill");
-                        mill.BuildNormal(needed_mills, 1, Priority.FARM);
+                        var placements = Unary.BuildingManager.GetFarmPlacements();
+                        
+                        if (placements.Count > 0)
+                        {
+                            Unary.Log.Info("Building farm");
+                            farm.BuildLine(placements, needed_farms, 3, Priority.FARM);
+                        }
+                        
+                        if (placements.Count < 3)
+                        {
+                            Unary.Log.Info("Building mill");
+                            mill.BuildNormal(100, 1, Priority.FARM + 1);
+                        }
                     }
                 }
             }

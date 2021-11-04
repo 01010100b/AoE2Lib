@@ -39,16 +39,17 @@ namespace Unary.Managers
             {
                 for (int y = los; y < map.Height + los; y += radius)
                 {
-                    var _x = Math.Min(x, map.Width - 1);
-                    var _y = Math.Min(y, map.Height - 1);
-                    var tile = map.GetTile(_x, _y);
-
-                    if (!ScoutingStates.ContainsKey(tile))
+                    if (map.IsOnMap(x, y))
                     {
-                        ScoutingStates.Add(tile, new ScoutingState(tile));
-                    }
+                        var tile = map.GetTile(x, y);
 
-                    yield return ScoutingStates[tile];
+                        if (!ScoutingStates.ContainsKey(tile))
+                        {
+                            ScoutingStates.Add(tile, new ScoutingState(tile));
+                        }
+
+                        yield return ScoutingStates[tile];
+                    }
                 }
             }
         }

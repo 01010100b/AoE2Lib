@@ -45,7 +45,7 @@ namespace Unary
                 ActualMovementPosition = Unit.Position;
             }
 
-            if (!Unary.GameState.Map.IsOnMap(ActualMovementPosition.PointX, ActualMovementPosition.PointY))
+            if (!Unary.GameState.Map.IsOnMap(ActualMovementPosition))
             {
                 ActualMovementPosition = Unit.Position;
             }
@@ -56,33 +56,10 @@ namespace Unary
             Tick();
         }
 
-        public Position PredictPosition(int ticks)
-        {
-            var max_d = ticks * Unary.GameState.GameTimePerTick.TotalSeconds * Unit[ObjectData.SPEED] / 100d;
-            var dpos = ActualMovementPosition;
-            dpos -= Unit.Position;
-            if (dpos.Norm > max_d)
-            {
-                dpos = max_d * (dpos / dpos.Norm);
-            }
-
-            return Unit.Position + dpos;
-        }
-
         protected abstract void Tick();
 
         protected void PerformPotentialFieldStep(int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue)
         {
-            /*
-            if (Unit[ObjectData.NEXT_ATTACK] > Unary.GameState.GameTimePerTick.TotalMilliseconds * 1.2)
-            {
-                PotentialField.TargetStrength = 0;
-            }
-            else
-            {
-                PotentialField.TargetStrength = 10;
-            }*/
-
             var op_g_sub = 14;
 
             var current_pos = Unit.Position;
@@ -189,8 +166,6 @@ namespace Unary
             MoveCommand.Add(new Goal() { InConstGoalId = GL_MOVE_Y });
 
             Unary.ExecuteCommand(MoveCommand);
-
-            //Unit.Target(current_pos_move, UnitAction.MOVE, null, UnitStance.NO_ATTACK, min_next_attack, max_next_attack);
         }
 
         protected void MoveTo(Position position, double radius)
@@ -257,7 +232,7 @@ namespace Unary
         {
             RelevantUnits.Clear();
 
-            foreach (var tile in Unary.GameState.Map.GetTilesInRange(Unit.Position.PointX, Unit.Position.PointY, 20))
+            foreach (var tile in Unary.GameState.Map.GetTilesInRange(Unit.Position, 20))
             {
                 foreach (var unit in tile.Units.Where(u => u.Targetable))
                 {

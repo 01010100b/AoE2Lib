@@ -52,6 +52,11 @@ namespace AoE2Lib.Bots.GameElements
             return x >= 0 && x < Width && y >= 0 && y < Height;
         }
 
+        public bool IsOnMap(Position position)
+        {
+            return IsOnMap(position.PointX, position.PointY);
+        }
+
         public Tile GetTile(int x, int y)
         {
             if (!IsOnMap(x, y))
@@ -62,6 +67,11 @@ namespace AoE2Lib.Bots.GameElements
             {
                 return Tiles[GetIndex(x, y)];
             }
+        }
+
+        public Tile GetTile(Position position)
+        {
+            return GetTile(position.PointX, position.PointY);
         }
 
         public IEnumerable<Tile> GetTiles()
@@ -76,23 +86,30 @@ namespace AoE2Lib.Bots.GameElements
             }
         }
 
-        public IEnumerable<Tile> GetTilesInRange(int x, int y, double range)
+        public IEnumerable<Tile> GetTilesInRange(Position position, double range)
         {
             var r = Math.Max(0, (int)Math.Ceiling(range) + 1);
-            var pos = Position.FromPoint(x, y);
 
-            for (int cx = Math.Max(0, x - r); cx <= Math.Min(Width - 1, x + r); cx++)
+            for (int cx = Math.Max(0, position.PointX - r); cx <= Math.Min(Width - 1, position.PointX + r); cx++)
             {
-                for (int cy = Math.Max(0, y - r); cy <= Math.Min(Height - 1, y + r); cy++)
+                for (int cy = Math.Max(0, position.PointY - r); cy <= Math.Min(Height - 1, position.PointY + r); cy++)
                 {
-                    var p = Position.FromPoint(cx, cy);
-
-                    if (pos.DistanceTo(p) <= range)
+                    if (IsOnMap(cx, cy))
                     {
-                        yield return GetTile(cx, cy);
+                        var tile = GetTile(cx, cy);
+
+                        if (position.DistanceTo(tile.Center) <= range)
+                        {
+                            yield return GetTile(cx, cy);
+                        }
                     }
                 }
             }
+        }
+
+        public IEnumerable<Tile> GetTilesInRange(int x, int y, double range)
+        {
+            return GetTilesInRange(Position.FromPoint(x, y), range);
         }
 
         public bool TryCanReach(int x, int y, out bool can_reach)
