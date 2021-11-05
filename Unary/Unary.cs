@@ -19,8 +19,9 @@ namespace Unary
         public EconomyManager EconomyManager { get; private set; }
         public MilitaryManager MilitaryManager { get; private set; }
         public UnitsManager UnitsManager { get; private set; }
+        public ProductionManager ProductionManager { get; private set; }
 
-        private readonly List<Command> Commands = new List<Command>();
+        private readonly List<Command> Commands = new();
         private bool ChattedOK { get; set; } = false;
 
         public Unary() : base()
@@ -46,6 +47,7 @@ namespace Unary
             EconomyManager = new EconomyManager(this);
             MilitaryManager = new MilitaryManager(this);
             UnitsManager = new UnitsManager(this);
+            ProductionManager = new ProductionManager(this);
             ChattedOK = false;
         }
 
@@ -74,6 +76,10 @@ namespace Unary
             sw.Restart();
             UnitsManager.Update();
             Log.Info($"Units Manager took {sw.ElapsedMilliseconds} ms");
+
+            sw.Restart();
+            ProductionManager.Update();
+            Log.Info($"Production Manager took {sw.ElapsedMilliseconds} ms");
 
             sw.Stop();
 

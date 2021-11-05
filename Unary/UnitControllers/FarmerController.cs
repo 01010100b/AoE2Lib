@@ -12,6 +12,8 @@ namespace Unary.UnitControllers
     {
         public Tile Tile { get; private set; } = null;
 
+        private int LastFarmTick { get; set; } = 0;
+
         public FarmerController(Unit unit, Unary unary) : base(unit, unary)
         {
 
@@ -32,7 +34,7 @@ namespace Unary.UnitControllers
         private void ChooseTile()
         {
             var tiles = new HashSet<Tile>();
-            foreach (var farm in Unary.EconomyManager.GetFarms())
+            foreach (var farm in Unary.GameState.MyPlayer.Units.Where(u => u.Targetable && u[ObjectData.BASE_TYPE] == Unary.Mod.Farm))
             {
                 tiles.Add(farm.Tile);
             }
@@ -52,6 +54,7 @@ namespace Unary.UnitControllers
             }
             else
             {
+                Unary.ProductionManager.RequestFarm(this);
                 Unary.Log.Debug($"Farmer {Unit.Id} can not find tile");
             }
         }
@@ -61,7 +64,12 @@ namespace Unary.UnitControllers
             var farm = Tile.Units.FirstOrDefault(u => u.Targetable && u[ObjectData.BASE_TYPE] == Unary.Mod.Farm);
             if (farm == null)
             {
-                Tile = null;
+                if (Unary.GameState.Tick - LastFarmTick > 10)
+                {
+                    Tile = null;
+                }
+
+                Unary.ProductionManager.RequestFarm(this);
 
                 return;
             }
@@ -72,6 +80,7 @@ namespace Unary.UnitControllers
             }
 
             farm.RequestUpdate();
+            LastFarmTick = Unary.GameState.Tick;
         }
     }
 }

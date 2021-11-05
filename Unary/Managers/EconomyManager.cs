@@ -23,7 +23,6 @@ namespace Unary.Managers
         public int MaxTownCenters { get; set; } = 1;
         public int ConcurrentVillagers { get; set; } = 3;
 
-        private readonly List<Unit> Farms = new();
         private readonly List<Unit> Dropsites = new();
         private int FoodGatherers { get; set; } = 0;
         private int WoodGatherers { get; set; } = 0;
@@ -52,11 +51,6 @@ namespace Unary.Managers
             var min = GetMinimumGatherers(resource);
 
             return Math.Max(min + 2, (int)Math.Round(min * 1.1));
-        }
-
-        public IEnumerable<Unit> GetFarms()
-        {
-            return Farms;
         }
 
         public IEnumerable<Unit> GetDropsites(Resource resource)
@@ -113,7 +107,6 @@ namespace Unary.Managers
 
         internal override void Update()
         {
-            Farms.Clear();
             Dropsites.Clear();
 
             foreach (var unit in Unary.GameState.MyPlayer.Units.Where(u => u.Targetable))
@@ -122,10 +115,6 @@ namespace Unary.Managers
                 if (type == Unary.Mod.TownCenter || type == Unary.Mod.LumberCamp || type == Unary.Mod.MiningCamp || type == Unary.Mod.Mill || type == Unary.Mod.Dock)
                 {
                     Dropsites.Add(unit);
-                }
-                else if (type == Unary.Mod.Farm)
-                {
-                    Farms.Add(unit);
                 }
             }
 
@@ -230,8 +219,8 @@ namespace Unary.Managers
             {
                 if (Unary.GameState.GetResourceFound(Resource.WOOD) && Unary.GameState.GetDropsiteMinDistance(Resource.WOOD) > 2 && Unary.GameState.GetDropsiteMinDistance(Resource.WOOD) < 200)
                 {
-                    Unary.Log.Info("Building lumber camp");
-                    lumber_camp.BuildNormal(100, 1, Priority.DROPSITE);
+                    //Unary.Log.Info("Building lumber camp");
+                    //lumber_camp.BuildNormal(100, 1, Priority.DROPSITE);
                 }
             }
 
@@ -253,7 +242,7 @@ namespace Unary.Managers
                 else if (mill.Count >= 1)
                 {
                     var needed_farms = FoodGatherers;
-
+                    /*
                     Unary.Log.Info($"I have {farm.CountTotal} farms and I want {needed_farms}");
 
                     if (farm.CountTotal < needed_farms)
@@ -271,7 +260,7 @@ namespace Unary.Managers
                             Unary.Log.Info("Building mill");
                             mill.BuildNormal(100, 1, Priority.FARM + 1);
                         }
-                    }
+                    }*/
                 }
             }
 
@@ -295,8 +284,8 @@ namespace Unary.Managers
                     Unary.GameState.SetStrategicNumber(StrategicNumber.MINING_CAMP_MAX_DISTANCE, camp_distance + 1);
                     if (Unary.GameState.GetDropsiteMinDistance(resource) < camp_distance)
                     {
-                        Unary.Log.Info($"Building {resource} camp");
-                        mining_camp.BuildNormal(100, 1, Priority.DROPSITE);
+                        //Unary.Log.Info($"Building {resource} camp");
+                        //mining_camp.BuildNormal(100, 1, Priority.DROPSITE);
                     }
                 }
             }

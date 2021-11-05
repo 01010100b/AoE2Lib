@@ -132,18 +132,18 @@ namespace AoE2Lib.Bots.GameElements
         {
             if (!IsOnMap(x, y))
             {
-                distance = -1;
+                distance = 65535;
 
-                return false;
+                return true;
             }
 
             var tile = GetTile(x, y);
 
             if (!tile.Explored)
             {
-                distance = -1;
+                distance = 65535;
 
-                return false;
+                return true;
             }
 
             if (PathDistances.TryGetValue(tile, out int dist))

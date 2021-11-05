@@ -108,11 +108,6 @@ namespace AoE2Lib.Bots
                 commands.AddRange(Tick().Where(c => c.HasMessages));
                 commands.AddRange(GameState.RequestUpdate());
 
-                Log.Info($"Update took {sw.ElapsedMilliseconds} ms");
-
-                // make the call
-                sw.Restart();
-
                 var commandlist = new CommandList() { PlayerNumber = PlayerNumber };
 
                 if ((DateTime.UtcNow - previous) > TimeSpan.FromSeconds(5))
@@ -135,6 +130,11 @@ namespace AoE2Lib.Bots
                         commandlist.Commands.Add(Any.Pack(message));
                     }
                 }
+
+                Log.Info($"Update took {sw.ElapsedMilliseconds} ms");
+
+                // make the call
+                sw.Restart();
 
                 CommandResultList resultlist;
                 try

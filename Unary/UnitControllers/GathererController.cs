@@ -26,7 +26,7 @@ namespace Unary.UnitControllers
             {
                 ChooseResource();
             }
-            else if (Target == null || Tile == null || Dropsite == null)
+            else if (Target == null || Tile == null || Dropsite == null || GetHashCode() % 50 == Unary.GameState.Tick % 50)
             {
                 ChooseTarget();
             }
@@ -65,27 +65,47 @@ namespace Unary.UnitControllers
 
         private void ChooseTarget()
         {
-            var occupancy = new Dictionary<Tile, int>();
-            foreach (var gatherer in Unary.UnitsManager.GetControllers<GathererController>())
+            var tile_occupancy = new Dictionary<Tile, int>();
+            var dropsite_occupancy = new Dictionary<Unit, int>();
+            foreach (var gatherer in Unary.UnitsManager.GetControllers<GathererController>().Where(g => g != this))
             {
                 if (gatherer.Tile != null)
                 {
-                    if (!occupancy.ContainsKey(gatherer.Tile))
+                    if (!tile_occupancy.ContainsKey(gatherer.Tile))
                     {
-                        occupancy.Add(gatherer.Tile, 0);
+                        tile_occupancy.Add(gatherer.Tile, 0);
                     }
 
-                    occupancy[gatherer.Tile]++;
+                    tile_occupancy[gatherer.Tile]++;
+                }
+
+                if (gatherer.Dropsite != null)
+                {
+                    if (!dropsite_occupancy.ContainsKey(gatherer.Dropsite))
+                    {
+                        dropsite_occupancy.Add(gatherer.Dropsite, 0);
+                    }
+
+                    dropsite_occupancy[gatherer.Dropsite]++;
                 }
             }
 
             var best_distance = double.MaxValue;
+            var request = true;
 
             foreach (var dropsite in Unary.EconomyManager.GetDropsites(Resource))
             {
+                if (dropsite_occupancy.TryGetValue(dropsite, out int count))
+                {
+                    if (count >= 7 && dropsite[ObjectData.BASE_TYPE] != Unary.Mod.TownCenter)
+                    {
+                        continue;
+                    }
+                }
+
                 foreach (var res in Unary.EconomyManager.GetGatherableResources(Resource, dropsite))
                 {
-                    if (occupancy.TryGetValue(res.Key, out int occ))
+                    if (tile_occupancy.TryGetValue(res.Key, out int occ))
                     {
                         if (occ >= 2)
                         {
@@ -93,8 +113,25 @@ namespace Unary.UnitControllers
                         }
                     }
 
+                    if (Resource == Resource.FOOD && res.Value.Position.DistanceTo(Unary.GameState.MyPosition) > 30)
+                    {
+                        continue;
+                    }
+
                     var distance = dropsite.Position.DistanceTo(res.Key.Position);
-                    distance += Unit.Position.DistanceTo(res.Key.Position) / 10;
+                    var max = 4;
+                    if (Resource == Resource.WOOD)
+                    {
+                        max = 3;
+                    }
+
+                    if (distance <= max)
+                    {
+                        request = false;
+                    }
+
+                    distance += 0.05 * Unit.Position.DistanceTo(res.Key.Position);
+
                     if (distance < best_distance)
                     {
                         Tile = res.Key;
@@ -108,6 +145,11 @@ namespace Unary.UnitControllers
             if (Target != null)
             {
                 Unary.Log.Debug($"Gatherer {Unit.Id} choose target {Target.Id}");
+
+                if (request)
+                {
+                    Unary.ProductionManager.RequestDropsite(this);
+                }
             }
             else
             {
@@ -115,8 +157,12 @@ namespace Unary.UnitControllers
 
                 if (Resource == Resource.FOOD)
                 {
-                    var ctrl = new FarmerController(Unit, Unary);
-                    Unary.UnitsManager.SetController(Unit, ctrl);
+                    var mill = Unary.GameState.GetUnitType(Unary.Mod.Mill);
+                    if (mill.Count > 0)
+                    {
+                        var ctrl = new FarmerController(Unit, Unary);
+                        Unary.UnitsManager.SetController(Unit, ctrl);
+                    }
                 }
             }
         }

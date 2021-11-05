@@ -39,7 +39,7 @@ namespace Unary.Managers
         internal override void Update()
         {
             BasicStrategy();
-            AutoEcoTechs();
+            DoAutoEcoTechs();
         }
 
         private void BasicStrategy()
@@ -140,7 +140,7 @@ namespace Unary.Managers
             }
         }
 
-        private void AutoEcoTechs()
+        private void DoAutoEcoTechs()
         {
             var horse_collar = Unary.GameState.GetTechnology(14);
             var heavy_plow = Unary.GameState.GetTechnology(13);

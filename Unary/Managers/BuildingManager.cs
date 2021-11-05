@@ -18,14 +18,32 @@ namespace Unary.Managers
         private readonly HashSet<Tile> ObstructedTiles = new();
         private readonly HashSet<Tile> ExcludedTiles = new();
         private readonly List<Tile> FarmPlacements = new();
-        private readonly Dictionary<Unit, List<Tile>> WoodPlacements = new();
-        private readonly Dictionary<Unit, List<Tile>> GoldPlacements = new();
-        private readonly Dictionary<Unit, List<Tile>> StonePlacements = new();
+        private readonly Dictionary<Unit, List<KeyValuePair<Tile, double>>> FoodPlacements = new();
+        private readonly Dictionary<Unit, List<KeyValuePair<Tile, double>>> WoodPlacements = new();
+        private readonly Dictionary<Unit, List<KeyValuePair<Tile, double>>> GoldPlacements = new();
+        private readonly Dictionary<Unit, List<KeyValuePair<Tile, double>>> StonePlacements = new();
         private readonly List<Unit> Foundations = new();
+        private readonly Dictionary<Tile, int> PathDistances = new();
 
         public BuildingManager(Unary unary) : base(unary)
         {
 
+        }
+
+        public bool TryCanReach(Tile tile, out bool can_reach)
+        {
+            if (Unary.GameState.Map.TryCanReach(tile.X, tile.Y, out bool reach))
+            {
+                can_reach = reach;
+
+                return true;
+            }
+            else
+            {
+                can_reach = false;
+
+                return false;
+            }
         }
 
         public bool IsObstructed(Tile tile)
@@ -58,18 +76,19 @@ namespace Unary.Managers
             return FarmPlacements;
         }
 
-        public List<Tile> GetDropsitePlacements(Resource resource)
+        public List<KeyValuePair<Tile, double>> GetDropsitePlacements(Resource resource)
         {
             var dict = WoodPlacements;
             switch (resource)
             {
+                case Resource.FOOD: dict = FoodPlacements; break;
                 case Resource.WOOD: dict = WoodPlacements; break;
                 case Resource.GOLD: dict = GoldPlacements; break;
                 case Resource.STONE: dict = StonePlacements; break;
                 default: throw new ArgumentOutOfRangeException(nameof(resource));
             }
 
-            var tiles = new List<Tile>();
+            var tiles = new List<KeyValuePair<Tile, double>>();
             foreach (var places in dict.Values)
             {
                 tiles.AddRange(places);
@@ -161,6 +180,10 @@ namespace Unary.Managers
             UpdateStrategicNumbers();
             UpdateTiles();
             UpdateFarmPlacements();
+            UpdateDropsitePlacements(Resource.FOOD);
+            UpdateDropsitePlacements(Resource.WOOD);
+            UpdateDropsitePlacements(Resource.GOLD);
+            UpdateDropsitePlacements(Resource.STONE);
             UpdateBuilders();
         }
 
@@ -178,7 +201,6 @@ namespace Unary.Managers
 
             if (Unary.GameState.GetTechnology(101).State == ResearchState.COMPLETE)
             {
-                Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, 8);
                 Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 25);
                 Unary.GameState.SetStrategicNumber(StrategicNumber.MINING_CAMP_MAX_DISTANCE, 35);
                 Unary.GameState.SetStrategicNumber(StrategicNumber.LUMBER_CAMP_MAX_DISTANCE, 35);
@@ -187,7 +209,6 @@ namespace Unary.Managers
 
             if (Unary.GameState.GetTechnology(102).State == ResearchState.COMPLETE)
             {
-                Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, 12);
                 Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 30);
                 Unary.GameState.SetStrategicNumber(StrategicNumber.MINING_CAMP_MAX_DISTANCE, 40);
                 Unary.GameState.SetStrategicNumber(StrategicNumber.LUMBER_CAMP_MAX_DISTANCE, 40);
@@ -196,7 +217,6 @@ namespace Unary.Managers
 
             if (Unary.GameState.GetTechnology(103).State == ResearchState.COMPLETE)
             {
-                Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, 16);
                 Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 35);
                 Unary.GameState.SetStrategicNumber(StrategicNumber.MINING_CAMP_MAX_DISTANCE, 50);
                 Unary.GameState.SetStrategicNumber(StrategicNumber.LUMBER_CAMP_MAX_DISTANCE, 50);
@@ -303,6 +323,7 @@ namespace Unary.Managers
             var dict = WoodPlacements;
             switch (resource)
             {
+                case Resource.FOOD: type = UnitClass.BerryBush; site = Unary.Mod.Mill; dict = FoodPlacements; break;
                 case Resource.WOOD: type = UnitClass.Tree; site = Unary.Mod.LumberCamp; dict = WoodPlacements; break;
                 case Resource.GOLD: type = UnitClass.GoldMine; site = Unary.Mod.MiningCamp; dict = GoldPlacements; break;
                 case Resource.STONE: type = UnitClass.StoneMine; site = Unary.Mod.MiningCamp; dict = StonePlacements; break;
@@ -316,9 +337,25 @@ namespace Unary.Managers
 
             foreach (var res in dict.Keys.ToList())
             {
-                if (res.GetHashCode() % 100 == Unary.GameState.Tick % 100)
+                if (res.GetHashCode() % 100 == Unary.GameState.Tick % 100 || !res.Targetable)
                 {
                     dict.Remove(res);
+                }
+                else
+                {
+                    var lst = dict[res];
+                    lst.RemoveAll(kvp =>
+                    {
+                        var tile = kvp.Key;
+                        if (TryCanReach(tile, out bool can_reach))
+                        {
+                            return !can_reach;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    });
                 }
             }
 
@@ -330,15 +367,21 @@ namespace Unary.Managers
                     break;
                 }
 
+                if (dict.Count > 200)
+                {
+                    break;
+                }
+
                 if (!dict.ContainsKey(res))
                 {
-                    var tiles = new List<Tile>();
+                    var tiles = new List<KeyValuePair<Tile, double>>();
 
-                    foreach (var tile in Unary.GameState.Map.GetTilesInRange(res.Position, 5))
+                    foreach (var tile in Unary.GameState.Map.GetTilesInRange(res.Position, 4))
                     {
                         if (CanBuildAt(building, tile))
                         {
-                            tiles.Add(tile);
+                            var score = GetDropsiteScore(type, tile);
+                            tiles.Add(new KeyValuePair<Tile, double>(tile, score));
                         }
                     }
 
@@ -356,7 +399,10 @@ namespace Unary.Managers
             {
                 if (unit[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || unit[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING)
                 {
-                    Foundations.Add(unit);
+                    if (unit[ObjectData.BASE_TYPE] != Unary.Mod.Farm)
+                    {
+                        Foundations.Add(unit);
+                    }
                 }
             }
 
@@ -390,6 +436,40 @@ namespace Unary.Managers
             }
 
             return true;
+        }
+
+        private double GetDropsiteScore(UnitClass resource, Tile tile)
+        {
+            var min_d = 0d;
+            var range = 3d;
+            if (resource == UnitClass.GoldMine || resource == UnitClass.StoneMine)
+            {
+                min_d = 2.2;
+                range = 4;
+            }
+
+            var score = 0d;
+            foreach (var t in Unary.GameState.Map.GetTilesInRange(tile.Position, range))
+            {
+                foreach (var unit in t.Units.Where(u => u.Targetable && u[ObjectData.CLASS] == (int)resource))
+                {
+                    score += Math.Max(0, range - t.Center.DistanceTo(tile.Position));
+
+                    if (tile.Position.DistanceTo(t.Center) < min_d)
+                    {
+                        score = double.MinValue;
+                    }
+                }
+            }
+
+            if (score < 1)
+            {
+                return double.MinValue;
+            }
+
+            score -= 0.1 * tile.Position.DistanceTo(Unary.GameState.MyPosition);
+
+            return score;
         }
     }
 }
