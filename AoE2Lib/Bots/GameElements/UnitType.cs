@@ -76,28 +76,13 @@ namespace AoE2Lib.Bots.GameElements
                 return;
             }
 
-            var good_tiles = new List<Tile>();
-            foreach (var tile in tiles.Where(t => t.Explored))
-            {
-                if (Bot.GameState.Map.TryCanReach(tile.X, tile.Y, out bool can_reach))
-                {
-                    if (can_reach)
-                    {
-                        good_tiles.Add(tile);
-                    }
-                }
-                else
-                {
-                    break;
-                }
-            }
-
-            if (good_tiles.Count == 0)
+            var places = tiles.Take(100).ToList();
+            if (places.Count == 0)
             {
                 return;
             }
-
-            var prod = new BuildLineTask(Id, good_tiles, priority, blocking, WoodCost, FoodCost, GoldCost, StoneCost, max_count, max_pending);
+            
+            var prod = new BuildLineTask(Id, places, priority, blocking, WoodCost, FoodCost, GoldCost, StoneCost, max_count, max_pending);
             Bot.GameState.AddProductionTask(prod);
         }
 

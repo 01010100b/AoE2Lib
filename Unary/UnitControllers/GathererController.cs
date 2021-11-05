@@ -178,12 +178,19 @@ namespace Unary.UnitControllers
                 return;
             }
 
-            if (Unit[ObjectData.TARGET_ID] != Target.Id)
+            var target = Target;
+            if (Dropsite[ObjectData.STATUS] == 0)
             {
-                Unit.Target(Target);
+                target = Dropsite;
+            }
+
+            if (Unit[ObjectData.TARGET_ID] != target.Id)
+            {
+                Unit.Target(target);
             }
 
             Target.RequestUpdate();
+            Dropsite.RequestUpdate();
         }
     }
 }

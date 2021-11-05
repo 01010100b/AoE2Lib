@@ -41,7 +41,7 @@ namespace AoE2Lib.Bots.GameElements
 
         private Tile[] Tiles { get; set; }
         private readonly Dictionary<Tile, int> PathDistances = new Dictionary<Tile, int>();
-        private readonly List<Tile> CheckPathDistances = new List<Tile>();
+        private readonly HashSet<Tile> CheckPathDistances = new HashSet<Tile>();
 
         public Map(Bot bot) : base(bot)
         {
@@ -168,25 +168,28 @@ namespace AoE2Lib.Bots.GameElements
 
             foreach (var tile in PathDistances.Keys.ToList())
             {
-                if (Bot.GameState.Tick % 101 == tile.GetHashCode() % 101)
+                if (Bot.GameState.Tick % 500 == tile.GetHashCode() % 500)
                 {
                     PathDistances.Remove(tile);
                 }
             }
 
             var checked_tiles = new List<Tile>();
-            foreach (var tile in CheckPathDistances.Distinct().Where(t => !PathDistances.ContainsKey(t)))
+            foreach (var tile in CheckPathDistances.Where(t => !PathDistances.ContainsKey(t)))
             {
                 checked_tiles.Add(tile);
 
-                if (checked_tiles.Count >= 100)
+                if (checked_tiles.Count >= 10)
                 {
                     break;
                 }
             }
 
             CheckPathDistances.Clear();
-            CheckPathDistances.AddRange(checked_tiles);
+            foreach (var tile in checked_tiles)
+            {
+                CheckPathDistances.Add(tile);
+            }
 
             Bot.Log.Debug($"Check {CheckPathDistances.Count} path distances with {PathDistances.Count} cached.");
 

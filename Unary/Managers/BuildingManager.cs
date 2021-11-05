@@ -12,9 +12,13 @@ namespace Unary.Managers
 {
     class BuildingManager : Manager
     {
-        private static readonly Point[] TC_FARM_DELTAS = new[] { new Point(2, 3), new Point(-1, 3), new Point(3, 0), new Point(3, -3), new Point(-4, 2), new Point(-4, -1), new Point(0, -4), new Point(-3, -4) };
-        private static readonly Point[] MILL_FARM_DELTAS = new[] { new Point(-1, 2), new Point(2, -1), new Point(2, 2), new Point(-3, -1), new Point(-1, -3) };
+        public static readonly Point[] TC_FARM_DELTAS = new[] { new Point(2, 3), new Point(-1, 3), new Point(3, 0), new Point(3, -3), new Point(-4, 2), new Point(-4, -1), new Point(0, -4), new Point(-3, -4) };
+        public static readonly Point[] MILL_FARM_DELTAS = new[] { new Point(-1, 2), new Point(2, -1), new Point(2, 2), new Point(-3, -1), new Point(-1, -3) };
 
+        public Tile HomeTile { get; private set; }
+        public double MaximumTownSize { get; private set; } = 40;
+
+        private readonly HashSet<Tile> InsideTiles = new();
         private readonly HashSet<Tile> ObstructedTiles = new();
         private readonly HashSet<Tile> ExcludedTiles = new();
         private readonly List<Tile> FarmPlacements = new();
@@ -22,12 +26,16 @@ namespace Unary.Managers
         private readonly Dictionary<Unit, List<KeyValuePair<Tile, double>>> WoodPlacements = new();
         private readonly Dictionary<Unit, List<KeyValuePair<Tile, double>>> GoldPlacements = new();
         private readonly Dictionary<Unit, List<KeyValuePair<Tile, double>>> StonePlacements = new();
-        private readonly List<Unit> Foundations = new();
-        private readonly Dictionary<Tile, int> PathDistances = new();
+        private readonly Dictionary<int, HashSet<Tile>> BuildingPlacements = new();
+        private readonly HashSet<Unit> Foundations = new();
 
         public BuildingManager(Unary unary) : base(unary)
         {
-
+            BuildingPlacements.Add(1, new HashSet<Tile>());
+            BuildingPlacements.Add(2, new HashSet<Tile>());
+            BuildingPlacements.Add(3, new HashSet<Tile>());
+            BuildingPlacements.Add(4, new HashSet<Tile>());
+            BuildingPlacements.Add(5, new HashSet<Tile>());
         }
 
         public bool TryCanReach(Tile tile, out bool can_reach)
@@ -44,6 +52,11 @@ namespace Unary.Managers
 
                 return false;
             }
+        }
+
+        public bool IsInside(Tile tile)
+        {
+            return InsideTiles.Contains(tile);
         }
 
         public bool IsObstructed(Tile tile)
@@ -88,23 +101,45 @@ namespace Unary.Managers
                 default: throw new ArgumentOutOfRangeException(nameof(resource));
             }
 
+            var used = new HashSet<Tile>();
             var tiles = new List<KeyValuePair<Tile, double>>();
             foreach (var places in dict.Values)
             {
-                tiles.AddRange(places);
+                foreach (var tile in places)
+                {
+                    if (!used.Contains(tile.Key))
+                    {
+                        tiles.Add(tile);
+                        used.Add(tile.Key);
+                    }
+                }
             }
 
             return tiles;
         }
 
-        public IReadOnlyList<Unit> GetFoundations()
+        public IEnumerable<Tile> GetBuildingPlacements(UnitType building)
+        {
+            var size = Unary.Mod.GetBuildingSize(building[ObjectData.BASE_TYPE]);
+
+            if (BuildingPlacements.TryGetValue(size, out HashSet<Tile> tiles))
+            {
+                return tiles;
+            }
+            else
+            {
+                return Enumerable.Empty<Tile>();
+            }
+        }
+
+        public IEnumerable<Unit> GetFoundations()
         {
             return Foundations;
         }
 
-        public bool CanBuildAt(UnitType type, Tile tile, bool ignore_exclusion = false)
+        public bool CanBuildAt(int width, int height, Tile tile, bool ignore_exclusion = false)
         {
-            var footprint = GetUnitFootprint(type[ObjectData.BASE_TYPE], tile, 0);
+            var footprint = GetUnitFootprint(width, height, tile, 0);
 
             for (int x = footprint.X; x < footprint.Right; x++)
             {
@@ -132,10 +167,8 @@ namespace Unary.Managers
             return true;
         }
 
-        public Rectangle GetUnitFootprint(int base_type_id, Tile tile, int exclusion_zone_size)
+        public Rectangle GetUnitFootprint(int width, int height, Tile tile, int exclusion_zone_size)
         {
-            var width = Unary.Mod.GetBuildingSize(base_type_id);
-            var height = Unary.Mod.GetBuildingSize(base_type_id);
             var x = tile.X;
             var y = tile.Y;
 
@@ -169,6 +202,10 @@ namespace Unary.Managers
             {
                 return 3;
             }
+            else if (base_type_id == Unary.Mod.Farm)
+            {
+                return 0;
+            }
             else
             {
                 return 1;
@@ -184,6 +221,7 @@ namespace Unary.Managers
             UpdateDropsitePlacements(Resource.WOOD);
             UpdateDropsitePlacements(Resource.GOLD);
             UpdateDropsitePlacements(Resource.STONE);
+            UpdateBuildingPlacements();
             UpdateBuilders();
         }
 
@@ -193,7 +231,7 @@ namespace Unary.Managers
             Unary.GameState.SetStrategicNumber(StrategicNumber.ENABLE_NEW_BUILDING_SYSTEM, 1);
             Unary.GameState.SetStrategicNumber(StrategicNumber.INITIAL_EXPLORATION_REQUIRED, 0);
 
-            Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, 4);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, -1);
             Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_TOWN_SIZE, 20);
             Unary.GameState.SetStrategicNumber(StrategicNumber.MINING_CAMP_MAX_DISTANCE, 30);
             Unary.GameState.SetStrategicNumber(StrategicNumber.LUMBER_CAMP_MAX_DISTANCE, 30);
@@ -226,15 +264,30 @@ namespace Unary.Managers
 
         private void UpdateTiles()
         {
+            InsideTiles.Clear();
             ObstructedTiles.Clear();
             ExcludedTiles.Clear();
-
             var map = Unary.GameState.Map;
+
+            if (!map.IsOnMap(Unary.GameState.MyPosition))
+            {
+                return;
+            }
+
+            HomeTile = map.GetTile(Unary.GameState.MyPosition);
+
+            foreach (var tile in map.GetTilesInRange(HomeTile.Position, MaximumTownSize))
+            {
+                InsideTiles.Add(tile);
+            }
+
             foreach (var player in Unary.GameState.GetPlayers())
             {
                 foreach (var unit in player.Units.Where(u => BlocksConstruction(u)))
                 {
-                    var footprint = GetUnitFootprint(unit[ObjectData.BASE_TYPE], unit.Tile, 0);
+                    var width = Unary.Mod.GetBuildingSize(unit[ObjectData.BASE_TYPE]);
+                    var height = width;
+                    var footprint = GetUnitFootprint(width, height, unit.Tile, 0);
                     for (int x = footprint.X; x < footprint.Right; x++)
                     {
                         for (int y = footprint.Y; y < footprint.Bottom; y++)
@@ -249,7 +302,7 @@ namespace Unary.Managers
                     if (unit[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || unit[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING)
                     {
                         var excl = GetExclusionZoneSize(unit[ObjectData.BASE_TYPE]);
-                        footprint = GetUnitFootprint(unit[ObjectData.BASE_TYPE], unit.Tile, excl);
+                        footprint = GetUnitFootprint(width, height, unit.Tile, excl);
                         for (int x = footprint.X; x < footprint.Right; x++)
                         {
                             for (int y = footprint.Y; y < footprint.Bottom; y++)
@@ -286,9 +339,12 @@ namespace Unary.Managers
                 }
                 else
                 {
-                    return a.FirstUpdateGameTime.CompareTo(b.FirstUpdateGameTime);
+                    return a.Position.DistanceTo(Unary.GameState.MyPosition).CompareTo(b.Position.DistanceTo(Unary.GameState.MyPosition));
                 }
             });
+
+            var width = Unary.Mod.GetBuildingSize(Unary.Mod.Farm);
+            var height = width;
 
             foreach (var dropsite in dropsites)
             {
@@ -307,7 +363,7 @@ namespace Unary.Managers
                     {
                         var tile = Unary.GameState.Map.GetTile(x, y);
 
-                        if (CanBuildAt(farm, tile, true))
+                        if (CanBuildAt(width, height, tile, true))
                         {
                             FarmPlacements.Add(tile);
                         }
@@ -359,15 +415,13 @@ namespace Unary.Managers
                 }
             }
 
+            var width = Unary.Mod.GetBuildingSize(building[ObjectData.BASE_TYPE]);
+            var height = width;
+
             var updates = 0;
             foreach (var res in resources)
             {
                 if (updates >= 10)
-                {
-                    break;
-                }
-
-                if (dict.Count > 200)
                 {
                     break;
                 }
@@ -378,7 +432,7 @@ namespace Unary.Managers
 
                     foreach (var tile in Unary.GameState.Map.GetTilesInRange(res.Position, 4))
                     {
-                        if (CanBuildAt(building, tile))
+                        if (CanBuildAt(width, height, tile))
                         {
                             var score = GetDropsiteScore(type, tile);
                             tiles.Add(new KeyValuePair<Tile, double>(tile, score));
@@ -391,17 +445,75 @@ namespace Unary.Managers
             }
         }
 
+        private void UpdateBuildingPlacements()
+        {
+            if (InsideTiles.Count == 0)
+            {
+                return;
+            }
+
+            var inside = InsideTiles.ToList();
+
+            foreach (var kvp in BuildingPlacements)
+            {
+                var size = kvp.Key;
+                var tiles = kvp.Value;
+
+                tiles.RemoveWhere(t =>
+                {
+                    if (t.GetHashCode() % 100 == Unary.GameState.Tick % 100)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        if (TryCanReach(t, out bool can_reach))
+                        {
+                            return !can_reach;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                });
+
+                for (int i = 0; i < 10; i++)
+                {
+                    var t = inside[Unary.Rng.Next(inside.Count)];
+
+                    if (CanBuildAt(size, size, t))
+                    {
+                        tiles.Add(t);
+                    }
+                }
+            }
+        }
+
         private void UpdateBuilders()
         {
-            Foundations.Clear();
+            Foundations.RemoveWhere(f => f[ObjectData.STATUS] != 0 || !f.Targetable);
 
-            foreach (var unit in Unary.GameState.MyPlayer.Units.Where(u => u.Targetable && u[ObjectData.STATUS] == 0))
+            foreach (var unit in Unary.GameState.MyPlayer.Units.Where(u => u.Targetable && u[ObjectData.STATUS] == 0 && !Foundations.Contains(u)))
             {
                 if (unit[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || unit[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING)
                 {
-                    if (unit[ObjectData.BASE_TYPE] != Unary.Mod.Farm)
+                    var type = unit[ObjectData.BASE_TYPE];
+
+                    if (type != Unary.Mod.Farm && type != Unary.Mod.LumberCamp && type != Unary.Mod.MiningCamp)
                     {
-                        Foundations.Add(unit);
+                        if (TryCanReach(unit.Tile, out bool can_reach))
+                        {
+                            if (!can_reach)
+                            {
+                                unit.Target(unit.Position, UnitAction.DELETE);
+                                Unary.Log.Debug($"Can not reach foundation at {unit.Position}");
+                            }
+                            else
+                            {
+                                Foundations.Add(unit);
+                            }
+                        }
                     }
                 }
             }
@@ -410,7 +522,7 @@ namespace Unary.Managers
             var builders = Unary.UnitsManager.GetControllers<BuilderController>().Count;
             if (builders < max_builders)
             {
-                var foundation = Foundations[Unary.Rng.Next(Foundations.Count)];
+                var foundation = Foundations.First();
                 var gatherers = Unary.UnitsManager.GetControllers<GathererController>();
                 gatherers.Sort((a, b) => a.Unit.Position.DistanceTo(foundation.Position).CompareTo(b.Unit.Position.DistanceTo(foundation.Position)));
 

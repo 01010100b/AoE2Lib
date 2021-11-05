@@ -58,7 +58,7 @@ namespace Unary.Managers
             castle_age.Research(Priority.AGE_UP, false);
             imperial_age.Research(Priority.AGE_UP, false);
 
-            castle.BuildNormal();
+            Unary.ProductionManager.Build(castle);
 
             if (castle_age.State == ResearchState.COMPLETE)
             {
@@ -73,17 +73,17 @@ namespace Unary.Managers
 
                 if (archery_range.CountTotal < max_ranges)
                 {
-                    archery_range.BuildNormal(max_ranges, 1, Priority.PRODUCTION_BUILDING);
+                    Unary.ProductionManager.Build(archery_range, max_ranges, 1, Priority.PRODUCTION_BUILDING);
                 }
                 else if (archery_range.Count > 1 && archer.TrainSiteReady == false && Unary.Rng.NextDouble() < 0.1)
                 {
-                    archery_range.BuildNormal(10, 1, Priority.PRODUCTION_BUILDING);
+                    Unary.ProductionManager.Build(archery_range, 10, 1, Priority.PRODUCTION_BUILDING);
                 }
             }
 
             if (archery_range.CountTotal >= 1 && blacksmith.CountTotal < 1)
             {
-                blacksmith.BuildNormal(1, 1, Priority.PRODUCTION_BUILDING);
+                Unary.ProductionManager.Build(blacksmith, 1, 1, Priority.PRODUCTION_BUILDING);
             }
 
             if (archery_range.Count >= 1)
@@ -113,7 +113,7 @@ namespace Unary.Managers
 
                 if (barracks.CountTotal < 1)
                 {
-                    barracks.BuildNormal(1, 1, Priority.PRODUCTION_BUILDING);
+                    Unary.ProductionManager.Build(barracks, 1, 1, Priority.PRODUCTION_BUILDING);
                 }
             }
 

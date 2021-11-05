@@ -49,6 +49,20 @@ namespace Unary.Managers
             }
         }
 
+        public void Build(UnitType building, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
+        {
+            var placements = Unary.BuildingManager.GetBuildingPlacements(building).ToList();
+
+            if (placements.Count > 1000)
+            {
+                placements.Sort((a, b) => a.Position.DistanceTo(Unary.GameState.MyPosition).CompareTo(b.Position.DistanceTo(Unary.GameState.MyPosition)));
+                placements.RemoveRange(1000, placements.Count - 1000);
+            }
+
+            placements.Sort((a, b) => GetPlacementScore(building, b).CompareTo(GetPlacementScore(building, a)));
+            building.BuildLine(placements, max_count, max_pending, priority, blocking);
+        }
+
         internal override void Update()
         {
             PerformFarmRequest();
@@ -79,12 +93,14 @@ namespace Unary.Managers
                 if (placements.Count <= 3)
                 {
                     Unary.Log.Info("Building mill");
-                    mill.BuildNormal(100, 1, Priority.FARM + 1);
+                    Unary.ProductionManager.Build(mill, 100, 1, Priority.FARM + 1);
                 }
             }
             else
             {
-                if (Unary.BuildingManager.CanBuildAt(farm, FarmRequest.Tile, true))
+                var width = Unary.Mod.GetBuildingSize(Unary.Mod.Farm);
+                var height = width;
+                if (Unary.BuildingManager.CanBuildAt(width, height, FarmRequest.Tile, true))
                 {
                     Unary.Log.Info($"Refreshing farm at {FarmRequest.Tile.Position}");
                     farm.BuildLine(new[] { FarmRequest.Tile }, 100, 3, Priority.FARM);
@@ -138,14 +154,19 @@ namespace Unary.Managers
                     case Resource.STONE: site = Unary.GameState.GetUnitType(Unary.Mod.MiningCamp); break;
                 }
 
-                if (site.Updated && site.Pending > 0)
+                if (!site.Updated)
+                {
+                    continue;
+                }
+
+                if (site.Pending > 0 || site.GetHashCode() % 100 == Unary.GameState.Tick % 100)
                 {
                     AddDropsite[resource] = false;
 
                     continue;
                 }
 
-                if (site.Updated && site.Pending == 0 && AddDropsite[resource])
+                if (site.Pending == 0 && AddDropsite[resource])
                 {
                     var placements = Unary.BuildingManager.GetDropsitePlacements(resource);
                     placements.Sort((a, b) => b.Value.CompareTo(a.Value));
@@ -155,6 +176,38 @@ namespace Unary.Managers
                     continue;
                 }
             }
+        }
+
+        private double GetPlacementScore(UnitType building, Tile tile)
+        {
+            var score = -tile.Position.DistanceTo(Unary.GameState.MyPosition);
+
+            if (building[ObjectData.BASE_TYPE] == Unary.Mod.Mill || building[ObjectData.BASE_TYPE] == Unary.Mod.TownCenter)
+            {
+                var deltas = BuildingManager.TC_FARM_DELTAS;
+                if (building[ObjectData.BASE_TYPE] == Unary.Mod.Mill)
+                {
+                    deltas = BuildingManager.MILL_FARM_DELTAS;
+                }
+
+                foreach (var delta in deltas)
+                {
+                    var x = tile.X + delta.X;
+                    var y = tile.Y + delta.Y;
+
+                    if (Unary.GameState.Map.IsOnMap(x, y))
+                    {
+                        var t = Unary.GameState.Map.GetTile(x, y);
+                        
+                        if (Unary.BuildingManager.CanBuildAt(3, 3, t, true))
+                        {
+                            score += 4;
+                        }
+                    }
+                }
+            }
+
+            return score;
         }
     }
 }
