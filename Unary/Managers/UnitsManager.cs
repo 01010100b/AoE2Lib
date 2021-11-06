@@ -2,9 +2,11 @@
 using AoE2Lib.Bots.GameElements;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unary.Algorithms;
 using Unary.UnitControllers;
 
 namespace Unary.Managers
@@ -12,7 +14,7 @@ namespace Unary.Managers
     class UnitsManager : Manager
     {
         private readonly Dictionary<Unit, UnitController> Units = new();
-
+        
         public UnitsManager(Unary unary) : base(unary)
         {
 
@@ -29,6 +31,11 @@ namespace Unary.Managers
         }
 
         internal override void Update()
+        {
+            UpdateControllers();
+        }
+
+        private void UpdateControllers()
         {
             foreach (var unit in Unary.GameState.MyPlayer.Units.Where(u => u.Targetable))
             {

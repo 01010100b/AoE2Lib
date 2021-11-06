@@ -18,9 +18,7 @@ namespace Unary.Managers
         public Tile HomeTile { get; private set; }
         public double MaximumTownSize { get; private set; } = 40;
 
-        private readonly HashSet<Tile> InsideTiles = new();
-        private readonly HashSet<Tile> ObstructedTiles = new();
-        private readonly HashSet<Tile> ExcludedTiles = new();
+        private readonly HashSet<Tile> InsideTiles = new(); 
         private readonly List<Tile> FarmPlacements = new();
         private readonly Dictionary<Unit, List<KeyValuePair<Tile, double>>> FoodPlacements = new();
         private readonly Dictionary<Unit, List<KeyValuePair<Tile, double>>> WoodPlacements = new();
@@ -38,50 +36,10 @@ namespace Unary.Managers
             BuildingPlacements.Add(5, new HashSet<Tile>());
         }
 
-        public bool TryCanReach(Tile tile, out bool can_reach)
-        {
-            if (Unary.GameState.Map.TryCanReach(tile.X, tile.Y, out bool reach))
-            {
-                can_reach = reach;
-
-                return true;
-            }
-            else
-            {
-                can_reach = false;
-
-                return false;
-            }
-        }
-
         public bool IsInside(Tile tile)
         {
+            // inside town
             return InsideTiles.Contains(tile);
-        }
-
-        public bool IsObstructed(Tile tile)
-        {
-            if (!tile.IsOnLand)
-            {
-                return true;
-            }
-
-            return ObstructedTiles.Contains(tile);
-        }
-
-        public IEnumerable<Tile> GetObstructedTiles()
-        {
-            return ObstructedTiles;
-        }
-
-        public bool IsExcluded(Tile tile)
-        {
-            if (!tile.IsOnLand)
-            {
-                return true;
-            }
-
-            return ExcludedTiles.Contains(tile);
         }
 
         public IReadOnlyList<Tile> GetFarmPlacements()
@@ -139,7 +97,7 @@ namespace Unary.Managers
 
         public bool CanBuildAt(int width, int height, Tile tile, bool ignore_exclusion = false)
         {
-            var footprint = GetUnitFootprint(width, height, tile, 0);
+            var footprint = MapManager.GetUnitFootprint(width, height, tile, 0);
 
             for (int x = footprint.X; x < footprint.Right; x++)
             {
@@ -152,12 +110,22 @@ namespace Unary.Managers
 
                     var t = Unary.GameState.Map.GetTile(x, y);
 
-                    if (IsObstructed(t))
+                    if (!t.Explored)
                     {
                         return false;
                     }
 
-                    if (IsExcluded(t) && !ignore_exclusion)
+                    if (!t.IsOnLand)
+                    {
+                        return false;
+                    }
+
+                    if (Unary.MapManager.IsConstructionBlocked(t))
+                    {
+                        return false;
+                    }
+
+                    if (Unary.MapManager.IsConstructionExcluded(t) && !ignore_exclusion)
                     {
                         return false;
                     }
@@ -165,51 +133,6 @@ namespace Unary.Managers
             }
 
             return true;
-        }
-
-        public Rectangle GetUnitFootprint(int width, int height, Tile tile, int exclusion_zone_size)
-        {
-            var x = tile.X;
-            var y = tile.Y;
-
-            width += 2 * exclusion_zone_size;
-            height += 2 * exclusion_zone_size;
-
-            var x_start = x - (width / 2);
-            var x_end = x + (width / 2);
-            if (width % 2 == 0)
-            {
-                x_end--;
-            }
-
-            var y_start = y - (height / 2);
-            var y_end = y + (height / 2);
-            if (height % 2 == 0)
-            {
-                y_end--;
-            }
-
-            return new Rectangle(x_start, y_start, x_end - x_start + 1, y_end - y_start + 1);
-        }
-
-        public int GetExclusionZoneSize(int base_type_id)
-        {
-            if (base_type_id == Unary.Mod.TownCenter || base_type_id == Unary.Mod.TownCenterFoundation || base_type_id == Unary.Mod.Mill)
-            {
-                return 3;
-            }
-            else if (base_type_id == Unary.Mod.LumberCamp || base_type_id == Unary.Mod.MiningCamp || base_type_id == Unary.Mod.Dock)
-            {
-                return 3;
-            }
-            else if (base_type_id == Unary.Mod.Farm)
-            {
-                return 0;
-            }
-            else
-            {
-                return 1;
-            }
         }
 
         internal override void Update()
@@ -265,8 +188,6 @@ namespace Unary.Managers
         private void UpdateTiles()
         {
             InsideTiles.Clear();
-            ObstructedTiles.Clear();
-            ExcludedTiles.Clear();
             var map = Unary.GameState.Map;
 
             if (!map.IsOnMap(Unary.GameState.MyPosition))
@@ -279,42 +200,6 @@ namespace Unary.Managers
             foreach (var tile in map.GetTilesInRange(HomeTile.Position, MaximumTownSize))
             {
                 InsideTiles.Add(tile);
-            }
-
-            foreach (var player in Unary.GameState.GetPlayers())
-            {
-                foreach (var unit in player.Units.Where(u => BlocksConstruction(u)))
-                {
-                    var width = Unary.Mod.GetBuildingSize(unit[ObjectData.BASE_TYPE]);
-                    var height = width;
-                    var footprint = GetUnitFootprint(width, height, unit.Tile, 0);
-                    for (int x = footprint.X; x < footprint.Right; x++)
-                    {
-                        for (int y = footprint.Y; y < footprint.Bottom; y++)
-                        {
-                            if (map.IsOnMap(x, y))
-                            {
-                                ObstructedTiles.Add(map.GetTile(x, y));
-                            }
-                        }
-                    }
-
-                    if (unit[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || unit[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING)
-                    {
-                        var excl = GetExclusionZoneSize(unit[ObjectData.BASE_TYPE]);
-                        footprint = GetUnitFootprint(width, height, unit.Tile, excl);
-                        for (int x = footprint.X; x < footprint.Right; x++)
-                        {
-                            for (int y = footprint.Y; y < footprint.Bottom; y++)
-                            {
-                                if (map.IsOnMap(x, y))
-                                {
-                                    ExcludedTiles.Add(map.GetTile(x, y));
-                                }
-                            }
-                        }
-                    }
-                }
             }
         }
 
@@ -400,18 +285,7 @@ namespace Unary.Managers
                 else
                 {
                     var lst = dict[res];
-                    lst.RemoveAll(kvp =>
-                    {
-                        var tile = kvp.Key;
-                        if (TryCanReach(tile, out bool can_reach))
-                        {
-                            return !can_reach;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    });
+                    lst.RemoveAll(kvp => !Unary.MapManager.CanReach(kvp.Key));
                 }
             }
 
@@ -459,24 +333,7 @@ namespace Unary.Managers
                 var size = kvp.Key;
                 var tiles = kvp.Value;
 
-                tiles.RemoveWhere(t =>
-                {
-                    if (t.GetHashCode() % 100 == Unary.GameState.Tick % 100)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        if (TryCanReach(t, out bool can_reach))
-                        {
-                            return !can_reach;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                });
+                tiles.RemoveWhere(t => t.GetHashCode() % 100 == Unary.GameState.Tick % 100 || !Unary.MapManager.CanReach(t));
 
                 for (int i = 0; i < 10; i++)
                 {
@@ -502,17 +359,14 @@ namespace Unary.Managers
 
                     if (type != Unary.Mod.Farm && type != Unary.Mod.LumberCamp && type != Unary.Mod.MiningCamp)
                     {
-                        if (TryCanReach(unit.Tile, out bool can_reach))
+                        if (!Unary.MapManager.CanReach(unit.Tile))
                         {
-                            if (!can_reach)
-                            {
-                                unit.Target(unit.Position, UnitAction.DELETE);
-                                Unary.Log.Debug($"Can not reach foundation at {unit.Position}");
-                            }
-                            else
-                            {
-                                Foundations.Add(unit);
-                            }
+                            unit.Target(unit.Position, UnitAction.DELETE);
+                            Unary.Log.Debug($"Can not reach foundation at {unit.Position}");
+                        }
+                        else
+                        {
+                            Foundations.Add(unit);
                         }
                     }
                 }
@@ -533,21 +387,6 @@ namespace Unary.Managers
                     Unary.UnitsManager.SetController(builder, ctrl);
                 }
             }
-        }
-
-        private bool BlocksConstruction(Unit unit)
-        {
-            if (!unit.Targetable)
-            {
-                return false;
-            }
-
-            if (unit[ObjectData.SPEED] > 0)
-            {
-                return false;
-            }
-
-            return true;
         }
 
         private double GetDropsiteScore(UnitClass resource, Tile tile)

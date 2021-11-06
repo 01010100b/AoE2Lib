@@ -182,6 +182,72 @@ namespace AoE2Lib.Bots
             }
 
             FindCommands.Add(command);
+
+            if (player == 0)
+            {
+                // find cliffs
+                command = new Command();
+
+                command.Add(new SetGoal() { InConstGoalId = 100, InConstValue = position.PointX });
+                command.Add(new SetGoal() { InConstGoalId = 101, InConstValue = position.PointY });
+                command.Add(new UpSetTargetPoint() { InGoalPoint = 100 });
+                command.Add(new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, InConstValue = player });
+                command.Add(new UpFullResetSearch());
+
+                command.Add(new UpFilterStatus() { InConstObjectStatus = 2, InConstObjectList = 1 });
+                command.Add(new UpFilterDistance() { InConstMinDistance = -1, InConstMaxDistance = range });
+
+                for (int i = 0; i < 10; i++)
+                {
+                    command.Add(new UpResetSearch() { InConstLocalIndex = 0, InConstLocalList = 0, InConstRemoteIndex = 0, InConstRemoteList = 1 });
+                    command.Add(new UpFindStatusRemote() { InConstUnitId = -1, InConstCount = 40 });
+                    command.Add(new UpSearchObjectIdList() { InConstSearchSource = 2 });
+                }
+
+                FindCommands.Add(command);
+
+                command = new Command();
+
+                command.Add(new SetGoal() { InConstGoalId = 100, InConstValue = position.PointX });
+                command.Add(new SetGoal() { InConstGoalId = 101, InConstValue = position.PointY });
+                command.Add(new UpSetTargetPoint() { InGoalPoint = 100 });
+                command.Add(new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, InConstValue = player });
+                command.Add(new UpFullResetSearch());
+
+                command.Add(new UpFilterStatus() { InConstObjectStatus = 4, InConstObjectList = 0 });
+                command.Add(new UpFilterDistance() { InConstMinDistance = -1, InConstMaxDistance = range });
+
+                for (int i = 0; i < 10; i++)
+                {
+                    command.Add(new UpResetSearch() { InConstLocalIndex = 0, InConstLocalList = 0, InConstRemoteIndex = 0, InConstRemoteList = 1 });
+                    command.Add(new UpFindStatusRemote() { InConstUnitId = -1, InConstCount = 40 });
+                    command.Add(new UpSearchObjectIdList() { InConstSearchSource = 2 });
+                }
+
+                FindCommands.Add(command);
+
+                command = new Command();
+
+                command.Add(new SetGoal() { InConstGoalId = 100, InConstValue = position.PointX });
+                command.Add(new SetGoal() { InConstGoalId = 101, InConstValue = position.PointY });
+                command.Add(new UpSetTargetPoint() { InGoalPoint = 100 });
+                command.Add(new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, InConstValue = player });
+                command.Add(new UpFullResetSearch());
+
+                command.Add(new UpFilterStatus() { InConstObjectStatus = 4, InConstObjectList = 1 });
+                command.Add(new UpFilterDistance() { InConstMinDistance = -1, InConstMaxDistance = range });
+
+                for (int i = 0; i < 10; i++)
+                {
+                    command.Add(new UpResetSearch() { InConstLocalIndex = 0, InConstLocalList = 0, InConstRemoteIndex = 0, InConstRemoteList = 1 });
+                    command.Add(new UpFindStatusRemote() { InConstUnitId = -1, InConstCount = 40 });
+                    command.Add(new UpSearchObjectIdList() { InConstSearchSource = 2 });
+                }
+
+                FindCommands.Add(command);
+            }
+
+            
         }
 
         public void FindResources(Resource resource, int player, Position position, int range)
@@ -411,14 +477,22 @@ namespace AoE2Lib.Bots
                 tile.Units.Clear();
             }
 
-            foreach (var unit in Units.Values.Where(u => u.Updated && u.PlayerNumber >= 0))
+            foreach (var unit in Units.Values.Where(u => u.Updated))
             {
-                Players[unit.PlayerNumber].Units.Add(unit);
+                if (unit.PlayerNumber >= 0)
+                {
+                    Players[unit.PlayerNumber].Units.Add(unit);
+                }
 
                 if (Map.IsOnMap(unit.Position))
                 {
                     var tile = Map.GetTile(unit.Position);
                     tile.Units.Add(unit);
+                }
+
+                if (unit[ObjectData.TYPE] >= 264 && unit[ObjectData.TYPE] <= 272)
+                {
+                    Debug.WriteLine($"FOUND cliff at {unit.Position}");
                 }
             }
 
@@ -518,7 +592,7 @@ namespace AoE2Lib.Bots
                 }
             }
 
-            foreach (var player in Players)
+            foreach (var player in GetPlayers())
             {
                 var range = Map.Width + Map.Height;
                 if (Tick > 100 && Tick % 10 == 0)

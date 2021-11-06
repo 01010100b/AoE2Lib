@@ -14,6 +14,8 @@ namespace AoE2Lib.Bots.GameElements
 {
     public class Tile
     {
+        public static readonly Point[] NEIGHBOURS = new[] { new Point(-1, 0), new Point(1, 0), new Point(0, -1), new Point(0, 1) };
+
         public readonly int X;
         public readonly int Y;
         public int Height { get; internal set; }
@@ -26,11 +28,28 @@ namespace AoE2Lib.Bots.GameElements
 
         internal int Terrain { get; set; } = 0;
         internal int Visibility { get; set; } = 0;
+        private readonly Map Map;
 
-        internal Tile(int x, int y)
+        internal Tile(int x, int y, Map map)
         {
             X = x;
             Y = y;
+            Map = map;
+        }
+
+        public IEnumerable<Tile> GetNeighbours()
+        {
+            foreach (var delta in NEIGHBOURS)
+            {
+                var x = X + delta.X;
+                var y = Y + delta.Y;
+
+                if (Map.IsOnMap(x, y))
+                {
+                    var t = Map.GetTile(x, y);
+                    yield return t;
+                }
+            }
         }
     }
 
@@ -40,11 +59,10 @@ namespace AoE2Lib.Bots.GameElements
         public int Width { get; private set; } = -1;
 
         private Tile[] Tiles { get; set; }
-        private readonly Dictionary<Tile, int> PathDistances = new Dictionary<Tile, int>();
-        private readonly HashSet<Tile> CheckPathDistances = new HashSet<Tile>();
 
         public Map(Bot bot) : base(bot)
         {
+
         }
 
         public bool IsOnMap(int x, int y)
@@ -107,111 +125,10 @@ namespace AoE2Lib.Bots.GameElements
             }
         }
 
-        public IEnumerable<Tile> GetTilesInRange(int x, int y, double range)
-        {
-            return GetTilesInRange(Position.FromPoint(x, y), range);
-        }
-
-        public bool TryCanReach(int x, int y, out bool can_reach)
-        {
-            if (TryGetPathDistance(x, y, out int dist))
-            {
-                can_reach = dist != 65535;
-
-                return true;
-            }
-            else
-            {
-                can_reach = false;
-
-                return false;
-            }
-        }
-
-        public bool TryGetPathDistance(int x, int y, out int distance)
-        {
-            if (!IsOnMap(x, y))
-            {
-                distance = 65535;
-
-                return true;
-            }
-
-            var tile = GetTile(x, y);
-
-            if (!tile.Explored)
-            {
-                distance = 65535;
-
-                return true;
-            }
-
-            if (PathDistances.TryGetValue(tile, out int dist))
-            {
-                distance = dist;
-
-                return true;
-            }
-            else
-            {
-                CheckPathDistances.Add(tile);
-                distance = -1;
-
-                return false;
-            }
-        }
-
         protected override IEnumerable<IMessage> RequestElementUpdate()
         {
             yield return new GetMapDimensions();
             yield return new GetTiles();
-
-            foreach (var tile in PathDistances.Keys.ToList())
-            {
-                if (Bot.GameState.Tick % 500 == tile.GetHashCode() % 500)
-                {
-                    PathDistances.Remove(tile);
-                }
-            }
-
-            var checked_tiles = new List<Tile>();
-            foreach (var tile in CheckPathDistances.Where(t => !PathDistances.ContainsKey(t)))
-            {
-                checked_tiles.Add(tile);
-
-                if (checked_tiles.Count >= 10)
-                {
-                    break;
-                }
-            }
-
-            CheckPathDistances.Clear();
-            foreach (var tile in checked_tiles)
-            {
-                CheckPathDistances.Add(tile);
-            }
-
-            Bot.Log.Debug($"Check {CheckPathDistances.Count} path distances with {PathDistances.Count} cached.");
-
-            if (CheckPathDistances.Count == 0)
-            {
-                yield break;
-            }
-
-            yield return new UpFullResetSearch();
-            yield return new SetGoal() { InConstGoalId = 100, InConstValue = Bot.GameState.MyPosition.PointX };
-            yield return new SetGoal() { InConstGoalId = 101, InConstValue = Bot.GameState.MyPosition.PointY };
-            yield return new UpSetTargetPoint() { InGoalPoint = 100 };
-            yield return new UpFindLocal() { InConstUnitId = 904, InConstCount = 240 };
-            yield return new UpCleanSearch() { InConstSearchSource = 1, InConstObjectData = (int)ObjectData.DISTANCE, InConstSearchOrder = 1 };
-            yield return new UpSetTargetObject() { InConstIndex = 0, InConstSearchSource = 1 };
-
-            foreach (var tile in CheckPathDistances)
-            {
-                yield return new SetGoal() { InConstGoalId = 100, InConstValue = tile.X };
-                yield return new SetGoal() { InConstGoalId = 101, InConstValue = tile.Y };
-                yield return new UpPathDistance() { InGoalPoint = 100, InConstStrict = 1 };
-            }
         }
 
         protected override void UpdateElement(IReadOnlyList<Any> responses)
@@ -232,15 +149,6 @@ namespace AoE2Lib.Bots.GameElements
                     t.Terrain = tile.Terrain;
                 }
             }
-
-            var index = 11;
-            foreach (var tile in CheckPathDistances)
-            {
-                PathDistances[tile] = responses[index].Unpack<UpPathDistanceResult>().Result;
-                index += 3;
-            }
-
-            CheckPathDistances.Clear();
         }
 
         private void CreateMap()
@@ -262,7 +170,7 @@ namespace AoE2Lib.Bots.GameElements
                 for (int y = 0; y < Height; y++)
                 {
                     var index = GetIndex(x, y);
-                    Tiles[index] = new Tile(x, y);
+                    Tiles[index] = new Tile(x, y, this);
                 }
             }
 

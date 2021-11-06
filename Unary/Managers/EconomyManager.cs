@@ -66,8 +66,6 @@ namespace Unary.Managers
 
         public IEnumerable<KeyValuePair<Tile, Unit>> GetGatherableResources(Resource resource, Unit dropsite)
         {
-            var deltas = new[] { new Point(-1, 0), new Point(1, 0), new Point(0, -1), new Point(0, 1) };
-
             var range = 30;
             var type = UnitClass.Tree;
             type = resource switch
@@ -85,19 +83,11 @@ namespace Unary.Managers
                 {
                     if (unit[ObjectData.CLASS] == (int)type)
                     {
-                        foreach (var delta in deltas)
+                        foreach (var t in tile.GetNeighbours())
                         {
-                            var x = tile.X + delta.X;
-                            var y = tile.Y + delta.Y;
-
-                            if (Unary.GameState.Map.IsOnMap(x, y))
+                            if (Unary.MapManager.CanReach(t))
                             {
-                                var t = Unary.GameState.Map.GetTile(x, y);
-
-                                if (!Unary.BuildingManager.IsObstructed(t))
-                                {
-                                    yield return new KeyValuePair<Tile, Unit>(t, unit);
-                                }
+                                yield return new KeyValuePair<Tile, Unit>(t, unit);
                             }
                         }
                     }

@@ -45,7 +45,6 @@ namespace Unary.UnitControllers
 
             ScoutingState best = null;
             var best_cost = double.MaxValue;
-
             var my_pos = Unit.Position;
 
             foreach (var state in Unary.MilitaryManager.GetScoutingStatesForLos(los))
