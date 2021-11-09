@@ -16,7 +16,6 @@ namespace AoE2Lib.Bots
         public int LastUpdateTick { get; private set; } = -1;
 
         protected readonly Bot Bot;
-
         private readonly Command Command = new Command();
 
         protected internal GameElement(Bot bot)

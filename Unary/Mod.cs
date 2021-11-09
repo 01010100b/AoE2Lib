@@ -17,6 +17,9 @@ namespace Unary
         public int LumberCamp { get; set; } = 562;
         public int Farm { get; set; } = 50;
         public int Dock { get; set; } = 45;
+        public int FeudalAge { get; set; } = 101;
+        public int CastleAge { get; set; } = 102;
+        public int ImperialAge { get; set; } = 103;
 
         public void SetAoC()
         {

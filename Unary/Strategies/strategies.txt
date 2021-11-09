@@ -1,0 +1,3 @@
+﻿Strategy files
+
+TODO some explanation on strategy files
