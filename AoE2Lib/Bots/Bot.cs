@@ -62,7 +62,6 @@ namespace AoE2Lib.Bots
             Log = new Log(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"Player {PlayerNumber}.log"));
             Rng = new Random(seed);
             GameState = new GameState(this);
-
             NewGame();
 
             BotThread = new Thread(() => Run(endpoint)) { IsBackground = true };

@@ -24,6 +24,7 @@ namespace Unary.Managers
         public int ConcurrentVillagers { get; set; } = 3;
 
         private readonly List<Unit> Dropsites = new();
+        private readonly List<Unit> Meat = new();
         private int FoodGatherers { get; set; } = 0;
         private int WoodGatherers { get; set; } = 0;
         private int GoldGatherers { get; set; } = 0;
@@ -51,6 +52,11 @@ namespace Unary.Managers
             var min = GetMinimumGatherers(resource);
 
             return Math.Max(min + 2, (int)Math.Round(min * 1.1));
+        }
+
+        public IEnumerable<Unit> GetMeat()
+        {
+            return Meat;
         }
 
         public IEnumerable<Unit> GetDropsites(Resource resource)
@@ -97,6 +103,29 @@ namespace Unary.Managers
 
         internal override void Update()
         {
+            // update meat
+
+            var meats = new HashSet<int>();
+            foreach (var meat in Unary.Mod.GetSheep().Concat(Unary.Mod.GetDeer().Concat(Unary.Mod.GetBoar())))
+            {
+                meats.Add(meat);
+            }
+
+            Meat.Clear();
+            
+            foreach (var tile in Unary.GameState.Map.GetTilesInRange(Unary.GameState.MyPosition, 10))
+            {
+                foreach (var unit in tile.Units.Where(u => u.Targetable))
+                {
+                    if (meats.Contains(unit[ObjectData.BASE_TYPE]))
+                    {
+                        Meat.Add(unit);
+                    }
+                }
+            }
+
+            // update dropsites
+
             Dropsites.Clear();
 
             foreach (var unit in Unary.GameState.MyPlayer.Units.Where(u => u.Targetable))

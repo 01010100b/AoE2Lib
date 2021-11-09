@@ -27,7 +27,7 @@ namespace Unary
 
         public Unary() : base()
         {
-            NewGame();
+            
         }
 
         public void ExecuteCommand(Command command)

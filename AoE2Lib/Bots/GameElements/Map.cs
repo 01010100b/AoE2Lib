@@ -14,7 +14,7 @@ namespace AoE2Lib.Bots.GameElements
 {
     public class Tile
     {
-        public static readonly Point[] NEIGHBOURS = new[] { new Point(-1, 0), new Point(1, 0), new Point(0, -1), new Point(0, 1) };
+        private static readonly Point[] NEIGHBOURS = { new Point(-1, 0), new Point(1, 0), new Point(0, -1), new Point(0, 1) };
 
         public readonly int X;
         public readonly int Y;

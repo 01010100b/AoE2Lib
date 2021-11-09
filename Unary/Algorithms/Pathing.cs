@@ -8,22 +8,28 @@ namespace Unary.Algorithms
 {
     public static class Pathing
     {
-        public static Dictionary<T, int> GetPaths<T>(T start, Func<T, IEnumerable<T>> get_neighbours)
+        public static Dictionary<T, int> GetAllPathDistances<T>(IEnumerable<T> initial, Func<T, IEnumerable<T>> get_neighbours, int max_distance = int.MaxValue)
         {
             var dict = new Dictionary<T, int>();
             var queue = new Queue<T>();
-            dict.Add(start, 0);
-            queue.Enqueue(start);
-
+            foreach (var start in initial)
+            {
+                dict.Add(start, 0);
+                queue.Enqueue(start);
+            }
+            
             while (queue.Count > 0)
             {
                 var parent = queue.Dequeue();
                 var d = dict[parent];
 
-                foreach (var child in get_neighbours(parent).Where(c => !dict.ContainsKey(c)))
+                if (d < max_distance)
                 {
-                    dict.Add(child, d + 1);
-                    queue.Enqueue(child);
+                    foreach (var child in get_neighbours(parent).Where(c => !dict.ContainsKey(c)))
+                    {
+                        dict.Add(child, d + 1);
+                        queue.Enqueue(child);
+                    }
                 }
             }
 

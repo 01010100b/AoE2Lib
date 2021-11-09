@@ -9,14 +9,10 @@ namespace Unary.Managers
 {
     class StrategyManager : Manager
     {
+
         public StrategyManager(Unary unary) : base(unary)
         {
 
-        }
-
-        public IEnumerable<Resource> GetGatherers()
-        {
-            throw new NotImplementedException();
         }
 
         public void Attack(Player player)

@@ -29,6 +29,8 @@ namespace Unary
             Unit = unit;
             Unary = unary;
             ActualMovementPosition = Unit.Position;
+
+            Unary.UnitsManager.SetController(Unit, this);
         }
 
         public void Update()

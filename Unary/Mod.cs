@@ -96,5 +96,20 @@ namespace Unary
                 default: return 1;
             }
         }
+
+        public IEnumerable<int> GetSheep()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<int> GetDeer()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<int> GetBoar()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

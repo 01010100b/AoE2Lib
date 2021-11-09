@@ -133,17 +133,20 @@ namespace Unary.Managers
                         }
                     }
 
-                    if (unit[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || unit[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING)
+                    if (construction)
                     {
-                        var excl = GetExclusionZoneSize(unit[ObjectData.BASE_TYPE]);
-                        footprint = GetUnitFootprint(width, height, unit.Tile, excl);
-                        for (int x = footprint.X; x < footprint.Right; x++)
+                        if (unit[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || unit[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING)
                         {
-                            for (int y = footprint.Y; y < footprint.Bottom; y++)
+                            var excl = GetExclusionZoneSize(unit[ObjectData.BASE_TYPE]);
+                            footprint = GetUnitFootprint(width, height, unit.Tile, excl);
+                            for (int x = footprint.X; x < footprint.Right; x++)
                             {
-                                if (map.IsOnMap(x, y))
+                                for (int y = footprint.Y; y < footprint.Bottom; y++)
                                 {
-                                    ConstructionExcludedTiles.Add(map.GetTile(x, y));
+                                    if (map.IsOnMap(x, y))
+                                    {
+                                        ConstructionExcludedTiles.Add(map.GetTile(x, y));
+                                    }
                                 }
                             }
                         }
@@ -154,11 +157,10 @@ namespace Unary.Managers
 
         private void UpdateDistances()
         {
-            var home = Unary.BuildingManager.HomeTile;
-
-            if (home != null)
+            if (Unary.GameState.Map.IsOnMap(Unary.GameState.MyPosition))
             {
-                var dict = Pathing.GetPaths(home, x => x.GetNeighbours().Where(t => !IsLandBlocked(t)));
+                var tile = Unary.GameState.Map.GetTile(Unary.GameState.MyPosition);
+                var dict = Pathing.GetAllPathDistances(new[] { tile }, x => x.GetNeighbours().Where(t => !IsLandBlocked(t)));
                 Distances = dict;
                 Unary.Log.Debug($"Got {dict.Count} reachable tiles");
             }
