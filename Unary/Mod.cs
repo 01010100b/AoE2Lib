@@ -8,18 +8,29 @@ namespace Unary
 {
     class Mod
     {
-        public int Villager { get; set; } = 83;
-        public int TownCenter { get; set; } = 109;
-        public int TownCenterFoundation { get; set; } = 621;
-        public int House { get; set; } = 70;
-        public int Mill { get; set; } = 68;
-        public int MiningCamp { get; set; } = 584;
-        public int LumberCamp { get; set; } = 562;
-        public int Farm { get; set; } = 50;
-        public int Dock { get; set; } = 45;
-        public int FeudalAge { get; set; } = 101;
-        public int CastleAge { get; set; } = 102;
-        public int ImperialAge { get; set; } = 103;
+        public int Villager { get; private set; } = 83;
+        public int TownCenter { get; private set; } = 109;
+        public int TownCenterFoundation { get; private set; } = 621;
+        public int House { get; private set; } = 70;
+        public int Mill { get; private set; } = 68;
+        public int MiningCamp { get; private set; } = 584;
+        public int LumberCamp { get; private set; } = 562;
+        public int Farm { get; private set; } = 50;
+        public int Dock { get; private set; } = 45;
+        public int FeudalAge { get; private set; } = 101;
+        public int CastleAge { get; private set; } = 102;
+        public int ImperialAge { get; private set; } = 103;
+
+        private readonly List<int> Sheep = new();
+        private readonly List<int> Deer = new();
+        private readonly List<int> Boar = new();
+
+        public Mod()
+        {
+            Sheep.AddRange(new[] { 705, 1596, 1598, 1600, 1060, 1243, 305, 1245, 594, 833, 1142 });
+            Deer.AddRange(new[] { 65, 1239, 1026, 1019 });
+            Boar.AddRange(new[] { 412, 822, 1139, 48 });
+        }
 
         public void SetAoC()
         {
@@ -102,17 +113,17 @@ namespace Unary
 
         public IEnumerable<int> GetSheep()
         {
-            throw new NotImplementedException();
+            return Sheep;
         }
 
         public IEnumerable<int> GetDeer()
         {
-            throw new NotImplementedException();
+            return Deer;
         }
 
         public IEnumerable<int> GetBoar()
         {
-            throw new NotImplementedException();
+            return Boar;
         }
     }
 }

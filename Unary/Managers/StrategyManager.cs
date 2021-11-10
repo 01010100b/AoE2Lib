@@ -9,6 +9,7 @@ namespace Unary.Managers
 {
     class StrategyManager : Manager
     {
+        public Strategy CurrentStrategy { get; private set; }
 
         public StrategyManager(Unary unary) : base(unary)
         {

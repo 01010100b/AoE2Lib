@@ -81,9 +81,10 @@ namespace Unary.Managers
 
                 if (scout != null)
                 {
-                    var ctrl = new ScoutController(scout, Unary);
-                    ctrl.AttractorPosition = Unary.GameState.MyPosition;
-                    Unary.UnitsManager.SetController(scout, ctrl);
+                    var ctrl = new ScoutController(scout, Unary)
+                    {
+                        AttractorPosition = Unary.GameState.MyPosition
+                    };
                     scouts.Add(ctrl);
                 }
             }

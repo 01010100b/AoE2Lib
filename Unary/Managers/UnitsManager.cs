@@ -27,7 +27,14 @@ namespace Unary.Managers
 
         public void SetController(Unit unit, UnitController controller)
         {
-            Units[unit] = controller;
+            if (controller == null)
+            {
+                Units.Remove(unit);
+            }
+            else
+            {
+                Units[unit] = controller;
+            }
         }
 
         internal override void Update()

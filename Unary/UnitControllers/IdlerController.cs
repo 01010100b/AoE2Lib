@@ -20,8 +20,7 @@ namespace Unary.UnitControllers
         {
             if (Unit[ObjectData.CMDID] == (int)CmdId.VILLAGER)
             {
-                var ctrl = new GathererController(Unit, Unary);
-                Unary.UnitsManager.SetController(Unit, ctrl);
+                new GathererController(Unit, Unary);
             }
         }
     }

@@ -58,8 +58,7 @@ namespace Unary.UnitControllers.VillagerControllers
             else
             {
                 Unary.Log.Info($"Builder {Unit.Id} no foundation found");
-                var ctrl = new IdlerController(Unit, Unary);
-                Unary.UnitsManager.SetController(Unit, ctrl);
+                new IdlerController(Unit, Unary);
             }
         }
 

@@ -161,8 +161,7 @@ namespace Unary.UnitControllers.VillagerControllers
                     var mill = Unary.GameState.GetUnitType(Unary.Mod.Mill);
                     if (mill.Count > 0)
                     {
-                        var ctrl = new FarmerController(Unit, Unary);
-                        Unary.UnitsManager.SetController(Unit, ctrl);
+                        new FarmerController(Unit, Unary);
                     }
                 }
             }

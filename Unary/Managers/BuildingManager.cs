@@ -384,8 +384,7 @@ namespace Unary.Managers
                 if (gatherers.Count > 0)
                 {
                     var builder = gatherers[0].Unit;
-                    var ctrl = new BuilderController(builder, Unary);
-                    Unary.UnitsManager.SetController(builder, ctrl);
+                    new BuilderController(builder, Unary);
                 }
             }
         }
