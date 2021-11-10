@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Unary.UnitControllers
+namespace Unary.UnitControllers.VillagerControllers
 {
-    class FarmerController : UnitController
+    class FarmerController : VillagerController
     {
         public Tile Tile { get; private set; } = null;
 
@@ -19,7 +19,7 @@ namespace Unary.UnitControllers
 
         }
 
-        protected override void Tick()
+        protected override void VillagerTick()
         {
             if (Tile == null)
             {

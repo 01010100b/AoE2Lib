@@ -6,16 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Unary.UnitControllers
+namespace Unary.UnitControllers.VillagerControllers
 {
-    class HunterController : UnitController
+    class HunterController : VillagerController
     {
         public HunterController(Unit unit, Unary unary) : base(unit, unary)
         {
 
         }
 
-        protected override void Tick()
+        protected override void VillagerTick()
         {
             var target = ChooseTarget();
 

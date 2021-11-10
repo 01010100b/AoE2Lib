@@ -31,7 +31,7 @@ namespace Unary
                 Log.Info($"Started Unary {typeof(Program).Assembly.GetName().Version}");
                 Log.Info($"Directory: {Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName)}");
 
-                TestStrategy();
+                //TestStrategy();
 
                 Application.SetHighDpiMode(HighDpiMode.SystemAware);
                 Application.EnableVisualStyles();

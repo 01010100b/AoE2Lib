@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unary.UnitControllers.VillagerControllers;
 
-namespace Unary.UnitControllers
+namespace Unary.UnitControllers.VillagerControllers
 {
-    class GathererController : UnitController
+    class GathererController : VillagerController
     {
         public Resource Resource { get; set; } = Resource.NONE;
         public Unit Target { get; private set; } = null;
@@ -20,7 +21,7 @@ namespace Unary.UnitControllers
 
         }
 
-        protected override void Tick()
+        protected override void VillagerTick()
         {
             if (Resource != Resource.WOOD && Resource != Resource.FOOD && Resource != Resource.GOLD && Resource != Resource.STONE)
             {

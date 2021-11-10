@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Unary.UnitControllers
+namespace Unary.UnitControllers.MilitaryControllers
 {
-    class AttackerController : UnitController
+    class AttackerController : MilitaryController
     {
         public Unit Target { get; set; } = null;
 
@@ -18,7 +18,7 @@ namespace Unary.UnitControllers
 
         }
 
-        protected override void Tick()
+        protected override void MilitaryTick()
         {
             if (Target == null || Target.Targetable == false)
             {

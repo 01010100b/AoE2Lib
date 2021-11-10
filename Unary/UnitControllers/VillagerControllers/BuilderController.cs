@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Unary.UnitControllers
+namespace Unary.UnitControllers.VillagerControllers
 {
-    class BuilderController : UnitController
+    class BuilderController : VillagerController
     {
         public Unit Foundation { get; private set; }
 
@@ -17,7 +17,7 @@ namespace Unary.UnitControllers
 
         }
 
-        protected override void Tick()
+        protected override void VillagerTick()
         {
             if (Foundation == null)
             {

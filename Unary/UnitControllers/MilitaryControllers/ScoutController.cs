@@ -9,9 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using static Unary.Managers.MilitaryManager;
 
-namespace Unary.UnitControllers
+namespace Unary.UnitControllers.MilitaryControllers
 {
-    class ScoutController : UnitController
+    class ScoutController : MilitaryController
     {
         public Position AttractorPosition { get; set; } = Position.Zero;
         public double AttractorRadius { get; set; } = 0;
@@ -26,7 +26,7 @@ namespace Unary.UnitControllers
 
         }
 
-        protected override void Tick()
+        protected override void MilitaryTick()
         {
             if (State == null)
             {
