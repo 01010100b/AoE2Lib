@@ -14,6 +14,8 @@ namespace AoE2Lib.Bots
         public readonly Map Map;
         public Player MyPlayer => Players[Bot.PlayerNumber];
         public Player Gaia => Players[0];
+        public IEnumerable<Player> Enemies => GetPlayers().Where(p => p.Stance == PlayerStance.ENEMY);
+        public IEnumerable<Player> Allies => GetPlayers().Where(p => p.PlayerNumber != Bot.PlayerNumber && p.Stance == PlayerStance.ALLY);
         public Position MyPosition { get; private set; } = Position.Zero;
         public int Tick { get; private set; } = 0;
         public TimeSpan GameTime { get; private set; } = TimeSpan.Zero;

@@ -60,9 +60,16 @@ namespace Unary.Managers
                             if (!Units.ContainsKey(unit))
                             {
                                 Units[unit] = new IdlerController(unit, Unary);
-                                Unary.Log.Info($"New unit control {unit.Id}");
                             }
                         }; break;
+                }
+
+                if (IsDropsite(unit))
+                {
+                    if (!Units.ContainsKey(unit))
+                    {
+                        Units[unit] = new DropsiteController(unit, Unary);
+                    }
                 }
             }
 
@@ -79,6 +86,30 @@ namespace Unary.Managers
                     Units.Remove(controller.Unit);
                 }
             }
+        }
+
+        private bool IsDropsite(Unit unit)
+        {
+            if (unit[ObjectData.BASE_TYPE] == Unary.Mod.TownCenter)
+            {
+                return true;
+            }
+            else if (unit[ObjectData.BASE_TYPE] == Unary.Mod.Mill)
+            {
+                return true;
+            }
+            else if (unit[ObjectData.BASE_TYPE] == Unary.Mod.LumberCamp)
+            {
+                return true;
+            }
+            else if (unit[ObjectData.BASE_TYPE] == Unary.Mod.MiningCamp)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }    
         }
     }
 }

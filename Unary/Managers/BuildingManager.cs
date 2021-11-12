@@ -16,7 +16,6 @@ namespace Unary.Managers
         public static readonly Point[] TC_FARM_DELTAS = { new Point(2, 3), new Point(-1, 3), new Point(3, 0), new Point(3, -3), new Point(-4, 2), new Point(-4, -1), new Point(0, -4), new Point(-3, -4) };
         public static readonly Point[] MILL_FARM_DELTAS = { new Point(-1, 2), new Point(2, -1), new Point(2, 2), new Point(-3, -1), new Point(-1, -3) };
 
-        public Tile HomeTile { get; private set; }
         public double MaximumTownSize { get; private set; } = 40;
 
         private readonly HashSet<Tile> InsideTiles = new(); 
@@ -196,9 +195,7 @@ namespace Unary.Managers
                 return;
             }
 
-            HomeTile = map.GetTile(Unary.GameState.MyPosition);
-
-            foreach (var tile in map.GetTilesInRange(HomeTile.Position, MaximumTownSize))
+            foreach (var tile in map.GetTilesInRange(Unary.GameState.MyPosition, MaximumTownSize))
             {
                 InsideTiles.Add(tile);
             }
