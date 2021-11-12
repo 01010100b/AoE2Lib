@@ -37,6 +37,7 @@ namespace AoE2Lib.Bots.GameElements
 
         public readonly int PlayerNumber;
         public bool IsValid { get; private set; } = false;
+        public bool IsComputer { get; private set; } = false;
         public PlayerStance Stance { get; private set; } = PlayerStance.NEUTRAL;
         public bool InGame => GetFact(FactId.PLAYER_IN_GAME) == 1;
         public int Score => GetFact(FactId.CURRENT_SCORE);
@@ -116,6 +117,8 @@ namespace AoE2Lib.Bots.GameElements
             yield return new StanceToward() { InPlayerAnyPlayer = PlayerNumber, InConstESPlayerStance = (int)PlayerStance.ENEMY };
             yield return new StanceToward() { InPlayerAnyPlayer = PlayerNumber, InConstESPlayerStance = (int)PlayerStance.NEUTRAL };
 
+            yield return new PlayerComputer() { InPlayerAnyPlayer = PlayerNumber };
+
             foreach (var fact in FACTS)
             {
                 yield return new UpGetPlayerFact() { InPlayerAnyPlayer = PlayerNumber, InConstFactId = (int)fact, InConstParam = 0, OutGoalData = 100 };
@@ -161,7 +164,9 @@ namespace AoE2Lib.Bots.GameElements
                 Stance = PlayerStance.NEUTRAL;
             }
 
-            var index = 3;
+            IsComputer = responses[3].Unpack<PlayerComputerResult>().Result;
+
+            var index = 4;
             foreach (var fact in FACTS)
             {
                 var val = responses[index + 1].Unpack<GoalResult>().Result;

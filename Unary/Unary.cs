@@ -15,6 +15,7 @@ namespace Unary
     {
         public Mod Mod { get; private set; }
         public MapManager MapManager { get; private set; }
+        public DiplomacyManager DiplomacyManager { get; private set; }
         public BuildingManager BuildingManager { get; private set; }
         public StrategyManager StrategyManager { get; private set; }
         public EconomyManager EconomyManager { get; private set; }
@@ -44,6 +45,7 @@ namespace Unary
         {
             Mod = new Mod();
             MapManager = new MapManager(this);
+            DiplomacyManager = new DiplomacyManager(this);
             BuildingManager = new BuildingManager(this);
             StrategyManager = new StrategyManager(this);
             EconomyManager = new EconomyManager(this);
@@ -62,6 +64,10 @@ namespace Unary
             sw.Start();
             MapManager.Update();
             Log.Info($"Map Manager took {sw.ElapsedMilliseconds} ms");
+
+            sw.Restart();
+            DiplomacyManager.Update();
+            Log.Info($"Diplomacy Manager took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
             BuildingManager.Update();
