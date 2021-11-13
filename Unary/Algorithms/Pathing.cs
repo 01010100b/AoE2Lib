@@ -8,10 +8,10 @@ namespace Unary.Algorithms
 {
     public static class Pathing
     {
-        public static Dictionary<T, int> GetAllPathDistances<T>(IEnumerable<T> initial, Func<T, IEnumerable<T>> get_neighbours, int max_distance = int.MaxValue)
+        public static Dictionary<TNode, int> GetAllPathDistances<TNode>(IEnumerable<TNode> initial, Func<TNode, IEnumerable<TNode>> get_neighbours, int max_distance = int.MaxValue)
         {
-            var dict = new Dictionary<T, int>();
-            var queue = new Queue<T>();
+            var dict = new Dictionary<TNode, int>();
+            var queue = new Queue<TNode>();
             foreach (var start in initial)
             {
                 dict.Add(start, 0);

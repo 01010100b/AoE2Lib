@@ -31,7 +31,7 @@ namespace AoE2Lib.Bots
         private readonly Dictionary<int, Unit> Units = new Dictionary<int, Unit>();
         private readonly Dictionary<Resource, bool> ResourceFound = new Dictionary<Resource, bool>();
         private readonly Dictionary<Resource, int> DropsiteMinDistance = new Dictionary<Resource, int>();
-        private readonly Dictionary<StrategicNumber, int> StrategicNumbers = new Dictionary<StrategicNumber, int>();
+        private readonly Dictionary<int, int> StrategicNumbers = new Dictionary<int, int>();
         private readonly List<ProductionTask> ProductionTasks = new List<ProductionTask>();
         
         private readonly HashSet<Command> Commands = new HashSet<Command>();
@@ -127,8 +127,13 @@ namespace AoE2Lib.Bots
             }
         }
 
-        public int GetStrategicNumber(StrategicNumber sn)
+        public int GetStrategicNumber(int sn)
         {
+            if (sn < 0 || sn > 511)
+            {
+                throw new ArgumentOutOfRangeException(nameof(sn));
+            }
+
             if (StrategicNumbers.TryGetValue(sn, out int val))
             {
                 return val;
@@ -139,9 +144,24 @@ namespace AoE2Lib.Bots
             }
         }
 
+        public int GetStrategicNumber(StrategicNumber sn)
+        {
+            return GetStrategicNumber((int)sn);
+        }
+
+        public void SetStrategicNumber(int sn, int val)
+        {
+            if (sn < 0 || sn > 511)
+            {
+                throw new ArgumentOutOfRangeException(nameof(sn));
+            }
+
+            StrategicNumbers[sn] = val;
+        }
+
         public void SetStrategicNumber(StrategicNumber sn, int val)
         {
-            StrategicNumbers[sn] = val;
+            SetStrategicNumber((int)sn, val);
         }
 
         public void FindUnits(int player, Position position, int range)
@@ -184,72 +204,6 @@ namespace AoE2Lib.Bots
             }
 
             FindCommands.Add(command);
-
-            if (player == 0)
-            {
-                // find cliffs
-                command = new Command();
-
-                command.Add(new SetGoal() { InConstGoalId = 100, InConstValue = position.PointX });
-                command.Add(new SetGoal() { InConstGoalId = 101, InConstValue = position.PointY });
-                command.Add(new UpSetTargetPoint() { InGoalPoint = 100 });
-                command.Add(new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, InConstValue = player });
-                command.Add(new UpFullResetSearch());
-
-                command.Add(new UpFilterStatus() { InConstObjectStatus = 2, InConstObjectList = 1 });
-                command.Add(new UpFilterDistance() { InConstMinDistance = -1, InConstMaxDistance = range });
-
-                for (int i = 0; i < 10; i++)
-                {
-                    command.Add(new UpResetSearch() { InConstLocalIndex = 0, InConstLocalList = 0, InConstRemoteIndex = 0, InConstRemoteList = 1 });
-                    command.Add(new UpFindStatusRemote() { InConstUnitId = -1, InConstCount = 40 });
-                    command.Add(new UpSearchObjectIdList() { InConstSearchSource = 2 });
-                }
-
-                FindCommands.Add(command);
-
-                command = new Command();
-
-                command.Add(new SetGoal() { InConstGoalId = 100, InConstValue = position.PointX });
-                command.Add(new SetGoal() { InConstGoalId = 101, InConstValue = position.PointY });
-                command.Add(new UpSetTargetPoint() { InGoalPoint = 100 });
-                command.Add(new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, InConstValue = player });
-                command.Add(new UpFullResetSearch());
-
-                command.Add(new UpFilterStatus() { InConstObjectStatus = 4, InConstObjectList = 0 });
-                command.Add(new UpFilterDistance() { InConstMinDistance = -1, InConstMaxDistance = range });
-
-                for (int i = 0; i < 10; i++)
-                {
-                    command.Add(new UpResetSearch() { InConstLocalIndex = 0, InConstLocalList = 0, InConstRemoteIndex = 0, InConstRemoteList = 1 });
-                    command.Add(new UpFindStatusRemote() { InConstUnitId = -1, InConstCount = 40 });
-                    command.Add(new UpSearchObjectIdList() { InConstSearchSource = 2 });
-                }
-
-                FindCommands.Add(command);
-
-                command = new Command();
-
-                command.Add(new SetGoal() { InConstGoalId = 100, InConstValue = position.PointX });
-                command.Add(new SetGoal() { InConstGoalId = 101, InConstValue = position.PointY });
-                command.Add(new UpSetTargetPoint() { InGoalPoint = 100 });
-                command.Add(new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, InConstValue = player });
-                command.Add(new UpFullResetSearch());
-
-                command.Add(new UpFilterStatus() { InConstObjectStatus = 4, InConstObjectList = 1 });
-                command.Add(new UpFilterDistance() { InConstMinDistance = -1, InConstMaxDistance = range });
-
-                for (int i = 0; i < 10; i++)
-                {
-                    command.Add(new UpResetSearch() { InConstLocalIndex = 0, InConstLocalList = 0, InConstRemoteIndex = 0, InConstRemoteList = 1 });
-                    command.Add(new UpFindStatusRemote() { InConstUnitId = -1, InConstCount = 40 });
-                    command.Add(new UpSearchObjectIdList() { InConstSearchSource = 2 });
-                }
-
-                FindCommands.Add(command);
-            }
-
-            
         }
 
         public void FindResources(Resource resource, int player, Position position, int range)
@@ -314,12 +268,12 @@ namespace AoE2Lib.Bots
 
             foreach (var sn in StrategicNumbers)
             {
-                CommandInfo.Add(new SetStrategicNumber() { InConstSnId = (int)sn.Key, InConstValue = sn.Value });
+                CommandInfo.Add(new SetStrategicNumber() { InConstSnId = sn.Key, InConstValue = sn.Value });
             }
 
-            foreach (var sn in Enum.GetValues(typeof(StrategicNumber)).Cast<StrategicNumber>())
+            for (int sn = 0; sn < 512; sn++)
             {
-                CommandInfo.Add(new Protos.Expert.Fact.StrategicNumber() { InConstSnId = (int)sn });
+                CommandInfo.Add(new Protos.Expert.Fact.StrategicNumber() { InConstSnId = sn });
             }
 
             yield return CommandInfo;
@@ -410,7 +364,7 @@ namespace AoE2Lib.Bots
                     index++;
                 }
 
-                foreach (var sn in Enum.GetValues(typeof(StrategicNumber)).Cast<StrategicNumber>())
+                for (int sn = 0; sn < 512; sn++)
                 {
                     index++;
                     StrategicNumbers[sn] = responses[index].Unpack<StrategicNumberResult>().Result;

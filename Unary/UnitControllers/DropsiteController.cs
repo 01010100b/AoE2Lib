@@ -13,7 +13,6 @@ namespace Unary.UnitControllers
     class DropsiteController : UnitController
     {
         private readonly Dictionary<Resource, List<KeyValuePair<Tile, Unit>>> Resources = new();
-        private readonly List<Unit> Meat = new();
         private Dictionary<Tile, int> Distances { get; set; } = new();
 
         public DropsiteController(Unit unit, Unary unary) : base(unit, unary)
@@ -45,40 +44,15 @@ namespace Unary.UnitControllers
             }
         }
 
-        public bool IsMeatDropoff()
-        {
-            var basetype = Unit[ObjectData.BASE_TYPE];
-
-            if (basetype != Unary.Mod.TownCenter)
-            {
-                return false;
-            }
-
-            if (Unit.Position.DistanceTo(Unary.GameState.MyPosition) < 3)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public IEnumerable<Unit> GetMeat()
-        {
-            return Meat;
-        }
-
         protected override void Tick()
         {
             UpdateResources();
-            UpdateMeat();
             UpdateDistances();
         }
 
         private void UpdateResources()
         {
-            var range = 30;
+            var range = 10;
 
             Resources.Clear();
 
@@ -120,7 +94,7 @@ namespace Unary.UnitControllers
                     _ => throw new ArgumentOutOfRangeException(nameof(resource)),
                 };
 
-                foreach (var tile in Unary.GameState.Map.GetTilesInRange(Unit.Position, range).Where(t => Unary.MapManager.CanReach(t)))
+                foreach (var tile in Unary.GameState.Map.GetTilesInRange(Unit.Position, range))
                 {
                     foreach (var unit in tile.Units.Where(u => u.Targetable))
                     {
@@ -134,31 +108,6 @@ namespace Unary.UnitControllers
                                 }
                             }
                         }
-                    }
-                }
-            }
-        }
-
-        private void UpdateMeat()
-        {
-            var range = 10;
-            Meat.Clear();
-
-            foreach (var tile in Unary.GameState.Map.GetTilesInRange(Unit.Position, range))
-            {
-                foreach (var unit in tile.Units.Where(u => u.Targetable && u[ObjectData.CARRY] > 0))
-                {
-                    if (unit[ObjectData.CLASS] == (int)UnitClass.Livestock)
-                    {
-                        Meat.Add(unit);
-                    }
-                    else if (unit[ObjectData.CLASS] == (int)UnitClass.PreyAnimal)
-                    {
-                        Meat.Add(unit);
-                    }
-                    else if (unit[ObjectData.CLASS] == (int)UnitClass.PredatorAnimal)
-                    {
-                        Meat.Add(unit);
                     }
                 }
             }
@@ -180,7 +129,11 @@ namespace Unary.UnitControllers
                 if (Unary.GameState.Map.IsOnMap(x, y))
                 {
                     var tile = Unary.GameState.Map.GetTile(x, y);
-                    initial.Add(tile);
+
+                    if (Unary.MapManager.CanReach(tile))
+                    {
+                        initial.Add(tile);
+                    }
                 }
             }
 
@@ -190,7 +143,11 @@ namespace Unary.UnitControllers
                 if (Unary.GameState.Map.IsOnMap(x, y))
                 {
                     var tile = Unary.GameState.Map.GetTile(x, y);
-                    initial.Add(tile);
+
+                    if (Unary.MapManager.CanReach(tile))
+                    {
+                        initial.Add(tile);
+                    }
                 }
             }
 
@@ -200,7 +157,11 @@ namespace Unary.UnitControllers
                 if (Unary.GameState.Map.IsOnMap(x, y))
                 {
                     var tile = Unary.GameState.Map.GetTile(x, y);
-                    initial.Add(tile);
+
+                    if (Unary.MapManager.CanReach(tile))
+                    {
+                        initial.Add(tile);
+                    }
                 }
             }
 
@@ -210,7 +171,11 @@ namespace Unary.UnitControllers
                 if (Unary.GameState.Map.IsOnMap(x, y))
                 {
                     var tile = Unary.GameState.Map.GetTile(x, y);
-                    initial.Add(tile);
+
+                    if (Unary.MapManager.CanReach(tile))
+                    {
+                        initial.Add(tile);
+                    }
                 }
             }
 

@@ -55,7 +55,7 @@ namespace AoE2Lib.Bots.GameElements
 
                 return target;
             }
-            catch (ArgumentOutOfRangeException e)
+            catch (ArgumentOutOfRangeException)
             {
                 return null;
             }

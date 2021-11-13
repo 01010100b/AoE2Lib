@@ -10,6 +10,8 @@ namespace Unary.Managers
 {
     class DiplomacyManager : Manager
     {
+        public const int PROTOCOL_VERSION = 17231;
+        
         public class UnitIntel
         {
             public readonly int Id;
@@ -48,7 +50,10 @@ namespace Unary.Managers
 
         internal override void Update()
         {
-
+            for (int sn = 400; sn < 512; sn++)
+            {
+                Unary.GameState.SetStrategicNumber(sn, -1);
+            }
         }
     }
 }

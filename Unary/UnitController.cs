@@ -128,7 +128,7 @@ namespace Unary
             MoveCommand.Add(new SetStrategicNumber() { InConstSnId = (int)AoE2Lib.StrategicNumber.TARGET_POINT_ADJUSTMENT, InConstValue = 6 });
 
             var command_current = new Command();
-            command_current.Add(new Goal() { InConstGoalId = GL_CURRENT_DISTANCE }, ">", 0,
+            command_current.Add(new Goal() { InConstGoalId = GL_CURRENT_DISTANCE }, "<=", 0,
                 //new ChatToAll() { InTextString = "Move current" },
                 new UpFullResetSearch(),
                 new UpAddObjectById() { InConstSearchSource = 1, InConstId = Unit.Id },
@@ -144,7 +144,7 @@ namespace Unary
                 new SetGoal() { InConstGoalId = GL_CONTROL, InConstValue = 1 });
 
             var command_pred = new Command();
-            command_pred.Add(new Goal() { InConstGoalId = GL_CURRENT_DISTANCE }, "<=", 0,
+            command_pred.Add(new Goal() { InConstGoalId = GL_CURRENT_DISTANCE }, ">", 0,
                 //new ChatToAll() { InTextString = "Move pred" },
                 new UpFullResetSearch(),
                 new UpAddObjectById() { InConstSearchSource = 1, InConstId = Unit.Id },

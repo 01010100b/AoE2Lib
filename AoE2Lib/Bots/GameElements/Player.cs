@@ -47,7 +47,7 @@ namespace AoE2Lib.Bots.GameElements
 
         private readonly Dictionary<FactId, int> Facts = new Dictionary<FactId, int>();
         private readonly Dictionary<int, int> Goals = new Dictionary<int, int>();
-        private readonly Dictionary<StrategicNumber, int> StrategicNumbers = new Dictionary<StrategicNumber, int>();
+        private readonly Dictionary<int, int> StrategicNumbers = new Dictionary<int, int>();
 
         internal Player(Bot bot, int player) : base(bot)
         {
@@ -70,7 +70,14 @@ namespace AoE2Lib.Bots.GameElements
         {
             if (goal < 1 || goal > 512)
             {
-                throw new IndexOutOfRangeException(nameof(goal));
+                throw new ArgumentOutOfRangeException(nameof(goal));
+            }
+
+            if (!IsComputer)
+            {
+                Goals.Clear();
+
+                return -1;
             }
 
             if (PlayerNumber != Bot.PlayerNumber && Stance != PlayerStance.ALLY)
@@ -88,8 +95,20 @@ namespace AoE2Lib.Bots.GameElements
             return Goals[goal];
         }
 
-        public int GetStrategicNumber(StrategicNumber sn)
+        public int GetStrategicNumber(int sn)
         {
+            if (sn < 0 || sn > 511)
+            {
+                throw new ArgumentOutOfRangeException(nameof(sn));
+            }
+
+            if (!IsComputer)
+            {
+                StrategicNumbers.Clear();
+
+                return -1;
+            }
+
             if (PlayerNumber != Bot.PlayerNumber && Stance != PlayerStance.ALLY)
             {
                 StrategicNumbers.Clear();
@@ -103,6 +122,11 @@ namespace AoE2Lib.Bots.GameElements
             }
 
             return StrategicNumbers[sn];
+        }
+
+        public int GetStrategicNumber(StrategicNumber sn)
+        {
+            return GetStrategicNumber((int)sn);
         }
 
         protected override IEnumerable<IMessage> RequestElementUpdate()
@@ -190,7 +214,7 @@ namespace AoE2Lib.Bots.GameElements
             foreach (var id in ids)
             {
                 var val = responses[index].Unpack<UpAlliedSnResult>().Result;
-                StrategicNumbers[(StrategicNumber)id] = val;
+                StrategicNumbers[id] = val;
                 index++;
             }
         }

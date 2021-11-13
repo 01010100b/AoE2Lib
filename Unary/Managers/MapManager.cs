@@ -77,7 +77,7 @@ namespace Unary.Managers
             return Distances.ContainsKey(tile);
         }
 
-        public int GetDistance(Tile tile)
+        public int GetPathDistance(Tile tile)
         {
             if (Distances.TryGetValue(tile, out int distance))
             {
@@ -85,7 +85,7 @@ namespace Unary.Managers
             }
             else
             {
-                return -1;
+                return int.MaxValue;
             }
         }
 

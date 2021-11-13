@@ -191,6 +191,8 @@ namespace Unary.Managers
                     deltas = BuildingManager.MILL_FARM_DELTAS;
                 }
 
+                var farm_size = Unary.Mod.GetBuildingSize(Unary.Mod.Farm);
+
                 foreach (var delta in deltas)
                 {
                     var x = tile.X + delta.X;
@@ -200,7 +202,7 @@ namespace Unary.Managers
                     {
                         var t = Unary.GameState.Map.GetTile(x, y);
                         
-                        if (Unary.BuildingManager.CanBuildAt(3, 3, t, true))
+                        if (Unary.BuildingManager.CanBuildAt(farm_size, farm_size, t, true))
                         {
                             score += 4;
                         }
