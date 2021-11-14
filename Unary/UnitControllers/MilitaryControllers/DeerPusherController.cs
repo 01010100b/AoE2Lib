@@ -20,7 +20,7 @@ namespace Unary.UnitControllers.MilitaryControllers
 
         protected override void MilitaryTick()
         {
-            if (Deer == null || !Deer.Targetable)
+            if (Deer == null || !Deer.Targetable || Deer[ObjectData.HITPOINTS] == 0)
             {
                 ChooseDeer();
 
@@ -42,18 +42,12 @@ namespace Unary.UnitControllers.MilitaryControllers
 
         private void ChooseDeer()
         {
-            Unary.Log.Debug($"Choosing deer {Unit.Id}");
-
             var deer = Unary.GameState.Gaia.Units.Where(u => u.Targetable && u[ObjectData.CLASS] == (int)UnitClass.PreyAnimal && u[ObjectData.HITPOINTS] > 0).ToList();
             deer.Sort((a, b) => a.Position.DistanceTo(Unary.GameState.MyPosition).CompareTo(b.Position.DistanceTo(Unary.GameState.MyPosition)));
 
             if (deer.Count > 0)
             {
                 Deer = deer[0];
-            }
-            else
-            {
-                Unary.Log.Debug($"Failed to choose deer {Unit.Id}");
             }
         }
 
@@ -79,8 +73,6 @@ namespace Unary.UnitControllers.MilitaryControllers
             dpos += Deer.Position;
 
             Unit.Target(dpos);
-
-            Debug.WriteLine($"Pushing deer at {Deer.Position} from {dpos} pusher at {Unit.Position} with precise move {Unit[ObjectData.PRECISE_MOVE_X]},{Unit[ObjectData.PRECISE_MOVE_Y]}");
         }
     }
 }
