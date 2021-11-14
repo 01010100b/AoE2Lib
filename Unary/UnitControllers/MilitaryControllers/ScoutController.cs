@@ -28,6 +28,15 @@ namespace Unary.UnitControllers.MilitaryControllers
 
         protected override void MilitaryTick()
         {
+            var deer = Unary.GameState.Gaia.Units.Where(u => u.Targetable && u[ObjectData.CLASS] == (int)UnitClass.PreyAnimal && u[ObjectData.HITPOINTS] > 0).Count();
+
+            if (deer > 0)
+            {
+                new DeerPusherController(Unit, Unary);
+
+                return;
+            }
+
             if (State == null)
             {
                 FindState();

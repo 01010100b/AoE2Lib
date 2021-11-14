@@ -27,8 +27,7 @@ namespace Unary.UnitControllers.MilitaryControllers
 
             if (Target != null)
             {
-                MovePosition = Target.Position;
-                MoveRadius = Math.Max(0, Unit[ObjectData.RANGE]);
+                MoveTo(Target.Position, Math.Max(0, Unit[ObjectData.RANGE]));
                 AttackTarget();
                 Target.RequestUpdate();
             }
@@ -79,7 +78,7 @@ namespace Unary.UnitControllers.MilitaryControllers
             var max_next_attack = Unit[ObjectData.RELOAD_TIME] - 500;
 
             Debug.WriteLine($"attacking target {Target.Id} with {Unit.Id}");
-            Unit.Target(Target, null, null, null, 0, ATTACK_MS);
+            Unit.Target(Target, UnitAction.DEFAULT, null, null, 0, ATTACK_MS);
 
             PerformPotentialFieldStep(ATTACK_MS + 1, max_next_attack);
         }

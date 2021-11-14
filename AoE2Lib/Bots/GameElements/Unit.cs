@@ -4,6 +4,7 @@ using Protos.Expert.Action;
 using Protos.Expert.Fact;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -61,7 +62,7 @@ namespace AoE2Lib.Bots.GameElements
             }
         }
 
-        public void Target(Unit target, UnitAction? action = null, UnitFormation? formation = null, UnitStance? stance = null, int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue, Unit backup = null)
+        public void Target(Unit target, UnitAction action = UnitAction.DEFAULT, UnitFormation? formation = null, UnitStance? stance = null, int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue, Unit backup = null)
         {
             if (target == null)
             {
@@ -136,7 +137,7 @@ namespace AoE2Lib.Bots.GameElements
                 new UpTargetObjects()
                 {
                     InConstTarget = 1,
-                    InConstTargetAction = action.HasValue ? (int)action.Value : (int)UnitAction.DEFAULT,
+                    InConstTargetAction = (int)action,
                     InConstFormation = formation.HasValue ? (int)formation.Value : -1,
                     InConstAttackStance = stance.HasValue ? (int)stance.Value : -1
                 }
@@ -145,7 +146,7 @@ namespace AoE2Lib.Bots.GameElements
             Bot.GameState.AddCommand(command);
         }
 
-        public void Target(Position position, UnitAction? action = null, UnitFormation? formation = null, UnitStance? stance = null, int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue)
+        public void Target(Position position, UnitAction action = UnitAction.MOVE, UnitFormation? formation = null, UnitStance? stance = null, int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue)
         {
             RequestUpdate();
 
@@ -188,34 +189,37 @@ namespace AoE2Lib.Bots.GameElements
 
             command.Add(new UpSetTargetById() { InConstId = Id });
             command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.ID, OutGoalData = GL_TEMP });
-            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "==", Id, 
-                new UpModifyGoal() { IoGoalId = GL_CHECKS, MathOp = op_add, InOpValue = 1 });
+            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "!=", Id,
+                new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = -1 });
 
             // check 2: next_attack >= min_next_attack
 
             command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.NEXT_ATTACK, OutGoalData = GL_TEMP });
-            command.Add(new Goal() { InConstGoalId = GL_TEMP }, ">=", min_next_attack, 
-                new UpModifyGoal() { IoGoalId = GL_CHECKS, MathOp = op_add, InOpValue = 1 });
+            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "<", min_next_attack,
+                new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = -2 });
 
             // check 3: next_attack <= max_next_attack
 
-            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "<=", max_next_attack, 
-                new UpModifyGoal() { IoGoalId = GL_CHECKS, MathOp = op_add, InOpValue = 1 });
+            command.Add(new Goal() { InConstGoalId = GL_TEMP }, ">", max_next_attack,
+                new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = -3 });
 
             // run if all checks pass
 
-            command.Add(new Goal() { InConstGoalId = GL_CHECKS }, "==", 3,
+            command.Add(new Goal() { InConstGoalId = GL_CHECKS }, "==", 0,
                 new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.TARGET_POINT_ADJUSTMENT, InConstValue = 6 },
                 new UpFullResetSearch(),
                 new UpAddObjectById() { InConstSearchSource = 1, InConstId = Id },
                 new UpTargetPoint()
                 {
                     InGoalPoint = GL_PRECISE_X,
-                    InConstTargetAction = action.HasValue ? (int)action.Value : -1,
+                    InConstTargetAction = (int)action,
                     InConstFormation = formation.HasValue ? (int)formation.Value : -1,
                     InConstAttackStance = stance.HasValue ? (int)stance.Value : -1
                 }
             );
+
+            command.Add(new Goal() { InConstGoalId = GL_CHECKS }, "!=", 0,
+                new UpChatDataToSelf() { InTextFormattedString = "failed move %d", InGoalValue = GL_CHECKS });
 
             Bot.GameState.AddCommand(command);
         }

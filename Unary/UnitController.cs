@@ -17,9 +17,9 @@ namespace Unary
         public readonly Unit Unit;
         public readonly Unary Unary;
         public readonly PotentialField PotentialField = new();
-        public Position MovePosition { get; protected set; } = Position.Zero;
-        public double MoveRadius { get; protected set; } = 1e5;
 
+        private Position MovePosition { get; set; } = Position.Zero;
+        private double MoveRadius { get; set; } = 1e5;
         private readonly List<Unit> RelevantUnits = new();
         private readonly Command MoveCommand = new();
         private Position ActualMovementPosition { get; set; }
@@ -35,6 +35,8 @@ namespace Unary
 
         public void Update()
         {
+            Unit.RequestUpdate();
+
             if (MoveCommand.HasResponses)
             {
                 var responses = MoveCommand.GetResponses();
@@ -57,6 +59,14 @@ namespace Unary
             if (GetHashCode() % 5 == Unary.GameState.Tick % 5)
             {
                 UpdateRelevantUnits();
+            }
+
+            var target = Unit.GetTarget();
+            if (target != null && target[ObjectData.CLASS] == (int)UnitClass.PredatorAnimal && target[ObjectData.HITPOINTS] > 0)
+            {
+                Unary.Log.Debug($"Unit {Unit.Id} fighting animal {target.Id}");
+
+                return;
             }
             
             Tick();

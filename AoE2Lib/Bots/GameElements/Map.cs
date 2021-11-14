@@ -15,6 +15,7 @@ namespace AoE2Lib.Bots.GameElements
     public class Tile
     {
         private static readonly Point[] NEIGHBOURS = { new Point(-1, 0), new Point(1, 0), new Point(0, -1), new Point(0, 1) };
+        private static readonly Point[] DIAGONAL_NEIGHTBOURS = { new Point(-1, -1), new Point(-1, 1), new Point(1, -1), new Point(1, 1) };
 
         public readonly int X;
         public readonly int Y;
@@ -37,9 +38,16 @@ namespace AoE2Lib.Bots.GameElements
             Map = map;
         }
 
-        public IEnumerable<Tile> GetNeighbours()
+        public IEnumerable<Tile> GetNeighbours(bool diagonal = false)
         {
-            foreach (var delta in NEIGHBOURS)
+            var deltas = NEIGHBOURS.AsEnumerable();
+            
+            if (diagonal)
+            {
+                deltas = NEIGHBOURS.Concat(DIAGONAL_NEIGHTBOURS);
+            }
+
+            foreach (var delta in deltas)
             {
                 var x = X + delta.X;
                 var y = Y + delta.Y;

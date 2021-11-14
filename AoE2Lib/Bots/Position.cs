@@ -107,6 +107,11 @@ namespace AoE2Lib.Bots
             return a;
         }
 
+        public Position Normalize()
+        {
+            return this / Math.Max(double.Epsilon, Norm);
+        }
+
         public Position Rotate(double angle)
         {
             // angle CCW
