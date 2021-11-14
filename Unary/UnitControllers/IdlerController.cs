@@ -20,7 +20,7 @@ namespace Unary.UnitControllers
         {
             if (Unit[ObjectData.CMDID] == (int)CmdId.VILLAGER)
             {
-                if (Unary.UnitsManager.GetControllers<HunterController>().Count == 0)
+                if (Unary.UnitsManager.GetControllers<HunterController>().Count < 3 && Unary.UnitsManager.GetControllers<GathererController>().Count > 0)
                 {
                     new HunterController(Unit, Unary);
                 }

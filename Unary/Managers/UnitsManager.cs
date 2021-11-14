@@ -76,7 +76,6 @@ namespace Unary.Managers
             var controllers = GetControllers<UnitController>();
             foreach (var controller in controllers)
             {
-                controller.Unit.RequestUpdate();
                 if (controller.Unit.Targetable)
                 {
                     controller.Update();

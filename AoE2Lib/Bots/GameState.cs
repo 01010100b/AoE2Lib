@@ -91,15 +91,19 @@ namespace AoE2Lib.Bots
             return UnitTypes[id];
         }
 
-        public Unit GetUnit(int id)
+        public bool TryGetUnit(int id, out Unit unit)
         {
-            if (Units.TryGetValue(id, out Unit unit))
+            if (Units.TryGetValue(id, out Unit u))
             {
-                return unit;
+                unit = u;
+
+                return true;
             }
             else
             {
-                throw new ArgumentOutOfRangeException(nameof(id));
+                unit = null;
+
+                return false;
             }
         }
 

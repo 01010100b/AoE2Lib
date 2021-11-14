@@ -32,9 +32,12 @@ namespace Unary.UnitControllers.MilitaryControllers
 
             if (deer > 0)
             {
-                new DeerPusherController(Unit, Unary);
+                if (Unary.UnitsManager.GetControllers<DeerPusherController>().Count == 0)
+                {
+                    new DeerPusherController(Unit, Unary);
 
-                return;
+                    return;
+                }
             }
 
             if (State == null)

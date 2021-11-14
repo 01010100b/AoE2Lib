@@ -50,13 +50,11 @@ namespace AoE2Lib.Bots.GameElements
 
             var id = this[ObjectData.TARGET_ID];
 
-            try
+            if (Bot.GameState.TryGetUnit(id, out Unit unit))
             {
-                var target = Bot.GameState.GetUnit(id);
-
-                return target;
+                return unit;
             }
-            catch (ArgumentOutOfRangeException)
+            else
             {
                 return null;
             }

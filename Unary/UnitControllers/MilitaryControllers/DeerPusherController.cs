@@ -49,6 +49,10 @@ namespace Unary.UnitControllers.MilitaryControllers
             {
                 Deer = deer[0];
             }
+            else
+            {
+                Deer = null;
+            }
         }
 
         private void PushDeer()
