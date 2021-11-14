@@ -16,7 +16,7 @@ namespace AoE2Lib.Bots
 {
     public abstract class Bot
     {
-        public const int SN_PENDING_PLACEMENT = 450;
+        public const int SN_PENDING_PLACEMENT = 186;
 
         public virtual string Name { get { return GetType().Name; } }
         public GameVersion GameVersion { get; private set; }

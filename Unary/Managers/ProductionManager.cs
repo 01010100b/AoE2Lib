@@ -52,12 +52,17 @@ namespace Unary.Managers
 
         public void Build(UnitType building, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
         {
+            if (building[ObjectData.BASE_TYPE] == Unary.Mod.TownCenter)
+            {
+                building = Unary.GameState.GetUnitType(Unary.Mod.TownCenterFoundation);
+            }
+
             var placements = Unary.BuildingManager.GetBuildingPlacements(building).ToList();
 
-            if (placements.Count > 1000)
+            if (placements.Count > 100)
             {
                 placements.Sort((a, b) => a.Position.DistanceTo(Unary.GameState.MyPosition).CompareTo(b.Position.DistanceTo(Unary.GameState.MyPosition)));
-                placements.RemoveRange(1000, placements.Count - 1000);
+                placements.RemoveRange(100, placements.Count - 100);
             }
 
             placements.Sort((a, b) => GetPlacementScore(building, b).CompareTo(GetPlacementScore(building, a)));

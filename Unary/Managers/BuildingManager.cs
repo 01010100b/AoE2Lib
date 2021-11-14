@@ -324,6 +324,8 @@ namespace Unary.Managers
                 return;
             }
 
+            Unary.Log.Debug($"Inside tiles {InsideTiles.Count}");
+
             var inside = InsideTiles.ToList();
 
             foreach (var kvp in BuildingPlacements)
@@ -333,7 +335,7 @@ namespace Unary.Managers
 
                 tiles.RemoveWhere(t => t.GetHashCode() % 100 == Unary.GameState.Tick % 100 || !Unary.MapManager.CanReach(t));
 
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 100; i++)
                 {
                     var t = inside[Unary.Rng.Next(inside.Count)];
 
@@ -342,6 +344,8 @@ namespace Unary.Managers
                         tiles.Add(t);
                     }
                 }
+
+                Unary.Log.Debug($"Got {tiles.Count} placements for size {size}");
             }
         }
 

@@ -77,6 +77,7 @@ namespace AoE2Lib.Bots.GameElements
             }
 
             var places = tiles.Take(100).ToList();
+            Bot.Log.Debug($"Building {Id} on {places.Count} places");
             if (places.Count == 0)
             {
                 return;

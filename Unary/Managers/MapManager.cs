@@ -1,5 +1,8 @@
 ﻿using AoE2Lib;
+using AoE2Lib.Bots;
 using AoE2Lib.Bots.GameElements;
+using Protos.Expert.Action;
+using Protos.Expert.Fact;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -41,6 +44,8 @@ namespace Unary.Managers
         private readonly HashSet<Tile> ConstructionExcludedTiles = new();
         private readonly HashSet<Tile> LandBlockedTiles = new();
         private Dictionary<Tile, int> Distances { get; set; } = new();
+        private readonly Dictionary<Tile, bool> Cliffs = new();
+        private readonly Dictionary<Tile, Command> CliffFindCommands = new();
 
         public MapManager(Unary unary) : base(unary)
         {
@@ -69,6 +74,14 @@ namespace Unary.Managers
                 return false;
             }
 
+            if (Cliffs.TryGetValue(tile, out bool cliff))
+            {
+                if (cliff)
+                {
+                    return true;
+                }
+            }
+
             return LandBlockedTiles.Contains(tile);
         }
 
@@ -91,8 +104,73 @@ namespace Unary.Managers
 
         internal override void Update()
         {
+            if (!Unary.GameState.Map.Updated)
+            {
+                return;
+            }
+
+            FindCliffs();
             UpdateTiles();
             UpdateDistances();
+        }
+
+        private void FindCliffs()
+        {
+            const int CLIFF_START = 264;
+            const int CLIFF_END = 272;
+
+            foreach (var kvp in CliffFindCommands)
+            {
+                var tile = kvp.Key;
+                var command = kvp.Value;
+
+                if (command.HasResponses)
+                {
+                    var responses = command.GetResponses();
+                    var contains = false;
+
+                    for (int i = 2; i < responses.Count; i++)
+                    {
+                        if (responses[i].Unpack<UpPointContainsResult>().Result)
+                        {
+                            contains = true;
+                        }
+                    }
+
+                    Cliffs.Add(tile, contains);
+                }
+            }
+
+            CliffFindCommands.Clear();
+
+            for (int i = 0; i < 1000; i++)
+            {
+                var x = Unary.Rng.Next(Unary.GameState.Map.Width);
+                var y = Unary.Rng.Next(Unary.GameState.Map.Height);
+                var tile = Unary.GameState.Map.GetTile(x, y);
+                
+                if (tile.Explored && !Cliffs.ContainsKey(tile) && !CliffFindCommands.ContainsKey(tile))
+                {
+                    var command = new Command();
+                    command.Add(new SetGoal() { InConstGoalId = 100, InConstValue = tile.X });
+                    command.Add(new SetGoal() { InConstGoalId = 101, InConstValue = tile.Y });
+
+                    for (int id = CLIFF_START; id <= CLIFF_END; id++)
+                    {
+                        command.Add(new UpPointContains() { InConstObjectId = id, InGoalPoint = 100 });
+                    }
+
+                    CliffFindCommands.Add(tile, command);
+                    Unary.ExecuteCommand(command);
+                }
+
+                if (CliffFindCommands.Count >= 100)
+                {
+                    break;
+                }
+            }
+
+            Unary.Log.Debug($"Found {Cliffs.Values.Count(b => b)} cliffs");
         }
 
         private void UpdateTiles()

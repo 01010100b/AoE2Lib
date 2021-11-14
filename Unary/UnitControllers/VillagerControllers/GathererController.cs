@@ -131,7 +131,7 @@ namespace Unary.UnitControllers.VillagerControllers
                         request = false;
                     }
 
-                    distance += 0.05 * Unit.Position.DistanceTo(res.Key.Position);
+                    distance += 0.1 * Unit.Position.DistanceTo(res.Key.Position);
 
                     if (distance < best_distance)
                     {

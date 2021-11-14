@@ -121,6 +121,8 @@ namespace AoE2Lib.Bots
                 command.Add(new Goal() { InConstGoalId = GL_WAS_BUILT }, "==", 0, icommand);
             }
 
+            
+
             return command;
         }
     }

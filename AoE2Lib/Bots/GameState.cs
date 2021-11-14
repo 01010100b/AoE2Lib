@@ -445,11 +445,6 @@ namespace AoE2Lib.Bots
                     var tile = Map.GetTile(unit.Position);
                     tile.Units.Add(unit);
                 }
-
-                if (unit[ObjectData.TYPE] >= 264 && unit[ObjectData.TYPE] <= 272)
-                {
-                    Debug.WriteLine($"FOUND cliff at {unit.Position}");
-                }
             }
 
             sw.Stop();
@@ -525,7 +520,7 @@ namespace AoE2Lib.Bots
                 return;
             }
 
-            if (Map.Width <= 0 || Map.Height <= 0)
+            if (!Map.Updated)
             {
                 return;
             }
