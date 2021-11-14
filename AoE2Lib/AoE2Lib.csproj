@@ -53,4 +53,8 @@
 		</Content>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <NativeLibs Remove="ObjectPool.cs" />
+	</ItemGroup>
+
 </Project>

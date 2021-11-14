@@ -54,7 +54,11 @@ namespace Unary
 
             MoveCommand.Reset();
 
-            UpdateRelevantUnits();
+            if (GetHashCode() % 5 == Unary.GameState.Tick % 5)
+            {
+                UpdateRelevantUnits();
+            }
+            
             Tick();
         }
 
@@ -185,7 +189,8 @@ namespace Unary
 
             var enemies = RelevantUnits
                 .Where(u => u.Targetable && Unary.GameState.GetPlayer(u.PlayerNumber).Stance == PlayerStance.ENEMY)
-                .Select(u => new ValueTuple<double, Position, double>(1d, u.Position, u[ObjectData.RANGE] + 1));
+                .Select(u => new ValueTuple<double, Position, double>(1d, u.Position, u[ObjectData.RANGE] + 1))
+                .ToList();
 
             var best_pos = current;
             var best_val = double.MaxValue;
