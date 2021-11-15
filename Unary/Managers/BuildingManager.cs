@@ -25,7 +25,6 @@ namespace Unary.Managers
         private readonly Dictionary<Unit, List<KeyValuePair<Tile, double>>> GoldPlacements = new();
         private readonly Dictionary<Unit, List<KeyValuePair<Tile, double>>> StonePlacements = new();
         private readonly Dictionary<int, HashSet<Tile>> BuildingPlacements = new();
-        private readonly HashSet<Unit> Foundations = new();
 
         public BuildingManager(Unary unary) : base(unary)
         {
@@ -90,11 +89,6 @@ namespace Unary.Managers
             }
         }
 
-        public IEnumerable<Unit> GetFoundations()
-        {
-            return Foundations;
-        }
-
         public bool CanBuildAt(int width, int height, Tile tile, bool ignore_exclusion = false)
         {
             var footprint = MapManager.GetUnitFootprint(width, height, tile, 0);
@@ -145,7 +139,6 @@ namespace Unary.Managers
             UpdateDropsitePlacements(Resource.GOLD);
             UpdateDropsitePlacements(Resource.STONE);
             UpdateBuildingPlacements();
-            UpdateBuilders();
         }
 
         private void UpdateStrategicNumbers()
@@ -346,47 +339,6 @@ namespace Unary.Managers
                 }
 
                 Unary.Log.Debug($"Got {tiles.Count} placements for size {size}");
-            }
-        }
-
-        private void UpdateBuilders()
-        {
-            Foundations.RemoveWhere(f => f[ObjectData.STATUS] != 0 || !f.Targetable);
-
-            foreach (var unit in Unary.GameState.MyPlayer.Units.Where(u => u.Targetable && u[ObjectData.STATUS] == 0 && !Foundations.Contains(u)))
-            {
-                if (unit[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || unit[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING)
-                {
-                    var type = unit[ObjectData.BASE_TYPE];
-
-                    if (type != Unary.Mod.Farm && type != Unary.Mod.LumberCamp && type != Unary.Mod.MiningCamp)
-                    {
-                        if (!Unary.MapManager.CanReach(unit.Tile))
-                        {
-                            unit.Target(unit.Position, UnitAction.DELETE);
-                            Unary.Log.Debug($"Can not reach foundation at {unit.Position}");
-                        }
-                        else
-                        {
-                            Foundations.Add(unit);
-                        }
-                    }
-                }
-            }
-
-            var max_builders = Math.Min(4, Foundations.Count);
-            var builders = Unary.UnitsManager.GetControllers<BuilderController>().Count;
-            if (builders < max_builders)
-            {
-                var foundation = Foundations.First();
-                var gatherers = Unary.UnitsManager.GetControllers<GathererController>();
-                gatherers.Sort((a, b) => a.Unit.Position.DistanceTo(foundation.Position).CompareTo(b.Unit.Position.DistanceTo(foundation.Position)));
-
-                if (gatherers.Count > 0)
-                {
-                    var builder = gatherers[0].Unit;
-                    new BuilderController(builder, Unary);
-                }
             }
         }
 

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unary.UnitControllers.BuildingControllers;
 using Unary.UnitControllers.VillagerControllers;
 
 namespace Unary.UnitControllers
@@ -18,16 +19,46 @@ namespace Unary.UnitControllers
 
         protected override void Tick()
         {
-            if (Unit[ObjectData.CMDID] == (int)CmdId.VILLAGER)
+            var cmdid = (CmdId)Unit[ObjectData.CMDID];
+
+            if (cmdid == CmdId.VILLAGER)
             {
-                if (Unary.UnitsManager.GetControllers<HunterController>().Count < 3 && Unary.UnitsManager.GetControllers<GathererController>().Count > 0)
-                {
-                    new HunterController(Unit, Unary);
-                }
-                else
-                {
-                    new GathererController(Unit, Unary);
-                }
+                HandleVillager();
+            }
+            else if (cmdid == CmdId.CIVILIAN_BUILDING || cmdid == CmdId.MILITARY_BUILDING)
+            {
+                HandleBuilding();
+            }
+        }
+
+        private void HandleVillager()
+        {
+            if (Unary.UnitsManager.GetControllers<HunterController>().Count < 3)
+            {
+                new HunterController(Unit, Unary);
+            }
+            else
+            {
+                new GathererController(Unit, Unary);
+            }
+        }
+
+        private void HandleBuilding()
+        {
+            var type = Unit[ObjectData.BASE_TYPE];
+            var mod = Unary.Mod;
+            
+            if (type == mod.TownCenter || type == mod.Mill || type == mod.LumberCamp || type == mod.MiningCamp)
+            {
+                new DropsiteController(Unit, Unary);
+
+                return;
+            }
+            else
+            {
+                new GenericBuildingController(Unit, Unary);
+
+                return;
             }
         }
     }

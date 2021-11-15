@@ -28,7 +28,7 @@ namespace Unary.UnitControllers.MilitaryControllers
 
         protected override void MilitaryTick()
         {
-            var deer = Unary.GameState.Gaia.Units.Where(u => u.Targetable && u[ObjectData.CLASS] == (int)UnitClass.PreyAnimal && u[ObjectData.HITPOINTS] > 0).Count();
+            var deer = Unary.GameState.Gaia.Units.Where(u => u.Targetable && u.Position.DistanceTo(Unary.GameState.MyPosition) < 50 && u[ObjectData.CLASS] == (int)UnitClass.PreyAnimal && u[ObjectData.HITPOINTS] > 0).Count();
 
             if (deer > 0)
             {
@@ -87,8 +87,11 @@ namespace Unary.UnitControllers.MilitaryControllers
                     
                     if (best == null || cost < best_cost)
                     {
-                        best = state;
-                        best_cost = cost;
+                        if (Unary.MapManager.CanReach(state.Tile))
+                        {
+                            best = state;
+                            best_cost = cost;
+                        }
                     }
                 }
             }

@@ -143,14 +143,14 @@ namespace Unary.UnitControllers.VillagerControllers
                 }
             }
 
+            if (request)
+            {
+                Unary.ProductionManager.RequestDropsite(this);
+            }
+
             if (Target != null)
             {
                 Unary.Log.Debug($"Gatherer {Unit.Id} choose target {Target.Id}");
-
-                if (request)
-                {
-                    Unary.ProductionManager.RequestDropsite(this);
-                }
             }
             else
             {
@@ -162,8 +162,12 @@ namespace Unary.UnitControllers.VillagerControllers
                     if (mill.Count > 0)
                     {
                         new FarmerController(Unit, Unary);
+
+                        return;
                     }
                 }
+
+                Resource = Resource.NONE;
             }
         }
 

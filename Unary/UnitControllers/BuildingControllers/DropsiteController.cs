@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using Unary.Algorithms;
 using Unary.Managers;
 
-namespace Unary.UnitControllers
+namespace Unary.UnitControllers.BuildingControllers
 {
-    class DropsiteController : UnitController
+    class DropsiteController : BuildingController
     {
         private readonly Dictionary<Resource, List<KeyValuePair<Tile, Unit>>> Resources = new();
         private Dictionary<Tile, int> Distances { get; set; } = new();
@@ -44,7 +44,7 @@ namespace Unary.UnitControllers
             }
         }
 
-        protected override void Tick()
+        protected override void BuildingTick()
         {
             UpdateResources();
             UpdateDistances();
@@ -52,7 +52,7 @@ namespace Unary.UnitControllers
 
         private void UpdateResources()
         {
-            var range = 10;
+            var range = 20;
 
             Resources.Clear();
 

@@ -1,4 +1,5 @@
 ﻿using AoE2Lib;
+using AoE2Lib.Bots;
 using AoE2Lib.Bots.GameElements;
 using System;
 using System.Collections.Generic;
@@ -42,7 +43,7 @@ namespace Unary.UnitControllers.MilitaryControllers
 
         private void ChooseDeer()
         {
-            var deer = Unary.GameState.Gaia.Units.Where(u => u.Targetable && u[ObjectData.CLASS] == (int)UnitClass.PreyAnimal && u[ObjectData.HITPOINTS] > 0).ToList();
+            var deer = Unary.GameState.Gaia.Units.Where(u => u.Targetable && u.Position.DistanceTo(Unary.GameState.MyPosition) < 50 && u[ObjectData.CLASS] == (int)UnitClass.PreyAnimal && u[ObjectData.HITPOINTS] > 0).ToList();
             deer.Sort((a, b) => a.Position.DistanceTo(Unary.GameState.MyPosition).CompareTo(b.Position.DistanceTo(Unary.GameState.MyPosition)));
 
             if (deer.Count > 0)
@@ -58,25 +59,35 @@ namespace Unary.UnitControllers.MilitaryControllers
         private void PushDeer()
         {
             var best_distance = int.MaxValue;
-            var best_tile = Deer.Tile;
+            var best_pos = Position.FromPoint(-1, -1);
 
             foreach (var tile in Deer.Tile.GetNeighbours(true).Where(t => Unary.MapManager.CanReach(t)))
             {
                 var distance = Unary.MapManager.GetPathDistance(tile);
 
-                if (distance <= best_distance)
+                if (distance <= best_distance || !Unary.GameState.Map.IsOnMap(best_pos))
                 {
                     best_distance = distance;
-                    best_tile = tile;
+
+                    var dpos = tile.Center - Deer.Position;
+                    dpos = dpos.Normalize();
+                    dpos *= -1;
+                    dpos += Deer.Position;
+
+                    if (Unary.GameState.Map.IsOnMap(dpos))
+                    {
+                        var t = Unary.GameState.Map.GetTile(dpos);
+
+                        if (Unary.MapManager.CanReach(t))
+                        {
+                            best_pos = dpos;
+                            best_distance = distance;
+                        }
+                    }
                 }
             }
 
-            var dpos = best_tile.Center - Deer.Position;
-            dpos = dpos.Normalize();
-            dpos *= -1;
-            dpos += Deer.Position;
-
-            Unit.Target(dpos);
+            Unit.Target(best_pos);
         }
     }
 }

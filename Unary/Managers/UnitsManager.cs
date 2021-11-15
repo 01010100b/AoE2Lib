@@ -46,30 +46,9 @@ namespace Unary.Managers
         {
             foreach (var unit in Unary.GameState.MyPlayer.Units.Where(u => u.Targetable))
             {
-                var cmdid = (CmdId)unit[ObjectData.CMDID];
-                switch (cmdid)
+                if (!Units.ContainsKey(unit))
                 {
-                    case CmdId.FISHING_SHIP:
-                    case CmdId.LIVESTOCK_GAIA:
-                    case CmdId.MILITARY:
-                    case CmdId.MONK:
-                    case CmdId.TRADE:
-                    case CmdId.TRANSPORT:
-                    case CmdId.VILLAGER:
-                        {
-                            if (!Units.ContainsKey(unit))
-                            {
-                                Units[unit] = new IdlerController(unit, Unary);
-                            }
-                        }; break;
-                }
-
-                if (IsDropsite(unit))
-                {
-                    if (!Units.ContainsKey(unit))
-                    {
-                        Units[unit] = new DropsiteController(unit, Unary);
-                    }
+                    Units[unit] = new IdlerController(unit, Unary);
                 }
             }
 
@@ -85,30 +64,6 @@ namespace Unary.Managers
                     Units.Remove(controller.Unit);
                 }
             }
-        }
-
-        private bool IsDropsite(Unit unit)
-        {
-            if (unit[ObjectData.BASE_TYPE] == Unary.Mod.TownCenter)
-            {
-                return true;
-            }
-            else if (unit[ObjectData.BASE_TYPE] == Unary.Mod.Mill)
-            {
-                return true;
-            }
-            else if (unit[ObjectData.BASE_TYPE] == Unary.Mod.LumberCamp)
-            {
-                return true;
-            }
-            else if (unit[ObjectData.BASE_TYPE] == Unary.Mod.MiningCamp)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }    
         }
     }
 }
