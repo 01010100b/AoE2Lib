@@ -16,8 +16,6 @@ namespace AoE2Lib.Bots
 {
     public abstract class Bot
     {
-        public const int SN_PENDING_PLACEMENT = 186;
-
         public virtual string Name { get { return GetType().Name; } }
         public GameVersion GameVersion { get; private set; }
         public string DatFile { get; private set; } // Only available on AoC
@@ -104,8 +102,6 @@ namespace AoE2Lib.Bots
 
                 var first_command = new Command();
                 first_command.Add(new GameTime());
-                first_command.Add(new UpPendingPlacement() { InSnBuildingId = SN_PENDING_PLACEMENT }, "==", 0,
-                    new Protos.Expert.Action.SetStrategicNumber() { InConstSnId = SN_PENDING_PLACEMENT, InConstValue = 0 });
                 commands.Add(first_command);
 
                 commands.AddRange(Tick().Where(c => c.HasMessages));

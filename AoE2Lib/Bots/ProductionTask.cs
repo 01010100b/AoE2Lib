@@ -36,43 +36,6 @@ namespace AoE2Lib.Bots
         public abstract Command GetCommand();
     }
 
-    internal class BuildNormalTask : ProductionTask
-    {
-        public BuildNormalTask(int id, int priority, bool blocking, int wood_cost, int food_cost, int gold_cost, int stone_cost, int max_count, int max_pending)
-            : base(id, priority, blocking, wood_cost, food_cost, gold_cost, stone_cost, max_count, max_pending)
-        {
-
-        }
-
-        public override Command GetCommand()
-        {
-            const int GL_BUILD = 100;
-
-            var command = new Command();
-
-            command.Add(new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = 0 });
-
-            command.Add(new UpObjectTypeCountTotal() { InConstObjectId = Id }, ">=", MaxCount,
-                new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -1 });
-            command.Add(new UpPendingObjects() { InConstObjectId = Id }, ">=", MaxPending,
-                new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -2 });
-            command.Add(new CanBuild() { InConstBuildingId = Id }, "!=", 1,
-                new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -3 });
-            command.Add(new UpPendingPlacement() { InConstBuildingId = Id }, "!=", 0,
-                new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -4 });
-            command.Add(new UpPendingPlacement() { InSnBuildingId = Bot.SN_PENDING_PLACEMENT }, "!=", 0,
-                new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -5 });
-            command.Add(new Protos.Expert.Fact.StrategicNumber() { InConstSnId = Bot.SN_PENDING_PLACEMENT }, "!=", 0,
-                new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -6 });
-
-            command.Add(new Goal() { InConstGoalId = GL_BUILD }, "==", 0,
-                 new Build() { InConstBuildingId = Id },
-                 new SetStrategicNumber() { InConstSnId = Bot.SN_PENDING_PLACEMENT, InConstValue = Id });
-
-            return command;
-        }
-    }
-
     internal class BuildLineTask : ProductionTask
     {
         private readonly List<Tile> Tiles;
@@ -86,7 +49,7 @@ namespace AoE2Lib.Bots
         public override Command GetCommand()
         {
             const int GL_WAS_BUILT = 100;
-            const int GL_BUILD = 101;
+            const int GL_CONTROL = 101;
             const int GL_X = 102;
             const int GL_Y = 103;
 
@@ -95,30 +58,25 @@ namespace AoE2Lib.Bots
 
             foreach (var tile in Tiles.Where(t => t.Explored))
             {
-                command.Add(new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = 0 });
+                command.Add(new SetGoal() { InConstGoalId = GL_CONTROL, InConstValue = 0 });
                 command.Add(new SetGoal() { InConstGoalId = GL_X, InConstValue = tile.X });
                 command.Add(new SetGoal() { InConstGoalId = GL_Y, InConstValue = tile.Y });
 
                 command.Add(new UpObjectTypeCountTotal() { InConstObjectId = Id }, ">=", MaxCount,
-                    new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -1 });
+                    new SetGoal() { InConstGoalId = GL_CONTROL, InConstValue = -1 });
                 command.Add(new UpPendingObjects() { InConstObjectId = Id }, ">=", MaxPending,
-                    new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -2 });
+                    new SetGoal() { InConstGoalId = GL_CONTROL, InConstValue = -2 });
                 command.Add(new UpCanBuildLine() { InConstBuildingId = Id, InGoalPoint = GL_X, InGoalEscrowState = 0 }, "!=", 1,
-                    new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -3 });
+                    new SetGoal() { InConstGoalId = GL_CONTROL, InConstValue = -3 });
                 command.Add(new UpPendingPlacement() { InConstBuildingId = Id }, "!=", 0,
-                    new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -4 });
-                command.Add(new UpPendingPlacement() { InSnBuildingId = Bot.SN_PENDING_PLACEMENT }, "!=", 0,
-                    new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -5 });
-                command.Add(new Protos.Expert.Fact.StrategicNumber() { InConstSnId = Bot.SN_PENDING_PLACEMENT }, "!=", 0,
-                    new SetGoal() { InConstGoalId = GL_BUILD, InConstValue = -6 });
+                    new SetGoal() { InConstGoalId = GL_CONTROL, InConstValue = -4 });
 
-                var icommand = new Command();
-                icommand.Add(new Goal() { InConstGoalId = GL_BUILD }, "==", 0,
+                var buildcommand = new Command();
+                buildcommand.Add(new Goal() { InConstGoalId = GL_CONTROL }, "==", 0,
                      new UpBuildLine() { InConstBuildingId = Id, InGoalPoint1 = GL_X, InGoalPoint2 = GL_X },
-                     new SetStrategicNumber() { InConstSnId = Bot.SN_PENDING_PLACEMENT, InConstValue = Id },
                      new SetGoal() { InConstGoalId = GL_WAS_BUILT, InConstValue = 1 });
 
-                command.Add(new Goal() { InConstGoalId = GL_WAS_BUILT }, "==", 0, icommand);
+                command.Add(new Goal() { InConstGoalId = GL_WAS_BUILT }, "==", 0, buildcommand);
             }
 
             

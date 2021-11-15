@@ -16,30 +16,7 @@ namespace Unary.Managers
 {
     class MapManager : Manager
     {
-        public static Rectangle GetUnitFootprint(int width, int height, Tile tile, int exclusion_zone_size)
-        {
-            var x = tile.X;
-            var y = tile.Y;
-
-            width += 2 * exclusion_zone_size;
-            height += 2 * exclusion_zone_size;
-
-            var x_start = x - (width / 2);
-            var x_end = x + (width / 2);
-            if (width % 2 == 0)
-            {
-                x_end--;
-            }
-
-            var y_start = y - (height / 2);
-            var y_end = y + (height / 2);
-            if (height % 2 == 0)
-            {
-                y_end--;
-            }
-
-            return new Rectangle(x_start, y_start, x_end - x_start + 1, y_end - y_start + 1);
-        }
+        
 
         private readonly HashSet<Tile> ConstructionBlockedTiles = new();
         private readonly HashSet<Tile> ConstructionExcludedTiles = new();
@@ -199,9 +176,9 @@ namespace Unary.Managers
                 {
                     var construction = BlocksConstruction(unit);
                     var land = BlocksLand(unit);
-                    var width = Unary.Mod.GetBuildingSize(unit[ObjectData.BASE_TYPE]);
-                    var height = width;
-                    var footprint = GetUnitFootprint(width, height, unit.Tile, 0);
+                    var size = Unary.Mod.GetBuildingSize(unit[ObjectData.BASE_TYPE]);
+                    var tile = unit.Tile;
+                    var footprint = Utils.GetUnitFootprint(tile.X, tile.Y, size, size, 0);
 
                     for (int x = footprint.X; x < footprint.Right; x++)
                     {
@@ -209,16 +186,16 @@ namespace Unary.Managers
                         {
                             if (map.IsOnMap(x, y))
                             {
-                                var tile = map.GetTile(x, y);
+                                var t = map.GetTile(x, y);
 
                                 if (construction)
                                 {
-                                    ConstructionBlockedTiles.Add(tile);
+                                    ConstructionBlockedTiles.Add(t);
                                 }
 
                                 if (land)
                                 {
-                                    LandBlockedTiles.Add(tile);
+                                    LandBlockedTiles.Add(t);
                                 }
                             }
                         }
@@ -229,7 +206,8 @@ namespace Unary.Managers
                         if (unit[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || unit[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING)
                         {
                             var excl = GetExclusionZoneSize(unit[ObjectData.BASE_TYPE]);
-                            footprint = GetUnitFootprint(width, height, unit.Tile, excl);
+                            var t = unit.Tile;
+                            footprint = Utils.GetUnitFootprint(t.X, t.Y, size, size, excl);
                             for (int x = footprint.X; x < footprint.Right; x++)
                             {
                                 for (int y = footprint.Y; y < footprint.Bottom; y++)

@@ -307,11 +307,6 @@ namespace AoE2Lib
         CENTER, OPPOSITE, CORNER, ENEMY, BORDER, MIRROR, FLANK, ZERO, MAP_SIZE, SELF, TARGET, FOCUS, OBJECT, POINT
     }
 
-    public enum UnitFindType
-    {
-        MILLITARY, CIVILIAN, BUILDING, WOOD, FOOD, GOLD, STONE, ALL
-    }
-
     public enum ResearchState
     {
         UNAVAILABLE, AVAILABLE, PENDING, COMPLETE

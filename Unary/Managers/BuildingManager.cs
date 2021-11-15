@@ -91,7 +91,7 @@ namespace Unary.Managers
 
         public bool CanBuildAt(int width, int height, Tile tile, bool ignore_exclusion = false)
         {
-            var footprint = MapManager.GetUnitFootprint(width, height, tile, 0);
+            var footprint = Utils.GetUnitFootprint(tile.X, tile.Y, width, height, 0);
 
             for (int x = footprint.X; x < footprint.Right; x++)
             {

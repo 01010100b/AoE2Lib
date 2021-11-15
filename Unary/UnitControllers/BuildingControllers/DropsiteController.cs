@@ -1,4 +1,5 @@
 ﻿using AoE2Lib;
+using AoE2Lib.Bots;
 using AoE2Lib.Bots.GameElements;
 using System;
 using System.Collections.Generic;
@@ -120,7 +121,8 @@ namespace Unary.UnitControllers.BuildingControllers
 
             var initial = new List<Tile>();
             var size = Unary.Mod.GetBuildingSize(Unit[ObjectData.BASE_TYPE]);
-            var footprint = MapManager.GetUnitFootprint(size, size, Unit.Tile, 1);
+            var tile = Unit.Tile;
+            var footprint = Utils.GetUnitFootprint(tile.X, tile.Y, size, size, 1);
 
             var x = footprint.Left;
             var y = 0;
@@ -128,11 +130,11 @@ namespace Unary.UnitControllers.BuildingControllers
             {
                 if (Unary.GameState.Map.IsOnMap(x, y))
                 {
-                    var tile = Unary.GameState.Map.GetTile(x, y);
+                    var t = Unary.GameState.Map.GetTile(x, y);
 
-                    if (Unary.MapManager.CanReach(tile))
+                    if (Unary.MapManager.CanReach(t))
                     {
-                        initial.Add(tile);
+                        initial.Add(t);
                     }
                 }
             }
@@ -142,11 +144,11 @@ namespace Unary.UnitControllers.BuildingControllers
             {
                 if (Unary.GameState.Map.IsOnMap(x, y))
                 {
-                    var tile = Unary.GameState.Map.GetTile(x, y);
+                    var t = Unary.GameState.Map.GetTile(x, y);
 
-                    if (Unary.MapManager.CanReach(tile))
+                    if (Unary.MapManager.CanReach(t))
                     {
-                        initial.Add(tile);
+                        initial.Add(t);
                     }
                 }
             }
@@ -156,11 +158,11 @@ namespace Unary.UnitControllers.BuildingControllers
             {
                 if (Unary.GameState.Map.IsOnMap(x, y))
                 {
-                    var tile = Unary.GameState.Map.GetTile(x, y);
+                    var t = Unary.GameState.Map.GetTile(x, y);
 
-                    if (Unary.MapManager.CanReach(tile))
+                    if (Unary.MapManager.CanReach(t))
                     {
-                        initial.Add(tile);
+                        initial.Add(t);
                     }
                 }
             }
@@ -170,11 +172,11 @@ namespace Unary.UnitControllers.BuildingControllers
             {
                 if (Unary.GameState.Map.IsOnMap(x, y))
                 {
-                    var tile = Unary.GameState.Map.GetTile(x, y);
+                    var t = Unary.GameState.Map.GetTile(x, y);
 
-                    if (Unary.MapManager.CanReach(tile))
+                    if (Unary.MapManager.CanReach(t))
                     {
-                        initial.Add(tile);
+                        initial.Add(t);
                     }
                 }
             }

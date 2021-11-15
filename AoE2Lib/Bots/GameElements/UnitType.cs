@@ -19,13 +19,13 @@ namespace AoE2Lib.Bots.GameElements
         public bool Available { get; private set; } = false;
         public int Count { get; private set; } = 0;
         public int CountTotal { get; private set; } = 0;
+        public int Pending => CountTotal - Count;
         public bool CanBuild { get; private set; } = false;
         public bool TrainSiteReady { get; private set; } = false;
         public int WoodCost { get; private set; } = 0;
         public int FoodCost { get; private set; } = 0;
         public int GoldCost { get; private set; } = 0;
         public int StoneCost { get; private set; } = 0;
-        public int Pending => CountTotal - Count;
 
         private readonly Dictionary<ObjectData, int> Data = new Dictionary<ObjectData, int>();
 
@@ -57,19 +57,7 @@ namespace AoE2Lib.Bots.GameElements
             Bot.GameState.AddProductionTask(prod);
         }
 
-        public void BuildNormal(int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
-        {
-            if (Updated == false || Available == false || CountTotal >= max_count || Pending > max_pending)
-            {
-                return;
-            }
-
-            var prod = new BuildNormalTask(Id, priority, blocking, WoodCost, FoodCost, GoldCost, StoneCost, max_count, max_pending);
-
-            Bot.GameState.AddProductionTask(prod);
-        }
-
-        public void BuildLine(IEnumerable<Tile> tiles, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
+        public void Build(IEnumerable<Tile> tiles, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
         {
             if (Updated == false || Available == false || CountTotal >= max_count || Pending > max_pending)
             {

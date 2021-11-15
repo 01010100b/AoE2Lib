@@ -53,7 +53,7 @@ namespace Unary.Managers
                 building = Unary.GameState.GetUnitType(Unary.Mod.TownCenterFoundation);
             }
 
-            building.BuildLine(placements, max_count, max_pending, priority, blocking);
+            building.Build(placements, max_count, max_pending, priority, blocking);
         }
 
         public void Train(UnitType unit, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
@@ -89,7 +89,7 @@ namespace Unary.Managers
                 if (placements.Count > 0)
                 {
                     Unary.Log.Info("Building new farm");
-                    farm.BuildLine(placements, 100, 3, Priority.FARM);
+                    farm.Build(placements, 100, 3, Priority.FARM);
                 }
 
                 if (placements.Count <= 3)
@@ -105,7 +105,7 @@ namespace Unary.Managers
                 if (Unary.BuildingManager.CanBuildAt(width, height, FarmRequest.Tile, true))
                 {
                     Unary.Log.Info($"Refreshing farm at {FarmRequest.Tile.Position}");
-                    farm.BuildLine(new[] { FarmRequest.Tile }, 100, 3, Priority.FARM);
+                    farm.Build(new[] { FarmRequest.Tile }, 100, 3, Priority.FARM);
                 }
                 else
                 {
@@ -146,7 +146,7 @@ namespace Unary.Managers
                 {
                     var placements = Unary.BuildingManager.GetDropsitePlacements(resource);
                     placements.Sort((a, b) => b.Value.CompareTo(a.Value));
-                    site.BuildLine(placements.Select(p => p.Key), 100, 1, Priority.DROPSITE);
+                    site.Build(placements.Select(p => p.Key), 100, 1, Priority.DROPSITE);
                     Unary.Log.Debug($"Found {placements.Count} placements for {resource}");
 
                     continue;
