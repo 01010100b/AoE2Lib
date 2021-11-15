@@ -15,6 +15,7 @@ namespace Unary
     {
         public const int UNARY_ID = 21453;
 
+        public readonly Settings Settings;
         public Mod Mod { get; private set; }
         public MapManager MapManager { get; private set; }
         public DiplomacyManager DiplomacyManager { get; private set; }
@@ -28,9 +29,9 @@ namespace Unary
         private readonly List<Command> Commands = new();
         private bool ChattedOK { get; set; } = false;
 
-        public Unary() : base()
+        public Unary(Settings settings) : base()
         {
-            
+            Settings = settings;
         }
 
         public void ExecuteCommand(Command command)

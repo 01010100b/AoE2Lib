@@ -34,11 +34,10 @@ namespace Unary.UnitControllers.VillagerControllers
 
         private Unit ChooseTarget()
         {
-            const double KILL_RANGE = 3;
             Unit target = null;
 
             // kill close live animals
-            foreach (var meat in Unary.EconomyManager.GetMeat().Where(u => u.Position.DistanceTo(Unary.GameState.MyPosition) <= KILL_RANGE && u[ObjectData.HITPOINTS] > 0))
+            foreach (var meat in Unary.EconomyManager.GetMeat().Where(u => u.Position.DistanceTo(Unary.GameState.MyPosition) <= Unary.Settings.AnimalKillRange && u[ObjectData.HITPOINTS] > 0))
             {
                 if (meat[ObjectData.CLASS] == (int)UnitClass.PreyAnimal || meat[ObjectData.CLASS] == (int)UnitClass.PredatorAnimal)
                 {
@@ -67,7 +66,7 @@ namespace Unary.UnitControllers.VillagerControllers
             // kill sheep
             if (target == null)
             {
-                foreach (var meat in Unary.EconomyManager.GetMeat().Where(u => u.Position.DistanceTo(Unary.GameState.MyPosition) <= KILL_RANGE && u[ObjectData.HITPOINTS] > 0))
+                foreach (var meat in Unary.EconomyManager.GetMeat().Where(u => u.Position.DistanceTo(Unary.GameState.MyPosition) <= Unary.Settings.AnimalKillRange && u[ObjectData.HITPOINTS] > 0))
                 {
                     if (target == null)
                     {

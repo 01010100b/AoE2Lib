@@ -21,8 +21,7 @@ namespace Unary.Managers
 
             foreach (var file in Directory.EnumerateFiles(folder, "*.json"))
             {
-                var str = File.ReadAllText(file);
-                var strat = Strategy.Deserialize(str);
+                var strat = Program.Deserialize<Strategy>(file);
                 Strategies.Add(strat);
             }
         }

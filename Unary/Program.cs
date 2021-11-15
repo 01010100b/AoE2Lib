@@ -1,4 +1,6 @@
 using AoE2Lib;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,6 +17,37 @@ namespace Unary
     {
         internal static readonly Log Log = new Log(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), "Unary.log"));
         
+        public static void Serialize<T>(T obj, string file)
+        {
+            var serializer = new JsonSerializer
+            {
+                Formatting = Formatting.Indented
+            };
+            serializer.Converters.Add(new StringEnumConverter());
+
+            using (var writer = File.CreateText(file))
+            using (var json = new JsonTextWriter(writer))
+            {
+                serializer.Serialize(json, obj);
+                writer.Flush();
+            }
+        }
+
+        public static T Deserialize<T>(string file)
+        {
+            var serializer = new JsonSerializer
+            {
+                Formatting = Formatting.Indented
+            };
+            serializer.Converters.Add(new StringEnumConverter());
+
+            using (var reader = File.OpenText(file))
+            using (var json = new JsonTextReader(reader))
+            {
+                return serializer.Deserialize<T>(json);
+            }
+        }
+
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
@@ -64,49 +97,6 @@ namespace Unary
                 Log.Dispose();
                 MessageBox.Show("An unexpected error occurred. Unary will now exit. See the log for details.", "Unexpected error");
             }
-        }
-
-        private static void TestStrategy()
-        {
-            var gatherers = new[]
-            {
-                Resource.FOOD, Resource.FOOD, Resource.FOOD, Resource.FOOD, Resource.FOOD, Resource.FOOD,
-                Resource.WOOD, Resource.WOOD, Resource.WOOD, Resource.WOOD,
-                Resource.FOOD, Resource.FOOD, Resource.FOOD, Resource.FOOD, Resource.FOOD, Resource.FOOD, Resource.FOOD, Resource.FOOD, Resource.FOOD,
-                Resource.WOOD, Resource.WOOD, Resource.WOOD, Resource.WOOD,
-                Resource.GOLD, Resource.GOLD, Resource.GOLD, Resource.GOLD, Resource.GOLD
-            };
-
-            var strat = new Strategy
-            {
-                Name = "FC Knights",
-            };
-
-            strat.Gatherers.AddRange(gatherers);
-            strat.ExtraFoodPercentage = 50;
-            strat.ExtraWoodPercentage = 5;
-            strat.ExtraGoldPercentage = 40;
-            strat.ExtraStonePercentage = 5;
-
-            strat.BuildOrder.Add(new BuildOrderCommand() { Type = BuildOrderCommandType.RESEARCH, Id = 101 }); // feudal age
-            strat.BuildOrder.Add(new BuildOrderCommand() { Type = BuildOrderCommandType.UNIT, Id = 12 }); // barracks
-            strat.BuildOrder.Add(new BuildOrderCommand() { Type = BuildOrderCommandType.RESEARCH, Id = 22 }); // loom
-            strat.BuildOrder.Add(new BuildOrderCommand() { Type = BuildOrderCommandType.UNIT, Id = 101 }); // stable
-            strat.BuildOrder.Add(new BuildOrderCommand() { Type = BuildOrderCommandType.UNIT, Id = 103 }); // blacksmith
-            strat.BuildOrder.Add(new BuildOrderCommand() { Type = BuildOrderCommandType.RESEARCH, Id = 102 }); // castle age
-            strat.BuildOrder.Add(new BuildOrderCommand() { Type = BuildOrderCommandType.RESEARCH, Id = 202 }); // double bit axe
-            strat.BuildOrder.Add(new BuildOrderCommand() { Type = BuildOrderCommandType.RESEARCH, Id = 14 }); // horse collar
-            strat.BuildOrder.Add(new BuildOrderCommand() { Type = BuildOrderCommandType.UNIT, Id = 101 }); // second stable
-            strat.BuildOrder.Add(new BuildOrderCommand() { Type = BuildOrderCommandType.RESEARCH, Id = 203 }); // bow saw
-
-            strat.PrimaryUnits.Add(38); // knight
-
-            var str = Strategy.Serialize(strat);
-            var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Strategies", strat.Name + ".json");
-            File.WriteAllText(file, str);
-
-            Debug.WriteLine(str);
-            
         }
     }
 }
