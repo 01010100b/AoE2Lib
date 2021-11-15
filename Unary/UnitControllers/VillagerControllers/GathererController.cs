@@ -41,8 +41,8 @@ namespace Unary.UnitControllers.VillagerControllers
         {
             foreach (var res in new[] {Resource.WOOD, Resource.FOOD, Resource.GOLD, Resource.STONE })
             {
-                var min = Unary.EconomyManager.GetMinimumGatherers(res);
-                var max = Unary.EconomyManager.GetMaximumGatherers(res);
+                var min = Unary.StrategyManager.GetMinimumGatherers(res);
+                var max = Unary.StrategyManager.GetMaximumGatherers(res);
                 var current = Unary.UnitsManager.GetControllers<GathererController>().Count(u => u.Resource == res);
                 if (res == Resource.FOOD)
                 {

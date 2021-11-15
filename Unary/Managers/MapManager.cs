@@ -5,6 +5,7 @@ using Protos.Expert.Action;
 using Protos.Expert.Fact;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -109,9 +110,21 @@ namespace Unary.Managers
                 return;
             }
 
+            var sw = new Stopwatch();
+            sw.Start();
+
             FindCliffs();
+            Unary.Log.Info($"Find cliffs took {sw.ElapsedMilliseconds} ms");
+
+            sw.Restart();
             UpdateTiles();
+            Unary.Log.Info($"Update Tiles took {sw.ElapsedMilliseconds} ms");
+
+            sw.Restart();
             UpdateDistances();
+            Unary.Log.Info($"Update Distances took {sw.ElapsedMilliseconds} ms");
+
+            sw.Stop();
         }
 
         private void FindCliffs()

@@ -84,6 +84,10 @@ namespace AoE2Lib.Bots
             {
                 DatFile = module_api.GetGameDataFilePath(new Protos.GetGameDataFilePathRequest()).Result;
             }
+            else
+            {
+                DatFile = null;
+            }
 
             var sw = new Stopwatch();
             var commands = new List<Command>();
@@ -180,10 +184,16 @@ namespace AoE2Lib.Bots
                             if (ngt < game_time)
                             {
                                 GameState = new GameState(this);
+
                                 if (GameVersion == GameVersion.AOC)
                                 {
                                     DatFile = module_api.GetGameDataFilePath(new Protos.GetGameDataFilePathRequest()).Result;
                                 }
+                                else
+                                {
+                                    DatFile = null;
+                                }
+
                                 NewGame();
 
                                 Log.Info("New Game");

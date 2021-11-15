@@ -16,7 +16,7 @@ namespace AoE2Lib.Bots.GameElements
         public readonly int Id;
         public int this[ObjectData data] => GetData(data);
         public bool IsBuilding => this[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || this[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING;
-        public bool IsAvailable { get; private set; } = false;
+        public bool Available { get; private set; } = false;
         public int Count { get; private set; } = 0;
         public int CountTotal { get; private set; } = 0;
         public bool CanBuild { get; private set; } = false;
@@ -48,7 +48,7 @@ namespace AoE2Lib.Bots.GameElements
 
         public void Train(int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
         {
-            if (Updated == false || IsAvailable == false || CountTotal >= max_count || Pending > max_pending)
+            if (Updated == false || Available == false || CountTotal >= max_count || Pending > max_pending)
             {
                 return;
             }
@@ -59,7 +59,7 @@ namespace AoE2Lib.Bots.GameElements
 
         public void BuildNormal(int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
         {
-            if (Updated == false || IsAvailable == false || CountTotal >= max_count || Pending > max_pending)
+            if (Updated == false || Available == false || CountTotal >= max_count || Pending > max_pending)
             {
                 return;
             }
@@ -71,7 +71,7 @@ namespace AoE2Lib.Bots.GameElements
 
         public void BuildLine(IEnumerable<Tile> tiles, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
         {
-            if (Updated == false || IsAvailable == false || CountTotal >= max_count || Pending > max_pending)
+            if (Updated == false || Available == false || CountTotal >= max_count || Pending > max_pending)
             {
                 return;
             }
@@ -118,7 +118,7 @@ namespace AoE2Lib.Bots.GameElements
                 index += 2;
             }
 
-            IsAvailable = responses[index + 0].Unpack<BuildingAvailableResult>().Result;
+            Available = responses[index + 0].Unpack<BuildingAvailableResult>().Result;
             Count = responses[index + 1].Unpack<BuildingTypeCountResult>().Result;
             CountTotal = responses[index + 2].Unpack<BuildingTypeCountTotalResult>().Result;
             CanBuild = responses[index + 3].Unpack<UpCanBuildResult>().Result;

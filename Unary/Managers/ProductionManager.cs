@@ -13,15 +13,14 @@ namespace Unary.Managers
     class ProductionManager : Manager
     {
         private FarmerController FarmRequest { get; set; }
-        private GathererController DropsiteRequest { get; set; }
-        private readonly Dictionary<Resource, bool> AddDropsite = new();
+        private readonly Dictionary<Resource, int> DropsiteRequestTicks = new();
 
         public ProductionManager(Unary unary) : base(unary)
         {
-            AddDropsite.Add(Resource.FOOD, false);
-            AddDropsite.Add(Resource.WOOD, false);
-            AddDropsite.Add(Resource.GOLD, false);
-            AddDropsite.Add(Resource.STONE, false);
+            DropsiteRequestTicks.Add(Resource.WOOD, -1000);
+            DropsiteRequestTicks.Add(Resource.FOOD, -1000);
+            DropsiteRequestTicks.Add(Resource.GOLD, -1000);
+            DropsiteRequestTicks.Add(Resource.STONE, -1000);
         }
 
         public void RequestFarm(FarmerController controller)
@@ -34,29 +33,11 @@ namespace Unary.Managers
 
         public void RequestDropsite(GathererController controller)
         {
-            if (DropsiteRequest == null)
-            {
-                DropsiteRequest = controller;
-            }
-
-            if (controller.Resource == Resource.WOOD && DropsiteRequest.Resource != Resource.WOOD)
-            {
-                DropsiteRequest = controller;
-            }
-
-            if (controller.Unit.FirstUpdateGameTime < DropsiteRequest.Unit.FirstUpdateGameTime)
-            {
-                DropsiteRequest = controller;
-            }
+            DropsiteRequestTicks[controller.Resource] = Unary.GameState.Tick;
         }
 
         public void Build(UnitType building, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
         {
-            if (building[ObjectData.BASE_TYPE] == Unary.Mod.TownCenter)
-            {
-                building = Unary.GameState.GetUnitType(Unary.Mod.TownCenterFoundation);
-            }
-
             var placements = Unary.BuildingManager.GetBuildingPlacements(building).ToList();
 
             if (placements.Count > 100)
@@ -66,14 +47,29 @@ namespace Unary.Managers
             }
 
             placements.Sort((a, b) => GetPlacementScore(building, b).CompareTo(GetPlacementScore(building, a)));
+
+            if (building[ObjectData.BASE_TYPE] == Unary.Mod.TownCenter)
+            {
+                building = Unary.GameState.GetUnitType(Unary.Mod.TownCenterFoundation);
+            }
+
             building.BuildLine(placements, max_count, max_pending, priority, blocking);
+        }
+
+        public void Train(UnitType unit, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
+        {
+            unit.Train(max_count, max_pending, priority, blocking);
+        }
+
+        public void Research(Technology technology, int priority = 10, bool blocking = true)
+        {
+            technology.Research(priority, blocking);
         }
 
         internal override void Update()
         {
             PerformFarmRequest();
             PerformDropsiteRequest();
-            BuildDropsites();
         }
 
         private void PerformFarmRequest()
@@ -122,32 +118,6 @@ namespace Unary.Managers
 
         private void PerformDropsiteRequest()
         {
-            if (DropsiteRequest == null)
-            {
-                return;
-            }
-
-            Unary.Log.Debug($"Performing dropsite request {DropsiteRequest.Resource}");
-
-            var site = Unary.GameState.GetUnitType(Unary.Mod.LumberCamp);
-            switch (DropsiteRequest.Resource)
-            {
-                case Resource.FOOD: site = Unary.GameState.GetUnitType(Unary.Mod.Mill); break;
-                case Resource.WOOD: site = Unary.GameState.GetUnitType(Unary.Mod.LumberCamp); break;
-                case Resource.GOLD: site = Unary.GameState.GetUnitType(Unary.Mod.MiningCamp); break;
-                case Resource.STONE: site = Unary.GameState.GetUnitType(Unary.Mod.MiningCamp); break;
-            }
-
-            if (site.Updated && site.Pending == 0)
-            {
-                AddDropsite[DropsiteRequest.Resource] = true;
-            }
-
-            DropsiteRequest = null;
-        }
-
-        private void BuildDropsites()
-        {
             foreach (var resource in new[] { Resource.WOOD, Resource.FOOD, Resource.GOLD, Resource.STONE })
             {
                 var site = Unary.GameState.GetUnitType(Unary.Mod.LumberCamp);
@@ -165,14 +135,14 @@ namespace Unary.Managers
                     continue;
                 }
 
-                if (site.Pending > 0 || site.GetHashCode() % 100 == Unary.GameState.Tick % 100)
+                if (site.Pending > 0)
                 {
-                    AddDropsite[resource] = false;
+                    DropsiteRequestTicks[resource] = -1000;
 
                     continue;
                 }
 
-                if (site.Pending == 0 && AddDropsite[resource])
+                if (site.Pending == 0 && Unary.GameState.Tick - DropsiteRequestTicks[resource] < 100)
                 {
                     var placements = Unary.BuildingManager.GetDropsitePlacements(resource);
                     placements.Sort((a, b) => b.Value.CompareTo(a.Value));

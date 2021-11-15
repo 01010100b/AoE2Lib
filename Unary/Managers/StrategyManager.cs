@@ -2,18 +2,71 @@
 using AoE2Lib.Bots.GameElements;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using Unary.UnitControllers.VillagerControllers;
+using static Unary.Strategy.BuildOrderCommand;
 
 namespace Unary.Managers
 {
     class StrategyManager : Manager
     {
-        public Strategy CurrentStrategy { get; private set; }
+        private Strategy Strategy { get; set; }
+        private readonly List<Strategy> Strategies = new();
 
         public StrategyManager(Unary unary) : base(unary)
         {
+            var folder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Strategies");
 
+            foreach (var file in Directory.EnumerateFiles(folder, "*.json"))
+            {
+                var str = File.ReadAllText(file);
+                var strat = Strategy.Deserialize(str);
+                Strategies.Add(strat);
+            }
+        }
+
+        public int GetDesiredGatherers(Resource resource)
+        {
+            var gatherers = 0;
+            var pop = Unary.GameState.MyPlayer.CivilianPopulation;
+
+            for (int i = 0; i < Math.Min(pop, Strategy.Gatherers.Count); i++)
+            {
+                if (Strategy.Gatherers[i] == resource)
+                {
+                    gatherers++;
+                }
+            }
+
+            if (pop > Strategy.Gatherers.Count)
+            {
+                pop -= Strategy.Gatherers.Count;
+                var fraction = 0d;
+
+                switch (resource)
+                {
+                    case Resource.FOOD: fraction = Strategy.ExtraFoodPercentage / 100d; break;
+                    case Resource.WOOD: fraction = Strategy.ExtraWoodPercentage / 100d; break;
+                    case Resource.GOLD: fraction = Strategy.ExtraGoldPercentage / 100d; break;
+                    case Resource.STONE: fraction = Strategy.ExtraStonePercentage / 100d; break;
+                }
+
+                gatherers += (int)Math.Round(pop * fraction);
+            }
+
+            return gatherers;
+        }
+
+        public int GetMinimumGatherers(Resource resource)
+        {
+            return (int)Math.Ceiling(GetDesiredGatherers(resource) * 0.9);
+        }
+
+        public int GetMaximumGatherers(Resource resource)
+        {
+            return (int)Math.Floor(GetDesiredGatherers(resource) * 1.1);
         }
 
         public void Attack(Player player)
@@ -37,106 +90,137 @@ namespace Unary.Managers
 
         internal override void Update()
         {
-            BasicStrategy();
-            DoAutoEcoTechs();
+            if (Strategy == null)
+            {
+                ChooseStrategy();
+            }
+            else
+            {
+                PerformBuildOrder();
+                TrainUnits();
+
+                if (Strategy.AutoEcoTechs)
+                {
+                    DoAutoEcoTechs();
+                }
+            }
         }
 
-        private void BasicStrategy()
+        private void ChooseStrategy()
         {
-            var feudal_age = Unary.GameState.GetTechnology(101);
-            var castle_age = Unary.GameState.GetTechnology(102);
-            var imperial_age = Unary.GameState.GetTechnology(103);
+            Strategy = Strategies[0];
 
-            var barracks = Unary.GameState.GetUnitType(12);
-            var archery_range = Unary.GameState.GetUnitType(87);
-            var blacksmith = Unary.GameState.GetUnitType(103);
-            var castle = Unary.GameState.GetUnitType(82);
-            var archer = Unary.GameState.GetUnitType(4);
+            Unary.Log.Info($"Choose strategy: {Strategy.Name}");
+        }
 
-            feudal_age.Research(Priority.AGE_UP, false);
-            castle_age.Research(Priority.AGE_UP, false);
-            imperial_age.Research(Priority.AGE_UP, false);
-
-            Unary.ProductionManager.Build(castle);
-
-            if (castle_age.State == ResearchState.COMPLETE)
+        private void PerformBuildOrder()
+        {
+            foreach (var bo in Strategy.BuildOrder)
             {
-                Unary.EconomyManager.MaxTownCenters = 3;
-            }
-
-            if (barracks.CountTotal >= 1)
-            {
-                var max_ranges = (Unary.GameState.MyPlayer.CivilianPopulation - 25) / 10;
-                max_ranges = Math.Max(1, max_ranges);
-                max_ranges = Math.Min(3, max_ranges);
-
-                if (archery_range.CountTotal < max_ranges)
+                if (bo.Type == BuildOrderCommandType.RESEARCH)
                 {
-                    Unary.ProductionManager.Build(archery_range, max_ranges, 1, Priority.PRODUCTION_BUILDING);
+                    var tech = Unary.GameState.GetTechnology(bo.Id);
+
+                    if (!tech.Updated)
+                    {
+                        break;
+                    }
+
+                    if (tech.Started)
+                    {
+                        continue;
+                    }
+
+                    if (!tech.Available)
+                    {
+                        Unary.Log.Debug($"Tech {bo.Id} not available");
+
+                        break;
+                    }
+
+                    var priority = Priority.TECH;
+                    var blocking = true;
+
+                    if (Unary.Mod.IsTownCenterTech(tech.Id))
+                    {
+                        priority = Priority.VILLAGER + 10;
+                        blocking = false;
+                    }
+
+                    Unary.ProductionManager.Research(tech, priority, blocking);
+
+                    break;
                 }
-                else if (archery_range.Count > 1 && archer.TrainSiteReady == false && Unary.Rng.NextDouble() < 0.1)
+                else if (bo.Type == BuildOrderCommandType.UNIT)
                 {
-                    Unary.ProductionManager.Build(archery_range, 10, 1, Priority.PRODUCTION_BUILDING);
+                    var unit = Unary.GameState.GetUnitType(bo.Id);
+
+                    if (!unit.Updated)
+                    {
+                        break;
+                    }
+
+                    if (unit.CountTotal > 0)
+                    {
+                        continue;
+                    }
+
+                    if (!unit.Available)
+                    {
+                        Unary.Log.Debug($"Unit {unit.Id} not available");
+
+                        break;
+                    }
+
+                    if (unit.IsBuilding)
+                    {
+                        Unary.ProductionManager.Build(unit, unit.CountTotal + 1, 1, Priority.PRODUCTION_BUILDING);
+                    }
+                    else
+                    {
+                        Unary.ProductionManager.Train(unit, unit.CountTotal + 1, 1, Priority.MILITARY);
+                    }
+
+                    break;
                 }
             }
+        }
 
-            if (archery_range.CountTotal >= 1 && blacksmith.CountTotal < 1)
+        private void TrainUnits()
+        {
+            // military
+
+            UnitType primary = null;
+            
+            foreach (var p in Strategy.PrimaryUnits)
             {
-                Unary.ProductionManager.Build(blacksmith, 1, 1, Priority.PRODUCTION_BUILDING);
-            }
+                var unit = Unary.GameState.GetUnitType(p);
 
-            if (archery_range.Count >= 1)
-            {
-                archer.Train(50, 3, Priority.MILITARY);
-            }
-
-            Unary.EconomyManager.MinFoodGatherers = 7;
-            Unary.EconomyManager.MinWoodGatherers = 0;
-            Unary.EconomyManager.MinGoldGatherers = 0;
-            Unary.EconomyManager.MinStoneGatherers = 0;
-            Unary.EconomyManager.ExtraFoodPercentage = 40;
-            Unary.EconomyManager.ExtraWoodPercentage = 60;
-            Unary.EconomyManager.ExtraGoldPercentage = 0;
-            Unary.EconomyManager.ExtraStonePercentage = 0;
-
-            if (feudal_age.State == ResearchState.COMPLETE)
-            {
-                Unary.EconomyManager.MinFoodGatherers = 7;
-                Unary.EconomyManager.MinWoodGatherers = 10;
-                Unary.EconomyManager.MinGoldGatherers = 0;
-                Unary.EconomyManager.MinStoneGatherers = 0;
-                Unary.EconomyManager.ExtraFoodPercentage = 40;
-                Unary.EconomyManager.ExtraWoodPercentage = 20;
-                Unary.EconomyManager.ExtraGoldPercentage = 30;
-                Unary.EconomyManager.ExtraStonePercentage = 10;
-
-                if (barracks.CountTotal < 1)
+                if (unit.Updated && unit.Available)
                 {
-                    Unary.ProductionManager.Build(barracks, 1, 1, Priority.PRODUCTION_BUILDING);
+                    primary = unit;
                 }
             }
 
-            if (castle_age.State == ResearchState.COMPLETE && Unary.GameState.MyPlayer.CivilianPopulation > 40)
+            if (primary == null)
             {
-                Unary.EconomyManager.MinFoodGatherers = 25;
-                Unary.EconomyManager.MinWoodGatherers = 15;
-                Unary.EconomyManager.MinGoldGatherers = 0;
-                Unary.EconomyManager.MinStoneGatherers = 0;
-                Unary.EconomyManager.ExtraFoodPercentage = 10;
-                Unary.EconomyManager.ExtraWoodPercentage = 40;
-                Unary.EconomyManager.ExtraGoldPercentage = 40;
-                Unary.EconomyManager.ExtraStonePercentage = 10;
+                Unary.Log.Debug($"No primary unit available");
+            }
+            else
+            {
+                Unary.Log.Info($"Primary unit {primary.Id}");
+
+                if (primary.CountTotal < 50)
+                {
+                    Unary.ProductionManager.Train(primary, 50, 10, Priority.MILITARY);
+                }
             }
 
-            if (Unary.GameState.MyPlayer.MilitaryPopulation > 20)
-            {
-                var target = Unary.GameState.GetPlayers().First(p => p.InGame && p.Stance == PlayerStance.ENEMY);
-                Attack(target);
-            }
-            else if (Unary.GameState.MyPlayer.MilitaryPopulation < 10)
-            {
-                Retreat();
-            }
+            // economy
+
+            var max_civ = (int)Math.Round(0.6 * Unary.GameState.MyPlayer.PopulationCap);
+            var villager = Unary.GameState.GetUnitType(Unary.Mod.Villager);
+            Unary.ProductionManager.Train(villager, max_civ, 3, Priority.VILLAGER);
         }
 
         private void DoAutoEcoTechs()

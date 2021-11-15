@@ -70,11 +70,12 @@ namespace AoE2Lib.Bots
 
         public IReadOnlyList<Any> GetResponses()
         {
+            /*
             if (Responses.Count != Messages.Count)
             {
                 Reset();
             }
-
+            */
             return Responses;
         }
     }

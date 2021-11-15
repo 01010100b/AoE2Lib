@@ -8,6 +8,8 @@ namespace Unary
 {
     class Mod
     {
+        private static int[] TC_TECHS = { 22, 101, 102, 8, 213, 103, 280, 249 };
+
         public int Villager { get; private set; } = 83;
         public int TownCenter { get; private set; } = 109;
         public int TownCenterFoundation { get; private set; } = 621;
@@ -124,6 +126,11 @@ namespace Unary
         public IEnumerable<int> GetBoar()
         {
             return Boar;
+        }
+
+        public bool IsTownCenterTech(int tech)
+        {
+            return TC_TECHS.Contains(tech);
         }
     }
 }
