@@ -245,7 +245,7 @@ namespace AoE2Lib.Bots.GameElements
                 return;
             }
 
-            if (visible == false)
+            if (Updated && !visible)
             {
                 return;
             }

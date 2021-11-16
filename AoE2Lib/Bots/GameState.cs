@@ -178,12 +178,13 @@ namespace AoE2Lib.Bots
             command.Add(new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, InConstValue = player });
             command.Add(new UpFullResetSearch());
 
+            command.Add(new UpFilterStatus() { InConstObjectStatus = 0, InConstObjectList = Bot.Rng.NextDouble() < 0.7 ? 0 : 1 });
             command.Add(new UpFilterDistance() { InConstMinDistance = -1, InConstMaxDistance = range });
 
             for (int i = 0; i < 10; i++)
             {
                 command.Add(new UpResetSearch() { InConstLocalIndex = 0, InConstLocalList = 0, InConstRemoteIndex = 0, InConstRemoteList = 1 });
-                command.Add(new UpFindRemote() { InConstUnitId = -1, InConstCount = 40 });
+                command.Add(new UpFindStatusRemote() { InConstUnitId = -1, InConstCount = 40 });
                 command.Add(new UpSearchObjectIdList() { InConstSearchSource = 2 });
             }
 
@@ -214,25 +215,29 @@ namespace AoE2Lib.Bots
         {
             foreach (var status in new[] { 2, 3 })
             {
-                var command = new Command();
-
-                command.Add(new SetGoal() { InConstGoalId = 100, InConstValue = position.PointX });
-                command.Add(new SetGoal() { InConstGoalId = 101, InConstValue = position.PointY });
-                command.Add(new UpSetTargetPoint() { InGoalPoint = 100 });
-                command.Add(new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, InConstValue = player });
-                command.Add(new UpFullResetSearch());
-
-                command.Add(new UpFilterDistance() { InConstMinDistance = -1, InConstMaxDistance = range });
-                command.Add(new UpFilterStatus() { InConstObjectStatus = status, InConstObjectList = 0 });
-
-                for (int i = 0; i < 10; i++)
+                foreach (var list in new[] { 0, 1 })
                 {
-                    command.Add(new UpResetSearch() { InConstLocalIndex = 0, InConstLocalList = 0, InConstRemoteIndex = 0, InConstRemoteList = 1 });
-                    command.Add(new UpFindResource() { InConstResource = (int)resource, InConstCount = 40 });
-                    command.Add(new UpSearchObjectIdList() { InConstSearchSource = 2 });
-                }
+                    var command = new Command();
 
-                FindCommands.Add(command);
+                    command.Add(new SetGoal() { InConstGoalId = 100, InConstValue = position.PointX });
+                    command.Add(new SetGoal() { InConstGoalId = 101, InConstValue = position.PointY });
+                    command.Add(new UpSetTargetPoint() { InGoalPoint = 100 });
+                    command.Add(new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, InConstValue = player });
+                    command.Add(new UpFullResetSearch());
+
+                    command.Add(new UpFilterDistance() { InConstMinDistance = -1, InConstMaxDistance = range });
+                    command.Add(new UpFilterStatus() { InConstObjectStatus = status, InConstObjectList = list });
+
+                    for (int i = 0; i < 10; i++)
+                    {
+                        command.Add(new UpResetSearch() { InConstLocalIndex = 0, InConstLocalList = 0, InConstRemoteIndex = 0, InConstRemoteList = 1 });
+                        command.Add(new UpFindResource() { InConstResource = (int)resource, InConstCount = 40 });
+                        command.Add(new UpSearchObjectIdList() { InConstSearchSource = 2 });
+                    }
+
+                    FindCommands.Add(command);
+                }
+                
             }
         }
 

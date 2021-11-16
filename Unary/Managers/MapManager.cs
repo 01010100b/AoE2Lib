@@ -16,8 +16,6 @@ namespace Unary.Managers
 {
     class MapManager : Manager
     {
-        
-
         private readonly HashSet<Tile> ConstructionBlockedTiles = new();
         private readonly HashSet<Tile> ConstructionExcludedTiles = new();
         private readonly HashSet<Tile> LandBlockedTiles = new();
@@ -247,11 +245,6 @@ namespace Unary.Managers
                 return false;
             }
 
-            if (unit[ObjectData.CLASS] == (int)UnitClass.TreeStump)
-            {
-                return false;
-            }
-
             return true;
         }
 
@@ -267,17 +260,7 @@ namespace Unary.Managers
                 return false;
             }
 
-            if (unit[ObjectData.CLASS] == (int)UnitClass.TreeStump)
-            {
-                return false;
-            }
-
             if (unit[ObjectData.BASE_TYPE] == Unary.Mod.Farm)
-            {
-                return false;
-            }
-
-            if (unit[ObjectData.STATUS] == 0)
             {
                 return false;
             }

@@ -68,13 +68,9 @@ namespace Unary.UnitControllers.BuildingControllers
             }
             else if (ClosestDistance > 10)
             {
-                rate = 23;
-            }
-            else if (ClosestDistance > 5)
-            {
                 rate = 11;
             }
-            else if (ClosestDistance > 3)
+            else if (ClosestDistance > 5)
             {
                 rate = 5;
             }
@@ -146,7 +142,7 @@ namespace Unary.UnitControllers.BuildingControllers
                                 {
                                     Resources[resource].Add(new KeyValuePair<Tile, Unit>(t, unit));
 
-                                    if (t.Position.DistanceTo(Unit.Position) < ClosestDistance)
+                                    if (unit.Position.DistanceTo(Unit.Position) < ClosestDistance)
                                     {
                                         ClosestDistance = t.Position.DistanceTo(Unit.Position);
                                     }
@@ -225,7 +221,7 @@ namespace Unary.UnitControllers.BuildingControllers
                 }
             }
 
-            Distances = Pathing.GetAllPathDistances(initial, x => x.GetNeighbours().Where(t => !Unary.MapManager.IsLandBlocked(t)), range);
+            Distances = Pathing.GetAllPathDistances(initial, x => x.GetNeighbours().Where(t => Unary.MapManager.CanReach(t)), range);
         }
     }
 }

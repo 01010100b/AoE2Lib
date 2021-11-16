@@ -28,7 +28,7 @@ namespace Unary.UnitControllers.MilitaryControllers
                 return;
             }
 
-            if (Target == null || Target.Targetable == false || GetHashCode() % 53 == Unary.GameState.Tick % 53)
+            if (Target == null || Target.Targetable == false || GetHashCode() % 17 == Unary.GameState.Tick % 17)
             {
                 FindTarget();
             }
