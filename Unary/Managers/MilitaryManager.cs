@@ -58,7 +58,7 @@ namespace Unary.Managers
         internal override void Update()
         {
             Unary.GameState.SetStrategicNumber(StrategicNumber.NUMBER_EXPLORE_GROUPS, 0);
-            DoScouting();
+            //DoScouting();
         }
 
         private void DoScouting()

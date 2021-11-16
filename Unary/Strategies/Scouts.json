@@ -1,0 +1,69 @@
+{
+    "Name": "Scouts",
+    "Gatherers": [
+        "FOOD",
+        "FOOD",
+        "FOOD",
+        "FOOD",
+        "FOOD",
+        "FOOD",
+        "WOOD",
+        "WOOD",
+        "WOOD",
+        "WOOD",
+        "FOOD",
+        "FOOD",
+        "FOOD",
+        "FOOD",
+        "FOOD",
+        "FOOD",
+        "FOOD",
+        "FOOD",
+        "FOOD",
+        "WOOD",
+        "WOOD",
+        "WOOD",
+        "WOOD",
+        "WOOD",
+        "WOOD",
+        "WOOD",
+        "WOOD",
+        "WOOD",
+        "WOOD",
+        "WOOD",
+        "WOOD",
+        "FOOD",
+        "FOOD",
+        "FOOD",
+        "FOOD",
+        "FOOD"
+    ],
+    "ExtraFoodPercentage": 50,
+    "ExtraWoodPercentage": 30,
+    "ExtraGoldPercentage": 10,
+    "ExtraStonePercentage": 10,
+    "BuildOrder": [
+        {
+            "Type": "RESEARCH",
+            "Id": 101
+        },
+        {
+            "Type": "UNIT",
+            "Id": 12
+        },
+        {
+            "Type": "UNIT",
+            "Id": 101
+        },
+        {
+            "Type": "UNIT",
+            "Id": 101
+        }
+    ],
+    "PrimaryUnits": [
+        448
+    ],
+    "SecondaryUnits": [],
+    "SecondaryUnitPercentage": 0,
+    "AutoEcoTechs":  true
+}

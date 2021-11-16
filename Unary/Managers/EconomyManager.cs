@@ -23,6 +23,7 @@ namespace Unary.Managers
         private int MaxTownCenters { get; set; } = 1;
         private int ConcurrentVillagers { get; set; } = 3;
         private readonly List<Unit> Meat = new();
+        private readonly List<Unit> Deer = new();
         private int FoodGatherers { get; set; } = 0;
         private int WoodGatherers { get; set; } = 0;
         private int GoldGatherers { get; set; } = 0;
@@ -31,6 +32,11 @@ namespace Unary.Managers
         public EconomyManager(Unary unary) : base(unary)
         {
 
+        }
+
+        public IEnumerable<Unit> GetDeer()
+        {
+            return Deer;
         }
 
         public IEnumerable<Unit> GetMeat()

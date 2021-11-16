@@ -24,6 +24,9 @@ namespace Unary
             InitializeComponent();
 
             LoadSettings();
+#if DEBUG
+            Settings = new Settings();
+#endif
             SaveSettings();
         }
 

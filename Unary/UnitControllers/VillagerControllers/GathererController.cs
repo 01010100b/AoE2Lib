@@ -17,9 +17,11 @@ namespace Unary.UnitControllers.VillagerControllers
         public Tile Tile { get; private set; } = null;
         public DropsiteController DropsiteController { get; private set; } = null;
 
+        private int LastTargetTick { get; set; } = 0;
+
         public GathererController(Unit unit, Unary unary) : base(unit, unary)
         {
-
+            LastTargetTick = Unary.GameState.Tick;
         }
 
         protected override void VillagerTick()

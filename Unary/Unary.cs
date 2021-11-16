@@ -111,6 +111,19 @@ namespace Unary
             {
                 yield return command;
             }
+
+            Test();
+        }
+
+        private void Test()
+        {
+            foreach (var enemy in GameState.Enemies)
+            {
+                foreach (var unit in enemy.Units)
+                {
+                    Log.Debug($"Player {enemy.PlayerNumber} unit {unit.Id} type {unit[ObjectData.BASE_TYPE]} cmdid {unit[ObjectData.CMDID]} target {unit.Targetable}");
+                }
+            }
         }
     }
 }

@@ -80,7 +80,7 @@ namespace Unary
 
         protected abstract void Tick();
 
-        protected void PerformPotentialFieldStep(int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue)
+        protected void PerformPotentialFieldStep(Position move, double radius, int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue)
         {
             RefreshRate = 5;
 
@@ -194,8 +194,10 @@ namespace Unary
 
         protected void MoveTo(Position position, double radius)
         {
-            MovePosition = position;
-            MoveRadius = radius;
+            if (Unit.Position.DistanceTo(position) > radius)
+            {
+                Unit.Target(position);
+            }
         }
 
         private Position GetMovementPosition(Position current)

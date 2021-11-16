@@ -14,13 +14,12 @@ namespace AoE2Lib.Bots.GameElements
     {
         public readonly int Id;
         public int this[ObjectData data] => GetData(data);
-        public int PlayerNumber => GetData(ObjectData.PLAYER);
+        public int PlayerNumber => this[ObjectData.PLAYER];
         public bool Targetable { get; private set; } = false;
-        public bool Visible { get; private set; } = false;
+        public bool IsBuilding => this[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || this[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING;
         public TimeSpan LastSeenGameTime { get; private set; } = TimeSpan.Zero;
-        public Position Position => Position.FromPrecise(GetData(ObjectData.PRECISE_X), GetData(ObjectData.PRECISE_Y));
+        public Position Position => Position.FromPrecise(this[ObjectData.PRECISE_X], this[ObjectData.PRECISE_Y]);
         public Tile Tile => Bot.GameState.Map.GetTile(Position);
-        public Position Velocity { get; private set; } = Position.Zero;
 
         private readonly Dictionary<ObjectData, int> Data = new Dictionary<ObjectData, int>();
 
@@ -236,54 +235,27 @@ namespace AoE2Lib.Bots.GameElements
             var visible = responses[3].Unpack<UpPointExploredResult>().Result == 15;
             var data = responses[4].Unpack<UpObjectDataListResult>().Result.ToArray();
             var id = data[(int)ObjectData.ID];
-            var player = data[(int)ObjectData.PLAYER];
 
             Targetable = true;
-            Visible = true;
 
             if (id != Id)
             {
                 Targetable = false;
-                Visible = false;
 
                 return;
             }
 
-            if (player > 0 && (visible == false || data[(int)ObjectData.GARRISONED] == 1))
+            if (visible == false)
             {
-                if (data[(int)ObjectData.CATEGORY] != 80)
-                {
-                    Visible = false;
-                }
-                
                 return;
             }
 
-            if (visible)
-            {
-                LastSeenGameTime = Bot.GameState.GameTime;
-            }
-
-            var old_pos = Position;
-            var old_tick = LastUpdateTick;
+            LastSeenGameTime = Bot.GameState.GameTime;
 
             for (int i = 0; i < data.Length; i++)
             {
                 Data[(ObjectData)i] = data[i];
             }
-
-            var new_pos = Position;
-            var new_tick = Bot.GameState.Tick;
-            var time = (new_tick - old_tick) * Bot.GameState.GameTimePerTick.TotalSeconds;
-            var v = (new_pos - old_pos) / Math.Max(0.00001, time);
-            if (v.Norm > this[ObjectData.SPEED] / 80d)
-            {
-                v /= v.Norm;
-                v *= this[ObjectData.SPEED] / 100d;
-            }
-
-            Velocity += v;
-            Velocity /= 2;
         }
     }
 }

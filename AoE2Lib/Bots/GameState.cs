@@ -14,8 +14,8 @@ namespace AoE2Lib.Bots
         public readonly Map Map;
         public Player MyPlayer => Players[Bot.PlayerNumber];
         public Player Gaia => Players[0];
-        public IEnumerable<Player> Enemies => GetPlayers().Where(p => p.Stance == PlayerStance.ENEMY);
-        public IEnumerable<Player> Allies => GetPlayers().Where(p => p.PlayerNumber != Bot.PlayerNumber && p.Stance == PlayerStance.ALLY);
+        public IEnumerable<Player> Enemies => GetPlayers().Where(p => p.Stance == PlayerStance.ENEMY && p != Gaia);
+        public IEnumerable<Player> Allies => GetPlayers().Where(p => p.Stance == PlayerStance.ALLY && p != MyPlayer);
         public Position MyPosition { get; private set; } = Position.Zero;
         public int Tick { get; private set; } = 0;
         public TimeSpan GameTime { get; private set; } = TimeSpan.Zero;
@@ -246,6 +246,11 @@ namespace AoE2Lib.Bots
             Commands.Add(command);
         }
 
+        internal void RemoveUnit(Unit unit)
+        {
+            Units.Remove(unit.Id);
+        }
+
         internal IEnumerable<Command> RequestUpdate()
         {
             var sw = new Stopwatch();
@@ -396,7 +401,7 @@ namespace AoE2Lib.Bots
                 type.Update();
             }
 
-            foreach (var unit in Units.Values)
+            foreach (var unit in Units.Values.ToList())
             {
                 unit.Update();
             }

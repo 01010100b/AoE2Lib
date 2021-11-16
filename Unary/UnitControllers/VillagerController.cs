@@ -39,7 +39,7 @@ namespace Unary.UnitControllers
                 return;
             }
 
-            if (Building.AssignedBuilders > Building.MaxBuilders && GetHashCode() % 10 == Unary.GameState.Tick % 10)
+            if (Building.AssignedBuilders > Building.MaxBuilders && GetHashCode() % 11 == Unary.GameState.Tick % 11)
             {
                 Building = null;
 

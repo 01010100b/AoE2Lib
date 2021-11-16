@@ -28,7 +28,7 @@ namespace Unary.UnitControllers.MilitaryControllers
 
         protected override void MilitaryTick()
         {
-            var deer = Unary.GameState.Gaia.Units.Where(u => u.Targetable && u.Position.DistanceTo(Unary.GameState.MyPosition) < 50 && u[ObjectData.CLASS] == (int)UnitClass.PreyAnimal && u[ObjectData.HITPOINTS] > 0).Count();
+            var deer = Unary.EconomyManager.GetDeer().Count();
 
             if (deer > 0)
             {
@@ -53,6 +53,8 @@ namespace Unary.UnitControllers.MilitaryControllers
 
         private void FindState()
         {
+            AttractorPosition = Unary.GameState.MyPosition;
+            AttractorRadius = 0;
             var los = 4;
 
             ScoutingState best = null;

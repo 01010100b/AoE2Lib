@@ -12,6 +12,8 @@ namespace Unary.Managers
 {
     class StrategyManager : Manager
     {
+        public Player Attacking { get; private set; } = null;
+
         private Strategy Strategy { get; set; }
         private readonly List<Strategy> Strategies = new();
 
@@ -68,25 +70,6 @@ namespace Unary.Managers
             return (int)Math.Floor(GetDesiredGatherers(resource) * 1.1);
         }
 
-        public void Attack(Player player)
-        {
-            return;
-
-            Unary.GameState.SetStrategicNumber(StrategicNumber.ENABLE_PATROL_ATTACK, 1);
-            Unary.GameState.SetStrategicNumber(StrategicNumber.TARGET_PLAYER_NUMBER, player.PlayerNumber);
-            Unary.GameState.SetStrategicNumber(StrategicNumber.MINIMUM_ATTACK_GROUP_SIZE, 1);
-            Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_ATTACK_GROUP_SIZE, 1);
-            Unary.GameState.SetStrategicNumber(StrategicNumber.NUMBER_ATTACK_GROUPS, 1000);
-            Unary.GameState.SetStrategicNumber(StrategicNumber.ZERO_PRIORITY_DISTANCE, 250);
-
-            Unary.Log.Info($"Attacking player {player.PlayerNumber}");
-        }
-
-        public void Retreat()
-        {
-            Unary.GameState.SetStrategicNumber(StrategicNumber.NUMBER_ATTACK_GROUPS, 0);
-        }
-
         internal override void Update()
         {
             if (Strategy == null)
@@ -95,6 +78,7 @@ namespace Unary.Managers
             }
             else
             {
+                DoAttacking();
                 PerformBuildOrder();
                 TrainUnits();
 
@@ -112,8 +96,34 @@ namespace Unary.Managers
             Unary.Log.Info($"Choose strategy: {Strategy.Name}");
         }
 
+        private void DoAttacking()
+        {
+            Player attack = null;
+
+            if (Unary.GameState.MyPlayer.MilitaryPopulation >= 20)
+            {
+                attack = Unary.GameState.Enemies.Where(p => p.InGame).FirstOrDefault();
+            }
+
+            if (attack != Attacking)
+            {
+                if (attack != null)
+                {
+                    Unary.Log.Info($"Attacking {attack.Stance} player {attack.PlayerNumber}");
+                }
+                else
+                {
+                    Unary.Log.Info($"Stop attacking {Attacking.Stance} player {Attacking.PlayerNumber}");
+                }
+
+                Attacking = attack;
+            }
+        }
+
         private void PerformBuildOrder()
         {
+            var req = new Dictionary<UnitType, int>();
+
             foreach (var bo in Strategy.BuildOrder)
             {
                 if (bo.Type == BuildOrderCommandType.RESEARCH)
@@ -159,25 +169,32 @@ namespace Unary.Managers
                         break;
                     }
 
-                    if (unit.CountTotal > 0)
+                    if (!req.ContainsKey(unit))
+                    {
+                        req.Add(unit, 0);
+                    }
+
+                    req[unit]++;
+
+                    if (unit.CountTotal >= req[unit])
                     {
                         continue;
                     }
 
                     if (!unit.Available)
                     {
-                        Unary.Log.Debug($"Unit {unit.Id} not available");
+                        Unary.Log.Debug($"Unit type {unit.Id} not available");
 
                         break;
                     }
 
                     if (unit.IsBuilding)
                     {
-                        Unary.ProductionManager.Build(unit, unit.CountTotal + 1, 1, Priority.PRODUCTION_BUILDING);
+                        Unary.ProductionManager.Build(unit, req[unit], 1, Priority.PRODUCTION_BUILDING);
                     }
                     else
                     {
-                        Unary.ProductionManager.Train(unit, unit.CountTotal + 1, 1, Priority.MILITARY);
+                        Unary.ProductionManager.Train(unit, req[unit], 1, Priority.MILITARY);
                     }
 
                     break;

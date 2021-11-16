@@ -49,25 +49,31 @@ namespace Unary.Managers
         public List<KeyValuePair<Tile, double>> GetDropsitePlacements(Resource resource)
         {
             var dict = WoodPlacements;
+            var site = Unary.Mod.LumberCamp;
             switch (resource)
             {
-                case Resource.FOOD: dict = FoodPlacements; break;
-                case Resource.WOOD: dict = WoodPlacements; break;
-                case Resource.GOLD: dict = GoldPlacements; break;
-                case Resource.STONE: dict = StonePlacements; break;
+                case Resource.FOOD: dict = FoodPlacements; site = Unary.Mod.Mill; break;
+                case Resource.WOOD: dict = WoodPlacements; site = Unary.Mod.LumberCamp; break;
+                case Resource.GOLD: dict = GoldPlacements; site = Unary.Mod.MiningCamp; break;
+                case Resource.STONE: dict = StonePlacements; site = Unary.Mod.MiningCamp; break;
                 default: throw new ArgumentOutOfRangeException(nameof(resource));
             }
+            var size = Unary.Mod.GetBuildingSize(site);
 
             var used = new HashSet<Tile>();
             var tiles = new List<KeyValuePair<Tile, double>>();
             foreach (var places in dict.Values)
             {
-                foreach (var tile in places)
+                foreach (var place in places)
                 {
-                    if (!used.Contains(tile.Key))
+                    if (!used.Contains(place.Key))
                     {
-                        tiles.Add(tile);
-                        used.Add(tile.Key);
+                        used.Add(place.Key);
+
+                        if (CanBuildAt(size, size, place.Key))
+                        {
+                            tiles.Add(place);
+                        }
                     }
                 }
             }
@@ -81,7 +87,7 @@ namespace Unary.Managers
 
             if (BuildingPlacements.TryGetValue(size, out HashSet<Tile> tiles))
             {
-                return tiles;
+                return tiles.Where(t => CanBuildAt(size, size, t));
             }
             else
             {
@@ -110,6 +116,11 @@ namespace Unary.Managers
                     }
 
                     if (!t.IsOnLand)
+                    {
+                        return false;
+                    }
+
+                    if (!Unary.MapManager.CanReach(t))
                     {
                         return false;
                     }
@@ -269,7 +280,7 @@ namespace Unary.Managers
 
             foreach (var res in dict.Keys.ToList())
             {
-                if (res.GetHashCode() % 100 == Unary.GameState.Tick % 100 || !res.Targetable)
+                if (res.GetHashCode() % 101 == Unary.GameState.Tick % 101 || !res.Targetable)
                 {
                     dict.Remove(res);
                 }
@@ -300,7 +311,10 @@ namespace Unary.Managers
                         if (CanBuildAt(width, height, tile))
                         {
                             var score = GetDropsiteScore(type, tile);
-                            tiles.Add(new KeyValuePair<Tile, double>(tile, score));
+                            if (score != double.MinValue)
+                            {
+                                tiles.Add(new KeyValuePair<Tile, double>(tile, score));
+                            }
                         }
                     }
 
@@ -326,7 +340,7 @@ namespace Unary.Managers
                 var size = kvp.Key;
                 var tiles = kvp.Value;
 
-                tiles.RemoveWhere(t => t.GetHashCode() % 100 == Unary.GameState.Tick % 100 || !Unary.MapManager.CanReach(t));
+                tiles.RemoveWhere(t => t.GetHashCode() % 101 == Unary.GameState.Tick % 101 || !Unary.MapManager.CanReach(t));
 
                 for (int i = 0; i < 100; i++)
                 {
@@ -371,7 +385,7 @@ namespace Unary.Managers
                 return double.MinValue;
             }
 
-            score -= 0.1 * tile.Position.DistanceTo(Unary.GameState.MyPosition);
+            score -= Unary.Settings.DropsiteDistanceCost * tile.Position.DistanceTo(Unary.GameState.MyPosition);
 
             return score;
         }

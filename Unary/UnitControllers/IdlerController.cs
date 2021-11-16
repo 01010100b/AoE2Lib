@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Unary.UnitControllers.BuildingControllers;
+using Unary.UnitControllers.MilitaryControllers;
 using Unary.UnitControllers.VillagerControllers;
 
 namespace Unary.UnitControllers
@@ -25,6 +26,10 @@ namespace Unary.UnitControllers
             {
                 HandleVillager();
             }
+            else if (cmdid == CmdId.MILITARY)
+            {
+                HandleMilitary();
+            }
             else if (cmdid == CmdId.CIVILIAN_BUILDING || cmdid == CmdId.MILITARY_BUILDING)
             {
                 HandleBuilding();
@@ -40,6 +45,37 @@ namespace Unary.UnitControllers
             else
             {
                 new GathererController(Unit, Unary);
+            }
+        }
+
+        private void HandleMilitary()
+        {
+            if (GetHashCode() % 53 == Unary.GameState.Tick % 53)
+            {
+                var scouts = Unary.UnitsManager.GetControllers<ScoutController>();
+                if (scouts.Count == 0)
+                {
+                    new ScoutController(Unit, Unary);
+
+                    return;
+                }
+                else if (Unit[ObjectData.SPEED] > scouts[0].Unit[ObjectData.SPEED])
+                {
+                    new IdlerController(scouts[0].Unit, Unary);
+                    new ScoutController(Unit, Unary);
+
+                    return;
+                }
+            }
+
+            if (GetHashCode() % 13 == Unary.GameState.Tick % 13)
+            {
+                if (Unary.StrategyManager.Attacking != null)
+                {
+                    new AttackerController(Unit, Unary);
+
+                    return;
+                }
             }
         }
 

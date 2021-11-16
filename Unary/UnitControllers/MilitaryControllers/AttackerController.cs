@@ -1,4 +1,5 @@
 ﻿using AoE2Lib;
+using AoE2Lib.Bots;
 using AoE2Lib.Bots.GameElements;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace Unary.UnitControllers.MilitaryControllers
 {
     class AttackerController : MilitaryController
     {
-        public Unit Target { get; set; } = null;
+        public Unit Target { get; private set; } = null;
 
         public AttackerController(Unit unit, Unary unary) : base(unit, unary)
         {
@@ -20,14 +21,20 @@ namespace Unary.UnitControllers.MilitaryControllers
 
         protected override void MilitaryTick()
         {
-            if (Target == null || Target.Targetable == false)
+            if (Unary.StrategyManager.Attacking == null)
+            {
+                new IdlerController(Unit, Unary);
+
+                return;
+            }
+
+            if (Target == null || Target.Targetable == false || GetHashCode() % 53 == Unary.GameState.Tick % 53)
             {
                 FindTarget();
             }
 
             if (Target != null)
             {
-                MoveTo(Target.Position, Math.Max(0, Unit[ObjectData.RANGE]));
                 AttackTarget();
                 Target.RequestUpdate();
             }
@@ -35,52 +42,76 @@ namespace Unary.UnitControllers.MilitaryControllers
 
         private void FindTarget()
         {
+            var position = Unary.GameState.MyPosition;
+            var radius = double.MaxValue;
+
+            Unit closest_building = null;
+            foreach (var building in Unary.StrategyManager.Attacking.Units.Where(u => u.IsBuilding && u.Targetable))
+            {
+                if (closest_building == null || building.Position.DistanceTo(Unary.GameState.MyPosition) < closest_building.Position.DistanceTo(Unary.GameState.MyPosition))
+                {
+                    closest_building = building;
+                }
+            }
+
+            if (closest_building != null)
+            {
+                position = closest_building.Position;
+                radius = 10;
+
+                if (Unary.StrategyManager.Attacking.IsAlly)
+                {
+                    radius = 30;
+                }
+            }
+            else
+            {
+                Unary.Log.Debug($"Attacker {Unit.Id} can not find closest building of player {Unary.StrategyManager.Attacking.PlayerNumber}");
+
+                return;
+            }
+
             var targets = new List<Unit>();
-            foreach (var enemy in Unary.GameState.GetPlayers().Where(p => p.Stance == PlayerStance.ENEMY))
+            foreach (var enemy in Unary.GameState.Enemies)
             {
-                foreach (var unit in enemy.Units.Where(u => u.Targetable && u.Visible))
+                foreach (var unit in enemy.Units.Where(u => u.Targetable))
                 {
-                    targets.Add(unit);
+                    if (position.DistanceTo(unit.Position) <= radius)
+                    {
+                        targets.Add(unit);
+                    }
                 }
             }
 
-            var attackers = Unary.UnitsManager.GetControllers<AttackerController>();
-            var assignments = new Dictionary<Unit, int>();
-            
-            foreach (var target in targets)
-            {
-                assignments.Add(target, 0);
-            }
+            targets.Sort((a, b) => a.Position.DistanceTo(Unit.Position).CompareTo(b.Position.DistanceTo(Unit.Position)));
 
-            foreach (var attacker in attackers.Where(c => c.Target != null))
-            {
-                if (assignments.ContainsKey(attacker.Target))
-                {
-                    assignments[attacker.Target]++;
-                }
-            }
-
-            targets.Sort((a, b) => assignments[b].CompareTo(assignments[a]));
             if (targets.Count > 0)
             {
                 Target = targets[0];
-                Unary.Log.Debug($"Targeting {Target.Id}");
+                Unary.Log.Debug($"Attacker {Unit.Id} choose target {Target.Id}");
             }
             else
             {
                 Target = null;
+
+                if (Unit.Position.DistanceTo(closest_building.Position) > radius)
+                {
+                    MoveTo(closest_building.Position, radius);
+                    Unary.Log.Debug($"Attacker {Unit.Id} moving to closest building");
+                }
+                else
+                {
+                    Unary.Log.Debug($"Attacker {Unit.Id} can not find target");
+                }
             }
         }
 
         private void AttackTarget()
         {
-            const int ATTACK_MS = 10;
-            var max_next_attack = Unit[ObjectData.RELOAD_TIME] - 500;
-
-            Debug.WriteLine($"attacking target {Target.Id} with {Unit.Id}");
-            Unit.Target(Target, UnitAction.DEFAULT, null, null, 0, ATTACK_MS);
-
-            PerformPotentialFieldStep(ATTACK_MS + 1, max_next_attack);
+            if (Unit.GetTarget() != Target)
+            {
+                Unit.Target(Target);
+            }
         }
     }
 }
