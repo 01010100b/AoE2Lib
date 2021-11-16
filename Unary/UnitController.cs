@@ -21,6 +21,7 @@ namespace Unary
         private Position MovePosition { get; set; } = Position.Zero;
         private double MoveRadius { get; set; } = 1e5;
         private readonly List<Unit> RelevantUnits = new();
+        private int RefreshRate { get; set; } = 5;
         private readonly Command MoveCommand = new();
         private Position ActualMovementPosition { get; set; }
 
@@ -56,9 +57,14 @@ namespace Unary
 
             MoveCommand.Reset();
 
-            if (GetHashCode() % 5 == Unary.GameState.Tick % 5)
+            if (GetHashCode() % RefreshRate == Unary.GameState.Tick % RefreshRate)
             {
                 UpdateRelevantUnits();
+            }
+
+            if (Unary.Rng.NextDouble() < 0.2)
+            {
+                RefreshRate = Math.Min(23, RefreshRate + 1);
             }
 
             var target = Unit.GetTarget();
@@ -76,6 +82,8 @@ namespace Unary
 
         protected void PerformPotentialFieldStep(int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue)
         {
+            RefreshRate = 5;
+
             var op_g_sub = 14;
 
             var current_pos = Unit.Position;

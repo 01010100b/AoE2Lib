@@ -13,8 +13,11 @@ namespace Unary.UnitControllers.BuildingControllers
 {
     class DropsiteController : BuildingController
     {
+        public int MaxOccupancy { get; private set; } = 7;
+
         private readonly Dictionary<Resource, List<KeyValuePair<Tile, Unit>>> Resources = new();
         private Dictionary<Tile, int> Distances { get; set; } = new();
+        private double ClosestDistance { get; set; } = 0;
 
         public DropsiteController(Unit unit, Unary unary) : base(unit, unary)
         {
@@ -41,19 +44,53 @@ namespace Unary.UnitControllers.BuildingControllers
             }
             else
             {
-                return int.MaxValue;
+                return 10000;
             }
         }
 
         protected override void BuildingTick()
         {
-            UpdateResources();
-            UpdateDistances();
+            // occupancy
+
+            MaxOccupancy = 7;
+
+            if (Unit[ObjectData.BASE_TYPE] == Unary.Mod.TownCenter)
+            {
+                MaxOccupancy = 15;
+            }
+
+            // update cache
+
+            var rate = 3;
+            if (ClosestDistance > 20)
+            {
+                rate = 53;
+            }
+            else if (ClosestDistance > 10)
+            {
+                rate = 23;
+            }
+            else if (ClosestDistance > 5)
+            {
+                rate = 11;
+            }
+            else if (ClosestDistance > 3)
+            {
+                rate = 5;
+            }
+
+            if (GetHashCode() % rate == Unary.GameState.Tick % rate)
+            {
+                UpdateResources();
+                UpdateDistances();
+            }
         }
 
         private void UpdateResources()
         {
-            var range = 20;
+            ClosestDistance = double.MaxValue;
+
+            var range = 10;
 
             Resources.Clear();
 
@@ -66,6 +103,8 @@ namespace Unary.UnitControllers.BuildingControllers
                 resources.Add(Resource.WOOD);
                 resources.Add(Resource.GOLD);
                 resources.Add(Resource.STONE);
+
+                range = 25;
             }
             else if (basetype == Unary.Mod.Mill)
             {
@@ -106,6 +145,11 @@ namespace Unary.UnitControllers.BuildingControllers
                                 if (Unary.MapManager.CanReach(t))
                                 {
                                     Resources[resource].Add(new KeyValuePair<Tile, Unit>(t, unit));
+
+                                    if (t.Position.DistanceTo(Unit.Position) < ClosestDistance)
+                                    {
+                                        ClosestDistance = t.Position.DistanceTo(Unit.Position);
+                                    }
                                 }
                             }
                         }

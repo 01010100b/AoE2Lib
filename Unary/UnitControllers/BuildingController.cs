@@ -40,6 +40,11 @@ namespace Unary.UnitControllers
                 if (type == Unary.Mod.Farm || type == Unary.Mod.LumberCamp || type == Unary.Mod.MiningCamp)
                 {
                     MaxBuilders = 0;
+
+                    if (Unary.GameState.GameTime - Unit.FirstUpdateGameTime > TimeSpan.FromMinutes(1))
+                    {
+                        MaxBuilders = 1;
+                    }
                 }
                 else
                 {

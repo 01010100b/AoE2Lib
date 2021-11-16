@@ -5,16 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unary.UnitControllers.BuildingControllers;
 using Unary.UnitControllers.VillagerControllers;
 
 namespace Unary.UnitControllers.VillagerControllers
 {
     class GathererController : VillagerController
     {
-        public Resource Resource { get; set; } = Resource.NONE;
+        public Resource Resource { get; private set; } = Resource.NONE;
         public Unit Target { get; private set; } = null;
         public Tile Tile { get; private set; } = null;
-        public Unit Dropsite { get; private set; } = null;
+        public DropsiteController DropsiteController { get; private set; } = null;
 
         public GathererController(Unit unit, Unary unary) : base(unit, unary)
         {
@@ -27,38 +28,47 @@ namespace Unary.UnitControllers.VillagerControllers
             {
                 ChooseResource();
             }
-            else if (Target == null || Tile == null || Dropsite == null || GetHashCode() % 50 == Unary.GameState.Tick % 50)
+            else if (Target == null || Tile == null || DropsiteController == null || GetHashCode() % 53 == Unary.GameState.Tick % 53)
             {
                 ChooseTarget();
             }
-            else
+            
+            if (Target != null)
             {
                 Gather();
             }
         }
-
+        
         private void ChooseResource()
         {
-            foreach (var res in new[] {Resource.WOOD, Resource.FOOD, Resource.GOLD, Resource.STONE })
+            if (Resource == Resource.NONE)
             {
-                var min = Unary.StrategyManager.GetMinimumGatherers(res);
-                var max = Unary.StrategyManager.GetMaximumGatherers(res);
-                var current = Unary.UnitsManager.GetControllers<GathererController>().Count(u => u.Resource == res);
-                if (res == Resource.FOOD)
+                foreach (var res in new[] { Resource.WOOD, Resource.FOOD, Resource.GOLD, Resource.STONE })
                 {
-                    current += Unary.UnitsManager.GetControllers<FarmerController>().Count;
-                }
+                    var min = Unary.StrategyManager.GetMinimumGatherers(res);
+                    var max = Unary.StrategyManager.GetMaximumGatherers(res);
+                    var current = Unary.UnitsManager.GetControllers<GathererController>().Count(u => u.Resource == res);
+                    if (res == Resource.FOOD)
+                    {
+                        current += Unary.UnitsManager.GetControllers<FarmerController>().Count;
+                    }
 
-                if (current < min)
-                {
-                    Resource = res;
-                    
-                    break;
+                    if (current < min)
+                    {
+                        Resource = res;
+
+                        break;
+                    }
+                    else if (current < max)
+                    {
+                        Resource = res;
+                    }
                 }
-                else if (current < max)
-                {
-                    Resource = res;
-                }
+            }
+
+            if (Resource == Resource.NONE)
+            {
+                Resource = Resource.FOOD;
             }
 
             Unary.Log.Debug($"Gatherer {Unit.Id} choose resource {Resource}");
@@ -67,7 +77,7 @@ namespace Unary.UnitControllers.VillagerControllers
         private void ChooseTarget()
         {
             var tile_occupancy = new Dictionary<Tile, int>();
-            var dropsite_occupancy = new Dictionary<Unit, int>();
+            var dropsite_occupancy = new Dictionary<DropsiteController, int>();
             foreach (var gatherer in Unary.UnitsManager.GetControllers<GathererController>().Where(g => g != this))
             {
                 if (gatherer.Tile != null)
@@ -80,72 +90,72 @@ namespace Unary.UnitControllers.VillagerControllers
                     tile_occupancy[gatherer.Tile]++;
                 }
 
-                if (gatherer.Dropsite != null)
+                if (gatherer.DropsiteController != null)
                 {
-                    if (!dropsite_occupancy.ContainsKey(gatherer.Dropsite))
+                    if (!dropsite_occupancy.ContainsKey(gatherer.DropsiteController))
                     {
-                        dropsite_occupancy.Add(gatherer.Dropsite, 0);
+                        dropsite_occupancy.Add(gatherer.DropsiteController, 0);
                     }
 
-                    dropsite_occupancy[gatherer.Dropsite]++;
+                    dropsite_occupancy[gatherer.DropsiteController]++;
                 }
             }
 
-            var best_distance = double.MaxValue;
-            var request = true;
+            var best_cost = double.MaxValue;
+            var found_close = false;
 
-            foreach (var dropsite in Unary.EconomyManager.GetDropsites(Resource))
+            foreach (var dropsite in Unary.UnitsManager.GetControllers<DropsiteController>())
             {
-                if (dropsite_occupancy.TryGetValue(dropsite, out int count))
+                if (dropsite_occupancy.TryGetValue(dropsite, out int occupancy))
                 {
-                    if (count >= 7 && dropsite[ObjectData.BASE_TYPE] != Unary.Mod.TownCenter)
+                    if (occupancy > dropsite.MaxOccupancy)
                     {
                         continue;
                     }
                 }
 
-                foreach (var res in Unary.EconomyManager.GetGatherableResources(Resource, dropsite))
+                foreach (var res in dropsite.GetGatherableResources(Resource))
                 {
-                    if (tile_occupancy.TryGetValue(res.Key, out int occ))
+                    if (!res.Value.Targetable)
                     {
-                        if (occ >= 2)
+                        continue;
+                    }
+
+                    if (tile_occupancy.TryGetValue(res.Key, out occupancy))
+                    {
+                        if (occupancy >= 2)
                         {
                             continue;
                         }
                     }
 
-                    if (Resource == Resource.FOOD && res.Value.Position.DistanceTo(Unary.GameState.MyPosition) > 30)
+                    var distance = dropsite.GetPathDistance(res.Key);
+
+                    if (distance <= 2)
                     {
-                        continue;
+                        found_close = true;
                     }
 
-                    var distance = dropsite.Position.DistanceTo(res.Key.Position);
-                    var max = 4;
-                    if (Resource == Resource.WOOD)
+                    var cost = distance + (Unary.Settings.VillagerRetaskDistanceCost * Unit.Position.DistanceTo(res.Key.Position));
+
+                    if (Tile == res.Key)
                     {
-                        max = 3;
+                        cost -= 1;
                     }
 
-                    if (distance <= max)
-                    {
-                        request = false;
-                    }
-
-                    distance += 0.1 * Unit.Position.DistanceTo(res.Key.Position);
-
-                    if (distance < best_distance)
+                    if (cost <= best_cost)
                     {
                         Tile = res.Key;
                         Target = res.Value;
-                        Dropsite = dropsite;
-                        best_distance = distance;
+                        DropsiteController = dropsite;
+                        best_cost = cost;
                     }
                 }
             }
 
-            if (request)
+            if (!found_close)
             {
-                Unary.ProductionManager.RequestDropsite(this);
+                Unary.ProductionManager.RequestDropsite(Resource);
             }
 
             if (Target != null)
@@ -167,7 +177,12 @@ namespace Unary.UnitControllers.VillagerControllers
                     }
                 }
 
-                Resource = Resource.NONE;
+                Unary.ProductionManager.RequestDropsite(Resource);
+
+                if (Unary.Rng.NextDouble() < 0.1)
+                {
+                    Resource = Resource.NONE;
+                }
             }
         }
 
@@ -177,24 +192,23 @@ namespace Unary.UnitControllers.VillagerControllers
             {
                 Target = null;
                 Tile = null;
-                Dropsite = null;
+                DropsiteController = null;
 
                 return;
             }
 
             var target = Target;
-            if (Dropsite[ObjectData.STATUS] == 0)
+            if (DropsiteController.Unit[ObjectData.STATUS] == 0)
             {
-                target = Dropsite;
+                target = DropsiteController.Unit;
             }
 
-            if (Unit[ObjectData.TARGET_ID] != target.Id)
+            if (Unit.GetTarget() != target)
             {
                 Unit.Target(target);
             }
 
-            Target.RequestUpdate();
-            Dropsite.RequestUpdate();
+            target.RequestUpdate();
         }
     }
 }

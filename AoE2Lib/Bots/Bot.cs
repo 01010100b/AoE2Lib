@@ -47,7 +47,10 @@ namespace AoE2Lib.Bots
 
         internal void Start(int player, string endpoint, int seed, GameVersion version)
         {
-            Stop();
+            if (BotThread != null)
+            {
+                Stop();
+            }
 
             GameVersion = version;
 

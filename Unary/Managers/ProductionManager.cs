@@ -36,6 +36,16 @@ namespace Unary.Managers
             DropsiteRequestTicks[controller.Resource] = Unary.GameState.Tick;
         }
 
+        public void RequestDropsite(Resource resource)
+        {
+            if (!DropsiteRequestTicks.ContainsKey(resource))
+            {
+                throw new ArgumentOutOfRangeException(nameof(resource));
+            }
+
+            DropsiteRequestTicks[resource] = Unary.GameState.Tick;
+        }
+
         public void Build(UnitType building, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
         {
             var placements = Unary.BuildingManager.GetBuildingPlacements(building).ToList();
@@ -92,7 +102,7 @@ namespace Unary.Managers
                     farm.Build(placements, 100, 3, Priority.FARM);
                 }
 
-                if (placements.Count <= 3)
+                if (placements.Count < 3)
                 {
                     Unary.Log.Info("Building mill");
                     Unary.ProductionManager.Build(mill, 100, 1, Priority.FARM + 1);
@@ -100,9 +110,8 @@ namespace Unary.Managers
             }
             else
             {
-                var width = Unary.Mod.GetBuildingSize(Unary.Mod.Farm);
-                var height = width;
-                if (Unary.BuildingManager.CanBuildAt(width, height, FarmRequest.Tile, true))
+                var size = Unary.Mod.GetBuildingSize(Unary.Mod.Farm);
+                if (Unary.BuildingManager.CanBuildAt(size, size, FarmRequest.Tile, true))
                 {
                     Unary.Log.Info($"Refreshing farm at {FarmRequest.Tile.Position}");
                     farm.Build(new[] { FarmRequest.Tile }, 100, 3, Priority.FARM);
@@ -177,7 +186,7 @@ namespace Unary.Managers
                     {
                         var t = Unary.GameState.Map.GetTile(x, y);
                         
-                        if (Unary.BuildingManager.CanBuildAt(farm_size, farm_size, t, true))
+                        if (Unary.BuildingManager.CanBuildAt(farm_size, farm_size, t))
                         {
                             score += 4;
                         }

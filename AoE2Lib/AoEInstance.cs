@@ -36,8 +36,9 @@ namespace AoE2Lib
             Process = process;
         }
 
-        public void StartBot(Bot bot, int player, string endpoint = "localhost:37412", int seed = -1)
+        public void StartBot(Bot bot, int player, int seed = -1)
         {
+            var endpoint = "localhost:37412";
             LoadAIModule();
             bot.Start(player, endpoint, seed, Version);
         }

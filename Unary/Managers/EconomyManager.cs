@@ -22,8 +22,6 @@ namespace Unary.Managers
         private int ExtraStonePercentage { get; set; } = 0;
         private int MaxTownCenters { get; set; } = 1;
         private int ConcurrentVillagers { get; set; } = 3;
-
-        private readonly List<Unit> Dropsites = new();
         private readonly List<Unit> Meat = new();
         private int FoodGatherers { get; set; } = 0;
         private int WoodGatherers { get; set; } = 0;
@@ -34,71 +32,10 @@ namespace Unary.Managers
         {
 
         }
-        /*
-        public int GetMinimumGatherers(Resource resource)
-        {
-            return resource switch
-            {
-                Resource.FOOD => FoodGatherers,
-                Resource.WOOD => WoodGatherers,
-                Resource.GOLD => GoldGatherers,
-                Resource.STONE => StoneGatherers,
-                _ => throw new ArgumentOutOfRangeException(nameof(resource))
-            };
-        }
 
-        public int GetMaximumGatherers(Resource resource)
-        {
-            var min = GetMinimumGatherers(resource);
-
-            return Math.Max(min + 2, (int)Math.Round(min * 1.1));
-        }
-        */
         public IEnumerable<Unit> GetMeat()
         {
             return Meat;
-        }
-
-        public IEnumerable<Unit> GetDropsites(Resource resource)
-        {
-            return resource switch
-            {
-                Resource.WOOD => Dropsites.Where(u => u[ObjectData.BASE_TYPE] == Unary.Mod.TownCenter || u[ObjectData.BASE_TYPE] == Unary.Mod.LumberCamp),
-                Resource.FOOD => Dropsites.Where(u => u[ObjectData.BASE_TYPE] == Unary.Mod.TownCenter || u[ObjectData.BASE_TYPE] == Unary.Mod.Mill),
-                Resource.GOLD or Resource.STONE => Dropsites.Where(u => u[ObjectData.BASE_TYPE] == Unary.Mod.TownCenter || u[ObjectData.BASE_TYPE] == Unary.Mod.MiningCamp),
-                _ => throw new ArgumentOutOfRangeException(nameof(resource)),
-            };
-        }
-
-        public IEnumerable<KeyValuePair<Tile, Unit>> GetGatherableResources(Resource resource, Unit dropsite)
-        {
-            var range = 30;
-            var type = UnitClass.Tree;
-            type = resource switch
-            {
-                Resource.WOOD => UnitClass.Tree,
-                Resource.FOOD => UnitClass.BerryBush,
-                Resource.GOLD => UnitClass.GoldMine,
-                Resource.STONE => UnitClass.StoneMine,
-                _ => throw new ArgumentOutOfRangeException(nameof(resource)),
-            };
-
-            foreach (var tile in Unary.GameState.Map.GetTilesInRange(dropsite.Position, range))
-            {
-                foreach (var unit in tile.Units.Where(u => u.Targetable))
-                {
-                    if (unit[ObjectData.CLASS] == (int)type)
-                    {
-                        foreach (var t in tile.GetNeighbours())
-                        {
-                            if (Unary.MapManager.CanReach(t))
-                            {
-                                yield return new KeyValuePair<Tile, Unit>(t, unit);
-                            }
-                        }
-                    }
-                }
-            }
         }
 
         internal override void Update()
@@ -121,19 +58,6 @@ namespace Unary.Managers
                     {
                         Meat.Add(unit);
                     }
-                }
-            }
-
-            // update dropsites
-
-            Dropsites.Clear();
-
-            foreach (var unit in Unary.GameState.MyPlayer.Units.Where(u => u.Targetable))
-            {
-                var type = unit[ObjectData.BASE_TYPE];
-                if (type == Unary.Mod.TownCenter || type == Unary.Mod.LumberCamp || type == Unary.Mod.MiningCamp || type == Unary.Mod.Mill || type == Unary.Mod.Dock)
-                {
-                    Dropsites.Add(unit);
                 }
             }
 

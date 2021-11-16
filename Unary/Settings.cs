@@ -9,5 +9,6 @@ namespace Unary
     public class Settings
     {
         public double AnimalKillRange { get; set; } = 3;
+        public double VillagerRetaskDistanceCost { get; set; } = 0.1;
     }
 }
