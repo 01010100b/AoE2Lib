@@ -28,7 +28,7 @@ namespace Unary.UnitControllers.VillagerControllers
             {
                 ChooseResource();
             }
-            else if (Target == null || Tile == null || DropsiteController == null || GetHashCode() % 53 == Unary.GameState.Tick % 53)
+            else if (Target == null || Tile == null || DropsiteController == null || GetHashCode() % 23 == Unary.GameState.Tick % 23)
             {
                 ChooseTarget();
             }
@@ -108,7 +108,7 @@ namespace Unary.UnitControllers.VillagerControllers
             {
                 if (dropsite_occupancy.TryGetValue(dropsite, out int occupancy))
                 {
-                    if (occupancy > dropsite.MaxOccupancy)
+                    if (occupancy >= dropsite.MaxOccupancy)
                     {
                         continue;
                     }
