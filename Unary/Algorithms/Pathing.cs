@@ -25,10 +25,13 @@ namespace Unary.Algorithms
 
                 if (d < max_distance)
                 {
-                    foreach (var child in get_neighbours(parent).Where(c => !dict.ContainsKey(c)))
+                    foreach (var child in get_neighbours(parent))
                     {
-                        dict.Add(child, d + 1);
-                        queue.Enqueue(child);
+                        if (!dict.ContainsKey(child))
+                        {
+                            dict.Add(child, d + 1);
+                            queue.Enqueue(child);
+                        }
                     }
                 }
             }
