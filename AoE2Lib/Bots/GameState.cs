@@ -178,7 +178,7 @@ namespace AoE2Lib.Bots
             command.Add(new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, InConstValue = player });
             command.Add(new UpFullResetSearch());
 
-            command.Add(new UpFilterStatus() { InConstObjectStatus = 0, InConstObjectList = Bot.Rng.NextDouble() < 0.8 ? 0 : 1 });
+            command.Add(new UpFilterStatus() { InConstObjectStatus = 2, InConstObjectList = Bot.Rng.NextDouble() < 0.9 ? 0 : 1 });
             command.Add(new UpFilterDistance() { InConstMinDistance = -1, InConstMaxDistance = range });
 
             for (int i = 0; i < 10; i++)
