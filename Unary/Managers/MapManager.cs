@@ -227,7 +227,7 @@ namespace Unary.Managers
             if (Unary.GameState.Map.IsOnMap(Unary.GameState.MyPosition))
             {
                 var tile = Unary.GameState.Map.GetTile(Unary.GameState.MyPosition);
-                var dict = Pathing.GetAllPathDistances(new[] { tile }, x => x.GetNeighbours().Where(t => !IsLandBlocked(t)));
+                var dict = Pathing.GetAllPathDistances(new[] { tile }, GetTileNeighbours);
                 Distances = dict;
                 Unary.Log.Debug($"Got {dict.Count} reachable tiles");
             }
@@ -285,6 +285,21 @@ namespace Unary.Managers
             else
             {
                 return 1;
+            }
+        }
+
+        private IEnumerable<Tile> GetTileNeighbours(Tile tile)
+        {
+            var neighbours = tile.GetNeighbours();
+
+            for (int i = 0; i < neighbours.Count; i++)
+            {
+                var neighbour = neighbours[i];
+
+                if (!IsLandBlocked(neighbour))
+                {
+                    yield return neighbour;
+                }
             }
         }
     }

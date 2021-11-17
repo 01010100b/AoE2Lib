@@ -30,6 +30,8 @@ namespace AoE2Lib.Bots.GameElements
         internal int Terrain { get; set; } = 0;
         internal int Visibility { get; set; } = 0;
         private readonly Map Map;
+        private readonly List<Tile> Neighbours = new List<Tile>();
+        private readonly List<Tile> AllNeighbours = new List<Tile>();
 
         internal Tile(int x, int y, Map map)
         {
@@ -38,25 +40,43 @@ namespace AoE2Lib.Bots.GameElements
             Map = map;
         }
 
-        public IEnumerable<Tile> GetNeighbours(bool diagonal = false)
+        public IReadOnlyList<Tile> GetNeighbours(bool diagonal = false)
         {
-            var deltas = NEIGHBOURS.AsEnumerable();
-            
-            if (diagonal)
+            if (Neighbours.Count == 0)
             {
-                deltas = NEIGHBOURS.Concat(DIAGONAL_NEIGHTBOURS);
+                foreach (var delta in NEIGHBOURS)
+                {
+                    var x = X + delta.X;
+                    var y = Y + delta.Y;
+
+                    if (Map.IsOnMap(x, y))
+                    {
+                        var t = Map.GetTile(x, y);
+                        Neighbours.Add(t);
+                        AllNeighbours.Add(t);
+                    }
+                }
+
+                foreach (var delta in DIAGONAL_NEIGHTBOURS)
+                {
+                    var x = X + delta.X;
+                    var y = Y + delta.Y;
+
+                    if (Map.IsOnMap(x, y))
+                    {
+                        var t = Map.GetTile(x, y);
+                        AllNeighbours.Add(t);
+                    }
+                }
             }
 
-            foreach (var delta in deltas)
+            if (diagonal)
             {
-                var x = X + delta.X;
-                var y = Y + delta.Y;
-
-                if (Map.IsOnMap(x, y))
-                {
-                    var t = Map.GetTile(x, y);
-                    yield return t;
-                }
+                return AllNeighbours;
+            }
+            else
+            {
+                return Neighbours;
             }
         }
     }
