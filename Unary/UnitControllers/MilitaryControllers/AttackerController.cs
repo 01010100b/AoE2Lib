@@ -113,5 +113,14 @@ namespace Unary.UnitControllers.MilitaryControllers
                 Unit.Target(Target);
             }
         }
+
+        private double GetTargetScore(Unit target)
+        {
+            var score = 0d;
+
+            score -= target.Position.DistanceTo(Unit.Position);
+
+            return score;
+        }
     }
 }

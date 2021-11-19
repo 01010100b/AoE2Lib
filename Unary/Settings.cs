@@ -12,5 +12,6 @@ namespace Unary
         public double VillagerRetaskDistanceCost { get; set; } = 0.1;
         public double DropsiteDistanceCost { get; set; } = 0.1;
         public int MaxHunters { get; set; } = 7;
+        public int MaxWaitingFarmers { get; set; } = 3;
     }
 }

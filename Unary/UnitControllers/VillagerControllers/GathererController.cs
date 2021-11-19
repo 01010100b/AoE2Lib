@@ -39,7 +39,7 @@ namespace Unary.UnitControllers.VillagerControllers
                 }
             }
 
-            if (Target == null || Tile == null || DropsiteController == null || GetHashCode() % 23 == Unary.GameState.Tick % 23)
+            if (Target == null || GetHashCode() % 23 == Unary.GameState.Tick % 23)
             {
                 ChooseTarget();
             }
@@ -94,6 +94,18 @@ namespace Unary.UnitControllers.VillagerControllers
                 new HunterController(Unit, Unary);
 
                 return true;
+            }
+
+            if (Unary.GameState.Tick - LastTargetTick > 10)
+            {
+                var farmers = Unary.UnitsManager.GetControllers<FarmerController>().Count(c => c.Tile == null);
+
+                if (farmers < Unary.Settings.MaxWaitingFarmers)
+                {
+                    new FarmerController(Unit, Unary);
+
+                    return true;
+                }
             }
 
             return false;
