@@ -30,7 +30,16 @@ namespace Unary.UnitControllers.VillagerControllers
             {
                 ChooseResource();
             }
-            else if (Target == null || Tile == null || DropsiteController == null || GetHashCode() % 23 == Unary.GameState.Tick % 23)
+
+            if (Resource == Resource.FOOD)
+            {
+                if (CheckFoodAlternatives())
+                {
+                    return;
+                }
+            }
+
+            if (Target == null || Tile == null || DropsiteController == null || GetHashCode() % 23 == Unary.GameState.Tick % 23)
             {
                 ChooseTarget();
             }
@@ -74,6 +83,20 @@ namespace Unary.UnitControllers.VillagerControllers
             }
 
             Unary.Log.Debug($"Gatherer {Unit.Id} choose resource {Resource}");
+        }
+
+        private bool CheckFoodAlternatives()
+        {
+            var hunters = Unary.UnitsManager.GetControllers<HunterController>().Count;
+
+            if (hunters < Unary.Settings.MaxHunters)
+            {
+                new HunterController(Unit, Unary);
+
+                return true;
+            }
+
+            return false;
         }
 
         private void ChooseTarget()
@@ -145,6 +168,11 @@ namespace Unary.UnitControllers.VillagerControllers
                         cost -= 1;
                     }
 
+                    if (DropsiteController != dropsite)
+                    {
+                        cost += 1;
+                    }
+
                     if (cost <= best_cost)
                     {
                         Tile = res.Key;
@@ -211,6 +239,7 @@ namespace Unary.UnitControllers.VillagerControllers
             }
 
             target.RequestUpdate();
+            LastTargetTick = Unary.GameState.Tick;
         }
     }
 }

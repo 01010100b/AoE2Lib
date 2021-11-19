@@ -38,19 +38,12 @@ namespace Unary.UnitControllers
 
         private void HandleVillager()
         {
-            if (Unary.UnitsManager.GetControllers<HunterController>().Count < 3)
-            {
-                new HunterController(Unit, Unary);
-            }
-            else
-            {
-                new GathererController(Unit, Unary);
-            }
+            new GathererController(Unit, Unary);
         }
 
         private void HandleMilitary()
         {
-            if (GetHashCode() % 53 == Unary.GameState.Tick % 53)
+            if (Unary.GameState.Tick < 50 || GetHashCode() % 53 == Unary.GameState.Tick % 53)
             {
                 var scouts = Unary.UnitsManager.GetControllers<ScoutController>();
                 if (scouts.Count == 0)
@@ -68,7 +61,7 @@ namespace Unary.UnitControllers
                 }
             }
 
-            if (GetHashCode() % 13 == Unary.GameState.Tick % 13)
+            if (GetHashCode() % 3 == Unary.GameState.Tick % 3)
             {
                 if (Unary.StrategyManager.Attacking != null)
                 {

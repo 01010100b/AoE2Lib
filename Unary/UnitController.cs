@@ -18,18 +18,13 @@ namespace Unary
         public readonly Unary Unary;
         public readonly PotentialField PotentialField = new();
 
-        private Position MovePosition { get; set; } = Position.Zero;
-        private double MoveRadius { get; set; } = 1e5;
         private readonly List<Unit> RelevantUnits = new();
         private int RefreshRate { get; set; } = 5;
-        private readonly Command MoveCommand = new();
-        private Position ActualMovementPosition { get; set; }
 
         public UnitController(Unit unit, Unary unary)
         {
             Unit = unit;
             Unary = unary;
-            ActualMovementPosition = Unit.Position;
 
             Unary.UnitsManager.SetController(Unit, this);
         }
@@ -37,25 +32,6 @@ namespace Unary
         public void Update()
         {
             Unit.RequestUpdate();
-
-            if (MoveCommand.HasResponses)
-            {
-                var responses = MoveCommand.GetResponses();
-                var x = responses[responses.Count - 2].Unpack<GoalResult>().Result;
-                var y = responses[responses.Count - 1].Unpack<GoalResult>().Result;
-                ActualMovementPosition = Position.FromPrecise(x, y);
-            }
-            else
-            {
-                ActualMovementPosition = Unit.Position;
-            }
-
-            if (!Unary.GameState.Map.IsOnMap(ActualMovementPosition))
-            {
-                ActualMovementPosition = Unit.Position;
-            }
-
-            MoveCommand.Reset();
 
             if (GetHashCode() % RefreshRate == Unary.GameState.Tick % RefreshRate)
             {
@@ -87,9 +63,9 @@ namespace Unary
             var op_g_sub = 14;
 
             var current_pos = Unit.Position;
-            var current_pos_move = GetMovementPosition(current_pos);
+            var current_pos_move = GetMovementPosition(current_pos, move, radius);
             var pred_pos = PredictPosition(Unit);
-            var pred_pos_move = GetMovementPosition(pred_pos);
+            var pred_pos_move = GetMovementPosition(pred_pos, move, radius);
 
             const int GL_CONTROL = 100;
             const int GL_TEMP = 101;
@@ -106,48 +82,48 @@ namespace Unary
             const int GL_MOVE_X = 112;
             const int GL_MOVE_Y = 113;
 
-            MoveCommand.Reset();
+            var command = new Command();
 
-            MoveCommand.Add(new SetGoal() { InConstGoalId = GL_CONTROL, InConstValue = 0 });
-            MoveCommand.Add(new SetGoal() { InConstGoalId = GL_TEMP, InConstValue = 0 });
-            MoveCommand.Add(new SetGoal() { InConstGoalId = GL_CURRENT_X, InConstValue = current_pos.PreciseX });
-            MoveCommand.Add(new SetGoal() { InConstGoalId = GL_CURRENT_Y, InConstValue = current_pos.PreciseY });
-            MoveCommand.Add(new SetGoal() { InConstGoalId = GL_CURRENT_MOVE_X, InConstValue = current_pos_move.PreciseX });
-            MoveCommand.Add(new SetGoal() { InConstGoalId = GL_CURRENT_MOVE_Y, InConstValue = current_pos_move.PreciseY });
-            MoveCommand.Add(new SetGoal() { InConstGoalId = GL_CURRENT_DISTANCE, InConstValue = -1 });
-            MoveCommand.Add(new SetGoal() { InConstGoalId = GL_PRED_X, InConstValue = pred_pos.PreciseX });
-            MoveCommand.Add(new SetGoal() { InConstGoalId = GL_PRED_Y, InConstValue = pred_pos.PreciseY });
-            MoveCommand.Add(new SetGoal() { InConstGoalId = GL_PRED_MOVE_X, InConstValue = pred_pos_move.PreciseX });
-            MoveCommand.Add(new SetGoal() { InConstGoalId = GL_PRED_MOVE_Y, InConstValue = pred_pos_move.PreciseY });
-            MoveCommand.Add(new SetGoal() { InConstGoalId = GL_PRED_DISTANCE, InConstValue = -1 });
-            MoveCommand.Add(new SetGoal() { InConstGoalId = GL_MOVE_X, InConstValue = -1 });
-            MoveCommand.Add(new SetGoal() { InConstGoalId = GL_MOVE_Y, InConstValue = -1 });
+            command.Add(new SetGoal() { InConstGoalId = GL_CONTROL, InConstValue = 0 });
+            command.Add(new SetGoal() { InConstGoalId = GL_TEMP, InConstValue = 0 });
+            command.Add(new SetGoal() { InConstGoalId = GL_CURRENT_X, InConstValue = current_pos.PreciseX });
+            command.Add(new SetGoal() { InConstGoalId = GL_CURRENT_Y, InConstValue = current_pos.PreciseY });
+            command.Add(new SetGoal() { InConstGoalId = GL_CURRENT_MOVE_X, InConstValue = current_pos_move.PreciseX });
+            command.Add(new SetGoal() { InConstGoalId = GL_CURRENT_MOVE_Y, InConstValue = current_pos_move.PreciseY });
+            command.Add(new SetGoal() { InConstGoalId = GL_CURRENT_DISTANCE, InConstValue = -1 });
+            command.Add(new SetGoal() { InConstGoalId = GL_PRED_X, InConstValue = pred_pos.PreciseX });
+            command.Add(new SetGoal() { InConstGoalId = GL_PRED_Y, InConstValue = pred_pos.PreciseY });
+            command.Add(new SetGoal() { InConstGoalId = GL_PRED_MOVE_X, InConstValue = pred_pos_move.PreciseX });
+            command.Add(new SetGoal() { InConstGoalId = GL_PRED_MOVE_Y, InConstValue = pred_pos_move.PreciseY });
+            command.Add(new SetGoal() { InConstGoalId = GL_PRED_DISTANCE, InConstValue = -1 });
+            command.Add(new SetGoal() { InConstGoalId = GL_MOVE_X, InConstValue = -1 });
+            command.Add(new SetGoal() { InConstGoalId = GL_MOVE_Y, InConstValue = -1 });
 
             // checks
 
-            MoveCommand.Add(new UpSetTargetById() { InConstId = Unit.Id });
-            MoveCommand.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.ID, OutGoalData = GL_TEMP });
-            MoveCommand.Add(new Goal() { InConstGoalId = GL_TEMP }, "!=", Unit.Id,
+            command.Add(new UpSetTargetById() { InConstId = Unit.Id });
+            command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.ID, OutGoalData = GL_TEMP });
+            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "!=", Unit.Id,
                 new SetGoal() { InConstGoalId = GL_CONTROL, InConstValue = -1 });
 
-            MoveCommand.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.NEXT_ATTACK, OutGoalData = GL_TEMP });
-            MoveCommand.Add(new Goal() { InConstGoalId = GL_TEMP }, "<", min_next_attack,
+            command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.NEXT_ATTACK, OutGoalData = GL_TEMP });
+            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "<", min_next_attack,
                 new SetGoal() { InConstGoalId = GL_CONTROL, InConstValue = -2 });
 
-            MoveCommand.Add(new Goal() { InConstGoalId = GL_TEMP }, ">", max_next_attack,
+            command.Add(new Goal() { InConstGoalId = GL_TEMP }, ">", max_next_attack,
                 new SetGoal() { InConstGoalId = GL_CONTROL, InConstValue = -3 });
 
             // choose target pos
 
-            MoveCommand.Add(new UpBoundPrecisePoint() { InGoalPoint = GL_CURRENT_X, InConstPrecise = 1, InConstBorder = 1 });
-            MoveCommand.Add(new UpSetPreciseTargetPoint() { InGoalPoint = GL_CURRENT_X });
-            MoveCommand.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.PRECISE_DISTANCE, OutGoalData = GL_CURRENT_DISTANCE });
-            MoveCommand.Add(new UpBoundPrecisePoint() { InGoalPoint = GL_PRED_X, InConstPrecise = 1, InConstBorder = 1 });
-            MoveCommand.Add(new UpSetPreciseTargetPoint() { InGoalPoint = GL_PRED_X });
-            MoveCommand.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.PRECISE_DISTANCE, OutGoalData = GL_PRED_DISTANCE });
-            MoveCommand.Add(new UpModifyGoal() { IoGoalId = GL_CURRENT_DISTANCE, MathOp = op_g_sub, InOpValue = GL_PRED_DISTANCE });
+            command.Add(new UpBoundPrecisePoint() { InGoalPoint = GL_CURRENT_X, InConstPrecise = 1, InConstBorder = 1 });
+            command.Add(new UpSetPreciseTargetPoint() { InGoalPoint = GL_CURRENT_X });
+            command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.PRECISE_DISTANCE, OutGoalData = GL_CURRENT_DISTANCE });
+            command.Add(new UpBoundPrecisePoint() { InGoalPoint = GL_PRED_X, InConstPrecise = 1, InConstBorder = 1 });
+            command.Add(new UpSetPreciseTargetPoint() { InGoalPoint = GL_PRED_X });
+            command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.PRECISE_DISTANCE, OutGoalData = GL_PRED_DISTANCE });
+            command.Add(new UpModifyGoal() { IoGoalId = GL_CURRENT_DISTANCE, MathOp = op_g_sub, InOpValue = GL_PRED_DISTANCE });
 
-            MoveCommand.Add(new SetStrategicNumber() { InConstSnId = (int)AoE2Lib.StrategicNumber.TARGET_POINT_ADJUSTMENT, InConstValue = 6 });
+            command.Add(new SetStrategicNumber() { InConstSnId = (int)AoE2Lib.StrategicNumber.TARGET_POINT_ADJUSTMENT, InConstValue = 6 });
 
             var command_current = new Command();
             command_current.Add(new Goal() { InConstGoalId = GL_CURRENT_DISTANCE }, "<=", 0,
@@ -181,15 +157,15 @@ namespace Unary
                 new SetGoal() { InConstGoalId = GL_MOVE_Y, InConstValue = GL_PRED_MOVE_Y },
                 new SetGoal() { InConstGoalId = GL_CONTROL, InConstValue = 2 });
 
-            MoveCommand.Add(new Goal() { InConstGoalId = GL_CONTROL }, "==", 0,
+            command.Add(new Goal() { InConstGoalId = GL_CONTROL }, "==", 0,
                 command_current);
-            MoveCommand.Add(new Goal() { InConstGoalId = GL_CONTROL }, "==", 0,
+            command.Add(new Goal() { InConstGoalId = GL_CONTROL }, "==", 0,
                 command_pred);
 
-            MoveCommand.Add(new Goal() { InConstGoalId = GL_MOVE_X });
-            MoveCommand.Add(new Goal() { InConstGoalId = GL_MOVE_Y });
+            command.Add(new Goal() { InConstGoalId = GL_MOVE_X });
+            command.Add(new Goal() { InConstGoalId = GL_MOVE_Y });
 
-            Unary.ExecuteCommand(MoveCommand);
+            Unary.ExecuteCommand(command);
         }
 
         protected void MoveTo(Position position, double radius)
@@ -200,7 +176,7 @@ namespace Unary
             }
         }
 
-        private Position GetMovementPosition(Position current)
+        private Position GetMovementPosition(Position current, Position move_position, double move_radius)
         {
             var friendlies = RelevantUnits
                 .Where(u => u.Targetable && u.PlayerNumber == Unary.PlayerNumber && u != Unit)
@@ -241,7 +217,7 @@ namespace Unary
             foreach (var position in positions)
             {
                 var field = PotentialField.GetStrengthAtPosition(position, 
-                    MovePosition, MoveRadius,
+                    move_position, move_radius,
                     friendlies,
                     enemies);
 
