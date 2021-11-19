@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using YTY.AocDatLib;
 using static Protos.AIModuleAPI;
 using static Protos.Expert.ExpertAPI;
 
@@ -18,14 +19,15 @@ namespace AoE2Lib.Bots
     {
         public virtual string Name { get { return GetType().Name; } }
         public GameVersion GameVersion { get; private set; }
-        public string DatFile { get; private set; } // Only available on AoC
         public int PlayerNumber { get; private set; } = -1;
         public Log Log { get; private set; }
         public Random Rng { get; private set; }
         public GameState GameState { get; private set; }
+        public DatFile DatFile => _DatFile == null ? throw new Exception("No .dat file (not supported on DE)") : _DatFile;
 
         private Thread BotThread { get; set; } = null;
         private volatile bool Stopping = false;
+        private DatFile _DatFile { get; set; }
 
         public void Stop()
         {
@@ -62,9 +64,7 @@ namespace AoE2Lib.Bots
             PlayerNumber = player;
             Log = new Log(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"Player {PlayerNumber}.log"));
             Rng = new Random(seed);
-            GameState = new GameState(this);
-            NewGame();
-
+            
             BotThread = new Thread(() => Run(endpoint)) { IsBackground = true };
             BotThread.Start();
         }
@@ -81,14 +81,7 @@ namespace AoE2Lib.Bots
             var module_api = new AIModuleAPIClient(channel);
             var api = new ExpertAPIClient(channel);
 
-            if (GameVersion == GameVersion.AOC)
-            {
-                DatFile = module_api.GetGameDataFilePath(new Protos.GetGameDataFilePathRequest()).Result;
-            }
-            else
-            {
-                DatFile = null;
-            }
+            StartNewGame(module_api);
 
             var sw = new Stopwatch();
             var commands = new List<Command>();
@@ -182,20 +175,7 @@ namespace AoE2Lib.Bots
                         {
                             if (ngt < game_time)
                             {
-                                GameState = new GameState(this);
-
-                                if (GameVersion == GameVersion.AOC)
-                                {
-                                    DatFile = module_api.GetGameDataFilePath(new Protos.GetGameDataFilePathRequest()).Result;
-                                }
-                                else
-                                {
-                                    DatFile = null;
-                                }
-
-                                NewGame();
-
-                                Log.Info("New Game");
+                                StartNewGame(module_api);
                             }
 
                             game_time = ngt;
@@ -211,6 +191,36 @@ namespace AoE2Lib.Bots
 
             channel.ShutdownAsync().Wait();
             Log.Info($"Stopped");
+        }
+
+        private void StartNewGame(AIModuleAPIClient module_api)
+        {
+            GameState = new GameState(this);
+
+            if (GameVersion == GameVersion.AOC)
+            {
+                var file = module_api.GetGameDataFilePath(new Protos.GetGameDataFilePathRequest()).Result;
+
+                if (File.Exists(file))
+                {
+                    Log.Debug($"Loading dat file: {file}");
+                    var dat = new DatFile();
+                    dat.Load(file);
+                    _DatFile = dat;
+                }
+                else
+                {
+                    Log.Warning($"Dat file not found: {file}");
+                }
+            }
+            else
+            {
+                _DatFile = null;
+            }
+
+            NewGame();
+
+            Log.Info("New Game");
         }
     }
 }
