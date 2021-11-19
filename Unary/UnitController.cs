@@ -183,7 +183,7 @@ namespace Unary
                 .ToList();
 
             var enemies = RelevantUnits
-                .Where(u => u.Targetable && u.IsEnemy)
+                .Where(u => u.Targetable && u.Player.IsEnemy)
                 .Select(u => new ValueTuple<double, Position, double>(1d, u.Position, u[ObjectData.RANGE] + 1))
                 .ToList();
 

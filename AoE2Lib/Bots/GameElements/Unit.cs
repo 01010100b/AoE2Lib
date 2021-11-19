@@ -14,17 +14,16 @@ namespace AoE2Lib.Bots.GameElements
     {
         public readonly int Id;
         public int this[ObjectData data] => GetData(data);
-        public UnitType Type => Bot.GameState.GetUnitType(this[ObjectData.UPGRADE_TYPE]);
+        public Player Player => Bot.GameState.GetPlayer(PlayerNumber);
         public int PlayerNumber => this[ObjectData.PLAYER];
         public bool Targetable { get; private set; } = false;
         public bool IsBuilding => this[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || this[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING;
         public TimeSpan LastSeenGameTime { get; private set; } = TimeSpan.Zero;
         public Position Position => Position.FromPrecise(this[ObjectData.PRECISE_X], this[ObjectData.PRECISE_Y]);
         public Tile Tile => Bot.GameState.Map.GetTile(Position);
-        public bool IsEnemy => Bot.GameState.GetPlayer(PlayerNumber).IsEnemy;
-        public bool IsAlly => Bot.GameState.GetPlayer(PlayerNumber).IsAlly;
 
         private readonly Dictionary<ObjectData, int> Data = new Dictionary<ObjectData, int>();
+        private YTY.AocDatLib.Unit DatUnit { get; set; } = null;
 
         internal Unit(Bot bot, int id) : base(bot)
         {
@@ -45,7 +44,41 @@ namespace AoE2Lib.Bots.GameElements
 
         public int GetDamage(Unit target)
         {
-            throw new NotImplementedException();
+            const int PIERCE = 3;
+            const int MELEE = 4;
+
+            if (DatUnit == null || target.DatUnit == null)
+            {
+                return 1;
+            }
+
+            var me = DatUnit;
+            var enemy = target.DatUnit;
+
+            var dmg = 0;
+            foreach (var attack in me.Attacks)
+            {
+                if (attack.Id == PIERCE)
+                {
+                    dmg += Math.Max(0, this[ObjectData.BASE_ATTACK] - target[ObjectData.PIERCE_ARMOR]);
+                }
+                else if (attack.Id == MELEE)
+                {
+                    dmg += Math.Max(0, this[ObjectData.BASE_ATTACK] - target[ObjectData.STRIKE_ARMOR]);
+                }
+                else
+                {
+                    foreach (var armor in enemy.Armors)
+                    {
+                        if (attack.Id == armor.Id)
+                        {
+                            dmg += Math.Max(0, attack.Amount - armor.Amount);
+                        }
+                    }
+                }
+            }
+
+            return Math.Max(1, dmg);
         }
 
         public Unit GetTarget()
@@ -263,6 +296,13 @@ namespace AoE2Lib.Bots.GameElements
             for (int i = 0; i < data.Length; i++)
             {
                 Data[(ObjectData)i] = data[i];
+            }
+            
+            if (DatUnit == null && PlayerNumber > 0)
+            {
+                var civ = Bot.DatFile.Civilizations[Player.GetFact(FactId.CIVILIZATION)];
+                var unit = civ.Units.Single(u => u.Id == this[ObjectData.UPGRADE_TYPE]);
+                DatUnit = unit;
             }
         }
     }
