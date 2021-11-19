@@ -39,8 +39,8 @@ namespace AoE2Lib.Bots.GameElements
         public bool IsValid { get; private set; } = false;
         public bool IsComputer { get; private set; } = false;
         public PlayerStance Stance { get; private set; } = PlayerStance.NEUTRAL;
-        public bool IsEnemy => Stance == PlayerStance.ENEMY;
-        public bool IsAlly => Stance == PlayerStance.ALLY;
+        public bool IsEnemy => Stance == PlayerStance.ENEMY && PlayerNumber != 0;
+        public bool IsAlly => Stance == PlayerStance.ALLY && PlayerNumber != Bot.PlayerNumber;
         public bool InGame => GetFact(FactId.PLAYER_IN_GAME) == 1;
         public int Score => GetFact(FactId.CURRENT_SCORE);
         public int CivilianPopulation => GetFact(FactId.CIVILIAN_POPULATION);

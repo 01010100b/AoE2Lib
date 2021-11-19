@@ -64,7 +64,7 @@ namespace Unary.UnitControllers.VillagerControllers
             var farm = Tile.Units.FirstOrDefault(u => u.Targetable && u[ObjectData.BASE_TYPE] == Unary.Mod.Farm);
             if (farm == null)
             {
-                if (Unary.GameState.Tick - LastFarmTick > 10)
+                if (Unary.GameState.Tick - LastFarmTick > 30)
                 {
                     Tile = null;
                 }

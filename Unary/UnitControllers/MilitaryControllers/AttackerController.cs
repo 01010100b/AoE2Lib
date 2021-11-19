@@ -83,11 +83,22 @@ namespace Unary.UnitControllers.MilitaryControllers
                 }
             }
 
-            targets.Sort((a, b) => a.Position.DistanceTo(Unit.Position).CompareTo(b.Position.DistanceTo(Unit.Position)));
-
-            if (targets.Count > 0)
+            Unit best_target = null;
+            double best_score = double.MinValue;
+            foreach (var target in targets)
             {
-                Target = targets[0];
+                var score = GetTargetScore(target);
+
+                if (best_target == null || score >= best_score)
+                {
+                    best_target = target;
+                    best_score = score;
+                }
+            }
+
+            if (best_target != null)
+            {
+                Target = best_target;
                 Unary.Log.Debug($"Attacker {Unit.Id} choose target {Target.Id}");
             }
             else

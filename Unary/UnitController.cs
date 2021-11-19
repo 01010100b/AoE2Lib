@@ -35,12 +35,20 @@ namespace Unary
 
             if (GetHashCode() % RefreshRate == Unary.GameState.Tick % RefreshRate)
             {
-                UpdateRelevantUnits();
+                RelevantUnits.Clear();
+
+                foreach (var tile in Unary.GameState.Map.GetTilesInRange(Unit.Position, 20))
+                {
+                    foreach (var unit in tile.Units.Where(u => u.Targetable))
+                    {
+                        RelevantUnits.Add(unit);
+                    }
+                }
             }
 
             if (Unary.Rng.NextDouble() < 0.2)
             {
-                RefreshRate = Math.Min(23, RefreshRate + 1);
+                RefreshRate = Math.Min(53, RefreshRate + 1);
             }
 
             var target = Unit.GetTarget();
@@ -60,7 +68,7 @@ namespace Unary
         {
             RefreshRate = 5;
 
-            var op_g_sub = 14;
+            const int op_g_sub = 14;
 
             var current_pos = Unit.Position;
             var current_pos_move = GetMovementPosition(current_pos, move, radius);
@@ -79,8 +87,6 @@ namespace Unary
             const int GL_PRED_MOVE_X = 109;
             const int GL_PRED_MOVE_Y = 110;
             const int GL_PRED_DISTANCE = 111;
-            const int GL_MOVE_X = 112;
-            const int GL_MOVE_Y = 113;
 
             var command = new Command();
 
@@ -96,8 +102,6 @@ namespace Unary
             command.Add(new SetGoal() { InConstGoalId = GL_PRED_MOVE_X, InConstValue = pred_pos_move.PreciseX });
             command.Add(new SetGoal() { InConstGoalId = GL_PRED_MOVE_Y, InConstValue = pred_pos_move.PreciseY });
             command.Add(new SetGoal() { InConstGoalId = GL_PRED_DISTANCE, InConstValue = -1 });
-            command.Add(new SetGoal() { InConstGoalId = GL_MOVE_X, InConstValue = -1 });
-            command.Add(new SetGoal() { InConstGoalId = GL_MOVE_Y, InConstValue = -1 });
 
             // checks
 
@@ -118,9 +122,11 @@ namespace Unary
             command.Add(new UpBoundPrecisePoint() { InGoalPoint = GL_CURRENT_X, InConstPrecise = 1, InConstBorder = 1 });
             command.Add(new UpSetPreciseTargetPoint() { InGoalPoint = GL_CURRENT_X });
             command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.PRECISE_DISTANCE, OutGoalData = GL_CURRENT_DISTANCE });
+
             command.Add(new UpBoundPrecisePoint() { InGoalPoint = GL_PRED_X, InConstPrecise = 1, InConstBorder = 1 });
             command.Add(new UpSetPreciseTargetPoint() { InGoalPoint = GL_PRED_X });
             command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.PRECISE_DISTANCE, OutGoalData = GL_PRED_DISTANCE });
+
             command.Add(new UpModifyGoal() { IoGoalId = GL_CURRENT_DISTANCE, MathOp = op_g_sub, InOpValue = GL_PRED_DISTANCE });
 
             command.Add(new SetStrategicNumber() { InConstSnId = (int)AoE2Lib.StrategicNumber.TARGET_POINT_ADJUSTMENT, InConstValue = 6 });
@@ -137,8 +143,6 @@ namespace Unary
                     InConstFormation = -1,
                     InConstAttackStance = (int)UnitStance.NO_ATTACK
                 },
-                new SetGoal() { InConstGoalId = GL_MOVE_X, InConstValue = GL_CURRENT_MOVE_X },
-                new SetGoal() { InConstGoalId = GL_MOVE_Y, InConstValue = GL_CURRENT_MOVE_Y },
                 new SetGoal() { InConstGoalId = GL_CONTROL, InConstValue = 1 });
 
             var command_pred = new Command();
@@ -153,17 +157,12 @@ namespace Unary
                     InConstFormation = -1,
                     InConstAttackStance = (int)UnitStance.NO_ATTACK
                 },
-                new SetGoal() { InConstGoalId = GL_MOVE_X, InConstValue = GL_PRED_MOVE_X },
-                new SetGoal() { InConstGoalId = GL_MOVE_Y, InConstValue = GL_PRED_MOVE_Y },
                 new SetGoal() { InConstGoalId = GL_CONTROL, InConstValue = 2 });
 
             command.Add(new Goal() { InConstGoalId = GL_CONTROL }, "==", 0,
                 command_current);
             command.Add(new Goal() { InConstGoalId = GL_CONTROL }, "==", 0,
                 command_pred);
-
-            command.Add(new Goal() { InConstGoalId = GL_MOVE_X });
-            command.Add(new Goal() { InConstGoalId = GL_MOVE_Y });
 
             Unary.ExecuteCommand(command);
         }
@@ -184,7 +183,7 @@ namespace Unary
                 .ToList();
 
             var enemies = RelevantUnits
-                .Where(u => u.Targetable && Unary.GameState.GetPlayer(u.PlayerNumber).Stance == PlayerStance.ENEMY)
+                .Where(u => u.Targetable && u.IsEnemy)
                 .Select(u => new ValueTuple<double, Position, double>(1d, u.Position, u[ObjectData.RANGE] + 1))
                 .ToList();
 
@@ -231,19 +230,6 @@ namespace Unary
             return best_pos;
         }
 
-        private void UpdateRelevantUnits()
-        {
-            RelevantUnits.Clear();
-
-            foreach (var tile in Unary.GameState.Map.GetTilesInRange(Unit.Position, 20))
-            {
-                foreach (var unit in tile.Units.Where(u => u.Targetable))
-                {
-                    RelevantUnits.Add(unit);
-                }
-            }
-        }
-
         private Position PredictPosition(Unit unit)
         {
             var max_d = Unary.GameState.GameTimePerTick.TotalSeconds * unit[ObjectData.SPEED] / 100d;
@@ -251,7 +237,7 @@ namespace Unary
             dpos -= unit.Position;
             if (dpos.Norm > max_d)
             {
-                dpos = max_d * (dpos / dpos.Norm); 
+                dpos = max_d * dpos.Normalize();
             }
 
             return unit.Position + dpos;

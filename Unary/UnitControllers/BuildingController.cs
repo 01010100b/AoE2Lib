@@ -19,10 +19,9 @@ namespace Unary.UnitControllers
 
         }
 
-        protected override void Tick()
+        protected override sealed void Tick()
         {
             Repair();
-
             BuildingTick();
         }
 

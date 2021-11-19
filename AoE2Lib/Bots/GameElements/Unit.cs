@@ -20,6 +20,8 @@ namespace AoE2Lib.Bots.GameElements
         public TimeSpan LastSeenGameTime { get; private set; } = TimeSpan.Zero;
         public Position Position => Position.FromPrecise(this[ObjectData.PRECISE_X], this[ObjectData.PRECISE_Y]);
         public Tile Tile => Bot.GameState.Map.GetTile(Position);
+        public bool IsEnemy => Bot.GameState.GetPlayer(PlayerNumber).IsEnemy;
+        public bool IsAlly => Bot.GameState.GetPlayer(PlayerNumber).IsAlly;
 
         private readonly Dictionary<ObjectData, int> Data = new Dictionary<ObjectData, int>();
 

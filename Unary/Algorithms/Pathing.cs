@@ -38,5 +38,10 @@ namespace Unary.Algorithms
 
             return dict;
         }
+
+        public static List<TNode> GetPath<TNode>(TNode from, TNode to, Func<TNode, IEnumerable<TNode>> get_neighbours, Func<TNode, double> get_cost, Func<TNode, TNode, double> get_heuristic)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

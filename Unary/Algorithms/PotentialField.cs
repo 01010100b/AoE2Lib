@@ -50,18 +50,12 @@ namespace Unary.Algorithms
 
         private double GetContribution(Position position, double charge, Position charge_position, double strength, double min_range, double max_range)
         {
-            var d = Math.Max(0.01, position.DistanceTo(charge_position));
+            var dist = position.DistanceTo(charge_position);
+            dist = Math.Max(min_range, dist);
+            dist = Math.Min(max_range, dist);
+            dist = Math.Max(0.01, dist);
 
-            if (d <= min_range)
-            {
-                d = min_range;
-            }
-            else if (d >= max_range)
-            {
-                d = max_range;
-            }
-
-            return strength * charge * d;
+            return strength * charge * dist;
         }
     }
 }
