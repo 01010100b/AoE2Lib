@@ -25,8 +25,9 @@ namespace AoE2Lib.Bots.GameElements
         public bool IsOnLand => Terrain != 1 && Terrain != 2 && Terrain != 4 && Terrain != 15 && Terrain != 22 && Terrain != 23 && Terrain != 28 && Terrain != 37;
         public bool Explored => Visibility != 0;
         public bool Visible => Visibility == 15;
-        public readonly List<Unit> Units = new List<Unit>();
+        public IReadOnlyList<Unit> Units => _Units;
 
+        internal readonly List<Unit> _Units = new List<Unit>();
         internal int Terrain { get; set; } = 0;
         internal int Visibility { get; set; } = 0;
         private readonly Map Map;

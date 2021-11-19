@@ -438,25 +438,25 @@ namespace AoE2Lib.Bots
 
             foreach (var player in Players)
             {
-                player.Units.Clear();
+                player._Units.Clear();
             }
 
             foreach (var tile in Map.GetTiles())
             {
-                tile.Units.Clear();
+                tile._Units.Clear();
             }
 
             foreach (var unit in Units.Values.Where(u => u.Updated))
             {
                 if (unit.PlayerNumber >= 0)
                 {
-                    Players[unit.PlayerNumber].Units.Add(unit);
+                    Players[unit.PlayerNumber]._Units.Add(unit);
                 }
 
                 if (Map.IsOnMap(unit.Position))
                 {
                     var tile = Map.GetTile(unit.Position);
-                    tile.Units.Add(unit);
+                    tile._Units.Add(unit);
                 }
             }
 
@@ -644,12 +644,13 @@ namespace AoE2Lib.Bots
 
             foreach (var player in GetPlayers())
             {
-                player.Units.Sort((a, b) => a.LastUpdateTick.CompareTo(b.LastUpdateTick));
-                var count = Math.Min(player.Units.Count, AutoUpdateUnits);
+                var units = player.Units.ToList();
+                units.Sort((a, b) => a.LastUpdateTick.CompareTo(b.LastUpdateTick));
+                var count = Math.Min(units.Count, AutoUpdateUnits);
 
                 for (int i = 0; i < count; i++)
                 {
-                    player.Units[i].RequestUpdate();
+                    units[i].RequestUpdate();
                 }
 
                 Bot.Log.Debug($"Auto updating {count} units for player {player.PlayerNumber}");

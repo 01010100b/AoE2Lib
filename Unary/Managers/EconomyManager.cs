@@ -74,7 +74,6 @@ namespace Unary.Managers
 
         private void ManagePopulation()
         {
-            var villager = Unary.GameState.GetUnitType(83);
             var house = Unary.GameState.GetUnitType(70);
 
             //villager.Train((int)Math.Round(0.6 * Unary.GameState.MyPlayer.GetFact(FactId.POPULATION_CAP)), ConcurrentVillagers, Priority.VILLAGER);

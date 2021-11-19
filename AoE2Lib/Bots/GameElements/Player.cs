@@ -46,8 +46,9 @@ namespace AoE2Lib.Bots.GameElements
         public int CivilianPopulation => GetFact(FactId.CIVILIAN_POPULATION);
         public int MilitaryPopulation => GetFact(FactId.MILITARY_POPULATION);
         public int PopulationCap => GetFact(FactId.POPULATION_CAP);
-        public readonly List<Unit> Units = new List<Unit>();
+        public IReadOnlyList<Unit> Units => _Units;
 
+        internal readonly List<Unit> _Units = new List<Unit>();
         private readonly Dictionary<FactId, int> Facts = new Dictionary<FactId, int>();
         private readonly Dictionary<int, int> Goals = new Dictionary<int, int>();
         private readonly Dictionary<int, int> StrategicNumbers = new Dictionary<int, int>();

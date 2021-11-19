@@ -14,6 +14,7 @@ namespace AoE2Lib.Bots.GameElements
     {
         public readonly int Id;
         public int this[ObjectData data] => GetData(data);
+        public UnitType Type => Bot.GameState.GetUnitType(this[ObjectData.UPGRADE_TYPE]);
         public int PlayerNumber => this[ObjectData.PLAYER];
         public bool Targetable { get; private set; } = false;
         public bool IsBuilding => this[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || this[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING;
@@ -40,6 +41,11 @@ namespace AoE2Lib.Bots.GameElements
             {
                 return -2;
             }
+        }
+
+        public int GetDamage(Unit target)
+        {
+            throw new NotImplementedException();
         }
 
         public Unit GetTarget()
