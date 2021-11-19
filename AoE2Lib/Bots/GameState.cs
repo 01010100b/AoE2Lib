@@ -451,12 +451,12 @@ namespace AoE2Lib.Bots
                 if (unit.PlayerNumber >= 0)
                 {
                     Players[unit.PlayerNumber]._Units.Add(unit);
-                }
 
-                if (Map.IsOnMap(unit.Position))
-                {
-                    var tile = Map.GetTile(unit.Position);
-                    tile._Units.Add(unit);
+                    if (Map.IsOnMap(unit.Position))
+                    {
+                        var tile = Map.GetTile(unit.Position);
+                        tile._Units.Add(unit);
+                    }
                 }
             }
 

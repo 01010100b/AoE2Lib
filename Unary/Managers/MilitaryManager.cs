@@ -1,4 +1,5 @@
 ﻿using AoE2Lib;
+using AoE2Lib.Bots;
 using AoE2Lib.Bots.GameElements;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,35 @@ namespace Unary.Managers
 {
     internal class MilitaryManager : Manager
     {
+        public class Attack
+        {
+            public readonly bool Raid;
+            public Position Position { get; private set; }
+            public double Radius { get; private set; }
+            public Position MovePosition { get; private set; }
+            public double MoveRadius { get; private set; }
+            public int DesiredUnits { get; private set; }
+            public int DesiredSiege { get; private set; }
+
+            private readonly Dictionary<Unit, double> TargetValues = new();
+
+            public Attack(Position position, double radius, bool raid = false)
+            {
+                Position = position;
+                Radius = radius;
+                Raid = raid;
+                MovePosition = Position;
+                MoveRadius = Radius;
+                DesiredUnits = 1;
+                DesiredSiege = 0;
+            }
+
+            public IReadOnlyDictionary<Unit, double> GetTargetValues()
+            {
+                return TargetValues;
+            }
+        }
+
         public class ScoutingState
         {
             public readonly Tile Tile;
@@ -25,6 +55,7 @@ namespace Unary.Managers
         }
 
         private readonly Dictionary<Tile, ScoutingState> ScoutingStates = new();
+        private readonly List<Attack> Attacks = new();
 
         public MilitaryManager(Unary unary) : base(unary)
         {
@@ -33,61 +64,39 @@ namespace Unary.Managers
 
         public IEnumerable<ScoutingState> GetScoutingStatesForLos(int los)
         {
-            var radius = 2 * los;
+            var size = 2 * los;
             var map = Unary.GameState.Map;
 
-            for (int x = los; x < map.Width + los; x += radius)
+            for (int x = los; x < map.Width + los; x += size)
             {
-                for (int y = los; y < map.Height + los; y += radius)
+                for (int y = los; y < map.Height + los; y += size)
                 {
-                    if (map.IsOnMap(x, y))
+                    if (!map.IsOnMap(x, y))
                     {
-                        var tile = map.GetTile(x, y);
-
-                        if (!ScoutingStates.ContainsKey(tile))
-                        {
-                            ScoutingStates.Add(tile, new ScoutingState(tile));
-                        }
-
-                        yield return ScoutingStates[tile];
+                        x = Math.Min(map.Width - 1, x);
+                        y = Math.Min(map.Height - 1, y);
                     }
+
+                    var tile = map.GetTile(x, y);
+
+                    if (!ScoutingStates.ContainsKey(tile))
+                    {
+                        ScoutingStates.Add(tile, new ScoutingState(tile));
+                    }
+
+                    yield return ScoutingStates[tile];
                 }
             }
+        }
+
+        public IEnumerable<Attack> GetAttacks()
+        {
+            return Attacks;
         }
 
         internal override void Update()
         {
             Unary.GameState.SetStrategicNumber(StrategicNumber.NUMBER_EXPLORE_GROUPS, 0);
-            //DoScouting();
-        }
-
-        private void DoScouting()
-        {
-            var scouts = Unary.UnitsManager.GetControllers<ScoutController>();
-            if (scouts.Count == 0)
-            {
-                Unit scout = null;
-                var idlers = Unary.UnitsManager.GetControllers<IdlerController>();
-                foreach (var idler in idlers)
-                {
-                    if (idler.Unit[ObjectData.CMDID] == (int)CmdId.MILITARY)
-                    {
-                        if (scout == null || idler.Unit[ObjectData.SPEED] > scout[ObjectData.SPEED])
-                        {
-                            scout = idler.Unit;
-                        }
-                    }
-                }
-
-                if (scout != null)
-                {
-                    var ctrl = new ScoutController(scout, Unary)
-                    {
-                        AttractorPosition = Unary.GameState.MyPosition
-                    };
-                    scouts.Add(ctrl);
-                }
-            }
         }
     }
 }

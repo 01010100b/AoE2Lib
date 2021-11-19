@@ -7,11 +7,13 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Unary.Managers.MilitaryManager;
 
 namespace Unary.UnitControllers.MilitaryControllers
 {
     class AttackerController : MilitaryController
     {
+        public Attack Attack { get; private set; } = null;
         public Unit Target { get; private set; } = null;
 
         public AttackerController(Unit unit, Unary unary) : base(unit, unary)
@@ -38,6 +40,30 @@ namespace Unary.UnitControllers.MilitaryControllers
                 AttackTarget();
                 Target.RequestUpdate();
             }
+        }
+
+        private void ChooseAttack()
+        {
+            var attacks = Unary.MilitaryManager.GetAttacks().ToList();
+
+            if (attacks.Count == 0)
+            {
+                Attack = null;
+
+                return;
+            }
+
+            if (!attacks.Contains(Attack))
+            {
+                Attack = null;
+            }
+
+            if (Attack != null)
+            {
+                return;
+            }
+
+
         }
 
         private void FindTarget()
@@ -84,15 +110,11 @@ namespace Unary.UnitControllers.MilitaryControllers
             }
 
             Unit best_target = null;
-            double best_score = double.MinValue;
             foreach (var target in targets)
             {
-                var score = GetTargetScore(target);
-
-                if (best_target == null || score >= best_score)
+                if (best_target == null || target.Position.DistanceTo(Unit.Position) < best_target.Position.DistanceTo(Unit.Position))
                 {
                     best_target = target;
-                    best_score = score;
                 }
             }
 
@@ -123,15 +145,6 @@ namespace Unary.UnitControllers.MilitaryControllers
             {
                 Unit.Target(Target);
             }
-        }
-
-        private double GetTargetScore(Unit target)
-        {
-            var score = 0d;
-
-            score -= target.Position.DistanceTo(Unit.Position);
-
-            return score;
         }
     }
 }
