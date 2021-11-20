@@ -12,48 +12,48 @@ using Unary.UnitControllers.MilitaryControllers;
 
 namespace Unary.Managers
 {
-    internal class MilitaryManager : Manager
+    class Attack
     {
-        public class Attack
+        public readonly bool Raid;
+        public Position AtttackPosition { get; private set; }
+        public double AttackRadius { get; private set; }
+        public Position ArmyPosition { get; private set; }
+        public double ArmyRadius { get; private set; }
+        public int DesiredUnits { get; private set; }
+        public int DesiredSiege { get; private set; }
+
+        private readonly Dictionary<Unit, double> TargetScores = new();
+
+        public Attack(Position position, double radius, bool raid = false)
         {
-            public readonly bool Raid;
-            public Position Position { get; private set; }
-            public double Radius { get; private set; }
-            public Position MovePosition { get; private set; }
-            public double MoveRadius { get; private set; }
-            public int DesiredUnits { get; private set; }
-            public int DesiredSiege { get; private set; }
-
-            private readonly Dictionary<Unit, double> TargetValues = new();
-
-            public Attack(Position position, double radius, bool raid = false)
-            {
-                Position = position;
-                Radius = radius;
-                Raid = raid;
-                MovePosition = Position;
-                MoveRadius = Radius;
-                DesiredUnits = 1;
-                DesiredSiege = 0;
-            }
-
-            public IReadOnlyDictionary<Unit, double> GetTargetValues()
-            {
-                return TargetValues;
-            }
+            AtttackPosition = position;
+            AttackRadius = radius;
+            Raid = raid;
+            ArmyPosition = AtttackPosition;
+            ArmyRadius = AttackRadius;
+            DesiredUnits = 100;
+            DesiredSiege = 0;
         }
 
-        public class ScoutingState
+        public IEnumerable<KeyValuePair<Unit, double>> GetTargetScores()
         {
-            public readonly Tile Tile;
-            public TimeSpan LastAttemptGameTime { get; set; } = TimeSpan.MinValue;
-
-            public ScoutingState(Tile tile)
-            {
-                Tile = tile;
-            }
+            return TargetScores.Where(x => x.Key.Targetable);
         }
+    }
 
+    class ScoutingState
+    {
+        public readonly Tile Tile;
+        public TimeSpan LastAttemptGameTime { get; set; } = TimeSpan.MinValue;
+
+        public ScoutingState(Tile tile)
+        {
+            Tile = tile;
+        }
+    }
+
+    class MilitaryManager : Manager
+    {
         private readonly Dictionary<Tile, ScoutingState> ScoutingStates = new();
         private readonly List<Attack> Attacks = new();
 

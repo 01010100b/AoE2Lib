@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unary.Managers;
 using static Unary.Managers.MilitaryManager;
 
 namespace Unary.UnitControllers.MilitaryControllers

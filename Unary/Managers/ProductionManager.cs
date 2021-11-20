@@ -12,6 +12,56 @@ namespace Unary.Managers
 {
     class ProductionManager : Manager
     {
+        private class ProductionTask
+        {
+            public readonly int Priority;
+            public readonly bool Blocking;
+            public bool IsTech => Technology != null;
+            public int FoodCost => IsTech ? Technology.FoodCost : UnitType.FoodCost;
+            public int WoodCost => IsTech ? Technology.WoodCost : UnitType.WoodCost;
+            public int GoldCost => IsTech ? Technology.GoldCost : UnitType.GoldCost;
+            public int StoneCost => IsTech ? Technology.StoneCost : UnitType.StoneCost;
+
+            private readonly Technology Technology;
+            private readonly UnitType UnitType;
+            private readonly int MaxCount;
+            private readonly int MaxPending;
+            private readonly List<Tile> BuildTiles;
+
+            public ProductionTask(Technology technology, int priority, bool blocking)
+            {
+                Priority = priority;
+                Blocking = blocking;
+                Technology = technology;
+                UnitType = null;
+                MaxCount = int.MaxValue;
+                MaxPending = int.MaxValue;
+                BuildTiles = null;
+            }
+
+            public ProductionTask(UnitType type, int max_count, int max_pending, int priority, bool blocking)
+            {
+                Priority = priority;
+                Blocking = blocking;
+                Technology = null;
+                UnitType = type;
+                MaxCount = max_count;
+                MaxPending = max_pending;
+                BuildTiles = null;
+            }
+
+            public ProductionTask(UnitType type, IEnumerable<Tile> build_tiles, int max_count, int max_pending, int priority, bool blocking)
+            {
+                Priority = priority;
+                Blocking = blocking;
+                Technology = null;
+                UnitType = type;
+                MaxCount = max_count;
+                MaxPending = max_pending;
+                BuildTiles = build_tiles.ToList();
+            }
+        }
+
         private FarmerController FarmRequest { get; set; }
         private readonly Dictionary<Resource, int> DropsiteRequestTicks = new();
 
