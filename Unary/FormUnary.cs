@@ -13,13 +13,13 @@ using System.Windows.Forms;
 
 namespace Unary
 {
-    public partial class Form1 : Form
+    public partial class FormUnary : Form
     {
         private AoEInstance Instance { get; set; }
         private readonly Dictionary<int, Unary> Players = new Dictionary<int, Unary>();
         private Settings Settings { get; set; } = null;
 
-        public Form1()
+        public FormUnary()
         {
             InitializeComponent();
 

@@ -46,7 +46,7 @@ namespace AoE2Lib.Bots.GameElements
             }
         }
 
-        public void Train(int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
+        public void OldTrain(int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
         {
             if (Updated == false || Available == false || CountTotal >= max_count || Pending > max_pending)
             {
@@ -57,7 +57,7 @@ namespace AoE2Lib.Bots.GameElements
             Bot.GameState.AddProductionTask(prod);
         }
 
-        public void Build(IEnumerable<Tile> tiles, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
+        public void OldBuild(IEnumerable<Tile> tiles, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
         {
             if (Updated == false || Available == false || CountTotal >= max_count || Pending > max_pending)
             {

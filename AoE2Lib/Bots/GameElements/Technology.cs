@@ -26,7 +26,7 @@ namespace AoE2Lib.Bots.GameElements
             Id = id;
         }
 
-        public void Research(int priority = 10, bool blocking = true)
+        public void OldResearch(int priority = 10, bool blocking = true)
         {
             if (Updated == false || State != ResearchState.AVAILABLE)
             {

@@ -1,7 +1,7 @@
 ﻿
 namespace Unary
 {
-    partial class Form1
+    partial class FormUnary
     {
         /// <summary>
         ///  Required designer variable.
@@ -46,7 +46,7 @@ namespace Unary
             this.TextProcess.Name = "TextProcess";
             this.TextProcess.Size = new System.Drawing.Size(87, 23);
             this.TextProcess.TabIndex = 0;
-            this.TextProcess.Text = "age2_x1.5";
+            this.TextProcess.Text = "WK";
             // 
             // ButtonConnect
             // 

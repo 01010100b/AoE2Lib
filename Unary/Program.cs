@@ -15,7 +15,7 @@ namespace Unary
 {
     static class Program
     {
-        internal static readonly Log Log = new Log(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), "Unary.log"));
+        internal static readonly Log Log = new Log(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Unary.log"));
         
         public static void Serialize<T>(T obj, string file)
         {
@@ -62,14 +62,12 @@ namespace Unary
                 Log.Level = Log.LEVEL_DEBUG;
                 Log.Info($"Using AoE2Lib {typeof(AoEInstance).Assembly.GetName().Version}");
                 Log.Info($"Started Unary {typeof(Program).Assembly.GetName().Version}");
-                Log.Info($"Directory: {Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName)}");
-
-                //TestStrategy();
+                Log.Info($"Directory: {AppDomain.CurrentDomain.BaseDirectory}");
 
                 Application.SetHighDpiMode(HighDpiMode.SystemAware);
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Form1());
+                Application.Run(new FormUnary());
             }
             catch (Exception e)
             {

@@ -17,14 +17,14 @@ namespace Unary
 
         public readonly Settings Settings;
         public Mod Mod { get; private set; }
-        public MapManager MapManager { get; private set; }
+        public OldMapManager MapManager { get; private set; }
         public DiplomacyManager DiplomacyManager { get; private set; }
-        public BuildingManager BuildingManager { get; private set; }
+        public OldBuildingManager BuildingManager { get; private set; }
         public StrategyManager StrategyManager { get; private set; }
-        public EconomyManager EconomyManager { get; private set; }
-        public MilitaryManager MilitaryManager { get; private set; }
+        public OldEconomyManager EconomyManager { get; private set; }
+        public OldMilitaryManager MilitaryManager { get; private set; }
         public UnitsManager UnitsManager { get; private set; }
-        public ProductionManager ProductionManager { get; private set; }
+        public OldProductionManager ProductionManager { get; private set; }
 
         private readonly List<Command> Commands = new();
         private bool ChattedOK { get; set; } = false;
@@ -47,14 +47,14 @@ namespace Unary
         protected override void NewGame()
         {
             Mod = new Mod();
-            MapManager = new MapManager(this);
+            MapManager = new OldMapManager(this);
             DiplomacyManager = new DiplomacyManager(this);
-            BuildingManager = new BuildingManager(this);
+            BuildingManager = new OldBuildingManager(this);
             StrategyManager = new StrategyManager(this);
-            EconomyManager = new EconomyManager(this);
-            MilitaryManager = new MilitaryManager(this);
+            EconomyManager = new OldEconomyManager(this);
+            MilitaryManager = new OldMilitaryManager(this);
             UnitsManager = new UnitsManager(this);
-            ProductionManager = new ProductionManager(this);
+            ProductionManager = new OldProductionManager(this);
             ChattedOK = false;
         }
 

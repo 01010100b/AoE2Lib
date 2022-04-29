@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Unary.Managers;
-using static Unary.Managers.MilitaryManager;
+using static Unary.Managers.OldMilitaryManager;
 
 namespace Unary.UnitControllers.MilitaryControllers
 {
@@ -122,7 +122,7 @@ namespace Unary.UnitControllers.MilitaryControllers
 
             if (target_pos.DistanceTo(Unit.Position) > 1 && time < TimeSpan.FromSeconds(3))
             {
-                Unit.Target(target_pos, UnitAction.MOVE);
+                Unit.Target(target_pos);
             }
             else
             {

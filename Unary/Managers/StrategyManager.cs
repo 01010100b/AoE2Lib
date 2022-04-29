@@ -245,35 +245,35 @@ namespace Unary.Managers
             var heavy_plow = Unary.GameState.GetTechnology(13);
             var crop_rotation = Unary.GameState.GetTechnology(12);
 
-            horse_collar.Research(Priority.TECH);
-            heavy_plow.Research(Priority.TECH);
-            crop_rotation.Research(Priority.TECH);
+            horse_collar.OldResearch(Priority.TECH);
+            heavy_plow.OldResearch(Priority.TECH);
+            crop_rotation.OldResearch(Priority.TECH);
 
             var double_bit_axe = Unary.GameState.GetTechnology(202);
             var bow_saw = Unary.GameState.GetTechnology(203);
             var two_man_saw = Unary.GameState.GetTechnology(221);
 
-            double_bit_axe.Research(Priority.TECH);
-            bow_saw.Research(Priority.TECH);
-            two_man_saw.Research(Priority.TECH);
+            double_bit_axe.OldResearch(Priority.TECH);
+            bow_saw.OldResearch(Priority.TECH);
+            two_man_saw.OldResearch(Priority.TECH);
 
             var gold_mining = Unary.GameState.GetTechnology(55);
             var stone_mining = Unary.GameState.GetTechnology(278);
             var gold_shaft_mining = Unary.GameState.GetTechnology(182);
             var stone_shaft_mining = Unary.GameState.GetTechnology(279);
 
-            gold_mining.Research(Priority.TECH);
-            stone_mining.Research(Priority.TECH);
-            gold_shaft_mining.Research(Priority.TECH);
-            stone_shaft_mining.Research(Priority.TECH);
+            gold_mining.OldResearch(Priority.TECH);
+            stone_mining.OldResearch(Priority.TECH);
+            gold_shaft_mining.OldResearch(Priority.TECH);
+            stone_shaft_mining.OldResearch(Priority.TECH);
 
             var loom = Unary.GameState.GetTechnology(22);
             var wheelbarrow = Unary.GameState.GetTechnology(213);
             var hand_cart = Unary.GameState.GetTechnology(249);
 
-            loom.Research(Priority.AGE_UP, false);
-            wheelbarrow.Research(Priority.AGE_UP, false);
-            hand_cart.Research(Priority.AGE_UP, false);
+            loom.OldResearch(Priority.AGE_UP, false);
+            wheelbarrow.OldResearch(Priority.AGE_UP, false);
+            hand_cart.OldResearch(Priority.AGE_UP, false);
         }
     }
 }

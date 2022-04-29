@@ -14,7 +14,7 @@ using Unary.Algorithms;
 
 namespace Unary.Managers
 {
-    class MapManager : Manager
+    class OldMapManager : Manager
     {
         private readonly HashSet<Tile> ConstructionBlockedTiles = new();
         private readonly HashSet<Tile> ConstructionExcludedTiles = new();
@@ -23,7 +23,7 @@ namespace Unary.Managers
         private readonly Dictionary<Tile, bool> Cliffs = new();
         private readonly Dictionary<Tile, Command> CliffFindCommands = new();
 
-        public MapManager(Unary unary) : base(unary)
+        public OldMapManager(Unary unary) : base(unary)
         {
 
         }

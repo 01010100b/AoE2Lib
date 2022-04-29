@@ -64,11 +64,11 @@ namespace Unary.UnitControllers.BuildingControllers
             var rate = 3;
             if (ClosestDistance > 20)
             {
-                rate = 53;
+                rate = 101;
             }
             else if (ClosestDistance > 10)
             {
-                rate = 11;
+                rate = 23;
             }
             else if (ClosestDistance > 5)
             {

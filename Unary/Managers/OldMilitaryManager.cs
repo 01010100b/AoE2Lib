@@ -52,12 +52,12 @@ namespace Unary.Managers
         }
     }
 
-    class MilitaryManager : Manager
+    class OldMilitaryManager : Manager
     {
         private readonly Dictionary<Tile, ScoutingState> ScoutingStates = new();
         private readonly List<Attack> Attacks = new();
 
-        public MilitaryManager(Unary unary) : base(unary)
+        public OldMilitaryManager(Unary unary) : base(unary)
         {
 
         }

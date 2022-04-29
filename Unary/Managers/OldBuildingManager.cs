@@ -11,7 +11,7 @@ using Unary.UnitControllers.VillagerControllers;
 
 namespace Unary.Managers
 {
-    class BuildingManager : Manager
+    class OldBuildingManager : Manager
     {
         public static readonly Point[] TC_FARM_DELTAS = { new Point(2, 3), new Point(-1, 3), new Point(3, 0), new Point(3, -3), new Point(-4, 2), new Point(-4, -1), new Point(0, -4), new Point(-3, -4) };
         public static readonly Point[] MILL_FARM_DELTAS = { new Point(-1, 2), new Point(2, -1), new Point(2, 2), new Point(-3, -1), new Point(-1, -3) };
@@ -26,7 +26,7 @@ namespace Unary.Managers
         private readonly Dictionary<Unit, List<KeyValuePair<Tile, double>>> StonePlacements = new();
         private readonly Dictionary<int, HashSet<Tile>> BuildingPlacements = new();
 
-        public BuildingManager(Unary unary) : base(unary)
+        public OldBuildingManager(Unary unary) : base(unary)
         {
             BuildingPlacements.Add(1, new HashSet<Tile>());
             BuildingPlacements.Add(2, new HashSet<Tile>());

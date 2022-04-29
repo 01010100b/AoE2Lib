@@ -10,7 +10,7 @@ using Unary.UnitControllers;
 
 namespace Unary.Managers
 {
-    class EconomyManager : Manager
+    class OldEconomyManager : Manager
     {
         private int MinFoodGatherers { get; set; } = 7;
         private int MinWoodGatherers { get; set; } = 0;
@@ -29,7 +29,7 @@ namespace Unary.Managers
         private int GoldGatherers { get; set; } = 0;
         private int StoneGatherers { get; set; } = 0;
 
-        public EconomyManager(Unary unary) : base(unary)
+        public OldEconomyManager(Unary unary) : base(unary)
         {
 
         }

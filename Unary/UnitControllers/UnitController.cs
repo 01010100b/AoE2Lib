@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Unary.Algorithms;
 
-namespace Unary
+namespace Unary.UnitControllers
 {
     abstract class UnitController
     {
