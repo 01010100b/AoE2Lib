@@ -6,19 +6,43 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Unary.Behaviours;
-using Unary.Squads;
 
 namespace Unary.Managers
 {
-    // controllers, squads
+    // controllers
     internal class UnitsManager : Manager
     {
         //private const int GROUPS = 10;
 
         public IEnumerable<Controller> Villagers => Controllers.Values.Where(c => c.Unit[ObjectData.CMDID] == (int)CmdId.VILLAGER);
+        public IEnumerable<Controller> Constructions => Controllers.Values.Where(c =>
+        {
+            var b = c.GetBehaviour<ConstructionBehaviour>();
+
+            if (b == null)
+            {
+                return false;
+            }
+            else
+            {
+                return b.MaxBuilders > 0;
+            }
+        });
+        public IEnumerable<Controller> EatingSpots => Controllers.Values.Where(c =>
+        {
+            var b = c.GetBehaviour<EatingSpotBehaviour>();
+
+            if (b == null)
+            {
+                return false;
+            }
+            else
+            {
+                return b.Target != null;
+            }
+        });
 
         private readonly Dictionary<Unit, Controller> Controllers = new();
-        private readonly List<Squad> Squads = new();
 
         public UnitsManager(Unary unary) : base(unary)
         {
@@ -27,22 +51,9 @@ namespace Unary.Managers
 
         public IEnumerable<Controller> GetControllers() => Controllers.Values;
 
-        public IEnumerable<Squad> GetSquads() => Squads;
-
-        public void AddSquad(Squad squad)
-        {
-            Squads.Add(squad);
-        }
-
-        public void RemoveSquad(Squad squad)
-        {
-            Squads.Remove(squad);
-        }
-
         internal override void Update()
         {
             UpdateControllers();
-            UpdateSquads();
         }
 
         private void UpdateControllers()
@@ -66,37 +77,6 @@ namespace Unary.Managers
                 {
                     Controllers.Remove(controller.Unit);
                 }
-            }
-        }
-
-        private void UpdateSquads()
-        {
-            var dict = new Dictionary<Squad, List<Controller>>();
-
-            foreach (var controller in Controllers.Values)
-            {
-                if (controller.Squad != null)
-                {
-                    if (!dict.ContainsKey(controller.Squad))
-                    {
-                        dict.Add(controller.Squad, new List<Controller>());
-                    }
-
-                    dict[controller.Squad].Add(controller);
-                }
-            }
-
-
-            Squads.Sort((a, b) => b.Priority.CompareTo(a.Priority));
-
-            foreach (var squad in Squads)
-            {
-                if (!dict.ContainsKey(squad))
-                {
-                    dict.Add(squad, new List<Controller>());
-                }
-
-                squad.TickInternal(Unary, dict[squad]);
             }
         }
     }

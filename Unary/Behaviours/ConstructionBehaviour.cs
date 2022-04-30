@@ -9,23 +9,28 @@ namespace Unary.Behaviours
 {
     internal class ConstructionBehaviour : Behaviour
     {
-        private readonly List<Controller> Builders = new();
+        public int MaxBuilders => GetMaxBuilders();
 
-        protected override bool Perform()
+        protected internal override bool Perform()
         {
-            throw new NotImplementedException();
+            if (MaxBuilders > 0)
+            {
+                Controller.Unit.RequestUpdate();
+            }
+
+            return false;
         }
 
-        private int GetMaxBuilders(Controller controller)
+        private int GetMaxBuilders()
         {
-            if (controller.Unit[ObjectData.STATUS] == 0)
+            if (Controller.Unit[ObjectData.STATUS] == 0)
             {
-                var type = controller.Unit[ObjectData.BASE_TYPE];
-                var mod = controller.Unary.Mod;
+                var type = Controller.Unit[ObjectData.BASE_TYPE];
+                var mod = Controller.Unary.Mod;
 
                 if (type == mod.Farm || type == mod.LumberCamp || type == mod.MiningCamp)
                 {
-                    if (controller.Unary.GameState.GameTime - controller.Unit.FirstUpdateGameTime > TimeSpan.FromMinutes(1))
+                    if (Controller.Unary.GameState.GameTime - Controller.Unit.FirstUpdateGameTime > TimeSpan.FromMinutes(1))
                     {
                         return 1;
                     }
@@ -43,11 +48,6 @@ namespace Unary.Behaviours
             {
                 return 0;
             }
-        }
-
-        private int GetTotalBuilders()
-        {
-            throw new NotImplementedException();
         }
     }
 }

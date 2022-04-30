@@ -1,10 +1,11 @@
-﻿using AoE2Lib.Bots.GameElements;
+﻿using AoE2Lib;
+using AoE2Lib.Bots.GameElements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Unary.Squads;
+using Unary.Managers;
 
 namespace Unary.Behaviours
 {
@@ -12,7 +13,7 @@ namespace Unary.Behaviours
     {
         public readonly Unit Unit;
         public readonly Unary Unary;
-        public Squad Squad { get; private set; }
+        public UnitsManager Manager => Unary.UnitsManager;
 
         private readonly List<Behaviour> Behaviours = new();
 
@@ -22,14 +23,6 @@ namespace Unary.Behaviours
             Unary = unary;
 
             AddDefaultBehaviours();
-        }
-
-        public void SetSquad(Squad squad)
-        {
-            if (Squad == null || squad == null || Squad.Priority <= squad.Priority)
-            {
-                Squad = squad;
-            }
         }
 
         public void AddBehaviour<T>(T behaviour, params Type[] before) where T : Behaviour
@@ -49,6 +42,7 @@ namespace Unary.Behaviours
                 }
             }
 
+            behaviour.Controller = this;
             Behaviours.Insert(index, behaviour);
         }
 
@@ -74,14 +68,9 @@ namespace Unary.Behaviours
                 Unit.RequestUpdate();
             }
 
-            if (Squad != null)
-            {
-                return;
-            }
-
             foreach (var behaviour in Behaviours.ToList())
             {
-                if (behaviour.PerformInternal(this))
+                if (behaviour.Perform())
                 {
                     return;
                 }
@@ -90,7 +79,15 @@ namespace Unary.Behaviours
 
         private void AddDefaultBehaviours()
         {
-            AddBehaviour(new FightAnimalBehaviour());
+            if (Unit[ObjectData.CMDID] == (int)CmdId.VILLAGER)
+            {
+                AddBehaviour(new FightAnimalBehaviour());
+                AddBehaviour(new BuilderBehaviour());
+            }
+            else if (Unit.IsBuilding)
+            {
+                AddBehaviour(new ConstructionBehaviour());
+            }
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Unary.Behaviours
 {
     internal class DropsiteBehaviour : Behaviour
     {
-        protected override bool Perform()
+        protected internal override bool Perform()
         {
             throw new NotImplementedException();
         }

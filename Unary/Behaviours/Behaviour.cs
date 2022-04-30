@@ -8,22 +8,8 @@ namespace Unary.Behaviours
 {
     internal abstract class Behaviour
     {
-        public Controller Controller { get; private set; }
-        public int LastPerformedTick { get; private set; } = 0;
+        public Controller Controller { get; internal set; }
 
-        protected abstract bool Perform();
-
-        internal bool PerformInternal(Controller controller)
-        {
-            Controller = controller;
-            var performed = Perform();
-
-            if (performed)
-            {
-                LastPerformedTick = controller.Unary.GameState.Tick;
-            }
-
-            return performed;
-        }
+        protected internal abstract bool Perform();
     }
 }

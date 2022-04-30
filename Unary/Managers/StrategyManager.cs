@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Unary.Squads;
 using Unary.Strategies;
 using static Unary.Managers.ProductionManager;
 using static Unary.Strategies.Strategy.BuildOrderCommand;
@@ -89,12 +88,6 @@ namespace Unary.Managers
                 {
                     DoAutoEcoTechs();
                 }
-            }
-
-            if (Unary.UnitsManager.GetSquads().OfType<EatingSquad>().Count() == 0)
-            {
-                var eating = new EatingSquad();
-                Unary.UnitsManager.AddSquad(eating);
             }
         }
 
