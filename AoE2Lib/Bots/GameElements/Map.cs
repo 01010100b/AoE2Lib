@@ -86,6 +86,7 @@ namespace AoE2Lib.Bots.GameElements
     {
         public int Height { get; private set; } = -1;
         public int Width { get; private set; } = -1;
+        public Position Center => Position.FromPoint(Width / 2, Height / 2);
 
         private Tile[] Tiles { get; set; }
 

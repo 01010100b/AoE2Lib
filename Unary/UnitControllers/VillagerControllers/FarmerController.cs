@@ -54,7 +54,7 @@ namespace Unary.UnitControllers.VillagerControllers
             }
             else
             {
-                Unary.ProductionManager.RequestFarm(this);
+                Unary.OldProductionManager.RequestFarm(this);
                 Unary.Log.Debug($"Farmer {Unit.Id} can not find tile");
             }
         }
@@ -69,7 +69,7 @@ namespace Unary.UnitControllers.VillagerControllers
                     Tile = null;
                 }
 
-                Unary.ProductionManager.RequestFarm(this);
+                Unary.OldProductionManager.RequestFarm(this);
 
                 return;
             }

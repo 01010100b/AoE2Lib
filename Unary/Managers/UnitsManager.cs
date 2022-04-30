@@ -14,7 +14,7 @@ namespace Unary.Managers
 {
     class UnitsManager : Manager
     {
-        private readonly Dictionary<Unit, UnitController> Units = new();
+        private readonly Dictionary<Unit, UnitController> ControlledUnits = new();
         
         public UnitsManager(Unary unary) : base(unary)
         {
@@ -23,18 +23,18 @@ namespace Unary.Managers
 
         public List<T> GetControllers<T>() where T : UnitController
         {
-            return Units.Values.OfType<T>().Cast<T>().ToList();
+            return ControlledUnits.Values.OfType<T>().Cast<T>().ToList();
         }
 
         public void SetController(Unit unit, UnitController controller)
         {
             if (controller == null)
             {
-                Units.Remove(unit);
+                ControlledUnits.Remove(unit);
             }
             else
             {
-                Units[unit] = controller;
+                ControlledUnits[unit] = controller;
             }
         }
 
@@ -50,9 +50,9 @@ namespace Unary.Managers
 
             foreach (var unit in Unary.GameState.MyPlayer.Units.Where(u => u.Targetable))
             {
-                if (!Units.ContainsKey(unit))
+                if (!ControlledUnits.ContainsKey(unit))
                 {
-                    Units[unit] = new IdlerController(unit, Unary);
+                    ControlledUnits[unit] = new IdlerController(unit, Unary);
                 }
             }
 
@@ -72,7 +72,7 @@ namespace Unary.Managers
                 }
                 else
                 {
-                    Units.Remove(controller.Unit);
+                    ControlledUnits.Remove(controller.Unit);
                 }
 
                 var type = controller.GetType();

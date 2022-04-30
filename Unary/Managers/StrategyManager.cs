@@ -4,9 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using Unary.UnitControllers.VillagerControllers;
-using static Unary.Strategy.BuildOrderCommand;
+using Unary.Strategies;
+using static Unary.Strategies.Strategy.BuildOrderCommand;
 
 namespace Unary.Managers
 {
@@ -156,7 +155,7 @@ namespace Unary.Managers
                         blocking = false;
                     }
 
-                    Unary.ProductionManager.Research(tech, priority, blocking);
+                    Unary.OldProductionManager.Research(tech, priority, blocking);
 
                     break;
                 }
@@ -190,11 +189,11 @@ namespace Unary.Managers
 
                     if (unit.IsBuilding)
                     {
-                        Unary.ProductionManager.Build(unit, req[unit], 1, Priority.PRODUCTION_BUILDING);
+                        Unary.OldProductionManager.Build(unit, req[unit], 1, Priority.PRODUCTION_BUILDING);
                     }
                     else
                     {
-                        Unary.ProductionManager.Train(unit, req[unit], 1, Priority.MILITARY);
+                        Unary.OldProductionManager.Train(unit, req[unit], 1, Priority.MILITARY);
                     }
 
                     break;
@@ -228,7 +227,7 @@ namespace Unary.Managers
 
                 if (primary.CountTotal < 50)
                 {
-                    Unary.ProductionManager.Train(primary, 50, 10, Priority.MILITARY);
+                    Unary.OldProductionManager.Train(primary, 50, 10, Priority.MILITARY);
                 }
             }
 
@@ -236,7 +235,9 @@ namespace Unary.Managers
 
             var max_civ = (int)Math.Round(0.6 * Unary.GameState.MyPlayer.PopulationCap);
             var villager = Unary.GameState.GetUnitType(Unary.Mod.Villager);
-            Unary.ProductionManager.Train(villager, max_civ, 3, Priority.VILLAGER);
+            //Unary.OldProductionManager.Train(villager, max_civ, 3, Priority.VILLAGER);
+            var tc = Unary.GameState.MyPlayer.Units.FirstOrDefault(u => u[ObjectData.BASE_TYPE] == Unary.Mod.TownCenter);
+            //tc?.Train(villager, max_civ, 3);
         }
 
         private void DoAutoEcoTechs()

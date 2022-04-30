@@ -44,7 +44,7 @@ namespace Unary.UnitControllers.MilitaryControllers
 
         private void ChooseAttack()
         {
-            var attacks = Unary.MilitaryManager.GetAttacks().ToList();
+            var attacks = Unary.OldMilitaryManager.GetAttacks().ToList();
 
             if (attacks.Count == 0)
             {

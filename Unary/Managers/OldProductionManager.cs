@@ -45,7 +45,7 @@ namespace Unary.Managers
 
         public void Build(UnitType building, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
         {
-            var placements = Unary.BuildingManager.GetBuildingPlacements(building).ToList();
+            var placements = Unary.OldBuildingManager.GetBuildingPlacements(building).ToList();
 
             if (placements.Count > 100)
             {
@@ -91,7 +91,7 @@ namespace Unary.Managers
 
             if (FarmRequest.Tile == null)
             {
-                var placements = Unary.BuildingManager.GetFarmPlacements();
+                var placements = Unary.OldBuildingManager.GetFarmPlacements();
 
                 if (placements.Count > 0)
                 {
@@ -102,13 +102,13 @@ namespace Unary.Managers
                 if (placements.Count < 3)
                 {
                     Unary.Log.Info("Building mill");
-                    Unary.ProductionManager.Build(mill, 100, 1, Priority.FARM + 1);
+                    Unary.OldProductionManager.Build(mill, 100, 1, Priority.FARM + 1);
                 }
             }
             else
             {
                 var size = Unary.Mod.GetBuildingSize(Unary.Mod.Farm);
-                if (Unary.BuildingManager.CanBuildAt(size, size, FarmRequest.Tile, true))
+                if (Unary.OldBuildingManager.CanBuildAt(size, size, FarmRequest.Tile, true))
                 {
                     Unary.Log.Info($"Refreshing farm at {FarmRequest.Tile.Position}");
                     farm.OldBuild(new[] { FarmRequest.Tile }, 100, 3, Priority.FARM);
@@ -150,7 +150,7 @@ namespace Unary.Managers
 
                 if (site.Pending == 0 && Unary.GameState.Tick - DropsiteRequestTicks[resource] < 100)
                 {
-                    var placements = Unary.BuildingManager.GetDropsitePlacements(resource);
+                    var placements = Unary.OldBuildingManager.GetDropsitePlacements(resource);
                     placements.Sort((a, b) => b.Value.CompareTo(a.Value));
                     site.OldBuild(placements.Select(p => p.Key), 100, 1, Priority.DROPSITE);
                     Unary.Log.Debug($"Found {placements.Count} placements for {resource}");
@@ -183,7 +183,7 @@ namespace Unary.Managers
                     {
                         var t = Unary.GameState.Map.GetTile(x, y);
                         
-                        if (Unary.BuildingManager.CanBuildAt(farm_size, farm_size, t))
+                        if (Unary.OldBuildingManager.CanBuildAt(farm_size, farm_size, t))
                         {
                             score += 4;
                         }

@@ -120,17 +120,17 @@ namespace Unary.Managers
                         return false;
                     }
 
-                    if (!Unary.MapManager.CanReach(t))
+                    if (!Unary.OldMapManager.CanReach(t))
                     {
                         return false;
                     }
 
-                    if (Unary.MapManager.IsConstructionBlocked(t))
+                    if (Unary.OldMapManager.IsConstructionBlocked(t))
                     {
                         return false;
                     }
 
-                    if (Unary.MapManager.IsConstructionExcluded(t) && !ignore_exclusion)
+                    if (Unary.OldMapManager.IsConstructionExcluded(t) && !ignore_exclusion)
                     {
                         return false;
                     }
@@ -287,7 +287,7 @@ namespace Unary.Managers
                 else
                 {
                     var lst = dict[res];
-                    lst.RemoveAll(kvp => !Unary.MapManager.CanReach(kvp.Key));
+                    lst.RemoveAll(kvp => !Unary.OldMapManager.CanReach(kvp.Key));
                 }
             }
 
@@ -340,7 +340,7 @@ namespace Unary.Managers
                 var size = kvp.Key;
                 var tiles = kvp.Value;
 
-                tiles.RemoveWhere(t => t.GetHashCode() % 101 == Unary.GameState.Tick % 101 || !Unary.MapManager.CanReach(t));
+                tiles.RemoveWhere(t => t.GetHashCode() % 101 == Unary.GameState.Tick % 101 || !Unary.OldMapManager.CanReach(t));
 
                 for (int i = 0; i < 100; i++)
                 {

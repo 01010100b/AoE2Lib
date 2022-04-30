@@ -138,7 +138,7 @@ namespace Unary.UnitControllers.BuildingControllers
                         {
                             foreach (var t in tile.GetNeighbours())
                             {
-                                if (Unary.MapManager.CanReach(t))
+                                if (Unary.OldMapManager.CanReach(t))
                                 {
                                     Resources[resource].Add(new KeyValuePair<Tile, Unit>(t, unit));
 
@@ -172,7 +172,7 @@ namespace Unary.UnitControllers.BuildingControllers
                 {
                     var t = Unary.GameState.Map.GetTile(x, y);
 
-                    if (Unary.MapManager.CanReach(t))
+                    if (Unary.OldMapManager.CanReach(t))
                     {
                         initial.Add(t);
                     }
@@ -186,7 +186,7 @@ namespace Unary.UnitControllers.BuildingControllers
                 {
                     var t = Unary.GameState.Map.GetTile(x, y);
 
-                    if (Unary.MapManager.CanReach(t))
+                    if (Unary.OldMapManager.CanReach(t))
                     {
                         initial.Add(t);
                     }
@@ -200,7 +200,7 @@ namespace Unary.UnitControllers.BuildingControllers
                 {
                     var t = Unary.GameState.Map.GetTile(x, y);
 
-                    if (Unary.MapManager.CanReach(t))
+                    if (Unary.OldMapManager.CanReach(t))
                     {
                         initial.Add(t);
                     }
@@ -214,14 +214,14 @@ namespace Unary.UnitControllers.BuildingControllers
                 {
                     var t = Unary.GameState.Map.GetTile(x, y);
 
-                    if (Unary.MapManager.CanReach(t))
+                    if (Unary.OldMapManager.CanReach(t))
                     {
                         initial.Add(t);
                     }
                 }
             }
 
-            Distances = Pathing.GetAllPathDistances(initial, x => x.GetNeighbours().Where(t => Unary.MapManager.CanReach(t)), range);
+            Distances = Pathing.GetAllPathDistances(initial, x => x.GetNeighbours().Where(t => Unary.OldMapManager.CanReach(t)), range);
         }
     }
 }

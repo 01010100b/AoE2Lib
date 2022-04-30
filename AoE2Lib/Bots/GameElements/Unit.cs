@@ -18,7 +18,7 @@ namespace AoE2Lib.Bots.GameElements
         public int PlayerNumber => this[ObjectData.PLAYER];
         public bool Targetable { get; private set; } = false;
         public bool IsBuilding => this[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || this[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING;
-        public TimeSpan LastSeenGameTime { get; private set; } = TimeSpan.Zero;
+        public TimeSpan LastSeenGameTime { get; private set; } = TimeSpan.MinValue;
         public Position Position => Position.FromPrecise(this[ObjectData.PRECISE_X], this[ObjectData.PRECISE_Y]);
         public Tile Tile => Bot.GameState.Map.GetTile(Position);
 
@@ -98,6 +98,69 @@ namespace AoE2Lib.Bots.GameElements
             {
                 return null;
             }
+        }
+
+        public void Train(UnitType type, int max_count, int max_pending)
+        {
+            RequestUpdate();
+
+            if (Updated == false)
+            {
+                return;
+            }
+
+            if (PlayerNumber != Bot.PlayerNumber)
+            {
+                return;
+            }
+
+            if (this[ObjectData.PROGRESS_TYPE] != 0 && this[ObjectData.PROGRESS_TYPE] != 102)
+            {
+                return;
+            }
+
+            if (type.Updated == false || type.Available == false || type.CountTotal >= max_count || type.Pending > max_pending)
+            {
+                return;
+            }
+            
+            if (type.TrainSite[ObjectData.BASE_TYPE] != this[ObjectData.BASE_TYPE])
+            {
+                return;
+            }
+
+            const int GL_CHECKS = Bot.GOAL_START;
+            const int GL_TEMP = Bot.GOAL_START + 1;
+
+            var command = new Command();
+
+            command.Add(new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = 0 });
+            command.Add(new SetGoal() { InConstGoalId = GL_TEMP, InConstValue = -1 });
+
+            command.Add(new UpSetTargetById() { InConstId = Id });
+            command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.ID, OutGoalData = GL_TEMP });
+            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "!=", Id,
+                new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = -1 });
+
+            command.Add(new UpObjectTypeCountTotal() { InConstObjectId = Id }, ">=", max_count,
+                new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = -2 });
+            command.Add(new UpPendingObjects() { InConstObjectId = Id }, ">=", max_pending,
+                new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = -3 });
+            command.Add(new CanAffordUnit() { InConstUnitId = Id }, "!=", 1,
+                new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = -4 });
+
+            command.Add(new Goal() { InConstGoalId = GL_CHECKS }, "==", 0,
+                new UpFullResetSearch(),
+                new UpAddObjectById() { InConstSearchSource = 1, InConstId = Id },
+                new UpTargetPoint()
+                {
+                    InGoalPoint = 0,
+                    InConstTargetAction = (int)UnitAction.TRAIN,
+                    InConstFormation = type.Id,
+                    InConstAttackStance = -1
+                });
+
+            Bot.GameState.AddCommand(command);
         }
 
         public void Target(Unit target, UnitAction action = UnitAction.DEFAULT, UnitFormation? formation = null, UnitStance? stance = null, int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue, Unit backup = null)
@@ -198,6 +261,11 @@ namespace AoE2Lib.Bots.GameElements
                 return;
             }
 
+            if (action == UnitAction.TRAIN)
+            {
+                return;
+            }
+
             if (action == UnitAction.MOVE && Position == position)
             {
                 return;
@@ -208,12 +276,10 @@ namespace AoE2Lib.Bots.GameElements
                 return;
             }
 
-            const int GL_CHECKS = 100;
-            const int GL_TEMP = 101;
-            const int GL_PRECISE_X = 102;
-            const int GL_PRECISE_Y = 103;
-
-            var op_add = Bot.GameVersion == GameVersion.AOC ? 1 : 25;
+            const int GL_CHECKS = Bot.GOAL_START;
+            const int GL_TEMP = Bot.GOAL_START + 1;
+            const int GL_PRECISE_X = Bot.GOAL_START + 2;
+            const int GL_PRECISE_Y = Bot.GOAL_START + 3;
 
             var command = new Command();
 
@@ -286,7 +352,7 @@ namespace AoE2Lib.Bots.GameElements
                 return;
             }
 
-            if (Updated && !visible)
+            if (LastSeenGameTime >= TimeSpan.Zero && !visible)
             {
                 return;
             }
@@ -297,13 +363,14 @@ namespace AoE2Lib.Bots.GameElements
             {
                 Data[(ObjectData)i] = data[i];
             }
-            
+            /*
             if (DatUnit == null && PlayerNumber > 0)
             {
                 var civ = Bot.DatFile.Civilizations[Player.GetFact(FactId.CIVILIZATION)];
                 var unit = civ.Units.Single(u => u.Id == this[ObjectData.UPGRADE_TYPE]);
                 DatUnit = unit;
             }
+            */
         }
     }
 }

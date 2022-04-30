@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 using Unary.UnitControllers;
 using Unary.UnitControllers.VillagerControllers;
 
-namespace Unary
+namespace Unary.Strategies
 {
-    class Strategy
+    internal class Strategy
     {
         public class BuildOrderCommand
         {

@@ -17,14 +17,16 @@ namespace Unary
 
         public readonly Settings Settings;
         public Mod Mod { get; private set; }
-        public OldMapManager MapManager { get; private set; }
+        public TownManager TownManager { get; private set; }
+        public ProductionManager ProductionManager { get; private set; }
+        public OldMapManager OldMapManager { get; private set; }
         public DiplomacyManager DiplomacyManager { get; private set; }
-        public OldBuildingManager BuildingManager { get; private set; }
+        public OldBuildingManager OldBuildingManager { get; private set; }
         public StrategyManager StrategyManager { get; private set; }
-        public OldEconomyManager EconomyManager { get; private set; }
-        public OldMilitaryManager MilitaryManager { get; private set; }
+        public OldEconomyManager OldEconomyManager { get; private set; }
+        public OldMilitaryManager OldMilitaryManager { get; private set; }
         public UnitsManager UnitsManager { get; private set; }
-        public OldProductionManager ProductionManager { get; private set; }
+        public OldProductionManager OldProductionManager { get; private set; }
 
         private readonly List<Command> Commands = new();
         private bool ChattedOK { get; set; } = false;
@@ -47,14 +49,16 @@ namespace Unary
         protected override void NewGame()
         {
             Mod = new Mod();
-            MapManager = new OldMapManager(this);
+            TownManager = new TownManager(this);
+            ProductionManager = new ProductionManager(this);
+            OldMapManager = new OldMapManager(this);
             DiplomacyManager = new DiplomacyManager(this);
-            BuildingManager = new OldBuildingManager(this);
+            OldBuildingManager = new OldBuildingManager(this);
             StrategyManager = new StrategyManager(this);
-            EconomyManager = new OldEconomyManager(this);
-            MilitaryManager = new OldMilitaryManager(this);
+            OldEconomyManager = new OldEconomyManager(this);
+            OldMilitaryManager = new OldMilitaryManager(this);
             UnitsManager = new UnitsManager(this);
-            ProductionManager = new OldProductionManager(this);
+            OldProductionManager = new OldProductionManager(this);
             ChattedOK = false;
         }
 
@@ -65,36 +69,44 @@ namespace Unary
             var sw = new Stopwatch();
 
             sw.Start();
-            MapManager.Update();
-            Log.Info($"Map Manager took {sw.ElapsedMilliseconds} ms");
+            TownManager.Update();
+            Log.Info($"Town Manager took {sw.ElapsedMilliseconds} ms");
+
+            sw.Restart();
+            ProductionManager.Update();
+            Log.Info($"Production Manager took {sw.ElapsedMilliseconds} ms");
+
+            sw.Restart();
+            OldMapManager.Update();
+            Log.Info($"Old Map Manager took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
             DiplomacyManager.Update();
             Log.Info($"Diplomacy Manager took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
-            BuildingManager.Update();
-            Log.Info($"Building Manager took {sw.ElapsedMilliseconds} ms");
+            OldBuildingManager.Update();
+            Log.Info($"Old Building Manager took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
             StrategyManager.Update();
             Log.Info($"Strategy Manager took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
-            EconomyManager.Update();
-            Log.Info($"Economy Manager took {sw.ElapsedMilliseconds} ms");
+            OldEconomyManager.Update();
+            Log.Info($"Old Economy Manager took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
-            MilitaryManager.Update();
-            Log.Info($"Military Manager took {sw.ElapsedMilliseconds} ms");
+            OldMilitaryManager.Update();
+            Log.Info($"Old Military Manager took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
             UnitsManager.Update();
             Log.Info($"Units Manager took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
-            ProductionManager.Update();
-            Log.Info($"Production Manager took {sw.ElapsedMilliseconds} ms");
+            OldProductionManager.Update();
+            Log.Info($"Old Production Manager took {sw.ElapsedMilliseconds} ms");
 
             sw.Stop();
 

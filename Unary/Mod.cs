@@ -34,21 +34,6 @@ namespace Unary
             Boar.AddRange(new[] { 412, 822, 1139, 48 });
         }
 
-        public void SetAoC()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetWK()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetDE()
-        {
-            throw new NotImplementedException();
-        }
-
         public int GetBuildingSize(int type_id)
         {
             switch (type_id)

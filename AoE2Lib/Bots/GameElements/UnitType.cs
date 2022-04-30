@@ -11,17 +11,16 @@ namespace AoE2Lib.Bots.GameElements
 {
     public class UnitType : GameElement
     {
-        private static readonly ObjectData[] OBJECT_DATAS = new[] { ObjectData.BASE_TYPE, ObjectData.CMDID };
+        private static readonly ObjectData[] OBJECT_DATAS = new[] { ObjectData.BASE_TYPE, ObjectData.CMDID, ObjectData.TRAIN_SITE };
 
         public readonly int Id;
         public int this[ObjectData data] => GetData(data);
         public bool IsBuilding => this[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || this[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING;
+        public UnitType TrainSite => Bot.GameState.GetUnitType(this[ObjectData.TRAIN_SITE]);
         public bool Available { get; private set; } = false;
         public int Count { get; private set; } = 0;
         public int CountTotal { get; private set; } = 0;
         public int Pending => CountTotal - Count;
-        public bool CanBuild { get; private set; } = false;
-        public bool TrainSiteReady { get; private set; } = false;
         public int WoodCost { get; private set; } = 0;
         public int FoodCost { get; private set; } = 0;
         public int GoldCost { get; private set; } = 0;
@@ -57,6 +56,11 @@ namespace AoE2Lib.Bots.GameElements
             Bot.GameState.AddProductionTask(prod);
         }
 
+        public void Build(IEnumerable<Tile> tiles, int max_count = 10000, int max_pending = 10000)
+        {
+            throw new NotImplementedException();
+        }
+
         public void OldBuild(IEnumerable<Tile> tiles, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
         {
             if (Updated == false || Available == false || CountTotal >= max_count || Pending > max_pending)
@@ -86,8 +90,6 @@ namespace AoE2Lib.Bots.GameElements
             yield return new BuildingAvailable() { InConstBuildingId = Id };
             yield return new BuildingTypeCount() { InConstBuildingId = Id };
             yield return new BuildingTypeCountTotal() { InConstBuildingId = Id };
-            yield return new UpCanBuild() { InGoalEscrowState = 0, InConstBuildingId = Id };
-            yield return new UpTrainSiteReady() { InConstUnitId = Id };
             yield return new UpSetupCostData() { InConstResetCost = 1, IoGoalId = 100 };
             yield return new UpAddObjectCost() { InConstObjectId = Id, InConstValue = 1 };
             yield return new Goal() { InConstGoalId = 100 };
@@ -109,12 +111,10 @@ namespace AoE2Lib.Bots.GameElements
             Available = responses[index + 0].Unpack<BuildingAvailableResult>().Result;
             Count = responses[index + 1].Unpack<BuildingTypeCountResult>().Result;
             CountTotal = responses[index + 2].Unpack<BuildingTypeCountTotalResult>().Result;
-            CanBuild = responses[index + 3].Unpack<UpCanBuildResult>().Result;
-            TrainSiteReady = responses[index + 4].Unpack<UpTrainSiteReadyResult>().Result;
-            FoodCost = responses[index + 7].Unpack<GoalResult>().Result;
-            WoodCost = responses[index + 8].Unpack<GoalResult>().Result;
-            StoneCost = responses[index + 9].Unpack<GoalResult>().Result;
-            GoldCost = responses[index + 10].Unpack<GoalResult>().Result;
+            FoodCost = responses[index + 5].Unpack<GoalResult>().Result;
+            WoodCost = responses[index + 6].Unpack<GoalResult>().Result;
+            StoneCost = responses[index + 7].Unpack<GoalResult>().Result;
+            GoldCost = responses[index + 8].Unpack<GoalResult>().Result;
         }
     }
 }

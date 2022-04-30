@@ -29,7 +29,7 @@ namespace Unary.UnitControllers.MilitaryControllers
 
         protected override void MilitaryTick()
         {
-            var deer = Unary.EconomyManager.GetDeer().Count();
+            var deer = Unary.OldEconomyManager.GetDeer().Count();
 
             if (deer > 0)
             {
@@ -62,7 +62,7 @@ namespace Unary.UnitControllers.MilitaryControllers
             var best_cost = double.MaxValue;
             var my_pos = Unit.Position;
 
-            foreach (var state in Unary.MilitaryManager.GetScoutingStatesForLos(los))
+            foreach (var state in Unary.OldMilitaryManager.GetScoutingStatesForLos(los))
             {
                 if (state.LastAttemptGameTime > TimeSpan.Zero)
                 {
@@ -90,7 +90,7 @@ namespace Unary.UnitControllers.MilitaryControllers
                     
                     if (best == null || cost < best_cost)
                     {
-                        if (Unary.MapManager.CanReach(state.Tile))
+                        if (Unary.OldMapManager.CanReach(state.Tile))
                         {
                             best = state;
                             best_cost = cost;

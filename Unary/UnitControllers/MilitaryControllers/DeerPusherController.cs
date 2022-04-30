@@ -43,7 +43,7 @@ namespace Unary.UnitControllers.MilitaryControllers
 
         private void ChooseDeer()
         {
-            var deer = Unary.EconomyManager.GetDeer().ToList();
+            var deer = Unary.OldEconomyManager.GetDeer().ToList();
             deer.Sort((a, b) => a.Position.DistanceTo(Unary.GameState.MyPosition).CompareTo(b.Position.DistanceTo(Unary.GameState.MyPosition)));
 
             if (deer.Count > 0)
@@ -59,11 +59,11 @@ namespace Unary.UnitControllers.MilitaryControllers
         private void PushDeer()
         {
             var best_pos = Deer.Position;
-            var best_distance = Unary.MapManager.GetPathDistance(Deer.Tile);
+            var best_distance = Unary.OldMapManager.GetPathDistance(Deer.Tile);
 
-            foreach (var tile in Deer.Tile.GetNeighbours(true).Where(t => Unary.MapManager.CanReach(t)))
+            foreach (var tile in Deer.Tile.GetNeighbours(true).Where(t => Unary.OldMapManager.CanReach(t)))
             {
-                var distance = Unary.MapManager.GetPathDistance(tile);
+                var distance = Unary.OldMapManager.GetPathDistance(tile);
 
                 if (distance <= best_distance)
                 {
@@ -79,7 +79,7 @@ namespace Unary.UnitControllers.MilitaryControllers
                     {
                         var t = Unary.GameState.Map.GetTile(dpos);
 
-                        if (Unary.MapManager.CanReach(t))
+                        if (Unary.OldMapManager.CanReach(t))
                         {
                             best_pos = dpos;
                             best_distance = distance;

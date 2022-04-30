@@ -27,8 +27,6 @@ namespace AoE2Lib.Bots
         {
             if (Command.HasMessages)
             {
-                Bot.GameState.AddCommand(Command);
-
                 return;
             }
 

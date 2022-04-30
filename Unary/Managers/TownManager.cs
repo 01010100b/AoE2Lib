@@ -14,14 +14,14 @@ namespace Unary.Managers
 
         }
 
-        public List<Tile> GetBuildingPlacements(UnitType building, IEnumerable<Tile> possible_placements)
+        public List<Tile> GetSortedBuildingPlacements(UnitType building, IEnumerable<Tile> possible_placements)
         {
             throw new NotImplementedException();
         }
 
         internal override void Update()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

@@ -93,7 +93,7 @@ namespace Unary.Managers
 
             if (Unary.GameState.MyPlayer.GetFact(FactId.POPULATION_HEADROOM) > 0 && Unary.GameState.MyPlayer.GetFact(FactId.HOUSING_HEADROOM) < margin && house.Pending < pending)
             {
-                Unary.ProductionManager.Build(house, 1000, pending, Priority.HOUSING);
+                Unary.OldProductionManager.Build(house, 1000, pending, Priority.HOUSING);
             }
         }
 
@@ -157,7 +157,7 @@ namespace Unary.Managers
 
                 if (count < MaxTownCenters && pending < 1)
                 {
-                    Unary.ProductionManager.Build(tc, MaxTownCenters, 1, Priority.DROPSITE);
+                    Unary.OldProductionManager.Build(tc, MaxTownCenters, 1, Priority.DROPSITE);
                 }
             }
 
@@ -168,7 +168,7 @@ namespace Unary.Managers
                     if (Unary.GameState.MyPlayer.CivilianPopulation >= 11 && Unary.GameState.GetResourceFound(Resource.FOOD) && Unary.GameState.GetDropsiteMinDistance(Resource.FOOD) < 200)
                     {
                         Unary.Log.Info("Building mill");
-                        Unary.ProductionManager.Build(mill, 100, 1, Priority.DROPSITE);
+                        Unary.OldProductionManager.Build(mill, 100, 1, Priority.DROPSITE);
                     }
                 }
             }

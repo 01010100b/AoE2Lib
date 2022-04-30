@@ -197,7 +197,7 @@ namespace Unary.UnitControllers.VillagerControllers
 
             if (!found_close)
             {
-                Unary.ProductionManager.RequestDropsite(Resource);
+                Unary.OldProductionManager.RequestDropsite(Resource);
             }
 
             if (Target != null)
@@ -219,7 +219,7 @@ namespace Unary.UnitControllers.VillagerControllers
                     }
                 }
 
-                Unary.ProductionManager.RequestDropsite(Resource);
+                Unary.OldProductionManager.RequestDropsite(Resource);
 
                 if (Unary.Rng.NextDouble() < 0.1)
                 {

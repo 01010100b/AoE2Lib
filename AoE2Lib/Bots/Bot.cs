@@ -17,17 +17,18 @@ namespace AoE2Lib.Bots
 {
     public abstract class Bot
     {
+        public const int GOAL_START = 401;
+
         public virtual string Name { get { return GetType().Name; } }
         public GameVersion GameVersion { get; private set; }
         public int PlayerNumber { get; private set; } = -1;
         public Log Log { get; private set; }
         public Random Rng { get; private set; }
         public GameState GameState { get; private set; }
-        public DatFile DatFile => _DatFile == null ? throw new Exception("No .dat file (not supported on DE)") : _DatFile;
+        public string DatFile { get; private set; } = null;
 
         private Thread BotThread { get; set; } = null;
         private volatile bool Stopping = false;
-        private DatFile _DatFile { get; set; }
 
         public void Stop()
         {
@@ -150,6 +151,8 @@ namespace AoE2Lib.Bots
                     {
                         command.Reset();
                     }
+
+                    commands.Clear();
                 }
                 else
                 {
@@ -199,23 +202,11 @@ namespace AoE2Lib.Bots
 
             if (GameVersion == GameVersion.AOC)
             {
-                var file = module_api.GetGameDataFilePath(new Protos.GetGameDataFilePathRequest()).Result;
-
-                if (File.Exists(file))
-                {
-                    Log.Debug($"Loading dat file: {file}");
-                    var dat = new DatFile();
-                    dat.Load(file);
-                    _DatFile = dat;
-                }
-                else
-                {
-                    Log.Warning($"Dat file not found: {file}");
-                }
+                DatFile = module_api.GetGameDataFilePath(new Protos.GetGameDataFilePathRequest()).Result;
             }
             else
             {
-                _DatFile = null;
+                DatFile = null;
             }
 
             NewGame();
