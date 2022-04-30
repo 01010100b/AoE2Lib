@@ -1,6 +1,7 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using Protos.Expert;
+using Protos.Expert.Action;
 using Protos.Expert.Fact;
 using System;
 using System.Collections.Generic;
@@ -17,15 +18,17 @@ namespace AoE2Lib.Bots
 {
     public abstract class Bot
     {
+        // goals 400-420 are reserved, goal 420 is set to Id
         public const int GOAL_START = 401;
 
+        public abstract int Id { get; }
         public virtual string Name { get { return GetType().Name; } }
         public GameVersion GameVersion { get; private set; }
         public int PlayerNumber { get; private set; } = -1;
         public Log Log { get; private set; }
         public Random Rng { get; private set; }
         public GameState GameState { get; private set; }
-        public string DatFile { get; private set; } = null;
+        public string DatFilePath { get; private set; } = null;
 
         private Thread BotThread { get; set; } = null;
         private volatile bool Stopping = false;
@@ -99,6 +102,7 @@ namespace AoE2Lib.Bots
 
                 var first_command = new Command();
                 first_command.Add(new GameTime());
+                first_command.Add(new SetGoal() { InConstGoalId = 420, InConstValue = Id });
                 commands.Add(first_command);
 
                 commands.AddRange(Tick().Where(c => c.HasMessages));
@@ -202,11 +206,11 @@ namespace AoE2Lib.Bots
 
             if (GameVersion == GameVersion.AOC)
             {
-                DatFile = module_api.GetGameDataFilePath(new Protos.GetGameDataFilePathRequest()).Result;
+                DatFilePath = module_api.GetGameDataFilePath(new Protos.GetGameDataFilePathRequest()).Result;
             }
             else
             {
-                DatFile = null;
+                DatFilePath = null;
             }
 
             NewGame();

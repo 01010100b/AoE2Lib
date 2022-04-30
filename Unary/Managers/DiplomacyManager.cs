@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Unary.Managers
 {
+    // ally cooperation, attacking
     class DiplomacyManager : Manager
     {
         public const int PROTOCOL_VERSION = 17231;

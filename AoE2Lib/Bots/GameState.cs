@@ -54,6 +54,29 @@ namespace AoE2Lib.Bots
             return Players[player_number];
         }
 
+        public bool TryGetPlayer(int player_number, out Player player)
+        {
+            if (player_number < 0 || player_number >= Players.Count)
+            {
+                throw new ArgumentOutOfRangeException(nameof(player_number));
+            }
+
+            var p = Players[player_number];
+
+            if (p.IsValid)
+            {
+                player = p;
+
+                return true;
+            }
+            else
+            {
+                player = default;
+
+                return false;
+            }
+        }
+
         public IEnumerable<Player> GetPlayers()
         {
             return Players.Where(p => p.IsValid);
@@ -75,6 +98,35 @@ namespace AoE2Lib.Bots
             return Technologies[id];
         }
 
+        public bool TryGetTechnology(int id, out Technology technology)
+        {
+            if (id < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(id));
+            }
+
+            if (!Technologies.ContainsKey(id))
+            {
+                Technologies.Add(id, new Technology(Bot, id));
+                Bot.Log.Info($"Added technology {id}");
+            }
+
+            var t = Technologies[id];
+
+            if (t.Updated)
+            {
+                technology = t;
+
+                return true;
+            }
+            else
+            {
+                technology = default;
+
+                return false;
+            }
+        }
+
         public UnitType GetUnitType(int id)
         {
             if (id < 0)
@@ -91,17 +143,55 @@ namespace AoE2Lib.Bots
             return UnitTypes[id];
         }
 
-        public bool TryGetUnit(int id, out Unit unit)
+        public bool TryGetUnitType(int id, out UnitType type)
         {
-            if (Units.TryGetValue(id, out Unit u))
+            if (id < 0)
             {
-                unit = u;
+                throw new ArgumentOutOfRangeException(nameof(id));
+            }
+
+            if (!UnitTypes.ContainsKey(id))
+            {
+                UnitTypes.Add(id, new UnitType(Bot, id));
+                Bot.Log.Info($"Added unit type {id}");
+            }
+
+            var t = UnitTypes[id];
+
+            if (t.Updated)
+            {
+                type = t;
 
                 return true;
             }
             else
             {
-                unit = null;
+                type = default;
+
+                return false;
+            }
+        }
+
+        public bool TryGetUnit(int id, out Unit unit)
+        {
+            if (Units.TryGetValue(id, out Unit u))
+            {
+                if (u.Updated)
+                {
+                    unit = u;
+
+                    return true;
+                }
+                else
+                {
+                    unit = default;
+
+                    return false;
+                }
+            }
+            else
+            {
+                unit = default;
 
                 return false;
             }

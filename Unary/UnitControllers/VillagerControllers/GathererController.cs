@@ -58,10 +58,10 @@ namespace Unary.UnitControllers.VillagerControllers
                 {
                     var min = Unary.StrategyManager.GetMinimumGatherers(res);
                     var max = Unary.StrategyManager.GetMaximumGatherers(res);
-                    var current = Unary.UnitsManager.GetControllers<GathererController>().Count(u => u.Resource == res);
+                    var current = Unary.OldUnitsManager.GetControllers<GathererController>().Count(u => u.Resource == res);
                     if (res == Resource.FOOD)
                     {
-                        current += Unary.UnitsManager.GetControllers<FarmerController>().Count;
+                        current += Unary.OldUnitsManager.GetControllers<FarmerController>().Count;
                     }
 
                     if (current < min)
@@ -87,7 +87,7 @@ namespace Unary.UnitControllers.VillagerControllers
 
         private bool CheckFoodAlternatives()
         {
-            var hunters = Unary.UnitsManager.GetControllers<HunterController>().Count;
+            var hunters = Unary.OldUnitsManager.GetControllers<HunterController>().Count;
 
             if (hunters < Unary.Settings.MaxHunters)
             {
@@ -98,7 +98,7 @@ namespace Unary.UnitControllers.VillagerControllers
 
             if (Unary.GameState.Tick - LastTargetTick > 10)
             {
-                var farmers = Unary.UnitsManager.GetControllers<FarmerController>().Count(c => c.Tile == null);
+                var farmers = Unary.OldUnitsManager.GetControllers<FarmerController>().Count(c => c.Tile == null);
 
                 if (farmers < Unary.Settings.MaxWaitingFarmers)
                 {
@@ -115,7 +115,7 @@ namespace Unary.UnitControllers.VillagerControllers
         {
             var tile_occupancy = new Dictionary<Tile, int>();
             var dropsite_occupancy = new Dictionary<DropsiteController, int>();
-            foreach (var gatherer in Unary.UnitsManager.GetControllers<GathererController>().Where(g => g != this))
+            foreach (var gatherer in Unary.OldUnitsManager.GetControllers<GathererController>().Where(g => g != this))
             {
                 if (gatherer.Tile != null)
                 {
@@ -141,7 +141,7 @@ namespace Unary.UnitControllers.VillagerControllers
             var best_cost = double.MaxValue;
             var found_close = false;
 
-            foreach (var dropsite in Unary.UnitsManager.GetControllers<DropsiteController>())
+            foreach (var dropsite in Unary.OldUnitsManager.GetControllers<DropsiteController>())
             {
                 if (dropsite_occupancy.TryGetValue(dropsite, out int occupancy))
                 {

@@ -8,8 +8,93 @@ using System.Threading.Tasks;
 
 namespace Unary.Managers
 {
+    // resource management
     internal class ProductionManager : Manager
     {
+        public static class Priority
+        {
+            public const int
+            DEFAULT = 10,
+            MILITARY = 100,
+            TECH = 200,
+            FARM = 300,
+            PRODUCTION_BUILDING = 400,
+            DROPSITE = 500,
+            HOUSING = 600,
+            VILLAGER = 700,
+            AGE_UP = 800;
+        }
+
+        private class ProductionTask
+        {
+            public readonly int Priority;
+            public readonly bool Blocking;
+            public bool IsTech => Technology != null;
+            public bool IsBuilding => IsTech == false && UnitType.IsBuilding;
+            public int FoodCost => IsTech ? Technology.FoodCost : UnitType.FoodCost;
+            public int WoodCost => IsTech ? Technology.WoodCost : UnitType.WoodCost;
+            public int GoldCost => IsTech ? Technology.GoldCost : UnitType.GoldCost;
+            public int StoneCost => IsTech ? Technology.StoneCost : UnitType.StoneCost;
+
+            private readonly Technology Technology;
+            private readonly UnitType UnitType;
+            private readonly List<Tile> Tiles;
+            private readonly int MaxCount;
+            private readonly int MaxPending;
+
+            public ProductionTask(Technology technology, int priority, bool blocking)
+            {
+                Priority = priority;
+                Blocking = blocking;
+                Technology = technology;
+                UnitType = null;
+                MaxCount = int.MaxValue;
+                MaxPending = int.MaxValue;
+            }
+
+            public ProductionTask(UnitType type, List<Tile> tiles, int max_count, int max_pending, int priority, bool blocking)
+            {
+                Priority = priority;
+                Blocking = blocking;
+                Technology = null;
+                UnitType = type;
+                Tiles = tiles;
+                MaxCount = max_count;
+                MaxPending = max_pending;
+            }
+
+            public void Perform(Unary unary, HashSet<Unit> excluded_trainsites)
+            {
+                if (IsTech)
+                {
+                    Technology.Research();
+                }
+                else if (UnitType.IsBuilding)
+                {
+                    var placements = unary.TownManager.GetSortedBuildingPlacements(UnitType, Tiles);
+                    
+                    if (placements.Count > 0)
+                    {
+                        UnitType.Build(placements.Take(100), MaxCount, MaxPending);
+                    }
+                }
+                else
+                {
+                    var site_id = UnitType.TrainSite[ObjectData.BASE_TYPE];
+                    var sites = unary.GameState.MyPlayer.Units
+                        .Where(u => u[ObjectData.BASE_TYPE] == site_id && !excluded_trainsites.Contains(u))
+                        .Where(u => u[ObjectData.PROGRESS_TYPE] == 0 || u[ObjectData.PROGRESS_TYPE] == 102)
+                        .ToList();
+
+                    if (sites.Count > 0)
+                    {
+                        var site = sites[unary.Rng.Next(sites.Count)];
+                        site.Train(UnitType, MaxCount, MaxPending);
+                    }
+                }
+            }
+        }
+
         private readonly List<ProductionTask> ProductionTasks = new List<ProductionTask>();
 
         public ProductionManager(Unary unary) : base(unary)
@@ -29,7 +114,6 @@ namespace Unary.Managers
 
         internal override void Update()
         {
-            //throw new NotImplementedException();
             var excluded_trainsites = new HashSet<Unit>();
             var remaining_wood = Unary.GameState.MyPlayer.GetFact(FactId.WOOD_AMOUNT);
             var remaining_food = Unary.GameState.MyPlayer.GetFact(FactId.FOOD_AMOUNT);
@@ -53,7 +137,7 @@ namespace Unary.Managers
                 {
                     can_afford = false;
                 }
-                else if (task.StoneCost > 0 && task.StoneCost > remaining_stone)
+                else if (task.StoneCost > 0 && task.StoneCost > remaining_stone - 1) // keep 1 stone for TC repair
                 {
                     can_afford = false;
                 }

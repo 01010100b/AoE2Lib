@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Unary.Managers
 {
+    // building placements, walling
     internal class TownManager : Manager
     {
         public TownManager(Unary unary) : base(unary)

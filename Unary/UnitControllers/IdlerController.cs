@@ -45,7 +45,7 @@ namespace Unary.UnitControllers
         {
             if (Unary.GameState.Tick < 50 || GetHashCode() % 53 == Unary.GameState.Tick % 53)
             {
-                var scouts = Unary.UnitsManager.GetControllers<ScoutController>();
+                var scouts = Unary.OldUnitsManager.GetControllers<ScoutController>();
                 if (scouts.Count == 0)
                 {
                     new ScoutController(Unit, Unary);

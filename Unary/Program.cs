@@ -13,7 +13,8 @@ namespace Unary
 {
     static class Program
     {
-        internal static readonly Log Log = new Log(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Unary.log"));
+        public static string Folder => AppDomain.CurrentDomain.BaseDirectory;
+        internal static readonly Log Log = new(Path.Combine(Folder, "Unary.log"));
         
         public static void Serialize<T>(T obj, string file)
         {

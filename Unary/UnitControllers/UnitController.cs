@@ -26,7 +26,7 @@ namespace Unary.UnitControllers
             Unit = unit;
             Unary = unary;
 
-            Unary.UnitsManager.SetController(Unit, this);
+            Unary.OldUnitsManager.SetController(Unit, this);
         }
 
         public void Update()

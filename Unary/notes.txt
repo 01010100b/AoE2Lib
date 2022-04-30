@@ -1,0 +1,2 @@
+﻿dangerous animals + carry>0 = boar etc
+my position -> oldest existing tc or other unit

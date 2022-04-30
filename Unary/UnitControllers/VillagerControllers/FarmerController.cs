@@ -39,7 +39,7 @@ namespace Unary.UnitControllers.VillagerControllers
                 tiles.Add(farm.Tile);
             }
 
-            foreach (var farmer in Unary.UnitsManager.GetControllers<FarmerController>())
+            foreach (var farmer in Unary.OldUnitsManager.GetControllers<FarmerController>())
             {
                 if (farmer.Tile != null)
                 {

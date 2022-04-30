@@ -57,7 +57,7 @@ namespace Unary.UnitControllers
             }
 
             var total_max_builders = 5;
-            var villagers = Unary.UnitsManager.GetControllers<VillagerController>();
+            var villagers = Unary.OldUnitsManager.GetControllers<VillagerController>();
             var total_builders = 0;
             
             foreach (var builder in villagers.Where(x => x.Building != null))
