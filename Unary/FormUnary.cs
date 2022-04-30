@@ -24,9 +24,6 @@ namespace Unary
             InitializeComponent();
 
             LoadSettings();
-#if DEBUG
-            Settings = new Settings();
-#endif
             SaveSettings();
         }
 
@@ -123,7 +120,7 @@ namespace Unary
 
         private void LoadSettings()
         {
-            var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Settings.json");
+            var file = Path.Combine(Program.Folder, "Settings.json");
             if (File.Exists(file))
             {
                 Settings = Program.Deserialize<Settings>(file);
@@ -141,7 +138,7 @@ namespace Unary
                 return;
             }
 
-            var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Settings.json");
+            var file = Path.Combine(Program.Folder, "Settings.json");
             Program.Serialize(Settings, file);
         }
     }

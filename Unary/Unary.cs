@@ -99,12 +99,12 @@ namespace Unary
             Log.Info($"Units Manager took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
-            OldMapManager.Update();
-            Log.Info($"Old Map Manager took {sw.ElapsedMilliseconds} ms");
-
-            sw.Restart();
             DiplomacyManager.Update();
             Log.Info($"Diplomacy Manager took {sw.ElapsedMilliseconds} ms");
+
+            sw.Restart();
+            OldMapManager.Update();
+            Log.Info($"Old Map Manager took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
             OldBuildingManager.Update();

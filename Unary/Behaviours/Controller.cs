@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unary.Squads;
 
 namespace Unary.Behaviours
 {
@@ -11,7 +12,8 @@ namespace Unary.Behaviours
     {
         public readonly Unit Unit;
         public readonly Unary Unary;
-        
+        public Squad Squad { get; private set; }
+
         private readonly List<Behaviour> Behaviours = new();
 
         internal Controller(Unit unit, Unary unary)
@@ -20,6 +22,14 @@ namespace Unary.Behaviours
             Unary = unary;
 
             AddDefaultBehaviours();
+        }
+
+        public void SetSquad(Squad squad)
+        {
+            if (Squad == null || squad == null || Squad.Priority <= squad.Priority)
+            {
+                Squad = squad;
+            }
         }
 
         public void AddBehaviour<T>(T behaviour, params Type[] before) where T : Behaviour
@@ -42,16 +52,31 @@ namespace Unary.Behaviours
             Behaviours.Insert(index, behaviour);
         }
 
+        public void RemoveBehaviour<T>(T behaviour) where T : Behaviour
+        {
+            Behaviours.Remove(behaviour);
+        }
+
         public T GetBehaviour<T>() where T : Behaviour
         {
             return Behaviours.OfType<T>().Cast<T>().FirstOrDefault();
         }
 
-        public void Tick()
+        public IEnumerable<Behaviour> GetBehaviours()
+        {
+            return Behaviours;
+        }
+
+        internal void Tick()
         {
             if (GetHashCode() % 13 == Unary.GameState.Tick % 13)
             {
                 Unit.RequestUpdate();
+            }
+
+            if (Squad != null)
+            {
+                return;
             }
 
             foreach (var behaviour in Behaviours.ToList())

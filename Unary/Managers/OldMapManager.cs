@@ -170,6 +170,7 @@ namespace Unary.Managers
 
             foreach (var player in Unary.GameState.GetPlayers())
             {
+                Debug.WriteLine($"got player {player.PlayerNumber}");
                 foreach (var unit in player.Units)
                 {
                     var construction = BlocksConstruction(unit);

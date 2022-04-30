@@ -92,7 +92,7 @@ namespace Unary
             finally
             {
                 Log.Dispose();
-                MessageBox.Show("An unexpected error occurred. Unary will now exit. See the log for details.", "Unexpected error");
+                //MessageBox.Show("An unexpected error occurred. Unary will now exit. See the log for details.", "Unexpected error");
             }
         }
     }

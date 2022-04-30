@@ -35,7 +35,6 @@ namespace AoE2Lib
 
             Stream.WriteLine(str);
             Stream.Flush();
-            //Trace.WriteLine(str); // Why the hell is writing to Trace a gazillion times slower than writing to disk? :s
         }
 
         public void Debug(object message)
