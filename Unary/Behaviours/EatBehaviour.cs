@@ -28,6 +28,7 @@ namespace Unary.Behaviours
                 if (EatingSpot != null)
                 {
                     Controller.Unit.Target(EatingSpot.GetBehaviour<EatingSpotBehaviour>().Target);
+                    
                 }
 
                 return true;

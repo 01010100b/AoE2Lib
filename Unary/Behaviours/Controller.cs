@@ -72,6 +72,8 @@ namespace Unary.Behaviours
             {
                 if (behaviour.Perform())
                 {
+                    Unary.Log.Debug($"Unit {Unit.Id} performed {behaviour.GetType().Name}");
+
                     return;
                 }
             }
@@ -83,10 +85,16 @@ namespace Unary.Behaviours
             {
                 AddBehaviour(new FightAnimalBehaviour());
                 AddBehaviour(new BuilderBehaviour());
+                AddBehaviour(new EatBehaviour());
             }
             else if (Unit.IsBuilding)
             {
                 AddBehaviour(new ConstructionBehaviour());
+
+                if (Unit[ObjectData.BASE_TYPE] == Unary.Mod.TownCenter)
+                {
+                    AddBehaviour(new EatingSpotBehaviour());
+                }
             }
         }
     }
