@@ -8,7 +8,7 @@ namespace Unary.Behaviours
 {
     internal class DeerPusherBehaviour : Behaviour
     {
-        protected internal override bool Perform()
+        protected internal override bool Tick(bool perform)
         {
             throw new NotImplementedException();
         }

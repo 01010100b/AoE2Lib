@@ -67,17 +67,32 @@ namespace Unary.Managers
                 }
             }
 
+            var times = new Dictionary<Type, KeyValuePair<int, TimeSpan>>();
+
             foreach (var controller in Controllers.Values.ToList())
             {
                 if (controller.Unit.Targetable)
                 {
-                    controller.Tick();
+                    controller.Tick(times);
                 }
                 else
                 {
                     Controllers.Remove(controller.Unit);
                 }
             }
+
+            var behaviours = times.ToList();
+            behaviours.Sort((a, b) => b.Value.Value.CompareTo(a.Value.Value));
+
+            foreach (var behaviour in behaviours)
+            {
+                Unary.Log.Info($"{behaviour.Key.Name} ran {behaviour.Value.Key} times for a total of {behaviour.Value.Value.TotalMilliseconds:N2} ms");
+            }
+        }
+
+        private void SetStrategicNumbers()
+        {
+            throw new NotImplementedException();
         }
     }
 }

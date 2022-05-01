@@ -19,13 +19,15 @@ namespace Unary
         public override int Id => UNARY_ID;
         public readonly Settings Settings;
         public Mod Mod { get; private set; }
-        public TownManager TownManager { get; private set; }
-        public ProductionManager ProductionManager { get; private set; }
-        public UnitsManager UnitsManager { get; private set; }
-        public OldMapManager OldMapManager { get; private set; }
-        public DiplomacyManager DiplomacyManager { get; private set; }
-        public OldBuildingManager OldBuildingManager { get; private set; }
         public StrategyManager StrategyManager { get; private set; }
+        public DiplomacyManager DiplomacyManager { get; private set; }
+        public TownManager TownManager { get; private set; }
+        public SitRepManager SitRepManager { get; private set; }
+        public UnitsManager UnitsManager { get; private set; }
+        public ProductionManager ProductionManager { get; private set; }
+
+        public OldMapManager OldMapManager { get; private set; }
+        public OldBuildingManager OldBuildingManager { get; private set; }
         public OldEconomyManager OldEconomyManager { get; private set; }
         public OldMilitaryManager OldMilitaryManager { get; private set; }
         public OldUnitsManager OldUnitsManager { get; private set; }
@@ -51,6 +53,8 @@ namespace Unary
 
         protected override void NewGame()
         {
+            Log.Level = AoE2Lib.Log.LEVEL_INFO;
+
             DatFile datfile = null;
             if (DatFilePath != null)
             {
@@ -61,12 +65,13 @@ namespace Unary
             Mod = new Mod(datfile);
 
             StrategyManager = new(this);
+            DiplomacyManager = new(this);
             TownManager = new (this);
-            ProductionManager = new (this);
+            SitRepManager = new(this);
             UnitsManager = new(this);
+            ProductionManager = new(this);
 
             OldMapManager = new (this);
-            DiplomacyManager = new (this);
             OldBuildingManager = new (this);
             OldEconomyManager = new (this);
             OldMilitaryManager = new (this);
@@ -87,20 +92,26 @@ namespace Unary
             Log.Info($"Strategy Manager took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
+            DiplomacyManager.Update();
+            Log.Info($"Diplomacy Manager took {sw.ElapsedMilliseconds} ms");
+
+            sw.Restart();
             TownManager.Update();
             Log.Info($"Town Manager took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
-            ProductionManager.Update();
-            Log.Info($"Production Manager took {sw.ElapsedMilliseconds} ms");
+            SitRepManager.Update();
+            Log.Info($"SitRep Manager took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
             UnitsManager.Update();
             Log.Info($"Units Manager took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
-            DiplomacyManager.Update();
-            Log.Info($"Diplomacy Manager took {sw.ElapsedMilliseconds} ms");
+            ProductionManager.Update();
+            Log.Info($"Production Manager took {sw.ElapsedMilliseconds} ms");
+
+            // old
 
             sw.Restart();
             OldMapManager.Update();

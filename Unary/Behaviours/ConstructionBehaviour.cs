@@ -11,7 +11,7 @@ namespace Unary.Behaviours
     {
         public int MaxBuilders => GetMaxBuilders();
 
-        protected internal override bool Perform()
+        protected internal override bool Tick(bool perform)
         {
             if (MaxBuilders > 0)
             {

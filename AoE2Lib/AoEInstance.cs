@@ -36,11 +36,10 @@ namespace AoE2Lib
             Process = process;
         }
 
-        public void StartBot(Bot bot, int player, int seed = -1)
+        public void StartBot(Bot bot, int player)
         {
-            var endpoint = "localhost:37412";
-            LoadAIModule();
-            bot.Start(player, endpoint, seed, Version);
+            var endpoint = LoadAIModule();
+            bot.Start(player, endpoint, Version);
         }
 
         public void RunGame(Game game)
@@ -62,7 +61,7 @@ namespace AoE2Lib
             }
         }
 
-        public void LoadAIModule()
+        public IPEndPoint LoadAIModule()
         {
             if (Version == GameVersion.AOC)
             {
@@ -74,6 +73,8 @@ namespace AoE2Lib
                 var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "aimodule-de.dll");
                 InjectDll(file);
             }
+
+            return new IPEndPoint(IPAddress.Loopback, 37412);
         }
 
         public void InjectDll(string file)

@@ -14,7 +14,7 @@ namespace Unary.Behaviours
         public Unit Target { get; private set; } = null;
         public Position Focus { get; private set; }
 
-        protected internal override bool Perform()
+        protected internal override bool Tick(bool perform)
         {
             Focus = Controller.Unary.GameState.MyPosition;
 
@@ -40,8 +40,7 @@ namespace Unary.Behaviours
 
         private Unit EatMeat()
         {
-            var meat = Controller.Unary.GameState.Map.GetTilesInRange(Focus, Controller.Unary.Settings.MaxEatingRange)
-                .SelectMany(t => t.Units)
+            var meat = Controller.Unary.GameState.Map.GetUnitsInRange(Focus, Controller.Unary.Settings.MaxEatingRange)
                 .Where(u => IsMeat(u))
                 .ToList();
 
@@ -59,8 +58,7 @@ namespace Unary.Behaviours
 
         private Unit KillSheep()
         {
-            var sheep = Controller.Unary.GameState.Map.GetTilesInRange(Focus, Controller.Unary.Settings.KillSheepRange)
-                .SelectMany(t => t.Units)
+            var sheep = Controller.Unary.GameState.Map.GetUnitsInRange(Focus, Controller.Unary.Settings.KillSheepRange)
                 .Where(u => u.Targetable && u[ObjectData.HITPOINTS] > 0 && u[ObjectData.CMDID] == (int)CmdId.LIVESTOCK_GAIA)
                 .ToList();
 
@@ -78,7 +76,7 @@ namespace Unary.Behaviours
 
         private bool IsMeat(Unit unit)
         {
-            if (unit.Targetable == false || unit[ObjectData.HITPOINTS] != 0 || unit[ObjectData.CARRY] <= 0)
+            if (unit.Targetable == false || unit[ObjectData.HITPOINTS] > 0 || unit[ObjectData.CARRY] <= 0)
             {
                 return false;
             }

@@ -16,11 +16,9 @@ namespace AoE2Lib.Bots.GameElements
         public Position Center => new Position(X + 0.5, Y + 0.5);
         public int Height { get; internal set; }
         public bool IsOnLand => Terrain != 1 && Terrain != 2 && Terrain != 4 && Terrain != 15 && Terrain != 22 && Terrain != 23 && Terrain != 28 && Terrain != 37;
-        public bool IsOnWater => false;
-        public bool IsConstructionBlocked { get; internal set; }
         public bool Explored => Visibility != 0;
         public bool Visible => Visibility == 15;
-        public IReadOnlyList<Unit> Units => _Units;
+        public IEnumerable<Unit> Units => _Units;
 
         internal readonly List<Unit> _Units = new List<Unit>();
         internal int Terrain { get; set; } = 0;
@@ -37,7 +35,7 @@ namespace AoE2Lib.Bots.GameElements
             Map = map;
         }
 
-        public IReadOnlyList<Tile> GetNeighbours(bool diagonal = false)
+        public IReadOnlyList<Tile> GetNeighbours(bool include_diagonal = false)
         {
             if (Neighbours.Count == 0)
             {
@@ -67,7 +65,7 @@ namespace AoE2Lib.Bots.GameElements
                 }
             }
 
-            if (diagonal)
+            if (include_diagonal)
             {
                 return AllNeighbours;
             }

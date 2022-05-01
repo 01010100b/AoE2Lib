@@ -1,10 +1,7 @@
 ﻿Unary AI by 01010100
 ====================
 
-Unary requires the .NET 5 framework to be installed.
-
-For DE: The API module used by Unary may (about 50% of the time in my experience) trip the tampering detection or otherwise just crash the game. 
-Unary is hence not supported on DE. Other than the possible API crashes at game start, it should work just fine though.
+Unary requires the .NET 5 framework to be installed. Unary works on AoC and WK.
 
 Installation
 ------------

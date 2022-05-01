@@ -11,8 +11,18 @@ namespace Unary.Behaviours
     {
         private Controller Construction { get; set; } = null;
 
-        protected internal override bool Perform()
+        protected internal override bool Tick(bool perform)
         {
+            if (!perform)
+            {
+                if (GetHashCode() % 101 == Controller.Unary.GameState.Tick % 101)
+                {
+                    Construction = null;
+                }
+
+                return false;
+            }
+
             if (Construction != null)
             {
                 if (Construction.Unit.Targetable == false

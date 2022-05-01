@@ -322,9 +322,6 @@ namespace AoE2Lib.Bots.GameElements
                 }
             );
 
-            command.Add(new Goal() { InConstGoalId = GL_CHECKS }, "!=", 0,
-                new UpChatDataToSelf() { InTextFormattedString = "failed move %d", InGoalValue = GL_CHECKS });
-
             Bot.GameState.AddCommand(command);
         }
 

@@ -87,6 +87,11 @@ namespace AoE2Lib.Bots.GameElements
             }
         }
 
+        public IEnumerable<Unit> GetUnitsInRange(Position position, double range)
+        {
+            return GetTilesInRange(position, range).SelectMany(t => t.Units);
+        }
+
         protected override IEnumerable<IMessage> RequestElementUpdate()
         {
             yield return new GetMapDimensions();
@@ -98,8 +103,17 @@ namespace AoE2Lib.Bots.GameElements
             var dims = responses[0].Unpack<GetMapDimensionsResult>();
             Height = dims.Height;
             Width = dims.Width;
-            CreateMap();
 
+            if (Width <= 0 || Height <= 0)
+            {
+                return;
+            }
+
+            if (Tiles == null || Tiles.Length != Width * Height)
+            {
+                CreateMap();
+            }
+                
             var tiles = responses[1].Unpack<GetTilesResult>().Tiles;
             foreach (var tile in tiles)
             {
@@ -115,16 +129,6 @@ namespace AoE2Lib.Bots.GameElements
 
         private void CreateMap()
         {
-            if (Tiles != null && Tiles.Length == Width * Height)
-            {
-                return;
-            }
-
-            if (Width <= 0 || Height <= 0)
-            {
-                return;
-            }
-
             Tiles = new Tile[Width * Height];
 
             for (int x = 0; x < Width; x++)

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading;
 using YTY.AocDatLib;
@@ -51,7 +52,7 @@ namespace AoE2Lib.Bots
         protected abstract void Stopped();
         protected abstract IEnumerable<Command> Tick();
 
-        internal void Start(int player, string endpoint, int seed, GameVersion version)
+        internal void Start(int player, IPEndPoint endpoint, GameVersion version)
         {
             if (BotThread != null)
             {
@@ -59,21 +60,15 @@ namespace AoE2Lib.Bots
             }
 
             GameVersion = version;
-
-            if (seed < 0)
-            {
-                seed = Guid.NewGuid().GetHashCode() ^ DateTime.UtcNow.GetHashCode();
-            }
-
             PlayerNumber = player;
             Log = new Log(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"Player {PlayerNumber}.log"));
-            Rng = new Random(seed);
+            Rng = new Random(Guid.NewGuid().GetHashCode());
             
             BotThread = new Thread(() => Run(endpoint)) { IsBackground = true };
             BotThread.Start();
         }
 
-        private void Run(string endpoint)
+        private void Run(IPEndPoint endpoint)
         {
             var lib = GetType().BaseType.Assembly.GetName();
             Log.Info($"Using {lib.Name} {lib.Version}");
@@ -81,7 +76,7 @@ namespace AoE2Lib.Bots
             lib = GetType().Assembly.GetName();
             Log.Info($"Started {Name} {lib.Version} for player {PlayerNumber}");
 
-            var channel = new Channel(endpoint, ChannelCredentials.Insecure);
+            var channel = new Channel(endpoint.ToString(), ChannelCredentials.Insecure);
             var module_api = new AIModuleAPIClient(channel);
             var api = new ExpertAPIClient(channel);
 

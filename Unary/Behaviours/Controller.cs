@@ -2,6 +2,7 @@
 using AoE2Lib.Bots.GameElements;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,25 +26,15 @@ namespace Unary.Behaviours
             AddDefaultBehaviours();
         }
 
-        public void AddBehaviour<T>(T behaviour, params Type[] before) where T : Behaviour
+        public void AddBehaviour<T>(T behaviour) where T : Behaviour
         {
             if (GetBehaviour<T>() != null)
             {
                 return;
             }
 
-            var index = Behaviours.Count;
-
-            for (int i = 0; i < Behaviours.Count; i++)
-            {
-                if (before.Contains(Behaviours[i].GetType()))
-                {
-                    index = Math.Min(index, i);
-                }
-            }
-
             behaviour.Controller = this;
-            Behaviours.Insert(index, behaviour);
+            Behaviours.Add(behaviour);
         }
 
         public void RemoveBehaviour<T>(T behaviour) where T : Behaviour
@@ -61,21 +52,38 @@ namespace Unary.Behaviours
             return Behaviours;
         }
 
-        internal void Tick()
+        internal void Tick(Dictionary<Type, KeyValuePair<int, TimeSpan>> times)
         {
             if (GetHashCode() % 13 == Unary.GameState.Tick % 13)
             {
                 Unit.RequestUpdate();
             }
 
+            var perform = true;
+            var sw = new Stopwatch();
+
             foreach (var behaviour in Behaviours.ToList())
             {
-                if (behaviour.Perform())
-                {
-                    Unary.Log.Debug($"Unit {Unit.Id} performed {behaviour.GetType().Name}");
+                sw.Restart();
 
-                    return;
+                if (behaviour.Tick(perform))
+                {
+                    perform = false;
+
+                    Unary.Log.Debug($"Unit {Unit.Id} performed {behaviour.GetType().Name}");
                 }
+
+                sw.Stop();
+
+                var type = behaviour.GetType();
+
+                if (!times.ContainsKey(type))
+                {
+                    times.Add(type, new KeyValuePair<int, TimeSpan>(0, TimeSpan.Zero));
+                }
+
+                var time = times[type];
+                times[type] = new KeyValuePair<int, TimeSpan>(time.Key + 1, time.Value + sw.Elapsed);
             }
         }
 
@@ -85,7 +93,7 @@ namespace Unary.Behaviours
             {
                 AddBehaviour(new FightAnimalBehaviour());
                 AddBehaviour(new BuilderBehaviour());
-                AddBehaviour(new EatBehaviour());
+                AddBehaviour(new EaterBehaviour());
             }
             else if (Unit.IsBuilding)
             {

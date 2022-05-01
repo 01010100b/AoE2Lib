@@ -33,32 +33,51 @@ namespace AoE2Lib.Bots
         public static Dictionary<TNode, int> GetAllPathDistances<TNode>(IEnumerable<TNode> initial, Func<TNode, IEnumerable<TNode>> get_neighbours, int max_distance = int.MaxValue)
         {
             var dict = new Dictionary<TNode, int>();
-            var queue = new Queue<TNode>();
-            foreach (var start in initial)
+            
+            foreach (var node in initial)
             {
-                dict.Add(start, 0);
-                queue.Enqueue(start);
+                dict.Add(node, 0);
+            }
+
+            AddAllPathDistances(dict, get_neighbours, max_distance);
+
+            return dict;
+        }
+
+        public static void AddAllPathDistances<TNode>(Dictionary<TNode, int> distances, Func<TNode, IEnumerable<TNode>> get_neighbours, int max_distance = int.MaxValue)
+        {
+            var queue = new Queue<KeyValuePair<TNode, int>>();
+
+            foreach (var kvp in distances)
+            {
+                if (queue.Count == 0 || queue.Peek().Value == kvp.Value)
+                {
+                    queue.Enqueue(kvp);
+                }
+                else if (queue.Peek().Value < kvp.Value)
+                {
+                    queue.Clear();
+                    queue.Enqueue(kvp);
+                }
             }
 
             while (queue.Count > 0)
             {
-                var parent = queue.Dequeue();
-                var d = dict[parent];
+                var parent = queue.Dequeue().Key;
+                var d = distances[parent];
 
                 if (d < max_distance)
                 {
                     foreach (var child in get_neighbours(parent))
                     {
-                        if (!dict.ContainsKey(child))
+                        if (!distances.ContainsKey(child))
                         {
-                            dict.Add(child, d + 1);
-                            queue.Enqueue(child);
+                            distances.Add(child, d + 1);
+                            queue.Enqueue(new KeyValuePair<TNode, int>(child, d + 1));
                         }
                     }
                 }
             }
-
-            return dict;
         }
 
         public static List<TNode> GetPath<TNode>(TNode from, TNode to, Func<TNode, IEnumerable<TNode>> get_neighbours, Func<TNode, double> get_cost, Func<TNode, TNode, double> get_heuristic)

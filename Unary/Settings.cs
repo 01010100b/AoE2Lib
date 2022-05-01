@@ -20,5 +20,6 @@ namespace Unary
         public double AlwaysKillWildAnimalWaitSeconds { get; set; } = 20;
         public double KillSheepRange { get; set; } = 3;
         public double BuilderWaitSeconds { get; set; } = 60;
+        public double DropsiteMaxResourceRange { get; set; } = 7;
     }
 }

@@ -1,2 +1,9 @@
-﻿dangerous animals + carry>0 = boar etc
+﻿predator animals + carry>0 = boar etc
 my position -> oldest existing tc or other unit
+
+needs:
+-scouting
+-influence maps, etc
+-team coop
+-attacks, raids, defense, etc
+-

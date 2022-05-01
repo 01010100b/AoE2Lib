@@ -10,6 +10,8 @@ namespace Unary.Behaviours
     {
         public Controller Controller { get; internal set; }
 
-        protected internal abstract bool Perform();
+        // return true if the subsequent behaviours should be blocked from unit control
+        // if perform is false then no unit control
+        protected internal abstract bool Tick(bool perform);
     }
 }
