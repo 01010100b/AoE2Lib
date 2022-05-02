@@ -66,7 +66,7 @@ namespace Unary.Behaviours
             {
                 sw.Restart();
 
-                if (behaviour.Tick(perform))
+                if (behaviour.TickInternal(perform))
                 {
                     perform = false;
 
@@ -92,8 +92,8 @@ namespace Unary.Behaviours
             if (Unit[ObjectData.CMDID] == (int)CmdId.VILLAGER)
             {
                 AddBehaviour(new FightAnimalBehaviour());
-                AddBehaviour(new BuilderBehaviour());
-                AddBehaviour(new EaterBehaviour());
+                AddBehaviour(new BuildBehaviour());
+                AddBehaviour(new EatBehaviour());
             }
             else if (Unit.IsBuilding)
             {

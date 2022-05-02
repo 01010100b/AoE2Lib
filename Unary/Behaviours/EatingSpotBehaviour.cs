@@ -14,7 +14,7 @@ namespace Unary.Behaviours
         public Unit Target { get; private set; } = null;
         public Position Focus { get; private set; }
 
-        protected internal override bool Tick(bool perform)
+        protected override bool Tick(bool perform)
         {
             Focus = Controller.Unary.GameState.MyPosition;
 

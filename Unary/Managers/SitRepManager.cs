@@ -53,6 +53,7 @@ namespace Unary.Managers
             }
 
             UpdateAccessibilities();
+            UpdatePathDistances();
         }
 
         private void UpdateAccessibilities()
@@ -136,15 +137,51 @@ namespace Unary.Managers
             }
         }
 
+        private void UpdatePathDistances()
+        {
+            if (Unary.GameState.Map.IsOnMap(Unary.GameState.MyPosition))
+            {
+                var tile = Unary.GameState.Map.GetTile(Unary.GameState.MyPosition);
+                var dict = Utils.GetAllPathDistances(new[] { tile }, GetPathNeighbours);
+
+                foreach (var kvp in dict)
+                {
+                    var sitrep = GetSitRep(kvp.Key);
+                    sitrep.PathDistanceToHome = kvp.Value;
+                }
+
+                Unary.Log.Debug($"Got {dict.Count} reachable tiles");
+            }
+        }
+
         private SitRep GetSitRep(Tile tile)
         {
-            if (!SitReps.ContainsKey(tile))
+            if (SitReps.TryGetValue(tile, out var sitrep))
             {
-                var sitrep = new SitRep(tile);
-                SitReps.Add(tile, sitrep);
+                return sitrep;
             }
+            else
+            {
+                sitrep = new SitRep(tile);
+                SitReps.Add(tile, sitrep);
 
-            return SitReps[tile];
+                return sitrep;
+            }
+        }
+
+        private IEnumerable<Tile> GetPathNeighbours(Tile tile)
+        {
+            var neighbours = tile.GetNeighbours();
+
+            for (int i = 0; i < neighbours.Count; i++)
+            {
+                var neighbour = GetSitRep(neighbours[i]);
+
+                if (neighbour.IsLandAccessible)
+                {
+                    yield return neighbour.Tile;
+                }
+            }
         }
     }
 }

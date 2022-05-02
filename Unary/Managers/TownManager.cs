@@ -57,16 +57,23 @@ namespace Unary.Managers
 
         internal override void Update()
         {
-            var state = Unary.GameState;
+            UpdateInsideTiles();
+            UpdateHousing();
+        }
 
+        private void UpdateInsideTiles()
+        {
             InsideTiles.Clear();
 
-            foreach (var tile in state.Map.GetTilesInRange(state.MyPosition, 30))
+            foreach (var tile in Unary.GameState.Map.GetTilesInRange(Unary.GameState.MyPosition, 30))
             {
                 InsideTiles.Add(tile);
             }
+        }
 
-            // housing
+        private void UpdateHousing()
+        {
+            var state = Unary.GameState;
 
             if (state.TryGetUnitType(Unary.Mod.House, out var house))
             {

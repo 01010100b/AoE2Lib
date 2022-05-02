@@ -16,8 +16,8 @@ namespace AoE2Lib.Bots.GameElements
 
     public class Map : GameElement
     {
-        public int Height { get; private set; } = -1;
         public int Width { get; private set; } = -1;
+        public int Height { get; private set; } = -1;
         public Position Center => Position.FromPoint(Width / 2, Height / 2);
 
         private Tile[] Tiles { get; set; }
@@ -69,18 +69,22 @@ namespace AoE2Lib.Bots.GameElements
         public IEnumerable<Tile> GetTilesInRange(Position position, double range)
         {
             var r = Math.Max(0, (int)Math.Ceiling(range) + 1);
+            var x_min = Math.Max(0, position.PointX - r);
+            var x_max = Math.Min(Width - 1, position.PointX + r);
+            var y_min = Math.Max(0, position.PointY - r);
+            var y_max = Math.Min(Height - 1, position.PointY + r);
 
-            for (int cx = Math.Max(0, position.PointX - r); cx <= Math.Min(Width - 1, position.PointX + r); cx++)
+            for (int x = x_min; x <= x_max; x++)
             {
-                for (int cy = Math.Max(0, position.PointY - r); cy <= Math.Min(Height - 1, position.PointY + r); cy++)
+                for (int y = y_min; y <= y_max; y++)
                 {
-                    if (IsOnMap(cx, cy))
+                    if (IsOnMap(x, y))
                     {
-                        var tile = GetTile(cx, cy);
+                        var tile = GetTile(x, y);
 
                         if (position.DistanceTo(tile.Center) <= range)
                         {
-                            yield return GetTile(cx, cy);
+                            yield return tile;
                         }
                     }
                 }
@@ -140,7 +144,7 @@ namespace AoE2Lib.Bots.GameElements
                 }
             }
 
-            Bot.Log.Debug($"Map width {Width} height {Height}");
+            Bot.Log.Info($"Map width {Width} height {Height}");
         }
 
         private int GetIndex(int x, int y)

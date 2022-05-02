@@ -77,7 +77,7 @@ namespace Unary.Behaviours
             return null;
         }
 
-        protected internal override bool Tick(bool perform)
+        protected override bool Tick(bool perform)
         {
             UpdateResources();
 

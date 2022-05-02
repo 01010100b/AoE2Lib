@@ -9,7 +9,7 @@ namespace Unary.Behaviours
 {
     internal class FightAnimalBehaviour : Behaviour
     {
-        protected internal override bool Tick(bool perform)
+        protected override bool Tick(bool perform)
         {
             var target = Controller.Unit.GetTarget();
 

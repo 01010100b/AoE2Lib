@@ -106,6 +106,11 @@ namespace Unary
             return GetBuildingWidth(type_id);
         }
 
+        public int GetResearchSite(int tech_id)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<int> GetSheep()
         {
             return Sheep;

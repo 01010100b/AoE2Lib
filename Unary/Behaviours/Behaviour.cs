@@ -8,10 +8,22 @@ namespace Unary.Behaviours
 {
     internal abstract class Behaviour
     {
-        public Controller Controller { get; internal set; }
+        public Controller Controller { get; internal set; } = null;
+        
+        protected TimeSpan LastPerformedGameTime { get; private set; } = TimeSpan.Zero;
 
         // return true if the subsequent behaviours should be blocked from unit control
         // if perform is false then no unit control
-        protected internal abstract bool Tick(bool perform);
+        protected abstract bool Tick(bool perform);
+        
+        internal bool TickInternal(bool perform)
+        {
+            if (perform)
+            {
+                LastPerformedGameTime = Controller.Unary.GameState.GameTime;
+            }
+
+            return Tick(perform);
+        }
     }
 }

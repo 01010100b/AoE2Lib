@@ -53,7 +53,7 @@ namespace Unary
 
         protected override void NewGame()
         {
-            Log.Level = AoE2Lib.Log.LEVEL_INFO;
+            //Log.Level = AoE2Lib.Log.LEVEL_INFO;
 
             DatFile datfile = null;
             if (DatFilePath != null)
@@ -62,7 +62,7 @@ namespace Unary
                 datfile.Load(DatFilePath);
             }
 
-            Mod = new Mod(datfile);
+            Mod = new(datfile);
 
             StrategyManager = new(this);
             DiplomacyManager = new(this);

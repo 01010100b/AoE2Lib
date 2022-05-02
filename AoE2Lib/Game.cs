@@ -52,7 +52,6 @@ namespace AoE2Lib
 
             var api = Call<float>("GetApiVersion");
             Debug.WriteLine("Api: " + api.ToString());
-            
 
             if (Call<bool>("GetGameInProgress"))
             {

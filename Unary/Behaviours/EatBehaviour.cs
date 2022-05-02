@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Unary.Behaviours
 {
-    internal class EaterBehaviour : Behaviour
+    internal class EatBehaviour : Behaviour
     {
         private Controller EatingSpot { get; set; } = null;
 
-        protected internal override bool Tick(bool perform)
+        protected override bool Tick(bool perform)
         {
             if (!perform)
             {
-                if (GetHashCode() % 23 == Controller.Unary.GameState.Tick % 23)
+                if (Controller.Unary.GameState.GameTime - LastPerformedGameTime > TimeSpan.FromMinutes(1))
                 {
                     EatingSpot = null;
                 }
@@ -66,7 +66,7 @@ namespace Unary.Behaviours
             {
                 var eaters = Controller.Manager.GetControllers().Where(c =>
                 {
-                    var b = c.GetBehaviour<EaterBehaviour>();
+                    var b = c.GetBehaviour<EatBehaviour>();
 
                     if (b == null)
                     {
@@ -83,7 +83,7 @@ namespace Unary.Behaviours
 
                 foreach (var spot in spots)
                 {
-                    var current = eaters.Count(c => c.GetBehaviour<EaterBehaviour>().EatingSpot.Equals(spot));
+                    var current = eaters.Count(c => c.GetBehaviour<EatBehaviour>().EatingSpot.Equals(spot));
 
                     if (current < Controller.Unary.Settings.MaxEatingGroupSize)
                     {

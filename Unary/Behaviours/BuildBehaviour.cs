@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace Unary.Behaviours
 {
-    internal class BuilderBehaviour : Behaviour
+    internal class BuildBehaviour : Behaviour
     {
         private Controller Construction { get; set; } = null;
 
-        protected internal override bool Tick(bool perform)
+        protected override bool Tick(bool perform)
         {
             if (!perform)
             {
-                if (GetHashCode() % 101 == Controller.Unary.GameState.Tick % 101)
+                if (Controller.Unary.GameState.GameTime - LastPerformedGameTime > TimeSpan.FromMinutes(1))
                 {
                     Construction = null;
                 }
@@ -62,7 +62,7 @@ namespace Unary.Behaviours
             {
                 var builders = Controller.Manager.GetControllers().Where(c =>
                 {
-                    var b = c.GetBehaviour<BuilderBehaviour>();
+                    var b = c.GetBehaviour<BuildBehaviour>();
 
                     if (b == null)
                     {
@@ -79,7 +79,7 @@ namespace Unary.Behaviours
 
                 foreach (var construction in constructions)
                 {
-                    var current = builders.Count(c => c.GetBehaviour<BuilderBehaviour>().Construction.Equals(construction));
+                    var current = builders.Count(c => c.GetBehaviour<BuildBehaviour>().Construction.Equals(construction));
 
                     if (current < construction.GetBehaviour<ConstructionBehaviour>().MaxBuilders)
                     {
