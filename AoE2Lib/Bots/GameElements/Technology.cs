@@ -28,7 +28,12 @@ namespace AoE2Lib.Bots.GameElements
 
         public void Research()
         {
-            throw new NotImplementedException();
+            var command = new Command();
+
+            command.Add(new CanResearch() { InConstTechId = Id }, "!=", 0,
+                    new Research() { InConstTechId = Id });
+
+            Bot.GameState.AddCommand(command);
         }
 
         public void OldResearch(int priority = 10, bool blocking = true)

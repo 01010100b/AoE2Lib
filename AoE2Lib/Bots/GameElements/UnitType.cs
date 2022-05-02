@@ -4,6 +4,7 @@ using Protos.Expert.Action;
 using Protos.Expert.Fact;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -45,6 +46,32 @@ namespace AoE2Lib.Bots.GameElements
             }
         }
 
+        public void Train(int max_count = int.MaxValue, int max_pending = int.MaxValue, int priority = 10, bool blocking = true)
+        {
+            if (Updated == false || Available == false || CountTotal >= max_count || Pending > max_pending)
+            {
+                return;
+            }
+
+            const int GL_ERROR = Bot.GOAL_START;
+
+            var command = new Command();
+
+            command.Add(new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = 0 });
+
+            command.Add(new UpObjectTypeCountTotal() { InConstObjectId = Id }, ">=", max_count,
+                new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = -1 });
+            command.Add(new UpPendingObjects() { InConstObjectId = Id }, ">=", max_pending,
+                new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = -2 });
+            command.Add(new CanTrain() { InConstUnitId = Id }, "!=", 1,
+                new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = -3 });
+
+            command.Add(new Goal() { InConstGoalId = GL_ERROR }, "==", 0,
+                new Train() { InConstUnitId = Id });
+
+            Bot.GameState.AddCommand(command);
+        }
+
         public void OldTrain(int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)
         {
             if (Updated == false || Available == false || CountTotal >= max_count || Pending > max_pending)
@@ -58,7 +85,43 @@ namespace AoE2Lib.Bots.GameElements
 
         public void Build(IEnumerable<Tile> tiles, int max_count = 10000, int max_pending = 10000)
         {
-            throw new NotImplementedException();
+            if (Updated == false || Available == false || CountTotal >= max_count || Pending > max_pending)
+            {
+                return;
+            }
+
+            const int GL_ERROR = Bot.GOAL_START;
+            const int GL_X = Bot.GOAL_START + 1;
+            const int GL_Y = Bot.GOAL_START + 2;
+            const int GL_WAS_BUILT = Bot.GOAL_START + 3;
+
+            var command = new Command();
+            command.Add(new SetGoal() { InConstGoalId = GL_WAS_BUILT, InConstValue = 0 });
+
+            foreach (var tile in tiles.Where(t => t.Explored))
+            {
+                command.Add(new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = 0 });
+                command.Add(new SetGoal() { InConstGoalId = GL_X, InConstValue = tile.X });
+                command.Add(new SetGoal() { InConstGoalId = GL_Y, InConstValue = tile.Y });
+
+                command.Add(new UpObjectTypeCountTotal() { InConstObjectId = Id }, ">=", max_count,
+                    new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = -1 });
+                command.Add(new UpPendingObjects() { InConstObjectId = Id }, ">=", max_pending,
+                    new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = -2 });
+                command.Add(new UpCanBuildLine() { InConstBuildingId = Id, InGoalPoint = GL_X, InGoalEscrowState = 0 }, "!=", 1,
+                    new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = -3 });
+                command.Add(new UpPendingPlacement() { InConstBuildingId = Id }, "!=", 0,
+                    new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = -4 });
+
+                var buildcommand = new Command();
+                buildcommand.Add(new Goal() { InConstGoalId = GL_ERROR }, "==", 0,
+                     new UpBuildLine() { InConstBuildingId = Id, InGoalPoint1 = GL_X, InGoalPoint2 = GL_X },
+                     new SetGoal() { InConstGoalId = GL_WAS_BUILT, InConstValue = 1 });
+
+                command.Add(new Goal() { InConstGoalId = GL_WAS_BUILT }, "==", 0, buildcommand);
+            }
+
+            Bot.GameState.AddCommand(command);
         }
 
         public void OldBuild(IEnumerable<Tile> tiles, int max_count = 10000, int max_pending = 10000, int priority = 10, bool blocking = true)

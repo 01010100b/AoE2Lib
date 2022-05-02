@@ -160,7 +160,7 @@ namespace Unary.UnitControllers.BuildingControllers
             Distances.Clear();
 
             var initial = new List<Tile>();
-            var size = Unary.Mod.GetBuildingSize(Unit[ObjectData.BASE_TYPE]);
+            var size = Unary.Mod.GetBuildingWidth(Unit[ObjectData.BASE_TYPE]);
             var tile = Unit.Tile;
             var footprint = Utils.GetUnitFootprint(tile.X, tile.Y, size, size, 1);
 

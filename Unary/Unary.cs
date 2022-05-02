@@ -24,7 +24,7 @@ namespace Unary
         public TownManager TownManager { get; private set; }
         public SitRepManager SitRepManager { get; private set; }
         public UnitsManager UnitsManager { get; private set; }
-        public ProductionManager ProductionManager { get; private set; }
+        public ResourceManager ResourceManager { get; private set; }
 
         public OldMapManager OldMapManager { get; private set; }
         public OldBuildingManager OldBuildingManager { get; private set; }
@@ -69,7 +69,7 @@ namespace Unary
             TownManager = new (this);
             SitRepManager = new(this);
             UnitsManager = new(this);
-            ProductionManager = new(this);
+            ResourceManager = new(this);
 
             OldMapManager = new (this);
             OldBuildingManager = new (this);
@@ -108,11 +108,11 @@ namespace Unary
             Log.Info($"Units Manager took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
-            ProductionManager.Update();
-            Log.Info($"Production Manager took {sw.ElapsedMilliseconds} ms");
+            ResourceManager.Update();
+            Log.Info($"Resource Manager took {sw.ElapsedMilliseconds} ms");
 
             // old
-
+            /*
             sw.Restart();
             OldMapManager.Update();
             Log.Info($"Old Map Manager took {sw.ElapsedMilliseconds} ms");
@@ -128,15 +128,15 @@ namespace Unary
             sw.Restart();
             OldMilitaryManager.Update();
             Log.Info($"Old Military Manager took {sw.ElapsedMilliseconds} ms");
-            /*
+            
             sw.Restart();
             OldUnitsManager.Update();
             Log.Info($"Old Units Manager took {sw.ElapsedMilliseconds} ms");
-            */
+            
             sw.Restart();
             OldProductionManager.Update();
             Log.Info($"Old Production Manager took {sw.ElapsedMilliseconds} ms");
-
+            */
             sw.Stop();
 
             if (ChattedOK == false && GameState.GameTime.TotalSeconds >= 10 + PlayerNumber)

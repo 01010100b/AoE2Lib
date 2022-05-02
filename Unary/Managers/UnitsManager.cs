@@ -15,6 +15,7 @@ namespace Unary.Managers
         //private const int GROUPS = 10;
 
         public IEnumerable<Controller> Villagers => Controllers.Values.Where(c => c.Unit[ObjectData.CMDID] == (int)CmdId.VILLAGER);
+        public IEnumerable<Controller> TownCenters => Controllers.Values.Where(c => c.Unit[ObjectData.BASE_TYPE] == Unary.Mod.TownCenter);
         public IEnumerable<Controller> Constructions => Controllers.Values.Where(c =>
         {
             var b = c.GetBehaviour<ConstructionBehaviour>();

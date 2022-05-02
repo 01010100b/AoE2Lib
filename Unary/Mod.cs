@@ -37,7 +37,7 @@ namespace Unary
             Boar.AddRange(new[] { 412, 822, 1139, 48 });
         }
 
-        public int GetBuildingSize(int type_id)
+        public int GetBuildingWidth(int type_id)
         {
             switch (type_id)
             {
@@ -99,6 +99,11 @@ namespace Unary
                 case 1021: return 5;
                 default: return 1;
             }
+        }
+
+        public int GetBuildingHeight(int type_id)
+        {
+            return GetBuildingWidth(type_id);
         }
 
         public IEnumerable<int> GetSheep()

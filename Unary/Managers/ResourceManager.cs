@@ -2,6 +2,7 @@
 using AoE2Lib.Bots.GameElements;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace Unary.Managers
 {
     // resource management
-    internal class ProductionManager : Manager
+    internal class ResourceManager : Manager
     {
         public static class Priority
         {
@@ -54,6 +55,7 @@ namespace Unary.Managers
 
             public ProductionTask(UnitType type, List<Tile> tiles, int max_count, int max_pending, int priority, bool blocking)
             {
+                // tiles = null for training
                 Priority = priority;
                 Blocking = blocking;
                 Technology = null;
@@ -63,58 +65,67 @@ namespace Unary.Managers
                 MaxPending = max_pending;
             }
 
-            public void Perform(Unary unary, HashSet<Unit> excluded_trainsites)
+            public void Perform(Unary unary)
             {
                 if (IsTech)
                 {
+                    unary.Log.Info($"Researching {Technology.Id}");
                     Technology.Research();
                 }
-                else if (UnitType.IsBuilding)
+                else if (Tiles != null)
                 {
-                    var placements = unary.TownManager.GetSortedBuildingPlacements(UnitType, Tiles);
+                    var placements = unary.TownManager.GetBuildingPlacements(UnitType, Tiles);
                     
                     if (placements.Count > 0)
                     {
-                        UnitType.Build(placements.Take(100), MaxCount, MaxPending);
+                        unary.Log.Info($"Building {UnitType.Id}");
+                        UnitType.Build(placements, MaxCount, MaxPending);
                     }
                 }
                 else
                 {
-                    var site_id = UnitType.TrainSite[ObjectData.BASE_TYPE];
-                    var sites = unary.GameState.MyPlayer.Units
-                        .Where(u => u[ObjectData.BASE_TYPE] == site_id && !excluded_trainsites.Contains(u))
-                        .Where(u => u[ObjectData.PROGRESS_TYPE] == 0 || u[ObjectData.PROGRESS_TYPE] == 102)
-                        .ToList();
-
-                    if (sites.Count > 0)
-                    {
-                        var site = sites[unary.Rng.Next(sites.Count)];
-                        site.Train(UnitType, MaxCount, MaxPending);
-                    }
+                    unary.Log.Info($"Training {UnitType.Id}");
+                    UnitType.Train(MaxCount, MaxPending, Priority, Blocking);
                 }
             }
         }
 
         private readonly List<ProductionTask> ProductionTasks = new List<ProductionTask>();
 
-        public ProductionManager(Unary unary) : base(unary)
+        public ResourceManager(Unary unary) : base(unary)
         {
 
         }
 
         public void Research(Technology technology, int priority, bool blocking = true)
         {
-            throw new NotImplementedException();
+            if (!technology.Started)
+            {
+                var task = new ProductionTask(technology, priority, blocking);
+                ProductionTasks.Add(task);
+            }
         }
 
         public void Build(UnitType type, List<Tile> tiles, int max_count, int max_pending, int priority, bool blocking = true)
         {
-            throw new NotImplementedException();
+            if (type.CountTotal < max_count && type.Pending <= max_pending)
+            {
+                var task = new ProductionTask(type, tiles, max_count, max_pending, priority, blocking);
+                ProductionTasks.Add(task);
+            }
+        }
+
+        public void Train(UnitType type, int max_count, int max_pending, int priority, bool blocking = true)
+        {
+            if (type.CountTotal < max_count && type.Pending <= max_pending)
+            {
+                var task = new ProductionTask(type, null, max_count, max_pending, priority, blocking);
+                ProductionTasks.Add(task);
+            }
         }
 
         internal override void Update()
         {
-            var excluded_trainsites = new HashSet<Unit>();
             var remaining_wood = Unary.GameState.MyPlayer.GetFact(FactId.WOOD_AMOUNT);
             var remaining_food = Unary.GameState.MyPlayer.GetFact(FactId.FOOD_AMOUNT);
             var remaining_gold = Unary.GameState.MyPlayer.GetFact(FactId.GOLD_AMOUNT);
@@ -150,7 +161,7 @@ namespace Unary.Managers
 
                 if (can_afford)
                 {
-                    task.Perform(Unary, excluded_trainsites);
+                    task.Perform(Unary);
                 }
 
                 if (deduct)

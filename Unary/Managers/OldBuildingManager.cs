@@ -58,7 +58,7 @@ namespace Unary.Managers
                 case Resource.STONE: dict = StonePlacements; site = Unary.Mod.MiningCamp; break;
                 default: throw new ArgumentOutOfRangeException(nameof(resource));
             }
-            var size = Unary.Mod.GetBuildingSize(site);
+            var size = Unary.Mod.GetBuildingWidth(site);
 
             var used = new HashSet<Tile>();
             var tiles = new List<KeyValuePair<Tile, double>>();
@@ -83,7 +83,7 @@ namespace Unary.Managers
 
         public IEnumerable<Tile> GetBuildingPlacements(UnitType building)
         {
-            var size = Unary.Mod.GetBuildingSize(building[ObjectData.BASE_TYPE]);
+            var size = Unary.Mod.GetBuildingWidth(building[ObjectData.BASE_TYPE]);
 
             if (BuildingPlacements.TryGetValue(size, out HashSet<Tile> tiles))
             {
@@ -230,7 +230,7 @@ namespace Unary.Managers
                 }
             });
 
-            var width = Unary.Mod.GetBuildingSize(Unary.Mod.Farm);
+            var width = Unary.Mod.GetBuildingWidth(Unary.Mod.Farm);
             var height = width;
 
             foreach (var dropsite in dropsites)
@@ -291,7 +291,7 @@ namespace Unary.Managers
                 }
             }
 
-            var width = Unary.Mod.GetBuildingSize(building[ObjectData.BASE_TYPE]);
+            var width = Unary.Mod.GetBuildingWidth(building[ObjectData.BASE_TYPE]);
             var height = width;
 
             var updates = 0;

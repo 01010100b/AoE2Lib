@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Unary.Strategies;
-using static Unary.Managers.ProductionManager;
+using static Unary.Managers.ResourceManager;
 using static Unary.Strategies.Strategy.BuildOrderCommand;
 
 namespace Unary.Managers
@@ -27,6 +27,7 @@ namespace Unary.Managers
             {
                 var strat = Program.Deserialize<Strategy>(file);
                 Strategies.Add(strat);
+                strat.SetUnary(Unary);
             }
         }
 
@@ -80,6 +81,9 @@ namespace Unary.Managers
             }
             else
             {
+                Strategy.Update();
+                return;
+
                 DoAttacking();
                 PerformBuildOrder();
                 TrainUnits();
@@ -104,7 +108,7 @@ namespace Unary.Managers
 
             if (Unary.GameState.MyPlayer.MilitaryPopulation >= 20)
             {
-                attack = Unary.GameState.Enemies.Where(p => p.InGame).FirstOrDefault();
+                attack = Unary.GameState.CurrentEnemies.Where(p => p.InGame).FirstOrDefault();
             }
 
             if (attack != Attacking)

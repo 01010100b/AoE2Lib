@@ -102,6 +102,10 @@ namespace AoE2Lib.Bots.GameElements
 
         public void Train(UnitType type, int max_count, int max_pending)
         {
+            throw new NotSupportedException("game crash in aimodule dll");
+
+            // up-target-point training variant crashes the game, action_id string conflict in aoe2-ai-module
+
             RequestUpdate();
 
             if (Updated == false)
@@ -114,25 +118,26 @@ namespace AoE2Lib.Bots.GameElements
                 return;
             }
 
-            if (this[ObjectData.PROGRESS_TYPE] != 0 && this[ObjectData.PROGRESS_TYPE] != 102)
-            {
-                return;
-            }
 
             if (type.Updated == false || type.Available == false || type.CountTotal >= max_count || type.Pending > max_pending)
             {
                 return;
             }
-            
+
+            if (this[ObjectData.PROGRESS_TYPE] != 0 && this[ObjectData.PROGRESS_TYPE] != 102)
+            {
+                return;
+            }
+
             if (type.TrainSite[ObjectData.BASE_TYPE] != this[ObjectData.BASE_TYPE])
             {
                 return;
             }
 
+            var command = new Command();
+
             const int GL_CHECKS = Bot.GOAL_START;
             const int GL_TEMP = Bot.GOAL_START + 1;
-
-            var command = new Command();
 
             command.Add(new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = 0 });
             command.Add(new SetGoal() { InConstGoalId = GL_TEMP, InConstValue = -1 });

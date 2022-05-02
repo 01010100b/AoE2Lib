@@ -7,7 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using Unary.UnitControllers;
-using static Unary.Managers.ProductionManager;
+using static Unary.Managers.ResourceManager;
 
 namespace Unary.Managers
 {

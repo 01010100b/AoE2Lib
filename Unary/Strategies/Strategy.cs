@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Unary.UnitControllers;
 using Unary.UnitControllers.VillagerControllers;
+using static Unary.Managers.ResourceManager;
 
 namespace Unary.Strategies
 {
@@ -33,5 +34,68 @@ namespace Unary.Strategies
         public List<int> SecondaryUnits { get; set; } = new();
         public int SecondaryUnitPercentage { get; set; } = 0;
         public bool AutoEcoTechs { get; set; } = false;
+
+        private Unary Unary { get; set; }
+
+        public void Update()
+        {
+            SetStrategicNumbers();
+            PerformBuildOrder();
+            TrainUnits();
+        }
+
+        internal void SetUnary(Unary unary)
+        {
+            Unary = unary;
+        }
+
+        private void SetStrategicNumbers()
+        {
+            // building
+            Unary.GameState.SetStrategicNumber(StrategicNumber.DISABLE_BUILDER_ASSISTANCE, 1);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.ENABLE_NEW_BUILDING_SYSTEM, 1);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.INITIAL_EXPLORATION_REQUIRED, 0);
+            
+            // units
+            Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_BUILDERS, -1);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_EXPLORERS, 0);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.CAP_CIVILIAN_GATHERERS, 0);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_WOOD_DROP_DISTANCE, -2);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_GOLD_DROP_DISTANCE, -2);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_STONE_DROP_DISTANCE, -2);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_FOOD_DROP_DISTANCE, -2);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_HUNT_DROP_DISTANCE, -2);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.ENABLE_BOAR_HUNTING, 0);
+
+            // engine scouting
+            Unary.GameState.SetStrategicNumber(StrategicNumber.MINIMUM_EXPLORE_GROUP_SIZE, 1);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.MAXIMUM_EXPLORE_GROUP_SIZE, 1);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.NUMBER_EXPLORE_GROUPS, 1);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.HOME_EXPLORATION_TIME, 600);
+
+            // maybe unnecessary
+            Unary.GameState.SetStrategicNumber(StrategicNumber.LIVESTOCK_TO_TOWN_CENTER, 1);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.FOOD_GATHERER_PERCENTAGE, 0);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.WOOD_GATHERER_PERCENTAGE, 0);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.GOLD_GATHERER_PERCENTAGE, 0);
+            Unary.GameState.SetStrategicNumber(StrategicNumber.STONE_GATHERER_PERCENTAGE, 0);
+        }
+
+        private void PerformBuildOrder()
+        {
+
+        }
+
+        private void TrainUnits()
+        {
+            // economy
+
+            var max_civ = (int)Math.Round(0.6 * Unary.GameState.MyPlayer.PopulationCap);
+
+            if (Unary.GameState.TryGetUnitType(Unary.Mod.Villager, out var villager))
+            {
+                Unary.ResourceManager.Train(villager, max_civ, 3, Priority.VILLAGER);
+            }
+        }
     }
 }

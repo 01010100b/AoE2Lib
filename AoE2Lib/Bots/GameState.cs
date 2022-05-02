@@ -14,8 +14,8 @@ namespace AoE2Lib.Bots
         public readonly Map Map;
         public Player MyPlayer => Players[Bot.PlayerNumber];
         public Player Gaia => Players[0];
-        public IEnumerable<Player> Enemies => GetPlayers().Where(p => p.IsEnemy && p.InGame);
-        public IEnumerable<Player> Allies => GetPlayers().Where(p => p.IsAlly && p.InGame);
+        public IEnumerable<Player> CurrentEnemies => GetPlayers().Where(p => p.IsEnemy && p.InGame);
+        public IEnumerable<Player> CurrentAllies => GetPlayers().Where(p => p.IsAlly && p.InGame);
         public Position MyPosition { get; private set; } = Position.Zero;
         public int Tick { get; private set; } = 0;
         public TimeSpan GameTime { get; private set; } = TimeSpan.Zero;
@@ -35,7 +35,7 @@ namespace AoE2Lib.Bots
         private readonly List<ProductionTask> ProductionTasks = new List<ProductionTask>();
         
         private readonly List<Command> Commands = new List<Command>();
-        private readonly List<Command> FindCommands = new List<Command>();
+        private readonly List<Command> UnitFindCommands = new List<Command>();
         private readonly Command CommandInfo = new Command();
 
         internal GameState(Bot bot)
@@ -278,7 +278,7 @@ namespace AoE2Lib.Bots
                 command.Add(new UpSearchObjectIdList() { InConstSearchSource = 2 });
             }
 
-            FindCommands.Add(command);
+            UnitFindCommands.Add(command);
 
             command = new Command();
 
@@ -298,7 +298,7 @@ namespace AoE2Lib.Bots
                 command.Add(new UpSearchObjectIdList() { InConstSearchSource = 2 });
             }
 
-            FindCommands.Add(command);
+            UnitFindCommands.Add(command);
         }
 
         public void FindResources(Resource resource, int player, Position position, int range)
@@ -325,7 +325,7 @@ namespace AoE2Lib.Bots
                         command.Add(new UpSearchObjectIdList() { InConstSearchSource = 2 });
                     }
 
-                    FindCommands.Add(command);
+                    UnitFindCommands.Add(command);
                 }
             }
         }
@@ -348,6 +348,7 @@ namespace AoE2Lib.Bots
         internal IEnumerable<Command> RequestUpdate()
         {
             var sw = new Stopwatch();
+            sw.Start();
 
             DoAutoFindUnits();
             DoAutoUpdateUnits();
@@ -386,8 +387,6 @@ namespace AoE2Lib.Bots
                 yield return command;
             }
 
-            sw.Restart();
-
             Map.RequestUpdate();
 
             foreach (var player in Players)
@@ -405,10 +404,7 @@ namespace AoE2Lib.Bots
                 type.RequestUpdate();
             }
 
-            sw.Stop();
-            Bot.Log.Info($"GameElement RequestUpdate took {sw.ElapsedMilliseconds} ms");
-
-            foreach (var command in FindCommands)
+            foreach (var command in UnitFindCommands)
             {
                 yield return command;
             }
@@ -419,18 +415,22 @@ namespace AoE2Lib.Bots
             }
 
             Commands.Clear();
+
+            sw.Stop();
+            Bot.Log.Debug($"GameState RequestUpdate took {sw.ElapsedMilliseconds} ms");
         }
 
         internal void Update()
         {
+            var sw = new Stopwatch();
+            sw.Start();
+
             Bot.Log.Info("");
-            Bot.Log.Info($"Tick {Tick} Game time {GameTime:g} with {GameTimePerTick:c} game time per tick");
+            Bot.Log.Info($"Tick {Tick} Game time {GameTime:g} with {GameTimePerTick:c} game time seconds per tick");
             foreach (var player in Players.Where(p => p.IsValid && p.Updated))
             {
                 Bot.Log.Debug($"Player {player.PlayerNumber} has {player.Units.Count(u => u.Targetable)} units and {player.Score} score");
             }
-
-            var sw = new Stopwatch();
 
             if (CommandInfo.HasResponses)
             {
@@ -476,8 +476,6 @@ namespace AoE2Lib.Bots
                 Tick++;
             }
 
-            sw.Restart();
-
             Map.Update();
 
             foreach (var player in Players)
@@ -500,12 +498,7 @@ namespace AoE2Lib.Bots
                 unit.Update();
             }
 
-            sw.Stop();
-            Bot.Log.Info($"GameElement Update took {sw.ElapsedMilliseconds} ms");
-
-            sw.Restart();
-
-            foreach (var command in FindCommands.Where(c => c.HasResponses))
+            foreach (var command in UnitFindCommands.Where(c => c.HasResponses))
             {
                 var responses = command.Responses;
 
@@ -524,7 +517,7 @@ namespace AoE2Lib.Bots
                 }
             }
 
-            FindCommands.Clear();
+            UnitFindCommands.Clear();
 
             foreach (var player in Players)
             {
@@ -551,7 +544,7 @@ namespace AoE2Lib.Bots
             }
 
             sw.Stop();
-            Bot.Log.Info($"GameState Update took {sw.ElapsedMilliseconds} ms");
+            Bot.Log.Debug($"GameState Update took {sw.ElapsedMilliseconds} ms");
         }
 
         private IEnumerable<Command> DoProduction()
@@ -613,7 +606,7 @@ namespace AoE2Lib.Bots
             ProductionTasks.Clear();
 
             sw.Stop();
-            Bot.Log.Info($"DoProduction took {sw.ElapsedMilliseconds} ms");
+            Bot.Log.Debug($"DoProduction took {sw.ElapsedMilliseconds} ms");
         }
 
         private void DoAutoFindUnits()
@@ -697,7 +690,7 @@ namespace AoE2Lib.Bots
             }
 
             sw.Stop();
-            Bot.Log.Info($"DoAutoFindUnits took {sw.ElapsedMilliseconds} ms");
+            Bot.Log.Debug($"DoAutoFindUnits took {sw.ElapsedMilliseconds} ms");
         }
 
         private void DoAutoUpdateUnits()
@@ -747,7 +740,7 @@ namespace AoE2Lib.Bots
             }
 
             sw.Stop();
-            Bot.Log.Info($"DoAutoUpdateUnits took {sw.ElapsedMilliseconds} ms");
+            Bot.Log.Debug($"DoAutoUpdateUnits took {sw.ElapsedMilliseconds} ms");
         }
     }
 }

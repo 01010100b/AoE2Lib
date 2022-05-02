@@ -174,7 +174,7 @@ namespace Unary.Managers
                 {
                     var construction = BlocksConstruction(unit);
                     var land = BlocksLand(unit);
-                    var size = Unary.Mod.GetBuildingSize(unit[ObjectData.BASE_TYPE]);
+                    var size = Unary.Mod.GetBuildingWidth(unit[ObjectData.BASE_TYPE]);
                     var tile = unit.Tile;
                     var footprint = Utils.GetUnitFootprint(tile.X, tile.Y, size, size, 0);
 

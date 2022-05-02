@@ -98,7 +98,7 @@ namespace Unary.UnitControllers.MilitaryControllers
             }
 
             var targets = new List<Unit>();
-            foreach (var enemy in Unary.GameState.Enemies)
+            foreach (var enemy in Unary.GameState.CurrentEnemies)
             {
                 foreach (var unit in enemy.Units.Where(u => u.Targetable))
                 {

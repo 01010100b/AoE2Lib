@@ -19,7 +19,7 @@ namespace AoE2Lib.Bots
 {
     public abstract class Bot
     {
-        // goals 400-420 are reserved, goal 420 is set to Id
+        // goals 400-420 are reserved, goal 420 is automatically set to Id
         public const int GOAL_START = 401;
 
         public abstract int Id { get; }

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Unary.UnitControllers;
 using Unary.UnitControllers.VillagerControllers;
-using static Unary.Managers.ProductionManager;
+using static Unary.Managers.ResourceManager;
 
 namespace Unary.Managers
 {
@@ -108,7 +108,7 @@ namespace Unary.Managers
             }
             else
             {
-                var size = Unary.Mod.GetBuildingSize(Unary.Mod.Farm);
+                var size = Unary.Mod.GetBuildingWidth(Unary.Mod.Farm);
                 if (Unary.OldBuildingManager.CanBuildAt(size, size, FarmRequest.Tile, true))
                 {
                     Unary.Log.Info($"Refreshing farm at {FarmRequest.Tile.Position}");
@@ -173,7 +173,7 @@ namespace Unary.Managers
                     deltas = OldBuildingManager.MILL_FARM_DELTAS;
                 }
 
-                var farm_size = Unary.Mod.GetBuildingSize(Unary.Mod.Farm);
+                var farm_size = Unary.Mod.GetBuildingWidth(Unary.Mod.Farm);
 
                 foreach (var delta in deltas)
                 {
