@@ -1,4 +1,5 @@
 ﻿using AoE2Lib;
+using AoE2Lib.Bots;
 using AoE2Lib.Bots.GameElements;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,23 @@ namespace Unary.Behaviours
         private readonly Dictionary<Resource, List<KeyValuePair<Tile, Unit>>> Resources = new();
         private readonly Dictionary<Controller, KeyValuePair<Tile, Unit>> Assignments = new();
         private readonly Dictionary<Controller, int> LastRequestTick = new();
+
+        public IEnumerable<KeyValuePair<Tile, Unit>> GetTargets(Resource resource)
+        {
+            if (Resources.TryGetValue(resource, out var targets))
+            {
+                return targets;
+            }
+            else
+            {
+                return Enumerable.Empty<KeyValuePair<Tile, Unit>>();
+            }
+        }
+
+        public int GetPathDistance(Tile tile)
+        {
+            throw new NotImplementedException();
+        }
 
         public Unit RequestAssignment(Controller gatherer, Resource resource)
         {

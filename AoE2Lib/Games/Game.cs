@@ -9,23 +9,10 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 
-namespace AoE2Lib
+namespace AoE2Lib.Games
 {
     public class Game
     {
-        public class Player
-        {
-            public int PlayerNumber { get; set; }
-            public bool IsHuman { get; set; }
-            public string AiFile { get; set; }
-            public int Civilization { get; set; }
-            public int Color { get; set; }
-            public int Team { get; set; }
-            public bool Exists { get; internal set; }
-            public bool Alive { get; internal set; }
-            public int Score { get; internal set; }
-        }
-
         public int GameType { get; set; } = 0;
         public string ScenarioName { get; set; } = "";
         public int MapType { get; set; } = 9;

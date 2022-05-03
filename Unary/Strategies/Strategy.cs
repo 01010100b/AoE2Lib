@@ -1,4 +1,5 @@
 ﻿using AoE2Lib;
+using AoE2Lib.Bots;
 using AoE2Lib.Bots.GameElements;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;

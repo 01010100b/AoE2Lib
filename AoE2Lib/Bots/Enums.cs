@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AoE2Lib
+namespace AoE2Lib.Bots
 {
     public enum GameVersion
     {

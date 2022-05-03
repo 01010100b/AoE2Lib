@@ -1,4 +1,5 @@
 ﻿using AoE2Lib.Bots;
+using AoE2Lib.Games;
 using Reloaded.Injector;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,9 @@ namespace AoE2Lib
 {
     public class AoEInstance
     {
+        public const int DEFAULT_AIMODULE_PORT = 37412;
+        public const int DEFAULT_AUTO_GAME_PORT = 64720;
+
         [DllImport("kernel32.dll", SetLastError = true)]
         private static extern bool ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, uint dwSize, uint lpNumberOfBytesRead);
         [DllImport("kernel32.dll")]
@@ -21,47 +25,28 @@ namespace AoE2Lib
         [DllImport("kernel32.dll")]
         private static extern bool VirtualProtectEx(IntPtr hProcess, IntPtr lpAddress, UIntPtr dwSize, uint flNewProtect, out uint lpflOldProtect);
 
-        public static AoEInstance StartAoE(string exe, float speed = 1.5f)
-        {
-            throw new NotImplementedException();
-        }
-
+        public bool HasExited => Process.HasExited;
         public GameVersion Version => Process.ProcessName.Contains("AoE2DE") ? GameVersion.DE : GameVersion.AOC;
 
         private readonly Process Process;
         private readonly HashSet<string> InjectedDlls = new HashSet<string>();
+        private readonly int AimodulePort;
+        private readonly int AutoGamePort;
 
-        public AoEInstance(Process process)
+        public AoEInstance(Process process, int aimodule_port = DEFAULT_AIMODULE_PORT, int auto_game_port = DEFAULT_AUTO_GAME_PORT)
         {
             Process = process;
+            AimodulePort = aimodule_port;
+            AutoGamePort = auto_game_port;
         }
 
         public void StartBot(Bot bot, int player)
         {
-            var endpoint = LoadAIModule();
-            bot.Start(player, endpoint, Version);
+            LoadAIModule();
+            bot.Start(player, new IPEndPoint(IPAddress.Loopback, AimodulePort), Version);
         }
 
-        public void RunGame(Game game)
-        {
-            LoadAocAutoGame();
-            game.Start(64720);
-        }
-
-        public void LoadAocAutoGame()
-        {
-            if (Version == GameVersion.AOC)
-            {
-                var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "aoc-auto-game.dll");
-                InjectDll(file);
-            }
-            else
-            {
-                throw new Exception("Not supported for DE.");
-            }
-        }
-
-        public IPEndPoint LoadAIModule()
+        public void LoadAIModule()
         {
             if (Version == GameVersion.AOC)
             {
@@ -73,8 +58,25 @@ namespace AoE2Lib
                 var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "aimodule-de.dll");
                 InjectDll(file);
             }
+        }
 
-            return new IPEndPoint(IPAddress.Loopback, 37412);
+        public void RunGame(Game game)
+        {
+            LoadAocAutoGame();
+            game.Start(AutoGamePort);
+        }
+
+        public void LoadAocAutoGame()
+        {
+            if (Version == GameVersion.AOC)
+            {
+                var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "aoc-auto-game.dll");
+                InjectDll(file);
+            }
+            else
+            {
+                throw new NotSupportedException("AutoGame is not supported for DE.");
+            }
         }
 
         public void InjectDll(string file)

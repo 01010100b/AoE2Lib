@@ -1,4 +1,5 @@
 ﻿using AoE2Lib;
+using AoE2Lib.Games;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,7 +37,7 @@ namespace GameRunner
                 VictoryType = 1
             };
 
-            var player1 = new Game.Player()
+            var player1 = new Player()
             {
                 PlayerNumber = 1,
                 IsHuman = false,
@@ -46,7 +47,7 @@ namespace GameRunner
                 Team = 0
             };
 
-            var player2 = new Game.Player()
+            var player2 = new Player()
             {
                 PlayerNumber = 2,
                 IsHuman = false,
@@ -240,7 +241,7 @@ namespace GameRunner
 
                 if (name != "*Closed")
                 {
-                    var player = new Game.Player() { PlayerNumber = i + 1 };
+                    var player = new Player() { PlayerNumber = i + 1 };
 
                     if (name == "*Human")
                     {

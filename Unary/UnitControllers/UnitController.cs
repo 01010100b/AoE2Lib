@@ -129,7 +129,7 @@ namespace Unary.UnitControllers
 
             command.Add(new UpModifyGoal() { IoGoalId = GL_CURRENT_DISTANCE, MathOp = op_g_sub, InOpValue = GL_PRED_DISTANCE });
 
-            command.Add(new SetStrategicNumber() { InConstSnId = (int)AoE2Lib.StrategicNumber.TARGET_POINT_ADJUSTMENT, InConstValue = 6 });
+            command.Add(new SetStrategicNumber() { InConstSnId = (int)AoE2Lib.Bots.StrategicNumber.TARGET_POINT_ADJUSTMENT, InConstValue = 6 });
 
             var command_current = new Command();
             command_current.Add(new Goal() { InConstGoalId = GL_CURRENT_DISTANCE }, "<=", 0,
