@@ -106,12 +106,6 @@ namespace Unary
             Cursor = Cursors.Default;
         }
 
-        private void ButtonDev_Click(object sender, EventArgs e)
-        {
-            var form = new FormSimulations();
-            form.Show();
-        }
-
         private void Message(string message)
         {
             Program.Log.Debug($"Unary UI: {message}");
@@ -143,6 +137,11 @@ namespace Unary
 
             var file = Path.Combine(Program.Folder, "Settings.json");
             Program.Serialize(Settings, file);
+        }
+
+        private void ButtonBrowseExe_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

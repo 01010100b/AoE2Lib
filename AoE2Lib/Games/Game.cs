@@ -29,6 +29,7 @@ namespace AoE2Lib.Games
         public bool AllTechs { get; set; } = false;
         public bool Recorded { get; set; } = true;
         public readonly List<Player> Players = new List<Player>();
+        public bool Finished { get; private set; } = false;
 
         private readonly TcpClient Client = new TcpClient();
         private int NextId { get; set; } = 1;
@@ -92,28 +93,31 @@ namespace AoE2Lib.Games
             }
 
             Call("StartGame");
+            Thread.Sleep(10000);
 
-            while(!IsFinished())
+            while (!IsFinished())
             {
                 Thread.Sleep(1000);
             }
 
             Client.Close();
+
+            Finished = true;
         }
 
         private bool IsFinished()
         {
-            var score = 0;
+            var total_score = 0;
 
             foreach (var player in Players)
             {
                 player.Exists = Call<bool>("GetPlayerExists", player.PlayerNumber);
                 player.Alive = Call<bool>("GetPlayerAlive", player.PlayerNumber);
                 player.Score = Call<int>("GetPlayerScore", player.PlayerNumber);
-                score += player.Score;
+                total_score += player.Score;
             }
 
-            if (score <= 0)
+            if (total_score <= 0)
             {
                 return true;
             }

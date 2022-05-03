@@ -80,20 +80,14 @@ namespace Unary.Managers
                 var margin = 5;
                 var pending = 1;
 
-                if (state.TryGetTechnology(101, out var feudal))
+                if (state.GameTime > TimeSpan.FromMinutes(5))
                 {
-                    if (feudal.Finished)
-                    {
-                        margin = 10;
-                    }
+                    margin = 10;
                 }
 
-                if (state.TryGetTechnology(102, out var castle))
+                if (state.GameTime > TimeSpan.FromMinutes(10))
                 {
-                    if (castle.Finished)
-                    {
-                        pending = 2;
-                    }
+                    pending = 2;
                 }
 
                 var housing_room = state.MyPlayer.GetFact(FactId.HOUSING_HEADROOM);

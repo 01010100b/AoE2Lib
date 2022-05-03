@@ -10,7 +10,7 @@ namespace AoE2Lib.Games
         private readonly string Args;
         private readonly double Speed;
 
-        public InstanceRunner(string exe, string args, double speed)
+        public InstanceRunner(string exe, string args = null, double speed = 1.7)
         {
             Exe = exe;
             Args = args;

@@ -142,7 +142,8 @@ namespace Unary.Managers
             if (Unary.GameState.Map.IsOnMap(Unary.GameState.MyPosition))
             {
                 var tile = Unary.GameState.Map.GetTile(Unary.GameState.MyPosition);
-                var dict = Utils.GetAllPathDistances(new[] { tile }, GetPathNeighbours);
+                var dict = new Dictionary<Tile, int>() { { tile, 0 } };
+                Utils.AddAllPathDistances(dict, GetPathNeighbours);
 
                 foreach (var kvp in dict)
                 {
