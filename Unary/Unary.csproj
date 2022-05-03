@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="AocDatLib.dll" />
     <None Remove="Behaviours\ConstructionBehaviour.cs~RF4651c2ce.TMP" />
     <None Remove="readme.txt" />
     <None Remove="Unary.ai" />
@@ -15,6 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="AocDatLib.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="readme.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -32,6 +36,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AoE2Lib\AoE2Lib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AocDatLib">
+      <HintPath>AocDatLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

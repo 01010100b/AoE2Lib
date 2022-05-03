@@ -1,5 +1,6 @@
 ﻿using AoE2Lib.Bots;
 using AoE2Lib.Games;
+using Microsoft.Win32;
 using Reloaded.Injector;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,50 @@ namespace AoE2Lib
     {
         public const int DEFAULT_AIMODULE_PORT = 37412;
         public const int DEFAULT_AUTO_GAME_PORT = 64720;
+
+        public static AoEInstance StartInstance(string exe, string args = null, double speed = 1.7, 
+            int aimodule_port = DEFAULT_AIMODULE_PORT, int autogame_port = DEFAULT_AUTO_GAME_PORT)
+        {
+            if (aimodule_port != DEFAULT_AIMODULE_PORT)
+            {
+                throw new NotSupportedException("Changing aimodule port from default not supported yet.");
+            }
+
+            var sp = (int)Math.Round(speed * 10);
+            var old = GetSpeed();
+            SetSpeed(sp);
+
+            var process = Process.Start(exe, args);
+            while (!process.Responding)
+            {
+                Thread.Sleep(1000);
+            }
+
+            SetSpeed(old);
+            Thread.Sleep(10 * 1000);
+
+            var instance = new AoEInstance(process);
+            instance.LoadAIModule();
+
+            if (instance.Version == GameVersion.AOC)
+            {
+                instance.LoadAocAutoGame();
+            }
+
+            return instance;
+        }
+
+        private static int GetSpeed()
+        {
+            var key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Microsoft Games\Age of Empires II: The Conquerors Expansion\1.0");
+            return (int)key.GetValue("Game Speed");
+        }
+
+        private static void SetSpeed(int speed)
+        {
+            var key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Microsoft Games\Age of Empires II: The Conquerors Expansion\1.0", true);
+            key.SetValue("Game Speed", speed);
+        }
 
         [DllImport("kernel32.dll", SetLastError = true)]
         private static extern bool ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, uint dwSize, uint lpNumberOfBytesRead);
@@ -46,6 +91,12 @@ namespace AoE2Lib
             bot.Start(player, new IPEndPoint(IPAddress.Loopback, AimodulePort), Version);
         }
 
+        public void RunGame(Game game)
+        {
+            LoadAocAutoGame();
+            game.Run(new IPEndPoint(IPAddress.Loopback, AutoGamePort));
+        }
+
         public void LoadAIModule()
         {
             if (Version == GameVersion.AOC)
@@ -58,12 +109,6 @@ namespace AoE2Lib
                 var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "aimodule-de.dll");
                 InjectDll(file);
             }
-        }
-
-        public void RunGame(Game game)
-        {
-            LoadAocAutoGame();
-            game.Start(AutoGamePort);
         }
 
         public void LoadAocAutoGame()

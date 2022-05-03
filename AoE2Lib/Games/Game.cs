@@ -28,14 +28,14 @@ namespace AoE2Lib.Games
         public bool LockTeams { get; set; } = false;
         public bool AllTechs { get; set; } = false;
         public bool Recorded { get; set; } = true;
-        public List<Player> Players { get; set; } = new List<Player>();
+        public readonly List<Player> Players = new List<Player>();
 
         private readonly TcpClient Client = new TcpClient();
         private int NextId { get; set; } = 1;
 
-        internal void Start(int port)
+        internal void Run(IPEndPoint endpoint)
         {
-            Client.Connect(new IPEndPoint(IPAddress.Loopback, port));
+            Client.Connect(endpoint);
 
             var api = Call<float>("GetApiVersion");
             Debug.WriteLine("Api: " + api.ToString());
@@ -150,13 +150,13 @@ namespace AoE2Lib.Games
                 throw new Exception("Client == null");
             }
 
-            if (!Client.Connected)
-            {
-                throw new Exception("Client not connected");
-            }
-
             lock (Client)
             {
+                if (!Client.Connected)
+                {
+                    throw new Exception("Client not connected");
+                }
+
                 var message = new object[] { 0, NextId++, method, arguments };
                 var bin = MessagePackSerializer.Serialize(message);
 

@@ -12,7 +12,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AocDatLib" Version="1.0.0" />
     <PackageReference Include="Google.Protobuf" Version="3.20.1" />
     <PackageReference Include="Grpc" Version="2.45.0" />
     <PackageReference Include="Grpc.Tools" Version="2.45.0">
@@ -20,6 +19,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="MessagePack" Version="2.3.85" />
+    <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
     <PackageReference Include="Reloaded.Injector" Version="1.2.4" />
   </ItemGroup>
 
@@ -59,13 +59,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Libraries\" />
+	  <None Remove="Libraries\AocDatLib.dll" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="Libraries\AocDatLib.1.0.0.nupkg">
+	  <Resource Include="Libraries\AocDatLib.dll">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
+	  </Resource>
 	</ItemGroup>
 
 </Project>

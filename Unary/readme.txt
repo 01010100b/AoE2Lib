@@ -26,9 +26,7 @@ The process name is normally the filename of the game executable without the ".e
 5. Start the game in AoE2.
 If everything works then each Unary player will chat an OK confirmation message in-game around 10-20 seconds in.
 
-6. When the game is finished, click "Stop all players".
-If you want to start a new game, go back to step 4. 
-You should "Stop all players" and go back to step 4 even if you want to use Unary again for the same player or even just restart the same game.
+6. After you have run all games, click "Stop all players".
 
 Troubleshooting
 ---------------

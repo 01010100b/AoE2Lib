@@ -1,6 +1,6 @@
 # AoE2Lib
 
-A .NET standard 2.1 library for programmatically interacting with Age of Empires 2. The main goal is to provide an easy to use interface for .NET languages on top of FLWL's aoe2-ai-module (https://github.com/FLWL/aoe2-ai-module) and opening up Age of Empires 2 for bot programming and AI research similarly to the older Starcraft API.
+A .NET library for programmatically interacting with Age of Empires 2. The main goal is to provide an easy to use interface for .NET languages on top of FLWL's aoe2-ai-module (https://github.com/FLWL/aoe2-ai-module) and opening up Age of Empires 2 for bot programming and AI research similarly to the older Starcraft API.
 
 ## Features
 
@@ -12,7 +12,7 @@ A bot is created by deriving from the abstract `Bot` class and calling `AoEInsta
 
 ### Automatic game running
 
-Construct an instance of the `Game` class and call `AoEInstance.StartGame`. This function is not available for DE. A `GameRunner` application is included.
+Construct an instance of the `Game` class and call `AoEInstance.StartGame`. This function is not available for DE.
 
 ### Dll injection
 

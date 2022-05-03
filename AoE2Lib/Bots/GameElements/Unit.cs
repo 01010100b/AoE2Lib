@@ -23,7 +23,6 @@ namespace AoE2Lib.Bots.GameElements
         public Tile Tile => Bot.GameState.Map.GetTile(Position);
 
         private readonly Dictionary<ObjectData, int> Data = new Dictionary<ObjectData, int>();
-        private YTY.AocDatLib.Unit DatUnit { get; set; } = null;
 
         internal Unit(Bot bot, int id) : base(bot)
         {
@@ -47,6 +46,8 @@ namespace AoE2Lib.Bots.GameElements
             const int PIERCE = 3;
             const int MELEE = 4;
 
+            var dmg = 0;
+            /*
             if (DatUnit == null || target.DatUnit == null)
             {
                 return 1;
@@ -55,7 +56,6 @@ namespace AoE2Lib.Bots.GameElements
             var me = DatUnit;
             var enemy = target.DatUnit;
 
-            var dmg = 0;
             foreach (var attack in me.Attacks)
             {
                 if (attack.Id == PIERCE)
@@ -77,7 +77,7 @@ namespace AoE2Lib.Bots.GameElements
                     }
                 }
             }
-
+            */
             return Math.Max(1, dmg);
         }
 
