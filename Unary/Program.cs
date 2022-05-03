@@ -53,6 +53,8 @@ namespace Unary
         [STAThread]
         static void Main()
         {
+            var unary = new Unary(null);
+            return;
             try
             {
                 AppDomain.CurrentDomain.UnhandledException += (sender, e) => Handle(e.ExceptionObject);

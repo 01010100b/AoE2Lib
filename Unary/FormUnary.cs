@@ -79,8 +79,10 @@ namespace Unary
 
         private void ButtonStop_Click(object sender, EventArgs e)
         {
+            ButtonStart.Enabled = false;
             ButtonStop.Enabled = false;
             Cursor = Cursors.WaitCursor;
+            Refresh();
 
             Message("Stopping all players...");
 
@@ -100,6 +102,7 @@ namespace Unary
             Message("Stopped all players");
             Players.Clear();
 
+            ButtonStart.Enabled = true;
             Cursor = Cursors.Default;
         }
 
@@ -111,7 +114,7 @@ namespace Unary
 
         private void Message(string message)
         {
-            Program.Log.Debug(message);
+            Program.Log.Debug($"Unary UI: {message}");
 
             var lines = TextMessages.Lines.ToList();
             lines.Add(message);

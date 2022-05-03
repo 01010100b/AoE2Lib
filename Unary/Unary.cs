@@ -24,7 +24,7 @@ namespace Unary
         public TownManager TownManager { get; private set; }
         public SitRepManager SitRepManager { get; private set; }
         public UnitsManager UnitsManager { get; private set; }
-        public ResourceManager ResourceManager { get; private set; }
+        public ResourcesManager ResourcesManager { get; private set; }
 
         public OldMapManager OldMapManager { get; private set; }
         public OldBuildingManager OldBuildingManager { get; private set; }
@@ -34,7 +34,9 @@ namespace Unary
         public OldProductionManager OldProductionManager { get; private set; }
 
         private readonly List<Command> Commands = new();
+        private readonly Dictionary<Func<object>, object> Cache = new();
         private bool ChattedOK { get; set; } = false;
+        
 
         public Unary(Settings settings) : base()
         {
@@ -44,6 +46,18 @@ namespace Unary
         public void ExecuteCommand(Command command)
         {
             Commands.Add(command);
+        }
+
+        public T GetCached<T>(Func<T> func) where T : class
+        {
+            if (!Cache.ContainsKey(func))
+            {
+                var result = func();
+                
+                Cache.Add(func, result);
+            }
+
+            return (T)Cache[func];
         }
 
         protected override void Stopped()
@@ -69,7 +83,7 @@ namespace Unary
             TownManager = new (this);
             SitRepManager = new(this);
             UnitsManager = new(this);
-            ResourceManager = new(this);
+            ResourcesManager = new(this);
 
             OldMapManager = new (this);
             OldBuildingManager = new (this);
@@ -84,6 +98,7 @@ namespace Unary
         protected override IEnumerable<Command> Tick()
         {
             Commands.Clear();
+            Cache.Clear();
 
             var sw = new Stopwatch();
 
@@ -108,8 +123,8 @@ namespace Unary
             Log.Info($"Units Manager took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
-            ResourceManager.Update();
-            Log.Info($"Resource Manager took {sw.ElapsedMilliseconds} ms");
+            ResourcesManager.Update();
+            Log.Info($"Resources Manager took {sw.ElapsedMilliseconds} ms");
 
             // old
             /*

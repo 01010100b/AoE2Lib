@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Unary.UnitControllers;
 using Unary.UnitControllers.VillagerControllers;
-using static Unary.Managers.ResourceManager;
+using static Unary.Managers.ResourcesManager;
 
 namespace Unary.Managers
 {

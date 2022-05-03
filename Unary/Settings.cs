@@ -13,13 +13,10 @@ namespace Unary
         public double DropsiteDistanceCost { get; set; } = 0.1;
         public int MaxHunters { get; set; } = 7;
         public int MaxWaitingFarmers { get; set; } = 3;
+        // new
         public double MaxEatingGroupSize { get; set; } = 7;
         public double MaxEatingRange { get; set; } = 20;
-        public double KillWildAnimalRange { get; set; } = 4;
-        public double MaxKillWildAnimalRange { get; set; } = 10;
-        public double AlwaysKillWildAnimalWaitSeconds { get; set; } = 20;
         public double KillSheepRange { get; set; } = 3;
-        public double BuilderWaitSeconds { get; set; } = 60;
         public double DropsiteMaxResourceRange { get; set; } = 7;
     }
 }

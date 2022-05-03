@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Unary.Strategies;
-using static Unary.Managers.ResourceManager;
+using static Unary.Managers.ResourcesManager;
 using static Unary.Strategies.Strategy.BuildOrderCommand;
 
 namespace Unary.Managers
@@ -16,7 +16,7 @@ namespace Unary.Managers
     {
         public Player Attacking { get; private set; } = null;
 
-        private Strategy Strategy { get; set; }
+        private Strategy CurrentStrategy { get; set; }
         private readonly List<Strategy> Strategies = new();
 
         public StrategyManager(Unary unary) : base(unary)
@@ -29,66 +29,32 @@ namespace Unary.Managers
                 Strategies.Add(strat);
                 strat.SetUnary(Unary);
             }
+
+            ChooseStrategy();
         }
 
-        public int GetDesiredGatherers(Resource resource)
-        {
-            var gatherers = 0;
-            var pop = Unary.GameState.MyPlayer.CivilianPopulation;
+        public int GetDesiredGatherers(Resource resource) => CurrentStrategy.GetDesiredGatherers(resource);
 
-            for (int i = 0; i < Math.Min(pop, Strategy.Gatherers.Count); i++)
-            {
-                if (Strategy.Gatherers[i] == resource)
-                {
-                    gatherers++;
-                }
-            }
+        public int GetMinimumGatherers(Resource resource) => CurrentStrategy.GetMinimumGatherers(resource);
 
-            if (pop > Strategy.Gatherers.Count)
-            {
-                pop -= Strategy.Gatherers.Count;
-                var fraction = 0d;
-
-                switch (resource)
-                {
-                    case Resource.FOOD: fraction = Strategy.ExtraFoodPercentage / 100d; break;
-                    case Resource.WOOD: fraction = Strategy.ExtraWoodPercentage / 100d; break;
-                    case Resource.GOLD: fraction = Strategy.ExtraGoldPercentage / 100d; break;
-                    case Resource.STONE: fraction = Strategy.ExtraStonePercentage / 100d; break;
-                }
-
-                gatherers += (int)Math.Round(pop * fraction);
-            }
-
-            return gatherers;
-        }
-
-        public int GetMinimumGatherers(Resource resource)
-        {
-            return (int)Math.Ceiling(GetDesiredGatherers(resource) * 0.9);
-        }
-
-        public int GetMaximumGatherers(Resource resource)
-        {
-            return (int)Math.Floor(GetDesiredGatherers(resource) * 1.1);
-        }
+        public int GetMaximumGatherers(Resource resource) => CurrentStrategy.GetMaximumGatherers(resource);
 
         internal override void Update()
         {
-            if (Strategy == null)
+            if (CurrentStrategy == null)
             {
                 ChooseStrategy();
             }
             else
             {
-                Strategy.Update();
+                CurrentStrategy.Update();
                 return;
 
                 DoAttacking();
                 PerformBuildOrder();
                 TrainUnits();
 
-                if (Strategy.AutoEcoTechs)
+                if (CurrentStrategy.AutoEcoTechs)
                 {
                     DoAutoEcoTechs();
                 }
@@ -97,9 +63,9 @@ namespace Unary.Managers
 
         private void ChooseStrategy()
         {
-            Strategy = Strategies[0];
+            CurrentStrategy = Strategies[0];
 
-            Unary.Log.Info($"Choose strategy: {Strategy.Name}");
+            Unary.Log.Info($"Choose strategy: {CurrentStrategy.Name}");
         }
 
         private void DoAttacking()
@@ -130,7 +96,7 @@ namespace Unary.Managers
         {
             var req = new Dictionary<UnitType, int>();
 
-            foreach (var bo in Strategy.BuildOrder)
+            foreach (var bo in CurrentStrategy.BuildOrder)
             {
                 if (bo.Type == BuildOrderCommandType.RESEARCH)
                 {
@@ -214,7 +180,7 @@ namespace Unary.Managers
 
             UnitType primary = null;
             
-            foreach (var p in Strategy.PrimaryUnits)
+            foreach (var p in CurrentStrategy.PrimaryUnits)
             {
                 var unit = Unary.GameState.GetUnitType(p);
 

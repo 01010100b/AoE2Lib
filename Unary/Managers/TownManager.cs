@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Unary.Managers.ResourceManager;
+using static Unary.Managers.ResourcesManager;
 
 namespace Unary.Managers
 {
@@ -102,7 +102,7 @@ namespace Unary.Managers
                 if (population_room > 0 && housing_room < margin && house.Pending < pending)
                 {
                     var placements = GetDefaultSortedPossiblePlacements(house);
-                    Unary.ResourceManager.Build(house, placements, int.MaxValue, pending, Priority.HOUSING);
+                    Unary.ResourcesManager.Build(house, placements, int.MaxValue, pending, Priority.HOUSING);
                 }
             }
         }

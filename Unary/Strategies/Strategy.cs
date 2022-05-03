@@ -1,4 +1,5 @@
 ﻿using AoE2Lib;
+using AoE2Lib.Bots.GameElements;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
@@ -9,7 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Unary.UnitControllers;
 using Unary.UnitControllers.VillagerControllers;
-using static Unary.Managers.ResourceManager;
+using static Unary.Managers.ResourcesManager;
+using static Unary.Strategies.Strategy.BuildOrderCommand;
 
 namespace Unary.Strategies
 {
@@ -36,6 +38,48 @@ namespace Unary.Strategies
         public bool AutoEcoTechs { get; set; } = false;
 
         private Unary Unary { get; set; }
+
+        public int GetDesiredGatherers(Resource resource)
+        {
+            var gatherers = 0;
+            var pop = Unary.GameState.MyPlayer.CivilianPopulation;
+
+            for (int i = 0; i < Math.Min(pop, Gatherers.Count); i++)
+            {
+                if (Gatherers[i] == resource)
+                {
+                    gatherers++;
+                }
+            }
+
+            if (pop > Gatherers.Count)
+            {
+                pop -= Gatherers.Count;
+                var fraction = 0d;
+
+                switch (resource)
+                {
+                    case Resource.FOOD: fraction = ExtraFoodPercentage / 100d; break;
+                    case Resource.WOOD: fraction = ExtraWoodPercentage / 100d; break;
+                    case Resource.GOLD: fraction = ExtraGoldPercentage / 100d; break;
+                    case Resource.STONE: fraction = ExtraStonePercentage / 100d; break;
+                }
+
+                gatherers += (int)Math.Round(pop * fraction);
+            }
+
+            return gatherers;
+        }
+
+        public int GetMinimumGatherers(Resource resource)
+        {
+            return (int)Math.Ceiling(GetDesiredGatherers(resource) * 0.9);
+        }
+
+        public int GetMaximumGatherers(Resource resource)
+        {
+            return (int)Math.Floor(GetDesiredGatherers(resource) * 1.1);
+        }
 
         public void Update()
         {
@@ -83,7 +127,87 @@ namespace Unary.Strategies
 
         private void PerformBuildOrder()
         {
+            var req = new Dictionary<UnitType, int>();
 
+            foreach (var bo in BuildOrder)
+            {
+                if (bo.Type == BuildOrderCommandType.RESEARCH)
+                {
+                    if (Unary.GameState.TryGetTechnology(bo.Id, out var tech))
+                    {
+                        if (!tech.Updated)
+                        {
+                            break;
+                        }
+
+                        if (tech.Started)
+                        {
+                            continue;
+                        }
+
+                        if (!tech.Available)
+                        {
+                            Unary.Log.Debug($"Tech {bo.Id} not available");
+
+                            break;
+                        }
+
+                        var priority = Priority.TECH;
+                        var blocking = true;
+
+                        if (Unary.Mod.IsTownCenterTech(tech.Id))
+                        {
+                            priority = Priority.VILLAGER + 10;
+                            blocking = false;
+                        }
+
+                        Unary.OldProductionManager.Research(tech, priority, blocking);
+
+                        break;
+                    }
+                }
+                else if (bo.Type == BuildOrderCommandType.UNIT)
+                {
+                    if (Unary.GameState.TryGetUnitType(bo.Id, out var unit))
+                    {
+                        if (!unit.Updated)
+                        {
+                            break;
+                        }
+
+                        if (!req.ContainsKey(unit))
+                        {
+                            req.Add(unit, 0);
+                        }
+
+                        req[unit]++;
+
+                        if (unit.CountTotal >= req[unit])
+                        {
+                            continue;
+                        }
+
+                        if (!unit.Available)
+                        {
+                            Unary.Log.Debug($"Unit type {unit.Id} not available");
+
+                            break;
+                        }
+
+                        if (unit.IsBuilding)
+                        {
+                            var possible_placements = Unary.TownManager.GetDefaultSortedPossiblePlacements(unit);
+                            Unary.ResourcesManager.Build(unit, possible_placements, req[unit], 1, Priority.PRODUCTION_BUILDING);
+                        }
+                        else
+                        {
+                            Unary.ResourcesManager.Train(unit, req[unit], 1, Priority.MILITARY);
+                        }
+
+                        break;
+                    }
+                }
+            }
         }
 
         private void TrainUnits()
@@ -94,7 +218,36 @@ namespace Unary.Strategies
 
             if (Unary.GameState.TryGetUnitType(Unary.Mod.Villager, out var villager))
             {
-                Unary.ResourceManager.Train(villager, max_civ, 3, Priority.VILLAGER);
+                Unary.ResourcesManager.Train(villager, max_civ, 3, Priority.VILLAGER);
+            }
+
+            // military
+
+            UnitType primary = null;
+
+            foreach (var p in PrimaryUnits)
+            {
+                if (Unary.GameState.TryGetUnitType(p, out var unit))
+                {
+                    if (unit.Updated && unit.Available)
+                    {
+                        primary = unit;
+                    }
+                }
+            }
+
+            if (primary == null)
+            {
+                Unary.Log.Debug($"No primary unit available");
+            }
+            else
+            {
+                Unary.Log.Info($"Primary unit {primary.Id}");
+
+                if (primary.CountTotal < 50)
+                {
+                    Unary.ResourcesManager.Train(primary, 50, 10, Priority.MILITARY);
+                }
             }
         }
     }

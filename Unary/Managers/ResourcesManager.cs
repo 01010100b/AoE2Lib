@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Unary.Managers
 {
     // resource management
-    internal class ResourceManager : Manager
+    internal class ResourcesManager : Manager
     {
         public static class Priority
         {
@@ -92,7 +92,7 @@ namespace Unary.Managers
 
         private readonly List<ProductionTask> ProductionTasks = new List<ProductionTask>();
 
-        public ResourceManager(Unary unary) : base(unary)
+        public ResourcesManager(Unary unary) : base(unary)
         {
 
         }

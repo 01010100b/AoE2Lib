@@ -177,7 +177,7 @@ namespace Unary.Managers
             {
                 var neighbour = GetSitRep(neighbours[i]);
 
-                if (neighbour.IsLandAccessible)
+                if (neighbour.IsLandAccessible || neighbour.Tile.Center.DistanceTo(Unary.GameState.MyPosition) < 3)
                 {
                     yield return neighbour.Tile;
                 }
