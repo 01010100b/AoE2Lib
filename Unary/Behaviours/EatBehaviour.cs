@@ -14,7 +14,7 @@ namespace Unary.Behaviours
         {
             if (!perform)
             {
-                if (Controller.Unary.GameState.GameTime - LastPerformedGameTime > TimeSpan.FromMinutes(1))
+                if (TimeSinceLastPerformed > TimeSpan.FromMinutes(1))
                 {
                     EatingSpot = null;
                 }
@@ -24,7 +24,7 @@ namespace Unary.Behaviours
 
             if (EatingSpot != null)
             {
-                if (EatingSpot.Unit.Targetable == false
+                if (EatingSpot.Exists == false
                     || EatingSpot.GetBehaviour<EatingSpotBehaviour>().Target == null)
                 {
                     EatingSpot = null;

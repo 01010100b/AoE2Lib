@@ -18,8 +18,11 @@ namespace AoE2Lib
     {
         public const int DEFAULT_AIMODULE_PORT = 37412;
         public const int DEFAULT_AUTO_GAME_PORT = 64720;
+        public const double SPEED_SLOW = 1;
+        public const double SPEED_NORMAL = 1.5;
+        public const double SPEED_FAST = 2;
 
-        public static AoEInstance StartInstance(string exe, string args = null, double speed = 1.7, 
+        public static AoEInstance StartInstance(string exe, string args = null, double speed = SPEED_FAST, 
             int aimodule_port = DEFAULT_AIMODULE_PORT, int autogame_port = DEFAULT_AUTO_GAME_PORT)
         {
             if (aimodule_port != DEFAULT_AIMODULE_PORT)
@@ -35,6 +38,7 @@ namespace AoE2Lib
 
             var sp = (int)Math.Round(speed * 10);
             var old = GetSpeed();
+            Debug.WriteLine($"Old speed: {old}");
             SetSpeed(sp);
 
             try
@@ -104,6 +108,7 @@ namespace AoE2Lib
         public void Kill()
         {
             Process.Kill();
+            Process.WaitForExit();
         }
 
         public void StartBot(Bot bot, int player)

@@ -57,6 +57,8 @@ namespace AoE2Lib.Games
             }
 
             Call("ResetGameSettings");
+            Call("SetRunUnfocused", true);
+            Call("SetUseInGameResolution", false);
 
             for (int i = 1; i <= 8; i++)
             {
@@ -136,7 +138,7 @@ namespace AoE2Lib.Games
 
             if (total_score <= 0)
             {
-                //return true;
+                return true;
             }
 
             var team = new int[5];

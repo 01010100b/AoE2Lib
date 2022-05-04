@@ -9,17 +9,15 @@ namespace Unary.Behaviours
     internal abstract class Behaviour
     {
         public Controller Controller { get; internal set; } = null;
+        public TimeSpan TimeSinceLastPerformed => Controller.Unary.GameState.GameTime - LastPerformedGameTime;
         
-        protected TimeSpan LastPerformedGameTime { get; private set; } = TimeSpan.Zero;
+        private TimeSpan LastPerformedGameTime { get; set; } = TimeSpan.Zero;
 
-        // return true if the subsequent behaviours should be blocked from unit control
+        // return true if subsequent behaviours should be blocked from unit control
         // if perform is false then no unit control
         protected abstract bool Tick(bool perform);
 
-        protected bool ShouldRareTick(int tick)
-        {
-            return GetHashCode() % tick == Controller.Unary.GameState.Tick % tick;
-        }
+        protected bool ShouldRareTick(int rate) => Controller.Unary.ShouldRareTick(this, rate);
         
         internal bool TickInternal(bool perform)
         {

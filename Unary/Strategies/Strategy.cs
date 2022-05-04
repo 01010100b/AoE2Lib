@@ -145,7 +145,7 @@ namespace Unary.Strategies
 
                         if (!tech.Available)
                         {
-                            Unary.Log.Debug($"Tech {bo.Id} not available");
+                            Unary.Log.Info($"Build Order Tech {bo.Id} not available");
 
                             break;
                         }
@@ -159,7 +159,7 @@ namespace Unary.Strategies
                             blocking = false;
                         }
 
-                        Unary.OldProductionManager.Research(tech, priority, blocking);
+                        Unary.ResourcesManager.Research(tech, priority, blocking);
 
                         break;
                     }
@@ -187,7 +187,7 @@ namespace Unary.Strategies
 
                         if (!unit.Available)
                         {
-                            Unary.Log.Debug($"Unit type {unit.Id} not available");
+                            Unary.Log.Info($"Build Order Unit type {unit.Id} not available");
 
                             break;
                         }

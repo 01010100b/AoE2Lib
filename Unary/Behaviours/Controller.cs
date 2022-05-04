@@ -16,6 +16,7 @@ namespace Unary.Behaviours
         public readonly Unit Unit;
         public readonly Unary Unary;
         public UnitsManager Manager => Unary.UnitsManager;
+        public bool Exists => Unit.Targetable;
 
         private readonly List<Behaviour> Behaviours = new();
 
@@ -126,7 +127,7 @@ namespace Unary.Behaviours
             else
             {
                 AddBehaviour(new MicroBehaviour());
-                AddBehaviour(new CombatBehaviour());
+                AddBehaviour(new CombatRangedBehaviour());
             }
         }
     }

@@ -53,7 +53,6 @@ namespace Unary
             // 
             // TextMessages
             // 
-            this.TextMessages.Enabled = false;
             this.TextMessages.Location = new System.Drawing.Point(12, 111);
             this.TextMessages.Multiline = true;
             this.TextMessages.Name = "TextMessages";
@@ -61,6 +60,7 @@ namespace Unary
             this.TextMessages.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.TextMessages.Size = new System.Drawing.Size(776, 355);
             this.TextMessages.TabIndex = 4;
+            this.TextMessages.TabStop = false;
             // 
             // ButtonStop
             // 

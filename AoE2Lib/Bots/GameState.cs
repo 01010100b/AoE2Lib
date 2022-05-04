@@ -531,9 +531,9 @@ namespace AoE2Lib.Bots
 
             foreach (var unit in Units.Values.Where(u => u.Updated))
             {
-                if (unit.PlayerNumber >= 0)
+                if (unit[ObjectData.PLAYER] >= 0)
                 {
-                    Players[unit.PlayerNumber]._Units.Add(unit);
+                    Players[unit[ObjectData.PLAYER]]._Units.Add(unit);
 
                     if (Map.IsOnMap(unit.Position))
                     {

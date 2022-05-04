@@ -73,7 +73,7 @@ namespace Unary.Managers
 
             foreach (var controller in Controllers.Values.ToList())
             {
-                if (controller.Unit.Targetable)
+                if (controller.Exists)
                 {
                     controller.Tick(times);
                 }
@@ -90,11 +90,6 @@ namespace Unary.Managers
             {
                 Unary.Log.Info($"{behaviour.Key.Name} ran {behaviour.Value.Key} times for a total of {behaviour.Value.Value.TotalMilliseconds:N2} ms");
             }
-        }
-
-        private void SetStrategicNumbers()
-        {
-            throw new NotImplementedException();
         }
     }
 }

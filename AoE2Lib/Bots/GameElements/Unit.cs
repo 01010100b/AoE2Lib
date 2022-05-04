@@ -14,8 +14,7 @@ namespace AoE2Lib.Bots.GameElements
     {
         public readonly int Id;
         public int this[ObjectData data] => GetData(data);
-        public Player Player => Bot.GameState.GetPlayer(PlayerNumber);
-        public int PlayerNumber => this[ObjectData.PLAYER];
+        public Player Player => Bot.GameState.GetPlayer(this[ObjectData.PLAYER]);
         public bool Targetable { get; private set; } = false;
         public bool IsBuilding => this[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || this[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING;
         public TimeSpan LastSeenGameTime { get; private set; } = TimeSpan.MinValue;
@@ -113,7 +112,7 @@ namespace AoE2Lib.Bots.GameElements
                 return;
             }
 
-            if (PlayerNumber != Bot.PlayerNumber)
+            if (this[ObjectData.PLAYER] != Bot.PlayerNumber)
             {
                 return;
             }

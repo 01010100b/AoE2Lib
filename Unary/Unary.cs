@@ -44,10 +44,9 @@ namespace Unary
             Settings = settings;
         }
 
-        public void ExecuteCommand(Command command)
-        {
-            Commands.Add(command);
-        }
+        public void ExecuteCommand(Command command) => Commands.Add(command);
+
+        public bool ShouldRareTick(object obj, int rate) => obj.GetHashCode() % rate == GameState.Tick % rate;
 
         public T GetCached<T>(Func<T> func) where T : class
         {

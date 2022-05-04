@@ -15,7 +15,7 @@ namespace Unary.Behaviours
         {
             if (!perform)
             {
-                if (Controller.Unary.GameState.GameTime - LastPerformedGameTime > TimeSpan.FromMinutes(1))
+                if (TimeSinceLastPerformed > TimeSpan.FromMinutes(1))
                 {
                     Construction = null;
                 }
@@ -25,7 +25,7 @@ namespace Unary.Behaviours
 
             if (Construction != null)
             {
-                if (Construction.Unit.Targetable == false
+                if (Construction.Exists == false
                     || Construction.GetBehaviour<ConstructionBehaviour>().MaxBuilders == 0)
                 {
                     Construction = null;

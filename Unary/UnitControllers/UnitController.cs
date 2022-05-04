@@ -178,7 +178,7 @@ namespace Unary.UnitControllers
         private Position GetMovementPosition(Position current, Position move_position, double move_radius)
         {
             var friendlies = RelevantUnits
-                .Where(u => u.Targetable && u.PlayerNumber == Unary.PlayerNumber && u != Unit)
+                .Where(u => u.Targetable && u[ObjectData.PLAYER] == Unary.PlayerNumber && u != Unit)
                 .Select(u => new KeyValuePair<double, Position>(1, u.Position))
                 .ToList();
 

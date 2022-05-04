@@ -76,7 +76,7 @@ namespace Unary.Behaviours
                 {
                     if (controller.TryGetBehaviour<MicroBehaviour>(out var micro))
                     {
-                        if (micro.Leader != null && micro.Leader.Unit.Targetable
+                        if (micro.Leader != null && micro.Leader.Exists
                             && micro.Leader.Unit[ObjectData.BASE_TYPE] == Controller.Unit[ObjectData.BASE_TYPE])
                         {
                             Leader = micro.Leader;
@@ -86,10 +86,7 @@ namespace Unary.Behaviours
                     }
                 }
 
-                if (Controller.Unit.Targetable)
-                {
-                    Leader = Controller;
-                }
+                Leader = Controller;
 
                 return;
             }

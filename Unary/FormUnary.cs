@@ -135,7 +135,7 @@ namespace Unary
 
         private void Message(string message)
         {
-            Program.Log.Debug($"Unary UI: {message}");
+            Program.Log.Info($"Unary UI: {message}");
 
             var lines = TextMessages.Lines.ToList();
             lines.Add(message);
@@ -144,7 +144,7 @@ namespace Unary
 
         private void EnsureInstance()
         {
-            if (Instance != null)
+            if (Instance != null && !Instance.HasExited)
             {
                 return;
             }
@@ -184,12 +184,12 @@ namespace Unary
         private void RunGames()
         {
             const int NUM = 10;
-            Debug.WriteLine("Running auto games");
+            Program.Log.Info("Running auto games");
 
             var unary = new Unary(Program.Settings);
             Instance.StartBot(unary, 1);
             // "MC1 (1) archer vs archer (britons)", "MC1 (2) xbow vs xbox (ballistics)"
-            // "Test", "ArcherMicroTest_E"
+            // "Null", "ArcherMicroTest_E"
             var tests = new[] { "MC1 (1) archer vs archer (britons)" };
             var civs = new[] { Civilization.BRITONS, Civilization.FRANKS };
             var opponents = new[] { "ArcherMicroTest_E" };
@@ -207,7 +207,7 @@ namespace Unary
 
                     for (int k = 0; k < NUM; k++)
                     {
-                        Debug.WriteLine($"Running {k}/{NUM} test {test} against {file}");
+                        Program.Log.Debug($"Running test {k + 1}/{NUM} {test} against {file}");
                         RunTest(test, civ, file, out var me, out var opponent);
 
                         if (me.Alive)
@@ -258,7 +258,7 @@ namespace Unary
             {
                 PlayerNumber = 1,
                 IsHuman = false,
-                AiFile = "Test",
+                AiFile = "Null",
                 Civilization = (int)civilization,
                 Color = AoE2Lib.Games.Color.COLOR_1,
                 Team = Team.NO_TEAM

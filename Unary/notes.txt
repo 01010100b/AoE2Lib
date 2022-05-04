@@ -7,3 +7,13 @@ needs:
 -team coop
 -attacks, raids, defense, etc
 -
+
+c + a - b
+c - a + b
+2a - 2b
+a - b (my_kills - opponent_kills -> my_score - opponent_score)
+
+speeds:
+fast = 20
+normal = 15
+slow = 10

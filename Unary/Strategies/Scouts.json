@@ -60,10 +60,5 @@
             "Id": 101
         }
     ],
-    "PrimaryUnits": [
-        448
-    ],
-    "SecondaryUnits": [],
-    "SecondaryUnitPercentage": 0,
     "AutoEcoTechs":  true
 }

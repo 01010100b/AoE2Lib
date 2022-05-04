@@ -8,74 +8,31 @@ using System.Threading.Tasks;
 
 namespace Unary.Behaviours
 {
-    internal abstract class CombatBehaviour : Behaviour
+    internal class CombatRangedBehaviour : CombatBehaviour
     {
-        public Unit Target { get; private set; } = null;
-        public Unit Backup { get; private set; } = null;
-        public IEnumerable<Unit> AllTargets => Targets;
-
-        private readonly List<Unit> Targets = new();
-
         private bool FlipSides { get; set; } = false;
 
-        protected abstract void ChooseTarget(out Unit target, out Unit backup);
-
-        protected abstract void DoCombat();
-
-        protected override sealed bool Tick(bool perform)
+        public CombatRangedBehaviour() : base()
         {
-            if (!perform)
+            FlipSides = GetHashCode() % 101 <= 50;
+        }
+
+        protected override void ChooseTarget(out Unit target, out Unit backup)
+        {
+            var pos = Controller.Unit.Position;
+            var targets = AllTargets.ToList();
+            targets.Sort((a, b) => a.Position.DistanceTo(pos).CompareTo(b.Position.DistanceTo(pos)));
+
+            target = targets[0];
+            backup = targets[0];
+
+            if (targets.Count > 1)
             {
-                return false;
+                backup = targets[1];
             }
+        }
 
-            if (Target != null && !Target.Targetable)
-            {
-                Target = null;
-                Backup = null;
-            }
-
-            if (Target == null || ShouldRareTick(11))
-            {
-                Target = null;
-                Backup = null;
-                Targets.Clear();
-
-                foreach (var enemy in Controller.Unary.GameState.CurrentEnemies.SelectMany(e => e.Units.Where(u => u.Targetable)))
-                {
-                    Targets.Add(enemy);
-                }
-
-                if (Targets.Count > 0)
-                {
-                    ChooseTarget(out var target, out var backup);
-                    Target = target;
-                    Backup = backup;
-                }
-                else
-                {
-                    Target = null;
-                    Backup = null;
-                }
-            }
-
-            if (Target != null)
-            {
-                //DoRangedCombatPrivate();
-                DoCombat();
-                Controller.Unit.RequestUpdate();
-                Target.RequestUpdate();
-                Backup.RequestUpdate();
-
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        } 
-
-        private void DoRangedCombatPrivate()
+        protected override void DoCombat()
         {
             var next_attack = Math.Max(1, Controller.Unit[ObjectData.RELOAD_TIME] - 500);
             var ballistics = false;
@@ -113,8 +70,8 @@ namespace Unary.Behaviours
             }
             else
             {
-                var closest = Targets[0];
-                foreach (var target in Targets.Where(t => t.Targetable))
+                var closest = Target;
+                foreach (var target in AllTargets.Where(t => t.Targetable))
                 {
                     if (target.Position.DistanceTo(my_pos) < closest.Position.DistanceTo(my_pos))
                     {
