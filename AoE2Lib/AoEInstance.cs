@@ -26,21 +26,33 @@ namespace AoE2Lib
             {
                 throw new NotSupportedException("Changing aimodule port from default not supported yet.");
             }
+            else if (autogame_port != DEFAULT_AUTO_GAME_PORT)
+            {
+                throw new NotSupportedException("Changing auto game port from default not supported yet.");
+            }
+
+            Process process = null;
 
             var sp = (int)Math.Round(speed * 10);
             var old = GetSpeed();
             SetSpeed(sp);
 
-            var process = Process.Start(exe, args);
-            while (!process.Responding)
+            try
             {
-                Thread.Sleep(1000);
+                process = Process.Start(exe, args);
+                while (!process.Responding)
+                {
+                    Thread.Sleep(1000);
+                }
             }
-
-            SetSpeed(old);
+            finally
+            {
+                SetSpeed(old);
+            }
+            
             Thread.Sleep(10 * 1000);
 
-            var instance = new AoEInstance(process);
+            var instance = new AoEInstance(process, aimodule_port, autogame_port);
             instance.LoadAIModule();
 
             if (instance.Version == GameVersion.AOC)
@@ -69,6 +81,8 @@ namespace AoE2Lib
         private static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, uint nSize, uint lpNumberOfBytesWritten);
         [DllImport("kernel32.dll")]
         private static extern bool VirtualProtectEx(IntPtr hProcess, IntPtr lpAddress, UIntPtr dwSize, uint flNewProtect, out uint lpflOldProtect);
+        [DllImport("user32.dll")]
+        private static extern bool SetForegroundWindow(IntPtr hWnd);
 
         public bool HasExited => Process.HasExited;
         public GameVersion Version => Process.ProcessName.Contains("AoE2DE") ? GameVersion.DE : GameVersion.AOC;
@@ -91,10 +105,15 @@ namespace AoE2Lib
             bot.Start(player, new IPEndPoint(IPAddress.Loopback, AimodulePort), Version);
         }
 
-        public void RunGame(Game game)
+        public void StartGame(Game game)
         {
             LoadAocAutoGame();
-            game.Run(new IPEndPoint(IPAddress.Loopback, AutoGamePort));
+            game.Start(new IPEndPoint(IPAddress.Loopback, AutoGamePort));
+
+            if (game.GameType == GameType.SCENARIO)
+            {
+                
+            }
         }
 
         public void LoadAIModule()
@@ -166,6 +185,11 @@ namespace AoE2Lib
             VirtualProtectEx(Process.Handle, addr, (UIntPtr)bytes.Length, protect, out _);
 
             return flag;
+        }
+
+        public void SendKeys(string keys)
+        {
+            Form
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AoE2Lib;
+using AoE2Lib.Games;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -74,6 +76,7 @@ namespace Unary
 
         private void ButtonStart_Click(object sender, EventArgs e)
         {
+            ButtonDev.Enabled = false;
             ButtonStart.Enabled = false;
             ButtonBrowseExe.Enabled = false;
             Cursor = Cursors.WaitCursor;
@@ -168,7 +171,80 @@ namespace Unary
 
         private void ButtonDev_Click(object sender, EventArgs e)
         {
+            ButtonStart.Enabled = false;
+            ButtonDev.Enabled = false;
+            Refresh();
 
+            EnsureInstance();
+
+            var thread = new Thread(() => RunGames()) { IsBackground = true };
+            thread.Start();
+        }
+
+        private void RunGames()
+        {
+            Debug.WriteLine("Running auto games");
+
+            var unary = new Unary(Program.Settings);
+            Instance.StartBot(unary, 1);
+
+            while (true)
+            {
+                var game = new Game()
+                {
+                    GameType = GameType.SCENARIO,
+                    ScenarioName = "MC1 (2) xbow vs xbox (ballistics)",
+                    MapType = MapType.RANDOM_MAP,
+                    MapSize = MapSize.TINY,
+                    Difficulty = Difficulty.HARD,
+                    StartingResources = StartingResources.STANDARD,
+                    PopulationLimit = 200,
+                    RevealMap = RevealMap.NORMAL,
+                    StartingAge = StartingAge.STANDARD,
+                    VictoryType = VictoryType.CONQUEST,
+                    VictoryValue = 0,
+                    TeamsTogether = true,
+                    LockTeams = true,
+                    AllTechs = false,
+                    Recorded = false
+                };
+
+                var me = new Player()
+                {
+                    PlayerNumber = 1,
+                    IsHuman = false,
+                    AiFile = "Test",
+                    Civilization = (int)Civilization.FRANKS,
+                    Color = AoE2Lib.Games.Color.COLOR_1,
+                    Team = Team.NO_TEAM
+                };
+
+                var micro = new Player()
+                {
+                    PlayerNumber = 2,
+                    IsHuman = false,
+                    AiFile = "ArcherMicroTest_E",
+                    Civilization = (int)Civilization.FRANKS,
+                    Color = AoE2Lib.Games.Color.COLOR_2,
+                    Team = Team.NO_TEAM
+                };
+
+                game.AddPlayer(me);
+                game.AddPlayer(micro);
+
+                Debug.WriteLine("Starting game");
+                Instance.StartGame(game);
+
+                while (!game.Finished)
+                {
+                    Thread.Sleep(1000);
+                }
+
+                Debug.WriteLine("Done running game, waiting 10 seconds");
+                Thread.Sleep(10000);
+                Debug.WriteLine($"My score: {me.Score} (alive: {me.Alive})");
+                Debug.WriteLine($"Micro score: {micro.Score} (alive: {micro.Alive}");
+            }
         }
     }
 }

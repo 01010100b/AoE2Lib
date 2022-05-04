@@ -18,12 +18,14 @@ namespace Unary.Behaviours
         
         internal bool TickInternal(bool perform)
         {
-            if (perform)
+            var performed = Tick(perform);
+
+            if (performed)
             {
                 LastPerformedGameTime = Controller.Unary.GameState.GameTime;
             }
 
-            return Tick(perform);
+            return performed;
         }
     }
 }

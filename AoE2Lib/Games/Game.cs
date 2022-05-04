@@ -13,28 +13,38 @@ namespace AoE2Lib.Games
 {
     public class Game
     {
-        public int GameType { get; set; } = 0;
+        public GameType GameType { get; set; } = GameType.RANDOM_MAP;
         public string ScenarioName { get; set; } = "";
-        public int MapType { get; set; } = 9;
-        public int MapSize { get; set; } = 0;
-        public int Difficulty { get; set; } = 1;
-        public int StartingResources { get; set; } = 0;
+        public MapType MapType { get; set; } = MapType.ARABIA;
+        public MapSize MapSize { get; set; } = MapSize.TINY;
+        public Difficulty Difficulty { get; set; } = Difficulty.HARD;
+        public StartingResources StartingResources { get; set; } = StartingResources.STANDARD;
         public int PopulationLimit { get; set; } = 200;
-        public int RevealMap { get; set; } = 0;
-        public int StartingAge { get; set; } = 0;
-        public int VictoryType { get; set; } = 0;
+        public RevealMap RevealMap { get; set; } = RevealMap.NORMAL;
+        public StartingAge StartingAge { get; set; } = StartingAge.STANDARD;
+        public VictoryType VictoryType { get; set; } = VictoryType.STANDARD;
         public int VictoryValue { get; set; } = 0;
         public bool TeamsTogether { get; set; } = true;
         public bool LockTeams { get; set; } = false;
         public bool AllTechs { get; set; } = false;
         public bool Recorded { get; set; } = true;
-        public readonly List<Player> Players = new List<Player>();
         public bool Finished { get; private set; } = false;
 
+        private readonly List<Player> Players = new List<Player>();
         private readonly TcpClient Client = new TcpClient();
         private int NextId { get; set; } = 1;
 
-        internal void Run(IPEndPoint endpoint)
+        public void AddPlayer(Player player)
+        {
+            Players.Add(player);
+        }
+
+        public IEnumerable<Player> GetPlayers()
+        {
+            return Players;
+        }
+
+        internal void Start(IPEndPoint endpoint)
         {
             Client.Connect(endpoint);
 
@@ -53,20 +63,20 @@ namespace AoE2Lib.Games
                 Call("SetPlayerClosed", i);
             }
 
-            Call("SetGameType", GameType);
-            if (GameType == 3)
+            Call("SetGameType", (int)GameType);
+            if (GameType == GameType.SCENARIO)
             {
                 Call("SetGameScenarioName", ScenarioName);
             }
 
-            Call("SetGameMapType", MapType);
-            Call("SetGameMapSize", MapSize);
-            Call("SetGameDifficulty", Difficulty);
-            Call("SetGameStartingResources", StartingResources);
+            Call("SetGameMapType", (int)MapType);
+            Call("SetGameMapSize", (int)MapSize);
+            Call("SetGameDifficulty", (int)Difficulty);
+            Call("SetGameStartingResources", (int)StartingResources);
             Call("SetGamePopulationLimit", PopulationLimit);
-            Call("SetGameRevealMap", RevealMap);
-            Call("SetGameStartingAge", StartingAge);
-            Call("SetGameVictoryType", VictoryType, VictoryValue);
+            Call("SetGameRevealMap", (int)RevealMap);
+            Call("SetGameStartingAge", (int)StartingAge);
+            Call("SetGameVictoryType", (int)VictoryType, VictoryValue);
             Call("SetGameTeamsTogether", TeamsTogether);
             Call("SetGameTeamsLocked", LockTeams);
             Call("SetGameAllTechs", AllTechs);
@@ -95,14 +105,21 @@ namespace AoE2Lib.Games
             Call("StartGame");
             Thread.Sleep(10000);
 
-            while (!IsFinished())
+            var thread = new Thread(() =>
             {
-                Thread.Sleep(1000);
-            }
+                Thread.Sleep(10000);
 
-            Client.Close();
+                while (!IsFinished())
+                {
+                    Thread.Sleep(1000);
+                }
 
-            Finished = true;
+                Client.Close();
+
+                Finished = true;
+            });
+            thread.IsBackground = true;
+            thread.Start();
         }
 
         private bool IsFinished()
@@ -119,13 +136,13 @@ namespace AoE2Lib.Games
 
             if (total_score <= 0)
             {
-                return true;
+                //return true;
             }
 
             var team = new int[5];
-            foreach (var player in Players.Where(p => p.Alive))
+            foreach (var player in Players.Where(p => p.Alive && (int)p.Team <= 4))
             {
-                team[player.Team]++;
+                team[(int)player.Team]++;
             }
 
             if (team.Count(t => t > 0) > 1)
@@ -172,8 +189,7 @@ namespace AoE2Lib.Games
                 {
                     if (reader.ReadAsync(CancellationToken.None).Result is ReadOnlySequence<byte> msgpack)
                     {
-                        Debug.WriteLine(MessagePackSerializer.ConvertToJson(msgpack));
-
+                        //Debug.WriteLine(MessagePackSerializer.ConvertToJson(msgpack));
                         var response = (object[])MessagePackSerializer.Deserialize<object>(msgpack);
 
                         return (T)Convert.ChangeType(response[3], typeof(T));
