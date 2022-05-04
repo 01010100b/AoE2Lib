@@ -48,6 +48,24 @@ namespace Unary.Behaviours
             return Behaviours.OfType<T>().Cast<T>().FirstOrDefault();
         }
 
+        public bool TryGetBehaviour<T>(out T behaviour) where T : Behaviour
+        {
+            var b = GetBehaviour<T>();
+
+            if (b != default)
+            {
+                behaviour = b;
+
+                return true;
+            }
+            else
+            {
+                behaviour = default;
+
+                return false;
+            }
+        }
+
         public IEnumerable<Behaviour> GetBehaviours()
         {
             return Behaviours;
@@ -104,6 +122,11 @@ namespace Unary.Behaviours
                 {
                     AddBehaviour(new EatingSpotBehaviour());
                 }
+            }
+            else
+            {
+                AddBehaviour(new MicroBehaviour());
+                AddBehaviour(new CombatBehaviour());
             }
         }
     }

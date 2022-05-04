@@ -14,6 +14,8 @@ namespace Unary
     static class Program
     {
         public static string Folder => AppDomain.CurrentDomain.BaseDirectory;
+        public static Settings Settings => GetSettings();
+
         internal static readonly Log Log = new(Path.Combine(Folder, "Unary.log"));
         
         public static void Serialize<T>(T obj, string file)
@@ -94,6 +96,21 @@ namespace Unary
                 Log.Dispose();
                 //MessageBox.Show("An unexpected error occurred. Unary will now exit. See the log for details.", "Unexpected error");
             }
+        }
+
+        private static Settings GetSettings()
+        {
+            var settings = new Settings();
+
+            var file = Path.Combine(Program.Folder, "Settings.json");
+            if (File.Exists(file))
+            {
+                settings = Deserialize<Settings>(file);
+            }
+
+            Serialize(settings, file);
+
+            return settings;
         }
     }
 }

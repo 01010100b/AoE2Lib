@@ -15,65 +15,89 @@ namespace Unary
 {
     public partial class FormUnary : Form
     {
+        private class FormSettings
+        {
+            public string ExePath { get; set; } = "path-to-exe";
+        }
+
         private AoEInstance Instance { get; set; }
         private readonly Dictionary<int, Unary> Players = new Dictionary<int, Unary>();
-        private Settings Settings { get; set; } = null;
 
         public FormUnary()
         {
             InitializeComponent();
 
-            LoadSettings();
-            SaveSettings();
+            var file = Path.Combine(Program.Folder, "uisettings.json");
+            
+            if (File.Exists(file))
+            {
+                var exe = Program.Deserialize<FormSettings>(file).ExePath;
+                LabelExePath.Text = exe;
+
+                if (File.Exists(exe))
+                {
+                    ButtonStart.Enabled = true;
+                }
+            }
+
+#if DEBUG
+            ButtonDev.Enabled = true;
+#endif
         }
 
-        private void ButtonConnect_Click(object sender, EventArgs e)
+        private void ButtonBrowseExe_Click(object sender, EventArgs e)
         {
-            var name = TextProcess.Text;
-            Message($"Connecting to process {name}...");
-
-            try
+            var diag = new OpenFileDialog()
             {
-                var process = Process.GetProcessesByName(name)[0];
-                Instance = new AoEInstance(process);
-                Message($"Connected to process {process.Id}");
-            }
-            catch (Exception ex)
+                CheckFileExists = true,
+                CheckPathExists = true,
+                Filter = "Exe files|*.exe"
+            };
+
+            var res = diag.ShowDialog();
+
+            if (res == DialogResult.OK)
             {
-                Message($"ERROR: Failed to find/connect process with name {name}");
-                Program.Log.Exception(ex);
+                var exe = diag.FileName;
 
-                return;
+                if (File.Exists(exe))
+                {
+                    var file = Path.Combine(Program.Folder, "uisettings.json");
+                    var settings = new FormSettings() { ExePath = exe };
+
+                    Program.Serialize(settings, file);
+                    LabelExePath.Text = exe;
+                    ButtonStart.Enabled = true;
+                }
             }
-
-            ButtonConnect.Enabled = false;
-            TextProcess.Enabled = false;
-            ButtonStart.Enabled = true;
-            NumericPlayer.Enabled = true;
         }
 
         private void ButtonStart_Click(object sender, EventArgs e)
         {
             ButtonStart.Enabled = false;
+            ButtonBrowseExe.Enabled = false;
+            Cursor = Cursors.WaitCursor;
             Refresh();
+
+            EnsureInstance();
 
             var player = (int)NumericPlayer.Value;
             Message($"Starting for player {player}...");
 
             if (Players.ContainsKey(player))
             {
-                Message($"Player {player} is already playing.");
-                ButtonStart.Enabled = true;
-
-                return;
+                Message($"Player {player} is already running.");
+            }
+            else
+            {
+                var bot = new Unary(Program.Settings);
+                Instance.StartBot(bot, player);
+                Players.Add(player, bot);
+                Message($"Started player {player}");
+                ButtonStop.Enabled = true;
             }
 
-            var bot = new Unary(Settings);
-            Instance.StartBot(bot, player);
-            Players.Add(player, bot);
-            Message($"Started player {player}");
-            ButtonStop.Enabled = true;
-
+            Cursor = Cursors.Default;
             ButtonStart.Enabled = true;
         }
 
@@ -115,31 +139,34 @@ namespace Unary
             TextMessages.Lines = lines.ToArray();
         }
 
-        private void LoadSettings()
+        private void EnsureInstance()
         {
-            var file = Path.Combine(Program.Folder, "Settings.json");
-            if (File.Exists(file))
-            {
-                Settings = Program.Deserialize<Settings>(file);
-            }
-            else
-            {
-                Settings = new Settings();
-            }
-        }
-
-        private void SaveSettings()
-        {
-            if (Settings == null)
+            if (Instance != null)
             {
                 return;
             }
 
-            var file = Path.Combine(Program.Folder, "Settings.json");
-            Program.Serialize(Settings, file);
+            var file = LabelExePath.Text;
+            var name = Path.GetFileNameWithoutExtension(file);
+            
+            Message($"Connecting to process {name}...");
+
+            var running = Process.GetProcessesByName(name);
+
+            if (running.Length > 0)
+            {
+                var process = Process.GetProcessesByName(name)[0];
+                Instance = new AoEInstance(process);
+                Message($"Connected to process {process.Id}");
+            }
+            else
+            {
+                Instance = AoEInstance.StartInstance(file);
+                Message($"Started AoE {file}");
+            }
         }
 
-        private void ButtonBrowseExe_Click(object sender, EventArgs e)
+        private void ButtonDev_Click(object sender, EventArgs e)
         {
 
         }

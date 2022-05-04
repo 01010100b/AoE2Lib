@@ -1,7 +1,7 @@
 ﻿Unary AI by 01010100
 ====================
 
-Unary requires the .NET 5 framework to be installed. Unary works on AoC and WK.
+Unary requires the .NET 6 framework to be installed. Unary works on AoC and WK.
 
 Installation
 ------------
@@ -14,19 +14,15 @@ Playing a game
 
 Perform the following steps in order:
 
-1. Start Age of Empires 2.
+1. Start Unary.exe
 
-2. Start Unary.exe
+2. Click "Browse Exe Path" and select your AoE2's executable file.
 
-3. Enter the AoE2 process name and click "Connect to process". 
-The process name is normally the filename of the game executable without the ".exe" part, usually "WK" for WK or "AoE2DE_s" for DE.
+3. For each player you want controlled by Unary, enter the player number and click "Start for player".
 
-4. For each player you want controlled by Unary, enter the player number and click "Start for player".
+4. Start the game in AoE2. If everything works then each Unary player will chat an OK confirmation message in-game around 10-20 seconds in.
 
-5. Start the game in AoE2.
-If everything works then each Unary player will chat an OK confirmation message in-game around 10-20 seconds in.
-
-6. After you have run all games, click "Stop all players".
+5. Click "Stop all players" to stop Unary controlling any players.
 
 Troubleshooting
 ---------------

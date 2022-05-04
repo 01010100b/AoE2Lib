@@ -33,9 +33,6 @@ namespace Unary.Strategies
         public int ExtraGoldPercentage { get; set; } = 0;
         public int ExtraStonePercentage { get; set; } = 0;
         public List<BuildOrderCommand> BuildOrder { get; set; } = new();
-        public List<int> PrimaryUnits { get; set; } = new();
-        public List<int> SecondaryUnits { get; set; } = new();
-        public int SecondaryUnitPercentage { get; set; } = 0;
         public bool AutoEcoTechs { get; set; } = false;
 
         private Unary Unary { get; set; }
@@ -220,35 +217,6 @@ namespace Unary.Strategies
             if (Unary.GameState.TryGetUnitType(Unary.Mod.Villager, out var villager))
             {
                 Unary.ResourcesManager.Train(villager, max_civ, 3, Priority.VILLAGER);
-            }
-
-            // military
-
-            UnitType primary = null;
-
-            foreach (var p in PrimaryUnits)
-            {
-                if (Unary.GameState.TryGetUnitType(p, out var unit))
-                {
-                    if (unit.Updated && unit.Available)
-                    {
-                        primary = unit;
-                    }
-                }
-            }
-
-            if (primary == null)
-            {
-                Unary.Log.Debug($"No primary unit available");
-            }
-            else
-            {
-                Unary.Log.Info($"Primary unit {primary.Id}");
-
-                if (primary.CountTotal < 50)
-                {
-                    Unary.ResourcesManager.Train(primary, 50, 10, Priority.MILITARY);
-                }
             }
         }
     }

@@ -14,7 +14,7 @@ namespace AoE2Lib.Bots.GameElements
         public ResearchState State { get; private set; }
         public bool Available => State == ResearchState.AVAILABLE;
         public bool Started => State == ResearchState.PENDING || State == ResearchState.COMPLETE;
-        public bool Finished => State == ResearchState.COMPLETE;
+        public bool Completed => State == ResearchState.COMPLETE;
         public bool CanResarch { get; private set; }
         public int WoodCost { get; private set; }
         public int FoodCost { get; private set; }
