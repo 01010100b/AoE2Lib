@@ -37,7 +37,7 @@ namespace Unary.Behaviours
                 }
             }
 
-            if (Target == null)
+            if (Target == null || ShouldRareTick(11))
             {
                 ChooseTarget();
             }
@@ -59,31 +59,19 @@ namespace Unary.Behaviours
 
         private void ChooseTarget()
         {
+            Target = null;
+            Backup = null;
             Targets.Clear();
 
             foreach (var enemy in Controller.Unary.GameState.CurrentEnemies.SelectMany(e => e.Units.Where(u => u.Targetable)))
             {
                 Targets.Add(enemy);
-                enemy.RequestUpdate();
             }
 
             if (Targets.Count > 0)
             {
-                Targets.Sort((a, b) =>
-                {
-                    if (a[ObjectData.HITPOINTS] < b[ObjectData.HITPOINTS])
-                    {
-                        return -1;
-                    }
-                    else if (b[ObjectData.HITPOINTS] < a[ObjectData.HITPOINTS])
-                    {
-                        return 1;
-                    }
-                    else
-                    {
-                        return a.Position.DistanceTo(Controller.Unit.Position).CompareTo(b.Position.DistanceTo(Controller.Unit.Position));
-                    }
-                });
+                var pos = Controller.Unit.Position;
+                Targets.Sort((a, b) => a.Position.DistanceTo(pos).CompareTo(b.Position.DistanceTo(pos)));
 
                 Target = Targets[0];
                 Backup = Target;

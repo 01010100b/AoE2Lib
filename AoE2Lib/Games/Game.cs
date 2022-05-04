@@ -103,7 +103,7 @@ namespace AoE2Lib.Games
             }
 
             Call("StartGame");
-            Thread.Sleep(10000);
+            Thread.Sleep(5000);
 
             var thread = new Thread(() =>
             {

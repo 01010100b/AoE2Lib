@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-	  <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-	  <Platforms>AnyCPU</Platforms>
-	  <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+	  <TargetFramework>net6.0-windows</TargetFramework>
+	  <UseWindowsForms>true</UseWindowsForms>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -25,6 +25,13 @@
 
 	<ItemGroup>
 		<Protobuf Include="**/*.proto" OutputDir="" CompileOutputs="false" GrpcServices="Client" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Libraries\**" />
+	  <EmbeddedResource Remove="Libraries\**" />
+	  <None Remove="Libraries\**" />
+	  <Protobuf Remove="Libraries\**" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -56,16 +63,6 @@
 
 	<ItemGroup>
 	  <NativeLibs Remove="ObjectPool.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Remove="Libraries\AocDatLib.dll" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Resource Include="Libraries\AocDatLib.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </Resource>
 	</ItemGroup>
 
 </Project>

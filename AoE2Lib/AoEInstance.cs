@@ -88,6 +88,7 @@ namespace AoE2Lib
         public GameVersion Version => Process.ProcessName.Contains("AoE2DE") ? GameVersion.DE : GameVersion.AOC;
 
         private readonly Process Process;
+        private readonly IntPtr WindowHandle;
         private readonly HashSet<string> InjectedDlls = new HashSet<string>();
         private readonly int AimodulePort;
         private readonly int AutoGamePort;
@@ -95,8 +96,14 @@ namespace AoE2Lib
         public AoEInstance(Process process, int aimodule_port = DEFAULT_AIMODULE_PORT, int auto_game_port = DEFAULT_AUTO_GAME_PORT)
         {
             Process = process;
+            WindowHandle = Process.MainWindowHandle;
             AimodulePort = aimodule_port;
             AutoGamePort = auto_game_port;
+        }
+
+        public void Kill()
+        {
+            Process.Kill();
         }
 
         public void StartBot(Bot bot, int player)
@@ -112,7 +119,7 @@ namespace AoE2Lib
 
             if (game.GameType == GameType.SCENARIO)
             {
-                
+                SendKeys("{ENTER}");
             }
         }
 
@@ -189,7 +196,13 @@ namespace AoE2Lib
 
         public void SendKeys(string keys)
         {
-            Form
+            Process.WaitForInputIdle();
+
+            if (SetForegroundWindow(WindowHandle))
+            {
+                Debug.WriteLine($"sending keys {keys}");
+                System.Windows.Forms.SendKeys.SendWait(keys);
+            }
         }
     }
 }

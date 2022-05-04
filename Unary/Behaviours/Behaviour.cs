@@ -15,6 +15,11 @@ namespace Unary.Behaviours
         // return true if the subsequent behaviours should be blocked from unit control
         // if perform is false then no unit control
         protected abstract bool Tick(bool perform);
+
+        protected bool ShouldRareTick(int tick)
+        {
+            return GetHashCode() % tick == Controller.Unary.GameState.Tick % tick;
+        }
         
         internal bool TickInternal(bool perform)
         {
