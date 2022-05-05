@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Unary.Optimization
+namespace Unary.Learning
 {
     internal class Scenario
     {
