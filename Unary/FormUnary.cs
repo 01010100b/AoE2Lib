@@ -1,6 +1,8 @@
 ﻿using AoE2Lib;
+using AoE2Lib.Bots;
 using AoE2Lib.Games;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +14,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Unary.Optimization;
 
 namespace Unary
 {
@@ -175,118 +178,80 @@ namespace Unary
             ButtonDev.Enabled = false;
             Refresh();
 
-            EnsureInstance();
+            if (Instance != null)
+            {
+                Instance.Kill();
+            }
 
-            var thread = new Thread(() => RunGames()) { IsBackground = true };
+            var thread = new Thread(() => Dev()) { IsBackground = true };
             thread.Start();
         }
 
-        private void RunGames()
+        private void Dev()
         {
-            const int NUM = 10;
-            Program.Log.Info("Running auto games");
+            const int GAMES_PER_SCENARIO = 10;
 
             var unary = new Unary(Program.Settings);
-            Instance.StartBot(unary, 1);
-            // "MC1 (1) archer vs archer (britons)", "MC1 (2) xbow vs xbox (ballistics)"
-            // "Null", "ArcherMicroTest_E"
-            var tests = new[] { "MC1 (1) archer vs archer (britons)" };
-            var civs = new[] { Civilization.BRITONS, Civilization.FRANKS };
-            var opponents = new[] { "ArcherMicroTest_E" };
+            var bots = new Dictionary<int, Bot>() { { 1, unary } };
+            var opponents = new[] { "Null", "ArcherMicroTest_E" };
+            var runner = new InstanceRunner(LabelExePath.Text);
+            var games = new ConcurrentQueue<Game>();
+            var results = new Dictionary<Game, Scenario>();
 
-            for (int i = 0; i < tests.Length; i++)
+            runner.RunMinimized = true;
+            runner.Start(games, bots);
+            Program.Log.Debug("runner started");
+
+            for (int i = 0; i < GAMES_PER_SCENARIO; i++)
             {
-                for (int j = 0; j < opponents.Length; j++)
+                foreach (var opponent in opponents)
                 {
-                    var test = tests[i];
-                    var civ = civs[i];
-                    var file = opponents[j];
-                    var wins = 0d;
-                    var my_score = 0d;
-                    var opponent_score = 0d;
-
-                    for (int k = 0; k < NUM; k++)
+                    foreach (var scenario in Scenario.GetDefaultScenarios())
                     {
-                        Program.Log.Debug($"Running test {k + 1}/{NUM} {test} against {file}");
-                        RunTest(test, civ, file, out var me, out var opponent);
+                        scenario.OpponentAiFile = opponent;
 
-                        if (me.Alive)
-                        {
-                            wins++;
-                        }
-
-                        my_score += me.Score;
-                        opponent_score += opponent.Score;
+                        var game = scenario.CreateGame("Null");
+                        games.Enqueue(game);
+                        results.Add(game, scenario);
                     }
-
-                    wins /= NUM;
-                    my_score /= NUM;
-                    opponent_score /= NUM;
-
-                    Invoke(() => Message($"TEST {test} against {file} result: {wins:P0} wins, avg score me: {my_score:N0} opponent: {opponent_score:N0}"));
                 }
             }
 
-            Thread.Sleep(3000);
-            unary.Stop();
-            Instance.Kill();
-            Instance = null;
-        }
+            Program.Log.Debug($"Total game count {results.Count}");
 
-        private void RunTest(string scenario, Civilization civilization, string opponent_file, out Player me, out Player opponent)
-        {
-            var game = new Game()
+            foreach (var result in results)
             {
-                GameType = GameType.SCENARIO,
-                ScenarioName = scenario,
-                MapType = MapType.RANDOM_MAP,
-                MapSize = MapSize.TINY,
-                Difficulty = Difficulty.HARD,
-                StartingResources = StartingResources.STANDARD,
-                PopulationLimit = 200,
-                RevealMap = RevealMap.NORMAL,
-                StartingAge = StartingAge.STANDARD,
-                VictoryType = VictoryType.CONQUEST,
-                VictoryValue = 0,
-                TeamsTogether = true,
-                LockTeams = true,
-                AllTechs = false,
-                Recorded = false
-            };
+                while (!result.Key.Finished)
+                {
+                    Thread.Sleep(1000);
+                }
 
-            me = new Player()
-            {
-                PlayerNumber = 1,
-                IsHuman = false,
-                AiFile = "Null",
-                Civilization = (int)civilization,
-                Color = AoE2Lib.Games.Color.COLOR_1,
-                Team = Team.NO_TEAM
-            };
-
-            opponent = new Player()
-            {
-                PlayerNumber = 2,
-                IsHuman = false,
-                AiFile = opponent_file,
-                Civilization = (int)civilization,
-                Color = AoE2Lib.Games.Color.COLOR_2,
-                Team = Team.NO_TEAM
-            };
-
-            game.AddPlayer(me);
-            game.AddPlayer(opponent);
-
-            Debug.WriteLine("Starting game");
-            Instance.StartGame(game);
-
-            while (!game.Finished)
-            {
-                Thread.Sleep(1000);
+                Program.Log.Debug($"Ran game {result.Value.ScenarioName} against {result.Value.OpponentAiFile} score {result.Value.GetScore(result.Key):P}."); ;
             }
 
-            Debug.WriteLine("Done running game, waiting 3 seconds");
-            Thread.Sleep(3000);
+            Program.Log.Debug("All games finished");
+            runner.Stop();
+
+            var scores = new Dictionary<KeyValuePair<string, string>, double>();
+
+            foreach (var result in results)
+            {
+                var kvp = new KeyValuePair<string, string>(result.Value.ScenarioName, result.Value.OpponentAiFile);
+                var score = result.Value.GetScore(result.Key);
+
+                if (!scores.ContainsKey(kvp))
+                {
+                    scores.Add(kvp, 0);
+                }
+
+                scores[kvp] += score / GAMES_PER_SCENARIO;
+            }
+
+            foreach (var score in scores)
+            {
+                var msg = $"Test {score.Key.Key} against {score.Key.Value}: {score.Value:P}";
+                Invoke(() => Message(msg));
+            }
         }
     }
 }

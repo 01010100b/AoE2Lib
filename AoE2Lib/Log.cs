@@ -32,7 +32,6 @@ namespace AoE2Lib
         public void Write(object message)
         {
             var str = $"{DateTime.Now:u}: {message}";
-
             Stream.WriteLine(str);
             Stream.Flush();
         }

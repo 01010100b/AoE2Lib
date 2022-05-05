@@ -30,8 +30,8 @@ namespace AoE2Lib.Games
         public bool Recorded { get; set; } = true;
         public bool Finished { get; private set; } = false;
 
-        private readonly List<Player> Players = new List<Player>();
-        private readonly TcpClient Client = new TcpClient();
+        private readonly List<Player> Players = new();
+        private readonly TcpClient Client = new();
         private int NextId { get; set; } = 1;
 
         public void AddPlayer(Player player)
@@ -44,7 +44,7 @@ namespace AoE2Lib.Games
             return Players;
         }
 
-        internal void Start(IPEndPoint endpoint)
+        internal void Start(IPEndPoint endpoint, bool minimized)
         {
             Client.Connect(endpoint);
 
@@ -57,8 +57,13 @@ namespace AoE2Lib.Games
             }
 
             Call("ResetGameSettings");
-            Call("SetRunUnfocused", true);
-            Call("SetUseInGameResolution", false);
+            
+            if (minimized)
+            {
+                Call("SetRunUnfocused", true);
+                Call("SetUseInGameResolution", false);
+                Call("SetWindowMinimized", true);
+            }
 
             for (int i = 1; i <= 8; i++)
             {
@@ -105,7 +110,7 @@ namespace AoE2Lib.Games
             }
 
             Call("StartGame");
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
 
             var thread = new Thread(() =>
             {
@@ -117,7 +122,7 @@ namespace AoE2Lib.Games
                 }
 
                 Client.Close();
-
+                Thread.Sleep(3000);
                 Finished = true;
             });
             thread.IsBackground = true;
@@ -138,7 +143,7 @@ namespace AoE2Lib.Games
 
             if (total_score <= 0)
             {
-                return true;
+                //return true;
             }
 
             var team = new int[5];

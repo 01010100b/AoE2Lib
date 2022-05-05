@@ -44,17 +44,14 @@ namespace AoE2Lib
             try
             {
                 process = Process.Start(exe, args);
-                while (!process.Responding)
-                {
-                    Thread.Sleep(1000);
-                }
+                process.WaitForInputIdle();
             }
             finally
             {
                 SetSpeed(old);
             }
             
-            Thread.Sleep(10 * 1000);
+            Thread.Sleep(10000);
 
             var instance = new AoEInstance(process, aimodule_port, autogame_port);
             instance.LoadAIModule();
@@ -63,6 +60,8 @@ namespace AoE2Lib
             {
                 instance.LoadAocAutoGame();
             }
+
+            Thread.Sleep(5000);
 
             return instance;
         }
@@ -87,6 +86,8 @@ namespace AoE2Lib
         private static extern bool VirtualProtectEx(IntPtr hProcess, IntPtr lpAddress, UIntPtr dwSize, uint flNewProtect, out uint lpflOldProtect);
         [DllImport("user32.dll")]
         private static extern bool SetForegroundWindow(IntPtr hWnd);
+        [DllImport("user32.dll")]
+        private static extern bool ShowWindowAsync(IntPtr hWnd, int nCmdShow);
 
         public bool HasExited => Process.HasExited;
         public GameVersion Version => Process.ProcessName.Contains("AoE2DE") ? GameVersion.DE : GameVersion.AOC;
@@ -107,8 +108,11 @@ namespace AoE2Lib
 
         public void Kill()
         {
-            Process.Kill();
-            Process.WaitForExit();
+            if (!HasExited)
+            {
+                Process.Kill();
+                Process.WaitForExit();
+            }
         }
 
         public void StartBot(Bot bot, int player)
@@ -117,14 +121,25 @@ namespace AoE2Lib
             bot.Start(player, new IPEndPoint(IPAddress.Loopback, AimodulePort), Version);
         }
 
-        public void StartGame(Game game)
+        public void StartGame(Game game, bool minimized = false)
         {
             LoadAocAutoGame();
-            game.Start(new IPEndPoint(IPAddress.Loopback, AutoGamePort));
+            game.Start(new IPEndPoint(IPAddress.Loopback, AutoGamePort), minimized);
 
             if (game.GameType == GameType.SCENARIO)
             {
                 SendKeys("{ENTER}");
+            }
+
+            Thread.Sleep(1000);
+
+            if (minimized)
+            {
+                Minimize();
+            }
+            else
+            {
+                Restore();
             }
         }
 
@@ -203,10 +218,41 @@ namespace AoE2Lib
         {
             Process.WaitForInputIdle();
 
-            if (SetForegroundWindow(WindowHandle))
+            if (!WindowHandle.Equals(IntPtr.Zero))
             {
-                Debug.WriteLine($"sending keys {keys}");
-                System.Windows.Forms.SendKeys.SendWait(keys);
+                if (SetForegroundWindow(WindowHandle))
+                {
+                    Debug.WriteLine($"sending keys to window {keys}");
+                    System.Windows.Forms.SendKeys.SendWait(keys);
+                }
+            }
+        }
+
+        public void Minimize()
+        {
+            Process.WaitForInputIdle();
+
+            if (!WindowHandle.Equals(IntPtr.Zero))
+            {
+                if (SetForegroundWindow(WindowHandle))
+                {
+                    Debug.WriteLine("minimizing window");
+                    ShowWindowAsync(WindowHandle, 2);
+                }
+            }
+        }
+
+        public void Restore()
+        {
+            Process.WaitForInputIdle();
+
+            if (!WindowHandle.Equals(IntPtr.Zero))
+            {
+                if (SetForegroundWindow(WindowHandle))
+                {
+                    Debug.WriteLine("restoring window");
+                    ShowWindowAsync(WindowHandle, 9);
+                }
             }
         }
     }
