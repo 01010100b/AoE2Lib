@@ -13,7 +13,7 @@ namespace AoE2Lib.Bots
         public TimeSpan LastUpdateGameTime { get; private set; } = TimeSpan.MinValue;
         public TimeSpan FirstUpdateGameTime { get; private set; } = TimeSpan.MinValue;
         public int TimesUpdated { get; private set; } = 0;
-        public int LastUpdateTick { get; private set; } = -1;
+        public int LastUpdateTick { get; private set; } = int.MinValue;
 
         protected readonly Bot Bot;
         private readonly Command Command = new Command();

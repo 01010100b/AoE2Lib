@@ -16,43 +16,44 @@ namespace Unary.Learning
                 new Scenario()
                 {
                     ScenarioName = "TRM range 4v4 no ballistics",
-                    PerfectScore = 250,
+                    PerfectScore = 336,
                     Civilization = Civilization.FRANKS
                 },
                 new Scenario()
                 {
                     ScenarioName = "TRM range 5v5 no ballistics",
-                    PerfectScore = 250,
+                    PerfectScore = 336,
                     Civilization = Civilization.FRANKS
                 },
                 new Scenario()
                 {
                     ScenarioName = "TRM range 6v6 no ballistics",
-                    PerfectScore = 250,
+                    PerfectScore = 336,
                     Civilization = Civilization.BRITONS
                 },
                 new Scenario()
                 {
                     ScenarioName = "TRM range 7v7 ballistics",
-                    PerfectScore = 250,
+                    PerfectScore = 336,
                     Civilization = Civilization.FRANKS
                 },
                 new Scenario()
                 {
                     ScenarioName = "TRM range 8v8 ballistics",
-                    PerfectScore = 250,
+                    PerfectScore = 336,
                     Civilization = Civilization.BYZANTINES
                 },
                 new Scenario()
                 {
                     ScenarioName = "TRM range 10v10 ballistics",
-                    PerfectScore = 250,
+                    PerfectScore = 336,
                     Civilization = Civilization.BRITONS
                 }
             };
 
             foreach (var scenario in scenarios)
             {
+                scenario.HighResources = true;
                 scenario.MapExplored = true;
                 scenario.TimeLimit = 1200;
             }
@@ -63,6 +64,7 @@ namespace Unary.Learning
         public string ScenarioName { get; set; }
         public double PerfectScore { get; set; }
         public Civilization Civilization { get; set; }
+        public bool HighResources { get; set; }
         public bool MapExplored { get; set; }
         public int TimeLimit { get; set; }
         public string OpponentAiFile { get; set; }
@@ -76,7 +78,7 @@ namespace Unary.Learning
                 MapType = MapType.RANDOM_MAP,
                 MapSize = MapSize.TINY,
                 Difficulty = Difficulty.HARD,
-                StartingResources = StartingResources.STANDARD,
+                StartingResources = HighResources ? StartingResources.HIGH : StartingResources.STANDARD,
                 PopulationLimit = 200,
                 RevealMap = MapExplored ? RevealMap.EXPLORED : RevealMap.NORMAL,
                 StartingAge = StartingAge.STANDARD,

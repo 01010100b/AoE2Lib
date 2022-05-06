@@ -126,8 +126,10 @@ namespace Unary.Behaviours
             }
             else
             {
-                AddBehaviour(new MicroBehaviour());
-                AddBehaviour(new CombatRangedBehaviour());
+                if (Unit[ObjectData.RANGE] > 2)
+                {
+                    AddBehaviour(new CombatRangedBehaviour());
+                }
             }
         }
     }

@@ -27,13 +27,6 @@ namespace Unary
         public UnitsManager UnitsManager { get; private set; }
         public ResourcesManager ResourcesManager { get; private set; }
 
-        public OldMapManager OldMapManager { get; private set; }
-        public OldBuildingManager OldBuildingManager { get; private set; }
-        public OldEconomyManager OldEconomyManager { get; private set; }
-        public OldMilitaryManager OldMilitaryManager { get; private set; }
-        public OldUnitsManager OldUnitsManager { get; private set; }
-        public OldProductionManager OldProductionManager { get; private set; }
-
         private readonly List<Command> Commands = new();
         private bool ChattedOK { get; set; } = false;
         
@@ -72,13 +65,6 @@ namespace Unary
             UnitsManager = new(this);
             ResourcesManager = new(this);
 
-            OldMapManager = new(this);
-            OldBuildingManager = new(this);
-            OldEconomyManager = new(this);
-            OldMilitaryManager = new(this);
-            OldUnitsManager = new(this);
-            OldProductionManager = new(this);
-
             ChattedOK = false;
         }
 
@@ -111,34 +97,6 @@ namespace Unary
             sw.Restart();
             ResourcesManager.Update();
             Log.Info($"Resources Manager took {sw.ElapsedMilliseconds} ms");
-
-            // old
-            /*
-            sw.Restart();
-            OldMapManager.Update();
-            Log.Info($"Old Map Manager took {sw.ElapsedMilliseconds} ms");
-
-            sw.Restart();
-            OldBuildingManager.Update();
-            Log.Info($"Old Building Manager took {sw.ElapsedMilliseconds} ms");
-
-            sw.Restart();
-            OldEconomyManager.Update();
-            Log.Info($"Old Economy Manager took {sw.ElapsedMilliseconds} ms");
-
-            sw.Restart();
-            OldMilitaryManager.Update();
-            Log.Info($"Old Military Manager took {sw.ElapsedMilliseconds} ms");
-            
-            sw.Restart();
-            OldUnitsManager.Update();
-            Log.Info($"Old Units Manager took {sw.ElapsedMilliseconds} ms");
-            
-            sw.Restart();
-            OldProductionManager.Update();
-            Log.Info($"Old Production Manager took {sw.ElapsedMilliseconds} ms");
-            */
-            sw.Stop();
 
             if (ChattedOK == false && GameState.GameTime.TotalSeconds >= 10 + PlayerNumber)
             {

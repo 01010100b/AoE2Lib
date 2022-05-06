@@ -54,6 +54,24 @@ namespace AoE2Lib.Bots.GameElements
             return GetTile(position.PointX, position.PointY);
         }
 
+        public bool TryGetTile(int x, int y, out Tile tile)
+        {
+            if (IsOnMap(x, y))
+            {
+                tile = Tiles[GetIndex(x, y)];
+
+                return true;
+            }
+            else
+            {
+                tile = default;
+
+                return false;
+            }
+        }
+
+        public bool TryGetTile(Position position, out Tile tile) => TryGetTile(position.PointX, position.PointY, out tile);
+
         public IEnumerable<Tile> GetTiles()
         {
             if (Tiles == null)

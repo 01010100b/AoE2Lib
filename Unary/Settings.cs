@@ -20,6 +20,6 @@ namespace Unary
         public double DropsiteMaxResourceRange { get; set; } = 7;
         public double CombatRangedShootChance { get; set; } = 0.8;
         public double CombatRangedMinRangeFraction { get; set; } = 0.8;
-        public int[] CombatRangedMovementBiases { get; set; } = new int[] { 3, 5, 7 };
+        public int CombatRangedMovementBias { get; set; } = 5;
     }
 }

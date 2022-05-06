@@ -34,3 +34,16 @@ micro test results
 2022-05-05 06:22:35Z: INFO: Unary UI: Test TRM range 7v7 ballistics against ArcherMicroTest_E: 86.64%
 2022-05-05 06:22:35Z: INFO: Unary UI: Test TRM range 8v8 ballistics against ArcherMicroTest_E: 68.08%
 2022-05-05 06:22:35Z: INFO: Unary UI: Test TRM range 10v10 ballistics against ArcherMicroTest_E: 7.92%
+
+2022-05-06 05:56:15Z: INFO: Unary UI: Test TRM range 4v4 no ballistics against Null: 64.96%
+2022-05-06 05:56:15Z: INFO: Unary UI: Test TRM range 5v5 no ballistics against Null: 80.64%
+2022-05-06 05:56:15Z: INFO: Unary UI: Test TRM range 6v6 no ballistics against Null: 94.08%
+2022-05-06 05:56:15Z: INFO: Unary UI: Test TRM range 7v7 ballistics against Null: 92.96%
+2022-05-06 05:56:15Z: INFO: Unary UI: Test TRM range 8v8 ballistics against Null: 104.16%
+2022-05-06 05:56:15Z: INFO: Unary UI: Test TRM range 10v10 ballistics against Null: 106.40%
+2022-05-06 05:56:15Z: INFO: Unary UI: Test TRM range 4v4 no ballistics against ArcherMicroTest_E: -57.60%
+2022-05-06 05:56:15Z: INFO: Unary UI: Test TRM range 5v5 no ballistics against ArcherMicroTest_E: 20.80%
+2022-05-06 05:56:15Z: INFO: Unary UI: Test TRM range 6v6 no ballistics against ArcherMicroTest_E: 33.12%
+2022-05-06 05:56:15Z: INFO: Unary UI: Test TRM range 7v7 ballistics against ArcherMicroTest_E: 4.00%
+2022-05-06 05:56:15Z: INFO: Unary UI: Test TRM range 8v8 ballistics against ArcherMicroTest_E: 48.80%
+2022-05-06 05:56:15Z: INFO: Unary UI: Test TRM range 10v10 ballistics against ArcherMicroTest_E: -48.64%

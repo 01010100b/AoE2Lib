@@ -9,8 +9,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Unary.UnitControllers;
-using Unary.UnitControllers.VillagerControllers;
 using static Unary.Managers.ResourcesManager;
 using static Unary.Strategies.Strategy.BuildOrderCommand;
 
@@ -194,7 +192,7 @@ namespace Unary.Strategies
 
                         if (unit.IsBuilding)
                         {
-                            var possible_placements = Unary.TownManager.GetDefaultSortedPossiblePlacements(unit);
+                            var possible_placements = Unary.TownManager.GetPossiblePlacements(unit);
                             Unary.ResourcesManager.Build(unit, possible_placements, req[unit], 1, Priority.PRODUCTION_BUILDING);
                         }
                         else

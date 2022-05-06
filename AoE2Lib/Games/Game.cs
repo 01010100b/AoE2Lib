@@ -13,6 +13,8 @@ namespace AoE2Lib.Games
 {
     public class Game
     {
+        // for an explanation for these values, see the aoc-auto-game repo: https://github.com/FLWL/aoc-auto-game
+
         public GameType GameType { get; set; } = GameType.RANDOM_MAP;
         public string ScenarioName { get; set; } = "";
         public MapType MapType { get; set; } = MapType.ARABIA;

@@ -241,7 +241,7 @@ namespace Unary
                     Thread.Sleep(1000);
                 }
 
-                Message($"Ran game {result.Value.ScenarioName} against {result.Value.OpponentAiFile} score {result.Value.GetScore(result.Key):P}.");
+                Message($"Ran game {result.Value.ScenarioName} against {result.Value.OpponentAiFile} score {result.Value.GetScore(result.Key):P0}.");
             }
 
             Message("All games finished");
@@ -264,7 +264,7 @@ namespace Unary
 
             foreach (var score in scores)
             {
-                Message($"Test {score.Key.Key} against {score.Key.Value}: {score.Value:P}");
+                Message($"Test {score.Key.Key} against {score.Key.Value}: {score.Value:P0}");
             }
         }
     }

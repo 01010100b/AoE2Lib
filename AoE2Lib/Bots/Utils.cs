@@ -30,20 +30,6 @@ namespace AoE2Lib.Bots
             return new Rectangle(x_start, y_start, x_end - x_start + 1, y_end - y_start + 1);
         }
 
-        public static Dictionary<TNode, int> GetAllPathDistances<TNode>(IEnumerable<TNode> initial, Func<TNode, IEnumerable<TNode>> get_neighbours, int max_distance = int.MaxValue)
-        {
-            var dict = new Dictionary<TNode, int>();
-            
-            foreach (var node in initial)
-            {
-                dict.Add(node, 0);
-            }
-
-            AddAllPathDistances(dict, get_neighbours, max_distance);
-
-            return dict;
-        }
-
         public static void AddAllPathDistances<TNode>(Dictionary<TNode, int> distances, Func<TNode, IEnumerable<TNode>> get_neighbours, int max_distance = int.MaxValue)
         {
             var queue = new Queue<KeyValuePair<TNode, int>>();
@@ -78,11 +64,6 @@ namespace AoE2Lib.Bots
                     }
                 }
             }
-        }
-
-        public static List<TNode> GetPath<TNode>(TNode from, TNode to, Func<TNode, IEnumerable<TNode>> get_neighbours, Func<TNode, double> get_cost, Func<TNode, TNode, double> get_heuristic)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -6,6 +6,8 @@ namespace AoE2Lib.Games
 {
     public class Player
     {
+        // for an explanation for these values, see the aoc-auto-game repo: https://github.com/FLWL/aoc-auto-game
+
         public int PlayerNumber { get; set; }
         public bool IsHuman { get; set; }
         public string AiFile { get; set; }

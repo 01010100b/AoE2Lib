@@ -56,7 +56,7 @@ namespace Unary.Behaviours
 
             var my_pos = Controller.Unit.Position;
             var delta_pos = 2 * (Target.Position - my_pos).Normalize().Rotate(Math.PI / 2);
-            var bias = settings.CombatRangedMovementBiases[GetHashCode() % settings.CombatRangedMovementBiases.Length];
+            var bias = settings.CombatRangedMovementBias;
             var ballistics = Target[ObjectData.BALLISTICS] > 0;
             
             if (ballistics)

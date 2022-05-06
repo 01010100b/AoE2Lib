@@ -76,15 +76,15 @@ namespace Unary.Managers
 
             sw.Restart();
             UpdateCliffs();
-            Unary.Log.Debug($"SitRepManager.UpdateCliffs took {sw.Elapsed.TotalMilliseconds} ms");
+            Unary.Log.Debug($"SitRepManager.UpdateCliffs took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
             UpdateAccessibilities();
-            Unary.Log.Debug($"SitRepManager.UpdateAccessibilities took {sw.Elapsed.TotalMilliseconds} ms");
+            Unary.Log.Debug($"SitRepManager.UpdateAccessibilities took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
             UpdatePathDistances();
-            Unary.Log.Debug($"SitRepManager.UpdatePathDistances took {sw.Elapsed.TotalMilliseconds} ms");
+            Unary.Log.Debug($"SitRepManager.UpdatePathDistances took {sw.ElapsedMilliseconds} ms");
         }
 
         private void UpdateCliffs()
@@ -116,7 +116,7 @@ namespace Unary.Managers
 
             CliffFindCommands.Clear();
 
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 2000; i++)
             {
                 if (CliffFindCommands.Count >= 100)
                 {
@@ -177,9 +177,8 @@ namespace Unary.Managers
                         {
                             for (int y = footprint.Y; y < footprint.Bottom; y++)
                             {
-                                if (map.IsOnMap(x, y))
+                                if (map.TryGetTile(x, y, out var t))
                                 {
-                                    var t = map.GetTile(x, y);
                                     var sr = this[t];
 
                                     if (blocks_construction)
@@ -196,25 +195,16 @@ namespace Unary.Managers
                         }
                     }
 
-                    if (blocks_construction)
+                    if (blocks_construction && unit.IsBuilding)
                     {
-                        if (unit[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || unit[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING)
+                        foreach (var zone in Unary.TownManager.GetExclusionZones(unit))
                         {
-                            var exclusion = 1;
-                            if (Unary.GameState.TryGetUnitType(unit[ObjectData.BASE_TYPE], out var type))
+                            for (int x = zone.X; x < zone.Right; x++)
                             {
-                                exclusion = Unary.TownManager.GetDefaultExclusionZone(type);
-                            }
-
-                            var footprint = Utils.GetUnitFootprint(unit.Tile.X, unit.Tile.Y, size, size, exclusion);
-
-                            for (int x = footprint.X; x < footprint.Right; x++)
-                            {
-                                for (int y = footprint.Y; y < footprint.Bottom; y++)
+                                for (int y = zone.Y; y < zone.Bottom; y++)
                                 {
-                                    if (map.IsOnMap(x, y))
+                                    if (map.TryGetTile(x, y, out var t))
                                     {
-                                        var t = map.GetTile(x, y);
                                         var sr = this[t];
 
                                         sr.IsConstructionExcluded = true;

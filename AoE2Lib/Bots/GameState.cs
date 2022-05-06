@@ -631,6 +631,8 @@ namespace AoE2Lib.Bots
                 if (tile.Explored)
                 {
                     position = tile.Position;
+
+                    break;
                 }
             }
 
@@ -685,7 +687,7 @@ namespace AoE2Lib.Bots
             }
 
             sw.Stop();
-            Bot.Log.Debug($"DoAutoFindUnits took {sw.ElapsedMilliseconds} ms");
+            Bot.Log.Debug($"GameState.DoAutoFindUnits took {sw.ElapsedMilliseconds} ms");
         }
 
         private void DoAutoUpdateUnits()
@@ -735,7 +737,7 @@ namespace AoE2Lib.Bots
             }
 
             sw.Stop();
-            Bot.Log.Debug($"DoAutoUpdateUnits took {sw.ElapsedMilliseconds} ms");
+            Bot.Log.Debug($"GameState.DoAutoUpdateUnits took {sw.ElapsedMilliseconds} ms");
         }
     }
 }

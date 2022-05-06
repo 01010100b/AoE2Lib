@@ -3,6 +3,7 @@ using AoE2Lib.Bots;
 using AoE2Lib.Bots.GameElements;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,9 @@ namespace Unary.Managers
     // building placements, housing
     internal class TownManager : Manager
     {
+        private static readonly Point[] TC_FARM_DELTAS = { new Point(2, 3), new Point(-1, 3), new Point(3, 0), new Point(3, -3), new Point(-4, 2), new Point(-4, -1), new Point(0, -4), new Point(-3, -4) };
+        private static readonly Point[] MILL_FARM_DELTAS = { new Point(-1, 2), new Point(2, -1), new Point(2, 2), new Point(-3, -1), new Point(-1, -3) };
+
         public TownManager(Unary unary) : base(unary)
         {
 
@@ -22,24 +26,37 @@ namespace Unary.Managers
 
         public bool IsInside(Tile tile) => InsideTiles.Contains(tile);
 
-        public List<Tile> GetDefaultSortedPossiblePlacements(UnitType building)
+        public List<Tile> GetPossiblePlacements(UnitType building)
         {
-            var tiles = InsideTiles.ToList();
-            var pos = Unary.GameState.MyPosition;
+            var tiles = new List<Tile>();
 
-            tiles.Sort((a, b) => a.Position.DistanceTo(pos).CompareTo(b.Position.DistanceTo(pos)));
+            foreach (var tile in InsideTiles)
+            {
+                if (Unary.GameState.Tick > 10 || Unary.GameState.MyPosition.DistanceTo(tile.Center) > 8)
+                {
+                    tiles.Add(tile);
+                }
+            }
 
             return tiles;
         }
 
-        public int GetDefaultExclusionZone(UnitType building)
+        internal IEnumerable<Rectangle> GetExclusionZones(Unit building)
         {
-            return 1;
+            var size = Unary.Mod.GetBuildingWidth(building[ObjectData.BASE_TYPE]);
+            var exclusion = 1;
+
+            yield return Utils.GetUnitFootprint(building.Position.PointX, building.Position.PointY, size, size, exclusion);
         }
 
-        public List<Tile> GetBuildingPlacements(UnitType building, IEnumerable<Tile> sorted_possible_placements)
+        internal List<Tile> GetBuildingPlacements(UnitType building, IEnumerable<Tile> possible_placements)
         {
             var placements = new List<Tile>();
+            var sorted_possible_placements = possible_placements.ToList();
+
+            // TODO sort per building type
+            var my_pos = Unary.GameState.MyPosition;
+            sorted_possible_placements.Sort((a, b) => a.Position.DistanceTo(my_pos).CompareTo(b.Position.DistanceTo(my_pos)));
 
             foreach (var tile in sorted_possible_placements)
             {
@@ -69,10 +86,7 @@ namespace Unary.Managers
 
             foreach (var tile in Unary.GameState.Map.GetTilesInRange(Unary.GameState.MyPosition, 30))
             {
-                if (Unary.GameState.Tick > 10 || Unary.GameState.MyPosition.DistanceTo(tile.Center) > 8)
-                {
-                    InsideTiles.Add(tile);
-                }
+                InsideTiles.Add(tile);
             }
         }
 
@@ -100,7 +114,7 @@ namespace Unary.Managers
 
                 if (population_room > 0 && housing_room < margin && house.Pending < pending)
                 {
-                    var placements = GetDefaultSortedPossiblePlacements(house);
+                    var placements = GetPossiblePlacements(house);
                     Unary.ResourcesManager.Build(house, placements, int.MaxValue, pending, Priority.HOUSING);
                 }
             }

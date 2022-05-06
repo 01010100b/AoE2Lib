@@ -30,11 +30,16 @@ namespace Unary.Behaviours
 
             if (!perform)
             {
+                Target = null;
+                Backup = null;
+                _NearbyUnits.Clear();
+
                 return false;
             }
 
             if (ShouldRareTick(13))
             {
+                Controller.Unit.RequestUpdate();
                 _NearbyUnits.Clear();
 
                 foreach (var unit in Controller.Unary.GameState.GetPlayers().SelectMany(p => p.Units).Where(u => u.Targetable))
