@@ -29,20 +29,21 @@ namespace Protos.Expert {
             "DHBsYXllck51bWJlchgBIAEoBRImCghjb21tYW5kcxgCIAMoCzIULmdvb2ds",
             "ZS5wcm90b2J1Zi5BbnkiUAoRQ29tbWFuZFJlc3VsdExpc3QSFAoMcGxheWVy",
             "TnVtYmVyGAEgASgFEiUKB3Jlc3VsdHMYAiADKAsyFC5nb29nbGUucHJvdG9i",
-            "dWYuQW55IoEBChJDb25kaXRpb25hbENvbW1hbmQSIgoEZmFjdBgBIAEoCzIU",
-            "Lmdvb2dsZS5wcm90b2J1Zi5BbnkSEQoJY29tcGFyZU9wGAIgASgJEg0KBXZh",
-            "bHVlGAMgASgFEiUKB2NvbW1hbmQYBCABKAsyFC5nb29nbGUucHJvdG9idWYu",
-            "QW55Ik8KGENvbmRpdGlvbmFsQ29tbWFuZFJlc3VsdBINCgVmaXJlZBgBIAEo",
-            "CBIkCgZyZXN1bHQYAiABKAsyFC5nb29nbGUucHJvdG9idWYuQW55MmEKCUV4",
-            "cGVydEFQSRJUChJFeGVjdXRlQ29tbWFuZExpc3QSGi5wcm90b3MuZXhwZXJ0",
-            "LkNvbW1hbmRMaXN0GiAucHJvdG9zLmV4cGVydC5Db21tYW5kUmVzdWx0TGlz",
-            "dCIAYgZwcm90bzM="));
+            "dWYuQW55Ir8BChJDb25kaXRpb25hbENvbW1hbmQSIgoEZmFjdBgBIAEoCzIU",
+            "Lmdvb2dsZS5wcm90b2J1Zi5BbnkSEQoJY29tcGFyZU9wGAIgASgJEhYKDGlu",
+            "Q29uc3RWYWx1ZRgDIAEoBUgAEhUKC2luR29hbFZhbHVlGAQgASgFSAASEwoJ",
+            "aW5TblZhbHVlGAUgASgFSAASJQoHY29tbWFuZBgGIAEoCzIULmdvb2dsZS5w",
+            "cm90b2J1Zi5BbnlCBwoFdmFsdWUiTwoYQ29uZGl0aW9uYWxDb21tYW5kUmVz",
+            "dWx0Eg0KBWZpcmVkGAEgASgIEiQKBnJlc3VsdBgCIAEoCzIULmdvb2dsZS5w",
+            "cm90b2J1Zi5BbnkyYQoJRXhwZXJ0QVBJElQKEkV4ZWN1dGVDb21tYW5kTGlz",
+            "dBIaLnByb3Rvcy5leHBlcnQuQ29tbWFuZExpc3QaIC5wcm90b3MuZXhwZXJ0",
+            "LkNvbW1hbmRSZXN1bHRMaXN0IgBiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.AnyReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.CommandList), global::Protos.Expert.CommandList.Parser, new[]{ "PlayerNumber", "Commands" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.CommandResultList), global::Protos.Expert.CommandResultList.Parser, new[]{ "PlayerNumber", "Results" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.ConditionalCommand), global::Protos.Expert.ConditionalCommand.Parser, new[]{ "Fact", "CompareOp", "Value", "Command" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.ConditionalCommand), global::Protos.Expert.ConditionalCommand.Parser, new[]{ "Fact", "CompareOp", "InConstValue", "InGoalValue", "InSnValue", "Command" }, new[]{ "Value" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protos.Expert.ConditionalCommandResult), global::Protos.Expert.ConditionalCommandResult.Parser, new[]{ "Fired", "Result" }, null, null, null, null)
           }));
     }
@@ -542,8 +543,19 @@ namespace Protos.Expert {
     public ConditionalCommand(ConditionalCommand other) : this() {
       fact_ = other.fact_ != null ? other.fact_.Clone() : null;
       compareOp_ = other.compareOp_;
-      value_ = other.value_;
       command_ = other.command_ != null ? other.command_.Clone() : null;
+      switch (other.ValueCase) {
+        case ValueOneofCase.InConstValue:
+          InConstValue = other.InConstValue;
+          break;
+        case ValueOneofCase.InGoalValue:
+          InGoalValue = other.InGoalValue;
+          break;
+        case ValueOneofCase.InSnValue:
+          InSnValue = other.InSnValue;
+          break;
+      }
+
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -577,20 +589,44 @@ namespace Protos.Expert {
       }
     }
 
-    /// <summary>Field number for the "value" field.</summary>
-    public const int ValueFieldNumber = 3;
-    private int value_;
+    /// <summary>Field number for the "inConstValue" field.</summary>
+    public const int InConstValueFieldNumber = 3;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int Value {
-      get { return value_; }
+    public int InConstValue {
+      get { return valueCase_ == ValueOneofCase.InConstValue ? (int) value_ : 0; }
       set {
         value_ = value;
+        valueCase_ = ValueOneofCase.InConstValue;
+      }
+    }
+
+    /// <summary>Field number for the "inGoalValue" field.</summary>
+    public const int InGoalValueFieldNumber = 4;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int InGoalValue {
+      get { return valueCase_ == ValueOneofCase.InGoalValue ? (int) value_ : 0; }
+      set {
+        value_ = value;
+        valueCase_ = ValueOneofCase.InGoalValue;
+      }
+    }
+
+    /// <summary>Field number for the "inSnValue" field.</summary>
+    public const int InSnValueFieldNumber = 5;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int InSnValue {
+      get { return valueCase_ == ValueOneofCase.InSnValue ? (int) value_ : 0; }
+      set {
+        value_ = value;
+        valueCase_ = ValueOneofCase.InSnValue;
       }
     }
 
     /// <summary>Field number for the "command" field.</summary>
-    public const int CommandFieldNumber = 4;
+    public const int CommandFieldNumber = 6;
     private global::Google.Protobuf.WellKnownTypes.Any command_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -599,6 +635,28 @@ namespace Protos.Expert {
       set {
         command_ = value;
       }
+    }
+
+    private object value_;
+    /// <summary>Enum of possible cases for the "value" oneof.</summary>
+    public enum ValueOneofCase {
+      None = 0,
+      InConstValue = 3,
+      InGoalValue = 4,
+      InSnValue = 5,
+    }
+    private ValueOneofCase valueCase_ = ValueOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ValueOneofCase ValueCase {
+      get { return valueCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearValue() {
+      valueCase_ = ValueOneofCase.None;
+      value_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -618,8 +676,11 @@ namespace Protos.Expert {
       }
       if (!object.Equals(Fact, other.Fact)) return false;
       if (CompareOp != other.CompareOp) return false;
-      if (Value != other.Value) return false;
+      if (InConstValue != other.InConstValue) return false;
+      if (InGoalValue != other.InGoalValue) return false;
+      if (InSnValue != other.InSnValue) return false;
       if (!object.Equals(Command, other.Command)) return false;
+      if (ValueCase != other.ValueCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -629,8 +690,11 @@ namespace Protos.Expert {
       int hash = 1;
       if (fact_ != null) hash ^= Fact.GetHashCode();
       if (CompareOp.Length != 0) hash ^= CompareOp.GetHashCode();
-      if (Value != 0) hash ^= Value.GetHashCode();
+      if (valueCase_ == ValueOneofCase.InConstValue) hash ^= InConstValue.GetHashCode();
+      if (valueCase_ == ValueOneofCase.InGoalValue) hash ^= InGoalValue.GetHashCode();
+      if (valueCase_ == ValueOneofCase.InSnValue) hash ^= InSnValue.GetHashCode();
       if (command_ != null) hash ^= Command.GetHashCode();
+      hash ^= (int) valueCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -657,12 +721,20 @@ namespace Protos.Expert {
         output.WriteRawTag(18);
         output.WriteString(CompareOp);
       }
-      if (Value != 0) {
+      if (valueCase_ == ValueOneofCase.InConstValue) {
         output.WriteRawTag(24);
-        output.WriteInt32(Value);
+        output.WriteInt32(InConstValue);
+      }
+      if (valueCase_ == ValueOneofCase.InGoalValue) {
+        output.WriteRawTag(32);
+        output.WriteInt32(InGoalValue);
+      }
+      if (valueCase_ == ValueOneofCase.InSnValue) {
+        output.WriteRawTag(40);
+        output.WriteInt32(InSnValue);
       }
       if (command_ != null) {
-        output.WriteRawTag(34);
+        output.WriteRawTag(50);
         output.WriteMessage(Command);
       }
       if (_unknownFields != null) {
@@ -683,12 +755,20 @@ namespace Protos.Expert {
         output.WriteRawTag(18);
         output.WriteString(CompareOp);
       }
-      if (Value != 0) {
+      if (valueCase_ == ValueOneofCase.InConstValue) {
         output.WriteRawTag(24);
-        output.WriteInt32(Value);
+        output.WriteInt32(InConstValue);
+      }
+      if (valueCase_ == ValueOneofCase.InGoalValue) {
+        output.WriteRawTag(32);
+        output.WriteInt32(InGoalValue);
+      }
+      if (valueCase_ == ValueOneofCase.InSnValue) {
+        output.WriteRawTag(40);
+        output.WriteInt32(InSnValue);
       }
       if (command_ != null) {
-        output.WriteRawTag(34);
+        output.WriteRawTag(50);
         output.WriteMessage(Command);
       }
       if (_unknownFields != null) {
@@ -707,8 +787,14 @@ namespace Protos.Expert {
       if (CompareOp.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(CompareOp);
       }
-      if (Value != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Value);
+      if (valueCase_ == ValueOneofCase.InConstValue) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InConstValue);
+      }
+      if (valueCase_ == ValueOneofCase.InGoalValue) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InGoalValue);
+      }
+      if (valueCase_ == ValueOneofCase.InSnValue) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(InSnValue);
       }
       if (command_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Command);
@@ -734,15 +820,24 @@ namespace Protos.Expert {
       if (other.CompareOp.Length != 0) {
         CompareOp = other.CompareOp;
       }
-      if (other.Value != 0) {
-        Value = other.Value;
-      }
       if (other.command_ != null) {
         if (command_ == null) {
           Command = new global::Google.Protobuf.WellKnownTypes.Any();
         }
         Command.MergeFrom(other.Command);
       }
+      switch (other.ValueCase) {
+        case ValueOneofCase.InConstValue:
+          InConstValue = other.InConstValue;
+          break;
+        case ValueOneofCase.InGoalValue:
+          InGoalValue = other.InGoalValue;
+          break;
+        case ValueOneofCase.InSnValue:
+          InSnValue = other.InSnValue;
+          break;
+      }
+
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -770,10 +865,18 @@ namespace Protos.Expert {
             break;
           }
           case 24: {
-            Value = input.ReadInt32();
+            InConstValue = input.ReadInt32();
             break;
           }
-          case 34: {
+          case 32: {
+            InGoalValue = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            InSnValue = input.ReadInt32();
+            break;
+          }
+          case 50: {
             if (command_ == null) {
               Command = new global::Google.Protobuf.WellKnownTypes.Any();
             }
@@ -807,10 +910,18 @@ namespace Protos.Expert {
             break;
           }
           case 24: {
-            Value = input.ReadInt32();
+            InConstValue = input.ReadInt32();
             break;
           }
-          case 34: {
+          case 32: {
+            InGoalValue = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            InSnValue = input.ReadInt32();
+            break;
+          }
+          case 50: {
             if (command_ == null) {
               Command = new global::Google.Protobuf.WellKnownTypes.Any();
             }

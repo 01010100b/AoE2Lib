@@ -40,7 +40,7 @@ namespace AoE2Lib.Bots
             {
                 Fact = Any.Pack(fact),
                 CompareOp = op,
-                Value = value,
+                InConstValue = value,
                 Command = Any.Pack(command)
             };
 
@@ -55,7 +55,7 @@ namespace AoE2Lib.Bots
                 {
                     Fact = Any.Pack(fact),
                     CompareOp = op,
-                    Value = value,
+                    InConstValue = value,
                     Command = Any.Pack(message)
                 };
 

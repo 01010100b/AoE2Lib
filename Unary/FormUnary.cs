@@ -201,8 +201,7 @@ namespace Unary
             var games = new ConcurrentQueue<KeyValuePair<Game, Dictionary<int, Bot>>>();
             var results = new Dictionary<Game, Scenario>();
 
-            runner.RunMinimized = included_scenarios.Count == 0 && included_opponents.Count == 0;
-            runner.Start(games);
+            runner.Start(games, included_scenarios.Count == 0 && included_opponents.Count == 0);
             Message("runner started");
 
             for (int i = 0; i < GAMES_PER_SCENARIO; i++)

@@ -10,12 +10,12 @@ namespace AoE2Lib.Games
     public class InstanceRunner
     {
         public bool IsRunning => Thread != null;
-        public bool RunMinimized { get; set; } = false;
-
+        
         private readonly string Exe;
         private readonly string Args;
         private readonly double Speed;
         private ConcurrentQueue<KeyValuePair<Game, Dictionary<int, Bot>>> Games { get; set; }
+        private bool RunMinimized { get; set; } = false;
         private Thread Thread { get; set; }
         private volatile bool Stopping = false;
 
@@ -26,7 +26,7 @@ namespace AoE2Lib.Games
             Speed = speed;
         }
 
-        public void Start(ConcurrentQueue<KeyValuePair<Game, Dictionary<int, Bot>>> games)
+        public void Start(ConcurrentQueue<KeyValuePair<Game, Dictionary<int, Bot>>> games, bool minimized = false)
         {
             if (IsRunning)
             {
@@ -34,6 +34,7 @@ namespace AoE2Lib.Games
             }
 
             Games = games;
+            RunMinimized = minimized;
 
             Thread = new Thread(() => Run()) { IsBackground = true };
             Thread.Start();
