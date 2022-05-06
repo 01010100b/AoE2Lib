@@ -197,14 +197,12 @@ namespace Unary
             var included_opponents = new HashSet<string>() {  };
 
             var runner = new InstanceRunner(LabelExePath.Text);
-            var unary = new Unary(Program.Settings);
-            var bots = new Dictionary<int, Bot>() { { 1, unary } };
             var opponents = new[] { "Null", "ArcherMicroTest_E" };
-            var games = new ConcurrentQueue<Game>();
+            var games = new ConcurrentQueue<KeyValuePair<Game, Dictionary<int, Bot>>>();
             var results = new Dictionary<Game, Scenario>();
 
             runner.RunMinimized = included_scenarios.Count == 0 && included_opponents.Count == 0;
-            runner.Start(games, bots);
+            runner.Start(games);
             Message("runner started");
 
             for (int i = 0; i < GAMES_PER_SCENARIO; i++)
@@ -226,7 +224,9 @@ namespace Unary
                         scenario.OpponentAiFile = opponent;
 
                         var game = scenario.CreateGame("Null");
-                        games.Enqueue(game);
+                        var unary = new Unary(Program.Settings);
+                        var dict = new Dictionary<int, Bot>() { { 1, unary } };
+                        games.Enqueue(new KeyValuePair<Game, Dictionary<int, Bot>>(game, dict));
                         results.Add(game, scenario);
                     }
                 }

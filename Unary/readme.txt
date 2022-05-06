@@ -7,7 +7,7 @@ Installation
 ------------
 
 Unzip Unary anywhere you want except under the Program Files folder.
-Copy Unary.ai and Unary.per to your AoE2 scripts folder. 
+Copy Unary.ai and Unary.per from the Script\ folder to your AoE2 scripts folder. 
 
 Playing a game
 --------------

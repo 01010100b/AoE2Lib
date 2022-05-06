@@ -32,26 +32,18 @@ namespace AoE2Lib.Bots.GameElements
             return x >= 0 && x < Width && y >= 0 && y < Height;
         }
 
-        public bool IsOnMap(Position position)
-        {
-            return IsOnMap(position.PointX, position.PointY);
-        }
+        public bool IsOnMap(Position position) => IsOnMap(position.PointX, position.PointY);
 
-        public Tile GetTile(int x, int y)
+        public IEnumerable<Tile> GetTiles()
         {
-            if (!IsOnMap(x, y))
+            if (Tiles == null)
             {
-                throw new IndexOutOfRangeException($"Tile {x},{y} is not on map");
+                return Enumerable.Empty<Tile>();
             }
             else
             {
-                return Tiles[GetIndex(x, y)];
+                return Tiles;
             }
-        }
-
-        public Tile GetTile(Position position)
-        {
-            return GetTile(position.PointX, position.PointY);
         }
 
         public bool TryGetTile(int x, int y, out Tile tile)
@@ -72,18 +64,6 @@ namespace AoE2Lib.Bots.GameElements
 
         public bool TryGetTile(Position position, out Tile tile) => TryGetTile(position.PointX, position.PointY, out tile);
 
-        public IEnumerable<Tile> GetTiles()
-        {
-            if (Tiles == null)
-            {
-                return Enumerable.Empty<Tile>();
-            }
-            else
-            {
-                return Tiles;
-            }
-        }
-
         public IEnumerable<Tile> GetTilesInRange(Position position, double range)
         {
             var r = Math.Max(0, (int)Math.Ceiling(range) + 1);
@@ -96,10 +76,8 @@ namespace AoE2Lib.Bots.GameElements
             {
                 for (int y = y_min; y <= y_max; y++)
                 {
-                    if (IsOnMap(x, y))
+                    if (TryGetTile(x, y, out var tile))
                     {
-                        var tile = GetTile(x, y);
-
                         if (position.DistanceTo(tile.Center) <= range)
                         {
                             yield return tile;
@@ -139,12 +117,14 @@ namespace AoE2Lib.Bots.GameElements
             var tiles = responses[1].Unpack<GetTilesResult>().Tiles;
             foreach (var tile in tiles)
             {
-                var t = GetTile(tile.X, tile.Y);
-                t.Visibility = tile.Visibility;
-                if (tile.Visibility != 0)
+                if (TryGetTile(tile.X, tile.Y, out var t))
                 {
-                    t.Height = tile.Height;
-                    t.Terrain = tile.Terrain;
+                    t.Visibility = tile.Visibility;
+                    if (tile.Visibility != 0)
+                    {
+                        t.Height = tile.Height;
+                        t.Terrain = tile.Terrain;
+                    }
                 }
             }
         }

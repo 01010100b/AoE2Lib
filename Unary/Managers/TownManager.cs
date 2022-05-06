@@ -144,30 +144,30 @@ namespace Unary.Managers
             var size = Unary.Mod.GetBuildingWidth(building[ObjectData.BASE_TYPE]);
             var footprint = Utils.GetUnitFootprint(tile.X, tile.Y, size, size);
 
-            for (int x = footprint.Left; x <= footprint.Right; x++)
+            for (int x = footprint.X; x < footprint.Right; x++)
             {
-                for (int y = footprint.Top; y <= footprint.Bottom; y++)
+                for (int y = footprint.Y; y < footprint.Bottom; y++)
                 {
-                    if (!Unary.GameState.Map.IsOnMap(x, y))
+                    if (Unary.GameState.Map.TryGetTile(x, y, out var t))
                     {
-                        return false;
+                        if (land && !t.IsOnLand)
+                        {
+                            return false;
+                        }
+
+                        var sr = Unary.SitRepManager[t];
+
+                        if (sr.IsConstructionBlocked)
+                        {
+                            return false;
+                        }
+
+                        if (exclusion && sr.IsConstructionExcluded)
+                        {
+                            return false;
+                        }
                     }
-
-                    var t = Unary.GameState.Map.GetTile(x, y);
-
-                    if (land && !t.IsOnLand)
-                    {
-                        return false;
-                    }
-
-                    var sr = Unary.SitRepManager[t];
-
-                    if (sr.IsConstructionBlocked)
-                    {
-                        return false;
-                    }
-
-                    if (exclusion && sr.IsConstructionExcluded)
+                    else
                     {
                         return false;
                     }

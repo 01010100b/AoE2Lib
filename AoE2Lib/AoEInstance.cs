@@ -34,6 +34,13 @@ namespace AoE2Lib
                 throw new NotSupportedException("Changing auto game port from default not supported yet.");
             }
 
+            if (args == null)
+            {
+                args = "";
+            }
+
+            //args += " -runmultipleinstances";
+
             Process process = null;
 
             var sp = (int)Math.Round(speed * 10);

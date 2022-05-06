@@ -36,27 +36,21 @@ namespace AoE2Lib.Bots.GameElements
             Bot.GameState.AddCommand(command);
         }
 
-        public void OldResearch(int priority = 10, bool blocking = true)
-        {
-            if (Updated == false || State != ResearchState.AVAILABLE)
-            {
-                return;
-            }
-            var prod = new ResearchTask(Id, priority, blocking, WoodCost, FoodCost, GoldCost, StoneCost, -1, -1);
-
-            Bot.GameState.AddProductionTask(prod);
-        }
-
         protected override IEnumerable<IMessage> RequestElementUpdate()
         {
+            const int GL_FOOD = Bot.GOAL_START;
+            const int GL_WOOD = Bot.GOAL_START + 1;
+            const int GL_STONE = Bot.GOAL_START + 2;
+            const int GL_GOLD = Bot.GOAL_START + 3;
+
             yield return new UpResearchStatus() { InConstTechId = Id };
             yield return new CanResearch() { InConstTechId = Id };
-            yield return new UpSetupCostData() { InConstResetCost = 1, IoGoalId = 100 };
+            yield return new UpSetupCostData() { InConstResetCost = 1, IoGoalId = GL_FOOD };
             yield return new UpAddResearchCost() { InConstTechId = Id, InConstValue = 1 };
-            yield return new Goal() { InConstGoalId = 100 };
-            yield return new Goal() { InConstGoalId = 101 };
-            yield return new Goal() { InConstGoalId = 102 };
-            yield return new Goal() { InConstGoalId = 103 };
+            yield return new Goal() { InConstGoalId = GL_FOOD };
+            yield return new Goal() { InConstGoalId = GL_WOOD };
+            yield return new Goal() { InConstGoalId = GL_STONE };
+            yield return new Goal() { InConstGoalId = GL_GOLD };
         }
 
         protected override void UpdateElement(IReadOnlyList<Any> responses)

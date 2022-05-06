@@ -125,21 +125,23 @@ namespace Unary.Managers
 
                 var x = Unary.Rng.Next(Unary.GameState.Map.Width);
                 var y = Unary.Rng.Next(Unary.GameState.Map.Height);
-                var tile = Unary.GameState.Map.GetTile(x, y);
 
-                if (tile.Explored && !Cliffs.ContainsKey(tile) && !CliffFindCommands.ContainsKey(tile))
+                if (Unary.GameState.Map.TryGetTile(x, y, out var tile))
                 {
-                    var command = new Command();
-                    command.Add(new SetGoal() { InConstGoalId = Bot.GOAL_START, InConstValue = tile.X });
-                    command.Add(new SetGoal() { InConstGoalId = Bot.GOAL_START + 1, InConstValue = tile.Y });
-
-                    for (int id = CLIFF_START; id <= CLIFF_END; id++)
+                    if (tile.Explored && !Cliffs.ContainsKey(tile) && !CliffFindCommands.ContainsKey(tile))
                     {
-                        command.Add(new UpPointContains() { InConstObjectId = id, InGoalPoint = Bot.GOAL_START });
-                    }
+                        var command = new Command();
+                        command.Add(new SetGoal() { InConstGoalId = Bot.GOAL_START, InConstValue = tile.X });
+                        command.Add(new SetGoal() { InConstGoalId = Bot.GOAL_START + 1, InConstValue = tile.Y });
 
-                    CliffFindCommands.Add(tile, command);
-                    Unary.ExecuteCommand(command);
+                        for (int id = CLIFF_START; id <= CLIFF_END; id++)
+                        {
+                            command.Add(new UpPointContains() { InConstObjectId = id, InGoalPoint = Bot.GOAL_START });
+                        }
+
+                        CliffFindCommands.Add(tile, command);
+                        Unary.ExecuteCommand(command);
+                    }
                 }
             }
 
@@ -219,17 +221,19 @@ namespace Unary.Managers
 
         private void UpdatePathDistances()
         {
-            var tile = Unary.GameState.Map.GetTile(Unary.GameState.MyPosition);
-            var dict = new Dictionary<Tile, int>() { { tile, 0 } };
-            Utils.AddAllPathDistances(dict, GetPathNeighbours);
-
-            foreach (var kvp in dict)
+            if (Unary.GameState.Map.TryGetTile(Unary.GameState.MyPosition, out var tile))
             {
-                var sitrep = GetSitRep(kvp.Key);
-                sitrep.PathDistanceToHome = kvp.Value;
-            }
+                var dict = new Dictionary<Tile, int>() { { tile, 0 } };
+                Algorithms.AddAllPathDistances(dict, GetPathNeighbours);
 
-            Unary.Log.Debug($"Got {dict.Count:N0} reachable tiles");
+                foreach (var kvp in dict)
+                {
+                    var sitrep = GetSitRep(kvp.Key);
+                    sitrep.PathDistanceToHome = kvp.Value;
+                }
+
+                Unary.Log.Debug($"Got {dict.Count:N0} reachable tiles");
+            }
         }
 
         private SitRep GetSitRep(Tile tile)

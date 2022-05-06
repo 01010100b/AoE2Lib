@@ -15,8 +15,7 @@ namespace AoE2Lib.Games
         private readonly string Exe;
         private readonly string Args;
         private readonly double Speed;
-        private readonly Dictionary<int, Bot> Bots = new();
-        private ConcurrentQueue<Game> Games { get; set; }
+        private ConcurrentQueue<KeyValuePair<Game, Dictionary<int, Bot>>> Games { get; set; }
         private Thread Thread { get; set; }
         private volatile bool Stopping = false;
 
@@ -27,7 +26,7 @@ namespace AoE2Lib.Games
             Speed = speed;
         }
 
-        public void Start(ConcurrentQueue<Game> games, Dictionary<int, Bot> bots)
+        public void Start(ConcurrentQueue<KeyValuePair<Game, Dictionary<int, Bot>>> games)
         {
             if (IsRunning)
             {
@@ -35,12 +34,6 @@ namespace AoE2Lib.Games
             }
 
             Games = games;
-            Bots.Clear();
-            
-            foreach (var kvp in bots)
-            {
-                Bots.Add(kvp.Key, kvp.Value);
-            }
 
             Thread = new Thread(() => Run()) { IsBackground = true };
             Thread.Start();
@@ -51,13 +44,6 @@ namespace AoE2Lib.Games
             Stopping = true;
             Thread?.Join();
             Games = null;
-
-            foreach (var bot in Bots.Values)
-            {
-                bot.Stop();
-            }
-
-            Bots.Clear();
             Thread = null;
             Stopping = false;
         }
@@ -70,31 +56,27 @@ namespace AoE2Lib.Games
             {
                 if (aoe == null || aoe.HasExited)
                 {
-                    foreach (var bot in Bots.Values)
-                    {
-                        bot.Stop();
-                    }
-
                     Thread.Sleep(5000);
                     aoe = AoEInstance.StartInstance(Exe, Args, Speed);
-
-                    foreach (var kvp in Bots)
-                    {
-                        aoe.StartBot(kvp.Value, kvp.Key);
-                    }
 
                     Thread.Sleep(5000);
                 }
                 else if (Games.TryDequeue(out var game))
                 {
-                    if (game != null)
+                    if (game.Key != null)
                     {
                         try
                         {
                             Thread.Sleep(2000);
-                            aoe.StartGame(game, RunMinimized);
 
-                            while (!game.Finished)
+                            foreach (var bot in game.Value)
+                            {
+                                aoe.StartBot(bot.Value, bot.Key);
+                            }
+
+                            aoe.StartGame(game.Key, RunMinimized);
+
+                            while (!game.Key.Finished)
                             {
                                 Thread.Sleep(1000);
                             }
@@ -105,6 +87,13 @@ namespace AoE2Lib.Games
                             Debug.WriteLine(ex);
                             aoe.Kill();
                             aoe = null;
+                        }
+                        finally
+                        {
+                            foreach (var bot in game.Value.Values)
+                            {
+                                bot.Stop();
+                            }
                         }
                     }
                 }

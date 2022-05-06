@@ -137,10 +137,8 @@ namespace Unary.Behaviours
 
         private bool IsAccessible(Position position, bool land = true)
         {
-            if (Controller.Unary.GameState.Map.IsOnMap(position))
+            if (Controller.Unary.GameState.Map.TryGetTile(position, out var tile))
             {
-                var tile = Controller.Unary.GameState.Map.GetTile(position);
-
                 foreach (var t in tile.GetNeighbours(true).Append(tile))
                 {
                     var sitrep = Controller.Unary.SitRepManager[t];

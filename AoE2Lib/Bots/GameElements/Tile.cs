@@ -44,9 +44,8 @@ namespace AoE2Lib.Bots.GameElements
                     var x = X + delta.X;
                     var y = Y + delta.Y;
 
-                    if (Map.IsOnMap(x, y))
+                    if (Map.TryGetTile(x, y, out var t))
                     {
-                        var t = Map.GetTile(x, y);
                         Neighbours.Add(t);
                         AllNeighbours.Add(t);
                     }
@@ -57,9 +56,8 @@ namespace AoE2Lib.Bots.GameElements
                     var x = X + delta.X;
                     var y = Y + delta.Y;
 
-                    if (Map.IsOnMap(x, y))
+                    if (Map.TryGetTile(x, y, out var t))
                     {
-                        var t = Map.GetTile(x, y);
                         AllNeighbours.Add(t);
                     }
                 }

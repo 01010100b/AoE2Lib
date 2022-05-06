@@ -21,22 +21,16 @@ namespace AoE2Lib.Bots
         public TimeSpan GameTime { get; private set; } = TimeSpan.Zero;
         public TimeSpan GameTimePerTick { get; private set; } = TimeSpan.FromSeconds(0.7);
 
-        public bool AutoFindUnits { get; set; } = true;
-        public int AutoUpdateUnits { get; set; } = 100; // units to update per tick per player
-
         private readonly Bot Bot;
-        private readonly List<Player> Players = new List<Player>();
-        private readonly Dictionary<int, Technology> Technologies = new Dictionary<int, Technology>();
-        private readonly Dictionary<int, UnitType> UnitTypes = new Dictionary<int, UnitType>();
-        private readonly Dictionary<int, Unit> Units = new Dictionary<int, Unit>();
-        private readonly Dictionary<Resource, bool> ResourceFound = new Dictionary<Resource, bool>();
-        private readonly Dictionary<Resource, int> DropsiteMinDistance = new Dictionary<Resource, int>();
-        private readonly Dictionary<int, int> StrategicNumbers = new Dictionary<int, int>();
-        private readonly List<ProductionTask> ProductionTasks = new List<ProductionTask>();
+        private readonly List<Player> Players = new();
+        private readonly Dictionary<int, Technology> Technologies = new();
+        private readonly Dictionary<int, UnitType> UnitTypes = new();
+        private readonly Dictionary<int, Unit> Units = new();
+        private readonly Dictionary<int, int> StrategicNumbers = new();
         
-        private readonly List<Command> Commands = new List<Command>();
-        private readonly List<Command> UnitFindCommands = new List<Command>();
-        private readonly Command CommandInfo = new Command();
+        private readonly List<Command> Commands = new();
+        private readonly List<Command> UnitFindCommands = new();
+        private readonly Command CommandInfo = new();
 
         internal GameState(Bot bot)
         {
@@ -49,6 +43,11 @@ namespace AoE2Lib.Bots
             }
         }
 
+        public IEnumerable<Player> GetPlayers()
+        {
+            return Players.Where(p => p.IsValid && p.Updated);
+        }
+
         public bool TryGetPlayer(int player_number, out Player player)
         {
             if (player_number < 0 || player_number >= Players.Count)
@@ -58,7 +57,7 @@ namespace AoE2Lib.Bots
 
             var p = Players[player_number];
 
-            if (p.IsValid)
+            if (p.IsValid && p.Updated)
             {
                 player = p;
 
@@ -70,27 +69,6 @@ namespace AoE2Lib.Bots
 
                 return false;
             }
-        }
-
-        public IEnumerable<Player> GetPlayers()
-        {
-            return Players.Where(p => p.IsValid);
-        }
-
-        public Technology GetTechnology(int id)
-        {
-            if (id < 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(id));
-            }
-
-            if (!Technologies.ContainsKey(id))
-            {
-                Technologies.Add(id, new Technology(Bot, id));
-                Bot.Log.Info($"Added technology {id}");
-            }
-
-            return Technologies[id];
         }
 
         public bool TryGetTechnology(int id, out Technology technology)
@@ -120,22 +98,6 @@ namespace AoE2Lib.Bots
 
                 return false;
             }
-        }
-
-        public UnitType GetUnitType(int id)
-        {
-            if (id < 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(id));
-            }
-
-            if (!UnitTypes.ContainsKey(id))
-            {
-                UnitTypes.Add(id, new UnitType(Bot, id));
-                Bot.Log.Info($"Added unit type {id}");
-            }
-
-            return UnitTypes[id];
         }
 
         public bool TryGetUnitType(int id, out UnitType type)
@@ -177,43 +139,11 @@ namespace AoE2Lib.Bots
 
                     return true;
                 }
-                else
-                {
-                    unit = default;
+            }
 
-                    return false;
-                }
-            }
-            else
-            {
-                unit = default;
+            unit = default;
 
-                return false;
-            }
-        }
-
-        public bool GetResourceFound(Resource resource)
-        {
-            if (ResourceFound.TryGetValue(resource, out bool found))
-            {
-                return found;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public int GetDropsiteMinDistance(Resource resource)
-        {
-            if (DropsiteMinDistance.TryGetValue(resource, out int d))
-            {
-                return d;
-            }
-            else
-            {
-                return -1;
-            }
+            return false;
         }
 
         public int GetStrategicNumber(int sn)
@@ -255,11 +185,14 @@ namespace AoE2Lib.Bots
 
         public void FindUnits(int player, Position position, int range)
         {
+            const int GL_X = Bot.GOAL_START;
+            const int GL_Y = Bot.GOAL_START + 1;
+
             var command = new Command();
 
-            command.Add(new SetGoal() { InConstGoalId = 100, InConstValue = position.PointX });
-            command.Add(new SetGoal() { InConstGoalId = 101, InConstValue = position.PointY });
-            command.Add(new UpSetTargetPoint() { InGoalPoint = 100 });
+            command.Add(new SetGoal() { InConstGoalId = GL_X, InConstValue = position.PointX });
+            command.Add(new SetGoal() { InConstGoalId = GL_Y, InConstValue = position.PointY });
+            command.Add(new UpSetTargetPoint() { InGoalPoint = GL_X });
             command.Add(new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, InConstValue = player });
             command.Add(new UpFullResetSearch());
 
@@ -277,9 +210,9 @@ namespace AoE2Lib.Bots
 
             command = new Command();
 
-            command.Add(new SetGoal() { InConstGoalId = 100, InConstValue = position.PointX });
-            command.Add(new SetGoal() { InConstGoalId = 101, InConstValue = position.PointY });
-            command.Add(new UpSetTargetPoint() { InGoalPoint = 100 });
+            command.Add(new SetGoal() { InConstGoalId = GL_X, InConstValue = position.PointX });
+            command.Add(new SetGoal() { InConstGoalId = GL_Y, InConstValue = position.PointY });
+            command.Add(new UpSetTargetPoint() { InGoalPoint = GL_X });
             command.Add(new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, InConstValue = player });
             command.Add(new UpFullResetSearch());
 
@@ -298,15 +231,18 @@ namespace AoE2Lib.Bots
 
         public void FindResources(Resource resource, int player, Position position, int range)
         {
+            const int GL_X = Bot.GOAL_START;
+            const int GL_Y = Bot.GOAL_START + 1;
+
             foreach (var status in new[] { 2, 3 })
             {
                 foreach (var list in new[] { 0, 1 })
                 {
                     var command = new Command();
 
-                    command.Add(new SetGoal() { InConstGoalId = 100, InConstValue = position.PointX });
-                    command.Add(new SetGoal() { InConstGoalId = 101, InConstValue = position.PointY });
-                    command.Add(new UpSetTargetPoint() { InGoalPoint = 100 });
+                    command.Add(new SetGoal() { InConstGoalId = GL_X, InConstValue = position.PointX });
+                    command.Add(new SetGoal() { InConstGoalId = GL_Y, InConstValue = position.PointY });
+                    command.Add(new UpSetTargetPoint() { InGoalPoint = GL_X });
                     command.Add(new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.FOCUS_PLAYER_NUMBER, InConstValue = player });
                     command.Add(new UpFullResetSearch());
 
@@ -325,11 +261,6 @@ namespace AoE2Lib.Bots
             }
         }
 
-        internal void AddProductionTask(ProductionTask task)
-        {
-            ProductionTasks.Add(task);
-        }
-
         internal void AddCommand(Command command)
         {
             Commands.Add(command);
@@ -342,6 +273,9 @@ namespace AoE2Lib.Bots
 
         internal IEnumerable<Command> RequestUpdate()
         {
+            const int GL_X = Bot.GOAL_START;
+            const int GL_Y = Bot.GOAL_START + 1;
+
             var sw = new Stopwatch();
             sw.Start();
 
@@ -351,19 +285,9 @@ namespace AoE2Lib.Bots
             CommandInfo.Reset();
 
             CommandInfo.Add(new GameTime());
-            CommandInfo.Add(new UpGetPoint() { OutGoalPoint = 50, InConstPositionType = (int)PositionType.SELF });
-            CommandInfo.Add(new Goal() { InConstGoalId = 50 });
-            CommandInfo.Add(new Goal() { InConstGoalId = 51 });
-            
-            foreach (var resource in new[] { Resource.FOOD, Resource.WOOD, Resource.GOLD, Resource.STONE })
-            {
-                CommandInfo.Add(new ResourceFound() { InConstResource = (int)resource });
-            }
-
-            foreach (var resource in Enum.GetValues(typeof(Resource)).Cast<Resource>())
-            {
-                CommandInfo.Add(new DropsiteMinDistance() { InConstResource = (int)resource });
-            }
+            CommandInfo.Add(new UpGetPoint() { OutGoalPoint = GL_X, InConstPositionType = (int)PositionType.SELF });
+            CommandInfo.Add(new Goal() { InConstGoalId = GL_X });
+            CommandInfo.Add(new Goal() { InConstGoalId = GL_Y });
 
             foreach (var sn in StrategicNumbers)
             {
@@ -376,11 +300,6 @@ namespace AoE2Lib.Bots
             }
 
             yield return CommandInfo;
-
-            foreach (var command in DoProduction())
-            {
-                yield return command;
-            }
 
             Map.RequestUpdate();
 
@@ -422,7 +341,7 @@ namespace AoE2Lib.Bots
 
             Bot.Log.Info("");
             Bot.Log.Info($"Tick {Tick} Game time {GameTime:g} with {GameTimePerTick:c} game time seconds per tick");
-            foreach (var player in Players.Where(p => p.IsValid && p.Updated))
+            foreach (var player in GetPlayers())
             {
                 Bot.Log.Debug($"Player {player.PlayerNumber} has {player.Units.Count(u => u.Targetable)} units and {player.Score} score");
             }
@@ -433,9 +352,9 @@ namespace AoE2Lib.Bots
 
                 var current_time = GameTime;
                 GameTime = TimeSpan.FromSeconds(responses[0].Unpack<GameTimeResult>().Result);
-                GameTimePerTick *= 49;
+                GameTimePerTick *= 99;
                 GameTimePerTick += GameTime - current_time;
-                GameTimePerTick /= 50;
+                GameTimePerTick /= 100;
 
                 var x = responses[2].Unpack<GoalResult>().Result;
                 var y = responses[3].Unpack<GoalResult>().Result;
@@ -445,17 +364,6 @@ namespace AoE2Lib.Bots
                 }
 
                 var index = 3;
-                foreach (var resource in new[] { Resource.FOOD, Resource.WOOD, Resource.GOLD, Resource.STONE })
-                {
-                    index++;
-                    ResourceFound[resource] = responses[index].Unpack<ResourceFoundResult>().Result;
-                }
-
-                foreach (var resource in Enum.GetValues(typeof(Resource)).Cast<Resource>())
-                {
-                    index++;
-                    DropsiteMinDistance[resource] = responses[index].Unpack<DropsiteMinDistanceResult>().Result;
-                }
 
                 foreach (var sn in StrategicNumbers)
                 {
@@ -530,9 +438,8 @@ namespace AoE2Lib.Bots
                 {
                     Players[unit[ObjectData.PLAYER]]._Units.Add(unit);
 
-                    if (Map.IsOnMap(unit.Position))
+                    if (Map.TryGetTile(unit.Position, out var tile))
                     {
-                        var tile = Map.GetTile(unit.Position);
                         tile._Units.Add(unit);
                     }
                 }
@@ -541,77 +448,14 @@ namespace AoE2Lib.Bots
             sw.Stop();
             Bot.Log.Debug($"GameState Update took {sw.ElapsedMilliseconds} ms");
         }
-
-        private IEnumerable<Command> DoProduction()
-        {
-            var sw = new Stopwatch();
-            sw.Start();
-
-            var remaining_wood = MyPlayer.GetFact(FactId.WOOD_AMOUNT);
-            var remaining_food = MyPlayer.GetFact(FactId.FOOD_AMOUNT);
-            var remaining_gold = MyPlayer.GetFact(FactId.GOLD_AMOUNT);
-            var remaining_stone = MyPlayer.GetFact(FactId.STONE_AMOUNT);
-
-            ProductionTasks.Sort((a, b) => b.Priority.CompareTo(a.Priority));
-
-            foreach (var prod in ProductionTasks)
-            {
-                Bot.Log.Debug($"Checking production: {prod.Id}");
-
-                var can_afford = true;
-                if (prod.WoodCost > 0 && prod.WoodCost > remaining_wood)
-                {
-                    can_afford = false;
-                }
-                else if (prod.FoodCost > 0 && prod.FoodCost > remaining_food)
-                {
-                    can_afford = false;
-                }
-                else if (prod.GoldCost > 0 && prod.GoldCost > remaining_gold)
-                {
-                    can_afford = false;
-                }
-                else if (prod.StoneCost > 0 && prod.StoneCost > remaining_stone)
-                {
-                    can_afford = false;
-                }
-
-                var deduct = true;
-                if (can_afford == false && prod.Blocking == false)
-                {
-                    deduct = false;
-                }
-
-                if (can_afford)
-                {
-                    Bot.Log.Debug($"Production: {prod.Id}");
-
-                    yield return prod.GetCommand();
-                }
-
-                if (deduct)
-                {
-                    remaining_wood -= prod.WoodCost;
-                    remaining_food -= prod.FoodCost;
-                    remaining_gold -= prod.GoldCost;
-                    remaining_stone -= prod.StoneCost;
-                }
-            }
-
-            ProductionTasks.Clear();
-
-            sw.Stop();
-            Bot.Log.Debug($"DoProduction took {sw.ElapsedMilliseconds} ms");
-        }
-
         private void DoAutoFindUnits()
         {
-            if (AutoFindUnits == false)
+            if (Bot.AutoFindUnits == false)
             {
                 return;
             }
 
-            if (!Map.Updated)
+            if (!Map.IsOnMap(MyPosition))
             {
                 return;
             }
@@ -619,20 +463,22 @@ namespace AoE2Lib.Bots
             var sw = new Stopwatch();
             sw.Start();
 
-            Bot.Log.Info($"Auto finding units");
+            Bot.Log.Debug($"Auto finding units");
 
             var position = MyPosition;
             for (int i = 0; i < 1000; i++)
             {
                 var x = Bot.Rng.Next(Map.Width);
                 var y = Bot.Rng.Next(Map.Height);
-                var tile = Map.GetTile(x, y);
 
-                if (tile.Explored)
+                if (Map.TryGetTile(x, y, out var tile))
                 {
-                    position = tile.Position;
+                    if (tile.Explored)
+                    {
+                        position = tile.Position;
 
-                    break;
+                        break;
+                    }
                 }
             }
 
@@ -692,7 +538,7 @@ namespace AoE2Lib.Bots
 
         private void DoAutoUpdateUnits()
         {
-            if (AutoUpdateUnits <= 0)
+            if (Bot.AutoUpdateUnits <= 0)
             {
                 return;
             }
@@ -714,7 +560,7 @@ namespace AoE2Lib.Bots
                     first++;
                 }
 
-                if (first >= AutoUpdateUnits)
+                if (first >= Bot.AutoUpdateUnits)
                 {
                     break;
                 }
@@ -726,7 +572,7 @@ namespace AoE2Lib.Bots
             {
                 var units = player.Units.ToList();
                 units.Sort((a, b) => a.LastUpdateTick.CompareTo(b.LastUpdateTick));
-                var count = Math.Min(units.Count, AutoUpdateUnits);
+                var count = Math.Min(units.Count, Bot.AutoUpdateUnits);
 
                 for (int i = 0; i < count; i++)
                 {

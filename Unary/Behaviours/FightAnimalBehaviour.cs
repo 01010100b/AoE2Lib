@@ -12,21 +12,20 @@ namespace Unary.Behaviours
     {
         protected override bool Tick(bool perform)
         {
-            var target = Controller.Unit.GetTarget();
-
-            if (target != null && target[ObjectData.CLASS] == (int)UnitClass.PredatorAnimal && target[ObjectData.HITPOINTS] > 0)
+            if (Controller.Unary.GameState.TryGetUnit(Controller.Unit[ObjectData.TARGET_ID], out var target))
             {
-                Controller.Unary.Log.Debug($"Unit {Controller.Unit.Id} fighting animal {target.Id}");
+                if (target != null && target[ObjectData.CLASS] == (int)UnitClass.PredatorAnimal && target[ObjectData.HITPOINTS] > 0)
+                {
+                    Controller.Unary.Log.Debug($"Unit {Controller.Unit.Id} fighting animal {target.Id}");
 
-                Controller.Unit.RequestUpdate();
-                target.RequestUpdate();
+                    Controller.Unit.RequestUpdate();
+                    target.RequestUpdate();
 
-                return true;
+                    return true;
+                }
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
     }
 }

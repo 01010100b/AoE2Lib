@@ -30,40 +30,45 @@ namespace AoE2Lib.Bots
             return new Rectangle(x_start, y_start, x_end - x_start + 1, y_end - y_start + 1);
         }
 
-        public static void AddAllPathDistances<TNode>(Dictionary<TNode, int> distances, Func<TNode, IEnumerable<TNode>> get_neighbours, int max_distance = int.MaxValue)
+        public static int GetDamage(Dictionary<int, int> attacks, Dictionary<int, int> armours)
         {
-            var queue = new Queue<KeyValuePair<TNode, int>>();
+            throw new NotImplementedException();
 
-            foreach (var kvp in distances)
+            const int PIERCE = 3;
+            const int MELEE = 4;
+
+            var dmg = 0;
+            /*
+            if (DatUnit == null || target.DatUnit == null)
             {
-                if (queue.Count == 0 || queue.Peek().Value == kvp.Value)
-                {
-                    queue.Enqueue(kvp);
-                }
-                else if (queue.Peek().Value < kvp.Value)
-                {
-                    queue.Clear();
-                    queue.Enqueue(kvp);
-                }
+                return 1;
             }
 
-            while (queue.Count > 0)
-            {
-                var parent = queue.Dequeue().Key;
-                var d = distances[parent];
+            var me = DatUnit;
+            var enemy = target.DatUnit;
 
-                if (d < max_distance)
+            foreach (var attack in me.Attacks)
+            {
+                if (attack.Id == PIERCE)
                 {
-                    foreach (var child in get_neighbours(parent))
+                    dmg += Math.Max(0, this[ObjectData.BASE_ATTACK] - target[ObjectData.PIERCE_ARMOR]);
+                }
+                else if (attack.Id == MELEE)
+                {
+                    dmg += Math.Max(0, this[ObjectData.BASE_ATTACK] - target[ObjectData.STRIKE_ARMOR]);
+                }
+                else
+                {
+                    foreach (var armor in enemy.Armors)
                     {
-                        if (!distances.ContainsKey(child))
+                        if (attack.Id == armor.Id)
                         {
-                            distances.Add(child, d + 1);
-                            queue.Enqueue(new KeyValuePair<TNode, int>(child, d + 1));
+                            dmg += Math.Max(0, attack.Amount - armor.Amount);
                         }
                     }
                 }
             }
+            */
         }
     }
 }

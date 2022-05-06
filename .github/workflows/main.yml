@@ -44,7 +44,7 @@ jobs:
         
     - name: Package
       run: |
-        (gc 'Unary\Unary.per').replace('$UNARY_VERSION$', '${{ steps.tag_version.outputs.new_version }}') | Out-File -encoding ASCII Unary\Unary.per
+        (gc 'Unary\Script\Unary.per').replace('$UNARY_VERSION$', '${{ steps.tag_version.outputs.new_version }}') | Out-File -encoding ASCII Unary\Unary.per
         dotnet tool install -g dotnet-setversion
         setversion -r ${{ steps.tag_version.outputs.new_version }}
         dotnet pack AoE2Lib\AoE2Lib.csproj -c Release -p:PackageVersion=${{ steps.tag_version.outputs.new_version }}

@@ -29,6 +29,8 @@ namespace AoE2Lib.Bots
         public Random Rng { get; private set; }
         public GameState GameState { get; private set; }
         public string DatFilePath { get; private set; } = null;
+        public bool AutoFindUnits { get; set; } = true; // automatically find units
+        public int AutoUpdateUnits { get; set; } = 100; // units to update per tick per player
 
         private Thread BotThread { get; set; } = null;
         private volatile bool Stopping = false;
@@ -41,8 +43,9 @@ namespace AoE2Lib.Bots
             BotThread = null;
 
             Stopped();
-
+            GameState = null;
             Log?.Dispose();
+            Log = null;
 
             Stopping = false;
         }

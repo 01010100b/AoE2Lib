@@ -135,6 +135,8 @@ namespace AoE2Lib.Bots.GameElements
 
         protected override IEnumerable<IMessage> RequestElementUpdate()
         {
+            const int GL_TEMP = Bot.GOAL_START;
+
             if (!IsValid)
             {
                 yield return new PlayerValid() { InPlayerAnyPlayer = PlayerNumber };
@@ -149,8 +151,8 @@ namespace AoE2Lib.Bots.GameElements
 
             foreach (var fact in FACTS)
             {
-                yield return new UpGetPlayerFact() { InPlayerAnyPlayer = PlayerNumber, InConstFactId = (int)fact, InConstParam = 0, OutGoalData = 100 };
-                yield return new Goal() { InConstGoalId = 100 };
+                yield return new UpGetPlayerFact() { InPlayerAnyPlayer = PlayerNumber, InConstFactId = (int)fact, InConstParam = 0, OutGoalData = GL_TEMP };
+                yield return new Goal() { InConstGoalId = GL_TEMP };
             }
 
             var ids = new List<int>();

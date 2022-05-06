@@ -19,84 +19,13 @@ namespace AoE2Lib.Bots.GameElements
         public bool IsBuilding => this[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || this[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING;
         public TimeSpan LastSeenGameTime { get; private set; } = TimeSpan.MinValue;
         public Position Position => Position.FromPrecise(this[ObjectData.PRECISE_X], this[ObjectData.PRECISE_Y]);
-        public Tile Tile => Bot.GameState.Map.GetTile(Position);
+        public Tile Tile => GetTile();
 
         private readonly Dictionary<ObjectData, int> Data = new Dictionary<ObjectData, int>();
 
         internal Unit(Bot bot, int id) : base(bot)
         {
             Id = id;
-        }
-
-        public int GetData(ObjectData data)
-        {
-            if (Data.TryGetValue(data, out int value))
-            {
-                return value;
-            }
-            else
-            {
-                return -2;
-            }
-        }
-
-        public int GetDamage(Unit target)
-        {
-            const int PIERCE = 3;
-            const int MELEE = 4;
-
-            var dmg = 0;
-            /*
-            if (DatUnit == null || target.DatUnit == null)
-            {
-                return 1;
-            }
-
-            var me = DatUnit;
-            var enemy = target.DatUnit;
-
-            foreach (var attack in me.Attacks)
-            {
-                if (attack.Id == PIERCE)
-                {
-                    dmg += Math.Max(0, this[ObjectData.BASE_ATTACK] - target[ObjectData.PIERCE_ARMOR]);
-                }
-                else if (attack.Id == MELEE)
-                {
-                    dmg += Math.Max(0, this[ObjectData.BASE_ATTACK] - target[ObjectData.STRIKE_ARMOR]);
-                }
-                else
-                {
-                    foreach (var armor in enemy.Armors)
-                    {
-                        if (attack.Id == armor.Id)
-                        {
-                            dmg += Math.Max(0, attack.Amount - armor.Amount);
-                        }
-                    }
-                }
-            }
-            */
-            return Math.Max(1, dmg);
-        }
-
-        public Unit GetTarget()
-        {
-            if (!Updated)
-            {
-                return null;
-            }
-
-            var id = this[ObjectData.TARGET_ID];
-
-            if (Bot.GameState.TryGetUnit(id, out Unit unit))
-            {
-                return unit;
-            }
-            else
-            {
-                return null;
-            }
         }
 
         public void Train(UnitType type, int max_count, int max_pending)
@@ -337,10 +266,13 @@ namespace AoE2Lib.Bots.GameElements
 
         protected override IEnumerable<IMessage> RequestElementUpdate()
         {
+            const int GL_X = Bot.GOAL_START;
+            const int GL_Y = Bot.GOAL_START + 1;
+
             yield return new UpSetTargetById() { InConstId = Id };
-            yield return new UpGetObjectData() { InConstObjectData = (int)ObjectData.POINT_X, OutGoalData = 100 };
-            yield return new UpGetObjectData() { InConstObjectData = (int)ObjectData.POINT_Y, OutGoalData = 101 };
-            yield return new UpPointExplored() { InGoalPoint = 100 };
+            yield return new UpGetObjectData() { InConstObjectData = (int)ObjectData.POINT_X, OutGoalData = GL_X };
+            yield return new UpGetObjectData() { InConstObjectData = (int)ObjectData.POINT_Y, OutGoalData = GL_Y };
+            yield return new UpPointExplored() { InGoalPoint = GL_X };
             yield return new UpObjectDataList();
         }
 
@@ -370,14 +302,18 @@ namespace AoE2Lib.Bots.GameElements
             {
                 Data[(ObjectData)i] = data[i];
             }
-            /*
-            if (DatUnit == null && PlayerNumber > 0)
+        }
+
+        private int GetData(ObjectData data)
+        {
+            if (Data.TryGetValue(data, out int value))
             {
-                var civ = Bot.DatFile.Civilizations[Player.GetFact(FactId.CIVILIZATION)];
-                var unit = civ.Units.Single(u => u.Id == this[ObjectData.UPGRADE_TYPE]);
-                DatUnit = unit;
+                return value;
             }
-            */
+            else
+            {
+                return -2;
+            }
         }
 
         private Player GetPlayer()
@@ -391,5 +327,19 @@ namespace AoE2Lib.Bots.GameElements
                 throw new Exception($"Player {this[ObjectData.PLAYER]} not found or valid.");
             }
         }
+
+        private Tile GetTile()
+        {
+            if (Bot.GameState.Map.TryGetTile(Position, out var tile))
+            {
+                return tile;
+            }
+            else
+            {
+                return default;
+            }
+        }
+
+
     }
 }
