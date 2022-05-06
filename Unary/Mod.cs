@@ -37,6 +37,16 @@ namespace Unary
             Boar.AddRange(new[] { 412, 822, 1139, 48 });
         }
 
+        public bool DoesPierceDamage(int base_type_id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetBonusDamage(int from_type_id, int to_type_id)
+        {
+            throw new NotImplementedException();
+        }
+
         public int GetBuildingWidth(int type_id)
         {
             switch (type_id)

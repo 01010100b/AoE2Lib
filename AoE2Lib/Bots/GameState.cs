@@ -49,11 +49,6 @@ namespace AoE2Lib.Bots
             }
         }
 
-        public Player GetPlayer(int player_number)
-        {
-            return Players[player_number];
-        }
-
         public bool TryGetPlayer(int player_number, out Player player)
         {
             if (player_number < 0 || player_number >= Players.Count)
@@ -624,7 +619,7 @@ namespace AoE2Lib.Bots
             var sw = new Stopwatch();
             sw.Start();
 
-            Bot.Log.Debug($"Auto finding units");
+            Bot.Log.Info($"Auto finding units");
 
             var position = MyPosition;
             for (int i = 0; i < 1000; i++)

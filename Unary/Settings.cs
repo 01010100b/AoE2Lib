@@ -18,5 +18,8 @@ namespace Unary
         public double MaxEatingRange { get; set; } = 20;
         public double KillSheepRange { get; set; } = 3;
         public double DropsiteMaxResourceRange { get; set; } = 7;
+        public double CombatRangedShootChance { get; set; } = 0.8;
+        public double CombatRangedMinRangeFraction { get; set; } = 0.8;
+        public int[] CombatRangedMovementBiases { get; set; } = new int[] { 3, 5, 7 };
     }
 }

@@ -20,6 +20,8 @@ namespace Unary.Managers
 
         private readonly HashSet<Tile> InsideTiles = new();
 
+        public bool IsInside(Tile tile) => InsideTiles.Contains(tile);
+
         public List<Tile> GetDefaultSortedPossiblePlacements(UnitType building)
         {
             var tiles = InsideTiles.ToList();
@@ -67,7 +69,10 @@ namespace Unary.Managers
 
             foreach (var tile in Unary.GameState.Map.GetTilesInRange(Unary.GameState.MyPosition, 30))
             {
-                InsideTiles.Add(tile);
+                if (Unary.GameState.Tick > 10 || Unary.GameState.MyPosition.DistanceTo(tile.Center) > 8)
+                {
+                    InsideTiles.Add(tile);
+                }
             }
         }
 

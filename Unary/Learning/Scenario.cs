@@ -51,12 +51,20 @@ namespace Unary.Learning
                 }
             };
 
+            foreach (var scenario in scenarios)
+            {
+                scenario.MapExplored = true;
+                scenario.TimeLimit = 1200;
+            }
+
             return scenarios;
         }
 
         public string ScenarioName { get; set; }
         public double PerfectScore { get; set; }
         public Civilization Civilization { get; set; }
+        public bool MapExplored { get; set; }
+        public int TimeLimit { get; set; }
         public string OpponentAiFile { get; set; }
 
         public Game CreateGame(string my_ai_file)
@@ -70,10 +78,10 @@ namespace Unary.Learning
                 Difficulty = Difficulty.HARD,
                 StartingResources = StartingResources.STANDARD,
                 PopulationLimit = 200,
-                RevealMap = RevealMap.NORMAL,
+                RevealMap = MapExplored ? RevealMap.EXPLORED : RevealMap.NORMAL,
                 StartingAge = StartingAge.STANDARD,
-                VictoryType = VictoryType.CONQUEST,
-                VictoryValue = 0,
+                VictoryType = TimeLimit > 0 ? VictoryType.TIME_LIMIT : VictoryType.CONQUEST,
+                VictoryValue = TimeLimit,
                 TeamsTogether = true,
                 LockTeams = true,
                 AllTechs = false,

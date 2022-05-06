@@ -14,7 +14,7 @@ namespace AoE2Lib.Bots.GameElements
     {
         public readonly int Id;
         public int this[ObjectData data] => GetData(data);
-        public Player Player => Bot.GameState.GetPlayer(this[ObjectData.PLAYER]);
+        public Player Player => GetPlayer();
         public bool Targetable { get; private set; } = false;
         public bool IsBuilding => this[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || this[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING;
         public TimeSpan LastSeenGameTime { get; private set; } = TimeSpan.MinValue;
@@ -190,12 +190,11 @@ namespace AoE2Lib.Bots.GameElements
 
             var command = new Command();
 
-            const int GL_CHECKS = 100;
-            const int GL_TEMP = 101;
-            const int GL_TARGET_ID = 102;
+            const int GL_CHECKS = Bot.GOAL_START;
+            const int GL_TEMP = Bot.GOAL_START + 1;
+            const int GL_TARGET_ID = Bot.GOAL_START + 2;
 
-            var op_add = Bot.GameVersion == GameVersion.AOC ? 1 : 25;
-            var op_g_min = Bot.GameVersion == GameVersion.AOC ? 14 : 14;
+            var op_g_min = 14;
 
             command.Add(new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = 0 });
             command.Add(new SetGoal() { InConstGoalId = GL_TEMP, InConstValue = -1 });
@@ -205,37 +204,44 @@ namespace AoE2Lib.Bots.GameElements
 
             command.Add(new UpSetTargetById() { InConstId = Id });
             command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.ID, OutGoalData = GL_TEMP });
-            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "==", Id, new UpModifyGoal() { IoGoalId = GL_CHECKS, MathOp = op_add, InOpValue = 1 });
+            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "!=", Id, 
+                new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = -1});
 
             // check 2: next_attack >= min_next_attack
 
             command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.NEXT_ATTACK, OutGoalData = GL_TEMP });
-            command.Add(new Goal() { InConstGoalId = GL_TEMP }, ">=", min_next_attack, new UpModifyGoal() { IoGoalId = GL_CHECKS, MathOp = op_add, InOpValue = 1 });
+            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "<", min_next_attack,
+                new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = -2 });
 
             // check 3: next_attack <= max_next_attack
 
-            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "<=", max_next_attack, new UpModifyGoal() { IoGoalId = GL_CHECKS, MathOp = op_add, InOpValue = 1 });
+            command.Add(new Goal() { InConstGoalId = GL_TEMP }, ">", max_next_attack,
+                new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = -3 });
 
             // check 4: target exists as GL_TARGET_ID
 
             command.Add(new UpSetTargetById() { InConstId = backup.Id });
             command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.ID, OutGoalData = GL_TEMP });
-            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "==", backup.Id, new SetGoal() { InConstGoalId = GL_TARGET_ID, InConstValue = backup.Id });
+            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "==", backup.Id, 
+                new SetGoal() { InConstGoalId = GL_TARGET_ID, InConstValue = backup.Id });
             command.Add(new UpSetTargetById() { InConstId = target.Id });
             command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.ID, OutGoalData = GL_TEMP });
-            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "==", target.Id, new SetGoal() { InConstGoalId = GL_TARGET_ID, InConstValue = target.Id });
-            command.Add(new Goal() { InConstGoalId = GL_TARGET_ID }, "!=", -1, new UpModifyGoal() { IoGoalId = GL_CHECKS, MathOp = op_add, InOpValue = 1 });
+            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "==", target.Id, 
+                new SetGoal() { InConstGoalId = GL_TARGET_ID, InConstValue = target.Id });
+            command.Add(new Goal() { InConstGoalId = GL_TARGET_ID }, "==", -1,
+                new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = -4 });
 
             // check 5: unit is not already targeting GL_TARGET_ID
 
             command.Add(new UpSetTargetById() { InConstId = Id });
             command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.TARGET_ID, OutGoalData = GL_TEMP });
             command.Add(new UpModifyGoal() { IoGoalId = GL_TEMP, MathOp = op_g_min, InOpValue = GL_TARGET_ID });
-            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "!=", 0, new UpModifyGoal() { IoGoalId = GL_CHECKS, MathOp = op_add, InOpValue = 1 });
+            command.Add(new Goal() { InConstGoalId = GL_TEMP }, "==", 0,
+                new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = -5 });
 
             // run if all checks passed
 
-            command.Add(new Goal() { InConstGoalId = GL_CHECKS }, "==", 5,
+            command.Add(new Goal() { InConstGoalId = GL_CHECKS }, "==", 0,
                 new UpSetTargetById() { InGoalId = GL_TARGET_ID },
                 new UpFullResetSearch(),
                 new UpAddObjectById() { InConstSearchSource = 1, InConstId = Id },
@@ -372,6 +378,18 @@ namespace AoE2Lib.Bots.GameElements
                 DatUnit = unit;
             }
             */
+        }
+
+        private Player GetPlayer()
+        {
+            if (Bot.GameState.TryGetPlayer(this[ObjectData.PLAYER], out var player))
+            {
+                return player;
+            }
+            else
+            {
+                throw new Exception($"Player {this[ObjectData.PLAYER]} not found or valid.");
+            }
         }
     }
 }

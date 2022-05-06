@@ -17,3 +17,20 @@ speeds:
 fast = 20
 normal = 15
 slow = 10
+
+
+micro test results
+==================
+
+2022-05-05 06:22:35Z: INFO: Unary UI: Test TRM range 4v4 no ballistics against Null: 24.80%
+2022-05-05 06:22:35Z: INFO: Unary UI: Test TRM range 5v5 no ballistics against Null: 89.84%
+2022-05-05 06:22:35Z: INFO: Unary UI: Test TRM range 6v6 no ballistics against Null: 107.92%
+2022-05-05 06:22:35Z: INFO: Unary UI: Test TRM range 7v7 ballistics against Null: 104.72%
+2022-05-05 06:22:35Z: INFO: Unary UI: Test TRM range 8v8 ballistics against Null: 104.80%
+2022-05-05 06:22:35Z: INFO: Unary UI: Test TRM range 10v10 ballistics against Null: 102.96%
+2022-05-05 06:22:35Z: INFO: Unary UI: Test TRM range 4v4 no ballistics against ArcherMicroTest_E: -110.16%
+2022-05-05 06:22:35Z: INFO: Unary UI: Test TRM range 5v5 no ballistics against ArcherMicroTest_E: -70.96%
+2022-05-05 06:22:35Z: INFO: Unary UI: Test TRM range 6v6 no ballistics against ArcherMicroTest_E: -22.00%
+2022-05-05 06:22:35Z: INFO: Unary UI: Test TRM range 7v7 ballistics against ArcherMicroTest_E: 86.64%
+2022-05-05 06:22:35Z: INFO: Unary UI: Test TRM range 8v8 ballistics against ArcherMicroTest_E: 68.08%
+2022-05-05 06:22:35Z: INFO: Unary UI: Test TRM range 10v10 ballistics against ArcherMicroTest_E: 7.92%

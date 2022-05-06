@@ -51,6 +51,8 @@ namespace Unary.Managers
 
         }
 
+        public bool TryGetController(Unit unit, out Controller controller) => Controllers.TryGetValue(unit, out controller);
+
         public IEnumerable<Controller> GetControllers() => Controllers.Values;
 
         internal override void Update()

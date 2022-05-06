@@ -23,7 +23,7 @@ namespace AoE2Lib.Games
         public RevealMap RevealMap { get; set; } = RevealMap.NORMAL;
         public StartingAge StartingAge { get; set; } = StartingAge.STANDARD;
         public VictoryType VictoryType { get; set; } = VictoryType.STANDARD;
-        public int VictoryValue { get; set; } = 0;
+        public int VictoryValue { get; set; } = 0; // for time limit, every 2 of value = 1 second
         public bool TeamsTogether { get; set; } = true;
         public bool LockTeams { get; set; } = false;
         public bool AllTechs { get; set; } = false;

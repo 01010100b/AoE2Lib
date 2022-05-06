@@ -35,7 +35,6 @@ namespace Unary
         public OldProductionManager OldProductionManager { get; private set; }
 
         private readonly List<Command> Commands = new();
-        private readonly Dictionary<Func<object>, object> Cache = new();
         private bool ChattedOK { get; set; } = false;
         
 
@@ -47,18 +46,6 @@ namespace Unary
         public void ExecuteCommand(Command command) => Commands.Add(command);
 
         public bool ShouldRareTick(object obj, int rate) => obj.GetHashCode() % rate == GameState.Tick % rate;
-
-        public T GetCached<T>(Func<T> func) where T : class
-        {
-            if (!Cache.ContainsKey(func))
-            {
-                var result = func();
-                
-                Cache.Add(func, result);
-            }
-
-            return (T)Cache[func];
-        }
 
         protected override void Stopped()
         {
@@ -85,12 +72,12 @@ namespace Unary
             UnitsManager = new(this);
             ResourcesManager = new(this);
 
-            OldMapManager = new (this);
-            OldBuildingManager = new (this);
-            OldEconomyManager = new (this);
-            OldMilitaryManager = new (this);
-            OldUnitsManager = new (this);
-            OldProductionManager = new (this);
+            OldMapManager = new(this);
+            OldBuildingManager = new(this);
+            OldEconomyManager = new(this);
+            OldMilitaryManager = new(this);
+            OldUnitsManager = new(this);
+            OldProductionManager = new(this);
 
             ChattedOK = false;
         }
@@ -98,7 +85,6 @@ namespace Unary
         protected override IEnumerable<Command> Tick()
         {
             Commands.Clear();
-            Cache.Clear();
 
             var sw = new Stopwatch();
 

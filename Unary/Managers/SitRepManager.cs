@@ -1,8 +1,11 @@
 ﻿using AoE2Lib;
 using AoE2Lib.Bots;
 using AoE2Lib.Bots.GameElements;
+using Protos.Expert.Action;
+using Protos.Expert.Fact;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +42,8 @@ namespace Unary.Managers
         public SitRep this[Tile tile] => GetSitRep(tile);
 
         private readonly Dictionary<Tile, SitRep> SitReps = new();
+        private readonly Dictionary<Tile, bool> Cliffs = new();
+        private readonly Dictionary<Tile, Command> CliffFindCommands = new();
 
         public SitRepManager(Unary unary) : base(unary)
         {
@@ -50,10 +55,95 @@ namespace Unary.Managers
             foreach (var sitrep in SitReps.Values)
             {
                 sitrep.Reset();
+
+                if (Cliffs.TryGetValue(sitrep.Tile, out var cliff))
+                {
+                    if (cliff)
+                    {
+                        sitrep.IsLandAccessible = false;
+                        sitrep.IsWaterAccessible = false;
+                        sitrep.IsConstructionBlocked = true;
+                    }
+                }
             }
 
+            if (!Unary.GameState.Map.IsOnMap(Unary.GameState.MyPosition))
+            {
+                return;
+            }
+
+            var sw = new Stopwatch();
+
+            sw.Restart();
+            UpdateCliffs();
+            Unary.Log.Debug($"SitRepManager.UpdateCliffs took {sw.Elapsed.TotalMilliseconds} ms");
+
+            sw.Restart();
             UpdateAccessibilities();
+            Unary.Log.Debug($"SitRepManager.UpdateAccessibilities took {sw.Elapsed.TotalMilliseconds} ms");
+
+            sw.Restart();
             UpdatePathDistances();
+            Unary.Log.Debug($"SitRepManager.UpdatePathDistances took {sw.Elapsed.TotalMilliseconds} ms");
+        }
+
+        private void UpdateCliffs()
+        {
+            const int CLIFF_START = 264;
+            const int CLIFF_END = 272;
+
+            foreach (var kvp in CliffFindCommands)
+            {
+                var tile = kvp.Key;
+                var command = kvp.Value;
+
+                if (command.HasResponses)
+                {
+                    var responses = command.GetResponses();
+                    var contains = false;
+
+                    for (int i = 2; i < responses.Count; i++)
+                    {
+                        if (responses[i].Unpack<UpPointContainsResult>().Result)
+                        {
+                            contains = true;
+                        }
+                    }
+
+                    Cliffs.Add(tile, contains);
+                }
+            }
+
+            CliffFindCommands.Clear();
+
+            for (int i = 0; i < 1000; i++)
+            {
+                if (CliffFindCommands.Count >= 100)
+                {
+                    break;
+                }
+
+                var x = Unary.Rng.Next(Unary.GameState.Map.Width);
+                var y = Unary.Rng.Next(Unary.GameState.Map.Height);
+                var tile = Unary.GameState.Map.GetTile(x, y);
+
+                if (tile.Explored && !Cliffs.ContainsKey(tile) && !CliffFindCommands.ContainsKey(tile))
+                {
+                    var command = new Command();
+                    command.Add(new SetGoal() { InConstGoalId = Bot.GOAL_START, InConstValue = tile.X });
+                    command.Add(new SetGoal() { InConstGoalId = Bot.GOAL_START + 1, InConstValue = tile.Y });
+
+                    for (int id = CLIFF_START; id <= CLIFF_END; id++)
+                    {
+                        command.Add(new UpPointContains() { InConstObjectId = id, InGoalPoint = Bot.GOAL_START });
+                    }
+
+                    CliffFindCommands.Add(tile, command);
+                    Unary.ExecuteCommand(command);
+                }
+            }
+
+            Unary.Log.Debug($"Found {Cliffs.Values.Count(b => b):N0} cliffs");
         }
 
         private void UpdateAccessibilities()
@@ -139,20 +229,17 @@ namespace Unary.Managers
 
         private void UpdatePathDistances()
         {
-            if (Unary.GameState.Map.IsOnMap(Unary.GameState.MyPosition))
+            var tile = Unary.GameState.Map.GetTile(Unary.GameState.MyPosition);
+            var dict = new Dictionary<Tile, int>() { { tile, 0 } };
+            Utils.AddAllPathDistances(dict, GetPathNeighbours);
+
+            foreach (var kvp in dict)
             {
-                var tile = Unary.GameState.Map.GetTile(Unary.GameState.MyPosition);
-                var dict = new Dictionary<Tile, int>() { { tile, 0 } };
-                Utils.AddAllPathDistances(dict, GetPathNeighbours);
-
-                foreach (var kvp in dict)
-                {
-                    var sitrep = GetSitRep(kvp.Key);
-                    sitrep.PathDistanceToHome = kvp.Value;
-                }
-
-                Unary.Log.Debug($"Got {dict.Count} reachable tiles");
+                var sitrep = GetSitRep(kvp.Key);
+                sitrep.PathDistanceToHome = kvp.Value;
             }
+
+            Unary.Log.Debug($"Got {dict.Count:N0} reachable tiles");
         }
 
         private SitRep GetSitRep(Tile tile)

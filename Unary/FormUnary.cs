@@ -138,11 +138,14 @@ namespace Unary
 
         private void Message(string message)
         {
-            Program.Log.Info($"Unary UI: {message}");
+            Invoke(() =>
+            {
+                Program.Log.Info($"Unary UI: {message}");
 
-            var lines = TextMessages.Lines.ToList();
-            lines.Add(message);
-            TextMessages.Lines = lines.ToArray();
+                var lines = TextMessages.Lines.ToList();
+                lines.Add(message);
+                TextMessages.Lines = lines.ToArray();
+            });
         }
 
         private void EnsureInstance()
@@ -190,24 +193,36 @@ namespace Unary
         private void Dev()
         {
             const int GAMES_PER_SCENARIO = 10;
+            var included_scenarios = new HashSet<string>() {  };
+            var included_opponents = new HashSet<string>() {  };
 
+            var runner = new InstanceRunner(LabelExePath.Text);
             var unary = new Unary(Program.Settings);
             var bots = new Dictionary<int, Bot>() { { 1, unary } };
             var opponents = new[] { "Null", "ArcherMicroTest_E" };
-            var runner = new InstanceRunner(LabelExePath.Text);
             var games = new ConcurrentQueue<Game>();
             var results = new Dictionary<Game, Scenario>();
 
-            runner.RunMinimized = true;
+            runner.RunMinimized = included_scenarios.Count == 0 && included_opponents.Count == 0;
             runner.Start(games, bots);
-            Program.Log.Debug("runner started");
+            Message("runner started");
 
             for (int i = 0; i < GAMES_PER_SCENARIO; i++)
             {
                 foreach (var opponent in opponents)
                 {
+                    if (included_opponents.Count > 0 && !included_opponents.Contains(opponent))
+                    {
+                        continue;
+                    }
+
                     foreach (var scenario in Scenario.GetDefaultScenarios())
                     {
+                        if (included_scenarios.Count > 0 && !included_scenarios.Contains(scenario.ScenarioName))
+                        {
+                            continue;
+                        }
+
                         scenario.OpponentAiFile = opponent;
 
                         var game = scenario.CreateGame("Null");
@@ -217,7 +232,7 @@ namespace Unary
                 }
             }
 
-            Program.Log.Debug($"Total game count {results.Count}");
+            Message($"Total game count {results.Count}");
 
             foreach (var result in results)
             {
@@ -226,10 +241,10 @@ namespace Unary
                     Thread.Sleep(1000);
                 }
 
-                Program.Log.Debug($"Ran game {result.Value.ScenarioName} against {result.Value.OpponentAiFile} score {result.Value.GetScore(result.Key):P}."); ;
+                Message($"Ran game {result.Value.ScenarioName} against {result.Value.OpponentAiFile} score {result.Value.GetScore(result.Key):P}.");
             }
 
-            Program.Log.Debug("All games finished");
+            Message("All games finished");
             runner.Stop();
 
             var scores = new Dictionary<KeyValuePair<string, string>, double>();
@@ -249,8 +264,7 @@ namespace Unary
 
             foreach (var score in scores)
             {
-                var msg = $"Test {score.Key.Key} against {score.Key.Value}: {score.Value:P}";
-                Invoke(() => Message(msg));
+                Message($"Test {score.Key.Key} against {score.Key.Value}: {score.Value:P}");
             }
         }
     }
