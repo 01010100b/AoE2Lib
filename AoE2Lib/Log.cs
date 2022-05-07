@@ -21,19 +21,29 @@ namespace AoE2Lib
 
         public Log(string file)
         {
-            if (File.Exists(file))
+            if (file == null)
             {
-                File.Delete(file);
+                Stream = null;
             }
+            else
+            {
+                if (File.Exists(file))
+                {
+                    File.Delete(file);
+                }
 
-            Stream = new StreamWriter(file);
+                Stream = new StreamWriter(file);
+            }
         }
 
         public void Write(object message)
         {
-            var str = $"{DateTime.Now:u}: {message}";
-            Stream.WriteLine(str);
-            Stream.Flush();
+            if (Stream != null)
+            {
+                var str = $"{DateTime.Now:u}: {message}";
+                Stream.WriteLine(str);
+                Stream.Flush();
+            }
         }
 
         public void Debug(object message)
@@ -75,7 +85,10 @@ namespace AoE2Lib
 
         public void Dispose()
         {
-            ((IDisposable)Stream).Dispose();
+            if (Stream != null)
+            {
+                Stream.Dispose();
+            }
         }
     }
 }

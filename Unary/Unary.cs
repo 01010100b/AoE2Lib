@@ -42,7 +42,16 @@ namespace Unary
 
         protected override void Stopped()
         {
+            Mod = null;
+            StrategyManager = null;
+            DiplomacyManager = null;
+            TownManager = null;
+            SitRepManager = null;
+            UnitsManager = null;
+            ResourcesManager = null;
 
+            Commands.Clear();
+            ChattedOK = false;
         }
 
         protected override void NewGame()

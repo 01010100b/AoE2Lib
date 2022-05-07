@@ -22,55 +22,57 @@ namespace AoE2Lib
         public const double SPEED_NORMAL = 1.5;
         public const double SPEED_FAST = 2;
 
+        private static readonly string Lock = "---Lock---";
+
         public static AoEInstance StartInstance(string exe, string args = null, double speed = SPEED_FAST, 
             int aimodule_port = DEFAULT_AIMODULE_PORT, int autogame_port = DEFAULT_AUTO_GAME_PORT)
         {
-            if (aimodule_port != DEFAULT_AIMODULE_PORT)
-            {
-                throw new NotSupportedException("Changing aimodule port from default not supported yet.");
-            }
-            else if (autogame_port != DEFAULT_AUTO_GAME_PORT)
-            {
-                throw new NotSupportedException("Changing auto game port from default not supported yet.");
-            }
-
             if (args == null)
             {
                 args = "";
             }
 
-            //args += " -runmultipleinstances";
-
+            args += $" -multipleinstances -autogameport {autogame_port} -aimoduleport {aimodule_port}";
             Process process = null;
 
-            var sp = (int)Math.Round(speed * 10);
-            var old = GetSpeed();
-            Debug.WriteLine($"Old speed: {old}");
-            SetSpeed(sp);
-
-            try
+            lock (Lock)
             {
-                process = Process.Start(exe, args);
-                process.WaitForInputIdle();
+                var sp = (int)Math.Round(speed * 10);
+                var old = GetSpeed();
+                Debug.WriteLine($"Old speed: {old}");
+                SetSpeed(sp);
+
+                try
+                {
+                    process = Process.Start(exe, args);
+                    process.WaitForInputIdle();
+
+                    while (!process.Responding)
+                    {
+                        Thread.Sleep(1000);
+                    }
+                }
+                finally
+                {
+                    SetSpeed(old);
+                }
+
+                Thread.Sleep(1000);
+
+                var instance = new AoEInstance(process, aimodule_port, autogame_port);
+
+                if (instance.Version == GameVersion.AOC)
+                {
+                    Thread.Sleep(1000);
+                    instance.LoadAocAutoGame();
+                }
+
+                Thread.Sleep(10000);
+                instance.LoadAIModule();
+                Thread.Sleep(3000);
+
+                return instance;
             }
-            finally
-            {
-                SetSpeed(old);
-            }
-            
-            Thread.Sleep(10000);
-
-            var instance = new AoEInstance(process, aimodule_port, autogame_port);
-            instance.LoadAIModule();
-
-            if (instance.Version == GameVersion.AOC)
-            {
-                instance.LoadAocAutoGame();
-            }
-
-            Thread.Sleep(5000);
-
-            return instance;
         }
 
         private static int GetSpeed()
@@ -100,7 +102,7 @@ namespace AoE2Lib
         public GameVersion Version => Process.ProcessName.Contains("AoE2DE") ? GameVersion.DE : GameVersion.AOC;
 
         private readonly Process Process;
-        private readonly IntPtr WindowHandle;
+        private IntPtr WindowHandle { get; set; }
         private readonly HashSet<string> InjectedDlls = new HashSet<string>();
         private readonly int AimodulePort;
         private readonly int AutoGamePort;
@@ -122,10 +124,10 @@ namespace AoE2Lib
             }
         }
 
-        public void StartBot(Bot bot, int player)
+        public void StartBot(Bot bot, int player, bool log = true)
         {
             LoadAIModule();
-            bot.Start(player, new IPEndPoint(IPAddress.Loopback, AimodulePort), Version);
+            bot.Start(player, new IPEndPoint(IPAddress.Loopback, AimodulePort), Version, log);
         }
 
         public void StartGame(Game game, bool minimized = false)
@@ -181,6 +183,11 @@ namespace AoE2Lib
         {
             lock (InjectedDlls)
             {
+                if (WindowHandle == IntPtr.Zero)
+                {
+                    WindowHandle = Process.MainWindowHandle;
+                }
+
                 if (InjectedDlls.Contains(file))
                 {
                     return;
@@ -223,42 +230,66 @@ namespace AoE2Lib
 
         public void SendKeys(string keys)
         {
-            Process.WaitForInputIdle();
-
-            if (!WindowHandle.Equals(IntPtr.Zero))
+            lock (Lock)
             {
-                if (SetForegroundWindow(WindowHandle))
+                Process.WaitForInputIdle();
+
+                if (!WindowHandle.Equals(IntPtr.Zero))
                 {
-                    Debug.WriteLine($"sending keys to window {keys}");
-                    System.Windows.Forms.SendKeys.SendWait(keys);
+                    if (SetForegroundWindow(WindowHandle))
+                    {
+                        ShowWindowAsync(WindowHandle, 9);
+                        Process.WaitForInputIdle();
+                        Debug.WriteLine($"sending keys to window {keys}");
+                        System.Windows.Forms.SendKeys.SendWait(keys);
+                        Thread.Sleep(100);
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Failed to set foreground window");
+                    }
+                }
+                else
+                {
+                    Debug.WriteLine($"Window handle is null ptr");
                 }
             }
         }
 
         public void Minimize()
         {
-            Process.WaitForInputIdle();
-
-            if (!WindowHandle.Equals(IntPtr.Zero))
+            lock (Lock)
             {
-                if (SetForegroundWindow(WindowHandle))
+                Process.WaitForInputIdle();
+
+                if (!WindowHandle.Equals(IntPtr.Zero))
                 {
-                    Debug.WriteLine("minimizing window");
-                    ShowWindowAsync(WindowHandle, 2);
+                    if (SetForegroundWindow(WindowHandle))
+                    {
+                        Process.WaitForInputIdle();
+                        Debug.WriteLine("minimizing window");
+                        ShowWindowAsync(WindowHandle, 2);
+                        Thread.Sleep(100);
+                    }
                 }
             }
         }
 
         public void Restore()
         {
-            Process.WaitForInputIdle();
-
-            if (!WindowHandle.Equals(IntPtr.Zero))
+            lock (Lock)
             {
-                if (SetForegroundWindow(WindowHandle))
+                Process.WaitForInputIdle();
+
+                if (!WindowHandle.Equals(IntPtr.Zero))
                 {
-                    Debug.WriteLine("restoring window");
-                    ShowWindowAsync(WindowHandle, 9);
+                    if (SetForegroundWindow(WindowHandle))
+                    {
+                        Process.WaitForInputIdle();
+                        Debug.WriteLine("restoring window");
+                        ShowWindowAsync(WindowHandle, 9);
+                        Thread.Sleep(100);
+                    }
                 }
             }
         }

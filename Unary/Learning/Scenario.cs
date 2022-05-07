@@ -1,8 +1,11 @@
-﻿using AoE2Lib.Games;
+﻿using AoE2Lib.Bots;
+using AoE2Lib.Games;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Unary.Learning
@@ -59,6 +62,80 @@ namespace Unary.Learning
             }
 
             return scenarios;
+        }
+
+        public static void RunScenarios(string exe, double speed, List<Scenario> scenarios, List<string> opponents)
+        {
+            const int GAMES_PER_SCENARIO = 1;
+
+            var queue = new ConcurrentQueue<KeyValuePair<Game, Dictionary<int, Bot>>>();
+            var results = new Dictionary<Game, Scenario>();
+            var runners = new List<InstanceRunner>();
+
+            for (int i = 0; i < 3; i++)
+            {
+                var runner = new InstanceRunner(exe, null, speed);
+                runner.Start(queue);
+                runners.Add(runner);
+            }
+
+            Program.Log.Info("Started runners");
+
+            for (int i = 0; i < GAMES_PER_SCENARIO; i++)
+            {
+                foreach (var opponent in opponents)
+                {
+                    foreach (var scenario in scenarios)
+                    {
+                        scenario.OpponentAiFile = opponent;
+
+                        var game = scenario.CreateGame("Unary");
+                        var unary = new Unary(Program.DefaultSettings);
+                        var dict = new Dictionary<int, Bot>() { { 1, unary } };
+                        queue.Enqueue(new KeyValuePair<Game, Dictionary<int, Bot>>(game, dict));
+                        results.Add(game, scenario);
+                    }
+                }
+            }
+
+            Program.Log.Info($"Total game count {results.Count}");
+
+            foreach (var result in results)
+            {
+                while (!result.Key.Finished)
+                {
+                    Thread.Sleep(1000);
+                }
+
+                Program.Log.Info($"Ran game {result.Value.ScenarioName} against {result.Value.OpponentAiFile} score {result.Value.GetScore(result.Key):P0}.");
+            }
+
+            Program.Log.Info("All games finished");
+            
+            foreach (var runner in runners)
+            {
+                runner.Stop();
+            }
+
+            var scores = new Dictionary<KeyValuePair<string, string>, double>();
+
+            foreach (var result in results)
+            {
+                var kvp = new KeyValuePair<string, string>(result.Value.ScenarioName, result.Value.OpponentAiFile);
+                var score = result.Value.GetScore(result.Key);
+
+                if (!scores.ContainsKey(kvp))
+                {
+                    scores.Add(kvp, 0);
+                }
+
+                scores[kvp] += score / GAMES_PER_SCENARIO;
+            }
+
+            foreach (var score in scores)
+            {
+                Program.Log.Info($"Test {score.Key.Key} against {score.Key.Value}: {score.Value:P0}");
+            }
         }
 
         public string ScenarioName { get; set; }

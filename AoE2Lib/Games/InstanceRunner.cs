@@ -15,7 +15,6 @@ namespace AoE2Lib.Games
         private readonly string Args;
         private readonly double Speed;
         private ConcurrentQueue<KeyValuePair<Game, Dictionary<int, Bot>>> Games { get; set; }
-        private bool RunMinimized { get; set; } = false;
         private Thread Thread { get; set; }
         private volatile bool Stopping = false;
 
@@ -26,7 +25,7 @@ namespace AoE2Lib.Games
             Speed = speed;
         }
 
-        public void Start(ConcurrentQueue<KeyValuePair<Game, Dictionary<int, Bot>>> games, bool minimized = false)
+        public void Start(ConcurrentQueue<KeyValuePair<Game, Dictionary<int, Bot>>> games)
         {
             if (IsRunning)
             {
@@ -34,7 +33,6 @@ namespace AoE2Lib.Games
             }
 
             Games = games;
-            RunMinimized = minimized;
 
             Thread = new Thread(() => Run()) { IsBackground = true };
             Thread.Start();
@@ -57,8 +55,12 @@ namespace AoE2Lib.Games
             {
                 if (aoe == null || aoe.HasExited)
                 {
+                    var rng = new Random(Guid.NewGuid().GetHashCode());
+                    var autogame = rng.Next(10000, 65000);
+                    var aimodule = rng.Next(10000, 65000);
+
                     Thread.Sleep(5000);
-                    aoe = AoEInstance.StartInstance(Exe, Args, Speed);
+                    aoe = AoEInstance.StartInstance(Exe, Args, Speed, aimodule, autogame);
 
                     Thread.Sleep(5000);
                 }
@@ -68,14 +70,14 @@ namespace AoE2Lib.Games
                     {
                         try
                         {
-                            Thread.Sleep(2000);
+                            Thread.Sleep(1000);
 
                             foreach (var bot in game.Value)
                             {
-                                aoe.StartBot(bot.Value, bot.Key);
+                                aoe.StartBot(bot.Value, bot.Key, false);
                             }
 
-                            aoe.StartGame(game.Key, RunMinimized);
+                            aoe.StartGame(game.Key, true);
 
                             while (!game.Key.Finished)
                             {

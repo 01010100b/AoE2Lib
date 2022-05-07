@@ -54,7 +54,7 @@ namespace AoE2Lib.Bots
         protected abstract void Stopped();
         protected abstract IEnumerable<Command> Tick();
 
-        internal void Start(int player, IPEndPoint endpoint, GameVersion version)
+        internal void Start(int player, IPEndPoint endpoint, GameVersion version, bool log)
         {
             if (BotThread != null)
             {
@@ -63,7 +63,8 @@ namespace AoE2Lib.Bots
 
             GameVersion = version;
             PlayerNumber = player;
-            Log = new Log(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"Player {PlayerNumber}.log"));
+            var file = log ? Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"Player {PlayerNumber}.log") : null;
+            Log = new Log(file);
             Rng = new Random(Guid.NewGuid().GetHashCode());
             
             BotThread = new Thread(() => Run(endpoint)) { IsBackground = true };

@@ -8,13 +8,14 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Unary.UI;
 
 namespace Unary
 {
     static class Program
     {
         public static string Folder => AppDomain.CurrentDomain.BaseDirectory;
-        public static Settings Settings => GetSettings();
+        public static Settings DefaultSettings => GetSettings();
 
         internal static readonly Log Log = new(Path.Combine(Folder, "Unary.log"));
         
