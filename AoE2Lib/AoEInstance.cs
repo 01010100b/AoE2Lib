@@ -22,7 +22,7 @@ namespace AoE2Lib
         public const double SPEED_NORMAL = 1.5;
         public const double SPEED_FAST = 2;
 
-        private static readonly string Lock = "---Lock---";
+        private static readonly object Lock = new();
 
         public static AoEInstance StartInstance(string exe, string args = null, double speed = SPEED_FAST, 
             int aimodule_port = DEFAULT_AIMODULE_PORT, int autogame_port = DEFAULT_AUTO_GAME_PORT)
@@ -39,31 +39,22 @@ namespace AoE2Lib
             {
                 var sp = (int)Math.Round(speed * 10);
                 var old = GetSpeed();
-                Debug.WriteLine($"Old speed: {old}");
                 SetSpeed(sp);
 
                 try
                 {
                     process = Process.Start(exe, args);
                     process.WaitForInputIdle();
-
-                    while (!process.Responding)
-                    {
-                        Thread.Sleep(1000);
-                    }
                 }
                 finally
                 {
                     SetSpeed(old);
                 }
 
-                Thread.Sleep(1000);
-
                 var instance = new AoEInstance(process, aimodule_port, autogame_port);
 
                 if (instance.Version == GameVersion.AOC)
                 {
-                    Thread.Sleep(1000);
                     instance.LoadAocAutoGame();
                 }
 
@@ -77,14 +68,31 @@ namespace AoE2Lib
 
         private static int GetSpeed()
         {
-            var key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Microsoft Games\Age of Empires II: The Conquerors Expansion\1.0");
-            return (int)key.GetValue("Game Speed");
+            try
+            {
+                var key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Microsoft Games\Age of Empires II: The Conquerors Expansion\1.0");
+                
+                return (int)key.GetValue("Game Speed");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+
+                return -1;
+            }
         }
 
         private static void SetSpeed(int speed)
         {
-            var key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Microsoft Games\Age of Empires II: The Conquerors Expansion\1.0", true);
-            key.SetValue("Game Speed", speed);
+            try
+            {
+                var key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Microsoft Games\Age of Empires II: The Conquerors Expansion\1.0", true);
+                key.SetValue("Game Speed", speed);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
 
         [DllImport("kernel32.dll", SetLastError = true)]
@@ -121,6 +129,7 @@ namespace AoE2Lib
             {
                 Process.Kill();
                 Process.WaitForExit();
+                Thread.Sleep(1000);
             }
         }
 
@@ -138,9 +147,8 @@ namespace AoE2Lib
             if (game.GameType == GameType.SCENARIO)
             {
                 SendKeys("{ENTER}");
+                Thread.Sleep(1000);
             }
-
-            Thread.Sleep(1000);
 
             if (minimized)
             {
@@ -150,6 +158,8 @@ namespace AoE2Lib
             {
                 Restore();
             }
+
+            Thread.Sleep(1000);
         }
 
         public void LoadAIModule()
@@ -183,11 +193,6 @@ namespace AoE2Lib
         {
             lock (InjectedDlls)
             {
-                if (WindowHandle == IntPtr.Zero)
-                {
-                    WindowHandle = Process.MainWindowHandle;
-                }
-
                 if (InjectedDlls.Contains(file))
                 {
                     return;
@@ -228,21 +233,37 @@ namespace AoE2Lib
             return flag;
         }
 
-        public void SendKeys(string keys)
+        public void SendKeys(string keys) => SendWindowCommand(() =>
+        {
+            ShowWindowAsync(WindowHandle, 9);
+            Thread.Sleep(500);
+            Process.WaitForInputIdle();
+            System.Windows.Forms.SendKeys.SendWait(keys);
+        });
+
+        public void Minimize() => SendWindowCommand(() => ShowWindowAsync(WindowHandle, 2));
+
+        public void Restore() => SendWindowCommand(() => ShowWindowAsync(WindowHandle, 9));
+
+        private void SendWindowCommand(Action action)
         {
             lock (Lock)
             {
                 Process.WaitForInputIdle();
 
+                if (WindowHandle == IntPtr.Zero)
+                {
+                    WindowHandle = Process.MainWindowHandle;
+                }
+
                 if (!WindowHandle.Equals(IntPtr.Zero))
                 {
                     if (SetForegroundWindow(WindowHandle))
                     {
-                        ShowWindowAsync(WindowHandle, 9);
                         Process.WaitForInputIdle();
-                        Debug.WriteLine($"sending keys to window {keys}");
-                        System.Windows.Forms.SendKeys.SendWait(keys);
-                        Thread.Sleep(100);
+                        action();
+                        Thread.Sleep(500);
+                        Process.WaitForInputIdle();
                     }
                     else
                     {
@@ -252,44 +273,6 @@ namespace AoE2Lib
                 else
                 {
                     Debug.WriteLine($"Window handle is null ptr");
-                }
-            }
-        }
-
-        public void Minimize()
-        {
-            lock (Lock)
-            {
-                Process.WaitForInputIdle();
-
-                if (!WindowHandle.Equals(IntPtr.Zero))
-                {
-                    if (SetForegroundWindow(WindowHandle))
-                    {
-                        Process.WaitForInputIdle();
-                        Debug.WriteLine("minimizing window");
-                        ShowWindowAsync(WindowHandle, 2);
-                        Thread.Sleep(100);
-                    }
-                }
-            }
-        }
-
-        public void Restore()
-        {
-            lock (Lock)
-            {
-                Process.WaitForInputIdle();
-
-                if (!WindowHandle.Equals(IntPtr.Zero))
-                {
-                    if (SetForegroundWindow(WindowHandle))
-                    {
-                        Process.WaitForInputIdle();
-                        Debug.WriteLine("restoring window");
-                        ShowWindowAsync(WindowHandle, 9);
-                        Thread.Sleep(100);
-                    }
                 }
             }
         }

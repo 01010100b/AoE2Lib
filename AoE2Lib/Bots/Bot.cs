@@ -54,6 +54,8 @@ namespace AoE2Lib.Bots
         protected abstract void Stopped();
         protected abstract IEnumerable<Command> Tick();
 
+        protected virtual void Handle(Exception ex) { }
+
         internal void Start(int player, IPEndPoint endpoint, GameVersion version, bool log)
         {
             if (BotThread != null)
@@ -66,8 +68,19 @@ namespace AoE2Lib.Bots
             var file = log ? Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"Player {PlayerNumber}.log") : null;
             Log = new Log(file);
             Rng = new Random(Guid.NewGuid().GetHashCode());
-            
-            BotThread = new Thread(() => Run(endpoint)) { IsBackground = true };
+
+            BotThread = new Thread(() =>
+            {
+                try
+                {
+                    Run(endpoint);
+                }
+                catch (Exception ex)
+                {
+                    Handle(ex);
+                    Log?.Dispose();
+                }
+            });
             BotThread.Start();
         }
 
@@ -103,7 +116,7 @@ namespace AoE2Lib.Bots
                 first_command.Add(new SetGoal() { InConstGoalId = 420, InConstValue = Id });
                 commands.Add(first_command);
 
-                commands.AddRange(Tick().Where(c => c.HasMessages));
+                commands.AddRange(Tick());
                 commands.AddRange(GameState.RequestUpdate());
 
                 var commandlist = new CommandList() { PlayerNumber = PlayerNumber };
@@ -212,7 +225,6 @@ namespace AoE2Lib.Bots
             }
 
             NewGame();
-
             Log.Info("New Game");
         }
     }

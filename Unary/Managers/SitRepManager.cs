@@ -31,7 +31,7 @@ namespace Unary.Managers
 
             public void Reset()
             {
-                IsLandAccessible = true;
+                IsLandAccessible = Tile.IsOnLand;
                 IsWaterAccessible = true;
                 IsConstructionBlocked = false;
                 IsConstructionExcluded = false;
@@ -40,6 +40,8 @@ namespace Unary.Managers
         }
 
         public SitRep this[Tile tile] => GetSitRep(tile);
+        public IEnumerable<Unit> Targets => GetTargets();
+        public IEnumerable<Unit> Threats => GetThreats();
 
         private readonly Dictionary<Tile, SitRep> SitReps = new();
         private readonly Dictionary<Tile, bool> Cliffs = new();
@@ -52,6 +54,11 @@ namespace Unary.Managers
 
         internal override void Update()
         {
+            if (!Unary.GameState.Map.IsOnMap(Unary.GameState.MyPosition))
+            {
+                return;
+            }
+
             foreach (var sitrep in SitReps.Values)
             {
                 sitrep.Reset();
@@ -60,16 +67,26 @@ namespace Unary.Managers
                 {
                     if (cliff)
                     {
-                        sitrep.IsLandAccessible = false;
-                        sitrep.IsWaterAccessible = false;
-                        sitrep.IsConstructionBlocked = true;
+                        const int SIZE = 2;
+
+                        var footprint = Utils.GetUnitFootprint(sitrep.Tile.X, sitrep.Tile.Y, SIZE, SIZE);
+
+                        for (int x = footprint.X; x < footprint.Width; x++)
+                        {
+                            for (int y = footprint.Y; y < footprint.Height; y++)
+                            {
+                                if (Unary.GameState.Map.TryGetTile(x, y, out var tile))
+                                {
+                                    var sr = this[tile];
+
+                                    sr.IsLandAccessible = false;
+                                    sr.IsWaterAccessible = false;
+                                    sr.IsConstructionBlocked = true;
+                                }
+                            }
+                        }
                     }
                 }
-            }
-
-            if (!Unary.GameState.Map.IsOnMap(Unary.GameState.MyPosition))
-            {
-                return;
             }
 
             var sw = new Stopwatch();
@@ -228,7 +245,7 @@ namespace Unary.Managers
 
                 foreach (var kvp in dict)
                 {
-                    var sitrep = GetSitRep(kvp.Key);
+                    var sitrep = this[kvp.Key];
                     sitrep.PathDistanceToHome = kvp.Value;
                 }
 
@@ -257,13 +274,43 @@ namespace Unary.Managers
 
             for (int i = 0; i < neighbours.Count; i++)
             {
-                var neighbour = GetSitRep(neighbours[i]);
+                var neighbour = this[neighbours[i]];
 
                 if (neighbour.IsLandAccessible || neighbour.Tile.Center.DistanceTo(Unary.GameState.MyPosition) < 3)
                 {
                     yield return neighbour.Tile;
                 }
             }
+        }
+
+        private List<Unit> GetTargets()
+        {
+            var targets = new List<Unit>();
+
+            foreach (var unit in Unary.GameState.CurrentEnemies.SelectMany(p => p.Units))
+            {
+                if (unit.Targetable && unit.Visible && unit[ObjectData.HITPOINTS] > 0)
+                {
+                    targets.Add(unit);
+                }
+            }
+
+            return targets;
+        }
+
+        private List<Unit> GetThreats()
+        {
+            var threats = new List<Unit>();
+
+            foreach (var unit in Unary.GameState.CurrentEnemies.SelectMany(p => p.Units))
+            {
+                if (unit.Targetable && unit.Visible && unit[ObjectData.BASE_ATTACK] > 0)
+                {
+                    threats.Add(unit);
+                }
+            }
+
+            return threats;
         }
     }
 }

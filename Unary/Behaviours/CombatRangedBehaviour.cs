@@ -1,4 +1,5 @@
-﻿using AoE2Lib.Bots;
+﻿using AoE2Lib;
+using AoE2Lib.Bots;
 using AoE2Lib.Bots.GameElements;
 using System;
 using System.Collections.Generic;
@@ -21,10 +22,8 @@ namespace Unary.Behaviours
         protected override Unit ChooseTarget(out Unit backup)
         {
             var pos = Controller.Unit.Position;
-            var targets = Controller.Unary.GameState.CurrentEnemies
-                .SelectMany(p => p.Units)
-                .Where(u => u.Targetable)
-                .ToList();
+            var targets = ObjectPool.Get(() => new List<Unit>(), x => x.Clear());
+            targets.AddRange(Controller.Unary.SitRepManager.Targets);
 
             if (targets.Count > 0)
             {
@@ -38,14 +37,26 @@ namespace Unary.Behaviours
                     backup = targets[1];
                 }
 
+                ObjectPool.Return(targets);
+
                 return target;
             }
             else
             {
                 backup = null;
+                ObjectPool.Return(targets);
 
                 return null;
             }
+        }
+
+        protected override Position PerformCombat(out bool attack)
+        {
+            attack = Controller.Unary.Rng.NextDouble() < Controller.Unary.Settings.CombatRangedShootChance;
+
+            var delta = 2 * GetThreatAvoidanceDelta().Normalize();
+
+            return Controller.Unit.Position + delta;
         }
 
         protected override void DoCombat()
@@ -107,9 +118,6 @@ namespace Unary.Behaviours
             {
                 Controller.Unary.Log.Debug($"Unit {Controller.Unit.Id} is stuck!");
 
-                var rng = Controller.Unary.Rng;
-                var home_pos = Controller.Unary.GameState.MyPosition;
-
                 OppositeDirection = !OppositeDirection;
                 delta_pos *= -1;
                 move_position = my_pos + delta_pos;
@@ -164,48 +172,6 @@ namespace Unary.Behaviours
             else
             {
                 return false;
-            }
-        }
-
-        private void AssignTargetScores(List<KeyValuePair<Unit, double>> targets)
-        {
-            var speed = Controller.Unit[ObjectData.SPEED] / 100d;
-            var range = Controller.Unit[ObjectData.RANGE];
-            var pierce = true;// Controller.Unary.Mod.DoesPierceDamage(Controller.Unit[ObjectData.UPGRADE_TYPE]);
-            var attack = Controller.Unit[ObjectData.BASE_ATTACK];
-
-            for (int i = 0; i < targets.Count; i++)
-            {
-                var target = targets[i].Key;
-                var ttk = 1d;
-
-                // walk time to target in range
-
-                var distance = target.Position.DistanceTo(Controller.Unit.Position);
-
-                if (distance > range)
-                {
-                    var d = distance - range;
-                    var walk = d / Math.Max(0.01, speed);
-
-                    ttk += walk;
-                }
-
-                // time to shoot target to 0 hp
-
-                var hp = target[ObjectData.HITPOINTS];
-                var armor = pierce ? target[ObjectData.PIERCE_ARMOR] : target[ObjectData.STRIKE_ARMOR];
-                var bonus = 0;// Controller.Unary.Mod.GetBonusDamage(Controller.Unit[ObjectData.UPGRADE_TYPE], target[ObjectData.UPGRADE_TYPE]);
-                var dmg = Math.Min(1, Math.Max(0, attack - armor) + bonus);
-                var hits = (hp / dmg) + 1;
-                var reload = Controller.Unit[ObjectData.RELOAD_TIME] / 1000d;
-                var kill = hits * reload;
-
-                ttk += kill;
-
-                var score = 1 / ttk;
-
-                targets[i] = new KeyValuePair<Unit, double>(target, score);
             }
         }
     }

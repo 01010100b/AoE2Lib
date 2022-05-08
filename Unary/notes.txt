@@ -22,6 +22,13 @@ slow = 10
 micro test results
 ==================
 
+4v4 6v6 8v8 10v10
+
+4v4 no byzantine feudal
+6v6 no briton castle
+8v8 yes byzantines post-imp
+10v10 yes briton imp
+
 2022-05-05 06:22:35Z: INFO: Unary UI: Test TRM range 4v4 no ballistics against Null: 24.80%
 2022-05-05 06:22:35Z: INFO: Unary UI: Test TRM range 5v5 no ballistics against Null: 89.84%
 2022-05-05 06:22:35Z: INFO: Unary UI: Test TRM range 6v6 no ballistics against Null: 107.92%

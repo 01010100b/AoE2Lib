@@ -74,7 +74,7 @@ namespace Unary.Behaviours
 
         internal void Tick(Dictionary<Type, KeyValuePair<int, TimeSpan>> times)
         {
-            if (GetHashCode() % 13 == Unary.GameState.Tick % 13)
+            if (Unary.ShouldRareTick(this, 31))
             {
                 Unit.RequestUpdate();
             }

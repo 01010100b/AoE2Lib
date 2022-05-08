@@ -7,6 +7,8 @@ namespace AoE2Lib
 {
     public static class ObjectPool
     {
+        private const int MAX_POOL = 1000;
+
         private static readonly ConcurrentDictionary<Type, ConcurrentQueue<object>> Pools = new ConcurrentDictionary<Type, ConcurrentQueue<object>>();
 
         public static T Get<T>(Func<T> create, Action<T> reset)
@@ -29,7 +31,11 @@ namespace AoE2Lib
         public static void Return<T>(T obj)
         {
             var pool = GetPool<T>();
-            pool.Enqueue(obj);
+
+            if (pool.Count < MAX_POOL)
+            {
+                pool.Enqueue(obj);
+            }
         }
 
         private static ConcurrentQueue<object> GetPool<T>()

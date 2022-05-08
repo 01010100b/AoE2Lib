@@ -16,6 +16,7 @@ namespace AoE2Lib.Bots.GameElements
         public int this[ObjectData data] => GetData(data);
         public Player Player => GetPlayer();
         public bool Targetable { get; private set; } = false;
+        public bool Visible { get; private set; } = false;
         public bool IsBuilding => this[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || this[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING;
         public TimeSpan LastSeenGameTime { get; private set; } = TimeSpan.MinValue;
         public Position Position => Position.FromPrecise(this[ObjectData.PRECISE_X], this[ObjectData.PRECISE_Y]);
@@ -283,20 +284,28 @@ namespace AoE2Lib.Bots.GameElements
             var id = data[(int)ObjectData.ID];
 
             Targetable = true;
+            Visible = true;
 
             if (id != Id)
             {
                 Targetable = false;
+                Visible = false;
 
                 return;
             }
 
-            if (LastSeenGameTime >= TimeSpan.Zero && !visible)
+            if (LastSeenGameTime >= TimeSpan.Zero && !IsBuilding && !visible)
             {
+                Visible = false;
                 return;
             }
 
             LastSeenGameTime = Bot.GameState.GameTime;
+
+            if (IsBuilding && !visible)
+            {
+                return;
+            }
 
             for (int i = 0; i < data.Length; i++)
             {

@@ -30,11 +30,14 @@ namespace AoE2Lib.Games
         public bool LockTeams { get; set; } = false;
         public bool AllTechs { get; set; } = false;
         public bool Recorded { get; set; } = true;
+        public DateTime LastProgressTimeUtc { get; private set; } = DateTime.MinValue;
         public bool Finished { get; private set; } = false;
 
         private readonly List<Player> Players = new();
-        private readonly TcpClient Client = new();
-        private int NextId { get; set; } = 1;
+        private TcpClient Client { get; set; }
+        private int NextId { get; set; }
+        private Thread Thread { get; set; }
+        private volatile bool Stopping = false;
 
         public void AddPlayer(Player player)
         {
@@ -46,10 +49,71 @@ namespace AoE2Lib.Games
             return Players;
         }
 
+        public void Stop()
+        {
+            Stopping = true;
+            Thread?.Join();
+            Thread = null;
+
+            if (Client != null)
+            {
+                Client.Close();
+                Client = null;
+            }
+
+            Stopping = false;
+        }
+
         internal void Start(IPEndPoint endpoint, bool minimized)
         {
-            Client.Connect(endpoint);
+            Stop();
 
+            Finished = false;
+            Client = new();
+            NextId = 1;
+
+            Client.Connect(endpoint);
+            Setup(minimized);
+            Call("StartGame");
+            Thread.Sleep(1000);
+
+            Thread = new Thread(() =>
+            {
+                try
+                {
+                    Thread.Sleep(10000);
+
+                    while (!IsFinished())
+                    {
+                        if (IsInProgress())
+                        {
+                            LastProgressTimeUtc = DateTime.UtcNow;
+                        }
+
+                        if (Stopping)
+                        {
+                            return;
+                        }
+
+                        Thread.Sleep(1000);
+                    }
+
+                    Client.Close();
+                    Finished = true;
+                    Thread.Sleep(1000);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                    Finished = false;
+                }
+            });
+            Thread.IsBackground = true;
+            Thread.Start();
+        }
+
+        private void Setup(bool minimized)
+        {
             var api = Call<float>("GetApiVersion");
             Debug.WriteLine("Api: " + api.ToString());
 
@@ -59,7 +123,7 @@ namespace AoE2Lib.Games
             }
 
             Call("ResetGameSettings");
-            
+
             if (minimized)
             {
                 Call("SetRunUnfocused", true);
@@ -110,41 +174,20 @@ namespace AoE2Lib.Games
                 player.Alive = true;
                 player.Score = 0;
             }
+        }
 
-            Call("StartGame");
-
-            var thread = new Thread(() =>
-            {
-                Thread.Sleep(10000);
-
-                while (!IsFinished())
-                {
-                    Thread.Sleep(1000);
-                }
-
-                Client.Close();
-                Thread.Sleep(3000);
-                Finished = true;
-            });
-            thread.IsBackground = true;
-            thread.Start();
+        private bool IsInProgress()
+        {
+            return Call<bool>("GetGameInProgress");
         }
 
         private bool IsFinished()
         {
-            var total_score = 0;
-
             foreach (var player in Players)
             {
                 player.Exists = Call<bool>("GetPlayerExists", player.PlayerNumber);
                 player.Alive = Call<bool>("GetPlayerAlive", player.PlayerNumber);
                 player.Score = Call<int>("GetPlayerScore", player.PlayerNumber);
-                total_score += player.Score;
-            }
-
-            if (total_score <= 0)
-            {
-                //return true;
             }
 
             var team = new int[5];

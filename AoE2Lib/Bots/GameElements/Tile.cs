@@ -15,13 +15,13 @@ namespace AoE2Lib.Bots.GameElements
         public Position Position => Position.FromPoint(X, Y);
         public Position Center => new Position(X + 0.5, Y + 0.5);
         public int Height { get; internal set; }
+        public int Terrain { get; internal set; } = 0;
         public bool IsOnLand => Terrain != 1 && Terrain != 2 && Terrain != 4 && Terrain != 15 && Terrain != 22 && Terrain != 23 && Terrain != 28 && Terrain != 37;
         public bool Explored => Visibility != 0;
         public bool Visible => Visibility == 15;
         public IEnumerable<Unit> Units => _Units;
 
         internal readonly List<Unit> _Units = new List<Unit>();
-        internal int Terrain { get; set; } = 0;
         internal int Visibility { get; set; } = 0;
 
         private readonly Map Map;

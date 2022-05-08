@@ -53,8 +53,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Learning\Scenarios\" />
-  </ItemGroup>
-
 </Project>

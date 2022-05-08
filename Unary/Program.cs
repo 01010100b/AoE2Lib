@@ -27,11 +27,14 @@ namespace Unary
             };
             serializer.Converters.Add(new StringEnumConverter());
 
-            using (var writer = File.CreateText(file))
-            using (var json = new JsonTextWriter(writer))
+            lock (file)
             {
-                serializer.Serialize(json, obj);
-                writer.Flush();
+                using (var writer = File.CreateText(file))
+                using (var json = new JsonTextWriter(writer))
+                {
+                    serializer.Serialize(json, obj);
+                    writer.Flush();
+                }
             }
         }
 
@@ -43,10 +46,13 @@ namespace Unary
             };
             serializer.Converters.Add(new StringEnumConverter());
 
-            using (var reader = File.OpenText(file))
-            using (var json = new JsonTextReader(reader))
+            lock (file)
             {
-                return serializer.Deserialize<T>(json);
+                using (var reader = File.OpenText(file))
+                using (var json = new JsonTextReader(reader))
+                {
+                    return serializer.Deserialize<T>(json);
+                }
             }
         }
 
@@ -95,15 +101,14 @@ namespace Unary
             finally
             {
                 Log.Dispose();
-                //MessageBox.Show("An unexpected error occurred. Unary will now exit. See the log for details.", "Unexpected error");
             }
         }
 
         private static Settings GetSettings()
         {
             var settings = new Settings();
+            var file = Path.Combine(Folder, "Settings.json");
 
-            var file = Path.Combine(Program.Folder, "Settings.json");
             if (File.Exists(file))
             {
                 settings = Deserialize<Settings>(file);

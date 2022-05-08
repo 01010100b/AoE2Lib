@@ -4,8 +4,10 @@ using Protos.Expert.Action;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Unary.Behaviours;
 using Unary.Managers;
@@ -61,8 +63,26 @@ namespace Unary
             DatFile datfile = null;
             if (DatFilePath != null)
             {
-                datfile = new DatFile();
-                datfile.Load(DatFilePath);
+                lock (DatFilePath)
+                {
+                    var sw = new Stopwatch();
+                    sw.Start();
+
+                    while (sw.Elapsed < TimeSpan.FromMinutes(1))
+                    {
+                        try
+                        {
+                            datfile = new DatFile();
+                            datfile.Load(DatFilePath);
+
+                            break;
+                        }
+                        catch (Exception)
+                        {
+                            Thread.Sleep(500);
+                        }
+                    }
+                }
             }
 
             Mod = new(datfile);

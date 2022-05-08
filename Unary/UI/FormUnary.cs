@@ -15,6 +15,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unary.Learning;
+using Unary.Learning.Scenarios;
 
 namespace Unary.UI
 {
@@ -173,16 +174,26 @@ namespace Unary.UI
             if (Instance != null)
             {
                 Instance.Kill();
+                Thread.Sleep(5000);
             }
 
             var thread = new Thread(() =>
             {
                 var exe = LabelExePath.Text;
-                var scenarios = Scenario.GetDefaultScenarios();
                 var opponents = new List<string>() { "Null", "ArcherMicroTest_E" };
+                var scenarios = new List<Scenario>();
+
+                foreach (var opponent in opponents)
+                {
+                    foreach (var scenario in Scenarios.GetCombatRangedTests().Where(s => s.Name == "TCR 4v4 no ballistics"))
+                    {
+                        scenario.OpponentAiFile = opponent;
+                        scenarios.Add(scenario);
+                    }
+                }
 
                 Message("Start running scenarios...");
-                Scenario.RunScenarios(exe, AoEInstance.SPEED_FAST, scenarios, opponents);
+                Scenarios.RunScenarios(exe, AoEInstance.SPEED_FAST, scenarios, 1);
                 Message("Finished running scenarios.");
             });
             thread.IsBackground = true;
