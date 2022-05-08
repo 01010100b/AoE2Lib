@@ -117,7 +117,7 @@ namespace Unary.Behaviours
             }
             else if (Unit.IsBuilding)
             {
-                AddBehaviour(new ConstructionBehaviour());
+                AddBehaviour(new ConstructionSpotBehaviour());
 
                 if (Unit[ObjectData.BASE_TYPE] == Unary.Mod.TownCenter)
                 {

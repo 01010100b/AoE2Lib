@@ -113,7 +113,9 @@ namespace Unary
             {
                 settings = Deserialize<Settings>(file);
             }
-
+#if DEBUG
+            settings = new Settings();
+#endif
             Serialize(settings, file);
 
             return settings;

@@ -43,55 +43,55 @@ namespace Unary.Behaviours
             var my_pos = Controller.Unit.Position;
             var distance = my_pos.DistanceTo(Threat.Position);
 
-            if (distance > range + 2)
+            if (distance < range + 1)
             {
-                return delta_pos;
-            }
+                // within threat range
 
-            if (range > 2 && distance > 2 && distance < range + 1)
-            {
-                // avoid projectiles
-
-                var settings = Controller.Unary.Settings;
-                var ballistics = Threat[ObjectData.BALLISTICS] > 0;
-
-                delta_pos = (Threat.Position - my_pos).Normalize().Rotate(Math.PI / 2);
-
-                if (ballistics)
+                if (range <= 2)
                 {
-                    // enemy has ballistics, do zigzag
+                    // just run away
 
-                    var bias = settings.CombatRangedMovementBias;
-                    var zigzag = Controller.Unary.GameState.Tick % bias % 2 == 0;
+                    delta_pos = (my_pos - Threat.Position).Normalize();
+                }
+                else
+                {
+                    // avoid projectiles
 
-                    if (zigzag)
+                    var settings = Controller.Unary.Settings;
+                    var ballistics = Threat[ObjectData.BALLISTICS] > 0;
+
+                    delta_pos = (Threat.Position - my_pos).Normalize().Rotate(Math.PI / 2);
+
+                    if (ballistics)
+                    {
+                        // enemy has ballistics, do zigzag
+
+                        var bias = settings.CombatRangedMovementBias;
+                        var zigzag = Controller.Unary.GameState.Tick % bias % 2 == 0;
+
+                        if (zigzag)
+                        {
+                            delta_pos *= -1;
+                        }
+                    }
+
+                    if (OppositeDirection)
                     {
                         delta_pos *= -1;
                     }
-                }
 
-                if (OppositeDirection)
-                {
-                    delta_pos *= -1;
-                }
+                    var my_range = Controller.Unit[ObjectData.RANGE];
+                    var min_range = my_range * settings.CombatRangedMinRangeFraction;
 
-                var my_range = Controller.Unit[ObjectData.RANGE];
-                var min_range = my_range * settings.CombatRangedMinRangeFraction;
-
-                if (my_pos.DistanceTo(Target.Position) < min_range)
-                {
-                    delta_pos += 0.5 * (my_pos - Target.Position).Normalize();
+                    if (my_pos.DistanceTo(Target.Position) < min_range)
+                    {
+                        delta_pos += 0.5 * (my_pos - Target.Position).Normalize();
+                    }
+                    else if (my_pos.DistanceTo(Threat.Position) < min_range)
+                    {
+                        delta_pos += 0.5 * (my_pos - Threat.Position).Normalize();
+                    }
                 }
-                else if (my_pos.DistanceTo(Threat.Position) < min_range)
-                {
-                    delta_pos += 0.5 * (my_pos - Threat.Position).Normalize();
-                }
-            }
-            else if (Target != Threat)
-            {
-                // just run away
-
-                delta_pos = (my_pos - Threat.Position).Normalize();
             }
 
             return delta_pos;

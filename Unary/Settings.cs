@@ -21,5 +21,6 @@ namespace Unary
         public double CombatRangedShootChance { get; set; } = 0.8;
         public double CombatRangedMinRangeFraction { get; set; } = 0.8;
         public int CombatRangedMovementBias { get; set; } = 5;
+        public double CombatRangedFocusRange { get; set; } = -1;
     }
 }

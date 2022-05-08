@@ -185,7 +185,7 @@ namespace Unary.UI
 
                 foreach (var opponent in opponents)
                 {
-                    foreach (var scenario in Scenarios.GetCombatRangedTests().Where(s => s.Name == "TCR 4v4 no ballistics"))
+                    foreach (var scenario in Scenarios.GetCombatRangedTests())
                     {
                         scenario.OpponentAiFile = opponent;
                         scenarios.Add(scenario);
@@ -193,7 +193,7 @@ namespace Unary.UI
                 }
 
                 Message("Start running scenarios...");
-                Scenarios.RunScenarios(exe, AoEInstance.SPEED_FAST, scenarios, 1);
+                Scenarios.RunScenarios(exe, AoEInstance.SPEED_FAST, scenarios);
                 Message("Finished running scenarios.");
             });
             thread.IsBackground = true;

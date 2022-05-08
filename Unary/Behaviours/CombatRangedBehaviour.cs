@@ -21,6 +21,7 @@ namespace Unary.Behaviours
 
         protected override Unit ChooseTarget(out Unit backup)
         {
+            var settings = Controller.Unary.Settings;
             var pos = Controller.Unit.Position;
             var targets = ObjectPool.Get(() => new List<Unit>(), x => x.Clear());
             targets.AddRange(Controller.Unary.SitRepManager.Targets);
@@ -54,9 +55,10 @@ namespace Unary.Behaviours
         {
             attack = Controller.Unary.Rng.NextDouble() < Controller.Unary.Settings.CombatRangedShootChance;
 
-            var delta = 2 * GetThreatAvoidanceDelta().Normalize();
+            var pos = Controller.Unit.Position;
+            var delta = GetThreatAvoidanceDelta().Normalize();
 
-            return Controller.Unit.Position + delta;
+            return pos + (2 * delta);
         }
 
         protected override void DoCombat()

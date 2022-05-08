@@ -15,11 +15,9 @@ namespace Unary.Managers
     {
         //private const int GROUPS = 10;
 
-        public IEnumerable<Controller> Villagers => Controllers.Values.Where(c => c.Unit[ObjectData.CMDID] == (int)CmdId.VILLAGER);
-        public IEnumerable<Controller> TownCenters => Controllers.Values.Where(c => c.Unit[ObjectData.BASE_TYPE] == Unary.Mod.TownCenter);
-        public IEnumerable<Controller> Constructions => Controllers.Values.Where(c =>
+        public IEnumerable<Controller> ConstructionSpots => Controllers.Values.Where(c =>
         {
-            var b = c.GetBehaviour<ConstructionBehaviour>();
+            var b = c.GetBehaviour<ConstructionSpotBehaviour>();
 
             if (b == null)
             {
@@ -43,6 +41,7 @@ namespace Unary.Managers
                 return b.Target != null;
             }
         });
+        public IEnumerable<Controller> Combatants => GetCombatants();
 
         private readonly Dictionary<Unit, Controller> Controllers = new();
 
@@ -92,6 +91,24 @@ namespace Unary.Managers
             {
                 Unary.Log.Info($"{behaviour.Key.Name} ran {behaviour.Value.Key} times for a total of {behaviour.Value.Value.TotalMilliseconds:N2} ms");
             }
+        }
+
+        private List<Controller> GetCombatants()
+        {
+            var combatants = new List<Controller>();
+
+            foreach (var controller in GetControllers())
+            {
+                if (controller.TryGetBehaviour<CombatBehaviour>(out var behaviour))
+                {
+                    if (behaviour.TimeSinceLastPerformed < TimeSpan.FromSeconds(10))
+                    {
+                        combatants.Add(controller);
+                    }
+                }
+            }
+
+            return combatants;
         }
     }
 }

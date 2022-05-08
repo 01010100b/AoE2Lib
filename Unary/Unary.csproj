@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="AocDatLib.dll" />
+    <None Remove="Behaviours\bfhnadev.y2g~" />
     <None Remove="Behaviours\ConstructionBehaviour.cs~RF4651c2ce.TMP" />
     <None Remove="readme.txt" />
     <None Remove="Unary.ai" />

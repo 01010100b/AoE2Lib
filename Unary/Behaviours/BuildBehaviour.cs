@@ -26,7 +26,7 @@ namespace Unary.Behaviours
             if (Construction != null)
             {
                 if (Construction.Exists == false
-                    || Construction.GetBehaviour<ConstructionBehaviour>().MaxBuilders == 0)
+                    || Construction.GetBehaviour<ConstructionSpotBehaviour>().MaxBuilders == 0)
                 {
                     Construction = null;
                     FindConstruction(true);
@@ -56,7 +56,7 @@ namespace Unary.Behaviours
 
         private void FindConstruction(bool always)
         {
-            var constructions = Controller.Manager.Constructions.ToList();
+            var constructions = Controller.Manager.ConstructionSpots.ToList();
             
             if (constructions.Count > 0)
             {
@@ -81,7 +81,7 @@ namespace Unary.Behaviours
                 {
                     var current = builders.Count(c => c.GetBehaviour<BuildBehaviour>().Construction.Equals(construction));
 
-                    if (current < construction.GetBehaviour<ConstructionBehaviour>().MaxBuilders)
+                    if (current < construction.GetBehaviour<ConstructionSpotBehaviour>().MaxBuilders)
                     {
                         var odds = 1d / Math.Max(1, construction.Unit.Position.DistanceTo(Controller.Unit.Position));
 

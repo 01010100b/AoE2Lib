@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Unary.Behaviours
 {
-    internal class ConstructionBehaviour : Behaviour
+    internal class ConstructionSpotBehaviour : Behaviour
     {
         public int MaxBuilders => GetMaxBuilders();
 
