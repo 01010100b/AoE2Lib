@@ -12,12 +12,6 @@ namespace Unary.Behaviours
 {
     internal class CombatRangedBehaviour : CombatBehaviour
     {
-        private bool OppositeDirection { get; set; } = false;
-
-        public CombatRangedBehaviour() : base()
-        {
-            OppositeDirection = GetHashCode() % 2 == 0;
-        }
 
         protected override Unit ChooseTarget(out Unit backup)
         {
@@ -28,7 +22,36 @@ namespace Unary.Behaviours
 
             if (targets.Count > 0)
             {
-                targets.Sort((a, b) => a.Position.DistanceTo(pos).CompareTo(b.Position.DistanceTo(pos)));
+                var attackers = ObjectPool.Get(() => new Dictionary<Unit, int>(), x => x.Clear());
+                var scores = ObjectPool.Get(() => new Dictionary<Unit, double>(), x => x.Clear());
+
+                foreach (var attacker in Controller.Manager.Combatants.Where(a => a != Controller))
+                {
+                    if (attacker.TryGetBehaviour<CombatBehaviour>(out var behaviour))
+                    {
+                        if (behaviour.Target != null && behaviour.Target.Targetable)
+                        {
+                            if (!attackers.ContainsKey(behaviour.Target))
+                            {
+                                attackers.Add(behaviour.Target, 0);
+                            }
+
+                            attackers[behaviour.Target]++;
+                        }
+                    }
+                }
+
+                foreach (var t in targets)
+                {
+                    if (!attackers.ContainsKey(t))
+                    {
+                        attackers.Add(t, 0);
+                    }
+
+                    scores.Add(t, GetTargetScore(t, attackers[t]));
+                }
+
+                targets.Sort((a, b) => scores[b].CompareTo(scores[a]));
 
                 var target = targets[0];
                 backup = targets[0];
@@ -38,6 +61,8 @@ namespace Unary.Behaviours
                     backup = targets[1];
                 }
 
+                ObjectPool.Return(attackers);
+                ObjectPool.Return(scores);
                 ObjectPool.Return(targets);
 
                 return target;
@@ -53,7 +78,7 @@ namespace Unary.Behaviours
 
         protected override Position PerformCombat(out bool attack)
         {
-            attack = Controller.Unary.Rng.NextDouble() < Controller.Unary.Settings.CombatRangedShootChance;
+            attack = Controller.Unary.Rng.NextDouble() < Controller.Unary.Settings.CombatShootChance;
 
             var pos = Controller.Unit.Position;
             var delta = GetThreatAvoidanceDelta().Normalize();
@@ -61,120 +86,13 @@ namespace Unary.Behaviours
             return pos + (2 * delta);
         }
 
-        protected override void DoCombat()
+        private double GetTargetScore(Unit target, int attackers)
         {
-            var settings = Controller.Unary.Settings;
+            var score = 1d / Controller.Unit.Position.DistanceTo(target.Position);
 
-            // move perpendicular to unit->target vector
+            //score *= attackers + 1;
 
-            var my_pos = Controller.Unit.Position;
-            var delta_pos = 2 * (Target.Position - my_pos).Normalize().Rotate(Math.PI / 2);
-            var bias = settings.CombatRangedMovementBias;
-            var ballistics = Target[ObjectData.BALLISTICS] > 0;
-            
-            if (ballistics)
-            {
-                var zigzag = Controller.Unary.GameState.Tick % bias % 2 == 0;
-
-                if (zigzag)
-                {
-                    delta_pos *= -1;
-                }
-            }
-
-            if (OppositeDirection)
-            {
-                delta_pos *= -1;
-            }
-
-            // move away from target or closest threat
-
-            var range = Controller.Unit[ObjectData.RANGE] * settings.CombatRangedMinRangeFraction;
-
-            if (Target.Position.DistanceTo(my_pos) < range)
-            {
-                delta_pos -= (Target.Position - my_pos).Normalize();
-            }
-            else
-            {
-                var closest = Target;
-                foreach (var unit in NearbyUnits.Where(u => u.Targetable && u.Player.IsEnemy))
-                {
-                    if (unit.Position.DistanceTo(my_pos) < closest.Position.DistanceTo(my_pos))
-                    {
-                        closest = unit;
-                    }
-                }
-
-                if (closest.Position.DistanceTo(my_pos) < range)
-                {
-                    delta_pos -= (closest.Position - my_pos).Normalize();
-                }
-            }
-
-            // check for obstruction
-
-            var move_position = my_pos + delta_pos;
-
-            if (!IsAccessible(move_position))
-            {
-                Controller.Unary.Log.Debug($"Unit {Controller.Unit.Id} is stuck!");
-
-                OppositeDirection = !OppositeDirection;
-                delta_pos *= -1;
-                move_position = my_pos + delta_pos;
-
-                if (!IsAccessible(move_position))
-                {
-                    move_position = Target.Position;
-                }
-            }
-
-            // perform step
-
-            var next_attack = Math.Max(1, Controller.Unit[ObjectData.RELOAD_TIME] - 500);
-
-            if (Controller.Unary.Rng.NextDouble() < settings.CombatRangedShootChance)
-            {
-                Controller.Unit.Target(Target, UnitAction.DEFAULT, null, null, int.MinValue, 0, Backup);
-                Controller.Unit.Target(move_position, UnitAction.MOVE, null, UnitStance.NO_ATTACK, 1, next_attack);
-            }
-            else
-            {
-                Controller.Unit.Target(move_position, UnitAction.MOVE, null, UnitStance.NO_ATTACK, int.MinValue, next_attack);
-            }
-        }
-
-        private bool IsAccessible(Position position, bool land = true)
-        {
-            if (Controller.Unary.GameState.Map.TryGetTile(position, out var tile))
-            {
-                foreach (var t in tile.GetNeighbours(true).Append(tile))
-                {
-                    var sitrep = Controller.Unary.SitRepManager[t];
-
-                    if (land)
-                    {
-                        if (!sitrep.IsLandAccessible)
-                        {
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        if (!sitrep.IsWaterAccessible)
-                        {
-                            return false;
-                        }
-                    }
-                }
-
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return score;
         }
     }
 }

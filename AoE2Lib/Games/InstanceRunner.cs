@@ -9,6 +9,39 @@ namespace AoE2Lib.Games
 {
     public class InstanceRunner
     {
+        public static void RunGames(string exe, List<KeyValuePair<Game, Dictionary<int, Bot>>> games, 
+            int max_concurrency = int.MaxValue, double speed = AoEInstance.SPEED_FAST, string args = null)
+        {
+            var queue = new ConcurrentQueue<KeyValuePair<Game, Dictionary<int, Bot>>>();
+            var runners = new List<InstanceRunner>();
+            var count = Math.Max(1, Math.Min(max_concurrency, Environment.ProcessorCount - 1));
+
+            for (int i = 0; i < count; i++)
+            {
+                var runner = new InstanceRunner(exe, args, speed);
+                runner.Start(queue);
+                runners.Add(runner);
+            }
+
+            foreach (var game in games)
+            {
+                queue.Enqueue(game);
+            }
+
+            foreach (var game in games)
+            {
+                if (!game.Key.Finished)
+                {
+                    Thread.Sleep(1000);
+                }
+            }
+
+            foreach (var runner in runners)
+            {
+                runner.Stop();
+            }
+        }
+
         private readonly string Exe;
         private readonly string Args;
         private readonly double Speed;

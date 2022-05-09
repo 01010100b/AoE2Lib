@@ -16,7 +16,7 @@ namespace Unary.Learning
         public double PerfectScore { get; set; }
         public Civilization Civilization { get; set; }
         public bool HighResources { get; set; }
-        public bool MapVisible { get; set; }
+        public bool MapExplored { get; set; }
         public int TimeLimit { get; set; }
         public string OpponentAiFile { get; set; }
 
@@ -31,7 +31,7 @@ namespace Unary.Learning
                 Difficulty = Difficulty.HARD,
                 StartingResources = HighResources ? StartingResources.HIGH : StartingResources.STANDARD,
                 PopulationLimit = 200,
-                RevealMap = MapVisible ? RevealMap.ALL_VISIBLE : RevealMap.NORMAL,
+                RevealMap = MapExplored ? RevealMap.EXPLORED : RevealMap.NORMAL,
                 StartingAge = StartingAge.STANDARD,
                 VictoryType = TimeLimit > 0 ? VictoryType.TIME_LIMIT : VictoryType.CONQUEST,
                 VictoryValue = TimeLimit,

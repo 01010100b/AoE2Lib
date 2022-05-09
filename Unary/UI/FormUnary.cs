@@ -180,6 +180,7 @@ namespace Unary.UI
             var thread = new Thread(() =>
             {
                 var exe = LabelExePath.Text;
+                var settings = new List<Settings>() { Program.DefaultSettings };
                 var opponents = new List<string>() { "Null", "ArcherMicroTest_E" };
                 var scenarios = new List<Scenario>();
 
@@ -193,7 +194,7 @@ namespace Unary.UI
                 }
 
                 Message("Start running scenarios...");
-                Scenarios.RunScenarios(exe, AoEInstance.SPEED_FAST, scenarios);
+                Scenarios.RunScenarios(exe, settings, scenarios);
                 Message("Finished running scenarios.");
             });
             thread.IsBackground = true;

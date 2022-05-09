@@ -12,39 +12,45 @@ namespace Unary.Learning.Scenarios
 {
     internal static class Scenarios
     {
-        public static void RunScenarios(string exe, double speed, List<Scenario> scenarios, int max_concurrent = int.MaxValue)
+        public static List<Tuple<Settings, Scenario, Game>> RunScenarios(string exe, List<Settings> settings, List<Scenario> scenarios, int max_concurrent = int.MaxValue)
         {
-            const int GAMES_PER_SCENARIO = 10;
+            const int GAMES_PER_SCENARIO = 50;
 
             var queue = new ConcurrentQueue<KeyValuePair<Game, Dictionary<int, Bot>>>();
-            var results = new Dictionary<Game, Scenario>();
+            var games = new Dictionary<Game, Scenario>();
+            var results = new List<Tuple<Settings, Scenario, Game>>();
             var runners = new List<InstanceRunner>();
             var count = Math.Max(1, Math.Min(max_concurrent, Environment.ProcessorCount - 1));
 
             for (int i = 0; i < count; i++)
             {
-                var runner = new InstanceRunner(exe, null, speed);
+                var runner = new InstanceRunner(exe);
                 runner.Start(queue);
                 runners.Add(runner);
             }
 
             Program.Log.Info("Started runners");
 
-            for (int i = 0; i < GAMES_PER_SCENARIO; i++)
+            foreach (var setting in settings)
             {
-                foreach (var scenario in scenarios)
+                for (int i = 0; i < GAMES_PER_SCENARIO; i++)
                 {
-                    var game = scenario.CreateGame("Unary");
-                    var unary = new Unary(Program.DefaultSettings);
-                    var dict = new Dictionary<int, Bot>() { { 1, unary } };
-                    queue.Enqueue(new KeyValuePair<Game, Dictionary<int, Bot>>(game, dict));
-                    results.Add(game, scenario);
+                    foreach (var scenario in scenarios)
+                    {
+                        var game = scenario.CreateGame("Unary");
+                        var unary = new Unary(setting.Copy());
+                        var dict = new Dictionary<int, Bot>() { { 1, unary } };
+                        queue.Enqueue(new KeyValuePair<Game, Dictionary<int, Bot>>(game, dict));
+                        games.Add(game, scenario);
+                        results.Add(new Tuple<Settings, Scenario, Game>(setting, scenario, game));
+                    }
                 }
             }
+            
 
-            Program.Log.Info($"Total game count {results.Count}");
+            Program.Log.Info($"Total game count {games.Count}");
 
-            foreach (var result in results)
+            foreach (var result in games)
             {
                 while (!result.Key.Finished)
                 {
@@ -63,22 +69,24 @@ namespace Unary.Learning.Scenarios
 
             var scores = new Dictionary<Scenario, double>();
 
-            foreach (var result in results)
+            foreach (var game in games)
             {
-                var score = result.Value.GetScore(result.Key);
+                var score = game.Value.GetScore(game.Key);
 
-                if (!scores.ContainsKey(result.Value))
+                if (!scores.ContainsKey(game.Value))
                 {
-                    scores.Add(result.Value, 0);
+                    scores.Add(game.Value, 0);
                 }
 
-                scores[result.Value] += score / GAMES_PER_SCENARIO;
+                scores[game.Value] += score / (GAMES_PER_SCENARIO * settings.Count);
             }
 
             foreach (var score in scores)
             {
                 Program.Log.Info($"Test {score.Key}: {score.Value:P0}");
             }
+
+            return results;
         }
 
         public static List<Scenario> GetCombatRangedTests()
@@ -88,6 +96,12 @@ namespace Unary.Learning.Scenarios
                 new Scenario()
                 {
                     Name = "TCR 4v4 no ballistics",
+                    PerfectScore = 336,
+                    Civilization = Civilization.BYZANTINES
+                },
+                new Scenario()
+                {
+                    Name = "TCR 5v5 no ballistics",
                     PerfectScore = 336,
                     Civilization = Civilization.BYZANTINES
                 },
@@ -114,7 +128,7 @@ namespace Unary.Learning.Scenarios
             foreach (var scenario in scenarios)
             {
                 scenario.HighResources = true;
-                scenario.MapVisible = true;
+                scenario.MapExplored = true;
                 scenario.TimeLimit = 1200;
             }
 

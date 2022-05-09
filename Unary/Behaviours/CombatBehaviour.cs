@@ -13,9 +13,7 @@ namespace Unary.Behaviours
         public Unit Target { get; private set; } = null;
         public Unit Backup { get; private set; } = null;
         public Unit Threat { get; private set; } = null;
-        public IEnumerable<Unit> NearbyUnits => _NearbyUnits;
 
-        private readonly List<Unit> _NearbyUnits = new();
         private bool OppositeDirection { get; set; }
 
         public CombatBehaviour()
@@ -24,8 +22,6 @@ namespace Unary.Behaviours
         }
 
         protected abstract Unit ChooseTarget(out Unit backup);
-
-        protected abstract void DoCombat();
 
         protected abstract Position PerformCombat(out bool attack);
 
@@ -39,7 +35,7 @@ namespace Unary.Behaviours
             }
 
             var range = Threat[ObjectData.RANGE];
-            
+            var settings = Controller.Unary.Settings;
             var my_pos = Controller.Unit.Position;
             var distance = my_pos.DistanceTo(Threat.Position);
 
@@ -49,39 +45,18 @@ namespace Unary.Behaviours
 
                 if (range <= 2)
                 {
-                    // just run away
+                    // melee threat
 
-                    delta_pos = (my_pos - Threat.Position).Normalize();
+                    delta_pos = GetRunAwayDelta();
                 }
                 else
                 {
-                    // avoid projectiles
+                    // ranged threat
 
-                    var settings = Controller.Unary.Settings;
-                    var ballistics = Threat[ObjectData.BALLISTICS] > 0;
-
-                    delta_pos = (Threat.Position - my_pos).Normalize().Rotate(Math.PI / 2);
-
-                    if (ballistics)
-                    {
-                        // enemy has ballistics, do zigzag
-
-                        var bias = settings.CombatRangedMovementBias;
-                        var zigzag = Controller.Unary.GameState.Tick % bias % 2 == 0;
-
-                        if (zigzag)
-                        {
-                            delta_pos *= -1;
-                        }
-                    }
-
-                    if (OppositeDirection)
-                    {
-                        delta_pos *= -1;
-                    }
+                    delta_pos = GetProjectileAvoidanceDelta();
 
                     var my_range = Controller.Unit[ObjectData.RANGE];
-                    var min_range = my_range * settings.CombatRangedMinRangeFraction;
+                    var min_range = my_range;// * settings.CombatRangedMinRangeFraction;
 
                     if (my_pos.DistanceTo(Target.Position) < min_range)
                     {
@@ -109,20 +84,8 @@ namespace Unary.Behaviours
             {
                 Target = null;
                 Backup = null;
-                _NearbyUnits.Clear();
 
                 return false;
-            }
-
-            if (ShouldRareTick(13))
-            {
-                Controller.Unit.RequestUpdate();
-                _NearbyUnits.Clear();
-
-                foreach (var unit in Controller.Unary.GameState.GetPlayers().SelectMany(p => p.Units).Where(u => u.Targetable))
-                {
-                    _NearbyUnits.Add(unit);
-                }
             }
 
             Target = ChooseTarget(out var backup);
@@ -215,23 +178,20 @@ namespace Unary.Behaviours
         {
             if (Controller.Unary.GameState.Map.TryGetTile(position, out var tile))
             {
-                foreach (var t in tile.GetNeighbours(true).Append(tile))
-                {
-                    var sitrep = Controller.Unary.SitRepManager[t];
+                var sitrep = Controller.Unary.SitRepManager[tile];
 
-                    if (land)
+                if (land)
+                {
+                    if (!sitrep.IsLandAccessible)
                     {
-                        if (!sitrep.IsLandAccessible)
-                        {
-                            return false;
-                        }
+                        return false;
                     }
-                    else
+                }
+                else
+                {
+                    if (!sitrep.IsWaterAccessible)
                     {
-                        if (!sitrep.IsWaterAccessible)
-                        {
-                            return false;
-                        }
+                        return false;
                     }
                 }
 
@@ -241,6 +201,39 @@ namespace Unary.Behaviours
             {
                 return false;
             }
+        }
+
+        private Position GetRunAwayDelta()
+        {
+            return (Controller.Unit.Position - Threat.Position).Normalize();
+        }
+
+        private Position GetProjectileAvoidanceDelta()
+        {
+            var settings = Controller.Unary.Settings;
+            var ballistics = Threat[ObjectData.BALLISTICS] > 0;
+            var my_pos = Controller.Unit.Position;
+            var delta_pos = (Threat.Position - my_pos).Normalize().Rotate(Math.PI / 2);
+            var bias = settings.CombatMovementBias;
+            var tick = Controller.Unary.GameState.Tick;
+            var zigzag = tick % bias == 0;
+
+            if (OppositeDirection)
+            {
+                delta_pos *= -1;
+            }
+
+            if (ballistics && tick % 2 == 0)
+            {
+                delta_pos *= -1;
+
+                if (zigzag)
+                {
+                    delta_pos *= -1;
+                }
+            }
+
+            return delta_pos.Normalize();
         }
     }
 }

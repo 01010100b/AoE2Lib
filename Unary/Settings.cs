@@ -18,9 +18,20 @@ namespace Unary
         public double MaxEatingRange { get; set; } = 20;
         public double KillSheepRange { get; set; } = 3;
         public double DropsiteMaxResourceRange { get; set; } = 7;
-        public double CombatRangedShootChance { get; set; } = 0.8;
-        public double CombatRangedMinRangeFraction { get; set; } = 0.8;
-        public int CombatRangedMovementBias { get; set; } = 5;
-        public double CombatRangedFocusRange { get; set; } = -1;
+        public double CombatShootChance { get; set; } = 0.9;
+        public double CombatMinRangeFraction { get; set; } = 0.8;
+        public int CombatMovementBias { get; set; } = 5;
+
+        public Settings Copy()
+        {
+            var settings = new Settings();
+
+            foreach (var prop in typeof(Settings).GetProperties())
+            {
+                prop.SetValue(settings, prop.GetValue(this));
+            }
+
+            return settings;
+        }
     }
 }
