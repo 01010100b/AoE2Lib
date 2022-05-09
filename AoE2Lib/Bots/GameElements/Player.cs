@@ -155,7 +155,8 @@ namespace AoE2Lib.Bots.GameElements
                 yield return new Goal() { InConstGoalId = GL_TEMP };
             }
 
-            var ids = new List<int>();
+            var ids = ObjectPool.Get(() => new List<int>(), x => x.Clear());
+            
             ids.AddRange(Goals.Keys);
             ids.Sort();
             foreach (var id in ids)
@@ -170,6 +171,8 @@ namespace AoE2Lib.Bots.GameElements
             {
                 yield return new UpAlliedSn() { InSnId = id, InPlayerComputerAllyPlayer = PlayerNumber };
             }
+
+            ObjectPool.Add(ids);
         }
 
         protected override void UpdateElement(IReadOnlyList<Any> responses)
@@ -204,7 +207,8 @@ namespace AoE2Lib.Bots.GameElements
                 index += 2;
             }
 
-            var ids = new List<int>();
+            var ids = ObjectPool.Get(() => new List<int>(), x => x.Clear());
+
             ids.AddRange(Goals.Keys);
             ids.Sort();
             foreach (var id in ids)
@@ -223,6 +227,8 @@ namespace AoE2Lib.Bots.GameElements
                 StrategicNumbers[id] = val;
                 index++;
             }
+
+            ObjectPool.Add(ids);
         }
     }
 }

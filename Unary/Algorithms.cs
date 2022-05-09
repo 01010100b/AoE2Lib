@@ -8,7 +8,7 @@ namespace Unary
 {
     public static class Algorithms
     {
-        public static void AddAllPathDistances<TNode>(Dictionary<TNode, int> distances, Func<TNode, IEnumerable<TNode>> get_neighbours, int max_distance = int.MaxValue)
+        public static void AddAllPathDistances<TNode>(Dictionary<TNode, int> distances, Func<TNode, IReadOnlyList<TNode>> get_neighbours, int max_distance = int.MaxValue)
         {
             var queue = new Queue<KeyValuePair<TNode, int>>();
 
@@ -32,8 +32,12 @@ namespace Unary
 
                 if (d < max_distance)
                 {
-                    foreach (var child in get_neighbours(parent))
+                    var neighbours = get_neighbours(parent);
+
+                    for (int i = 0; i < neighbours.Count; i++)
                     {
+                        var child = neighbours[i];
+
                         if (!distances.ContainsKey(child))
                         {
                             distances.Add(child, d + 1);

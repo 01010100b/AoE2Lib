@@ -85,7 +85,7 @@ namespace Unary.UI
             }
             else
             {
-                var bot = new Unary(Program.DefaultSettings);
+                var bot = new Unary();
                 Instance.StartBot(bot, player);
                 Players.Add(player, bot);
                 Message($"Started player {player}");
@@ -177,10 +177,15 @@ namespace Unary.UI
                 Thread.Sleep(5000);
             }
 
+            var dev = new FormDev();
+            dev.Show();
+            //Close();
+
+            return;
+
             var thread = new Thread(() =>
             {
                 var exe = LabelExePath.Text;
-                var settings = new List<Settings>() { Program.DefaultSettings };
                 var opponents = new List<string>() { "Null", "ArcherMicroTest_E" };
                 var scenarios = new List<Scenario>();
 
@@ -194,7 +199,7 @@ namespace Unary.UI
                 }
 
                 Message("Start running scenarios...");
-                Scenarios.RunScenarios(exe, settings, scenarios);
+                Scenarios.RunScenarios(exe, scenarios);
                 Message("Finished running scenarios.");
             });
             thread.IsBackground = true;

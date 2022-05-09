@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Unary.Learning;
 using Unary.UI;
 
 namespace Unary

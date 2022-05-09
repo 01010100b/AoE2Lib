@@ -7,13 +7,13 @@ namespace AoE2Lib
 {
     public static class ObjectPool
     {
-        private const int MAX_POOL = 1000;
+        private const int MAX_POOL_SIZE = 1000;
 
-        private static readonly ConcurrentDictionary<Type, ConcurrentQueue<object>> Pools = new ConcurrentDictionary<Type, ConcurrentQueue<object>>();
+        private static readonly ConcurrentDictionary<Type, ConcurrentQueue<object>> Pools = new();
 
         public static T Get<T>(Func<T> create, Action<T> reset)
         {
-            var pool = GetPool<T>();
+            var pool = GetPool(typeof(T));
 
             if (pool.TryDequeue(out object obj))
             {
@@ -28,20 +28,18 @@ namespace AoE2Lib
             }
         }
 
-        public static void Return<T>(T obj)
+        public static void Add(object obj)
         {
-            var pool = GetPool<T>();
+            var pool = GetPool(obj.GetType());
 
-            if (pool.Count < MAX_POOL)
+            if (pool.Count < MAX_POOL_SIZE)
             {
                 pool.Enqueue(obj);
             }
         }
 
-        private static ConcurrentQueue<object> GetPool<T>()
+        private static ConcurrentQueue<object> GetPool(Type type)
         {
-            var type = typeof(T);
-
             return Pools.GetOrAdd(type, x => new ConcurrentQueue<object>());
         }
     }

@@ -266,11 +266,6 @@ namespace AoE2Lib.Bots
             Commands.Add(command);
         }
 
-        internal void RemoveUnit(Unit unit)
-        {
-            Units.Remove(unit.Id);
-        }
-
         internal IEnumerable<Command> RequestUpdate()
         {
             const int GL_X = Bot.GOAL_START;
@@ -396,7 +391,7 @@ namespace AoE2Lib.Bots
                 type.Update();
             }
 
-            foreach (var unit in Units.Values.ToList())
+            foreach (var unit in Units.Values)
             {
                 unit.Update();
             }
@@ -448,6 +443,7 @@ namespace AoE2Lib.Bots
             sw.Stop();
             Bot.Log.Debug($"GameState Update took {sw.ElapsedMilliseconds} ms");
         }
+        
         private void DoAutoFindUnits()
         {
             if (Bot.AutoFindUnits == false)
@@ -462,7 +458,6 @@ namespace AoE2Lib.Bots
 
             var sw = new Stopwatch();
             sw.Start();
-
             Bot.Log.Debug($"Auto finding units");
 
             var position = MyPosition;
@@ -496,7 +491,7 @@ namespace AoE2Lib.Bots
                 {
                     range = Map.Width + Map.Height;
 
-                    var resource = Resource.NONE;
+                    var resource = Resource.WOOD;
 
                     if (Tick % 32 == 0)
                     {
@@ -517,10 +512,6 @@ namespace AoE2Lib.Bots
                     else if (Tick % 2 == 0)
                     {
                         resource = Resource.FOOD;
-                    }
-                    else
-                    {
-                        resource = Resource.WOOD;
                     }
 
                     if (Tick > 100 && Bot.Rng.NextDouble() < 0.5)
@@ -554,7 +545,7 @@ namespace AoE2Lib.Bots
             var first = 0;
             foreach (var unit in Units.Values)
             {
-                if (unit.Updated == false)
+                if (!unit.Updated)
                 {
                     unit.RequestUpdate();
                     first++;
@@ -568,9 +559,12 @@ namespace AoE2Lib.Bots
 
             Bot.Log.Debug($"Auto updating {first} first units");
 
+            var units = ObjectPool.Get(() => new List<Unit>(), x => x.Clear());
+
             foreach (var player in GetPlayers())
             {
-                var units = player.Units.ToList();
+                units.Clear();
+                units.AddRange(player.Units);
                 units.Sort((a, b) => a.LastUpdateTick.CompareTo(b.LastUpdateTick));
                 var count = Math.Min(units.Count, Bot.AutoUpdateUnits);
 
@@ -582,6 +576,7 @@ namespace AoE2Lib.Bots
                 Bot.Log.Debug($"Auto updating {count} units for player {player.PlayerNumber}");
             }
 
+            ObjectPool.Add(units);
             sw.Stop();
             Bot.Log.Debug($"GameState.DoAutoUpdateUnits took {sw.ElapsedMilliseconds} ms");
         }

@@ -10,7 +10,7 @@ namespace AoE2Lib.Games
     public class InstanceRunner
     {
         public static void RunGames(string exe, List<KeyValuePair<Game, Dictionary<int, Bot>>> games, 
-            int max_concurrency = int.MaxValue, double speed = AoEInstance.SPEED_FAST, string args = null)
+            int max_concurrency = int.MaxValue, string args = null, double speed = AoEInstance.SPEED_FAST)
         {
             var queue = new ConcurrentQueue<KeyValuePair<Game, Dictionary<int, Bot>>>();
             var runners = new List<InstanceRunner>();
@@ -30,7 +30,7 @@ namespace AoE2Lib.Games
 
             foreach (var game in games)
             {
-                if (!game.Key.Finished)
+                while (!game.Key.Finished)
                 {
                     Thread.Sleep(1000);
                 }

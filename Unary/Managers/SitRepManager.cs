@@ -40,8 +40,8 @@ namespace Unary.Managers
         }
 
         public SitRep this[Tile tile] => GetSitRep(tile);
-        public IEnumerable<Unit> Targets => GetTargets();
-        public IEnumerable<Unit> Threats => GetThreats();
+        public IEnumerable<Unit> Targets => Unary.GetCached(GetTargets);
+        public IEnumerable<Unit> Threats => Unary.GetCached(GetThreats);
 
         private readonly Dictionary<Tile, SitRep> SitReps = new();
         private readonly Dictionary<Tile, bool> Cliffs = new();
@@ -268,9 +268,12 @@ namespace Unary.Managers
             }
         }
 
-        private IEnumerable<Tile> GetPathNeighbours(Tile tile)
+        private readonly List<Tile> __PathNeighbours = new();
+        private IReadOnlyList<Tile> GetPathNeighbours(Tile tile)
         {
             var neighbours = tile.GetNeighbours();
+
+            __PathNeighbours.Clear();
 
             for (int i = 0; i < neighbours.Count; i++)
             {
@@ -278,14 +281,16 @@ namespace Unary.Managers
 
                 if (neighbour.IsLandAccessible || neighbour.Tile.Center.DistanceTo(Unary.GameState.MyPosition) < 3)
                 {
-                    yield return neighbour.Tile;
+                    __PathNeighbours.Add(neighbour.Tile);
                 }
             }
+
+            return __PathNeighbours;
         }
 
         private List<Unit> GetTargets()
         {
-            var targets = new List<Unit>();
+            var targets = ObjectPool.Get(() => new List<Unit>(), x => x.Clear());
 
             foreach (var unit in Unary.GameState.CurrentEnemies.SelectMany(p => p.Units))
             {
@@ -300,7 +305,7 @@ namespace Unary.Managers
 
         private List<Unit> GetThreats()
         {
-            var threats = new List<Unit>();
+            var threats = ObjectPool.Get(() => new List<Unit>(), x => x.Clear());
 
             foreach (var unit in Unary.GameState.CurrentEnemies.SelectMany(p => p.Units))
             {

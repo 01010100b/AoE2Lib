@@ -10,8 +10,8 @@ namespace AoE2Lib.Bots
 {
     public struct Position
     {
-        public static readonly Position Zero = new Position(0, 0);
-        public static readonly Position One = new Position(1, 0);
+        public static readonly Position Zero = new(0, 0);
+        public static readonly Position One = new(1, 0);
 
         public static Position FromPoint(int x, int y)
         {
@@ -128,7 +128,7 @@ namespace AoE2Lib.Bots
         {
             if (obj is Position pos)
             {
-                return pos == this;
+                return PreciseX == pos.PreciseX && PreciseY == pos.PreciseY;
             }
             else
             {

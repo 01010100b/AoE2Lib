@@ -41,7 +41,7 @@ namespace Unary.Managers
                 return b.Target != null;
             }
         });
-        public IEnumerable<Controller> Combatants => GetCombatants();
+        public IEnumerable<Controller> Combatants => Unary.GetCached(GetCombatants);
 
         private readonly Dictionary<Unit, Controller> Controllers = new();
 
@@ -95,7 +95,7 @@ namespace Unary.Managers
 
         private List<Controller> GetCombatants()
         {
-            var combatants = new List<Controller>();
+            var combatants = ObjectPool.Get(() => new List<Controller>(), x => x.Clear());
 
             foreach (var controller in GetControllers())
             {

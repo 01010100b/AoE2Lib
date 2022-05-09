@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Unary.Learning
+namespace Unary.Learning.Scenarios
 {
     internal class Scenario
     {

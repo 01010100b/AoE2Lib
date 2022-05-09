@@ -87,10 +87,7 @@ namespace AoE2Lib.Bots.GameElements
             }
         }
 
-        public IEnumerable<Unit> GetUnitsInRange(Position position, double range)
-        {
-            return GetTilesInRange(position, range).SelectMany(t => t.Units);
-        }
+        public IEnumerable<Unit> GetUnitsInRange(Position position, double range) => GetTilesInRange(position, range).SelectMany(t => t.Units);
 
         protected override IEnumerable<IMessage> RequestElementUpdate()
         {

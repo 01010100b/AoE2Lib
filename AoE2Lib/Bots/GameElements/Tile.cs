@@ -13,7 +13,7 @@ namespace AoE2Lib.Bots.GameElements
         public readonly int X;
         public readonly int Y;
         public Position Position => Position.FromPoint(X, Y);
-        public Position Center => new Position(X + 0.5, Y + 0.5);
+        public Position Center => new(X + 0.5, Y + 0.5);
         public int Height { get; internal set; }
         public int Terrain { get; internal set; } = 0;
         public bool IsOnLand => Terrain != 1 && Terrain != 2 && Terrain != 4 && Terrain != 15 && Terrain != 22 && Terrain != 23 && Terrain != 28 && Terrain != 37;
@@ -21,12 +21,12 @@ namespace AoE2Lib.Bots.GameElements
         public bool Visible => Visibility == 15;
         public IEnumerable<Unit> Units => _Units;
 
-        internal readonly List<Unit> _Units = new List<Unit>();
+        internal readonly List<Unit> _Units = new();
         internal int Visibility { get; set; } = 0;
 
         private readonly Map Map;
-        private readonly List<Tile> Neighbours = new List<Tile>();
-        private readonly List<Tile> AllNeighbours = new List<Tile>();
+        private readonly List<Tile> Neighbours = new();
+        private readonly List<Tile> AllNeighbours = new();
 
         internal Tile(int x, int y, Map map)
         {

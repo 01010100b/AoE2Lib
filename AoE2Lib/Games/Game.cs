@@ -32,6 +32,7 @@ namespace AoE2Lib.Games
         public bool Recorded { get; set; } = true;
         public DateTime LastProgressTimeUtc { get; private set; } = DateTime.MinValue;
         public bool Finished { get; private set; } = false;
+        public IEnumerable<Player> Winners => GetWinners();
 
         private readonly List<Player> Players = new();
         private TcpClient Client { get; set; }
@@ -208,6 +209,26 @@ namespace AoE2Lib.Games
             {
                 return true;
             }
+        }
+
+        private IEnumerable<Player> GetWinners()
+        {
+            if (!Finished)
+            {
+                throw new Exception("Game isn't finished yet.");
+            }
+
+            var liveteams = new HashSet<int>() { 0 };
+
+            foreach (var player in Players)
+            {
+                if (player.Alive)
+                {
+                    liveteams.Add((int)player.Team);
+                }
+            }
+
+            return Players.Where(p => liveteams.Contains((int)p.Team));
         }
 
         private void Call(string method, params object[] arguments)

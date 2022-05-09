@@ -12,13 +12,12 @@ namespace Unary.Learning.Scenarios
 {
     internal static class Scenarios
     {
-        public static List<Tuple<Settings, Scenario, Game>> RunScenarios(string exe, List<Settings> settings, List<Scenario> scenarios, int max_concurrent = int.MaxValue)
+        public static List<KeyValuePair<Game, Scenario>> RunScenarios(string exe, List<Scenario> scenarios, int max_concurrent = int.MaxValue)
         {
             const int GAMES_PER_SCENARIO = 50;
 
             var queue = new ConcurrentQueue<KeyValuePair<Game, Dictionary<int, Bot>>>();
-            var games = new Dictionary<Game, Scenario>();
-            var results = new List<Tuple<Settings, Scenario, Game>>();
+            var results = new List<KeyValuePair<Game, Scenario>>();
             var runners = new List<InstanceRunner>();
             var count = Math.Max(1, Math.Min(max_concurrent, Environment.ProcessorCount - 1));
 
@@ -31,26 +30,22 @@ namespace Unary.Learning.Scenarios
 
             Program.Log.Info("Started runners");
 
-            foreach (var setting in settings)
+            for (int i = 0; i < GAMES_PER_SCENARIO; i++)
             {
-                for (int i = 0; i < GAMES_PER_SCENARIO; i++)
+                foreach (var scenario in scenarios)
                 {
-                    foreach (var scenario in scenarios)
-                    {
-                        var game = scenario.CreateGame("Unary");
-                        var unary = new Unary(setting.Copy());
-                        var dict = new Dictionary<int, Bot>() { { 1, unary } };
-                        queue.Enqueue(new KeyValuePair<Game, Dictionary<int, Bot>>(game, dict));
-                        games.Add(game, scenario);
-                        results.Add(new Tuple<Settings, Scenario, Game>(setting, scenario, game));
-                    }
+                    var game = scenario.CreateGame("Unary");
+                    var unary = new Unary();
+                    var dict = new Dictionary<int, Bot>() { { 1, unary } };
+                    queue.Enqueue(new KeyValuePair<Game, Dictionary<int, Bot>>(game, dict));
+                    results.Add(new KeyValuePair<Game, Scenario>(game, scenario));
                 }
             }
-            
 
-            Program.Log.Info($"Total game count {games.Count}");
 
-            foreach (var result in games)
+            Program.Log.Info($"Total game count {results.Count}");
+
+            foreach (var result in results)
             {
                 while (!result.Key.Finished)
                 {
@@ -69,16 +64,16 @@ namespace Unary.Learning.Scenarios
 
             var scores = new Dictionary<Scenario, double>();
 
-            foreach (var game in games)
+            foreach (var result in results)
             {
-                var score = game.Value.GetScore(game.Key);
+                var score = result.Value.GetScore(result.Key);
 
-                if (!scores.ContainsKey(game.Value))
+                if (!scores.ContainsKey(result.Value))
                 {
-                    scores.Add(game.Value, 0);
+                    scores.Add(result.Value, 0);
                 }
 
-                scores[game.Value] += score / (GAMES_PER_SCENARIO * settings.Count);
+                scores[result.Value] += score / GAMES_PER_SCENARIO;
             }
 
             foreach (var score in scores)

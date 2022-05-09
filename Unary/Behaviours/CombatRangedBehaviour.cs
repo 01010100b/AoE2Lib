@@ -61,16 +61,16 @@ namespace Unary.Behaviours
                     backup = targets[1];
                 }
 
-                ObjectPool.Return(attackers);
-                ObjectPool.Return(scores);
-                ObjectPool.Return(targets);
+                ObjectPool.Add(attackers);
+                ObjectPool.Add(scores);
+                ObjectPool.Add(targets);
 
                 return target;
             }
             else
             {
                 backup = null;
-                ObjectPool.Return(targets);
+                ObjectPool.Add(targets);
 
                 return null;
             }

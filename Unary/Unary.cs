@@ -29,6 +29,7 @@ namespace Unary
         public UnitsManager UnitsManager { get; private set; }
         public ResourcesManager ResourcesManager { get; private set; }
 
+        private readonly Dictionary<Func<object>, object> Cache = new();
         private readonly List<Command> Commands = new();
         private bool ChattedOK { get; set; } = false;
         
@@ -36,6 +37,20 @@ namespace Unary
         public Unary(Settings settings) : base()
         {
             Settings = settings;
+        }
+
+        public Unary() : this(Program.DefaultSettings) { }
+
+        public T GetCached<T>(Func<T> func) where T : class
+        {
+            if (!Cache.ContainsKey(func))
+            {
+                var res = func();
+
+                Cache.Add(func, res);
+            }
+
+            return (T)Cache[func];
         }
 
         public void ExecuteCommand(Command command) => Commands.Add(command);
@@ -52,6 +67,7 @@ namespace Unary
             UnitsManager = null;
             ResourcesManager = null;
 
+            Cache.Clear();
             Commands.Clear();
             ChattedOK = false;
         }
@@ -94,11 +110,19 @@ namespace Unary
             UnitsManager = new(this);
             ResourcesManager = new(this);
 
+            Cache.Clear();
+            Commands.Clear();
             ChattedOK = false;
         }
 
         protected override IEnumerable<Command> Tick()
         {
+            foreach (var obj in Cache.Values)
+            {
+                ObjectPool.Add(obj);
+            }
+
+            Cache.Clear();
             Commands.Clear();
 
             var sw = new Stopwatch();

@@ -345,10 +345,8 @@ namespace AoE2Lib.Bots.GameElements
             }
             else
             {
-                return default;
+                throw new Exception($"Tile {Position} not found for unit {Id}");
             }
         }
-
-
     }
 }

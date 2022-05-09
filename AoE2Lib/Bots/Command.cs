@@ -15,25 +15,25 @@ namespace AoE2Lib.Bots
         public bool HasMessages => Messages.Count > 0;
         public bool HasResponses => Responses.Count > 0;
 
-        internal readonly List<IMessage> Messages = new List<IMessage>();
-        internal readonly List<Any> Responses = new List<Any>();
+        internal readonly List<IMessage> Messages = new();
+        internal readonly List<Any> Responses = new();
 
         public void Reset()
         {
             Messages.Clear();
             Responses.Clear();
         }
-
+        
         public void Add(IMessage command)
         {
             Messages.Add(command);
         }
-
+        
         public void Add(params IMessage[] commands)
         {
             Messages.AddRange(commands);
         }
-
+        
         public void Add(IMessage fact, string op, int value, IMessage command)
         {
             var cc = new ConditionalCommand()
