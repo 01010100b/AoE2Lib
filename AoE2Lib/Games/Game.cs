@@ -84,11 +84,16 @@ namespace AoE2Lib.Games
                 {
                     Thread.Sleep(10000);
 
+                    var time = Call<int>("GetGameTime");
+
                     while (!IsFinished())
                     {
-                        if (IsInProgress())
+                        var ngt = Call<int>("GetGameTime");
+
+                        if (ngt > time)
                         {
                             LastProgressTimeUtc = DateTime.UtcNow;
+                            time = ngt;
                         }
 
                         if (Stopping)
@@ -99,9 +104,10 @@ namespace AoE2Lib.Games
                         Thread.Sleep(1000);
                     }
 
-                    Client.Close();
-                    Finished = true;
+                    Call("QuitGame");
                     Thread.Sleep(1000);
+                    Finished = true;
+                    Client.Close();
                 }
                 catch (Exception ex)
                 {
@@ -109,6 +115,7 @@ namespace AoE2Lib.Games
                     Finished = false;
                 }
             });
+
             Thread.IsBackground = true;
             Thread.Start();
         }
@@ -177,11 +184,6 @@ namespace AoE2Lib.Games
             }
         }
 
-        private bool IsInProgress()
-        {
-            return Call<bool>("GetGameInProgress");
-        }
-
         private bool IsFinished()
         {
             foreach (var player in Players)
@@ -189,6 +191,14 @@ namespace AoE2Lib.Games
                 player.Exists = Call<bool>("GetPlayerExists", player.PlayerNumber);
                 player.Alive = Call<bool>("GetPlayerAlive", player.PlayerNumber);
                 player.Score = Call<int>("GetPlayerScore", player.PlayerNumber);
+            }
+
+            var time = Call<int>("GetGameTime");
+            var progress = Call<bool>("GetGameInProgress");
+
+            if (time > 10 && !progress)
+            {
+                return true;
             }
 
             var team = new int[5];

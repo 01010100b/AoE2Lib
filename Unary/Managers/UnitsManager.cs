@@ -13,8 +13,6 @@ namespace Unary.Managers
     // controllers
     internal class UnitsManager : Manager
     {
-        //private const int GROUPS = 10;
-
         public IEnumerable<Controller> ConstructionSpots => Controllers.Values.Where(c =>
         {
             var b = c.GetBehaviour<ConstructionSpotBehaviour>();
@@ -70,9 +68,13 @@ namespace Unary.Managers
                 }
             }
 
-            var times = new Dictionary<Type, KeyValuePair<int, TimeSpan>>();
+            var times = ObjectPool.Get(() => new Dictionary<Type, KeyValuePair<int, TimeSpan>>(), x => x.Clear());
+            var controllers = ObjectPool.Get(() => new List<Controller>(), x => x.Clear());
+            var behaviours = ObjectPool.Get(() => new List<KeyValuePair<Type, KeyValuePair<int, TimeSpan>>>(), x => x.Clear());
 
-            foreach (var controller in Controllers.Values.ToList())
+            controllers.AddRange(Controllers.Values);
+
+            foreach (var controller in controllers)
             {
                 if (controller.Exists)
                 {
@@ -84,13 +86,17 @@ namespace Unary.Managers
                 }
             }
 
-            var behaviours = times.ToList();
+            behaviours.AddRange(times);
             behaviours.Sort((a, b) => b.Value.Value.CompareTo(a.Value.Value));
 
             foreach (var behaviour in behaviours)
             {
                 Unary.Log.Info($"{behaviour.Key.Name} ran {behaviour.Value.Key} times for a total of {behaviour.Value.Value.TotalMilliseconds:N2} ms");
             }
+
+            ObjectPool.Add(times);
+            ObjectPool.Add(controllers);
+            ObjectPool.Add(behaviours);
         }
 
         private List<Controller> GetCombatants()

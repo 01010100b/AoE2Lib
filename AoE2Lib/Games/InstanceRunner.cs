@@ -89,7 +89,6 @@ namespace AoE2Lib.Games
 
                         Thread.Sleep(5000);
                         aoe = AoEInstance.StartInstance(Exe, Args, Speed, aimodule, autogame);
-
                         Thread.Sleep(5000);
 
                         if (aoe.HasExited)
@@ -100,8 +99,21 @@ namespace AoE2Lib.Games
                     catch (Exception)
                     {
                         Debug.WriteLine($"Instance runner failed to start aoe {Exe}");
+                        aoe?.Kill();
                         aoe = null;
-                        Thread.Sleep(60 * 1000);
+
+                        var sw = new Stopwatch();
+                        sw.Start();
+
+                        while (sw.Elapsed < TimeSpan.FromMinutes(1))
+                        {
+                            Thread.Sleep(1000);
+
+                            if (Stopping)
+                            {
+                                return;
+                            }
+                        }
                     }
                 }
                 else if (Queue.TryDequeue(out var run))
@@ -124,9 +136,7 @@ namespace AoE2Lib.Games
 
                             while (!run.Key.Finished)
                             {
-                                Thread.Sleep(1000);
-
-                                if (DateTime.UtcNow - run.Key.LastProgressTimeUtc < TimeSpan.FromSeconds(20))
+                                if (DateTime.UtcNow - run.Key.LastProgressTimeUtc < TimeSpan.FromSeconds(30))
                                 {
                                     sw.Restart();
                                 }
@@ -135,6 +145,8 @@ namespace AoE2Lib.Games
                                 {
                                     throw new Exception("Game hasn't progressed for 1 minute.");
                                 }
+
+                                Thread.Sleep(1000);
                             }
                         }
                         catch (Exception ex)
@@ -142,7 +154,7 @@ namespace AoE2Lib.Games
                             run.Key.Stop();
                             Queue.Enqueue(run);
                             Debug.WriteLine($"Instance runner exception: {ex}");
-                            aoe.Kill();
+                            aoe?.Kill();
                             aoe = null;
                         }
                         finally

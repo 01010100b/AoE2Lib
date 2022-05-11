@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Unary.Learning;
 using Unary.Learning.Scenarios;
 
 namespace Unary.UI
@@ -18,6 +19,7 @@ namespace Unary.UI
     public partial class FormDev : Form
     {
         private readonly UISettings UISettings;
+        private readonly Ladder Ladder;
 
         public FormDev()
         {
@@ -25,6 +27,7 @@ namespace Unary.UI
 
             var file = Path.Combine(Program.Folder, "uisettings.json");
             UISettings = Program.Deserialize<UISettings>(file);
+            Ladder = new Ladder();
         }
 
         private void Message(string message)
@@ -34,16 +37,17 @@ namespace Unary.UI
                 Program.Log.Info($"UI: {message}");
 
                 var lines = TextMessages.Lines.ToList();
-                lines.Add(message);
+                lines.Add($"{DateTime.Now}: {message}");
                 TextMessages.Lines = lines.ToArray();
             });
         }
 
         private void ButtonScenarios_Click(object sender, EventArgs e)
         {
-            const int GAMES_PER_SCENARIO = 10;
+            const int GAMES_PER_SCENARIO = 20;
 
             ButtonScenarios.Enabled = false;
+            ButtonLadder.Enabled = false;
             Refresh();
 
             var thread = new Thread(() =>
@@ -54,12 +58,15 @@ namespace Unary.UI
                 var opponents = new List<string>() { "Null", "ArcherMicroTest_E" };
                 var scenarios = new List<Scenario>();
 
-                foreach (var opponent in opponents)
+                for (int i = 0; i < GAMES_PER_SCENARIO; i++)
                 {
-                    foreach (var scenario in Scenarios.GetCombatRangedTests())
+                    foreach (var opponent in opponents)
                     {
-                        scenario.OpponentAiFile = opponent;
-                        scenarios.Add(scenario);
+                        foreach (var scenario in Scenarios.GetCombatRangedTests())
+                        {
+                            scenario.OpponentAiFile = opponent;
+                            scenarios.Add(scenario);
+                        }
                     }
                 }
 
@@ -109,6 +116,36 @@ namespace Unary.UI
 
             thread.IsBackground = true;
             thread.Start();
+        }
+
+        private void ButtonLadder_Click(object sender, EventArgs e)
+        {
+            ButtonScenarios.Enabled = false;
+            ButtonLadder.Enabled = false;
+            ButtonStopLadder.Enabled = true;
+            Refresh();
+
+            var thread = new Thread(() =>
+            {
+                Message("Start running ladder...");
+
+                var exe = UISettings.ExePath;
+                Ladder.Run(exe);
+
+                Message("Stopped running ladder");
+            });
+
+            thread.IsBackground = true;
+            thread.Start();
+        }
+
+        private void ButtonStopLadder_Click(object sender, EventArgs e)
+        {
+            ButtonStopLadder.Enabled = false;
+            Refresh();
+
+            Ladder.Stop();
+            Message("Sending stop command to ladder...");
         }
     }
 }

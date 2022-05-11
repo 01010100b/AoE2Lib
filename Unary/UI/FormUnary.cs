@@ -179,31 +179,6 @@ namespace Unary.UI
 
             var dev = new FormDev();
             dev.Show();
-            //Close();
-
-            return;
-
-            var thread = new Thread(() =>
-            {
-                var exe = LabelExePath.Text;
-                var opponents = new List<string>() { "Null", "ArcherMicroTest_E" };
-                var scenarios = new List<Scenario>();
-
-                foreach (var opponent in opponents)
-                {
-                    foreach (var scenario in Scenarios.GetCombatRangedTests())
-                    {
-                        scenario.OpponentAiFile = opponent;
-                        scenarios.Add(scenario);
-                    }
-                }
-
-                Message("Start running scenarios...");
-                Scenarios.RunScenarios(exe, scenarios);
-                Message("Finished running scenarios.");
-            });
-            thread.IsBackground = true;
-            thread.Start();
         }
     }
 }

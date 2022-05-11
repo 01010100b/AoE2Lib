@@ -28,9 +28,10 @@ namespace Unary.Learning
             return Math.Max(1, (int)Math.Round(k * (1 - exp_winner)));
         }
 
-        const int STARTING_ELO = 1000;
+        private const int STARTING_ELO = 1000;
+        private const int MIN_ELO = 100;
+        private const string SAVE_FILE = @"G:\aoe2\ladder.json";
 
-        private string SaveFile => Path.Combine(@"G:\aoe2", "ladder.json");
         private readonly List<Participant> Participants = new();
         private readonly Random Rng = new();
         private volatile bool Stopping = false;
@@ -124,7 +125,7 @@ namespace Unary.Learning
             {
                 if (queue.Count == 0)
                 {
-                    var game = GetNextGame();
+                    var game = GetNextGame(bots);
                     var dict = new Dictionary<int, Bot>();
 
                     foreach (var player in game.GetPlayers())
@@ -150,11 +151,16 @@ namespace Unary.Learning
 
                     foreach (var game in finished)
                     {
-                        SetResult(game);
+                        AddResult(game);
                     }
 
                     games.RemoveAll(g => finished.Contains(g));
                 }
+            }
+
+            while (queue.TryDequeue(out var g))
+            {
+                games.Remove(g.Key);
             }
 
             foreach (var game in games)
@@ -164,7 +170,7 @@ namespace Unary.Learning
                     Thread.Sleep(1000);
                 }
 
-                SetResult(game);
+                AddResult(game);
             }
 
             foreach (var runner in runners)
@@ -181,12 +187,46 @@ namespace Unary.Learning
             Stopping = true;
         }
 
-        private Game GetNextGame()
+        private Game GetNextGame(Dictionary<string, Type> bots)
         {
             var teams = new[] { 1, 2, 4 };
             var team = teams[Rng.Next(teams.Length)];
             var player1 = Participants[Rng.Next(Participants.Count)];
             var player2 = player1;
+
+            for (int i = 0; i < 4; i++)
+            {
+                var p = Participants[Rng.Next(Participants.Count)];
+
+                if (p.Games < 0.7 * player1.Games)
+                {
+                    player1 = p;
+                }
+
+                p = Participants[Rng.Next(Participants.Count)];
+
+                if (p.Games < 0.7 * player2.Games)
+                {
+                    player2 = p;
+                }
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                var p = Participants[Rng.Next(Participants.Count)];
+
+                if (bots.ContainsKey(p.Name) && !bots.ContainsKey(player1.Name))
+                {
+                    player1 = p;
+                }
+
+                p = Participants[Rng.Next(Participants.Count)];
+
+                if (bots.ContainsKey(p.Name) && !bots.ContainsKey(player2.Name))
+                {
+                    player2 = p;
+                }
+            }
 
             while (player2 == player1)
             {
@@ -205,7 +245,7 @@ namespace Unary.Learning
             var game = new Game()
             {
                 GameType = GameType.RANDOM_MAP,
-                MapType = MapType.RANDOM_MAP,
+                MapType = MapType.ARABIA,
                 MapSize = mapsize,
                 Difficulty = Difficulty.HARD,
                 StartingResources = StartingResources.STANDARD,
@@ -257,7 +297,7 @@ namespace Unary.Learning
             return game;
         }
 
-        private void SetResult(Game game)
+        private void AddResult(Game game)
         {
             var winners = game.Winners.ToList();
             var losers = game.GetPlayers().Where(p => !winners.Contains(p)).ToList();
@@ -269,7 +309,7 @@ namespace Unary.Learning
 
             var winner = Participants.Single(p => winners[0].AiFile == p.Name);
             var loser = Participants.Single(p => losers[0].AiFile == p.Name);
-            var delta_elo = GetEloDelta(winner.Elo, loser.Elo);
+            var delta_elo = Math.Min(loser.Elo - MIN_ELO, GetEloDelta(winner.Elo, loser.Elo));
 
             winner.Elo += delta_elo;
             loser.Elo -= delta_elo;
@@ -281,9 +321,9 @@ namespace Unary.Learning
 
         private void Load()
         {
-            if (File.Exists(SaveFile))
+            if (File.Exists(SAVE_FILE))
             {
-                var participants = Program.Deserialize<List<Participant>>(SaveFile);
+                var participants = Program.Deserialize<List<Participant>>(SAVE_FILE);
 
                 Participants.Clear();
                 Participants.AddRange(participants);
@@ -292,7 +332,8 @@ namespace Unary.Learning
 
         private void Save()
         {
-            Program.Serialize(Participants, SaveFile);
+            Participants.Sort((a, b) => b.Elo.CompareTo(a.Elo));
+            Program.Serialize(Participants, SAVE_FILE);
         }
     }
 }

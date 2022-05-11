@@ -16,7 +16,7 @@ namespace Unary.Behaviours
 
         protected override bool Tick(bool perform)
         {
-            Focus = Controller.Unary.GameState.MyPosition;
+            Focus = Controller.Unit.Position + new Position(-1, 1);
 
             Target = KillAnimal();
 

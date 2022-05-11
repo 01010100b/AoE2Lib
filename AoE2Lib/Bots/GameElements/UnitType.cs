@@ -41,6 +41,9 @@ namespace AoE2Lib.Bots.GameElements
                 return;
             }
 
+            max_count = Math.Min(30000, max_count);
+            max_pending = Math.Min(30000, max_pending);
+
             const int GL_ERROR = Bot.GOAL_START;
 
             var command = new Command();
@@ -60,12 +63,15 @@ namespace AoE2Lib.Bots.GameElements
             Bot.GameState.AddCommand(command);
         }
 
-        public void Build(IEnumerable<Tile> tiles, int max_count = 10000, int max_pending = 10000)
+        public void Build(IEnumerable<Tile> tiles, int max_count = int.MaxValue, int max_pending = int.MaxValue)
         {
             if (Updated == false || Available == false || CountTotal >= max_count || Pending > max_pending)
             {
                 return;
             }
+
+            max_count = Math.Min(30000, max_count);
+            max_pending = Math.Min(30000, max_pending);
 
             const int GL_ERROR = Bot.GOAL_START;
             const int GL_X = Bot.GOAL_START + 1;
@@ -97,6 +103,40 @@ namespace AoE2Lib.Bots.GameElements
 
                 command.Add(new Goal() { InConstGoalId = GL_WAS_BUILT }, "==", 0, buildcommand);
             }
+
+            Bot.GameState.AddCommand(command);
+        }
+
+        public void Build(int max_count, int max_pending)
+        {
+            if (Updated == false || Available == false || CountTotal >= max_count || Pending > max_pending)
+            {
+                return;
+            }
+
+            max_count = Math.Min(30000, max_count);
+            max_pending = Math.Min(30000, max_pending);
+
+            const int GL_ERROR = Bot.GOAL_START;
+
+            var command = new Command();
+
+            command.Add(new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = 0 });
+
+            command.Add(new UpObjectTypeCountTotal() { InConstObjectId = Id }, ">=", max_count,
+                new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = -1 });
+
+            command.Add(new UpPendingObjects() { InConstObjectId = Id }, ">=", max_pending,
+                new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = -2 });
+
+            command.Add(new CanBuild() { InConstBuildingId = Id }, "!=", 1,
+                new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = -3 });
+
+            command.Add(new UpPendingPlacement() { InConstBuildingId = Id }, "!=", 0,
+                new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = -4 });
+
+            command.Add(new Goal() { InConstGoalId = GL_ERROR }, "==", 0,
+                new Build() { InConstBuildingId = Id });
 
             Bot.GameState.AddCommand(command);
         }

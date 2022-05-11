@@ -12,7 +12,6 @@ namespace Unary.Behaviours
 {
     internal class CombatRangedBehaviour : CombatBehaviour
     {
-
         protected override Unit ChooseTarget(out Unit backup)
         {
             var settings = Controller.Unary.Settings;
@@ -88,7 +87,7 @@ namespace Unary.Behaviours
 
         private double GetTargetScore(Unit target, int attackers)
         {
-            var score = 1d / Controller.Unit.Position.DistanceTo(target.Position);
+            var score = 1d / Math.Max(1, Controller.Unit.Position.DistanceTo(target.Position));
 
             //score *= attackers + 1;
 

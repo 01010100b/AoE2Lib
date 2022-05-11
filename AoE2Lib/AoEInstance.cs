@@ -33,7 +33,6 @@ namespace AoE2Lib
             }
 
             args += $" -multipleinstances -autogameport {autogame_port} -aimoduleport {aimodule_port}";
-            Process process = null;
 
             lock (Lock)
             {
@@ -43,26 +42,26 @@ namespace AoE2Lib
 
                 try
                 {
-                    process = Process.Start(exe, args);
+                    var process = Process.Start(exe, args);
                     process.WaitForInputIdle();
+
+                    var instance = new AoEInstance(process, aimodule_port, autogame_port);
+
+                    if (instance.Version == GameVersion.AOC)
+                    {
+                        instance.LoadAocAutoGame();
+                    }
+
+                    Thread.Sleep(10000);
+                    instance.LoadAIModule();
+                    Thread.Sleep(3000);
+
+                    return instance;
                 }
                 finally
                 {
                     SetSpeed(old);
                 }
-
-                var instance = new AoEInstance(process, aimodule_port, autogame_port);
-
-                if (instance.Version == GameVersion.AOC)
-                {
-                    instance.LoadAocAutoGame();
-                }
-
-                Thread.Sleep(10000);
-                instance.LoadAIModule();
-                Thread.Sleep(3000);
-
-                return instance;
             }
         }
 
@@ -78,7 +77,7 @@ namespace AoE2Lib
             {
                 Debug.WriteLine(ex.Message);
 
-                return -1;
+                return (int)Math.Round(SPEED_NORMAL * 10);
             }
         }
 

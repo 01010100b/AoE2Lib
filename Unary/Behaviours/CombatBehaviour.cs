@@ -35,7 +35,6 @@ namespace Unary.Behaviours
             }
 
             var range = Threat[ObjectData.RANGE];
-            var settings = Controller.Unary.Settings;
             var my_pos = Controller.Unit.Position;
             var distance = my_pos.DistanceTo(Threat.Position);
 
@@ -54,18 +53,17 @@ namespace Unary.Behaviours
                     // ranged threat
 
                     delta_pos = GetProjectileAvoidanceDelta();
+                }
 
-                    var my_range = Controller.Unit[ObjectData.RANGE];
-                    var min_range = my_range;// * settings.CombatRangedMinRangeFraction;
+                var my_range = Controller.Unit[ObjectData.RANGE];
 
-                    if (my_pos.DistanceTo(Target.Position) < min_range)
-                    {
-                        delta_pos += 0.5 * (my_pos - Target.Position).Normalize();
-                    }
-                    else if (my_pos.DistanceTo(Threat.Position) < min_range)
-                    {
-                        delta_pos += 0.5 * (my_pos - Threat.Position).Normalize();
-                    }
+                if (my_pos.DistanceTo(Target.Position) < my_range)
+                {
+                    delta_pos += 0.5 * (my_pos - Target.Position).Normalize();
+                }
+                else if (my_pos.DistanceTo(Threat.Position) < my_range)
+                {
+                    delta_pos += 0.5 * (my_pos - Threat.Position).Normalize();
                 }
             }
 
@@ -98,8 +96,6 @@ namespace Unary.Behaviours
 
             if (Target != null)
             {
-                //DoCombat();
-
                 FindBiggestThreat();
                 
                 var pos = PerformCombat(out var attack);
@@ -143,6 +139,7 @@ namespace Unary.Behaviours
                 Controller.Unit.RequestUpdate();
                 Target.RequestUpdate();
                 Backup.RequestUpdate();
+                Threat.RequestUpdate();
 
                 return true;
             }

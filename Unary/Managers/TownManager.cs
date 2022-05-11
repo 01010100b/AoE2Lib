@@ -17,6 +17,8 @@ namespace Unary.Managers
         private static readonly Point[] TC_FARM_DELTAS = { new Point(2, 3), new Point(-1, 3), new Point(3, 0), new Point(3, -3), new Point(-4, 2), new Point(-4, -1), new Point(0, -4), new Point(-3, -4) };
         private static readonly Point[] MILL_FARM_DELTAS = { new Point(-1, 2), new Point(2, -1), new Point(2, 2), new Point(-3, -1), new Point(-1, -3) };
 
+        public Position MyPosition { get; private set; } = Position.Zero;
+
         public TownManager(Unary unary) : base(unary)
         {
 
@@ -32,7 +34,7 @@ namespace Unary.Managers
 
             foreach (var tile in InsideTiles)
             {
-                if (Unary.GameState.Tick > 10 || Unary.GameState.MyPosition.DistanceTo(tile.Center) > 8)
+                if (Unary.GameState.Tick > 10 || MyPosition.DistanceTo(tile.Center) > 8)
                 {
                     tiles.Add(tile);
                 }
@@ -55,8 +57,7 @@ namespace Unary.Managers
             var sorted_possible_placements = possible_placements.ToList();
 
             // TODO sort per building type
-            var my_pos = Unary.GameState.MyPosition;
-            sorted_possible_placements.Sort((a, b) => a.Position.DistanceTo(my_pos).CompareTo(b.Position.DistanceTo(my_pos)));
+            sorted_possible_placements.Sort((a, b) => a.Position.DistanceTo(MyPosition).CompareTo(b.Position.DistanceTo(MyPosition)));
 
             foreach (var tile in sorted_possible_placements)
             {
@@ -76,15 +77,92 @@ namespace Unary.Managers
 
         internal override void Update()
         {
+            UpdateHomeTile();
             UpdateInsideTiles();
             UpdateHousing();
+        }
+
+        private void UpdateHomeTile()
+        {
+            var tcs = ObjectPool.Get(() => new List<Unit>(), x => x.Clear());
+            var buildings = ObjectPool.Get(() => new List<Unit>(), x => x.Clear());
+            var units = ObjectPool.Get(() => new List<Unit>(), x => x.Clear());
+
+            foreach (var unit in Unary.GameState.MyPlayer.Units.Where(u => u.Targetable))
+            {
+                if (unit[ObjectData.BASE_TYPE] == Unary.Mod.TownCenter)
+                {
+                    tcs.Add(unit);
+                }
+                else if (unit.IsBuilding)
+                {
+                    buildings.Add(unit);
+                }
+                else
+                {
+                    units.Add(unit);
+                }
+            }
+
+            var lst = tcs;
+
+            if (lst.Count == 0)
+            {
+                lst = buildings;
+
+                if (lst.Count == 0)
+                {
+                    lst = units;
+                }
+            }
+
+            Tile home = null;
+
+            if (lst.Count > 0)
+            {
+                var oldest = lst[0];
+
+                foreach (var unit in lst)
+                {
+                    if (unit.FirstUpdateGameTime < oldest.FirstUpdateGameTime)
+                    {
+                        oldest = unit;
+                    }
+                }
+
+                var pos = oldest.Position;
+
+                if (Unary.GameState.Map.TryGetTile(pos, out var tile))
+                {
+                    home = tile;
+                }
+            }
+
+            if (home == null)
+            {
+                var pos = Unary.GameState.Map.Center;
+
+                if (Unary.GameState.Map.TryGetTile(pos, out var tile))
+                {
+                    home = tile;
+                }
+            }
+
+            if (home != null)
+            {
+                MyPosition = home.Position;
+            }
+
+            ObjectPool.Add(tcs);
+            ObjectPool.Add(buildings);
+            ObjectPool.Add(units);
         }
 
         private void UpdateInsideTiles()
         {
             InsideTiles.Clear();
 
-            foreach (var tile in Unary.GameState.Map.GetTilesInRange(Unary.GameState.MyPosition, 30))
+            foreach (var tile in Unary.GameState.Map.GetTilesInRange(MyPosition, 30))
             {
                 InsideTiles.Add(tile);
             }

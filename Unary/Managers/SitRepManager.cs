@@ -54,11 +54,6 @@ namespace Unary.Managers
 
         internal override void Update()
         {
-            if (!Unary.GameState.Map.IsOnMap(Unary.GameState.MyPosition))
-            {
-                return;
-            }
-
             foreach (var sitrep in SitReps.Values)
             {
                 sitrep.Reset();
@@ -238,7 +233,7 @@ namespace Unary.Managers
 
         private void UpdatePathDistances()
         {
-            if (Unary.GameState.Map.TryGetTile(Unary.GameState.MyPosition, out var tile))
+            if (Unary.GameState.Map.TryGetTile(Unary.TownManager.MyPosition, out  var tile))
             {
                 var dict = new Dictionary<Tile, int>() { { tile, 0 } };
                 Algorithms.AddAllPathDistances(dict, GetPathNeighbours);
@@ -279,7 +274,7 @@ namespace Unary.Managers
             {
                 var neighbour = this[neighbours[i]];
 
-                if (neighbour.IsLandAccessible || neighbour.Tile.Center.DistanceTo(Unary.GameState.MyPosition) < 3)
+                if (neighbour.IsLandAccessible || neighbour.Tile.Center.DistanceTo(Unary.TownManager.MyPosition) < 3)
                 {
                     __PathNeighbours.Add(neighbour.Tile);
                 }

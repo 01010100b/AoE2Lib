@@ -16,7 +16,6 @@ namespace AoE2Lib.Bots
         public Player Gaia => Players[0];
         public IEnumerable<Player> CurrentEnemies => GetPlayers().Where(p => p.IsEnemy && p.InGame);
         public IEnumerable<Player> CurrentAllies => GetPlayers().Where(p => p.IsAlly && p.InGame);
-        public Position MyPosition { get; private set; } = Position.Zero;
         public int Tick { get; private set; } = 0;
         public TimeSpan GameTime { get; private set; } = TimeSpan.Zero;
         public TimeSpan GameTimePerTick { get; private set; } = TimeSpan.FromSeconds(0.7);
@@ -280,9 +279,6 @@ namespace AoE2Lib.Bots
             CommandInfo.Reset();
 
             CommandInfo.Add(new GameTime());
-            CommandInfo.Add(new UpGetPoint() { OutGoalPoint = GL_X, InConstPositionType = (int)PositionType.SELF });
-            CommandInfo.Add(new Goal() { InConstGoalId = GL_X });
-            CommandInfo.Add(new Goal() { InConstGoalId = GL_Y });
 
             foreach (var sn in StrategicNumbers)
             {
@@ -351,14 +347,7 @@ namespace AoE2Lib.Bots
                 GameTimePerTick += GameTime - current_time;
                 GameTimePerTick /= 100;
 
-                var x = responses[2].Unpack<GoalResult>().Result;
-                var y = responses[3].Unpack<GoalResult>().Result;
-                if (Map.IsOnMap(x, y))
-                {
-                    MyPosition = Position.FromPoint(x, y);
-                }
-
-                var index = 3;
+                var index = 1;
 
                 foreach (var sn in StrategicNumbers)
                 {
@@ -367,8 +356,8 @@ namespace AoE2Lib.Bots
 
                 for (int sn = 0; sn < 512; sn++)
                 {
-                    index++;
                     StrategicNumbers[sn] = responses[index].Unpack<StrategicNumberResult>().Result;
+                    index++;
                 }
 
                 Tick++;
@@ -451,16 +440,11 @@ namespace AoE2Lib.Bots
                 return;
             }
 
-            if (!Map.IsOnMap(MyPosition))
-            {
-                return;
-            }
-
             var sw = new Stopwatch();
             sw.Start();
             Bot.Log.Debug($"Auto finding units");
 
-            var position = MyPosition;
+            var position = Position.Zero;
             for (int i = 0; i < 1000; i++)
             {
                 var x = Bot.Rng.Next(Map.Width);

@@ -29,11 +29,16 @@ namespace AoE2Lib.Bots.GameElements
             Id = id;
         }
 
-        public void Train(UnitType type, int max_count, int max_pending)
+        public void Train(UnitType type, int max_count = int.MaxValue, int max_pending = int.MaxValue)
         {
             throw new NotSupportedException("game crash in aimodule dll");
 
             // up-target-point training variant crashes the game, action_id string conflict in aoe2-ai-module
+
+            if (this[ObjectData.PLAYER] != Bot.PlayerNumber)
+            {
+                return;
+            }
 
             RequestUpdate();
 
@@ -41,12 +46,6 @@ namespace AoE2Lib.Bots.GameElements
             {
                 return;
             }
-
-            if (this[ObjectData.PLAYER] != Bot.PlayerNumber)
-            {
-                return;
-            }
-
 
             if (type.Updated == false || type.Available == false || type.CountTotal >= max_count || type.Pending > max_pending)
             {
@@ -63,27 +62,30 @@ namespace AoE2Lib.Bots.GameElements
                 return;
             }
 
-            var command = new Command();
+            max_count = Math.Min(30000, max_count);
+            max_pending = Math.Min(30000, max_pending);
 
-            const int GL_CHECKS = Bot.GOAL_START;
+            const int GL_ERROR = Bot.GOAL_START;
             const int GL_TEMP = Bot.GOAL_START + 1;
 
-            command.Add(new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = 0 });
+            var command = new Command();
+
+            command.Add(new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = 0 });
             command.Add(new SetGoal() { InConstGoalId = GL_TEMP, InConstValue = -1 });
 
             command.Add(new UpSetTargetById() { InConstId = Id });
             command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.ID, OutGoalData = GL_TEMP });
             command.Add(new Goal() { InConstGoalId = GL_TEMP }, "!=", Id,
-                new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = -1 });
+                new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = -1 });
 
             command.Add(new UpObjectTypeCountTotal() { InConstObjectId = Id }, ">=", max_count,
-                new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = -2 });
+                new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = -2 });
             command.Add(new UpPendingObjects() { InConstObjectId = Id }, ">=", max_pending,
-                new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = -3 });
+                new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = -3 });
             command.Add(new CanAffordUnit() { InConstUnitId = Id }, "!=", 1,
-                new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = -4 });
+                new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = -4 });
 
-            command.Add(new Goal() { InConstGoalId = GL_CHECKS }, "==", 0,
+            command.Add(new Goal() { InConstGoalId = GL_ERROR }, "==", 0,
                 new UpFullResetSearch(),
                 new UpAddObjectById() { InConstSearchSource = 1, InConstId = Id },
                 new UpTargetPoint()
@@ -99,6 +101,11 @@ namespace AoE2Lib.Bots.GameElements
 
         public void Target(Unit target, UnitAction action = UnitAction.DEFAULT, UnitFormation? formation = null, UnitStance? stance = null, int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue, Unit backup = null)
         {
+            if (this[ObjectData.PLAYER] != Bot.PlayerNumber)
+            {
+                return;
+            }
+
             if (target == null)
             {
                 throw new ArgumentNullException(nameof(target));
@@ -120,13 +127,13 @@ namespace AoE2Lib.Bots.GameElements
 
             var command = new Command();
 
-            const int GL_CHECKS = Bot.GOAL_START;
+            const int GL_ERROR = Bot.GOAL_START;
             const int GL_TEMP = Bot.GOAL_START + 1;
             const int GL_TARGET_ID = Bot.GOAL_START + 2;
 
             var op_g_min = 14;
 
-            command.Add(new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = 0 });
+            command.Add(new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = 0 });
             command.Add(new SetGoal() { InConstGoalId = GL_TEMP, InConstValue = -1 });
             command.Add(new SetGoal() { InConstGoalId = GL_TARGET_ID, InConstValue = -1 });
 
@@ -135,18 +142,18 @@ namespace AoE2Lib.Bots.GameElements
             command.Add(new UpSetTargetById() { InConstId = Id });
             command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.ID, OutGoalData = GL_TEMP });
             command.Add(new Goal() { InConstGoalId = GL_TEMP }, "!=", Id, 
-                new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = -1});
+                new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = -1});
 
             // check 2: next_attack >= min_next_attack
 
             command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.NEXT_ATTACK, OutGoalData = GL_TEMP });
             command.Add(new Goal() { InConstGoalId = GL_TEMP }, "<", min_next_attack,
-                new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = -2 });
+                new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = -2 });
 
             // check 3: next_attack <= max_next_attack
 
             command.Add(new Goal() { InConstGoalId = GL_TEMP }, ">", max_next_attack,
-                new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = -3 });
+                new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = -3 });
 
             // check 4: target exists as GL_TARGET_ID
 
@@ -159,7 +166,7 @@ namespace AoE2Lib.Bots.GameElements
             command.Add(new Goal() { InConstGoalId = GL_TEMP }, "==", target.Id, 
                 new SetGoal() { InConstGoalId = GL_TARGET_ID, InConstValue = target.Id });
             command.Add(new Goal() { InConstGoalId = GL_TARGET_ID }, "==", -1,
-                new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = -4 });
+                new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = -4 });
 
             // check 5: unit is not already targeting GL_TARGET_ID
 
@@ -167,11 +174,11 @@ namespace AoE2Lib.Bots.GameElements
             command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.TARGET_ID, OutGoalData = GL_TEMP });
             command.Add(new UpModifyGoal() { IoGoalId = GL_TEMP, MathOp = op_g_min, InOpValue = GL_TARGET_ID });
             command.Add(new Goal() { InConstGoalId = GL_TEMP }, "==", 0,
-                new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = -5 });
+                new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = -5 });
 
             // run if all checks passed
 
-            command.Add(new Goal() { InConstGoalId = GL_CHECKS }, "==", 0,
+            command.Add(new Goal() { InConstGoalId = GL_ERROR }, "==", 0,
                 new UpSetTargetById() { InGoalId = GL_TARGET_ID },
                 new UpFullResetSearch(),
                 new UpAddObjectById() { InConstSearchSource = 1, InConstId = Id },
@@ -189,6 +196,11 @@ namespace AoE2Lib.Bots.GameElements
 
         public void Target(Position position, UnitAction action = UnitAction.MOVE, UnitFormation? formation = null, UnitStance? stance = null, int min_next_attack = int.MinValue, int max_next_attack = int.MaxValue)
         {
+            if (this[ObjectData.PLAYER] != Bot.PlayerNumber)
+            {
+                return;
+            }
+
             RequestUpdate();
 
             if (!Bot.GameState.Map.IsOnMap(position))
@@ -216,14 +228,14 @@ namespace AoE2Lib.Bots.GameElements
                 return;
             }
 
-            const int GL_CHECKS = Bot.GOAL_START;
+            const int GL_ERROR = Bot.GOAL_START;
             const int GL_TEMP = Bot.GOAL_START + 1;
             const int GL_PRECISE_X = Bot.GOAL_START + 2;
             const int GL_PRECISE_Y = Bot.GOAL_START + 3;
 
             var command = new Command();
 
-            command.Add(new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = 0 });
+            command.Add(new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = 0 });
             command.Add(new SetGoal() { InConstGoalId = GL_TEMP, InConstValue = -1 });
 
             command.Add(new SetGoal() { InConstGoalId = GL_PRECISE_X, InConstValue = position.PreciseX });
@@ -234,22 +246,22 @@ namespace AoE2Lib.Bots.GameElements
             command.Add(new UpSetTargetById() { InConstId = Id });
             command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.ID, OutGoalData = GL_TEMP });
             command.Add(new Goal() { InConstGoalId = GL_TEMP }, "!=", Id,
-                new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = -1 });
+                new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = -1 });
 
             // check 2: next_attack >= min_next_attack
 
             command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.NEXT_ATTACK, OutGoalData = GL_TEMP });
             command.Add(new Goal() { InConstGoalId = GL_TEMP }, "<", min_next_attack,
-                new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = -2 });
+                new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = -2 });
 
             // check 3: next_attack <= max_next_attack
 
             command.Add(new Goal() { InConstGoalId = GL_TEMP }, ">", max_next_attack,
-                new SetGoal() { InConstGoalId = GL_CHECKS, InConstValue = -3 });
+                new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = -3 });
 
             // run if all checks pass
 
-            command.Add(new Goal() { InConstGoalId = GL_CHECKS }, "==", 0,
+            command.Add(new Goal() { InConstGoalId = GL_ERROR }, "==", 0,
                 new SetStrategicNumber() { InConstSnId = (int)StrategicNumber.TARGET_POINT_ADJUSTMENT, InConstValue = 6 },
                 new UpFullResetSearch(),
                 new UpAddObjectById() { InConstSearchSource = 1, InConstId = Id },
@@ -280,7 +292,8 @@ namespace AoE2Lib.Bots.GameElements
         protected override void UpdateElement(IReadOnlyList<Any> responses)
         {
             var visible = responses[3].Unpack<UpPointExploredResult>().Result == 15;
-            var data = responses[4].Unpack<UpObjectDataListResult>().Result.ToArray();
+            var data = ObjectPool.Get(() => new List<int>(), x => x.Clear());
+            data.AddRange(responses[4].Unpack<UpObjectDataListResult>().Result);
             var id = data[(int)ObjectData.ID];
 
             Targetable = true;
@@ -307,10 +320,12 @@ namespace AoE2Lib.Bots.GameElements
                 return;
             }
 
-            for (int i = 0; i < data.Length; i++)
+            for (int i = 0; i < data.Count; i++)
             {
                 Data[(ObjectData)i] = data[i];
             }
+
+            ObjectPool.Add(data);
         }
 
         private int GetData(ObjectData data)

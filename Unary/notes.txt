@@ -22,7 +22,7 @@ slow = 10
 micro test results
 ==================
 
-4v4 6v6 8v8 10v10
+4v4 5v5 6v6 8v8 10v10 5v4 5v6
 
 4v4 no byzantine feudal
 5v5 no byzantine castle

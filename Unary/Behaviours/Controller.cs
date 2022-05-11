@@ -30,18 +30,13 @@ namespace Unary.Behaviours
 
         public void AddBehaviour<T>(T behaviour) where T : Behaviour
         {
-            if (GetBehaviour<T>() != null)
+            if (TryGetBehaviour<T>(out _))
             {
                 return;
             }
 
             behaviour.Controller = this;
             Behaviours.Add(behaviour);
-        }
-
-        public void RemoveBehaviour<T>(T behaviour) where T : Behaviour
-        {
-            Behaviours.Remove(behaviour);
         }
 
         public T GetBehaviour<T>() where T : Behaviour
@@ -67,11 +62,6 @@ namespace Unary.Behaviours
             }
         }
 
-        public IEnumerable<Behaviour> GetBehaviours()
-        {
-            return Behaviours;
-        }
-
         internal void Tick(Dictionary<Type, KeyValuePair<int, TimeSpan>> times)
         {
             if (Unary.ShouldRareTick(this, 31))
@@ -82,7 +72,7 @@ namespace Unary.Behaviours
             var perform = true;
             var sw = new Stopwatch();
 
-            foreach (var behaviour in Behaviours.ToList())
+            foreach (var behaviour in Behaviours)
             {
                 sw.Restart();
 
@@ -109,13 +99,7 @@ namespace Unary.Behaviours
 
         private void AddDefaultBehaviours()
         {
-            if (Unit[ObjectData.CMDID] == (int)CmdId.VILLAGER)
-            {
-                AddBehaviour(new FightAnimalBehaviour());
-                AddBehaviour(new BuildBehaviour());
-                AddBehaviour(new EatBehaviour());
-            }
-            else if (Unit.IsBuilding)
+            if (Unit.IsBuilding)
             {
                 AddBehaviour(new ConstructionSpotBehaviour());
 
@@ -126,9 +110,19 @@ namespace Unary.Behaviours
             }
             else
             {
-                if (Unit[ObjectData.RANGE] > 2)
+                AddBehaviour(new FightAnimalBehaviour());
+
+                if (Unit[ObjectData.CMDID] == (int)CmdId.VILLAGER)
                 {
-                    AddBehaviour(new CombatRangedBehaviour());
+                    AddBehaviour(new BuildBehaviour());
+                    AddBehaviour(new EatBehaviour());
+                }
+                else
+                {
+                    if (Unit[ObjectData.RANGE] > 2)
+                    {
+                        AddBehaviour(new CombatRangedBehaviour());
+                    }
                 }
             }
         }
