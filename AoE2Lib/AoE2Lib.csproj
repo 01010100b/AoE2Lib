@@ -47,22 +47,6 @@
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		  <PackageCopyToOutput>true</PackageCopyToOutput>
 	  </Content>
-		<Content Include="FASM.DLL">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<PackageCopyToOutput>true</PackageCopyToOutput>
-		</Content>
-		<Content Include="FASMX64.DLL">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<PackageCopyToOutput>true</PackageCopyToOutput>
-		</Content>
-		<Content Include="FASM-LICENSE.TXT">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<PackageCopyToOutput>true</PackageCopyToOutput>
-		</Content>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <NativeLibs Remove="ObjectPool.cs" />
 	</ItemGroup>
 
 </Project>
