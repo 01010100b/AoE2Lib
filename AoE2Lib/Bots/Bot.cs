@@ -78,6 +78,7 @@ namespace AoE2Lib.Bots
                 catch (Exception ex)
                 {
                     Handle(ex);
+                    Log.Exception(ex);
                     Log?.Dispose();
                 }
             });
@@ -116,7 +117,11 @@ namespace AoE2Lib.Bots
                 first_command.Add(new SetGoal() { InConstGoalId = 420, InConstValue = Id });
                 commands.Add(first_command);
 
-                commands.AddRange(Tick());
+                if (GameState.Tick > 0)
+                {
+                    commands.AddRange(Tick());
+                }
+                
                 commands.AddRange(GameState.RequestUpdate());
 
                 var commandlist = new CommandList() { PlayerNumber = PlayerNumber };

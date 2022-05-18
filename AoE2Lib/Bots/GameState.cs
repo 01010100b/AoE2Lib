@@ -267,9 +267,6 @@ namespace AoE2Lib.Bots
 
         internal IEnumerable<Command> RequestUpdate()
         {
-            const int GL_X = Bot.GOAL_START;
-            const int GL_Y = Bot.GOAL_START + 1;
-
             var sw = new Stopwatch();
             sw.Start();
 
@@ -435,7 +432,7 @@ namespace AoE2Lib.Bots
         
         private void DoAutoFindUnits()
         {
-            if (Bot.AutoFindUnits == false)
+            if (Bot.AutoFindUnits == false || !Map.Updated)
             {
                 return;
             }

@@ -54,7 +54,7 @@ namespace Unary.Managers
 
         internal override void Update()
         {
-            foreach (var sitrep in SitReps.Values)
+            foreach (var sitrep in SitReps.Values.ToList())
             {
                 sitrep.Reset();
 

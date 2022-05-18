@@ -83,6 +83,7 @@ namespace AoE2Lib.Games
                 try
                 {
                     Thread.Sleep(10000);
+                    LastProgressTimeUtc = DateTime.UtcNow;
 
                     var time = Call<int>("GetGameTime");
 
@@ -106,8 +107,8 @@ namespace AoE2Lib.Games
 
                     Call("QuitGame");
                     Thread.Sleep(1000);
-                    Finished = true;
                     Client.Close();
+                    Finished = true;
                 }
                 catch (Exception ex)
                 {
