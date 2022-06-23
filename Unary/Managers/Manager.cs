@@ -14,6 +14,6 @@ namespace Unary.Managers
             Unary = unary;
         }
 
-        internal abstract void Update();
+        protected internal abstract void Update();
     }
 }

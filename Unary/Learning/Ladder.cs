@@ -192,7 +192,7 @@ namespace Unary.Learning
             var teams = new[] { 1, 2, 4 };
             var team = teams[Rng.Next(teams.Length)];
             var player1 = Participants[Rng.Next(Participants.Count)];
-            var player2 = player1;
+            var player2 = Participants[Rng.Next(Participants.Count)];
 
             for (int i = 0; i < 4; i++)
             {

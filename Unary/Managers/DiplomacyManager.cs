@@ -49,7 +49,7 @@ namespace Unary.Managers
             return ObstructedTiles.Contains(tile);
         }
 
-        internal override void Update()
+        protected internal override void Update()
         {
             for (int sn = 400; sn < 512; sn++)
             {

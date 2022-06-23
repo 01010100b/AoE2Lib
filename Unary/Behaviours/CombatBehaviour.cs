@@ -105,22 +105,27 @@ namespace Unary.Behaviours
                     Controller.Unary.Log.Debug($"Unit {Controller.Unit.Id} is stuck!");
                     OppositeDirection = !OppositeDirection;
 
-                    for (int i = 0; i < 10; i++)
-                    {
-                        var angle = Controller.Unary.Rng.NextDouble() * 2 * Math.PI;
-                        var delta_pos = Position.FromPolar(angle, 1);
-
-                        pos = Controller.Unit.Position + delta_pos;
-
-                        if (IsAccessible(pos))
-                        {
-                            break;
-                        }
-                    }
+                    pos = Controller.Unit.Position + ((pos - Controller.Unit.Position) * -1);
 
                     if (!IsAccessible(pos))
                     {
-                        pos = Target.Position;
+                        for (int i = 0; i < 10; i++)
+                        {
+                            var angle = Controller.Unary.Rng.NextDouble() * 2 * Math.PI;
+                            var delta_pos = Position.FromPolar(angle, 1);
+
+                            pos = Controller.Unit.Position + delta_pos;
+
+                            if (IsAccessible(pos))
+                            {
+                                break;
+                            }
+                        }
+
+                        if (!IsAccessible(pos))
+                        {
+                            pos = Target.Position;
+                        }
                     }
                 }
 

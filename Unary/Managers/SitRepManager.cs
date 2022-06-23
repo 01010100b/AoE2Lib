@@ -6,6 +6,7 @@ using Protos.Expert.Fact;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,9 +53,12 @@ namespace Unary.Managers
 
         }
 
-        internal override void Update()
+        protected internal override void Update()
         {
-            foreach (var sitrep in SitReps.Values.ToList())
+            var sitreps = ObjectPool.Get(() => new List<SitRep>(), x => x.Clear());
+            sitreps.AddRange(SitReps.Values);
+
+            foreach (var sitrep in sitreps)
             {
                 sitrep.Reset();
 
@@ -83,6 +87,8 @@ namespace Unary.Managers
                     }
                 }
             }
+
+            ObjectPool.Add(sitreps);
 
             var sw = new Stopwatch();
 
@@ -211,7 +217,7 @@ namespace Unary.Managers
 
                     if (blocks_construction && unit.IsBuilding)
                     {
-                        foreach (var zone in Unary.TownManager.GetExclusionZones(unit))
+                        foreach (var zone in GetExclusionZones(unit))
                         {
                             for (int x = zone.X; x < zone.Right; x++)
                             {
@@ -311,6 +317,14 @@ namespace Unary.Managers
             }
 
             return threats;
+        }
+
+        private IEnumerable<Rectangle> GetExclusionZones(Unit building)
+        {
+            var size = Unary.Mod.GetBuildingWidth(building[ObjectData.BASE_TYPE]);
+            var exclusion = 1;
+
+            yield return Utils.GetUnitFootprint(building.Position.PointX, building.Position.PointY, size, size, exclusion);
         }
     }
 }

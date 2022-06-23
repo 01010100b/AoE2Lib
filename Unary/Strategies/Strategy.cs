@@ -192,8 +192,8 @@ namespace Unary.Strategies
 
                         if (unit.IsBuilding)
                         {
-                            var possible_placements = Unary.TownManager.GetPossiblePlacements(unit);
-                            Unary.ResourcesManager.Build(unit, possible_placements, req[unit], 1, Priority.PRODUCTION_BUILDING);
+                            var placements = Unary.TownManager.GetPlacements(unit).Take(100);
+                            Unary.ResourcesManager.Build(unit, placements, req[unit], 1, Priority.PRODUCTION_BUILDING);
                         }
                         else
                         {

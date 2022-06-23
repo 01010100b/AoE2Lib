@@ -32,11 +32,7 @@ namespace Unary.Managers
 
         public int GetDesiredGatherers(Resource resource) => CurrentStrategy.GetDesiredGatherers(resource);
 
-        public int GetMinimumGatherers(Resource resource) => CurrentStrategy.GetMinimumGatherers(resource);
-
-        public int GetMaximumGatherers(Resource resource) => CurrentStrategy.GetMaximumGatherers(resource);
-
-        internal override void Update()
+        protected internal override void Update()
         {
             if (CurrentStrategy == null)
             {

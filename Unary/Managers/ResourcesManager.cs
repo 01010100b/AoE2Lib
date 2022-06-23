@@ -54,16 +54,25 @@ namespace Unary.Managers
                 MaxPending = int.MaxValue;
             }
 
-            public ProductionTask(UnitType type, List<Tile> tiles, int max_count, int max_pending, int priority, bool blocking)
+            public ProductionTask(UnitType type, IEnumerable<Tile> tiles, int max_count, int max_pending, int priority, bool blocking)
             {
                 // tiles = null for training
                 Priority = priority;
                 Blocking = blocking;
                 Technology = null;
                 UnitType = type;
-                Tiles = tiles;
                 MaxCount = max_count;
                 MaxPending = max_pending;
+
+                if (tiles == null)
+                {
+                    Tiles = null;
+                }
+                else
+                {
+                    Tiles = ObjectPool.Get(() => new List<Tile>(), x => x.Clear());
+                    Tiles.AddRange(tiles);
+                }
             }
 
             public void Perform(Unary unary)
@@ -73,15 +82,11 @@ namespace Unary.Managers
                     unary.Log.Info($"Researching {Technology.Id}");
                     Technology.Research();
                 }
-                else if (Tiles != null)
+                else if (Tiles != null && Tiles.Count > 0)
                 {
-                    var placements = unary.TownManager.GetBuildingPlacements(UnitType, Tiles);
-                    
-                    if (placements.Count > 0)
-                    {
-                        unary.Log.Info($"Building {UnitType.Id}");
-                        UnitType.Build(placements, MaxCount, MaxPending);
-                    }
+                    unary.Log.Info($"Building {UnitType.Id}");
+                    UnitType.Build(Tiles, MaxCount, MaxPending);
+                    ObjectPool.Add(Tiles);
                 }
                 else
                 {
@@ -91,7 +96,7 @@ namespace Unary.Managers
             }
         }
 
-        private readonly List<ProductionTask> ProductionTasks = new List<ProductionTask>();
+        private readonly List<ProductionTask> ProductionTasks = new();
 
         public ResourcesManager(Unary unary) : base(unary)
         {
@@ -107,7 +112,7 @@ namespace Unary.Managers
             }
         }
 
-        public void Build(UnitType type, List<Tile> tiles, int max_count, int max_pending, int priority, bool blocking = true)
+        public void Build(UnitType type, IEnumerable<Tile> tiles, int max_count, int max_pending, int priority, bool blocking = true)
         {
             if (type.CountTotal < max_count && type.Pending <= max_pending)
             {
@@ -125,7 +130,7 @@ namespace Unary.Managers
             }
         }
 
-        internal override void Update()
+        protected internal override void Update()
         {
             var remaining_wood = Unary.GameState.MyPlayer.GetFact(FactId.WOOD_AMOUNT);
             var remaining_food = Unary.GameState.MyPlayer.GetFact(FactId.FOOD_AMOUNT);

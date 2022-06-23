@@ -29,7 +29,7 @@ namespace Unary.Behaviours
                 var type = Controller.Unit[ObjectData.BASE_TYPE];
                 var mod = Controller.Unary.Mod;
 
-                if (type == mod.Farm || type == mod.LumberCamp || type == mod.MiningCamp)
+                if (type == mod.Farm || type == mod.WoodCamp || type == mod.MiningCamp)
                 {
                     if (Controller.Unary.GameState.GameTime - Controller.Unit.FirstUpdateGameTime > TimeSpan.FromMinutes(1))
                     {

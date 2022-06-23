@@ -17,7 +17,7 @@ namespace Unary
         public int House { get; private set; } = 70;
         public int Mill { get; private set; } = 68;
         public int MiningCamp { get; private set; } = 584;
-        public int LumberCamp { get; private set; } = 562;
+        public int WoodCamp { get; private set; } = 562;
         public int Farm { get; private set; } = 50;
         public int Dock { get; private set; } = 45;
         public int FeudalAge { get; private set; } = 101;

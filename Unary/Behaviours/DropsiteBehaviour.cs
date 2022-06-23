@@ -15,11 +15,11 @@ namespace Unary.Behaviours
         private readonly Dictionary<Controller, KeyValuePair<Tile, Unit>> Assignments = new();
         private readonly Dictionary<Controller, int> LastRequestTick = new();
 
-        public IEnumerable<KeyValuePair<Tile, Unit>> GetTargets(Resource resource)
+        public IEnumerable<KeyValuePair<Tile, Unit>> GetResources(Resource resource)
         {
-            if (Resources.TryGetValue(resource, out var targets))
+            if (Resources.TryGetValue(resource, out var resources))
             {
-                return targets;
+                return resources;
             }
             else
             {
@@ -131,7 +131,7 @@ namespace Unary.Behaviours
             {
                 resources.Add(Resource.FOOD);
             }
-            else if (basetype == Controller.Unary.Mod.LumberCamp)
+            else if (basetype == Controller.Unary.Mod.WoodCamp)
             {
                 resources.Add(Resource.WOOD);
             }

@@ -52,7 +52,7 @@ namespace Unary.Managers
 
         public IEnumerable<Controller> GetControllers() => Controllers.Values;
 
-        internal override void Update()
+        protected internal override void Update()
         {
             UpdateControllers();
         }

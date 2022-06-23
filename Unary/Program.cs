@@ -30,12 +30,11 @@ namespace Unary
 
             lock (file)
             {
-                using (var writer = File.CreateText(file))
-                using (var json = new JsonTextWriter(writer))
-                {
-                    serializer.Serialize(json, obj);
-                    writer.Flush();
-                }
+                using var writer = File.CreateText(file);
+                using var json = new JsonTextWriter(writer);
+
+                serializer.Serialize(json, obj);
+                writer.Flush();
             }
         }
 
@@ -49,11 +48,10 @@ namespace Unary
 
             lock (file)
             {
-                using (var reader = File.OpenText(file))
-                using (var json = new JsonTextReader(reader))
-                {
-                    return serializer.Deserialize<T>(json);
-                }
+                using var reader = File.OpenText(file);
+                using var json = new JsonTextReader(reader);
+
+                return serializer.Deserialize<T>(json);
             }
         }
 

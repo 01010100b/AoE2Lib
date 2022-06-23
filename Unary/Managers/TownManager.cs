@@ -28,61 +28,87 @@ namespace Unary.Managers
 
         public bool IsInside(Tile tile) => InsideTiles.Contains(tile);
 
-        public List<Tile> GetPossiblePlacements(UnitType building)
-        {
-            var tiles = new List<Tile>();
+        public IEnumerable<Tile> GetInsideTiles() => Unary.GetCached(GetSortedInsideTiles);
 
-            foreach (var tile in InsideTiles)
+        public bool CanBuildAt(UnitType building, Tile tile, bool exclusion)
+        {
+            var land = true;
+
+            if (land && !tile.IsOnLand)
             {
-                if (Unary.GameState.Tick > 10 || MyPosition.DistanceTo(tile.Center) > 8)
-                {
-                    tiles.Add(tile);
-                }
+                return false;
             }
 
-            return tiles;
-        }
+            var sitrep = Unary.SitRepManager[tile];
 
-        internal IEnumerable<Rectangle> GetExclusionZones(Unit building)
-        {
+            if (sitrep.IsConstructionBlocked)
+            {
+                return false;
+            }
+
+            if (exclusion && sitrep.IsConstructionExcluded)
+            {
+                return false;
+            }
+
             var size = Unary.Mod.GetBuildingWidth(building[ObjectData.BASE_TYPE]);
-            var exclusion = 1;
+            var footprint = Utils.GetUnitFootprint(tile.X, tile.Y, size, size);
 
-            yield return Utils.GetUnitFootprint(building.Position.PointX, building.Position.PointY, size, size, exclusion);
-        }
-
-        internal List<Tile> GetBuildingPlacements(UnitType building, IEnumerable<Tile> possible_placements)
-        {
-            var placements = new List<Tile>();
-            var sorted_possible_placements = possible_placements.ToList();
-
-            // TODO sort per building type
-            sorted_possible_placements.Sort((a, b) => a.Position.DistanceTo(MyPosition).CompareTo(b.Position.DistanceTo(MyPosition)));
-
-            foreach (var tile in sorted_possible_placements)
+            for (int x = footprint.X; x < footprint.Right; x++)
             {
-                if (CanBuildAt(building, tile, true))
+                for (int y = footprint.Y; y < footprint.Bottom; y++)
                 {
-                    placements.Add(tile);
-                }
+                    if (Unary.GameState.Map.TryGetTile(x, y, out var t))
+                    {
+                        if (land && !t.IsOnLand)
+                        {
+                            return false;
+                        }
 
-                if (placements.Count >= 100)
-                {
-                    break;
+                        var sr = Unary.SitRepManager[t];
+
+                        if (sr.IsConstructionBlocked)
+                        {
+                            return false;
+                        }
+
+                        if (exclusion && sr.IsConstructionExcluded)
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
             }
 
-            return placements;
+            return true;
         }
 
-        internal override void Update()
+        public IEnumerable<Tile> GetPlacements(UnitType building)
         {
-            UpdateHomeTile();
+            foreach (var tile in GetInsideTiles())
+            {
+                if (Unary.GameState.Tick > 10 || tile.Position.DistanceTo(MyPosition) > 8)
+                {
+                    if (CanBuildAt(building, tile, true))
+                    {
+                        yield return tile;
+                    }
+                }
+            }
+        }
+
+        protected internal override void Update()
+        {
+            UpdateMyPosition();
             UpdateInsideTiles();
             UpdateHousing();
         }
 
-        private void UpdateHomeTile()
+        private void UpdateMyPosition()
         {
             var tcs = ObjectPool.Get(() => new List<Unit>(), x => x.Clear());
             var buildings = ObjectPool.Get(() => new List<Unit>(), x => x.Clear());
@@ -192,67 +218,19 @@ namespace Unary.Managers
 
                 if (population_room > 0 && housing_room < margin && house.Pending < pending)
                 {
-                    var placements = GetPossiblePlacements(house);
-                    Unary.ResourcesManager.Build(house, placements, int.MaxValue, pending, Priority.HOUSING);
+                    Unary.ResourcesManager.Build(house, GetPlacements(house).Take(100), int.MaxValue, pending, Priority.HOUSING);
                 }
             }
         }
 
-        private bool CanBuildAt(UnitType building, Tile tile, bool exclusion)
+        private List<Tile> GetSortedInsideTiles()
         {
-            var land = true;
+            var tiles = ObjectPool.Get(() => new List<Tile>(), x => x.Clear());
 
-            if (land && !tile.IsOnLand)
-            {
-                return false;
-            }
+            tiles.AddRange(InsideTiles);
+            tiles.Sort((a, b) => a.Position.DistanceTo(MyPosition).CompareTo(b.Position.DistanceTo(MyPosition)));
 
-            var sitrep = Unary.SitRepManager[tile];
-
-            if (sitrep.IsConstructionBlocked)
-            {
-                return false;
-            }
-
-            if (exclusion && sitrep.IsConstructionExcluded)
-            {
-                return false;
-            }
-
-            var size = Unary.Mod.GetBuildingWidth(building[ObjectData.BASE_TYPE]);
-            var footprint = Utils.GetUnitFootprint(tile.X, tile.Y, size, size);
-
-            for (int x = footprint.X; x < footprint.Right; x++)
-            {
-                for (int y = footprint.Y; y < footprint.Bottom; y++)
-                {
-                    if (Unary.GameState.Map.TryGetTile(x, y, out var t))
-                    {
-                        if (land && !t.IsOnLand)
-                        {
-                            return false;
-                        }
-
-                        var sr = Unary.SitRepManager[t];
-
-                        if (sr.IsConstructionBlocked)
-                        {
-                            return false;
-                        }
-
-                        if (exclusion && sr.IsConstructionExcluded)
-                        {
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-            }
-
-            return true;
+            return tiles;
         }
     }
 }
