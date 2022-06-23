@@ -91,7 +91,17 @@ namespace Unary.Behaviours
 
         private void AddDefaultBehaviours()
         {
-
+            if (Unit.IsBuilding)
+            {
+                AddBehaviour(new ConstructionSpotBehaviour());
+            }
+            else
+            {
+                if (Unit[ObjectData.CMDID] == (int)CmdId.VILLAGER)
+                {
+                    AddBehaviour(new BuildBehaviour());
+                }
+            }
         }
     }
 }

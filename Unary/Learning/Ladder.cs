@@ -145,8 +145,6 @@ namespace Unary.Learning
                 }
                 else
                 {
-                    Thread.Sleep(1000);
-
                     var finished = games.Where(g => g.Finished).ToList();
 
                     foreach (var game in finished)
@@ -156,6 +154,8 @@ namespace Unary.Learning
 
                     games.RemoveAll(g => finished.Contains(g));
                 }
+
+                Thread.Sleep(1000);
             }
 
             while (queue.TryDequeue(out var g))
