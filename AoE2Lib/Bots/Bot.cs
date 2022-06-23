@@ -65,7 +65,7 @@ namespace AoE2Lib.Bots
 
             GameVersion = version;
             PlayerNumber = player;
-            var file = log ? Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), $"Player {PlayerNumber}.log") : null;
+            var file = log ? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Player {PlayerNumber}.log") : null;
             Log = new Log(file);
             Rng = new Random(Guid.NewGuid().GetHashCode());
 

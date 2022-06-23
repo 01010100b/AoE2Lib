@@ -9,7 +9,7 @@ namespace Unary
 {
     class Mod
     {
-        private static int[] TC_TECHS = { 22, 101, 102, 8, 213, 103, 280, 249 };
+        private static readonly int[] TC_TECHS = { 22, 101, 102, 8, 213, 103, 280, 249 };
 
         public int Villager { get; private set; } = 83;
         public int TownCenter { get; private set; } = 109;
@@ -17,7 +17,7 @@ namespace Unary
         public int House { get; private set; } = 70;
         public int Mill { get; private set; } = 68;
         public int MiningCamp { get; private set; } = 584;
-        public int WoodCamp { get; private set; } = 562;
+        public int LumberCamp { get; private set; } = 562;
         public int Farm { get; private set; } = 50;
         public int Dock { get; private set; } = 45;
         public int FeudalAge { get; private set; } = 101;
@@ -25,16 +25,10 @@ namespace Unary
         public int ImperialAge { get; private set; } = 103;
 
         private readonly DatFile DatFile;
-        private readonly List<int> Sheep = new();
-        private readonly List<int> Deer = new();
-        private readonly List<int> Boar = new();
 
         public Mod(DatFile datfile)
         {
             DatFile = datfile;
-            Sheep.AddRange(new[] { 705, 1596, 1598, 1600, 1060, 1243, 305, 1245, 594, 833, 1142 });
-            Deer.AddRange(new[] { 65, 1239, 1026, 1019 });
-            Boar.AddRange(new[] { 412, 822, 1139, 48 });
         }
 
         public bool DoesPierceDamage(int base_type_id)
@@ -119,21 +113,6 @@ namespace Unary
         public int GetResearchSite(int tech_id)
         {
             throw new NotImplementedException();
-        }
-
-        public IEnumerable<int> GetSheep()
-        {
-            return Sheep;
-        }
-
-        public IEnumerable<int> GetDeer()
-        {
-            return Deer;
-        }
-
-        public IEnumerable<int> GetBoar()
-        {
-            return Boar;
         }
 
         public bool IsTownCenterTech(int tech)

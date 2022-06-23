@@ -67,16 +67,6 @@ namespace Unary.Strategies
             return gatherers;
         }
 
-        public int GetMinimumGatherers(Resource resource)
-        {
-            return (int)Math.Ceiling(GetDesiredGatherers(resource) * 0.9);
-        }
-
-        public int GetMaximumGatherers(Resource resource)
-        {
-            return (int)Math.Floor(GetDesiredGatherers(resource) * 1.1);
-        }
-
         public void Update()
         {
             SetStrategicNumbers();

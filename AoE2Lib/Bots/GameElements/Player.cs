@@ -48,10 +48,10 @@ namespace AoE2Lib.Bots.GameElements
         public int PopulationCap => GetFact(FactId.POPULATION_CAP);
         public IEnumerable<Unit> Units => _Units;
 
-        internal readonly List<Unit> _Units = new List<Unit>();
-        private readonly Dictionary<FactId, int> Facts = new Dictionary<FactId, int>();
-        private readonly Dictionary<int, int> Goals = new Dictionary<int, int>();
-        private readonly Dictionary<int, int> StrategicNumbers = new Dictionary<int, int>();
+        internal readonly List<Unit> _Units = new();
+        private readonly Dictionary<FactId, int> Facts = new();
+        private readonly Dictionary<int, int> Goals = new();
+        private readonly Dictionary<int, int> StrategicNumbers = new();
 
         internal Player(Bot bot, int player) : base(bot)
         {
@@ -165,7 +165,7 @@ namespace AoE2Lib.Bots.GameElements
             }
 
             ids.Clear();
-            ids.AddRange(StrategicNumbers.Keys.Cast<int>());
+            ids.AddRange(StrategicNumbers.Keys);
             ids.Sort();
             foreach (var id in ids)
             {

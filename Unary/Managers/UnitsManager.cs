@@ -13,33 +13,6 @@ namespace Unary.Managers
     // controllers
     internal class UnitsManager : Manager
     {
-        public IEnumerable<Controller> ConstructionSpots => Controllers.Values.Where(c =>
-        {
-            var b = c.GetBehaviour<ConstructionSpotBehaviour>();
-
-            if (b == null)
-            {
-                return false;
-            }
-            else
-            {
-                return b.MaxBuilders > 0;
-            }
-        });
-        public IEnumerable<Controller> EatingSpots => Controllers.Values.Where(c =>
-        {
-            var b = c.GetBehaviour<EatingSpotBehaviour>();
-
-            if (b == null)
-            {
-                return false;
-            }
-            else
-            {
-                return b.Target != null;
-            }
-        });
-        public IEnumerable<Controller> Combatants => Unary.GetCached(GetCombatants);
 
         private readonly Dictionary<Unit, Controller> Controllers = new();
 
@@ -97,24 +70,6 @@ namespace Unary.Managers
             ObjectPool.Add(times);
             ObjectPool.Add(controllers);
             ObjectPool.Add(behaviours);
-        }
-
-        private List<Controller> GetCombatants()
-        {
-            var combatants = ObjectPool.Get(() => new List<Controller>(), x => x.Clear());
-
-            foreach (var controller in GetControllers())
-            {
-                if (controller.TryGetBehaviour<CombatBehaviour>(out var behaviour))
-                {
-                    if (behaviour.TimeSinceLastPerformed < TimeSpan.FromSeconds(10))
-                    {
-                        combatants.Add(controller);
-                    }
-                }
-            }
-
-            return combatants;
         }
     }
 }

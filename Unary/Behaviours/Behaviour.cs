@@ -10,6 +10,7 @@ namespace Unary.Behaviours
     {
         public Controller Controller { get; internal set; } = null;
         public TimeSpan TimeSinceLastPerformed => Controller.Unary.GameState.GameTime - LastPerformedGameTime;
+        public abstract int Priority { get; }
         
         private TimeSpan LastPerformedGameTime { get; set; } = TimeSpan.Zero;
 

@@ -69,7 +69,7 @@ namespace Unary
                 Log.Level = Log.LEVEL_DEBUG;
                 Log.Info($"Using AoE2Lib {typeof(AoEInstance).Assembly.GetName().Version}");
                 Log.Info($"Started Unary {typeof(Program).Assembly.GetName().Version}");
-                Log.Info($"Directory: {AppDomain.CurrentDomain.BaseDirectory}");
+                Log.Info($"Directory: {Folder}");
 
                 Application.SetHighDpiMode(HighDpiMode.SystemAware);
                 Application.EnableVisualStyles();

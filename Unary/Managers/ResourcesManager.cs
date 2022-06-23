@@ -71,7 +71,7 @@ namespace Unary.Managers
                 else
                 {
                     Tiles = ObjectPool.Get(() => new List<Tile>(), x => x.Clear());
-                    Tiles.AddRange(tiles);
+                    Tiles.AddRange(tiles.Take(100));
                 }
             }
 
