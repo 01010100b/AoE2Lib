@@ -53,7 +53,6 @@ namespace AoE2Lib.Bots
         protected abstract void NewGame();
         protected abstract void Stopped();
         protected abstract IEnumerable<Command> Tick();
-
         protected virtual void Handle(Exception ex) { }
 
         internal void Start(int player, IPEndPoint endpoint, GameVersion version, bool log)

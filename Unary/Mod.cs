@@ -25,23 +25,41 @@ namespace Unary
         public int ImperialAge { get; private set; } = 103;
 
         private readonly DatFile DatFile;
+        private readonly Dictionary<int, DatUnit> Units = new();
+        private readonly Dictionary<int, HashSet<int>> TerrainTables = new();
 
         public Mod(DatFile datfile)
         {
             DatFile = datfile;
+
+            foreach (var unit in DatFile.Civilizations.SelectMany(c => c.Units))
+            {
+                Units[unit.Id] = unit;
+            }
+
+            for (int table = 0; table < DatFile.TerrainRestrictions.Count; table++)
+            {
+                TerrainTables[table] = new HashSet<int>();
+
+                for (int terrain = 0; terrain < DatFile.TerrainRestrictions[table].AccessibleDamageMultiplier.Count; terrain++)
+                {
+                    var dmg = DatFile.TerrainRestrictions[table].AccessibleDamageMultiplier[terrain];
+
+                    if (dmg > 0.5)
+                    {
+                        TerrainTables[table].Add(terrain);
+                    }
+                }
+            }
         }
 
-        public bool DoesPierceDamage(int base_type_id)
-        {
-            throw new NotImplementedException();
-        }
+        public DatUnit GetUnitDef(int type_id) => Units[type_id];
 
-        public int GetBonusDamage(int from_type_id, int to_type_id)
-        {
-            throw new NotImplementedException();
-        }
+        public Civilization GetCivilizationDef(int civ_id) => DatFile.Civilizations[civ_id];
 
-        public int GetBuildingWidth(int type_id)
+        public IEnumerable<KeyValuePair<int, HashSet<int>>> GetTerrainTables() => TerrainTables;
+
+        public int GetBuildingSizeOld(int type_id)
         {
             switch (type_id)
             {
@@ -103,16 +121,6 @@ namespace Unary
                 case 1021: return 5;
                 default: return 1;
             }
-        }
-
-        public int GetBuildingHeight(int type_id)
-        {
-            return GetBuildingWidth(type_id);
-        }
-
-        public int GetResearchSite(int tech_id)
-        {
-            throw new NotImplementedException();
         }
 
         public bool IsTownCenterTech(int tech)

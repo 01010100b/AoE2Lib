@@ -11,6 +11,8 @@ namespace AoE2Lib.Bots
 {
     public class GameState
     {
+        private const int AUTO_FIND_LOOPS = 10;
+
         public readonly Map Map;
         public Player MyPlayer => Players[Bot.PlayerNumber];
         public Player Gaia => Players[0];
@@ -200,7 +202,7 @@ namespace AoE2Lib.Bots
             command.Add(new UpFilterStatus() { InConstObjectStatus = 2, InConstObjectList = Bot.Rng.NextDouble() < 0.9 ? 0 : 1 });
             command.Add(new UpFilterDistance() { InConstMinDistance = -1, InConstMaxDistance = range });
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < AUTO_FIND_LOOPS; i++)
             {
                 command.Add(new UpResetSearch() { InConstLocalIndex = 0, InConstLocalList = 0, InConstRemoteIndex = 0, InConstRemoteList = 1 });
                 command.Add(new UpFindStatusRemote() { InConstUnitId = -1, InConstCount = 40 });
@@ -220,7 +222,7 @@ namespace AoE2Lib.Bots
             command.Add(new UpFilterStatus() { InConstObjectStatus = 0, InConstObjectList = 0 });
             command.Add(new UpFilterDistance() { InConstMinDistance = -1, InConstMaxDistance = range });
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < AUTO_FIND_LOOPS; i++)
             {
                 command.Add(new UpResetSearch() { InConstLocalIndex = 0, InConstLocalList = 0, InConstRemoteIndex = 0, InConstRemoteList = 1 });
                 command.Add(new UpFindStatusRemote() { InConstUnitId = -1, InConstCount = 40 });
@@ -250,7 +252,7 @@ namespace AoE2Lib.Bots
                     command.Add(new UpFilterDistance() { InConstMinDistance = -1, InConstMaxDistance = range });
                     command.Add(new UpFilterStatus() { InConstObjectStatus = status, InConstObjectList = list });
 
-                    for (int i = 0; i < 10; i++)
+                    for (int i = 0; i < AUTO_FIND_LOOPS; i++)
                     {
                         command.Add(new UpResetSearch() { InConstLocalIndex = 0, InConstLocalList = 0, InConstRemoteIndex = 0, InConstRemoteList = 1 });
                         command.Add(new UpFindResource() { InConstResource = (int)resource, InConstCount = 40 });
@@ -409,7 +411,7 @@ namespace AoE2Lib.Bots
             {
                 var responses = command.GetResponses();
 
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < AUTO_FIND_LOOPS; i++)
                 {
                     var index = responses.Count - 1 - (i * 3);
 

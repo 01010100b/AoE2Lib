@@ -51,7 +51,7 @@ namespace Unary.Managers
                 return false;
             }
 
-            var size = Unary.Mod.GetBuildingWidth(building[ObjectData.BASE_TYPE]);
+            var size = Unary.Mod.GetBuildingSizeOld(building[ObjectData.BASE_TYPE]);
             var footprint = Utils.GetUnitFootprint(tile.X, tile.Y, size, size);
 
             for (int x = footprint.X; x < footprint.Right; x++)

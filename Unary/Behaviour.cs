@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Unary.Behaviours
+namespace Unary
 {
     internal abstract class Behaviour
     {
         public Controller Controller { get; internal set; } = null;
         public TimeSpan TimeSinceLastPerformed => Controller.Unary.GameState.GameTime - LastPerformedGameTime;
         protected internal abstract int Priority { get; }
-        
+
         private TimeSpan LastPerformedGameTime { get; set; } = TimeSpan.Zero;
 
         // return true if subsequent behaviours should be blocked from unit control
@@ -28,7 +28,7 @@ namespace Unary.Behaviours
         }
 
         protected bool ShouldRareTick(int rate) => Controller.Unary.ShouldRareTick(this, rate);
-        
+
         internal bool TickInternal(bool perform)
         {
             var performed = Tick(perform);

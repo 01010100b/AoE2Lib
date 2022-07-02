@@ -47,5 +47,10 @@ namespace Unary
                 }
             }
         }
+
+        public static void AddPath<TNode>(List<TNode> path, TNode start, TNode end, Func<TNode, IReadOnlyList<TNode>> get_neighbours)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

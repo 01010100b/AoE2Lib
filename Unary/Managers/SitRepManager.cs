@@ -176,7 +176,7 @@ namespace Unary.Managers
                 {
                     var blocks_construction = true;
                     var blocks_movement = true;
-                    var size = Unary.Mod.GetBuildingWidth(unit[ObjectData.BASE_TYPE]);
+                    var size = Unary.Mod.GetBuildingSizeOld(unit[ObjectData.BASE_TYPE]);
 
                     if (unit.Targetable == false || unit[ObjectData.SPEED] > 0)
                     {
@@ -321,7 +321,7 @@ namespace Unary.Managers
 
         private IEnumerable<Rectangle> GetExclusionZones(Unit building)
         {
-            var size = Unary.Mod.GetBuildingWidth(building[ObjectData.BASE_TYPE]);
+            var size = Unary.Mod.GetBuildingSizeOld(building[ObjectData.BASE_TYPE]);
             var exclusion = 1;
 
             yield return Utils.GetUnitFootprint(building.Position.PointX, building.Position.PointY, size, size, exclusion);

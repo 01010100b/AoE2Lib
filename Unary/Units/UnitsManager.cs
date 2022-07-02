@@ -7,9 +7,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Unary.Behaviours;
 
-namespace Unary.Managers
+namespace Unary.Units
 {
     // controllers
     internal class UnitsManager : Manager
@@ -221,7 +220,7 @@ namespace Unary.Managers
                             {
                                 best_builder = builder;
                             }
-                            
+
                         }
                     }
 

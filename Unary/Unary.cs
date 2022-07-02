@@ -9,8 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Unary.Behaviours;
 using Unary.Managers;
+using Unary.Map;
+using Unary.Units;
 using YTY.AocDatLib;
 
 namespace Unary
@@ -29,6 +30,7 @@ namespace Unary
         public UnitsManager UnitsManager { get; private set; }
         public ProductionManager ProductionManager { get; private set; }
 
+        private readonly List<Manager> Managers = new();
         private readonly Dictionary<Func<object>, object> Cache = new();
         private readonly List<Command> Commands = new();
         private bool ChattedOK { get; set; } = false;
@@ -41,25 +43,28 @@ namespace Unary
 
         public Unary() : this(Program.DefaultSettings) { }
 
-        public T GetCached<T>(Func<T> func) where T : class
-        {
-            if (!Cache.ContainsKey(func))
-            {
-                var res = func();
-
-                Cache.Add(func, res);
-            }
-
-            return (T)Cache[func];
-        }
+        public T GetManager<T>() where T : Manager => Managers.OfType<T>().Cast<T>().Single();
 
         public void ExecuteCommand(Command command) => Commands.Add(command);
 
         public bool ShouldRareTick(object obj, int rate) => obj.GetHashCode() % rate == GameState.Tick % rate;
 
+        public T GetCached<T>(Func<T> func) where T : class
+        {
+            if (!Cache.ContainsKey(func))
+            {
+                Cache.Add(func, func());
+            }
+
+            return (T)Cache[func];
+        }
+
         protected override void Stopped()
         {
             Mod = null;
+
+            Managers.Clear();
+
             StrategyManager = null;
             DiplomacyManager = null;
             TownManager = null;
@@ -105,6 +110,8 @@ namespace Unary
 
             Mod = new(datfile);
 
+            Managers.Add(new MapManager(this));
+
             StrategyManager = new(this);
             DiplomacyManager = new(this);
             TownManager = new (this);
@@ -129,6 +136,13 @@ namespace Unary
 
             var sw = new Stopwatch();
 
+            foreach (var manager in Managers)
+            {
+                sw.Restart();
+                manager.Update();
+                Log.Info($"{manager.GetType().Name} took {sw.ElapsedMilliseconds} ms");
+            }
+
             sw.Restart();
             StrategyManager.Update();
             Log.Info($"Strategy Manager took {sw.ElapsedMilliseconds} ms");
@@ -151,7 +165,7 @@ namespace Unary
 
             sw.Restart();
             ProductionManager.Update();
-            Log.Info($"Resources Manager took {sw.ElapsedMilliseconds} ms");
+            Log.Info($"Production Manager took {sw.ElapsedMilliseconds} ms");
 
             if (ChattedOK == false && GameState.GameTime.TotalSeconds >= 10 + PlayerNumber)
             {
@@ -166,6 +180,23 @@ namespace Unary
             {
                 yield return command;
             }
+
+            foreach (var command in Test())
+            {
+                yield return command;
+            }
+        }
+
+        private IEnumerable<Command> Test()
+        {
+            var type_id = 50;
+            var unit = Mod.GetUnitDef(type_id);
+
+            Debug.WriteLine($"unit {type_id} width {unit.CollisionSizeX}");
+            Debug.WriteLine($"unit {type_id} hillmode {unit.HillMode}");
+            Debug.WriteLine($"unit {type_id} obstruction {unit.ObstructionType}");
+
+            yield break;
         }
     }
 }

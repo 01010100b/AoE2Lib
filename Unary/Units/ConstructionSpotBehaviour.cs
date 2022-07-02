@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Unary.Behaviours
+namespace Unary.Units
 {
     internal class ConstructionSpotBehaviour : Behaviour
     {

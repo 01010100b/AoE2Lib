@@ -99,7 +99,7 @@ namespace Unary.Managers
                 else
                 {
                     unary.Log.Info($"Training {UnitType.Id}");
-                    UnitType.Train(MaxCount, MaxPending, Priority, Blocking);
+                    UnitType.Train(MaxCount, MaxPending);
                 }
             }
         }
@@ -140,6 +140,8 @@ namespace Unary.Managers
 
         protected internal override void Update()
         {
+            var researching = false;
+
             var remaining_wood = Unary.GameState.MyPlayer.GetFact(FactId.WOOD_AMOUNT);
             var remaining_food = Unary.GameState.MyPlayer.GetFact(FactId.FOOD_AMOUNT);
             var remaining_gold = Unary.GameState.MyPlayer.GetFact(FactId.GOLD_AMOUNT);
@@ -176,6 +178,11 @@ namespace Unary.Managers
                 if (can_afford)
                 {
                     task.Perform(Unary);
+
+                    if (task.IsTech)
+                    {
+                        researching = true;
+                    }
                 }
 
                 if (deduct)
@@ -188,6 +195,15 @@ namespace Unary.Managers
             }
 
             ProductionTasks.Clear();
+
+            if (researching)
+            {
+                Unary.GameState.SetStrategicNumber(StrategicNumber.ENABLE_TRAINING_QUEUE, 0);
+            }
+            else
+            {
+                Unary.GameState.SetStrategicNumber(StrategicNumber.ENABLE_TRAINING_QUEUE, 1);
+            }
         }
     }
 }
