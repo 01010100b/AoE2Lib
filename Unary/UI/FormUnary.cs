@@ -160,7 +160,11 @@ namespace Unary.UI
             }
             else
             {
-                Instance = AoEInstance.StartInstance(file);
+                var args = "";
+#if DEBUG
+                args = "-aidebug";
+#endif
+                Instance = AoEInstance.StartInstance(file, args);
                 Message($"Started AoE {file}");
             }
         }

@@ -7,7 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Unary.Managers.ResourcesManager;
+using static Unary.Managers.ProductionManager;
 
 namespace Unary.Managers
 {
@@ -218,7 +218,7 @@ namespace Unary.Managers
 
                 if (population_room > 0 && housing_room < margin && house.Pending < pending)
                 {
-                    Unary.ResourcesManager.Build(house, GetPlacements(house).Take(100), int.MaxValue, pending, Priority.HOUSING);
+                    Unary.ProductionManager.Build(house, GetPlacements(house).Take(100), int.MaxValue, pending, Priority.HOUSING);
                 }
             }
         }

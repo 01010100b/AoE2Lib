@@ -27,7 +27,7 @@ namespace Unary
         public TownManager TownManager { get; private set; }
         public SitRepManager SitRepManager { get; private set; }
         public UnitsManager UnitsManager { get; private set; }
-        public ResourcesManager ResourcesManager { get; private set; }
+        public ProductionManager ProductionManager { get; private set; }
 
         private readonly Dictionary<Func<object>, object> Cache = new();
         private readonly List<Command> Commands = new();
@@ -65,7 +65,7 @@ namespace Unary
             TownManager = null;
             SitRepManager = null;
             UnitsManager = null;
-            ResourcesManager = null;
+            ProductionManager = null;
 
             Cache.Clear();
             Commands.Clear();
@@ -91,6 +91,8 @@ namespace Unary
                             datfile = new DatFile();
                             datfile.Load(DatFilePath);
 
+                            Log.Info($"Unary loaded dat file {DatFilePath}");
+
                             break;
                         }
                         catch (Exception)
@@ -108,7 +110,7 @@ namespace Unary
             TownManager = new (this);
             SitRepManager = new(this);
             UnitsManager = new(this);
-            ResourcesManager = new(this);
+            ProductionManager = new(this);
 
             Cache.Clear();
             Commands.Clear();
@@ -148,7 +150,7 @@ namespace Unary
             Log.Info($"Units Manager took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
-            ResourcesManager.Update();
+            ProductionManager.Update();
             Log.Info($"Resources Manager took {sw.ElapsedMilliseconds} ms");
 
             if (ChattedOK == false && GameState.GameTime.TotalSeconds >= 10 + PlayerNumber)

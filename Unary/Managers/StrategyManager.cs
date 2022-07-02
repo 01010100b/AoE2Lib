@@ -6,8 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Unary.Strategies;
-using static Unary.Managers.ResourcesManager;
-using static Unary.Strategies.Strategy.BuildOrderCommand;
+using static Unary.Managers.ProductionManager;
 
 namespace Unary.Managers
 {

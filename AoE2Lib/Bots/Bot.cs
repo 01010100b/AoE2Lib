@@ -218,19 +218,22 @@ namespace AoE2Lib.Bots
 
         private void StartNewGame(AIModuleAPIClient module_api)
         {
+            Log.Info("New Game");
+
             GameState = new GameState(this);
 
             if (GameVersion == GameVersion.AOC)
             {
                 DatFilePath = module_api.GetGameDataFilePath(new Protos.GetGameDataFilePathRequest()).Result;
+                Log.Info($"Dat file: {DatFilePath}");
             }
             else
             {
                 DatFilePath = null;
+                Log.Info($"No dat file");
             }
 
             NewGame();
-            Log.Info("New Game");
         }
     }
 }

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Unary.Managers
 {
     // resource management
-    internal class ResourcesManager : Manager
+    internal class ProductionManager : Manager
     {
         public static class Priority
         {
@@ -25,6 +25,14 @@ namespace Unary.Managers
             HOUSING = 600,
             VILLAGER = 700,
             AGE_UP = 800;
+        }
+
+        public class BuildOrderCommand
+        {
+            public enum BuildOrderCommandType { RESEARCH, UNIT }
+
+            public BuildOrderCommandType Type { get; set; }
+            public int Id { get; set; }
         }
 
         private class ProductionTask
@@ -98,7 +106,7 @@ namespace Unary.Managers
 
         private readonly List<ProductionTask> ProductionTasks = new();
 
-        public ResourcesManager(Unary unary) : base(unary)
+        public ProductionManager(Unary unary) : base(unary)
         {
 
         }

@@ -9,21 +9,13 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Unary.Managers.ResourcesManager;
-using static Unary.Strategies.Strategy.BuildOrderCommand;
+using static Unary.Managers.ProductionManager;
+using static Unary.Managers.ProductionManager.BuildOrderCommand;
 
 namespace Unary.Strategies
 {
     internal class Strategy
     {
-        public class BuildOrderCommand
-        {
-            public enum BuildOrderCommandType { RESEARCH, UNIT }
-
-            public BuildOrderCommandType Type { get; set; }
-            public int Id { get; set; }
-        }
-
         public string Name { get; set; } = "";
         public List<Resource> Gatherers { get; set; } = new();
         public int ExtraFoodPercentage { get; set; } = 0;
@@ -147,7 +139,7 @@ namespace Unary.Strategies
                             blocking = false;
                         }
 
-                        Unary.ResourcesManager.Research(tech, priority, blocking);
+                        Unary.ProductionManager.Research(tech, priority, blocking);
 
                         break;
                     }
@@ -183,11 +175,11 @@ namespace Unary.Strategies
                         if (unit.IsBuilding)
                         {
                             var placements = Unary.TownManager.GetPlacements(unit).Take(100);
-                            Unary.ResourcesManager.Build(unit, placements, req[unit], 1, Priority.PRODUCTION_BUILDING);
+                            Unary.ProductionManager.Build(unit, placements, req[unit], 1, Priority.PRODUCTION_BUILDING);
                         }
                         else
                         {
-                            Unary.ResourcesManager.Train(unit, req[unit], 1, Priority.MILITARY);
+                            Unary.ProductionManager.Train(unit, req[unit], 1, Priority.MILITARY);
                         }
 
                         break;
@@ -204,7 +196,7 @@ namespace Unary.Strategies
 
             if (Unary.GameState.TryGetUnitType(Unary.Mod.Villager, out var villager))
             {
-                Unary.ResourcesManager.Train(villager, max_civ, 3, Priority.VILLAGER);
+                Unary.ProductionManager.Train(villager, max_civ, 3, Priority.VILLAGER);
             }
         }
     }

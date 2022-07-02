@@ -30,6 +30,8 @@ namespace AoE2Lib.Bots
         private readonly List<Command> Commands = new();
         private readonly List<Command> UnitFindCommands = new();
         private readonly Command CommandInfo = new();
+        private readonly List<Command> IdLoopCommands = new();
+        private int NextIdLoop { get; set; } = 1;
 
         internal GameState(Bot bot)
         {
@@ -132,7 +134,7 @@ namespace AoE2Lib.Bots
         {
             if (Units.TryGetValue(id, out Unit u))
             {
-                if (u.Updated)
+                if (u.Updated && u.Targetable && u.Known)
                 {
                     unit = u;
 
@@ -271,10 +273,10 @@ namespace AoE2Lib.Bots
             sw.Start();
 
             DoAutoFindUnits();
+            DoIdLoop();
             DoAutoUpdateUnits();
 
             CommandInfo.Reset();
-
             CommandInfo.Add(new GameTime());
 
             foreach (var sn in StrategicNumbers)
@@ -311,6 +313,11 @@ namespace AoE2Lib.Bots
                 yield return command;
             }
 
+            foreach (var command in IdLoopCommands)
+            {
+                yield return command;
+            }
+
             foreach (var command in Commands)
             {
                 yield return command;
@@ -333,6 +340,8 @@ namespace AoE2Lib.Bots
             {
                 Bot.Log.Debug($"Player {player.PlayerNumber} has {player.Units.Count(u => u.Targetable)} units and {player.Score} score");
             }
+
+            // update info
 
             if (CommandInfo.HasResponses)
             {
@@ -360,6 +369,8 @@ namespace AoE2Lib.Bots
                 Tick++;
             }
 
+            // update elements
+
             Map.Update();
 
             foreach (var player in Players)
@@ -377,14 +388,26 @@ namespace AoE2Lib.Bots
                 type.Update();
             }
 
-            foreach (var unit in Units.Values)
+            foreach (var unit in Units.Values.ToList())
             {
                 unit.Update();
+
+                if (unit.Visible)
+                {
+                    unit.LastSeenGameTime = GameTime;
+                }
+
+                if (unit.Updated && !unit.Targetable)
+                {
+                    Units.Remove(unit.Id);
+                }
             }
+
+            // find new units
 
             foreach (var command in UnitFindCommands.Where(c => c.HasResponses))
             {
-                var responses = command.Responses;
+                var responses = command.GetResponses();
 
                 for (int i = 0; i < 10; i++)
                 {
@@ -403,9 +426,29 @@ namespace AoE2Lib.Bots
 
             UnitFindCommands.Clear();
 
+            foreach (var command in IdLoopCommands.Where(c => c.HasResponses))
+            {
+                var id = command.GetResponses()[1].Unpack<UpObjectDataResult>().Result;
+                var iid = command.GetResponses()[3].Unpack<GoalResult>().Result;
+
+                if (id == iid)
+                {
+                    if (!Units.ContainsKey(id))
+                    {
+                        Units.Add(id, new Unit(Bot, id));
+                        Bot.Log.Info($"Id loop found {id}");
+                    }
+                }
+            }
+
+            IdLoopCommands.Clear();
+
+            // update unit caches
+
             foreach (var player in Players)
             {
-                player._Units.Clear();
+                player.KnownUnits.Clear();
+                player.UnknownUnits.Clear();
             }
 
             foreach (var tile in Map.GetTiles())
@@ -417,11 +460,18 @@ namespace AoE2Lib.Bots
             {
                 if (unit[ObjectData.PLAYER] >= 0)
                 {
-                    Players[unit[ObjectData.PLAYER]]._Units.Add(unit);
-
-                    if (Map.TryGetTile(unit.Position, out var tile))
+                    if (unit.Known)
                     {
-                        tile._Units.Add(unit);
+                        Players[unit[ObjectData.PLAYER]].KnownUnits.Add(unit);
+
+                        if (Map.TryGetTile(unit.Position, out var tile))
+                        {
+                            tile._Units.Add(unit);
+                        }
+                    }
+                    else
+                    {
+                        Players[unit[ObjectData.PLAYER]].UnknownUnits.Add(unit);
                     }
                 }
             }
@@ -461,10 +511,6 @@ namespace AoE2Lib.Bots
             foreach (var player in GetPlayers())
             {
                 var range = Map.Width + Map.Height;
-                if (Tick > 100 && Tick % 10 == 0)
-                {
-                    range = 20;
-                }
 
                 FindUnits(player.PlayerNumber, position, range);
 
@@ -474,30 +520,25 @@ namespace AoE2Lib.Bots
 
                     var resource = Resource.WOOD;
 
-                    if (Tick % 32 == 0)
+                    if (Tick % 6 == 1)
                     {
                         resource = Resource.STONE;
                     }
-                    else if (Tick % 16 == 0)
+                    else if (Tick % 6 == 2)
                     {
                         resource = Resource.GOLD;
                     }
-                    else if (Tick % 8 == 0)
+                    else if (Tick % 6 == 3)
                     {
                         resource = Resource.DEER;
                     }
-                    else if (Tick % 4 == 0)
+                    else if (Tick % 6 == 4)
                     {
                         resource = Resource.BOAR;
                     }
-                    else if (Tick % 2 == 0)
+                    else if (Tick % 6 == 5)
                     {
                         resource = Resource.FOOD;
-                    }
-
-                    if (Tick > 100 && Bot.Rng.NextDouble() < 0.5)
-                    {
-                        range = 10;
                     }
                     
                     FindResources(resource, 0, position, range);
@@ -523,43 +564,77 @@ namespace AoE2Lib.Bots
             var sw = new Stopwatch();
             sw.Start();
 
-            var first = 0;
-            foreach (var unit in Units.Values)
-            {
-                if (!unit.Updated)
-                {
-                    unit.RequestUpdate();
-                    first++;
-                }
-
-                if (first >= Bot.AutoUpdateUnits)
-                {
-                    break;
-                }
-            }
-
-            Bot.Log.Debug($"Auto updating {first} first units");
-
             var units = ObjectPool.Get(() => new List<Unit>(), x => x.Clear());
+            units.AddRange(Units.Values.Where(u => !u.Updated));
+            
+            var updated = UpdateUnits(units, Bot.AutoUpdateUnits);
+            Bot.Log.Debug($"Auto updating {updated} first units");
 
             foreach (var player in GetPlayers())
             {
                 units.Clear();
                 units.AddRange(player.Units);
-                units.Sort((a, b) => a.LastUpdateTick.CompareTo(b.LastUpdateTick));
-                var count = Math.Min(units.Count, Bot.AutoUpdateUnits);
+                updated = UpdateUnits(units, Bot.AutoUpdateUnits);
+                Bot.Log.Debug($"Auto updating {updated} known units for player {player.PlayerNumber}");
 
-                for (int i = 0; i < count; i++)
-                {
-                    units[i].RequestUpdate();
-                }
-
-                Bot.Log.Debug($"Auto updating {count} units for player {player.PlayerNumber}");
+                units.Clear();
+                units.AddRange(player.UnknownUnits);
+                updated = UpdateUnits(units, Bot.AutoUpdateUnits);
+                Bot.Log.Debug($"Auto updating {updated} known units for player {player.PlayerNumber}");
             }
 
             ObjectPool.Add(units);
             sw.Stop();
             Bot.Log.Debug($"GameState.DoAutoUpdateUnits took {sw.ElapsedMilliseconds} ms");
+        }
+
+        private void DoIdLoop()
+        {
+            const int LENGTH = 1000;
+
+            for (int i = NextIdLoop; i < NextIdLoop + LENGTH; i++)
+            {
+                var command = new Command();
+                command.Add(new UpSetTargetById() { InConstId = i });
+                command.Add(new UpObjectData() { InConstObjectData = (int)ObjectData.ID });
+                command.Add(new SetGoal() { InConstGoalId = Bot.GOAL_START, InConstValue = i });
+                command.Add(new Goal() { InConstGoalId = Bot.GOAL_START });
+                IdLoopCommands.Add(command);
+            }
+
+            NextIdLoop += LENGTH;
+            var max_id = Units.Count > 0 ? Units.Keys.Max() : 1000;
+
+            if (NextIdLoop > max_id + LENGTH)
+            {
+                NextIdLoop = 1;
+            }
+        }
+
+        private int UpdateUnits(List<Unit> units, int count)
+        {
+            if (units.Count == 0 || count <= 0)
+            {
+                return 0;
+            }
+
+            var updated = Math.Min(units.Count, count);
+
+            if (units[0].Updated == false)
+            {
+                units.Sort((a, b) => a.Id.CompareTo(b.Id));
+            }
+            else
+            {
+                units.Sort((a, b) => a.LastUpdateTick.CompareTo(b.LastUpdateTick));
+            }
+
+            for (int i = 0; i < updated; i++)
+            {
+                units[i].RequestUpdate();
+            }
+
+            return updated;
         }
     }
 }

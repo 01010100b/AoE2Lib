@@ -13,16 +13,17 @@ namespace AoE2Lib.Bots.GameElements
     public class Unit : GameElement
     {
         public readonly int Id;
+        public bool Known => LastSeenGameTime >= TimeSpan.Zero;
         public int this[ObjectData data] => GetData(data);
         public Player Player => GetPlayer();
         public bool Targetable { get; private set; } = false;
-        public bool Visible { get; private set; } = false;
+        public bool Visible => IsVisible();
         public bool IsBuilding => this[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || this[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING;
-        public TimeSpan LastSeenGameTime { get; private set; } = TimeSpan.MinValue;
+        public TimeSpan LastSeenGameTime { get; internal set; } = TimeSpan.MinValue;
         public Position Position => Position.FromPrecise(this[ObjectData.PRECISE_X], this[ObjectData.PRECISE_Y]);
         public Tile Tile => GetTile();
 
-        private readonly Dictionary<ObjectData, int> Data = new Dictionary<ObjectData, int>();
+        private readonly Dictionary<ObjectData, int> Data = new();
 
         internal Unit(Bot bot, int id) : base(bot)
         {
@@ -279,46 +280,25 @@ namespace AoE2Lib.Bots.GameElements
 
         protected override IEnumerable<IMessage> RequestElementUpdate()
         {
-            const int GL_X = Bot.GOAL_START;
-            const int GL_Y = Bot.GOAL_START + 1;
-
             yield return new UpSetTargetById() { InConstId = Id };
-            yield return new UpGetObjectData() { InConstObjectData = (int)ObjectData.POINT_X, OutGoalData = GL_X };
-            yield return new UpGetObjectData() { InConstObjectData = (int)ObjectData.POINT_Y, OutGoalData = GL_Y };
-            yield return new UpPointExplored() { InGoalPoint = GL_X };
             yield return new UpObjectDataList();
         }
 
         protected override void UpdateElement(IReadOnlyList<Any> responses)
         {
-            var visible = responses[3].Unpack<UpPointExploredResult>().Result == 15;
             var data = ObjectPool.Get(() => new List<int>(), x => x.Clear());
-            data.AddRange(responses[4].Unpack<UpObjectDataListResult>().Result);
+            data.AddRange(responses[1].Unpack<UpObjectDataListResult>().Result);
             var id = data[(int)ObjectData.ID];
-
-            Targetable = true;
-            Visible = true;
 
             if (id != Id)
             {
                 Targetable = false;
-                Visible = false;
+                ObjectPool.Add(data);
 
                 return;
             }
 
-            if (LastSeenGameTime >= TimeSpan.Zero && !IsBuilding && !visible)
-            {
-                Visible = false;
-                return;
-            }
-
-            LastSeenGameTime = Bot.GameState.GameTime;
-
-            if (IsBuilding && !visible)
-            {
-                return;
-            }
+            Targetable = true;
 
             for (int i = 0; i < data.Count; i++)
             {
@@ -361,6 +341,30 @@ namespace AoE2Lib.Bots.GameElements
             else
             {
                 throw new Exception($"Tile {Position} not found for unit {Id}");
+            }
+        }
+
+        private bool IsVisible()
+        {
+            if (!Targetable)
+            {
+                return false;
+            }
+            else if (Tile.Visible)
+            {
+                return true;
+            }
+            else if (this[ObjectData.SPEED] == 0 && Known)
+            {
+                return true;
+            }
+            else if (this[ObjectData.SPEED] == 0 && Player.PlayerNumber == 0 && Tile.Explored)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }
