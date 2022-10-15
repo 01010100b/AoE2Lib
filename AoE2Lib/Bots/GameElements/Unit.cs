@@ -112,10 +112,7 @@ namespace AoE2Lib.Bots.GameElements
                 throw new ArgumentNullException(nameof(target));
             }
 
-            if (backup == null)
-            {
-                backup = target;
-            }
+            backup ??= target;
 
             RequestUpdate();
             target.RequestUpdate();
@@ -132,7 +129,7 @@ namespace AoE2Lib.Bots.GameElements
             const int GL_TEMP = Bot.GOAL_START + 1;
             const int GL_TARGET_ID = Bot.GOAL_START + 2;
 
-            var op_g_min = 14;
+            const int OP_G_SUB = 14;
 
             command.Add(new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = 0 });
             command.Add(new SetGoal() { InConstGoalId = GL_TEMP, InConstValue = -1 });
@@ -173,7 +170,7 @@ namespace AoE2Lib.Bots.GameElements
 
             command.Add(new UpSetTargetById() { InConstId = Id });
             command.Add(new UpGetObjectData() { InConstObjectData = (int)ObjectData.TARGET_ID, OutGoalData = GL_TEMP });
-            command.Add(new UpModifyGoal() { IoGoalId = GL_TEMP, MathOp = op_g_min, InOpValue = GL_TARGET_ID });
+            command.Add(new UpModifyGoal() { IoGoalId = GL_TEMP, MathOp = OP_G_SUB, InOpValue = GL_TARGET_ID });
             command.Add(new Goal() { InConstGoalId = GL_TEMP }, "==", 0,
                 new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = -5 });
 

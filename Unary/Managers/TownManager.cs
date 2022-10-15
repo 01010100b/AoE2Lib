@@ -178,6 +178,10 @@ namespace Unary.Managers
             {
                 MyPosition = home.Position;
             }
+            else
+            {
+                MyPosition = Unary.GameState.Map.Center;
+            }
 
             ObjectPool.Add(tcs);
             ObjectPool.Add(buildings);

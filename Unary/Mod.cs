@@ -9,6 +9,9 @@ namespace Unary
 {
     class Mod
     {
+        private const int PIERCE = 3;
+        private const int MELEE = 4;
+
         private static readonly int[] TC_TECHS = { 22, 101, 102, 8, 213, 103, 280, 249 };
 
         public int Villager { get; private set; } = 83;
@@ -26,7 +29,8 @@ namespace Unary
 
         private readonly DatFile DatFile;
         private readonly Dictionary<int, DatUnit> Units = new();
-        private readonly Dictionary<int, HashSet<int>> TerrainTables = new();
+        private readonly Dictionary<int, HashSet<int>> TerrainAllowances = new();
+        private readonly Dictionary<int, Dictionary<int, DatUnit>> CivUnits = new();
 
         public Mod(DatFile datfile)
         {
@@ -39,7 +43,7 @@ namespace Unary
 
             for (int table = 0; table < DatFile.TerrainRestrictions.Count; table++)
             {
-                TerrainTables[table] = new HashSet<int>();
+                TerrainAllowances[table] = new HashSet<int>();
 
                 for (int terrain = 0; terrain < DatFile.TerrainRestrictions[table].AccessibleDamageMultiplier.Count; terrain++)
                 {
@@ -47,17 +51,54 @@ namespace Unary
 
                     if (dmg > 0.5)
                     {
-                        TerrainTables[table].Add(terrain);
+                        TerrainAllowances[table].Add(terrain);
                     }
                 }
             }
+
+            for (int civ = 0; civ < DatFile.Civilizations.Count; civ++)
+            {
+                CivUnits.Add(civ, new());
+                var units = CivUnits[civ];
+                var c = DatFile.Civilizations[civ];
+
+                foreach (var unit in c.Units)
+                {
+                    units.Add(unit.Id, unit);
+                }
+            }
+        }
+
+        public IEnumerable<int> GetUnits(int civ) => CivUnits[civ].Values.Where(u => u.TrainLocationId >= 0).Select(u => (int)u.Id);
+        public double GetUnitWidth(int civ, int unit) => CivUnits[civ][unit].CollisionSizeX * 2;
+        public double GetUnitHeight(int civ, int unit) => CivUnits[civ][unit].CollisionSizeY * 2;
+
+        public bool BlocksPassage(int civ, int unit)
+        {
+            var def = CivUnits[civ][unit];
+
+            switch((int)def.ObstructionType)
+            {
+                case 2:
+                case 3:
+                case 5:
+                case 10: return true;
+                default: return false;
+            }
+        }
+
+        public bool CanPassTerrain(int civ, int unit, int terrain)
+        {
+            var table = CivUnits[civ][unit].TerrainRestriction;
+
+            return TerrainAllowances[table].Contains(terrain);
         }
 
         public DatUnit GetUnitDef(int type_id) => Units[type_id];
 
         public Civilization GetCivilizationDef(int civ_id) => DatFile.Civilizations[civ_id];
 
-        public IEnumerable<KeyValuePair<int, HashSet<int>>> GetTerrainTables() => TerrainTables;
+        public IEnumerable<KeyValuePair<int, HashSet<int>>> GetTerrainTables() => TerrainAllowances;
 
         public int GetBuildingSizeOld(int type_id)
         {

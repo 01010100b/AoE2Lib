@@ -10,6 +10,7 @@ namespace Unary.Map
     internal class TileState
     {
         public readonly Tile Tile;
+        public bool IsPassageBlocked { get; internal set; } = true;
         public bool IsConstructionBlocked { get; internal set; } = true;
         public bool IsConstructionExcluded { get; internal set; } = true;
 

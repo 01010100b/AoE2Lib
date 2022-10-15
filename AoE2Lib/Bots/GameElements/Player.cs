@@ -46,6 +46,7 @@ namespace AoE2Lib.Bots.GameElements
         public int CivilianPopulation => GetFact(FactId.CIVILIAN_POPULATION);
         public int MilitaryPopulation => GetFact(FactId.MILITARY_POPULATION);
         public int PopulationCap => GetFact(FactId.POPULATION_CAP);
+        public int Civilization => GetFact(FactId.CIVILIZATION);
         public IEnumerable<Unit> Units => KnownUnits;
 
         internal readonly List<Unit> KnownUnits = new();

@@ -31,6 +31,7 @@ namespace AoE2Lib.Bots
         public string DatFilePath { get; private set; } = null;
         public bool AutoFindUnits { get; set; } = true; // automatically find units
         public int AutoUpdateUnits { get; set; } = 100; // units to update per tick per player
+        public int IdLoopLength { get; set; } = 200; // id's to loop per tick
 
         private Thread BotThread { get; set; } = null;
         private volatile bool Stopping = false;

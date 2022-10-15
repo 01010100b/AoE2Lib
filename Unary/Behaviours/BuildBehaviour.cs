@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Unary.Units
+namespace Unary.Behaviours
 {
     internal class BuildBehaviour : Behaviour
     {
         public ConstructionSpotBehaviour ConstructionSpot { get; set; } = null;
 
-        protected internal override int Priority => 300;
+        public override int GetPriority() => 100;
 
         protected override bool Tick(bool perform)
         {

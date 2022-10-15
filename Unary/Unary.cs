@@ -10,8 +10,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Unary.Managers;
-using Unary.Map;
-using Unary.Units;
 using YTY.AocDatLib;
 
 namespace Unary
@@ -23,6 +21,7 @@ namespace Unary
         public override int Id => UNARY_ID;
         public readonly Settings Settings;
         public Mod Mod { get; private set; }
+        public MapManager MapManager => Managers.OfType<MapManager>().Single();
         public StrategyManager StrategyManager { get; private set; }
         public DiplomacyManager DiplomacyManager { get; private set; }
         public TownManager TownManager { get; private set; }
@@ -81,7 +80,6 @@ namespace Unary
         {
             //Log.Level = AoE2Lib.Log.LEVEL_INFO;
 
-            DatFile datfile = null;
             if (DatFilePath != null)
             {
                 lock (DatFilePath)
@@ -93,8 +91,9 @@ namespace Unary
                     {
                         try
                         {
-                            datfile = new DatFile();
+                            var datfile = new DatFile();
                             datfile.Load(DatFilePath);
+                            Mod = new(datfile);
 
                             Log.Info($"Unary loaded dat file {DatFilePath}");
 
@@ -107,8 +106,6 @@ namespace Unary
                     }
                 }
             }
-
-            Mod = new(datfile);
 
             Managers.Add(new MapManager(this));
 

@@ -80,6 +80,11 @@ namespace Unary.Managers
                 {
                     Tiles = ObjectPool.Get(() => new List<Tile>(), x => x.Clear());
                     Tiles.AddRange(tiles.Take(100));
+
+                    if (Tiles.Count == 0)
+                    {
+                        throw new ArgumentOutOfRangeException(nameof(tiles), "Need at least 1 tile");
+                    }
                 }
             }
 

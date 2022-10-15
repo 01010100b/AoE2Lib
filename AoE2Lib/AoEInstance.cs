@@ -110,7 +110,7 @@ namespace AoE2Lib
 
         private readonly Process Process;
         private IntPtr WindowHandle { get; set; }
-        private readonly HashSet<string> InjectedDlls = new HashSet<string>();
+        private readonly HashSet<string> InjectedDlls = new();
         private readonly int AimodulePort;
         private readonly int AutoGamePort;
 

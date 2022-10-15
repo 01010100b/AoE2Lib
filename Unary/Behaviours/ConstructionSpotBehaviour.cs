@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Unary.Units
+namespace Unary.Behaviours
 {
     internal class ConstructionSpotBehaviour : Behaviour
     {
         public int RequestedBuilders => GetRequestedBuilders();
 
-        protected internal override int Priority => -1;
+        public override int GetPriority() => 0;
 
         protected override bool Tick(bool perform)
         {

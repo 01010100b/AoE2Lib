@@ -16,7 +16,7 @@ namespace Unary
     static class Program
     {
         public static string Folder => AppDomain.CurrentDomain.BaseDirectory;
-        public static Settings DefaultSettings => GetSettings();
+        public static readonly Settings DefaultSettings = GetSettings();
 
         internal static readonly Log Log = new(Path.Combine(Folder, "Unary.log"));
         

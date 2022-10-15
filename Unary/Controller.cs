@@ -7,8 +7,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unary.Behaviours;
 using Unary.Managers;
-using Unary.Units;
 
 namespace Unary
 {
@@ -60,7 +60,7 @@ namespace Unary
                 Unit.RequestUpdate();
             }
 
-            Behaviours.Sort((a, b) => b.Priority.CompareTo(a.Priority));
+            Behaviours.Sort((a, b) => b.GetPriority().CompareTo(a.GetPriority()));
 
             var perform = true;
             var sw = new Stopwatch();

@@ -33,7 +33,7 @@ namespace AoE2Lib.Bots
         private readonly List<Command> UnitFindCommands = new();
         private readonly Command CommandInfo = new();
         private readonly List<Command> IdLoopCommands = new();
-        private int NextIdLoop { get; set; } = 1;
+        private int NextIdLoop { get; set; } = 0;
 
         internal GameState(Bot bot)
         {
@@ -582,7 +582,7 @@ namespace AoE2Lib.Bots
                 units.Clear();
                 units.AddRange(player.UnknownUnits);
                 updated = UpdateUnits(units, Bot.AutoUpdateUnits);
-                Bot.Log.Debug($"Auto updating {updated} known units for player {player.PlayerNumber}");
+                Bot.Log.Debug($"Auto updating {updated} unknown units for player {player.PlayerNumber}");
             }
 
             ObjectPool.Add(units);
@@ -592,9 +592,12 @@ namespace AoE2Lib.Bots
 
         private void DoIdLoop()
         {
-            const int LENGTH = 1000;
+            if (Bot.IdLoopLength <= 0)
+            {
+                return;
+            }
 
-            for (int i = NextIdLoop; i < NextIdLoop + LENGTH; i++)
+            for (int i = NextIdLoop; i < NextIdLoop + Bot.IdLoopLength; i++)
             {
                 var command = new Command();
                 command.Add(new UpSetTargetById() { InConstId = i });
@@ -604,12 +607,12 @@ namespace AoE2Lib.Bots
                 IdLoopCommands.Add(command);
             }
 
-            NextIdLoop += LENGTH;
+            NextIdLoop += Bot.IdLoopLength;
             var max_id = Units.Count > 0 ? Units.Keys.Max() : 1000;
 
-            if (NextIdLoop > max_id + LENGTH)
+            if (NextIdLoop > max_id + Bot.IdLoopLength)
             {
-                NextIdLoop = 1;
+                NextIdLoop = 0;
             }
         }
 
