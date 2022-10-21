@@ -106,7 +106,7 @@ namespace Unary
         private static Settings GetSettings()
         {
             var settings = new Settings();
-            var file = Path.Combine(Folder, "Settings.json");
+            var file = Path.Combine(Folder, "settings.json");
 
             if (File.Exists(file))
             {

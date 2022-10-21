@@ -41,6 +41,8 @@ namespace Unary
             Behaviours.Add(behaviour);
         }
 
+        public bool HasBehaviour<T>() where T : Behaviour => TryGetBehaviour<T>(out _);
+
         public bool TryGetBehaviour<T>(out T behaviour) where T : Behaviour
         {
             foreach (var b in Behaviours.OfType<T>())
@@ -93,16 +95,11 @@ namespace Unary
 
         private void AddDefaultBehaviours()
         {
-            if (Unit.IsBuilding)
+            if (Unit[ObjectData.CMDID] == (int)CmdId.VILLAGER)
             {
-                AddBehaviour(new ConstructionSpotBehaviour());
-            }
-            else
-            {
-                if (Unit[ObjectData.CMDID] == (int)CmdId.VILLAGER)
-                {
-                    AddBehaviour(new BuildBehaviour());
-                }
+                AddBehaviour(new JobBehaviour());
+                AddBehaviour(new BuildBehaviour());
+                AddBehaviour(new EatBehaviour());
             }
         }
     }

@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace Unary.Behaviours
 {
-    internal class BuildBehaviour : Behaviour
+    internal class EatBehaviour : Behaviour
     {
-        public Unit Construction { get; set; } = null;
+        public Unit Target { get; set; } = null;
 
-        public override int GetPriority() => 800;
+        public override int GetPriority() => 600;
 
         protected override bool Tick(bool perform)
         {
-            if (Construction != null)
+            if (perform && Target != null)
             {
-                Controller.Unit.Target(Construction);
-                Construction.RequestUpdate();
+                Controller.Unit.Target(Target);
+                Target.RequestUpdate();
 
                 return true;
             }

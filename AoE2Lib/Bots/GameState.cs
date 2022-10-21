@@ -341,7 +341,7 @@ namespace AoE2Lib.Bots
             Bot.Log.Info($"Tick {Tick} Game time {GameTime:g} with {GameTimePerTick:c} game time seconds per tick");
             foreach (var player in GetPlayers())
             {
-                Bot.Log.Debug($"Player {player.PlayerNumber} has {player.Units.Count(u => u.Targetable)} units and {player.Score} score");
+                Bot.Log.Info($"Player {player.PlayerNumber} has {player.Units.Count(u => u.Targetable)} units and {player.Score} score");
             }
 
             // update info
@@ -436,7 +436,7 @@ namespace AoE2Lib.Bots
                     {
                         Units.Add(id, new Unit(Bot, id));
                         HighestId = Math.Max(HighestId, id);
-                        Bot.Log.Info($"Id loop found {id}");
+                        Bot.Log.Debug($"Id loop found {id}");
                     }
                 }
             }

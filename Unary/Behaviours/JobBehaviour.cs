@@ -10,7 +10,7 @@ namespace Unary.Behaviours
 {
     internal class JobBehaviour : Behaviour
     {
-        private TimeSpan LastSeekTime { get; set; } = TimeSpan.MinValue;
+        private TimeSpan LastSeekTime { get; set; } = TimeSpan.FromHours(-1);
         private Job CurrentJob => Controller.CurrentJob;
 
         public override int GetPriority() => 1000;
@@ -19,7 +19,7 @@ namespace Unary.Behaviours
         {
             var seek = CurrentJob != null ? TimeSpan.FromMinutes(1) : TimeSpan.FromSeconds(10);
 
-            if (Controller.Unary.GameState.GameTime - LastSeekTime > seek)
+            if (Controller.Unary.GameState.GameTime - LastSeekTime > seek && ShouldRareTick(7))
             {
                 LookForJob();
                 LastSeekTime = Controller.Unary.GameState.GameTime;

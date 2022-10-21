@@ -12,9 +12,9 @@ namespace Unary.Managers
 {
     internal class MapManager : Manager
     {
-        private readonly Dictionary<Tile, TileState> TileStates = new();
         private readonly HashSet<Tile> PassageBlockedTiles = new();
         private readonly HashSet<Tile> ConstructionBlockedTiles = new();
+        private readonly HashSet<Tile> ConstructionExcludedTiles = new();
 
         public MapManager(Unary unary) : base(unary)
         {
@@ -53,14 +53,57 @@ namespace Unary.Managers
             }
         }
 
-        public TileState GetTileState(Tile tile)
+        public bool CanBuildAt(UnitType building, Tile tile, bool exclusion)
         {
-            if (!TileStates.ContainsKey(tile))
+            var land = true;
+
+            if (land && !tile.IsOnLand)
             {
-                TileStates.Add(tile, new TileState(tile, Unary));
+                return false;
             }
 
-            return TileStates[tile];
+            if (ConstructionBlockedTiles.Contains(tile))
+            {
+                return false;
+            }
+
+            if (exclusion && ConstructionExcludedTiles.Contains(tile))
+            {
+                return false;
+            }
+
+            var size = Unary.Mod.GetBuildingSizeOld(building[ObjectData.BASE_TYPE]);
+            var footprint = Utils.GetUnitFootprint(tile.X, tile.Y, size, size);
+
+            for (int x = footprint.X; x < footprint.Right; x++)
+            {
+                for (int y = footprint.Y; y < footprint.Bottom; y++)
+                {
+                    if (Unary.GameState.Map.TryGetTile(x, y, out var t))
+                    {
+                        if (land && !t.IsOnLand)
+                        {
+                            return false;
+                        }
+
+                        if (ConstructionBlockedTiles.Contains(t))
+                        {
+                            return false;
+                        }
+
+                        if (exclusion && ConstructionExcludedTiles.Contains(t))
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
         protected internal override void Update()
@@ -72,13 +115,7 @@ namespace Unary.Managers
         {
             PassageBlockedTiles.Clear();
             ConstructionBlockedTiles.Clear();
-
-            foreach (var state in TileStates.Values)
-            {
-                state.IsPassageBlocked = !state.Tile.Explored;
-                state.IsConstructionBlocked = !state.Tile.Explored;
-                state.IsConstructionExcluded = !state.Tile.Explored;
-            }
+            ConstructionExcludedTiles.Clear();
 
             foreach (var unit in Unary.GameState.GetPlayers().SelectMany(p => p.Units))
             {
@@ -112,17 +149,13 @@ namespace Unary.Managers
                         {
                             if (Unary.GameState.Map.TryGetTile(x, y, out var tile))
                             {
-                                var state = GetTileState(tile);
-
                                 if (blocks_construction)
                                 {
-                                    state.IsConstructionBlocked = true;
                                     ConstructionBlockedTiles.Add(tile);
                                 }
 
                                 if (blocks_passage)
                                 {
-                                    state.IsPassageBlocked = true;
                                     PassageBlockedTiles.Add(tile);
                                 }
                             }
@@ -139,9 +172,7 @@ namespace Unary.Managers
                             {
                                 if (Unary.GameState.Map.TryGetTile(x, y, out var tile))
                                 {
-                                    var state = GetTileState(tile);
-
-                                    state.IsConstructionExcluded = true;
+                                    ConstructionExcludedTiles.Add(tile);
                                 }
                             }
                         }

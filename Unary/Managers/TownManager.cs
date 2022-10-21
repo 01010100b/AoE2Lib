@@ -33,6 +33,11 @@ namespace Unary.Managers
 
         public IEnumerable<Tile> GetInsideTiles() => Unary.GetCached(GetSortedInsideTiles);
 
+        public IEnumerable<Tile> GetExcludedTiles(Unit unit)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool CanBuildAt(UnitType building, Tile tile, bool exclusion)
         {
             var land = true;

@@ -22,11 +22,12 @@ namespace Unary
         public readonly Settings Settings;
         public Mod Mod { get; private set; }
         public MapManager MapManager => Managers.OfType<MapManager>().Single();
+        public EconomyManager EconomyManager => Managers.OfType<EconomyManager>().Single();
         public StrategyManager StrategyManager { get; private set; }
         public DiplomacyManager DiplomacyManager { get; private set; }
         public TownManager TownManager { get; private set; }
         public SitRepManager SitRepManager { get; private set; }
-        public UnitsManager UnitsManager { get; private set; }
+        public UnitsManager UnitsManager => Managers.OfType<UnitsManager>().Single();
         public ProductionManager ProductionManager { get; private set; }
 
         private readonly List<Manager> Managers = new();
@@ -68,7 +69,6 @@ namespace Unary
             DiplomacyManager = null;
             TownManager = null;
             SitRepManager = null;
-            UnitsManager = null;
             ProductionManager = null;
 
             Cache.Clear();
@@ -79,6 +79,12 @@ namespace Unary
         protected override void NewGame()
         {
             //Log.Level = AoE2Lib.Log.LEVEL_INFO;
+
+            Managers.Clear();
+            Cache.Clear();
+            Commands.Clear();
+            ChattedOK = false;
+            Mod = null;
 
             if (DatFilePath != null)
             {
@@ -106,9 +112,10 @@ namespace Unary
                     }
                 }
             }
-
-            UnitsManager = new(this);
+            
+            Managers.Add(new UnitsManager(this));
             Managers.Add(new MapManager(this));
+            Managers.Add(new EconomyManager(this));
             StrategyManager = new(this);
             DiplomacyManager = new(this);
             TownManager = new (this);
@@ -116,9 +123,7 @@ namespace Unary
             
             ProductionManager = new(this);
 
-            Cache.Clear();
-            Commands.Clear();
-            ChattedOK = false;
+            
         }
 
         protected override IEnumerable<Command> Tick()
@@ -157,10 +162,6 @@ namespace Unary
             Log.Info($"SitRep Manager took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
-            UnitsManager.Update();
-            Log.Info($"Units Manager took {sw.ElapsedMilliseconds} ms");
-
-            sw.Restart();
             ProductionManager.Update();
             Log.Info($"Production Manager took {sw.ElapsedMilliseconds} ms");
 
@@ -182,6 +183,11 @@ namespace Unary
             {
                 yield return command;
             }
+        }
+
+        protected override void Handle(Exception ex)
+        {
+            throw ex;
         }
 
         private IEnumerable<Command> Test()

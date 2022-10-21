@@ -31,7 +31,7 @@ namespace AoE2Lib.Bots
         public string DatFilePath { get; private set; } = null;
         public bool AutoFindUnits { get; set; } = true; // automatically find units
         public int AutoUpdateUnits { get; set; } = 100; // units to update per tick per player
-        public int IdLoopLength { get; set; } = 20; // id's to loop per tick
+        public int IdLoopLength { get; set; } = 50; // id's to loop per tick
 
         private Thread BotThread { get; set; } = null;
         private volatile bool Stopping = false;
@@ -54,7 +54,7 @@ namespace AoE2Lib.Bots
         protected abstract void NewGame();
         protected abstract void Stopped();
         protected abstract IEnumerable<Command> Tick();
-        protected virtual void Handle(Exception ex) { }
+        protected abstract void Handle(Exception ex);
 
         internal void Start(int player, IPEndPoint endpoint, GameVersion version, bool log)
         {
@@ -77,11 +77,12 @@ namespace AoE2Lib.Bots
                 }
                 catch (Exception ex)
                 {
-                    Handle(ex);
                     Log.Exception(ex);
+                    Handle(ex);
                     Log?.Dispose();
                 }
             });
+            BotThread.IsBackground = true;
             BotThread.Start();
         }
 
