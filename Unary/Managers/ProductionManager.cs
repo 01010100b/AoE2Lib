@@ -27,14 +27,6 @@ namespace Unary.Managers
             AGE_UP = 800;
         }
 
-        public class BuildOrderCommand
-        {
-            public enum BuildOrderCommandType { RESEARCH, UNIT }
-
-            public BuildOrderCommandType Type { get; set; }
-            public int Id { get; set; }
-        }
-
         private class ProductionTask
         {
             public readonly int Priority;

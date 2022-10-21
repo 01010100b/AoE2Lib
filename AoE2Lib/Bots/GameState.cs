@@ -34,6 +34,7 @@ namespace AoE2Lib.Bots
         private readonly Command CommandInfo = new();
         private readonly List<Command> IdLoopCommands = new();
         private int NextIdLoop { get; set; } = 0;
+        private int HighestId { get; set; } = -1;
 
         internal GameState(Bot bot)
         {
@@ -394,11 +395,6 @@ namespace AoE2Lib.Bots
             {
                 unit.Update();
 
-                if (unit.Visible)
-                {
-                    unit.LastSeenGameTime = GameTime;
-                }
-
                 if (unit.Updated && !unit.Targetable)
                 {
                     Units.Remove(unit.Id);
@@ -421,6 +417,7 @@ namespace AoE2Lib.Bots
                         if (!Units.ContainsKey(id))
                         {
                             Units.Add(id, new Unit(Bot, id));
+                            HighestId = Math.Max(HighestId, id);
                         }
                     }
                 }
@@ -438,6 +435,7 @@ namespace AoE2Lib.Bots
                     if (!Units.ContainsKey(id))
                     {
                         Units.Add(id, new Unit(Bot, id));
+                        HighestId = Math.Max(HighestId, id);
                         Bot.Log.Info($"Id loop found {id}");
                     }
                 }
@@ -493,7 +491,7 @@ namespace AoE2Lib.Bots
             sw.Start();
             Bot.Log.Debug($"Auto finding units");
 
-            var position = Position.Zero;
+            var position = Map.Center;
             for (int i = 0; i < 1000; i++)
             {
                 var x = Bot.Rng.Next(Map.Width);
@@ -541,6 +539,11 @@ namespace AoE2Lib.Bots
                     else if (Tick % 6 == 5)
                     {
                         resource = Resource.FOOD;
+                    }
+
+                    if (Tick > 100 && Bot.Rng.NextDouble() < 0.5)
+                    {
+                        range = 20;
                     }
                     
                     FindResources(resource, 0, position, range);
@@ -610,7 +613,7 @@ namespace AoE2Lib.Bots
             NextIdLoop += Bot.IdLoopLength;
             var max_id = Units.Count > 0 ? Units.Keys.Max() : 1000;
 
-            if (NextIdLoop > max_id + Bot.IdLoopLength)
+            if (NextIdLoop > max_id + 1000)
             {
                 NextIdLoop = 0;
             }

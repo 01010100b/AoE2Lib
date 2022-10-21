@@ -39,6 +39,10 @@ namespace Unary.Managers
             {
                 return true;
             }
+            else if (PassageBlockedTiles.Contains(tile))
+            {
+                return false;
+            }
             else
             {
                 var civ = unit.Player.Civilization;

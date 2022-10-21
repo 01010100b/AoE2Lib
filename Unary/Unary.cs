@@ -107,13 +107,13 @@ namespace Unary
                 }
             }
 
+            UnitsManager = new(this);
             Managers.Add(new MapManager(this));
-
             StrategyManager = new(this);
             DiplomacyManager = new(this);
             TownManager = new (this);
             SitRepManager = new(this);
-            UnitsManager = new(this);
+            
             ProductionManager = new(this);
 
             Cache.Clear();

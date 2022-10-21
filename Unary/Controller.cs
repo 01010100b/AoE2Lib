@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Unary.Behaviours;
+using Unary.Jobs;
 using Unary.Managers;
 
 namespace Unary
@@ -17,6 +18,7 @@ namespace Unary
         public readonly Unit Unit;
         public readonly Unary Unary;
         public bool Exists => Unit.Targetable;
+        public Job CurrentJob { get; internal set; }
 
         private readonly List<Behaviour> Behaviours = new();
 
@@ -41,7 +43,7 @@ namespace Unary
 
         public bool TryGetBehaviour<T>(out T behaviour) where T : Behaviour
         {
-            foreach (var b in Behaviours.OfType<T>().Cast<T>())
+            foreach (var b in Behaviours.OfType<T>())
             {
                 behaviour = b;
 
@@ -77,7 +79,6 @@ namespace Unary
                 }
 
                 sw.Stop();
-
                 var type = behaviour.GetType();
 
                 if (!times.ContainsKey(type))

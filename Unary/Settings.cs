@@ -10,5 +10,6 @@ namespace Unary
     {
         public int MinBuilders { get; set; } = 4;
         public double MaxBuildersPercentage { get; set; } = 0.2;
+        public double JobLookAheadMinutes { get; set; } = 3;
     }
 }

@@ -15,11 +15,6 @@ namespace Unary.Behaviours
 
         protected override bool Tick(bool perform)
         {
-            if (RequestedBuilders > 0)
-            {
-                Controller.Unit.RequestUpdate();
-            }
-
             return false;
         }
 

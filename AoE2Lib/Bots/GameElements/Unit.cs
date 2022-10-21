@@ -1,6 +1,7 @@
 ﻿using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Protos.Expert.Action;
+using Protos.Expert.Command;
 using Protos.Expert.Fact;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace AoE2Lib.Bots.GameElements
         public bool Targetable { get; private set; } = false;
         public bool Visible => IsVisible();
         public bool IsBuilding => this[ObjectData.CMDID] == (int)CmdId.CIVILIAN_BUILDING || this[ObjectData.CMDID] == (int)CmdId.MILITARY_BUILDING;
-        public TimeSpan LastSeenGameTime { get; internal set; } = TimeSpan.MinValue;
+        public TimeSpan LastSeenGameTime { get; private set; } = TimeSpan.MinValue;
         public Position Position => Position.FromPrecise(this[ObjectData.PRECISE_X], this[ObjectData.PRECISE_Y]);
         public Tile Tile => GetTile();
 
@@ -301,8 +302,12 @@ namespace AoE2Lib.Bots.GameElements
             {
                 Data[(ObjectData)i] = data[i];
             }
-
             ObjectPool.Add(data);
+
+            if (Visible)
+            {
+                LastSeenGameTime = Bot.GameState.GameTime;
+            }
         }
 
         private int GetData(ObjectData data)

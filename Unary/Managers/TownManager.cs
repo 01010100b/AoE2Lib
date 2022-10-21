@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unary.Jobs;
 using static Unary.Managers.ProductionManager;
 
 namespace Unary.Managers
@@ -18,10 +19,12 @@ namespace Unary.Managers
         private static readonly Point[] MILL_FARM_DELTAS = { new Point(-1, 2), new Point(2, -1), new Point(2, 2), new Point(-3, -1), new Point(-1, -3) };
 
         public Position MyPosition { get; private set; } = Position.Zero;
+        private readonly ConstructionJob Construction;
 
         public TownManager(Unary unary) : base(unary)
         {
-
+            Construction = new(unary);
+            unary.UnitsManager.AddJob(Construction);
         }
 
         private readonly HashSet<Tile> InsideTiles = new();

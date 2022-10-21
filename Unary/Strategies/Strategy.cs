@@ -10,12 +10,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static Unary.Managers.ProductionManager;
-using static Unary.Managers.ProductionManager.BuildOrderCommand;
+using static Unary.Strategies.Strategy.BuildOrderCommand;
 
 namespace Unary.Strategies
 {
     internal class Strategy
     {
+        public class BuildOrderCommand
+        {
+            public enum BuildOrderCommandType { RESEARCH, UNIT }
+
+            public BuildOrderCommandType Type { get; set; }
+            public int Id { get; set; }
+        }
+
         public string Name { get; set; } = "";
         public List<Resource> Gatherers { get; set; } = new();
         public int ExtraFoodPercentage { get; set; } = 0;
