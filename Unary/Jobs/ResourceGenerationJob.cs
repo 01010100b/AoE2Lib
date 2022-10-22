@@ -4,23 +4,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unary.Behaviours;
 
 namespace Unary.Jobs
 {
     internal abstract class ResourceGenerationJob : Job
     {
         public abstract Resource Resource { get; }
+        public abstract int MaxWorkers { get; }
+        public int Vacancies => MaxWorkers - WorkerCount;
 
         private readonly List<KeyValuePair<TimeSpan, double>> Dropoffs = new();
-        private readonly Dictionary<Controller, double> Carried = new();
+        private readonly Dictionary<Controller, int> Carried = new();
 
         public ResourceGenerationJob(Unary unary) : base(unary)
         {
         }
 
-        public double GetRate(TimeSpan span)
+        public double GetRate()
         {
-            if (Dropoffs.Count < 10)
+            var span = TimeSpan.FromMinutes(5);
+            
+            if (Dropoffs.Count < 10 || WorkerCount == 0)
             {
                 return -1;
             }
@@ -48,6 +53,11 @@ namespace Unary.Jobs
                 }
             }
 
+            if (last <= first)
+            {
+                return -1;
+            }
+
             if (total > 0)
             {
                 var seconds = (last - first).TotalSeconds;
@@ -59,18 +69,24 @@ namespace Unary.Jobs
 
         public override sealed void Update()
         {
+            if (WorkerCount == 0)
+            {
+                Dropoffs.Clear();
+                Carried.Clear();
+            }
+
             foreach (var worker in GetWorkers())
             {
                 if (!Carried.ContainsKey(worker))
                 {
-                    Carried.Add(worker, -1);
+                    Carried.Add(worker, worker.Unit[ObjectData.CARRY]);
                 }
 
                 var carry = worker.Unit[ObjectData.CARRY];
 
                 if (carry < Carried[worker])
                 {
-                    var diff = Carried[worker] - carry;
+                    var diff = (double)Carried[worker] - carry;
                     diff /= Math.Max(1, WorkerCount);
                     Dropoffs.Add(new KeyValuePair<TimeSpan, double>(Unary.GameState.GameTime, diff));
                 }

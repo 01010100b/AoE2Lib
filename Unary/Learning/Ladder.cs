@@ -123,7 +123,7 @@ namespace Unary.Learning
 
             while (!Stopping)
             {
-                if (queue.Count == 0)
+                if (queue.IsEmpty)
                 {
                     var game = GetNextGame(bots);
                     var dict = new Dictionary<int, Bot>();

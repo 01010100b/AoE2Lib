@@ -16,6 +16,7 @@ namespace Unary.Managers
     // controllers
     internal class UnitsManager : Manager
     {
+        public IEnumerable<Controller> Gatherers => Unary.GetCached(GetGatherers);
 
         private readonly Dictionary<Unit, Controller> Controllers = new();
         private readonly HashSet<Job> Jobs = new();
@@ -45,8 +46,12 @@ namespace Unary.Managers
 
         protected internal override void Update()
         {
-            UpdateJobs();
-            UpdateControllers();
+            var actions = ObjectPool.Get(() => new List<Action>(), x => x.Clear());
+            actions.Add(UpdateJobs);
+            actions.Add(UpdateControllers);
+
+            Run(actions);
+            ObjectPool.Add(actions);
         }
 
         private void UpdateJobs()
@@ -127,6 +132,21 @@ namespace Unary.Managers
             ObjectPool.Add(times);
             ObjectPool.Add(controllers);
             ObjectPool.Add(behaviours);
+        }
+
+        private List<Controller> GetGatherers()
+        {
+            var gatherers = ObjectPool.Get(() => new List<Controller>(), x => x.Clear());
+
+            foreach (var controller in GetControllers())
+            {
+                if (controller.HasBehaviour<GatherBehaviour>())
+                {
+                    gatherers.Add(controller);
+                }
+            }
+
+            return gatherers;
         }
     }
 }

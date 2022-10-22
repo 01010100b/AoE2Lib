@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 
 namespace Unary.Managers
 {
-    // resource management
     internal class ProductionManager : Manager
     {
         public static class Priority
@@ -161,7 +160,7 @@ namespace Unary.Managers
                 {
                     can_afford = false;
                 }
-                else if (task.StoneCost > 0 && task.StoneCost > remaining_stone - 1) // keep 1 stone for TC repair
+                else if (task.StoneCost > 0 && task.StoneCost > remaining_stone)
                 {
                     can_afford = false;
                 }

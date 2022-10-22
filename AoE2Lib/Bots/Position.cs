@@ -128,7 +128,7 @@ namespace AoE2Lib.Bots
         {
             if (obj is Position pos)
             {
-                return PreciseX == pos.PreciseX && PreciseY == pos.PreciseY;
+                return pos == this;
             }
             else
             {

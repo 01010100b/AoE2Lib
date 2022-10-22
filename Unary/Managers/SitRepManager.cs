@@ -15,7 +15,7 @@ namespace Unary.Managers
 {
     internal class SitRepManager : Manager
     {
-        public class SitRep
+        private class SitRep
         {
             public readonly Tile Tile;
             public bool IsLandAccessible { get; internal set; }
@@ -40,9 +40,7 @@ namespace Unary.Managers
             }
         }
 
-        public SitRep this[Tile tile] => GetSitRep(tile);
-        public IEnumerable<Unit> Targets => Unary.GetCached(GetTargets);
-        public IEnumerable<Unit> Threats => Unary.GetCached(GetThreats);
+        private SitRep this[Tile tile] => GetSitRep(tile);
 
         private readonly Dictionary<Tile, SitRep> SitReps = new();
         private readonly Dictionary<Tile, bool> Cliffs = new();
@@ -287,36 +285,6 @@ namespace Unary.Managers
             }
 
             return __PathNeighbours;
-        }
-
-        private List<Unit> GetTargets()
-        {
-            var targets = ObjectPool.Get(() => new List<Unit>(), x => x.Clear());
-
-            foreach (var unit in Unary.GameState.CurrentEnemies.SelectMany(p => p.Units))
-            {
-                if (unit.Targetable && unit.Visible && unit[ObjectData.HITPOINTS] > 0)
-                {
-                    targets.Add(unit);
-                }
-            }
-
-            return targets;
-        }
-
-        private List<Unit> GetThreats()
-        {
-            var threats = ObjectPool.Get(() => new List<Unit>(), x => x.Clear());
-
-            foreach (var unit in Unary.GameState.CurrentEnemies.SelectMany(p => p.Units))
-            {
-                if (unit.Targetable && unit.Visible && unit[ObjectData.BASE_ATTACK] > 0)
-                {
-                    threats.Add(unit);
-                }
-            }
-
-            return threats;
         }
 
         private IEnumerable<Rectangle> GetExclusionZones(Unit building)

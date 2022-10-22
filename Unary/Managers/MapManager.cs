@@ -1,4 +1,5 @@
-﻿using AoE2Lib.Bots;
+﻿using AoE2Lib;
+using AoE2Lib.Bots;
 using AoE2Lib.Bots.GameElements;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Unary.Map;
 
 namespace Unary.Managers
 {
@@ -15,11 +15,28 @@ namespace Unary.Managers
         private readonly HashSet<Tile> PassageBlockedTiles = new();
         private readonly HashSet<Tile> ConstructionBlockedTiles = new();
         private readonly HashSet<Tile> ConstructionExcludedTiles = new();
+        private readonly Dictionary<Tile, int> PathDistances = new();
 
         public MapManager(Unary unary) : base(unary)
         {
 
         }
+
+        public bool CanReach(Tile tile) => PathDistances.ContainsKey(tile);
+
+        public int GetPathDistanceToHome(Tile tile)
+        {
+            if (PathDistances.TryGetValue(tile, out var distance))
+            {
+                return distance;
+            }
+            else
+            {
+                return int.MaxValue;
+            }
+        }
+
+        public bool IsPassageBlocked(Tile tile) => PassageBlockedTiles.Contains(tile);
 
         public bool IsConstructionBlocked(Tile tile)
         {
@@ -72,7 +89,7 @@ namespace Unary.Managers
                 return false;
             }
 
-            var size = Unary.Mod.GetBuildingSizeOld(building[ObjectData.BASE_TYPE]);
+            var size = (int)Math.Round(Unary.Mod.GetUnitWidth(Unary.GameState.MyPlayer.Civilization, building[ObjectData.BASE_TYPE]));
             var footprint = Utils.GetUnitFootprint(tile.X, tile.Y, size, size);
 
             for (int x = footprint.X; x < footprint.Right; x++)
@@ -108,7 +125,12 @@ namespace Unary.Managers
 
         protected internal override void Update()
         {
-            UpdateTileStates();
+            var actions = ObjectPool.Get(() => new List<Action>(), x => x.Clear());
+            actions.Add(UpdateTileStates);
+            actions.Add(UpdatePathDistances);
+
+            Run(actions);
+            ObjectPool.Add(actions);
         }
 
         private void UpdateTileStates()
@@ -162,7 +184,7 @@ namespace Unary.Managers
                         }
                     }
 
-                    if (blocks_construction)
+                    if (blocks_construction && unit.IsBuilding)
                     {
                         footprint = Utils.GetUnitFootprint(unit.Position.PointX, unit.Position.PointY, width, height, 1);
 
@@ -176,9 +198,63 @@ namespace Unary.Managers
                                 }
                             }
                         }
+
+                        if (Unary.GameState.TryGetUnitType(Unary.Mod.Farm, out var farm))
+                        {
+                            var civ = Unary.GameState.MyPlayer.Civilization;
+                            width = (int)Math.Max(1, Math.Round(Unary.Mod.GetUnitWidth(civ, farm.Id)));
+                            height = (int)Math.Max(1, Math.Round(Unary.Mod.GetUnitHeight(civ, farm.Id)));
+
+                            foreach (var tile in Unary.TownManager.GetFarms(unit))
+                            {
+                                footprint = Utils.GetUnitFootprint(tile.X, tile.Y, width, height, 0);
+
+                                for (int x = footprint.X; x < footprint.Right; x++)
+                                {
+                                    for (int y = footprint.Y; y < footprint.Bottom; y++)
+                                    {
+                                        if (Unary.GameState.Map.TryGetTile(x, y, out var t))
+                                        {
+                                            ConstructionExcludedTiles.Add(t);
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
+        }
+
+        private void UpdatePathDistances()
+        {
+            if (Unary.GameState.Map.TryGetTile(Unary.TownManager.MyPosition, out var tile))
+            {
+                PathDistances.Clear();
+                PathDistances.Add(tile, 0);
+                Algorithms.AddAllPathDistances(PathDistances, GetPathNeighbours);
+                Unary.Log.Debug($"Got {PathDistances.Count:N0} reachable tiles");
+            }
+        }
+
+        private readonly List<Tile> __PathNeighbours = new();
+        private IReadOnlyList<Tile> GetPathNeighbours(Tile tile)
+        {
+            var neighbours = tile.GetNeighbours();
+            __PathNeighbours.Clear();
+
+            for (int i = 0; i < neighbours.Count; i++)
+            {
+                var neighbour = neighbours[i];
+                var access = neighbour.IsOnLand && !PassageBlockedTiles.Contains(neighbour);
+
+                if (access || neighbour.Center.DistanceTo(Unary.TownManager.MyPosition) < 3)
+                {
+                    __PathNeighbours.Add(neighbour);
+                }
+            }
+
+            return __PathNeighbours;
         }
     }
 }

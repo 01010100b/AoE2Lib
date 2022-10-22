@@ -17,12 +17,15 @@ namespace Unary.Behaviours
 
         protected override bool Tick(bool perform)
         {
-            var seek = CurrentJob != null ? TimeSpan.FromMinutes(1) : TimeSpan.FromSeconds(10);
+            var seek = CurrentJob != null ? TimeSpan.FromMinutes(1) : TimeSpan.FromSeconds(5);
 
-            if (Controller.Unary.GameState.GameTime - LastSeekTime > seek && ShouldRareTick(7))
+            if (Controller.Unary.GameState.GameTime - LastSeekTime > seek && ShouldRareTick(3))
             {
-                LookForJob();
-                LastSeekTime = Controller.Unary.GameState.GameTime;
+                if (Controller.Unit[ObjectData.CMDID] != (int)CmdId.VILLAGER || Controller.Unit[ObjectData.CARRY] <= 0)
+                {
+                    LookForJob();
+                    LastSeekTime = Controller.Unary.GameState.GameTime;
+                }
             }
 
             return false;
@@ -30,17 +33,11 @@ namespace Unary.Behaviours
 
         private void LookForJob()
         {
-            var lookahead = TimeSpan.FromMinutes(Controller.Unary.Settings.JobLookAheadMinutes);
+            var lookahead = TimeSpan.FromMinutes(Controller.Unary.Settings.CivilianJobLookAheadMinutes);
             var best_profit = double.MinValue;
             Job best_job = null;
             var speed = Controller.Unit[ObjectData.SPEED] / 100d;
             var position = Controller.Unit.Position;
-
-            if (CurrentJob != null)
-            {
-                best_profit = lookahead.TotalSeconds * CurrentJob.GetPay(Controller);
-                best_job = CurrentJob;
-            }
 
             foreach (var job in Controller.Unary.UnitsManager.GetJobs())
             {

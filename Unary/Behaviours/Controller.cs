@@ -7,11 +7,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Unary.Behaviours;
 using Unary.Jobs;
 using Unary.Managers;
 
-namespace Unary
+namespace Unary.Behaviours
 {
     internal class Controller
     {
@@ -100,6 +99,7 @@ namespace Unary
                 AddBehaviour(new JobBehaviour());
                 AddBehaviour(new BuildBehaviour());
                 AddBehaviour(new EatBehaviour());
+                AddBehaviour(new GatherBehaviour());
             }
         }
     }

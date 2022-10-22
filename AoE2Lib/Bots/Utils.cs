@@ -30,6 +30,14 @@ namespace AoE2Lib.Bots
             return new Rectangle(x_start, y_start, x_end - x_start + 1, y_end - y_start + 1);
         }
 
+        public static double GetGatherRate(double raw_rate, double walk_distance, double walk_speed, double max_carry)
+        {
+            var gather_time = max_carry / raw_rate;
+            var walk_time = walk_distance / walk_speed;
+
+            return max_carry / (gather_time + walk_time);
+        }
+
         public static int GetDamage(Dictionary<int, int> attacks, Dictionary<int, int> armours)
         {
             throw new NotImplementedException();

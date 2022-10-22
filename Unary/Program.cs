@@ -61,6 +61,9 @@ namespace Unary
         [STAThread]
         static void Main()
         {
+            Action action = SomeActionHere;
+            Debug.WriteLine($"Action: {action.Method.Name}");
+
             try
             {
                 AppDomain.CurrentDomain.UnhandledException += (sender, e) => Handle(e.ExceptionObject);
@@ -118,6 +121,11 @@ namespace Unary
             Serialize(settings, file);
 
             return settings;
+        }
+
+        private static void SomeActionHere()
+        {
+            throw new NotImplementedException();
         }
     }
 }

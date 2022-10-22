@@ -149,12 +149,21 @@ namespace Unary.Jobs
         private void Assign(Unit construction, IEnumerable<Controller> builders)
         {
             Controller best = null;
+            var best_distance = double.MaxValue;
 
             foreach (var builder in builders)
             {
-                if (best == null || builder.Unit.Position.DistanceTo(construction.Position) < best.Unit.Position.DistanceTo(construction.Position))
+                var distance = builder.Unit.Position.DistanceTo(construction.Position);
+
+                if (builder.CurrentJob == null)
+                {
+                    distance /= 2;
+                }
+
+                if (best == null || distance < best_distance)
                 {
                     best = builder;
+                    best_distance = distance;
                 }
             }
 

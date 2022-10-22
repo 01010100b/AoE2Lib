@@ -13,6 +13,7 @@ namespace Unary.Jobs
     internal class EatingJob : ResourceGenerationJob
     {
         public override Resource Resource => Resource.FOOD;
+        public override int MaxWorkers => Math.Min(Target != null ? 7 : 0, Unary.EconomyManager.GetDesiredGatherers(Resource.FOOD));
         public override string Name => $"Eating at {Location}";
         public override Position Location => TC.Unit.Position + new Position(-1, 1);
         public readonly Controller TC;
@@ -26,7 +27,7 @@ namespace Unary.Jobs
 
         public override double GetPay(Controller worker)
         {
-            if (Target == null || !worker.HasBehaviour<EatBehaviour>())
+            if (!worker.HasBehaviour<EatBehaviour>())
             {
                 return -1;
             }
@@ -34,16 +35,13 @@ namespace Unary.Jobs
             {
                 return 1;
             }
-
-            var max = Math.Min(7, Unary.EconomyManager.GetDesiredGatherers(Resource.FOOD));
-
-            if (WorkerCount < max)
+            else if (Vacancies < 1)
             {
-                return 1;
+                return -1;
             }
             else
             {
-                return -1;
+                return 1;
             }
         }
 
@@ -61,7 +59,7 @@ namespace Unary.Jobs
 
         protected override void UpdateResourceGeneration()
         {
-            if (ShouldRareTick(11))
+            if (ShouldRareTick(7))
             {
                 FindTargets();
             }

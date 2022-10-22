@@ -12,7 +12,6 @@ using static Unary.Managers.ProductionManager;
 
 namespace Unary.Managers
 {
-    // building placements, housing
     internal class TownManager : Manager
     {
         private static readonly Point[] TC_FARM_DELTAS = { new Point(2, 3), new Point(-1, 3), new Point(3, 0), new Point(3, -3), new Point(-4, 2), new Point(-4, -1), new Point(0, -4), new Point(-3, -4) };
@@ -38,70 +37,13 @@ namespace Unary.Managers
             throw new NotImplementedException();
         }
 
-        public bool CanBuildAt(UnitType building, Tile tile, bool exclusion)
-        {
-            var land = true;
-
-            if (land && !tile.IsOnLand)
-            {
-                return false;
-            }
-
-            var sitrep = Unary.SitRepManager[tile];
-
-            if (sitrep.IsConstructionBlocked)
-            {
-                return false;
-            }
-
-            if (exclusion && sitrep.IsConstructionExcluded)
-            {
-                return false;
-            }
-
-            var size = Unary.Mod.GetBuildingSizeOld(building[ObjectData.BASE_TYPE]);
-            var footprint = Utils.GetUnitFootprint(tile.X, tile.Y, size, size);
-
-            for (int x = footprint.X; x < footprint.Right; x++)
-            {
-                for (int y = footprint.Y; y < footprint.Bottom; y++)
-                {
-                    if (Unary.GameState.Map.TryGetTile(x, y, out var t))
-                    {
-                        if (land && !t.IsOnLand)
-                        {
-                            return false;
-                        }
-
-                        var sr = Unary.SitRepManager[t];
-
-                        if (sr.IsConstructionBlocked)
-                        {
-                            return false;
-                        }
-
-                        if (exclusion && sr.IsConstructionExcluded)
-                        {
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-            }
-
-            return true;
-        }
-
         public IEnumerable<Tile> GetPlacements(UnitType building)
         {
             foreach (var tile in GetInsideTiles())
             {
                 if (Unary.GameState.Tick > 10 || tile.Position.DistanceTo(MyPosition) > 8)
                 {
-                    if (CanBuildAt(building, tile, true))
+                    if (Unary.MapManager.CanBuildAt(building, tile, true))
                     {
                         yield return tile;
                     }
@@ -109,11 +51,48 @@ namespace Unary.Managers
             }
         }
 
+        public IEnumerable<Tile> GetFarms(Unit building)
+        {
+            var type = building[ObjectData.BASE_TYPE];
+            Point[] deltas = null;
+
+            if (type == Unary.Mod.TownCenter || type == Unary.Mod.TownCenterFoundation)
+            {
+                deltas = TC_FARM_DELTAS;
+            }
+            else if (type == Unary.Mod.Mill)
+            {
+                deltas = MILL_FARM_DELTAS;
+            }
+
+            if (deltas != null)
+            {
+                foreach (var delta in deltas)
+                {
+                    var x = building.Position.PointX + delta.X;
+                    var y = building.Position.PointY + delta.Y;
+
+                    if (Unary.GameState.Map.TryGetTile(x, y, out var tile))
+                    {
+                        yield return tile;
+                    }
+                }
+            }
+            else
+            {
+                yield break;
+            }
+        }
+
         protected internal override void Update()
         {
-            UpdateMyPosition();
-            UpdateInsideTiles();
-            UpdateHousing();
+            var actions = ObjectPool.Get(() => new List<Action>(), x => x.Clear());
+            actions.Add(UpdateMyPosition);
+            actions.Add(UpdateInsideTiles);
+            actions.Add(UpdateHousing);
+
+            Run(actions);
+            ObjectPool.Add(actions);
         }
 
         private void UpdateMyPosition()

@@ -19,7 +19,8 @@ namespace Unary
         public int TownCenterFoundation { get; private set; } = 621;
         public int House { get; private set; } = 70;
         public int Mill { get; private set; } = 68;
-        public int MiningCamp { get; private set; } = 584;
+        public int GoldMiningCamp { get; private set; } = 584;
+        public int StoneMiningCamp { get; private set; } = 584;
         public int LumberCamp { get; private set; } = 562;
         public int Farm { get; private set; } = 50;
         public int Dock { get; private set; } = 45;

@@ -26,7 +26,6 @@ namespace Unary
         public StrategyManager StrategyManager { get; private set; }
         public DiplomacyManager DiplomacyManager { get; private set; }
         public TownManager TownManager { get; private set; }
-        public SitRepManager SitRepManager { get; private set; }
         public UnitsManager UnitsManager => Managers.OfType<UnitsManager>().Single();
         public ProductionManager ProductionManager { get; private set; }
 
@@ -68,7 +67,6 @@ namespace Unary
             StrategyManager = null;
             DiplomacyManager = null;
             TownManager = null;
-            SitRepManager = null;
             ProductionManager = null;
 
             Cache.Clear();
@@ -119,7 +117,6 @@ namespace Unary
             StrategyManager = new(this);
             DiplomacyManager = new(this);
             TownManager = new (this);
-            SitRepManager = new(this);
             
             ProductionManager = new(this);
 
@@ -142,7 +139,7 @@ namespace Unary
             {
                 sw.Restart();
                 manager.Update();
-                Log.Info($"{manager.GetType().Name} took {sw.ElapsedMilliseconds} ms");
+                Log.Info($"{manager.GetType().Name} took {sw.Elapsed.TotalMilliseconds:N2} ms");
             }
 
             sw.Restart();
@@ -156,10 +153,6 @@ namespace Unary
             sw.Restart();
             TownManager.Update();
             Log.Info($"Town Manager took {sw.ElapsedMilliseconds} ms");
-
-            sw.Restart();
-            SitRepManager.Update();
-            Log.Info($"SitRep Manager took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
             ProductionManager.Update();

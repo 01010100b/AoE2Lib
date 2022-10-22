@@ -329,7 +329,7 @@ namespace AoE2Lib.Bots
             Commands.Clear();
 
             sw.Stop();
-            Bot.Log.Debug($"GameState RequestUpdate took {sw.ElapsedMilliseconds} ms");
+            Bot.Log.Info($"GameState RequestUpdate took {sw.ElapsedMilliseconds} ms");
         }
 
         internal void Update()
@@ -338,7 +338,7 @@ namespace AoE2Lib.Bots
             sw.Start();
 
             Bot.Log.Info("");
-            Bot.Log.Info($"Tick {Tick} Game time {GameTime:g} with {GameTimePerTick:c} game time seconds per tick");
+            Bot.Log.Info($"Tick {Tick} Game time {GameTime:g} with {GameTimePerTick.TotalSeconds:N2} game time seconds per tick");
             foreach (var player in GetPlayers())
             {
                 Bot.Log.Info($"Player {player.PlayerNumber} has {player.Units.Count(u => u.Targetable)} units and {player.Score} score");
@@ -477,7 +477,7 @@ namespace AoE2Lib.Bots
             }
 
             sw.Stop();
-            Bot.Log.Debug($"GameState Update took {sw.ElapsedMilliseconds} ms");
+            Bot.Log.Info($"GameState Update took {sw.ElapsedMilliseconds} ms");
         }
         
         private void DoAutoFindUnits()
@@ -611,7 +611,7 @@ namespace AoE2Lib.Bots
             }
 
             NextIdLoop += Bot.IdLoopLength;
-            var max_id = Units.Count > 0 ? Units.Keys.Max() : 1000;
+            var max_id = Units.Count > 0 ? HighestId : 1000;
 
             if (NextIdLoop > max_id + 1000)
             {

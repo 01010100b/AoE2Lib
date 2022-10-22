@@ -15,10 +15,15 @@ namespace Unary.Behaviours
 
         protected override bool Tick(bool perform)
         {
-            if (Construction != null)
+            if (perform && Construction != null)
             {
                 Controller.Unit.Target(Construction);
                 Construction.RequestUpdate();
+
+                if (!Construction.Targetable)
+                {
+                    Construction = null;
+                }
 
                 return true;
             }
