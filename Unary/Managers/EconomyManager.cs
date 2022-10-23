@@ -28,12 +28,17 @@ namespace Unary.Managers
             }
         }
 
+        public int GetCurrentGatherers(Resource resource)
+        {
+            throw new NotImplementedException();
+        }
+
         public int GetDesiredGatherers(Resource resource)
         {
             return Unary.StrategyManager.GetDesiredGatherers(resource);
         }
 
-        public Resource GetResourceGathered(Unit unit)
+        public Resource GetResourceGatheredFrom(Unit unit)
         {
             return (UnitClass)unit[ObjectData.CLASS] switch
             {
@@ -51,7 +56,8 @@ namespace Unary.Managers
             actions.Add(UpdateResources);
             actions.Add(UpdateDropsitePositions);
             actions.Add(UpdateDropsites);
-            actions.Add(UpdateJobs);
+            actions.Add(UpdateEatingJob);
+            actions.Add(UpdateGatheringJobs);
             actions.Add(DoStats);
 
             Run(actions);
@@ -67,7 +73,7 @@ namespace Unary.Managers
 
             foreach (var unit in Unary.GameState.Gaia.Units.Where(u => u.Targetable && u[ObjectData.CARRY] > 0))
             {
-                var resource = GetResourceGathered(unit);
+                var resource = GetResourceGatheredFrom(unit);
 
                 if (Resources.ContainsKey(resource))
                 {
@@ -160,7 +166,7 @@ namespace Unary.Managers
             ObjectPool.Add(capacities);
         }
 
-        private void UpdateJobs()
+        private void UpdateEatingJob()
         {
             if (EatingJob == null)
             {
@@ -184,14 +190,17 @@ namespace Unary.Managers
                 Unary.UnitsManager.RemoveJob(EatingJob);
                 EatingJob = null;
             }
+        }
 
+        private void UpdateGatheringJobs()
+        {
             var jobs = ObjectPool.Get(() => new Dictionary<Unit, List<GatheringJob>>(), x => x.Clear());
 
             foreach (var unit in Unary.UnitsManager.GetControllers().Select(x => x.Unit))
             {
                 var type = unit[ObjectData.BASE_TYPE];
                 var mod = Unary.Mod;
-                if (type == mod.TownCenter || type == mod.Mill || type == mod.LumberCamp || type == mod.GoldMiningCamp 
+                if (type == mod.TownCenter || type == mod.Mill || type == mod.LumberCamp || type == mod.GoldMiningCamp
                     || type == mod.StoneMiningCamp)
                 {
                     jobs.Add(unit, new());
@@ -283,7 +292,7 @@ namespace Unary.Managers
                 rate /= Math.Max(1, count);
                 rate *= 60;
 
-                Unary.Log.Info($"{resource} gather rate {rate:N2}/min");
+                Unary.Log.Debug($"{resource} gather rate {rate:N2}/min");
             }
 
             ObjectPool.Add(counts);

@@ -35,6 +35,10 @@ namespace Unary.Jobs
             {
                 return -1;
             }
+            else if (WorkerCount > MaxWorkers)
+            {
+                return -1;
+            }
             else if (HasWorker(worker))
             {
                 if (worker.TryGetBehaviour<GatherBehaviour>(out var behaviour))
@@ -154,7 +158,7 @@ namespace Unary.Jobs
                 {
                     foreach (var unit in neighbour.Units.Where(u => u.Targetable && u[ObjectData.CARRY] > 0))
                     {
-                        if (Unary.EconomyManager.GetResourceGathered(unit) == Resource)
+                        if (Unary.EconomyManager.GetResourceGatheredFrom(unit) == Resource)
                         {
                             Resources.Add(new(tile, unit));
                         }

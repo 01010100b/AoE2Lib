@@ -103,7 +103,7 @@ namespace Unary
 
                             break;
                         }
-                        catch (Exception)
+                        catch (IOException)
                         {
                             Thread.Sleep(500);
                         }
@@ -185,6 +185,18 @@ namespace Unary
 
         private IEnumerable<Command> Test()
         {
+            var civ = GameState.MyPlayer.Civilization;
+
+            foreach (var unit in Mod.GetAvailableUnits(civ))
+            {
+                if (GameState.TryGetUnitType(unit, out var type))
+                {
+                    if (type[ObjectData.CMDID] == (int)CmdId.VILLAGER)
+                    {
+                        Log.Debug($"Civ {civ} has villager {unit}");
+                    }
+                }
+            }
 
             yield break;
         }

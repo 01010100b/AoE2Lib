@@ -31,6 +31,10 @@ namespace Unary.Jobs
             {
                 return -1;
             }
+            else if (WorkerCount > MaxWorkers)
+            {
+                return -1;
+            }
             else if (HasWorker(worker))
             {
                 return 1;

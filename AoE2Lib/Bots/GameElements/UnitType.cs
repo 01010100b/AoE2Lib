@@ -27,7 +27,7 @@ namespace AoE2Lib.Bots.GameElements
         public int GoldCost { get; private set; } = 0;
         public int StoneCost { get; private set; } = 0;
 
-        private readonly Dictionary<ObjectData, int> Data = new Dictionary<ObjectData, int>();
+        private readonly Dictionary<ObjectData, int> Data = new();
 
         internal UnitType(Bot bot, int id) : base(bot)
         {
@@ -101,7 +101,8 @@ namespace AoE2Lib.Bots.GameElements
                      new UpBuildLine() { InConstBuildingId = Id, InGoalPoint1 = GL_X, InGoalPoint2 = GL_X },
                      new SetGoal() { InConstGoalId = GL_WAS_BUILT, InConstValue = 1 });
 
-                command.Add(new Goal() { InConstGoalId = GL_WAS_BUILT }, "==", 0, buildcommand);
+                command.Add(new Goal() { InConstGoalId = GL_WAS_BUILT }, "==", 0, 
+                    buildcommand);
             }
 
             Bot.GameState.AddCommand(command);

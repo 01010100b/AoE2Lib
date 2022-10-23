@@ -118,7 +118,7 @@ namespace AoE2Lib.Bots
                 first_command.Add(new SetGoal() { InConstGoalId = 420, InConstValue = Id });
                 commands.Add(first_command);
 
-                if (GameState.Tick > 0)
+                if (GameState.MyPlayer.Civilization >= 0)
                 {
                     commands.AddRange(Tick());
                 }

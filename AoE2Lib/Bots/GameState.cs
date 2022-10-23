@@ -492,6 +492,7 @@ namespace AoE2Lib.Bots
             Bot.Log.Debug($"Auto finding units");
 
             var position = Map.Center;
+
             for (int i = 0; i < 1000; i++)
             {
                 var x = Bot.Rng.Next(Map.Width);
@@ -508,16 +509,19 @@ namespace AoE2Lib.Bots
                 }
             }
 
+            var range = Map.Width + Map.Height;
+
+            if (Tick > 100 && Bot.Rng.NextDouble() < 0.3)
+            {
+                range = 20;
+            }
+
             foreach (var player in GetPlayers())
             {
-                var range = Map.Width + Map.Height;
-
                 FindUnits(player.PlayerNumber, position, range);
 
                 if (player.PlayerNumber == 0)
                 {
-                    range = Map.Width + Map.Height;
-
                     var resource = Resource.WOOD;
 
                     if (Tick % 6 == 1)
@@ -541,11 +545,6 @@ namespace AoE2Lib.Bots
                         resource = Resource.FOOD;
                     }
 
-                    if (Tick > 100 && Bot.Rng.NextDouble() < 0.5)
-                    {
-                        range = 20;
-                    }
-                    
                     FindResources(resource, 0, position, range);
                 }
             }
