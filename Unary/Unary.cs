@@ -185,12 +185,6 @@ namespace Unary
 
         private IEnumerable<Command> Test()
         {
-            var type_id = 50;
-            var unit = Mod.GetUnitDef(type_id);
-
-            Debug.WriteLine($"unit {type_id} width {unit.CollisionSizeX}");
-            Debug.WriteLine($"unit {type_id} hillmode {unit.HillMode}");
-            Debug.WriteLine($"unit {type_id} obstruction {unit.ObstructionType}");
 
             yield break;
         }

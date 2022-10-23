@@ -88,7 +88,7 @@ namespace Unary.Managers
                 }
                 else if (Tiles != null && Tiles.Count > 0)
                 {
-                    unary.Log.Info($"Building {UnitType.Id}");
+                    unary.Log.Info($"Building {UnitType.Id} at {Tiles.Count} positions, {UnitType.Pending} pending");
                     UnitType.Build(Tiles, MaxCount, MaxPending);
                     ObjectPool.Add(Tiles);
                 }

@@ -25,8 +25,7 @@ namespace Unary.UI
         {
             InitializeComponent();
 
-            var file = Path.Combine(Program.Folder, "uisettings.json");
-            UISettings = Program.Deserialize<UISettings>(file);
+            UISettings = UISettings.Load();
             Ladder = new Ladder();
         }
 

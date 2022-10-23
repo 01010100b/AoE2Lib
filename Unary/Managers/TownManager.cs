@@ -18,7 +18,9 @@ namespace Unary.Managers
         private static readonly Point[] MILL_FARM_DELTAS = { new Point(-1, 2), new Point(2, -1), new Point(2, 2), new Point(-3, -1), new Point(-1, -3) };
 
         public Position MyPosition { get; private set; } = Position.Zero;
+
         private readonly ConstructionJob Construction;
+        private readonly HashSet<Tile> InsideTiles = new();
 
         public TownManager(Unary unary) : base(unary)
         {
@@ -26,16 +28,9 @@ namespace Unary.Managers
             unary.UnitsManager.AddJob(Construction);
         }
 
-        private readonly HashSet<Tile> InsideTiles = new();
-
         public bool IsInside(Tile tile) => InsideTiles.Contains(tile);
 
         public IEnumerable<Tile> GetInsideTiles() => Unary.GetCached(GetSortedInsideTiles);
-
-        public IEnumerable<Tile> GetExcludedTiles(Unit unit)
-        {
-            throw new NotImplementedException();
-        }
 
         public IEnumerable<Tile> GetPlacements(UnitType building)
         {
@@ -43,7 +38,7 @@ namespace Unary.Managers
             {
                 if (Unary.GameState.Tick > 10 || tile.Position.DistanceTo(MyPosition) > 8)
                 {
-                    if (Unary.MapManager.CanBuildAt(building, tile, true))
+                    if (Unary.MapManager.CanBuild(building, tile, true))
                     {
                         yield return tile;
                     }
@@ -51,7 +46,7 @@ namespace Unary.Managers
             }
         }
 
-        public IEnumerable<Tile> GetFarms(Unit building)
+        public IEnumerable<Tile> GetFarmTiles(Unit building)
         {
             var type = building[ObjectData.BASE_TYPE];
             Point[] deltas = null;
@@ -187,25 +182,12 @@ namespace Unary.Managers
 
         private void UpdateHousing()
         {
-            var state = Unary.GameState;
-
-            if (state.TryGetUnitType(Unary.Mod.House, out var house))
+            if (Unary.GameState.TryGetUnitType(Unary.Mod.House, out var house))
             {
-                var margin = 5;
-                var pending = 1;
-
-                if (state.GameTime > TimeSpan.FromMinutes(5))
-                {
-                    margin = 10;
-                }
-
-                if (state.GameTime > TimeSpan.FromMinutes(10))
-                {
-                    pending = 2;
-                }
-
-                var housing_room = state.MyPlayer.GetFact(FactId.HOUSING_HEADROOM);
-                var population_room = state.MyPlayer.GetFact(FactId.POPULATION_HEADROOM);
+                var pending = Math.Min(5, 1 + (int)Math.Floor(Unary.GameState.GameTime.TotalMinutes / 10));
+                var margin = 5 * pending;
+                var housing_room = Unary.GameState.MyPlayer.GetFact(FactId.HOUSING_HEADROOM);
+                var population_room = Unary.GameState.MyPlayer.GetFact(FactId.POPULATION_HEADROOM);
 
                 if (population_room > 0 && housing_room < margin && house.Pending < pending)
                 {

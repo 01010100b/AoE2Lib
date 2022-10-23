@@ -70,7 +70,7 @@ namespace Unary.Managers
             }
         }
 
-        public bool CanBuildAt(UnitType building, Tile tile, bool exclusion)
+        public bool CanBuild(UnitType building, Tile tile, bool exclusion)
         {
             var land = true;
 
@@ -89,8 +89,16 @@ namespace Unary.Managers
                 return false;
             }
 
-            var size = (int)Math.Round(Unary.Mod.GetUnitWidth(Unary.GameState.MyPlayer.Civilization, building[ObjectData.BASE_TYPE]));
+            var civ = Unary.GameState.MyPlayer.Civilization;
+            var id = building[ObjectData.BASE_TYPE];
+            var size = (int)Math.Round(Unary.Mod.GetUnitWidth(civ, id));
             var footprint = Utils.GetUnitFootprint(tile.X, tile.Y, size, size);
+            var min_all = int.MaxValue;
+            var min_left = int.MaxValue;
+            var min_bottom = int.MaxValue;
+            var max_all = int.MinValue;
+            var max_left = int.MinValue;
+            var max_bottom = int.MinValue;
 
             for (int x = footprint.X; x < footprint.Right; x++)
             {
@@ -112,12 +120,39 @@ namespace Unary.Managers
                         {
                             return false;
                         }
+
+                        var elevation = tile.Height;
+                        min_all = Math.Min(min_all, elevation);
+                        max_all = Math.Max(max_all, elevation);
+
+                        if (x == footprint.X)
+                        {
+                            min_left = Math.Min(min_left, elevation);
+                            max_left = Math.Max(max_left, elevation);
+                        }
+
+                        if (y == footprint.Bottom - 1)
+                        {
+                            min_bottom = Math.Min(min_bottom, elevation);
+                            max_bottom = Math.Max(max_bottom, elevation);
+                        }
                     }
                     else
                     {
                         return false;
                     }
                 }
+            }
+
+            var hill_mode = Unary.Mod.GetUnitHillMode(civ, id);
+
+            if (hill_mode == 2 && min_all != max_all)
+            {
+                return false;
+            }
+            else if (hill_mode == 3 && Math.Max(max_left - min_left, max_bottom - min_bottom) > 1)
+            {
+                return false;
             }
 
             return true;
@@ -141,25 +176,12 @@ namespace Unary.Managers
 
             foreach (var unit in Unary.GameState.GetPlayers().SelectMany(p => p.Units))
             {
-                var blocks_construction = true;
-                var blocks_passage = false;
-                var def = Unary.Mod.GetUnitDef(unit[ObjectData.UPGRADE_TYPE]);
-                var width = Math.Max(1, (int)Math.Round(2 * def.CollisionSizeX));
-                var height = Math.Max(1, (int)Math.Round(2 * def.CollisionSizeY));
-
-                switch ((int)def.ObstructionType)
-                {
-                    case 2:
-                    case 3:
-                    case 5:
-                    case 10: blocks_passage = true; break;
-                }
-
-                if (unit[ObjectData.SPEED] > 0)
-                {
-                    blocks_construction = false;
-                    blocks_passage = false;
-                }
+                var civ = unit.Player.Civilization;
+                var id = unit[ObjectData.UPGRADE_TYPE];
+                var blocks_construction = unit[ObjectData.SPEED] == 0;
+                var blocks_passage = Unary.Mod.BlocksPassage(civ, id);
+                var width = Math.Max(1, (int)Math.Round(Unary.Mod.GetUnitWidth(civ, id)));
+                var height = Math.Max(1, (int)Math.Round(Unary.Mod.GetUnitHeight(civ, id)));
 
                 if (blocks_construction || blocks_passage)
                 {
@@ -201,11 +223,11 @@ namespace Unary.Managers
 
                         if (Unary.GameState.TryGetUnitType(Unary.Mod.Farm, out var farm))
                         {
-                            var civ = Unary.GameState.MyPlayer.Civilization;
-                            width = (int)Math.Max(1, Math.Round(Unary.Mod.GetUnitWidth(civ, farm.Id)));
-                            height = (int)Math.Max(1, Math.Round(Unary.Mod.GetUnitHeight(civ, farm.Id)));
+                            civ = Unary.GameState.MyPlayer.Civilization;
+                            width = Math.Max(1, (int)Math.Round(Unary.Mod.GetUnitWidth(civ, farm.Id)));
+                            height = Math.Max(1, (int)Math.Round(Unary.Mod.GetUnitHeight(civ, farm.Id)));
 
-                            foreach (var tile in Unary.TownManager.GetFarms(unit))
+                            foreach (var tile in Unary.TownManager.GetFarmTiles(unit))
                             {
                                 footprint = Utils.GetUnitFootprint(tile.X, tile.Y, width, height, 0);
 

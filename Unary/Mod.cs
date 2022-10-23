@@ -29,18 +29,12 @@ namespace Unary
         public int ImperialAge { get; private set; } = 103;
 
         private readonly DatFile DatFile;
-        private readonly Dictionary<int, DatUnit> Units = new();
         private readonly Dictionary<int, HashSet<int>> TerrainAllowances = new();
         private readonly Dictionary<int, Dictionary<int, DatUnit>> CivUnits = new();
 
         public Mod(DatFile datfile)
         {
             DatFile = datfile;
-
-            foreach (var unit in DatFile.Civilizations.SelectMany(c => c.Units))
-            {
-                Units[unit.Id] = unit;
-            }
 
             for (int table = 0; table < DatFile.TerrainRestrictions.Count; table++)
             {
@@ -50,7 +44,7 @@ namespace Unary
                 {
                     var dmg = DatFile.TerrainRestrictions[table].AccessibleDamageMultiplier[terrain];
 
-                    if (dmg > 0.5)
+                    if (dmg > 0)
                     {
                         TerrainAllowances[table].Add(terrain);
                     }
@@ -73,19 +67,22 @@ namespace Unary
         public IEnumerable<int> GetUnits(int civ) => CivUnits[civ].Values.Where(u => u.TrainLocationId >= 0).Select(u => (int)u.Id);
         public double GetUnitWidth(int civ, int unit) => CivUnits[civ][unit].CollisionSizeX * 2;
         public double GetUnitHeight(int civ, int unit) => CivUnits[civ][unit].CollisionSizeY * 2;
+        public int GetUnitHillMode(int civ, int unit) => CivUnits[civ][unit].HillMode;
 
         public bool BlocksPassage(int civ, int unit)
         {
             var def = CivUnits[civ][unit];
-
-            switch((int)def.ObstructionType)
+            
+            if (def.Speed > 0)
             {
-                case 2:
-                case 3:
-                case 5:
-                case 10: return true;
-                default: return false;
+                return false;
             }
+
+            return (int)def.ObstructionType switch
+            {
+                2 or 3 or 5 or 10 => true,
+                _ => false,
+            };
         }
 
         public bool CanPassTerrain(int civ, int unit, int terrain)
@@ -94,12 +91,6 @@ namespace Unary
 
             return TerrainAllowances[table].Contains(terrain);
         }
-
-        public DatUnit GetUnitDef(int type_id) => Units[type_id];
-
-        public Civilization GetCivilizationDef(int civ_id) => DatFile.Civilizations[civ_id];
-
-        public IEnumerable<KeyValuePair<int, HashSet<int>>> GetTerrainTables() => TerrainAllowances;
 
         public int GetBuildingSizeOld(int type_id)
         {
@@ -165,7 +156,7 @@ namespace Unary
             }
         }
 
-        public bool IsTownCenterTech(int tech)
+        public bool IsTownCenterTechOld(int tech)
         {
             return TC_TECHS.Contains(tech);
         }

@@ -141,7 +141,7 @@ namespace Unary.Strategies
                         var priority = Priority.TECH;
                         var blocking = true;
 
-                        if (Unary.Mod.IsTownCenterTech(tech.Id))
+                        if (Unary.Mod.IsTownCenterTechOld(tech.Id))
                         {
                             priority = Priority.VILLAGER + 10;
                             blocking = false;

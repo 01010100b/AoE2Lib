@@ -103,7 +103,7 @@ namespace Unary.Managers
 
                     foreach (var tile in Unary.GameState.Map.GetTilesInRange(unit.Position, 5))
                     {
-                        if (Unary.MapManager.CanBuildAt(dropsite, tile, true))
+                        if (Unary.MapManager.CanBuild(dropsite, tile, true))
                         {
                             var score = GetScore(dropsite, tile, resources);
                             positions.Add(new(tile, score));
@@ -129,9 +129,9 @@ namespace Unary.Managers
                 capacities[job.Resource] += job.Vacancies;
             }
 
-            if (Unary.GameState.TryGetUnitType(Unary.Mod.LumberCamp, out var lumber_camp))
+            if (TryGetDropsite(Resource.WOOD, out var lumber_camp))
             {
-                if (Unary.GameState.TryGetUnitType(Unary.Mod.Mill, out var mill))
+                if (TryGetDropsite(Resource.FOOD, out var mill))
                 {
                     if (lumber_camp.CountTotal < 1)
                     {
@@ -145,6 +145,13 @@ namespace Unary.Managers
                         if (GetDesiredGatherers(Resource.FOOD) > 0)
                         {
                             BuildDropsite(mill, DropsitePositions[Resource.FOOD]);
+                        }
+                    }
+                    else
+                    {
+                        if (capacities[Resource.WOOD] < 1)
+                        {
+                            BuildDropsite(lumber_camp, DropsitePositions[Resource.WOOD]);
                         }
                     }
                 }
@@ -340,7 +347,7 @@ namespace Unary.Managers
             }
 
             positions.Sort((a, b) => b.Value.CompareTo(a.Value));
-            var tiles = positions.Select(x => x.Key).Where(x => Unary.MapManager.CanBuildAt(dropsite, x, true)).Take(50);
+            var tiles = positions.Select(x => x.Key).Where(x => Unary.MapManager.CanBuild(dropsite, x, true)).Take(100);
             Unary.ProductionManager.Build(dropsite, tiles, int.MaxValue, 1, ProductionManager.Priority.DROPSITE);
         }
     }
