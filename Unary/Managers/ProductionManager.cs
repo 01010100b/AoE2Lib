@@ -53,7 +53,7 @@ namespace Unary.Managers
                 MaxPending = int.MaxValue;
             }
 
-            public ProductionTask(UnitType type, IEnumerable<Tile> tiles, int max_count, int max_pending, int priority, bool blocking)
+            public ProductionTask(UnitType type, List<Tile> tiles, int max_count, int max_pending, int priority, bool blocking)
             {
                 // tiles = null for training
                 Priority = priority;
@@ -62,21 +62,7 @@ namespace Unary.Managers
                 UnitType = type;
                 MaxCount = max_count;
                 MaxPending = max_pending;
-
-                if (tiles == null)
-                {
-                    Tiles = null;
-                }
-                else
-                {
-                    Tiles = ObjectPool.Get(() => new List<Tile>(), x => x.Clear());
-                    Tiles.AddRange(tiles.Take(100));
-
-                    if (Tiles.Count == 0)
-                    {
-                        throw new ArgumentOutOfRangeException(nameof(tiles), "Need at least 1 tile");
-                    }
-                }
+                Tiles = tiles;
             }
 
             public void Perform(Unary unary)
@@ -120,7 +106,25 @@ namespace Unary.Managers
         {
             if (type.CountTotal < max_count && type.Pending <= max_pending)
             {
-                var task = new ProductionTask(type, tiles, max_count, max_pending, priority, blocking);
+                List<Tile> t = null;
+
+                if (tiles != null)
+                {
+                    if (Unary.GameState.MyPlayer.CivilianPopulation == 0)
+                    {
+                        return;
+                    }
+
+                    t = ObjectPool.Get(() => new List<Tile>(), x => x.Clear());
+                    t.AddRange(tiles.Take(100));
+
+                    if (t.Count == 0)
+                    {
+                        throw new ArgumentOutOfRangeException(nameof(tiles), "Need at least 1 tile");
+                    }
+                }
+
+                var task = new ProductionTask(type, t, max_count, max_pending, priority, blocking);
                 ProductionTasks.Add(task);
             }
         }

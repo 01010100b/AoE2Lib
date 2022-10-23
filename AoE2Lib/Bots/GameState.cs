@@ -429,8 +429,9 @@ namespace AoE2Lib.Bots
             {
                 var id = command.GetResponses()[1].Unpack<UpObjectDataResult>().Result;
                 var iid = command.GetResponses()[3].Unpack<GoalResult>().Result;
+                var cls = command.GetResponses()[4].Unpack<UpObjectDataResult>().Result;
 
-                if (id == iid)
+                if (id == iid && cls != (int)UnitClass.Flag && cls != (int)UnitClass.Miscellaneous)
                 {
                     if (!Units.ContainsKey(id))
                     {
@@ -606,6 +607,7 @@ namespace AoE2Lib.Bots
                 command.Add(new UpObjectData() { InConstObjectData = (int)ObjectData.ID });
                 command.Add(new SetGoal() { InConstGoalId = Bot.GOAL_START, InConstValue = i });
                 command.Add(new Goal() { InConstGoalId = Bot.GOAL_START });
+                command.Add(new UpObjectData() { InConstObjectData = (int)ObjectData.CLASS });
                 IdLoopCommands.Add(command);
             }
 

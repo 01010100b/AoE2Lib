@@ -198,6 +198,11 @@ namespace Unary
                 }
             }
 
+            foreach (var unit in GameState.MyPlayer.Units)
+            {
+                Log.Debug($"Unit {unit.Id} with type {unit[ObjectData.TYPE]}");
+            }
+
             yield break;
         }
     }

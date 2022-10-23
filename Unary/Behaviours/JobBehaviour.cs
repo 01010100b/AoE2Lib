@@ -13,7 +13,7 @@ namespace Unary.Behaviours
         private TimeSpan LastSeekTime { get; set; } = TimeSpan.FromHours(-1);
         private Job CurrentJob => Controller.CurrentJob;
 
-        public override int GetPriority() => 1000;
+        public override int GetPriority() => 10000;
 
         protected override bool Tick(bool perform)
         {

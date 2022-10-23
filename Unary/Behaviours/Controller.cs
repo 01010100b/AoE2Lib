@@ -101,6 +101,10 @@ namespace Unary.Behaviours
                 AddBehaviour(new EatBehaviour());
                 AddBehaviour(new GatherBehaviour());
             }
+            else if (Unit[ObjectData.CMDID] == (int)CmdId.MILITARY)
+            {
+                AddBehaviour(new CombatBehaviour());
+            }
         }
     }
 }

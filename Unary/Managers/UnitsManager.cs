@@ -17,6 +17,7 @@ namespace Unary.Managers
     internal class UnitsManager : Manager
     {
         public IEnumerable<Controller> Gatherers => Unary.GetCached(GetGatherers);
+        public IEnumerable<Unit> Targets => Unary.GetCached(GetTargets);
 
         private readonly Dictionary<Unit, Controller> Controllers = new();
         private readonly HashSet<Job> Jobs = new();
@@ -147,6 +148,18 @@ namespace Unary.Managers
             }
 
             return gatherers;
+        }
+
+        private List<Unit> GetTargets()
+        {
+            var targets = ObjectPool.Get(() => new List<Unit>(), x => x.Clear());
+
+            foreach (var unit in Unary.GameState.CurrentEnemies.SelectMany(p => p.Units).Where(u => u.Targetable))
+            {
+                targets.Add(unit);
+            }
+
+            return targets;
         }
     }
 }

@@ -74,7 +74,7 @@ namespace Unary.Jobs
             var animals = ObjectPool.Get(() => new List<Unit>(), x => x.Clear());
             var livestock = ObjectPool.Get(() => new List<Unit>(), x => x.Clear());
 
-            foreach (var unit in Targets)
+            foreach (var unit in Targets.Where(u => u.Targetable))
             {
                 if (unit[ObjectData.HITPOINTS] <= 0)
                 {
@@ -90,7 +90,7 @@ namespace Unary.Jobs
                 }
             }
 
-            foreach (var animal in animals.Where(x => x.Targetable && x[ObjectData.CARRY] > 0))
+            foreach (var animal in animals.Where(x => x[ObjectData.CARRY] > 0))
             {
                 if (animal.Position.DistanceTo(Location) <= Unary.Settings.KillAnimalRange)
                 {
@@ -102,7 +102,7 @@ namespace Unary.Jobs
 
             if (Target == null)
             {
-                foreach (var meat in meats.Where(x => x.Targetable && x[ObjectData.CARRY] > 0))
+                foreach (var meat in meats.Where(x => x[ObjectData.CARRY] > 0))
                 {
                     if (meat.Position.DistanceTo(Location) <= Unary.Settings.EatAnimalRange)
                     {
@@ -116,7 +116,7 @@ namespace Unary.Jobs
 
             if (Target == null)
             {
-                foreach (var sheep in livestock.Where(x => x.Targetable && x[ObjectData.CARRY] > 0))
+                foreach (var sheep in livestock.Where(x => x[ObjectData.CARRY] > 0))
                 {
                     if (sheep.Position.DistanceTo(Location) <= Unary.Settings.KillSheepRange)
                     {
