@@ -25,6 +25,7 @@ namespace Unary.Jobs
 
         public abstract double GetPay(Controller worker);
         public abstract void Update();
+        public abstract void OnRemoved();
         protected abstract void OnWorkerJoining(Controller worker);
         protected abstract void OnWorkerLeaving(Controller worker);
 

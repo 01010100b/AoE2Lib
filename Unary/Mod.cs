@@ -47,7 +47,7 @@ namespace Unary
         public IEnumerable<int> GetAvailableTechs(int civ) => CivAvailableTechs[civ];
         public IEnumerable<KeyValuePair<int, Effect>> GetUnitEffects(int unit) => TechUnitEffects.ContainsKey(unit) ? TechUnitEffects[unit] : Enumerable.Empty<KeyValuePair<int, Effect>>();
 
-        public string GetUnitName(int civ, int unit) => Encoding.ASCII.GetString(CivUnits[civ][unit].Name);
+        public string GetUnitName(int civ, int unit) => Encoding.ASCII.GetString(CivUnits[civ][unit].Name, 0, CivUnits[civ][unit].Name.Length - 1);
         public double GetUnitWidth(int civ, int unit) => CivUnits[civ][unit].CollisionSizeX * 2;
         public double GetUnitHeight(int civ, int unit) => CivUnits[civ][unit].CollisionSizeY * 2;
         public int GetUnitHillMode(int civ, int unit) => CivUnits[civ][unit].HillMode;

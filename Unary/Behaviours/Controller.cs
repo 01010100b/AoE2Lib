@@ -103,6 +103,7 @@ namespace Unary.Behaviours
             }
             else if (Unit[ObjectData.CMDID] == (int)CmdId.MILITARY)
             {
+                AddBehaviour(new JobBehaviour());
                 AddBehaviour(new CombatBehaviour());
             }
         }

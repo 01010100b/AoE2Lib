@@ -21,12 +21,14 @@ namespace Unary
         public override int Id => UNARY_ID;
         public readonly Settings Settings;
         public Mod Mod { get; private set; }
+        public UnitsManager UnitsManager => Managers.OfType<UnitsManager>().Single();
         public MapManager MapManager => Managers.OfType<MapManager>().Single();
+        public TownManager TownManager => Managers.OfType<TownManager>().Single();
         public EconomyManager EconomyManager => Managers.OfType<EconomyManager>().Single();
+        public MilitaryManager MilitaryManager => Managers.OfType<MilitaryManager>().Single();
         public StrategyManager StrategyManager { get; private set; }
         public DiplomacyManager DiplomacyManager { get; private set; }
-        public TownManager TownManager { get; private set; }
-        public UnitsManager UnitsManager => Managers.OfType<UnitsManager>().Single();
+        
         public ProductionManager ProductionManager { get; private set; }
 
         private readonly List<Manager> Managers = new();
@@ -66,7 +68,6 @@ namespace Unary
 
             StrategyManager = null;
             DiplomacyManager = null;
-            TownManager = null;
             ProductionManager = null;
 
             Cache.Clear();
@@ -113,10 +114,11 @@ namespace Unary
             
             Managers.Add(new UnitsManager(this));
             Managers.Add(new MapManager(this));
+            Managers.Add(new TownManager(this));
             Managers.Add(new EconomyManager(this));
+            Managers.Add(new MilitaryManager(this));
             StrategyManager = new(this);
             DiplomacyManager = new(this);
-            TownManager = new (this);
             
             ProductionManager = new(this);
 
@@ -149,10 +151,6 @@ namespace Unary
             sw.Restart();
             DiplomacyManager.Update();
             Log.Info($"Diplomacy Manager took {sw.ElapsedMilliseconds} ms");
-
-            sw.Restart();
-            TownManager.Update();
-            Log.Info($"Town Manager took {sw.ElapsedMilliseconds} ms");
 
             sw.Restart();
             ProductionManager.Update();
@@ -193,14 +191,9 @@ namespace Unary
                 {
                     if (type[ObjectData.CMDID] == (int)CmdId.VILLAGER)
                     {
-                        Log.Debug($"Civ {civ} has villager {unit}");
+                        Log.Debug($"Civ {civ} has villager {unit} {Mod.GetUnitName(civ, unit)}");
                     }
                 }
-            }
-
-            foreach (var unit in GameState.MyPlayer.Units)
-            {
-                Log.Debug($"Unit {unit.Id} with type {unit[ObjectData.TYPE]}");
             }
 
             yield break;

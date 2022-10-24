@@ -48,6 +48,9 @@ namespace Unary.Jobs
                 return 1;
             }
         }
+        public override void OnRemoved()
+        {
+        }
 
         protected override void OnWorkerJoining(Controller worker)
         {

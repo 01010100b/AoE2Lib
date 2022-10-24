@@ -125,6 +125,11 @@ namespace Unary.Managers
         {
             var capacities = ObjectPool.Get(() => new Dictionary<Resource, int>(), x => x.Clear());
 
+            foreach (var resource in KnownResources)
+            {
+                capacities.Add(resource, 0);
+            }
+
             foreach (var job in Unary.UnitsManager.GetJobs().OfType<ResourceGenerationJob>())
             {
                 if (!capacities.ContainsKey(job.Resource))
@@ -311,7 +316,7 @@ namespace Unary.Managers
                 case Resource.STONE: id = Unary.Mod.StoneMiningCamp; break;
             }
 
-            if (Unary.GameState.TryGetUnitType(id, out var type))
+            if (id >= 0 && Unary.GameState.TryGetUnitType(id, out var type))
             {
                 dropsite = type;
 

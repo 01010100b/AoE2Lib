@@ -27,7 +27,7 @@ namespace Unary.Behaviours
         {
             if (perform)
             {
-                FindTarget();
+                //FindTarget();
             }
 
             if (perform && Target != null)

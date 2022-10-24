@@ -22,7 +22,7 @@ slow = 10
 micro test results
 ==================
 
-4v4 5v5 6v6 8v8 10v10 5v4 5v6
+4v4 5v5 6v6 8v8 10v10
 
 4v4 no byzantine feudal
 5v5 no byzantine castle
@@ -30,60 +30,15 @@ micro test results
 8v8 yes byzantines post-imp
 10v10 yes briton imp
 
-2022-05-08 21:50:46Z: INFO: Test TCR 4v4 no ballistics against Null: 27%
-2022-05-08 21:50:46Z: INFO: Test TCR 6v6 no ballistics against Null: 58%
-2022-05-08 21:50:46Z: INFO: Test TCR 8v8 ballistics against Null: 78%
-2022-05-08 21:50:46Z: INFO: Test TCR 10v10 ballistics against Null: 82%
-2022-05-08 21:50:46Z: INFO: Test TCR 4v4 no ballistics against ArcherMicroTest_E: -22%
-2022-05-08 21:50:46Z: INFO: Test TCR 6v6 no ballistics against ArcherMicroTest_E: 59%
-2022-05-08 21:50:46Z: INFO: Test TCR 8v8 ballistics against ArcherMicroTest_E: 58%
-2022-05-08 21:50:46Z: INFO: Test TCR 10v10 ballistics against ArcherMicroTest_E: 13%
-
-2022-05-09 00:39:37Z: INFO: Test TCR 4v4 no ballistics against Null: -6%
-2022-05-09 00:39:37Z: INFO: Test TCR 6v6 no ballistics against Null: 65%
-2022-05-09 00:39:37Z: INFO: Test TCR 8v8 ballistics against Null: 78%
-2022-05-09 00:39:37Z: INFO: Test TCR 10v10 ballistics against Null: 82%
-2022-05-09 00:39:37Z: INFO: Test TCR 4v4 no ballistics against ArcherMicroTest_E: -30%
-2022-05-09 00:39:37Z: INFO: Test TCR 6v6 no ballistics against ArcherMicroTest_E: 59%
-2022-05-09 00:39:37Z: INFO: Test TCR 8v8 ballistics against ArcherMicroTest_E: 67%
-2022-05-09 00:39:37Z: INFO: Test TCR 10v10 ballistics against ArcherMicroTest_E: 4%
-
-2022-05-09 01:06:57Z: INFO: Test TCR 4v4 no ballistics against Null: 13%
-2022-05-09 01:06:57Z: INFO: Test TCR 6v6 no ballistics against Null: 59%
-2022-05-09 01:06:57Z: INFO: Test TCR 8v8 ballistics against Null: 82%
-2022-05-09 01:06:57Z: INFO: Test TCR 10v10 ballistics against Null: 83%
-2022-05-09 01:06:57Z: INFO: Test TCR 4v4 no ballistics against ArcherMicroTest_E: -26%
-2022-05-09 01:06:57Z: INFO: Test TCR 6v6 no ballistics against ArcherMicroTest_E: 55%
-2022-05-09 01:06:57Z: INFO: Test TCR 8v8 ballistics against ArcherMicroTest_E: 77%
-2022-05-09 01:06:57Z: INFO: Test TCR 10v10 ballistics against ArcherMicroTest_E: -9%
-
-2022-05-09 01:57:34Z: INFO: Test TCR 4v4 no ballistics against Null: 19%
-2022-05-09 01:57:34Z: INFO: Test TCR 6v6 no ballistics against Null: 62%
-2022-05-09 01:57:34Z: INFO: Test TCR 8v8 ballistics against Null: 80%
-2022-05-09 01:57:34Z: INFO: Test TCR 10v10 ballistics against Null: 81%
-2022-05-09 01:57:34Z: INFO: Test TCR 4v4 no ballistics against ArcherMicroTest_E: -2%
-2022-05-09 01:57:34Z: INFO: Test TCR 6v6 no ballistics against ArcherMicroTest_E: 55%
-2022-05-09 01:57:34Z: INFO: Test TCR 8v8 ballistics against ArcherMicroTest_E: 62%
-2022-05-09 01:57:34Z: INFO: Test TCR 10v10 ballistics against ArcherMicroTest_E: 35%
-
-2022-05-09 02:32:39Z: INFO: Test TCR 4v4 no ballistics against Null: -4%
-2022-05-09 02:32:39Z: INFO: Test TCR 5v5 no ballistics against Null: 47%
-2022-05-09 02:32:39Z: INFO: Test TCR 6v6 no ballistics against Null: 63%
-2022-05-09 02:32:39Z: INFO: Test TCR 8v8 ballistics against Null: 78%
-2022-05-09 02:32:39Z: INFO: Test TCR 10v10 ballistics against Null: 82%
-2022-05-09 02:32:39Z: INFO: Test TCR 4v4 no ballistics against ArcherMicroTest_E: -28%
-2022-05-09 02:32:39Z: INFO: Test TCR 5v5 no ballistics against ArcherMicroTest_E: 43%
-2022-05-09 02:32:39Z: INFO: Test TCR 6v6 no ballistics against ArcherMicroTest_E: 42%
-2022-05-09 02:32:39Z: INFO: Test TCR 8v8 ballistics against ArcherMicroTest_E: 65%
-2022-05-09 02:32:39Z: INFO: Test TCR 10v10 ballistics against ArcherMicroTest_E: 18%
-
-2022-05-09 03:50:43Z: INFO: Test TCR 4v4 no ballistics against Null: 7%
-2022-05-09 03:50:43Z: INFO: Test TCR 5v5 no ballistics against Null: 45%
-2022-05-09 03:50:43Z: INFO: Test TCR 6v6 no ballistics against Null: 61%
-2022-05-09 03:50:43Z: INFO: Test TCR 8v8 ballistics against Null: 80%
-2022-05-09 03:50:43Z: INFO: Test TCR 10v10 ballistics against Null: 82%
-2022-05-09 03:50:43Z: INFO: Test TCR 4v4 no ballistics against ArcherMicroTest_E: -26%
-2022-05-09 03:50:43Z: INFO: Test TCR 5v5 no ballistics against ArcherMicroTest_E: 32%
-2022-05-09 03:50:43Z: INFO: Test TCR 6v6 no ballistics against ArcherMicroTest_E: 37%
-2022-05-09 03:50:43Z: INFO: Test TCR 8v8 ballistics against ArcherMicroTest_E: 66%
-2022-05-09 03:50:43Z: INFO: Test TCR 10v10 ballistics against ArcherMicroTest_E: 12%
+2022-10-24 01:57:39Z: INFO: UI: start running 100 scenarios...
+2022-10-24 04:27:52Z: INFO: UI: done running scenarios
+2022-10-24 04:27:52Z: INFO: UI: Test TCR 4v4 no ballistics against Null: 9%
+2022-10-24 04:27:52Z: INFO: UI: Test TCR 5v5 no ballistics against Null: 48%
+2022-10-24 04:27:52Z: INFO: UI: Test TCR 6v6 no ballistics against Null: 61%
+2022-10-24 04:27:52Z: INFO: UI: Test TCR 8v8 ballistics against Null: 75%
+2022-10-24 04:27:52Z: INFO: UI: Test TCR 10v10 ballistics against Null: 76%
+2022-10-24 04:27:52Z: INFO: UI: Test TCR 4v4 no ballistics against ArcherMicroTest_E: -46%
+2022-10-24 04:27:52Z: INFO: UI: Test TCR 5v5 no ballistics against ArcherMicroTest_E: -14%
+2022-10-24 04:27:52Z: INFO: UI: Test TCR 6v6 no ballistics against ArcherMicroTest_E: 19%
+2022-10-24 04:27:52Z: INFO: UI: Test TCR 8v8 ballistics against ArcherMicroTest_E: 77%
+2022-10-24 04:27:52Z: INFO: UI: Test TCR 10v10 ballistics against ArcherMicroTest_E: 1%

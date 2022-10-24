@@ -106,6 +106,10 @@ namespace Unary.Jobs
             ObjectPool.Add(available_builders);
         }
 
+        public override void OnRemoved()
+        {
+        }
+
         protected override void OnWorkerJoining(Controller worker)
         {
             throw new NotImplementedException();

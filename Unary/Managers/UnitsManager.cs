@@ -42,6 +42,7 @@ namespace Unary.Managers
         public void RemoveJob(Job job)
         {
             Jobs.Remove(job);
+            job.OnRemoved();
             Unary.Log.Info($"Removed job {job}");
         }
 

@@ -43,7 +43,7 @@ namespace Unary.UI
 
         private void ButtonScenarios_Click(object sender, EventArgs e)
         {
-            const int GAMES_PER_SCENARIO = 20;
+            const int GAMES_PER_SCENARIO = 100;
 
             ButtonScenarios.Enabled = false;
             ButtonLadder.Enabled = false;
@@ -51,7 +51,7 @@ namespace Unary.UI
 
             var thread = new Thread(() =>
             {
-                Message("start running scenarios...");
+                Message($"start running {GAMES_PER_SCENARIO} scenarios...");
 
                 var exe = UISettings.ExePath;
                 var opponents = new List<string>() { "Null", "ArcherMicroTest_E" };
