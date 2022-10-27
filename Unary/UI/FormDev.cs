@@ -86,6 +86,8 @@ namespace Unary.UI
 
                 Message("done running scenarios");
 
+                var total_score = Scenarios.GetScores(games, out var scores);
+                /*
                 var scores = new Dictionary<string, double>();
                 var counts = new Dictionary<string, int>();
 
@@ -103,14 +105,16 @@ namespace Unary.UI
                     scores[name] += score;
                     counts[name]++;
                 }
-
-                foreach (var score in scores)
+                */
+                foreach (var score in scores.OrderBy(x => x.Key))
                 {
                     var name = score.Key;
-                    var result = score.Value / counts[name];
+                    var result = score.Value;
 
                     Message($"Test {name}: {result:P0}");
                 }
+
+                Message($"Total score {total_score:P0}");
             });
 
             thread.IsBackground = true;

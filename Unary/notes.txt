@@ -1,11 +1,7 @@
 ﻿predator animals + carry>0 = boar etc
 my position -> oldest existing tc or other unit
 
-needs:
--scouting
--influence maps, etc
--team coop
--attacks, raids, defense, etc
+civ 7 has 124 units
 -
 
 c + a - b
@@ -30,15 +26,16 @@ micro test results
 8v8 yes byzantines post-imp
 10v10 yes briton imp
 
-2022-10-24 01:57:39Z: INFO: UI: start running 100 scenarios...
-2022-10-24 04:27:52Z: INFO: UI: done running scenarios
-2022-10-24 04:27:52Z: INFO: UI: Test TCR 4v4 no ballistics against Null: 9%
-2022-10-24 04:27:52Z: INFO: UI: Test TCR 5v5 no ballistics against Null: 48%
-2022-10-24 04:27:52Z: INFO: UI: Test TCR 6v6 no ballistics against Null: 61%
-2022-10-24 04:27:52Z: INFO: UI: Test TCR 8v8 ballistics against Null: 75%
-2022-10-24 04:27:52Z: INFO: UI: Test TCR 10v10 ballistics against Null: 76%
-2022-10-24 04:27:52Z: INFO: UI: Test TCR 4v4 no ballistics against ArcherMicroTest_E: -46%
-2022-10-24 04:27:52Z: INFO: UI: Test TCR 5v5 no ballistics against ArcherMicroTest_E: -14%
-2022-10-24 04:27:52Z: INFO: UI: Test TCR 6v6 no ballistics against ArcherMicroTest_E: 19%
-2022-10-24 04:27:52Z: INFO: UI: Test TCR 8v8 ballistics against ArcherMicroTest_E: 77%
-2022-10-24 04:27:52Z: INFO: UI: Test TCR 10v10 ballistics against ArcherMicroTest_E: 1%
+25-Oct-22 23:52:21: start running 100 scenarios...
+26-Oct-22 2:12:32: done running scenarios
+26-Oct-22 2:12:32: Test TCR 10v10 ballistics against ArcherMicroTest_E: 24%
+26-Oct-22 2:12:32: Test TCR 10v10 ballistics against Null: 81%
+26-Oct-22 2:12:32: Test TCR 4v4 no ballistics against ArcherMicroTest_E: -37%
+26-Oct-22 2:12:32: Test TCR 4v4 no ballistics against Null: 12%
+26-Oct-22 2:12:32: Test TCR 5v5 no ballistics against ArcherMicroTest_E: 24%
+26-Oct-22 2:12:32: Test TCR 5v5 no ballistics against Null: 48%
+26-Oct-22 2:12:32: Test TCR 6v6 no ballistics against ArcherMicroTest_E: 32%
+26-Oct-22 2:12:32: Test TCR 6v6 no ballistics against Null: 61%
+26-Oct-22 2:12:32: Test TCR 8v8 ballistics against ArcherMicroTest_E: 92%
+26-Oct-22 2:12:32: Test TCR 8v8 ballistics against Null: 83%
+26-Oct-22 2:12:32: Total score 5%

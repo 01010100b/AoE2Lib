@@ -68,6 +68,7 @@ namespace Unary.Jobs
                 }
             }
         }
+
         public override void OnRemoved()
         {
         }
@@ -87,6 +88,11 @@ namespace Unary.Jobs
 
         protected override void UpdateResourceGeneration()
         {
+            if (ShouldRareTick(101))
+            {
+                MaxOccupancies.Clear();
+            }
+            
             UpdatePathDistances();
             UpdateResources();
             UpdateWorkers();
@@ -95,7 +101,8 @@ namespace Unary.Jobs
         private void UpdatePathDistances()
         {
             PathDistances.Clear();
-            var width = (int)Math.Round(Unary.Mod.GetUnitWidth(Unary.GameState.MyPlayer.Civilization, Dropsite[ObjectData.BASE_TYPE]));
+            var civ = Unary.Mod.GetCivInfo(Unary.GameState.MyPlayer.Civilization);
+            var width = (int)Math.Round(civ.GetUnitWidth(Dropsite[ObjectData.BASE_TYPE]));
             var footprint = Utils.GetUnitFootprint(Dropsite.Position.PointX, Dropsite.Position.PointY, width, width, 1);
             var x = footprint.X;
             var y = footprint.Y;
@@ -271,7 +278,7 @@ namespace Unary.Jobs
                 distance = d;
             }
 
-            return Utils.GetGatherRate(rate, distance + 0.5, speed, carry);
+            return Utils.GetGatherRate(rate, 2 * (distance + 0.5), speed, carry);
         }
 
         private int GetMaxOccupancy(Tile tile)

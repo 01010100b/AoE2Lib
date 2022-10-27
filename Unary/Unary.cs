@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Unary.Managers;
+using Unary.Mods;
 using YTY.AocDatLib;
 
 namespace Unary
@@ -48,7 +49,7 @@ namespace Unary
 
         public void ExecuteCommand(Command command) => Commands.Add(command);
 
-        public bool ShouldRareTick(object obj, int rate) => obj.GetHashCode() % rate == GameState.Tick % rate;
+        public bool ShouldRareTick(object obj, int rate) => obj.GetHashCode() % Math.Max(1, rate) == GameState.Tick % Math.Max(1, rate);
 
         public T GetCached<T>(Func<T> func) where T : class
         {
@@ -183,18 +184,6 @@ namespace Unary
 
         private IEnumerable<Command> Test()
         {
-            var civ = GameState.MyPlayer.Civilization;
-
-            foreach (var unit in Mod.GetAvailableUnits(civ))
-            {
-                if (GameState.TryGetUnitType(unit, out var type))
-                {
-                    if (type[ObjectData.CMDID] == (int)CmdId.VILLAGER)
-                    {
-                        Log.Debug($"Civ {civ} has villager {unit} {Mod.GetUnitName(civ, unit)}");
-                    }
-                }
-            }
 
             yield break;
         }

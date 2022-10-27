@@ -30,9 +30,9 @@ namespace AoE2Lib.Games
         public bool LockTeams { get; set; } = false;
         public bool AllTechs { get; set; } = false;
         public bool Recorded { get; set; } = true;
-        public DateTime LastProgressTimeUtc { get; private set; } = DateTime.MinValue;
         public bool Finished { get; private set; } = false;
         public IEnumerable<Player> Winners => GetWinners();
+        internal DateTime LastProgressTimeUtc { get; private set; } = DateTime.MinValue;
 
         private readonly List<Player> Players = new();
         private TcpClient Client { get; set; }
@@ -107,13 +107,17 @@ namespace AoE2Lib.Games
 
                     Call("QuitGame");
                     Thread.Sleep(1000);
-                    Client.Close();
                     Finished = true;
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine(ex);
                     Finished = false;
+                }
+                finally
+                {
+                    Client?.Close();
+                    Client = null;
                 }
             });
 

@@ -9,9 +9,12 @@ namespace Unary
     public class Settings
     {
         public double CivilianJobLookAheadMinutes { get; set; } = 3;
+        public double MilitaryJobLookAheadMinutes { get; set; } = 30;
         public double KillAnimalRange { get; set; } = 4;
         public double EatAnimalRange { get; set; } = 7;
         public double KillSheepRange { get; set; } = 3;
         public int MaxDropsiteDistance { get; set; } = 3;
+        // combat
+        public double ThreatAvoidanceFactor { get; set; } = 2;
     }
 }

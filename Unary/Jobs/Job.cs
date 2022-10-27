@@ -38,7 +38,7 @@ namespace Unary.Jobs
             worker.CurrentJob = this;
             OnWorkerJoining(worker);
             Workers.Add(worker);
-            Unary.Log.Info($"Unit {worker.Unit.Id} taking job {Name}");
+            Unary.Log.Info($"Unit {worker.Name} taking job {Name}");
         }
 
         public void Leave(Controller worker)
@@ -46,7 +46,7 @@ namespace Unary.Jobs
             worker.CurrentJob = null;
             OnWorkerLeaving(worker);
             Workers.Remove(worker);
-            Unary.Log.Info($"Unit {worker.Unit.Id} leaving job {Name}");
+            Unary.Log.Info($"Unit {worker.Name} leaving job {Name}");
         }
 
         public void Close()

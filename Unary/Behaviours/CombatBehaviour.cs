@@ -25,11 +25,6 @@ namespace Unary.Behaviours
 
         protected override bool Tick(bool perform)
         {
-            if (perform)
-            {
-                //FindTarget();
-            }
-
             if (perform && Target != null)
             {
                 var range = Controller.Unit[ObjectData.RANGE];
@@ -47,6 +42,7 @@ namespace Unary.Behaviours
                     }
                 }
 
+                Controller.Unit.RequestUpdate();
                 Target.RequestUpdate();
                 Backup?.RequestUpdate();
                 Threat?.RequestUpdate();
@@ -59,30 +55,17 @@ namespace Unary.Behaviours
             }
         }
 
-        private void FindTarget()
-        {
-            Target = null;
-            Threat = null;
-
-            var pos = Controller.Unit.Position;
-
-            foreach (var target in Controller.Unary.UnitsManager.Targets)
-            {
-                if (Target == null || pos.DistanceTo(target.Position) < pos.DistanceTo(Target.Position))
-                {
-                    Target = target;
-                    Threat = target;
-                }
-            }
-        }
-
         private void CombatRanged()
         {
             var range = Controller.Unit[ObjectData.RANGE];
             var distance = Controller.Unit.Position.DistanceTo(Target.Position);
             var delta_pos = Position.Zero;
             
-            if (distance < range - 1)
+            if (distance > range + 1)
+            {
+                delta_pos = (Target.Position - Controller.Unit.Position).Normalize();
+            }
+            else if (distance < range)
             {
                 delta_pos = -1 * (Target.Position - Controller.Unit.Position).Normalize();
             }
@@ -163,12 +146,12 @@ namespace Unary.Behaviours
 
                 var ballistics = Threat[ObjectData.BALLISTICS] == 1;
 
-                if (ballistics && Controller.Unary.GameState.Tick % 2 == 0)
+                if (ballistics && ShouldRareTick(2))
                 {
                     pos *= -1;
                 }
 
-                return 2 * pos;
+                return Math.Max(0, Controller.Unary.Settings.ThreatAvoidanceFactor) * pos.Normalize();
             }
             else
             {

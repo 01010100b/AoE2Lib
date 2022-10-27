@@ -17,7 +17,7 @@ namespace Unary.Behaviours
 
         protected override bool Tick(bool perform)
         {
-            var seek = CurrentJob != null ? TimeSpan.FromMinutes(1) : TimeSpan.FromSeconds(5);
+            var seek = CurrentJob != null ? TimeSpan.FromMinutes(1) : TimeSpan.FromSeconds(3);
 
             if (Controller.Unary.GameState.GameTime - LastSeekTime > seek && ShouldRareTick(3))
             {
@@ -33,7 +33,15 @@ namespace Unary.Behaviours
 
         private void LookForJob()
         {
-            var lookahead = TimeSpan.FromMinutes(Controller.Unary.Settings.CivilianJobLookAheadMinutes);
+            var cmdid = (CmdId)Controller.Unit[ObjectData.CMDID];
+            var minutes = Controller.Unary.Settings.CivilianJobLookAheadMinutes;
+
+            if (cmdid == CmdId.MILITARY || cmdid == CmdId.MONK)
+            {
+                minutes = Controller.Unary.Settings.MilitaryJobLookAheadMinutes;
+            }
+
+            var lookahead = TimeSpan.FromMinutes(minutes);
             var best_profit = double.MinValue;
             Job best_job = null;
             var speed = Controller.Unit[ObjectData.SPEED] / 100d;
@@ -46,7 +54,7 @@ namespace Unary.Behaviours
                 if (pay > 0)
                 {
                     var distance = position.DistanceTo(job.Location);
-                    var travel = TimeSpan.FromSeconds(distance / speed);
+                    var travel = TimeSpan.FromSeconds(distance / Math.Max(0.01, speed));
                     var time = lookahead - travel;
                     var profit = pay * time.TotalSeconds;
 

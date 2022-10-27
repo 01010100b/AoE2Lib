@@ -21,7 +21,7 @@ namespace Unary.Behaviours
         {
             if (Controller.Unary.GameState.Map.IsOnMap(position))
             {
-                Controller.Unit.Target(position);
+                Controller.Unit.Target(position, stance: UnitStance.NO_ATTACK);
             }
         }
 

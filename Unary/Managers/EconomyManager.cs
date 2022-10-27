@@ -30,7 +30,14 @@ namespace Unary.Managers
 
         public int GetCurrentGatherers(Resource resource)
         {
-            throw new NotImplementedException();
+            var total = 0;
+
+            foreach (var job in Unary.UnitsManager.GetJobs().OfType<ResourceGenerationJob>())
+            {
+                total += job.WorkerCount;
+            }
+
+            return total;
         }
 
         public int GetDesiredGatherers(Resource resource)
@@ -189,7 +196,7 @@ namespace Unary.Managers
                     }
                 }
             }
-            else if (!EatingJob.TC.Exists)
+            else if (!EatingJob.TC.CanControl)
             {
                 EatingJob.Close();
                 Unary.UnitsManager.RemoveJob(EatingJob);
@@ -332,7 +339,8 @@ namespace Unary.Managers
 
         private double GetScore(UnitType dropsite, Tile tile, List<Unit> resources)
         {
-            var range = 0.5 * Unary.Mod.GetUnitWidth(Unary.GameState.MyPlayer.Civilization, dropsite.Id);
+            var civ = Unary.Mod.GetCivInfo(Unary.GameState.MyPlayer.Civilization);
+            var range = 0.5 * civ.GetUnitWidth(dropsite.Id);
             range += 3;
             var score = 0d;
 

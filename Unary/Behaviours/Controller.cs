@@ -16,7 +16,8 @@ namespace Unary.Behaviours
     {
         public readonly Unit Unit;
         public readonly Unary Unary;
-        public bool Exists => Unit.Targetable;
+        public string Name => Unit.Id.ToString();
+        public bool CanControl => Unit.Targetable;
         public Job CurrentJob { get; internal set; }
 
         private readonly List<Behaviour> Behaviours = new();

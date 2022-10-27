@@ -112,12 +112,10 @@ namespace Unary.Jobs
 
         protected override void OnWorkerJoining(Controller worker)
         {
-            throw new NotImplementedException();
         }
 
         protected override void OnWorkerLeaving(Controller worker)
         {
-            throw new NotImplementedException();
         }
 
         private int GetRequiredBuilders(Unit unit)
