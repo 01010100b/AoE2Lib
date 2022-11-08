@@ -13,7 +13,9 @@ namespace Unary.Jobs
     {
         public abstract string Name { get; }
         public abstract Position Location { get; }
+        public abstract int MaxWorkers { get; }
         public int WorkerCount => Workers.Count;
+        public int Vacancies => MaxWorkers - WorkerCount;
 
         protected readonly Unary Unary;
         private readonly HashSet<Controller> Workers = new();
@@ -25,9 +27,9 @@ namespace Unary.Jobs
 
         public abstract double GetPay(Controller worker);
         public abstract void Update();
-        public abstract void OnRemoved();
         protected abstract void OnWorkerJoining(Controller worker);
         protected abstract void OnWorkerLeaving(Controller worker);
+        protected abstract void OnClosed();
 
         public IEnumerable<Controller> GetWorkers() => Workers;
 
@@ -58,7 +60,9 @@ namespace Unary.Jobs
             }
 
             Workers.Clear();
+            OnClosed();
             Unary.Log.Info($"Job {Name} closed.");
+            Unary.JobManager.RemoveJob(this);
         }
 
         protected bool ShouldRareTick(int rate) => Unary.ShouldRareTick(this, rate);

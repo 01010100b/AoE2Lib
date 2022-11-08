@@ -65,7 +65,7 @@ namespace Unary.Managers
                 Tiles = tiles;
             }
 
-            public void Perform(Unary unary)
+            public void Perform(Unary unary, bool debug = false)
             {
                 if (IsTech)
                 {
@@ -75,7 +75,8 @@ namespace Unary.Managers
                 else if (Tiles != null && Tiles.Count > 0)
                 {
                     unary.Log.Info($"Building {UnitType.Id} at {Tiles.Count} positions, {UnitType.Pending} pending");
-                    UnitType.Build(Tiles, MaxCount, MaxPending);
+                    UnitType.Build(Tiles, MaxCount, MaxPending, debug);
+
                     ObjectPool.Add(Tiles);
                 }
                 else
@@ -116,7 +117,7 @@ namespace Unary.Managers
                     }
 
                     t = ObjectPool.Get(() => new List<Tile>(), x => x.Clear());
-                    t.AddRange(tiles.Take(100));
+                    t.AddRange(tiles.Take(1));
 
                     if (t.Count == 0)
                     {

@@ -1,5 +1,6 @@
 ﻿using AoE2Lib;
 using AoE2Lib.Bots;
+using AoE2Lib.Bots.GameElements;
 using Protos.Expert.Action;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace Unary
         public readonly Settings Settings;
         public Mod Mod { get; private set; }
         public UnitsManager UnitsManager => Managers.OfType<UnitsManager>().Single();
+        public JobManager JobManager => Managers.OfType<JobManager>().Single();
         public MapManager MapManager => Managers.OfType<MapManager>().Single();
         public TownManager TownManager => Managers.OfType<TownManager>().Single();
         public EconomyManager EconomyManager => Managers.OfType<EconomyManager>().Single();
@@ -114,6 +116,7 @@ namespace Unary
             }
             
             Managers.Add(new UnitsManager(this));
+            Managers.Add(new JobManager(this));
             Managers.Add(new MapManager(this));
             Managers.Add(new TownManager(this));
             Managers.Add(new EconomyManager(this));
@@ -184,7 +187,6 @@ namespace Unary
 
         private IEnumerable<Command> Test()
         {
-
             yield break;
         }
     }

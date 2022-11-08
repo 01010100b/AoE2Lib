@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unary.Behaviours;
 using Unary.Jobs;
 using YTY.AocDatLib;
 
@@ -15,7 +16,7 @@ namespace Unary.Managers
     {
         private static readonly Resource[] KnownResources = { Resource.WOOD, Resource.FOOD, Resource.GOLD, Resource.STONE };
         
-        private EatingJob EatingJob { get; set; } = null;
+        private EatJob EatingJob { get; set; } = null;
         private readonly Dictionary<Resource, List<Unit>> Resources = new();
         private readonly Dictionary<Resource, List<KeyValuePair<Tile, double>>> DropsitePositions = new();
 
@@ -32,7 +33,7 @@ namespace Unary.Managers
         {
             var total = 0;
 
-            foreach (var job in Unary.UnitsManager.GetJobs().OfType<ResourceGenerationJob>())
+            foreach (var job in Unary.JobManager.GetJobs().OfType<ResourceGenerationJob>())
             {
                 total += job.WorkerCount;
             }
@@ -116,7 +117,7 @@ namespace Unary.Managers
 
                     foreach (var tile in Unary.GameState.Map.GetTilesInRange(unit.Position, 5))
                     {
-                        if (Unary.MapManager.CanBuild(dropsite, tile, true))
+                        if (Unary.MapManager.CanBuild(dropsite, tile))
                         {
                             var score = GetScore(dropsite, tile, resources);
                             positions.Add(new(tile, score));
@@ -137,7 +138,7 @@ namespace Unary.Managers
                 capacities.Add(resource, 0);
             }
 
-            foreach (var job in Unary.UnitsManager.GetJobs().OfType<ResourceGenerationJob>())
+            foreach (var job in Unary.JobManager.GetJobs().OfType<ResourceGenerationJob>())
             {
                 if (!capacities.ContainsKey(job.Resource))
                 {
@@ -191,35 +192,34 @@ namespace Unary.Managers
                         if (controller.Unit.Position.DistanceTo(pos) < 3)
                         {
                             EatingJob = new(Unary, controller);
-                            Unary.UnitsManager.AddJob(EatingJob);
+                            Unary.JobManager.AddJob(EatingJob);
                         }
                     }
                 }
             }
-            else if (!EatingJob.TC.CanControl)
+            else if (!EatingJob.Dropsite.CanControl)
             {
                 EatingJob.Close();
-                Unary.UnitsManager.RemoveJob(EatingJob);
                 EatingJob = null;
             }
         }
 
         private void UpdateGatheringJobs()
         {
-            var jobs = ObjectPool.Get(() => new Dictionary<Unit, List<GatheringJob>>(), x => x.Clear());
+            var jobs = ObjectPool.Get(() => new Dictionary<Controller, List<GatherJob>>(), x => x.Clear());
 
-            foreach (var unit in Unary.UnitsManager.GetControllers().Select(x => x.Unit))
+            foreach (var controller in Unary.UnitsManager.GetControllers())
             {
-                var type = unit[ObjectData.BASE_TYPE];
+                var type = controller.Unit[ObjectData.BASE_TYPE];
                 var mod = Unary.Mod;
                 if (type == mod.TownCenter || type == mod.Mill || type == mod.LumberCamp || type == mod.GoldMiningCamp
                     || type == mod.StoneMiningCamp)
                 {
-                    jobs.Add(unit, new());
+                    jobs.Add(controller, new());
                 }
             }
 
-            foreach (var job in Unary.UnitsManager.GetJobs().OfType<GatheringJob>())
+            foreach (var job in Unary.JobManager.GetJobs().OfType<GatherJob>())
             {
                 if (jobs.TryGetValue(job.Dropsite, out var current))
                 {
@@ -229,7 +229,7 @@ namespace Unary.Managers
 
             foreach (var kvp in jobs)
             {
-                var type = kvp.Key[ObjectData.BASE_TYPE];
+                var type = kvp.Key.Unit[ObjectData.BASE_TYPE];
 
                 if (type == Unary.Mod.TownCenter && kvp.Value.Count < KnownResources.Length)
                 {
@@ -237,30 +237,30 @@ namespace Unary.Managers
                     {
                         if (!kvp.Value.Select(x => x.Resource).Contains(resource))
                         {
-                            var job = new GatheringJob(Unary, kvp.Key, resource);
-                            Unary.UnitsManager.AddJob(job);
+                            var job = new GatherJob(Unary, kvp.Key, resource);
+                            Unary.JobManager.AddJob(job);
                         }
                     }
                 }
                 else if (type == Unary.Mod.Mill && kvp.Value.Count < 1)
                 {
-                    var job = new GatheringJob(Unary, kvp.Key, Resource.FOOD);
-                    Unary.UnitsManager.AddJob(job);
+                    var job = new GatherJob(Unary, kvp.Key, Resource.FOOD);
+                    Unary.JobManager.AddJob(job);
                 }
                 else if (type == Unary.Mod.LumberCamp && kvp.Value.Count < 1)
                 {
-                    var job = new GatheringJob(Unary, kvp.Key, Resource.WOOD);
-                    Unary.UnitsManager.AddJob(job);
+                    var job = new GatherJob(Unary, kvp.Key, Resource.WOOD);
+                    Unary.JobManager.AddJob(job);
                 }
                 else if (type == Unary.Mod.GoldMiningCamp && kvp.Value.Count < 1)
                 {
-                    var job = new GatheringJob(Unary, kvp.Key, Resource.GOLD);
-                    Unary.UnitsManager.AddJob(job);
+                    var job = new GatherJob(Unary, kvp.Key, Resource.GOLD);
+                    Unary.JobManager.AddJob(job);
                 }
                 else if (type == Unary.Mod.StoneMiningCamp && kvp.Value.Count < 1)
                 {
-                    var job = new GatheringJob(Unary, kvp.Key, Resource.STONE);
-                    Unary.UnitsManager.AddJob(job);
+                    var job = new GatherJob(Unary, kvp.Key, Resource.STONE);
+                    Unary.JobManager.AddJob(job);
                 }
             }
 
@@ -272,7 +272,7 @@ namespace Unary.Managers
             var counts = ObjectPool.Get(() => new Dictionary<Resource, int>(), x => x.Clear());
             var total = ObjectPool.Get(() => new Dictionary<Resource, double>(), x => x.Clear());
 
-            foreach (var job in Unary.UnitsManager.GetJobs().OfType<ResourceGenerationJob>())
+            foreach (var job in Unary.JobManager.GetJobs().OfType<ResourceGenerationJob>())
             {
                 var resource = job.Resource;
                 var rate = job.GetRate();
@@ -346,7 +346,7 @@ namespace Unary.Managers
 
             foreach (var resource in resources)
             {
-                var distance = resource.Tile.Center.DistanceTo(tile.Position);
+                var distance = resource.Tile.Center.DistanceTo((Position)tile.Position);
 
                 if (distance <= range)
                 {
@@ -369,7 +369,7 @@ namespace Unary.Managers
             }
 
             positions.Sort((a, b) => b.Value.CompareTo(a.Value));
-            var tiles = positions.Select(x => x.Key).Where(x => Unary.MapManager.CanBuild(dropsite, x, true)).Take(100);
+            var tiles = positions.Select(x => x.Key).Where(x => Unary.MapManager.CanBuild(dropsite, x)).Take(100);
             Unary.ProductionManager.Build(dropsite, tiles, int.MaxValue, 1, ProductionManager.Priority.DROPSITE);
         }
     }

@@ -19,13 +19,13 @@ namespace Unary.Managers
 
         public Position MyPosition { get; private set; } = Position.Zero;
 
-        private readonly ConstructionJob Construction;
+        private readonly ConstructionManagementJob Construction;
         private readonly HashSet<Tile> InsideTiles = new();
 
         public TownManager(Unary unary) : base(unary)
         {
             Construction = new(unary);
-            unary.UnitsManager.AddJob(Construction);
+            unary.JobManager.AddJob(Construction);
         }
 
         public bool IsInside(Tile tile) => InsideTiles.Contains(tile);
@@ -38,7 +38,7 @@ namespace Unary.Managers
             {
                 if (Unary.GameState.Tick > 10 || tile.Position.DistanceTo(MyPosition) > 8)
                 {
-                    if (Unary.MapManager.CanBuild(building, tile, true))
+                    if (Unary.MapManager.CanBuild(building, tile))
                     {
                         yield return tile;
                     }

@@ -37,46 +37,5 @@ namespace AoE2Lib.Bots
 
             return max_carry / (gather_time + walk_time);
         }
-
-        public static int GetDamage(Dictionary<int, int> attacks, Dictionary<int, int> armours)
-        {
-            throw new NotImplementedException();
-
-            const int PIERCE = 3;
-            const int MELEE = 4;
-
-            var dmg = 0;
-            /*
-            if (DatUnit == null || target.DatUnit == null)
-            {
-                return 1;
-            }
-
-            var me = DatUnit;
-            var enemy = target.DatUnit;
-
-            foreach (var attack in me.Attacks)
-            {
-                if (attack.Id == PIERCE)
-                {
-                    dmg += Math.Max(0, this[ObjectData.BASE_ATTACK] - target[ObjectData.PIERCE_ARMOR]);
-                }
-                else if (attack.Id == MELEE)
-                {
-                    dmg += Math.Max(0, this[ObjectData.BASE_ATTACK] - target[ObjectData.STRIKE_ARMOR]);
-                }
-                else
-                {
-                    foreach (var armor in enemy.Armors)
-                    {
-                        if (attack.Id == armor.Id)
-                        {
-                            dmg += Math.Max(0, attack.Amount - armor.Amount);
-                        }
-                    }
-                }
-            }
-            */
-        }
     }
 }

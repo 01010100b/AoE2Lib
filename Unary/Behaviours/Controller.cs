@@ -97,15 +97,15 @@ namespace Unary.Behaviours
         {
             if (Unit[ObjectData.CMDID] == (int)CmdId.VILLAGER)
             {
-                AddBehaviour(new JobBehaviour());
-                AddBehaviour(new BuildBehaviour());
-                AddBehaviour(new EatBehaviour());
-                AddBehaviour(new GatherBehaviour());
+                AddBehaviour(new JobSeekingBehaviour());
+                AddBehaviour(new ConstructingBehaviour());
+                AddBehaviour(new EatingBehaviour());
+                AddBehaviour(new GatheringBehaviour());
             }
             else if (Unit[ObjectData.CMDID] == (int)CmdId.MILITARY)
             {
-                AddBehaviour(new JobBehaviour());
-                AddBehaviour(new CombatBehaviour());
+                AddBehaviour(new JobSeekingBehaviour());
+                AddBehaviour(new FightingBehaviour());
             }
         }
     }

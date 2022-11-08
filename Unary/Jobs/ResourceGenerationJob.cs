@@ -1,4 +1,5 @@
 ﻿using AoE2Lib.Bots;
+using AoE2Lib.Bots.GameElements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +11,16 @@ namespace Unary.Jobs
 {
     internal abstract class ResourceGenerationJob : Job
     {
+        public readonly Controller Dropsite;
         public abstract Resource Resource { get; }
-        public abstract int MaxWorkers { get; }
-        public int Vacancies => MaxWorkers - WorkerCount;
+        public override Position Location => Dropsite.Unit.Position;
 
         private readonly List<KeyValuePair<TimeSpan, double>> Dropoffs = new();
         private readonly Dictionary<Controller, int> Carried = new();
 
-        public ResourceGenerationJob(Unary unary) : base(unary)
+        public ResourceGenerationJob(Unary unary, Controller dropsite) : base(unary)
         {
+            Dropsite = dropsite;
         }
 
         public double GetRate()
@@ -73,6 +75,13 @@ namespace Unary.Jobs
             {
                 Dropoffs.Clear();
                 Carried.Clear();
+            }
+
+            if (!Dropsite.CanControl)
+            {
+                Close();
+
+                return;
             }
 
             foreach (var worker in GetWorkers())

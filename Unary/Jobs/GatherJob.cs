@@ -10,28 +10,25 @@ using Unary.Behaviours;
 
 namespace Unary.Jobs
 {
-    internal class GatheringJob : ResourceGenerationJob
+    internal class GatherJob : ResourceGenerationJob
     {
-        public readonly Unit Dropsite;
         public override Resource Resource => GatheredResource;
         public override int MaxWorkers => Math.Min(Math.Min(6, Resources.Count * 2), Unary.EconomyManager.GetDesiredGatherers(Resource));
         public override string Name => $"Gathering {Resource} at {Location}";
-        public override Position Location => Dropsite.Position;
 
         private readonly Resource GatheredResource;
         private readonly Dictionary<Tile, int> PathDistances = new();
         private readonly List<KeyValuePair<Tile, Unit>> Resources = new();
         private readonly Dictionary<Tile, int> MaxOccupancies = new();
 
-        public GatheringJob(Unary unary, Unit dropsite, Resource resource) : base(unary)
+        public GatherJob(Unary unary, Controller dropsite, Resource resource) : base(unary, dropsite)
         {
-            Dropsite = dropsite;
             GatheredResource = resource;
         }
 
         public override double GetPay(Controller worker)
         {
-            if (!worker.HasBehaviour<GatherBehaviour>())
+            if (!worker.HasBehaviour<GatheringBehaviour>())
             {
                 return -1;
             }
@@ -41,7 +38,7 @@ namespace Unary.Jobs
             }
             else if (HasWorker(worker))
             {
-                if (worker.TryGetBehaviour<GatherBehaviour>(out var behaviour))
+                if (worker.TryGetBehaviour<GatheringBehaviour>(out var behaviour))
                 {
                     return GetPay(behaviour.Tile);
                 }
@@ -69,22 +66,22 @@ namespace Unary.Jobs
             }
         }
 
-        public override void OnRemoved()
-        {
-        }
-
         protected override void OnWorkerJoining(Controller worker)
         {
         }
 
         protected override void OnWorkerLeaving(Controller worker)
         {
-            if (worker.TryGetBehaviour<GatherBehaviour>(out var behaviour))
+            if (worker.TryGetBehaviour<GatheringBehaviour>(out var behaviour))
             {
                 behaviour.Target = null;
                 behaviour.Tile = null;
             }
         }
+        protected override void OnClosed()
+        {
+        }
+
 
         protected override void UpdateResourceGeneration()
         {
@@ -102,8 +99,8 @@ namespace Unary.Jobs
         {
             PathDistances.Clear();
             var civ = Unary.Mod.GetCivInfo(Unary.GameState.MyPlayer.Civilization);
-            var width = (int)Math.Round(civ.GetUnitWidth(Dropsite[ObjectData.BASE_TYPE]));
-            var footprint = Utils.GetUnitFootprint(Dropsite.Position.PointX, Dropsite.Position.PointY, width, width, 1);
+            var width = civ.GetUnitWidth(Dropsite.Unit[ObjectData.BASE_TYPE]);
+            var footprint = Utils.GetUnitFootprint((int)Dropsite.Unit.Position.PointX, (int)Dropsite.Unit.Position.PointY, width, width, 1);
             var x = footprint.X;
             var y = footprint.Y;
             var map = Unary.GameState.Map;
@@ -198,7 +195,7 @@ namespace Unary.Jobs
 
             foreach (var worker in GetWorkers())
             {
-                if (worker.TryGetBehaviour<GatherBehaviour>(out var behaviour))
+                if (worker.TryGetBehaviour<GatheringBehaviour>(out var behaviour))
                 {
                     if (behaviour.Target == null || !behaviour.Target.Targetable)
                     {
@@ -215,7 +212,7 @@ namespace Unary.Jobs
 
                 foreach (var gatherer in Unary.UnitsManager.Gatherers)
                 {
-                    if (gatherer.TryGetBehaviour<GatherBehaviour>(out var behaviour))
+                    if (gatherer.TryGetBehaviour<GatheringBehaviour>(out var behaviour))
                     {
                         var tile = behaviour.Tile;
 
@@ -233,7 +230,7 @@ namespace Unary.Jobs
 
                 foreach (var worker in GetWorkers())
                 {
-                    if (worker.TryGetBehaviour<GatherBehaviour>(out var behaviour))
+                    if (worker.TryGetBehaviour<GatheringBehaviour>(out var behaviour))
                     {
                         if (behaviour.Target == null)
                         {

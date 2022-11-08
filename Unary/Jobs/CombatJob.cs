@@ -26,7 +26,7 @@ namespace Unary.Jobs
         {
             foreach (var unit in units)
             {
-                if (unit.TryGetBehaviour<CombatBehaviour>(out var behaviour))
+                if (unit.TryGetBehaviour<FightingBehaviour>(out var behaviour))
                 {
                     behaviour.Target = null;
                     behaviour.Backup = null;

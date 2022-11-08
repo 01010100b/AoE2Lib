@@ -63,7 +63,7 @@ namespace AoE2Lib.Bots.GameElements
             Bot.GameState.AddCommand(command);
         }
 
-        public void Build(IEnumerable<Tile> tiles, int max_count = int.MaxValue, int max_pending = int.MaxValue)
+        public void Build(IEnumerable<Tile> tiles, int max_count = int.MaxValue, int max_pending = int.MaxValue, bool debug = false)
         {
             if (Updated == false || Available == false || CountTotal >= max_count || Pending > max_pending)
             {
@@ -95,6 +95,13 @@ namespace AoE2Lib.Bots.GameElements
                     new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = -3 });
                 command.Add(new UpPendingPlacement() { InConstBuildingId = Id }, "!=", 0,
                     new SetGoal() { InConstGoalId = GL_ERROR, InConstValue = -4 });
+
+                if (debug)
+                {
+                    command.Add(new UpChatDataToSelf() { InTextFormattedString = "Build error %d", InGoalValue = GL_ERROR });
+                    command.Add(new UpSendFlare() { InGoalPoint = GL_X });
+                    debug = false;
+                }
 
                 var buildcommand = new Command();
                 buildcommand.Add(new Goal() { InConstGoalId = GL_ERROR }, "==", 0,

@@ -416,7 +416,7 @@ namespace AoE2Lib.Bots
                     {
                         if (!Units.ContainsKey(id))
                         {
-                            Units.Add(id, new Unit(Bot, id));
+                            Units.Add(id, new(Bot, id));
                             HighestId = Math.Max(HighestId, id);
                         }
                     }
@@ -435,7 +435,7 @@ namespace AoE2Lib.Bots
                 {
                     if (!Units.ContainsKey(id))
                     {
-                        Units.Add(id, new Unit(Bot, id));
+                        Units.Add(id, new(Bot, id));
                         HighestId = Math.Max(HighestId, id);
                         Bot.Log.Debug($"Id loop found {id}");
                     }

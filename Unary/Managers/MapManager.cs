@@ -70,7 +70,7 @@ namespace Unary.Managers
             }
         }
 
-        public bool CanBuild(UnitType building, Tile tile, bool exclusion)
+        public bool CanBuild(UnitType building, Tile tile, bool exclusion = true)
         {
             var land = true;
 
@@ -91,7 +91,7 @@ namespace Unary.Managers
 
             var civ = Unary.Mod.GetCivInfo(Unary.GameState.MyPlayer.Civilization);
             var id = building[ObjectData.BASE_TYPE];
-            var size = (int)Math.Round(civ.GetUnitWidth(id));
+            var size = civ.GetUnitWidth(id);
             var footprint = Utils.GetUnitFootprint(tile.X, tile.Y, size, size);
             var min_all = int.MaxValue;
             var min_left = int.MaxValue;
@@ -178,10 +178,10 @@ namespace Unary.Managers
             {
                 var civ = Unary.Mod.GetCivInfo(unit.Player.Civilization);
                 var id = unit[ObjectData.UPGRADE_TYPE];
-                var blocks_construction = unit[ObjectData.SPEED] == 0;
+                var blocks_construction = unit[ObjectData.SPEED] <= 0;
                 var blocks_passage = civ.BlocksPassage(id);
-                var width = Math.Max(1, (int)Math.Round(civ.GetUnitWidth(id)));
-                var height = Math.Max(1, (int)Math.Round(civ.GetUnitHeight(id)));
+                var width = civ.GetUnitWidth(id);
+                var height = civ.GetUnitHeight(id);
 
                 if (blocks_construction || blocks_passage)
                 {
@@ -224,8 +224,8 @@ namespace Unary.Managers
                         if (Unary.GameState.TryGetUnitType(Unary.Mod.Farm, out var farm))
                         {
                             civ = Unary.Mod.GetCivInfo(Unary.GameState.MyPlayer.Civilization);
-                            width = Math.Max(1, (int)Math.Round(civ.GetUnitWidth(farm.Id)));
-                            height = Math.Max(1, (int)Math.Round(civ.GetUnitHeight(farm.Id)));
+                            width = civ.GetUnitWidth(farm.Id);
+                            height = civ.GetUnitHeight(farm.Id);
 
                             foreach (var tile in Unary.TownManager.GetFarmTiles(unit))
                             {
@@ -257,6 +257,11 @@ namespace Unary.Managers
                 Algorithms.AddAllPathDistances(PathDistances, GetPathNeighbours);
                 Unary.Log.Debug($"Got {PathDistances.Count:N0} reachable tiles");
             }
+        }
+
+        private int GetExclusionZoneSize(Unit unit)
+        {
+            throw new NotImplementedException();
         }
 
         private readonly List<Tile> __PathNeighbours = new();

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Unary.Behaviours
 {
-    internal class CombatBehaviour : Behaviour
+    internal class FightingBehaviour : Behaviour
     {
         public Unit Target { get; set; } = null;
         public Unit Backup { get; set; } = null;
@@ -16,7 +16,7 @@ namespace Unary.Behaviours
 
         private bool Reversed { get; set; }
 
-        public CombatBehaviour() : base()
+        public FightingBehaviour() : base()
         {
             Reversed = GetHashCode() % 2 == 0;
         }

@@ -10,19 +10,19 @@ using Unary.Behaviours;
 
 namespace Unary.Jobs
 {
-    internal class DefendTownJob : CombatJob
+    internal class TownDefenseJob : CombatJob
     {
         public override string Name => "Defend town";
-
         public override Position Location => Unary.TownManager.MyPosition;
+        public override int MaxWorkers => 100;
 
-        public DefendTownJob(Unary unary) : base(unary)
+        public TownDefenseJob(Unary unary) : base(unary)
         {
         }
 
         public override double GetPay(Controller worker)
         {
-            if (worker.HasBehaviour<CombatBehaviour>())
+            if (worker.HasBehaviour<FightingBehaviour>())
             {
                 return 10;
             }
@@ -30,11 +30,6 @@ namespace Unary.Jobs
             {
                 return -1;
             }
-        }
-
-        public override void OnRemoved()
-        {
-            
         }
 
         public override void Update()
@@ -57,12 +52,17 @@ namespace Unary.Jobs
 
         protected override void OnWorkerLeaving(Controller worker)
         {
-            if (worker.TryGetBehaviour<CombatBehaviour>(out var behaviour))
+            if (worker.TryGetBehaviour<FightingBehaviour>(out var behaviour))
             {
                 behaviour.Target = null;
                 behaviour.Backup = null;
                 behaviour.Threat = null;
             }
         }
+
+        protected override void OnClosed()
+        {
+        }
+
     }
 }

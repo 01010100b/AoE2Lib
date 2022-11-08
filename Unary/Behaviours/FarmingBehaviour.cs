@@ -7,19 +7,15 @@ using System.Threading.Tasks;
 
 namespace Unary.Behaviours
 {
-    internal class EatBehaviour : Behaviour
+    internal class FarmingBehaviour : Behaviour
     {
-        public Unit Target { get; set; } = null;
-
-        public override int GetPriority() => 600;
+        public override int GetPriority() => 400;
+        public Tile Tile { get; set; } = null;
 
         protected override bool Tick(bool perform)
         {
-            if (perform && Target != null)
+            if (perform && Tile != null)
             {
-                Controller.Unit.Target(Target);
-                Target.RequestUpdate();
-
                 return true;
             }
             else

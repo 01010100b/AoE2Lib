@@ -4,16 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Unary.Jobs;
 
 namespace Unary.Behaviours
 {
-    internal class GatherBehaviour : Behaviour
+    internal class EatingBehaviour : Behaviour
     {
         public Unit Target { get; set; } = null;
-        public Tile Tile { get; set; } = null;
 
-        public override int GetPriority() => 500;
+        public override int GetPriority() => 600;
 
         protected override bool Tick(bool perform)
         {
@@ -21,12 +19,6 @@ namespace Unary.Behaviours
             {
                 Controller.Unit.Target(Target);
                 Target.RequestUpdate();
-
-                if (!Target.Targetable)
-                {
-                    Target = null;
-                    Tile = null;
-                }
 
                 return true;
             }

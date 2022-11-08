@@ -11,17 +11,14 @@ using Unary.Behaviours;
 
 namespace Unary.Jobs
 {
-    internal class ConstructionJob : Job
+    internal class ConstructionManagementJob : ManagementJob
     {
         public override string Name => "Town construction";
-        public override Position Location => Unary.TownManager.MyPosition;
         public int MaxBuilders { get; set; } = 4;
 
-        public ConstructionJob(Unary unary) : base(unary)
+        public ConstructionManagementJob(Unary unary) : base(unary)
         {
         }
-
-        public override double GetPay(Controller worker) => -1;
 
         public override void Update()
         {
@@ -40,7 +37,7 @@ namespace Unary.Jobs
 
                 if (Unary.UnitsManager.TryGetController(unit, out var controller))
                 {
-                    if (controller.TryGetBehaviour<BuildBehaviour>(out var behaviour))
+                    if (controller.TryGetBehaviour<ConstructingBehaviour>(out var behaviour))
                     {
                         if (behaviour.Construction == null)
                         {
@@ -56,7 +53,7 @@ namespace Unary.Jobs
 
             foreach (var builder in current_builders)
             {
-                if (builder.TryGetBehaviour<BuildBehaviour>(out var behaviour))
+                if (builder.TryGetBehaviour<ConstructingBehaviour>(out var behaviour))
                 {
                     if (remaining_spots.ContainsKey(behaviour.Construction))
                     {
@@ -67,7 +64,7 @@ namespace Unary.Jobs
 
             foreach (var builder in current_builders)
             {
-                if (builder.TryGetBehaviour<BuildBehaviour>(out var behaviour))
+                if (builder.TryGetBehaviour<ConstructingBehaviour>(out var behaviour))
                 {
                     var retask = true;
 
@@ -106,17 +103,10 @@ namespace Unary.Jobs
             ObjectPool.Add(available_builders);
         }
 
-        public override void OnRemoved()
+        protected override void OnClosed()
         {
         }
 
-        protected override void OnWorkerJoining(Controller worker)
-        {
-        }
-
-        protected override void OnWorkerLeaving(Controller worker)
-        {
-        }
 
         private int GetRequiredBuilders(Unit unit)
         {
@@ -142,7 +132,7 @@ namespace Unary.Jobs
                 }
             }
 
-            if (builder.TryGetBehaviour<BuildBehaviour>(out var behaviour))
+            if (builder.TryGetBehaviour<ConstructingBehaviour>(out var behaviour))
             {
                 behaviour.Construction = best;
             }
@@ -171,7 +161,7 @@ namespace Unary.Jobs
 
             if (best != null)
             {
-                if (best.TryGetBehaviour<BuildBehaviour>(out var behaviour))
+                if (best.TryGetBehaviour<ConstructingBehaviour>(out var behaviour))
                 {
                     behaviour.Construction = construction;
                 }

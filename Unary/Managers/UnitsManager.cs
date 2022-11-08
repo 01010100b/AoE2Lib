@@ -31,22 +31,6 @@ namespace Unary.Managers
 
         public IEnumerable<Controller> GetControllers() => Controllers.Values;
 
-        public IEnumerable<Job> GetJobs() => Jobs;
-
-        public void AddJob(Job job)
-        {
-            Jobs.Add(job);
-            Unary.Log.Info($"Created job {job}");
-        }
-
-        public void RemoveJob(Job job)
-        {
-            job.Close();
-            Jobs.Remove(job);
-            job.OnRemoved();
-            Unary.Log.Info($"Removed job {job}");
-        }
-
         protected internal override void Update()
         {
             var actions = ObjectPool.Get(() => new List<Action>(), x => x.Clear());
@@ -60,10 +44,11 @@ namespace Unary.Managers
         private void UpdateJobs()
         {
             var times = ObjectPool.Get(() => new Dictionary<Type, KeyValuePair<int, TimeSpan>>(), x => x.Clear());
-            var jobs = ObjectPool.Get(() => new List<KeyValuePair<Type, KeyValuePair<int, TimeSpan>>>(), x => x.Clear());
+            var jobs = ObjectPool.Get(() => new List<Job>(), x => x.Clear());
+            jobs.AddRange(Jobs);
             var sw = new Stopwatch();
 
-            foreach (var job in Jobs)
+            foreach (var job in jobs)
             {
                 var type = job.GetType();
 
@@ -79,9 +64,7 @@ namespace Unary.Managers
                 times[type] = new KeyValuePair<int, TimeSpan>(kvp.Key + 1, kvp.Value + time);
             }
 
-            jobs.AddRange(times);
-            jobs.Sort((a, b) => b.Value.Value.CompareTo(a.Value.Value));
-            foreach (var job in jobs)
+            foreach (var job in times.OrderByDescending(x => x.Value.Value))
             {
                 Unary.Log.Info($"{job.Key.Name} ran {job.Value.Key} times for a total of {job.Value.Value.TotalMilliseconds:N2} ms");
             }
@@ -143,7 +126,7 @@ namespace Unary.Managers
 
             foreach (var controller in GetControllers())
             {
-                if (controller.HasBehaviour<GatherBehaviour>())
+                if (controller.HasBehaviour<GatheringBehaviour>())
                 {
                     gatherers.Add(controller);
                 }

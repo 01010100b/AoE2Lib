@@ -8,7 +8,7 @@ using Unary.Jobs;
 
 namespace Unary.Behaviours
 {
-    internal class JobBehaviour : Behaviour
+    internal class JobSeekingBehaviour : Behaviour
     {
         private TimeSpan LastSeekTime { get; set; } = TimeSpan.FromHours(-1);
         private Job CurrentJob => Controller.CurrentJob;
@@ -44,10 +44,10 @@ namespace Unary.Behaviours
             var lookahead = TimeSpan.FromMinutes(minutes);
             var best_profit = double.MinValue;
             Job best_job = null;
-            var speed = Controller.Unit[ObjectData.SPEED] / 100d;
+            var speed = Math.Max(0, Controller.Unit[ObjectData.SPEED]) / 100d;
             var position = Controller.Unit.Position;
 
-            foreach (var job in Controller.Unary.UnitsManager.GetJobs())
+            foreach (var job in Controller.Unary.JobManager.GetJobs())
             {
                 var pay = job.GetPay(Controller);
 

@@ -9,12 +9,12 @@ namespace Unary.Managers
 {
     internal class MilitaryManager : Manager
     {
-        private readonly DefendTownJob DefendTownJob;
+        private readonly TownDefenseJob DefendTownJob;
 
         public MilitaryManager(Unary unary) : base(unary)
         {
             DefendTownJob = new(unary);
-            unary.UnitsManager.AddJob(DefendTownJob);
+            unary.JobManager.AddJob(DefendTownJob);
         }
 
         protected internal override void Update()

@@ -10,24 +10,22 @@ using Unary.Behaviours;
 
 namespace Unary.Jobs
 {
-    internal class EatingJob : ResourceGenerationJob
+    internal class EatJob : ResourceGenerationJob
     {
         public override Resource Resource => Resource.FOOD;
         public override int MaxWorkers => Math.Min(Target != null ? 7 : 0, Unary.EconomyManager.GetDesiredGatherers(Resource.FOOD));
         public override string Name => $"Eating at {Location}";
-        public override Position Location => TC.Unit.Position + new Position(-1, 1);
-        public readonly Controller TC;
+        public override Position Location => Dropsite.Unit.Position + new Position(-1, 1);
         private Unit Target { get; set; } = null;
         private readonly List<Unit> Targets = new();
 
-        public EatingJob(Unary unary, Controller tc) : base(unary)
+        public EatJob(Unary unary, Controller dropsite) : base(unary, dropsite)
         {
-            TC = tc;
         }
 
         public override double GetPay(Controller worker)
         {
-            if (!worker.HasBehaviour<EatBehaviour>())
+            if (!worker.HasBehaviour<EatingBehaviour>())
             {
                 return -1;
             }
@@ -48,9 +46,6 @@ namespace Unary.Jobs
                 return 1;
             }
         }
-        public override void OnRemoved()
-        {
-        }
 
         protected override void OnWorkerJoining(Controller worker)
         {
@@ -58,10 +53,14 @@ namespace Unary.Jobs
 
         protected override void OnWorkerLeaving(Controller worker)
         {
-            if (worker.TryGetBehaviour<EatBehaviour>(out var behaviour))
+            if (worker.TryGetBehaviour<EatingBehaviour>(out var behaviour))
             {
                 behaviour.Target = null;
             }
+        }
+
+        protected override void OnClosed()
+        {
         }
 
         protected override void UpdateResourceGeneration()
@@ -133,7 +132,7 @@ namespace Unary.Jobs
 
             foreach (var worker in GetWorkers())
             {
-                if (worker.TryGetBehaviour<EatBehaviour>(out var behaviour))
+                if (worker.TryGetBehaviour<EatingBehaviour>(out var behaviour))
                 {
                     behaviour.Target = Target;
                 }

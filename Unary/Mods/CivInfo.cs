@@ -1,4 +1,6 @@
 ﻿using AoE2Lib;
+using AoE2Lib.Bots;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +15,8 @@ namespace Unary.Mods
         public readonly int Id;
         public readonly HashSet<int> AvailableUnits = new();
         public readonly HashSet<int> AvailableTechs = new();
+        public int FarmId { get; } = 50;
+        public int TownCenterId { get; } = 109;
 
         private readonly Dictionary<int, DatUnit> AllUnits = new();
         private readonly Mod Mod;
@@ -28,9 +32,34 @@ namespace Unary.Mods
         }
 
         public string GetUnitName(int unit) => Mod.GetString(AllUnits[unit].Name);
-        public double GetUnitWidth(int unit) => AllUnits[unit].CollisionSizeX * 2;
-        public double GetUnitHeight(int unit) => AllUnits[unit].CollisionSizeY * 2;
+        public Position GetUnitCollisionSize(int unit) => new Position(AllUnits[unit].CollisionSizeX, AllUnits[unit].CollisionSizeY);
+        public int GetUnitWidth(int unit) => Math.Max(1, (int)Math.Round(AllUnits[unit].CollisionSizeX * 2));
+        public int GetUnitHeight(int unit) => Math.Max(1, (int)Math.Round(AllUnits[unit].CollisionSizeY * 2));
         public int GetUnitHillMode(int unit) => AllUnits[unit].HillMode;
+
+        public IEnumerable<Resource> GetDropsiteResources(int unit)
+        {
+            if (unit == TownCenterId)
+            {
+                yield return Resource.WOOD;
+                yield return Resource.FOOD;
+                yield return Resource.GOLD;
+                yield return Resource.STONE;
+            }
+            else if (unit == Mod.Mill) // mill
+            {
+                yield return Resource.FOOD;
+            }
+            else if (unit == Mod.LumberCamp)
+            {
+                yield return Resource.WOOD;
+            }
+            else if (unit == Mod.GoldMiningCamp)
+            {
+                yield return Resource.GOLD;
+                yield return Resource.STONE;
+            }
+        }
 
         public IEnumerable<KeyValuePair<int, int>> GetUnitTechEffectCounts(int unit)
         {
