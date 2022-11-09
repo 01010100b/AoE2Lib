@@ -3,6 +3,7 @@ using AoE2Lib.Bots;
 using AoE2Lib.Bots.GameElements;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -72,6 +73,11 @@ namespace Unary.Managers
 
         public bool CanBuild(UnitType building, Tile tile, bool exclusion = true)
         {
+            if (!tile.Explored)
+            {
+                return false;
+            }
+
             var land = true;
 
             if (land && !tile.IsOnLand)
@@ -79,7 +85,7 @@ namespace Unary.Managers
                 return false;
             }
 
-            if (ConstructionBlockedTiles.Contains(tile))
+            if (IsConstructionBlocked(tile))
             {
                 return false;
             }
@@ -111,7 +117,7 @@ namespace Unary.Managers
                             return false;
                         }
 
-                        if (ConstructionBlockedTiles.Contains(t))
+                        if (IsConstructionBlocked(t))
                         {
                             return false;
                         }

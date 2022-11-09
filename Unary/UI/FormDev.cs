@@ -18,6 +18,7 @@ namespace Unary.UI
 {
     public partial class FormDev : Form
     {
+        
         private readonly UISettings UISettings;
         private readonly Ladder Ladder;
 
@@ -43,8 +44,7 @@ namespace Unary.UI
 
         private void ButtonScenarios_Click(object sender, EventArgs e)
         {
-            const int GAMES_PER_SCENARIO = 100;
-
+            const int GAMES_PER_SCENARIO = 10;
             ButtonScenarios.Enabled = false;
             ButtonLadder.Enabled = false;
             Refresh();
@@ -61,7 +61,7 @@ namespace Unary.UI
                 {
                     foreach (var opponent in opponents)
                     {
-                        foreach (var scenario in Scenarios.GetCombatRangedTests())
+                        foreach (var scenario in Scenarios.GetScoutingTests())
                         {
                             scenario.OpponentAiFile = opponent;
                             scenarios.Add(scenario);
@@ -87,25 +87,7 @@ namespace Unary.UI
                 Message("done running scenarios");
 
                 var total_score = Scenarios.GetScores(games, out var scores);
-                /*
-                var scores = new Dictionary<string, double>();
-                var counts = new Dictionary<string, int>();
 
-                foreach (var game in games)
-                {
-                    var name = game.Value.ToString();
-                    var score = game.Value.GetScore(game.Key);
-
-                    if (!scores.ContainsKey(name))
-                    {
-                        scores.Add(name, 0);
-                        counts.Add(name, 0);
-                    }
-
-                    scores[name] += score;
-                    counts[name]++;
-                }
-                */
                 foreach (var score in scores.OrderBy(x => x.Key))
                 {
                     var name = score.Key;

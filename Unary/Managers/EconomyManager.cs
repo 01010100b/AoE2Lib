@@ -346,7 +346,7 @@ namespace Unary.Managers
 
             foreach (var resource in resources)
             {
-                var distance = resource.Tile.Center.DistanceTo((Position)tile.Position);
+                var distance = resource.Tile.Center.DistanceTo(tile.Position);
 
                 if (distance <= range)
                 {

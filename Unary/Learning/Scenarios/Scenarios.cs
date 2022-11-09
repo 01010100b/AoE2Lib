@@ -97,7 +97,28 @@ namespace Unary.Learning.Scenarios
                 scenario.PerfectScore = 336;
                 scenario.HighResources = true;
                 scenario.MapExplored = true;
-                scenario.TimeLimit = 1200;
+                scenario.SetTimeLimit(TimeSpan.FromMinutes(10));
+            }
+
+            return scenarios;
+        }
+
+        public static List<Scenario> GetScoutingTests()
+        {
+            var scenarios = new List<Scenario>()
+            {
+                new Scenario()
+                {
+                    Name = "TS clear",
+                    Civilization = Civilization.BRITONS
+                }
+            };
+
+            foreach (var scenario in scenarios)
+            {
+                scenario.PerfectScore = 200;
+                scenario.HighResources = true;
+                scenario.SetTimeLimit(TimeSpan.FromMinutes(5));
             }
 
             return scenarios;

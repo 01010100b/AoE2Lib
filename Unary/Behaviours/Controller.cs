@@ -102,10 +102,18 @@ namespace Unary.Behaviours
                 AddBehaviour(new EatingBehaviour());
                 AddBehaviour(new GatheringBehaviour());
             }
-            else if (Unit[ObjectData.CMDID] == (int)CmdId.MILITARY)
+
+            if (Unit[ObjectData.CMDID] == (int)CmdId.MILITARY)
             {
                 AddBehaviour(new JobSeekingBehaviour());
                 AddBehaviour(new FightingBehaviour());
+                AddBehaviour(new ScoutingBehaviour());
+            }
+
+            if (Unit[ObjectData.CMDID] == (int)CmdId.LIVESTOCK_GAIA)
+            {
+                AddBehaviour(new JobSeekingBehaviour());
+                //AddBehaviour(new ScoutingBehaviour());
             }
         }
     }

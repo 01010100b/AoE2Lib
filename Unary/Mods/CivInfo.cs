@@ -17,6 +17,7 @@ namespace Unary.Mods
         public readonly HashSet<int> AvailableTechs = new();
         public int FarmId { get; } = 50;
         public int TownCenterId { get; } = 109;
+        public int MillId { get; } = 68;
 
         private readonly Dictionary<int, DatUnit> AllUnits = new();
         private readonly Mod Mod;

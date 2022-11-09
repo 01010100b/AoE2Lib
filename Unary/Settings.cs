@@ -16,5 +16,7 @@ namespace Unary
         public int MaxDropsiteDistance { get; set; } = 3;
         // combat
         public double ThreatAvoidanceFactor { get; set; } = 2;
+        // scouting
+        public double ScoutingTilesPerRegion { get; set; } = 1;
     }
 }

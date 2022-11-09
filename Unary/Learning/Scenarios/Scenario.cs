@@ -20,6 +20,12 @@ namespace Unary.Learning.Scenarios
         public int TimeLimit { get; set; }
         public string OpponentAiFile { get; set; }
 
+        public void SetTimeLimit(TimeSpan limit)
+        {
+            var years = limit.TotalSeconds / 5;
+            TimeLimit = (int)Math.Round(10 * years);
+        }
+
         public Game CreateGame(string my_ai_file)
         {
             var game = new Game()
@@ -51,18 +57,22 @@ namespace Unary.Learning.Scenarios
                 Team = Team.NO_TEAM
             };
 
-            var opponent = new Player()
-            {
-                PlayerNumber = 2,
-                IsHuman = false,
-                AiFile = OpponentAiFile,
-                Civilization = (int)Civilization,
-                Color = Color.COLOR_2,
-                Team = Team.NO_TEAM
-            };
-
             game.AddPlayer(me);
-            game.AddPlayer(opponent);
+
+            if (OpponentAiFile != null)
+            {
+                var opponent = new Player()
+                {
+                    PlayerNumber = 2,
+                    IsHuman = false,
+                    AiFile = OpponentAiFile,
+                    Civilization = (int)Civilization,
+                    Color = Color.COLOR_2,
+                    Team = Team.NO_TEAM
+                };
+
+                game.AddPlayer(opponent);
+            }
 
             return game;
         }

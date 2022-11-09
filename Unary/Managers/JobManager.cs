@@ -15,6 +15,7 @@ namespace Unary.Managers
 
         public JobManager(Unary unary) : base(unary)
         {
+            AddJob(new ScoutJob(unary));
         }
 
         public IEnumerable<Job> GetJobs() => Jobs;

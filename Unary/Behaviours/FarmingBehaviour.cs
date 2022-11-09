@@ -10,18 +10,26 @@ namespace Unary.Behaviours
     internal class FarmingBehaviour : Behaviour
     {
         public override int GetPriority() => 400;
-        public Tile Tile { get; set; } = null;
+        public Unit Farm { get; set; } = null;
 
         protected override bool Tick(bool perform)
         {
-            if (perform && Tile != null)
+            if (perform && Farm != null)
             {
-                return true;
+                if (!Farm.Targetable)
+                {
+                    Farm = null;
+                }
+
+                if (Farm != null)
+                {
+                    Controller.Unit.Target(Farm);
+
+                    return true;
+                }
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
     }
 }

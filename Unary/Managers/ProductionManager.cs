@@ -76,7 +76,6 @@ namespace Unary.Managers
                 {
                     unary.Log.Info($"Building {UnitType.Id} at {Tiles.Count} positions, {UnitType.Pending} pending");
                     UnitType.Build(Tiles, MaxCount, MaxPending, debug);
-
                     ObjectPool.Add(Tiles);
                 }
                 else
@@ -117,7 +116,7 @@ namespace Unary.Managers
                     }
 
                     t = ObjectPool.Get(() => new List<Tile>(), x => x.Clear());
-                    t.AddRange(tiles.Take(1));
+                    t.AddRange(tiles.Take(100));
 
                     if (t.Count == 0)
                     {

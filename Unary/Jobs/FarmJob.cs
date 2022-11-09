@@ -54,7 +54,7 @@ namespace Unary.Jobs
         {
             if (worker.TryGetBehaviour<FarmingBehaviour>(out var behaviour))
             {
-                behaviour.Tile = null;
+                behaviour.Farm = null;
             }
         }
 
@@ -66,29 +66,54 @@ namespace Unary.Jobs
         {
             Assignments.Clear();
 
-            foreach (var tile in GetFarmTiles())
-            {
-                Assignments.Add(tile, null);
-            }
+            var civ = Unary.Mod.GetCivInfo(Unary.GameState.MyPlayer.Civilization);
 
-            foreach (var worker in GetWorkers())
+            if (Unary.GameState.TryGetUnitType(civ.FarmId, out var type))
             {
-                if (worker.TryGetBehaviour<FarmingBehaviour>(out var behaviour))
+                if (!type.Available)
                 {
-                    if (behaviour.Tile != null && !Assignments.ContainsKey(behaviour.Tile))
-                    {
-                        behaviour.Tile = null;
-                    }
+                    return;
+                }
 
-                    if (behaviour.Tile == null)
+                foreach (var tile in GetFarmTiles())
+                {
+                    Assignments.Add(tile, null);
+                }
+
+                foreach (var worker in GetWorkers())
+                {
+                    if (worker.TryGetBehaviour<FarmingBehaviour>(out var behaviour))
                     {
-                        foreach (var kvp in Assignments)
+                        if (behaviour.Farm == null)
                         {
-                            if (kvp.Value == null)
+                            foreach (var kvp in Assignments)
                             {
-                                Assignments[kvp.Key] = worker;
+                                if (kvp.Value == null)
+                                {
+                                    Assignments[kvp.Key] = worker;
+                                }
                             }
                         }
+                    }
+                }
+
+                foreach (var assignment in Assignments.Where(x => x.Value != null))
+                {
+                    var tile = assignment.Key;
+                    var farm = tile.Units.Where(x => x[ObjectData.BASE_TYPE] == civ.FarmId).FirstOrDefault();
+
+                    if (farm != null)
+                    {
+                        var worker = assignment.Value;
+
+                        if (worker.TryGetBehaviour<FarmingBehaviour>(out var behaviour))
+                        {
+                            behaviour.Farm = farm;
+                        }
+                    }
+                    else
+                    {
+                        Unary.ProductionManager.Build(type, new[] { tile }, 10000, 3, ProductionManager.Priority.FARM);
                     }
                 }
             }
@@ -107,14 +132,35 @@ namespace Unary.Jobs
         private IEnumerable<Tile> GetFarmTiles()
         {
             var civ = Unary.Mod.GetCivInfo(Unary.GameState.MyPlayer.Civilization);
-            var deltas = Dropsite.Unit[ObjectData.BASE_TYPE] == civ.TownCenterId ? TC_FARM_DELTAS : MILL_FARM_DELTAS;
-            var pos = Dropsite.Unit.Position;
 
-            foreach (var delta in deltas)
+            if (Unary.GameState.TryGetUnitType(civ.FarmId, out var farm))
             {
+                var deltas = Dropsite.Unit[ObjectData.BASE_TYPE] == civ.TownCenterId ? TC_FARM_DELTAS : MILL_FARM_DELTAS;
+                var pos = Dropsite.Unit.Position;
 
+                foreach (var delta in deltas)
+                {
+                    var p = pos + Position.FromPoint(delta.X, delta.Y);
+
+                    if (Unary.GameState.Map.TryGetTile(p, out var tile))
+                    {
+                        var current = tile.Units.Count(x => x[ObjectData.BASE_TYPE] == civ.FarmId);
+
+                        if (current == 0)
+                        {
+                            if (Unary.MapManager.CanBuild(farm, tile, false))
+                            {
+                                current = 1;
+                            }
+                        }
+
+                        if (current > 0)
+                        {
+                            yield return tile;
+                        }
+                    }
+                }
             }
-            throw new NotImplementedException();
         }
 
         private IEnumerable<Tile> GetFarmTilesNew()
