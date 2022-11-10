@@ -15,18 +15,22 @@ namespace Unary.Managers
 
         public JobManager(Unary unary) : base(unary)
         {
-            AddJob(new ScoutJob(unary));
         }
 
         public IEnumerable<Job> GetJobs() => Jobs;
 
-        public void AddJob(Job job)
+        public T GetSingleJob<T>() where T : Job
+        {
+            return Jobs.OfType<T>().Single();
+        }
+
+        internal void AddJob(Job job)
         {
             Jobs.Add(job);
             Unary.Log.Info($"Created job {job}");
         }
 
-        public void RemoveJob(Job job)
+        internal void RemoveJob(Job job)
         {
             Jobs.Remove(job);
             Unary.Log.Info($"Removed job {job}");
@@ -36,7 +40,6 @@ namespace Unary.Managers
         {
             var actions = ObjectPool.Get(() => new List<Action>(), x => x.Clear());
             actions.Add(UpdateJobs);
-
             Run(actions);
             ObjectPool.Add(actions);
         }
@@ -58,7 +61,7 @@ namespace Unary.Managers
                 }
 
                 sw.Restart();
-                job.Update();
+                job.Tick();
                 var time = sw.Elapsed;
                 var kvp = times[type];
                 times[type] = new KeyValuePair<int, TimeSpan>(kvp.Key + 1, kvp.Value + time);

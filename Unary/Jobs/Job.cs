@@ -18,18 +18,33 @@ namespace Unary.Jobs
         public int Vacancies => MaxWorkers - WorkerCount;
 
         protected readonly Unary Unary;
+
         private readonly HashSet<Controller> Workers = new();
+        private bool Initialized { get; set; } = false;
 
         public Job(Unary unary)
         {
             Unary = unary;
+            unary.JobManager.AddJob(this);
         }
 
         public abstract double GetPay(Controller worker);
-        public abstract void Update();
+        protected abstract void Initialize();
+        protected abstract void Update();
         protected abstract void OnWorkerJoining(Controller worker);
         protected abstract void OnWorkerLeaving(Controller worker);
         protected abstract void OnClosed();
+
+        public void Tick()
+        {
+            if (!Initialized)
+            {
+                Initialize();
+                Initialized = true;
+            }
+
+            Update();
+        }
 
         public IEnumerable<Controller> GetWorkers() => Workers;
 
@@ -37,6 +52,11 @@ namespace Unary.Jobs
 
         public void Join(Controller worker)
         {
+            if (worker.CurrentJob != null)
+            {
+                worker.CurrentJob.Leave(worker);
+            }
+
             worker.CurrentJob = this;
             OnWorkerJoining(worker);
             Workers.Add(worker);

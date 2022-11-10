@@ -14,7 +14,6 @@ namespace Unary.Managers
         public MilitaryManager(Unary unary) : base(unary)
         {
             DefendTownJob = new(unary);
-            unary.JobManager.AddJob(DefendTownJob);
         }
 
         protected internal override void Update()

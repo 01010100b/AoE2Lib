@@ -1,4 +1,5 @@
-﻿using AoE2Lib.Bots.GameElements;
+﻿using AoE2Lib.Bots;
+using AoE2Lib.Bots.GameElements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,11 @@ namespace Unary.Behaviours
         {
             if (perform && Construction != null)
             {
-                Controller.Unit.Target(Construction);
+                if (Unit[ObjectData.TARGET_ID] != Construction.Id)
+                {
+                    Unit.Target(Construction);
+                }
+
                 Construction.RequestUpdate();
 
                 if (!Construction.Targetable)

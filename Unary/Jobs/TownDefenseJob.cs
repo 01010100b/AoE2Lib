@@ -31,8 +31,11 @@ namespace Unary.Jobs
                 return -1;
             }
         }
+        protected override void Initialize()
+        {
+        }
 
-        public override void Update()
+        protected override void Update()
         {
             var targets = ObjectPool.Get(() => new Dictionary<Unit, double>(), x => x.Clear());
             

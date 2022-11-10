@@ -7,11 +7,14 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unary.Jobs;
 
 namespace Unary.Managers
 {
     internal class ProductionManager : Manager
     {
+        private static readonly Resource[] KnownResources = new[] { Resource.WOOD, Resource.FOOD, Resource.GOLD, Resource.STONE };
+        
         public static class Priority
         {
             public const int
@@ -87,11 +90,16 @@ namespace Unary.Managers
         }
 
         private readonly List<ProductionTask> ProductionTasks = new();
+        private readonly Dictionary<Resource, int> DesiredGatherers = new();
+        private readonly Dictionary<Resource, int> CurrentGatherers = new();
 
         public ProductionManager(Unary unary) : base(unary)
         {
 
         }
+
+        public int GetDesiredGatherers(Resource resource) => DesiredGatherers[resource];
+        public int GetCurrentGatherers(Resource resource) => CurrentGatherers[resource];
 
         public void Research(Technology technology, int priority, bool blocking = true)
         {
@@ -120,7 +128,9 @@ namespace Unary.Managers
 
                     if (t.Count == 0)
                     {
-                        throw new ArgumentOutOfRangeException(nameof(tiles), "Need at least 1 tile");
+                        ObjectPool.Add(t);
+
+                        return;
                     }
                 }
 
@@ -139,6 +149,37 @@ namespace Unary.Managers
         }
 
         protected internal override void Update()
+        {
+            var actions = ObjectPool.Get(() => new List<Action>(), x => x.Clear());
+            actions.Add(UpdateGatherers);
+            actions.Add(Produce);
+            Run(actions);
+            ObjectPool.Add(actions);
+        }
+
+        private void UpdateGatherers()
+        {
+            DesiredGatherers.Clear();
+            CurrentGatherers.Clear();
+
+            foreach (var resource in KnownResources)
+            {
+                DesiredGatherers[resource] = Unary.StrategyManager.GetDesiredGatherers(resource);
+                CurrentGatherers[resource] = 0;
+            }
+
+            foreach (var job in Unary.JobManager.GetJobs().OfType<ResourceGenerationJob>())
+            {
+                if (!CurrentGatherers.ContainsKey(job.Resource))
+                {
+                    CurrentGatherers.Add(job.Resource, 0);
+                }
+
+                CurrentGatherers[job.Resource] += job.WorkerCount;
+            }
+        }
+
+        private void Produce()
         {
             var researching = false;
 

@@ -20,17 +20,28 @@ namespace Unary.Jobs
 
         public override double GetPay(Controller worker)
         {
-            if (worker.HasBehaviour<ScoutingBehaviour>())
-            {
-                return 100;
-            }
-            else
+            if (!worker.HasBehaviour<ScoutingBehaviour>())
             {
                 return -1;
             }
+            else if (HasWorker(worker))
+            {
+                return 100;
+            }
+            else if (Vacancies < 1)
+            {
+                return -1;
+            }
+            else
+            {
+                return 100;
+            }
+        }
+        protected override void Initialize()
+        {
         }
 
-        public override void Update()
+        protected override void Update()
         {
             if (Unary.GameState.Map.TryGetTile(Unary.TownManager.MyPosition, out var tile))
             {

@@ -27,8 +27,8 @@ namespace Unary.Behaviours
         {
             if (perform && Target != null)
             {
-                var range = Controller.Unit[ObjectData.RANGE];
-                var distance = Controller.Unit.Position.DistanceTo(Target.Position);
+                var range = Unit[ObjectData.RANGE];
+                var distance = Unit.Position.DistanceTo(Target.Position);
 
                 if (distance > range + 5)
                 {
@@ -42,7 +42,7 @@ namespace Unary.Behaviours
                     }
                 }
 
-                Controller.Unit.RequestUpdate();
+                Unit.RequestUpdate();
                 Target.RequestUpdate();
                 Backup?.RequestUpdate();
                 Threat?.RequestUpdate();
@@ -57,17 +57,17 @@ namespace Unary.Behaviours
 
         private void CombatRanged()
         {
-            var range = Controller.Unit[ObjectData.RANGE];
-            var distance = Controller.Unit.Position.DistanceTo(Target.Position);
+            var range = Unit[ObjectData.RANGE];
+            var distance = Unit.Position.DistanceTo(Target.Position);
             var delta_pos = Position.Zero;
             
             if (distance > range + 1)
             {
-                delta_pos = (Target.Position - Controller.Unit.Position).Normalize();
+                delta_pos = (Target.Position - Unit.Position).Normalize();
             }
             else if (distance < range)
             {
-                delta_pos = -1 * (Target.Position - Controller.Unit.Position).Normalize();
+                delta_pos = -1 * (Target.Position - Unit.Position).Normalize();
             }
 
             var pos = GetMovementPosition(delta_pos);
@@ -76,21 +76,21 @@ namespace Unary.Behaviours
 
         private void Perform(Position move, bool attack)
         {
-            var max_next_attack = Controller.Unit[ObjectData.RELOAD_TIME] - 500;
+            var max_next_attack = Unit[ObjectData.RELOAD_TIME] - 500;
             var min_next_attack = attack ? 1 : 0;
 
-            Controller.Unit.Target(move, stance: UnitStance.NO_ATTACK, min_next_attack: min_next_attack, max_next_attack: max_next_attack);
+            Unit.Target(move, stance: UnitStance.NO_ATTACK, min_next_attack: min_next_attack, max_next_attack: max_next_attack);
             
             if (attack)
             {
-                Controller.Unit.Target(Target, min_next_attack: 0, max_next_attack: 0, backup: Backup);
+                Unit.Target(Target, min_next_attack: 0, max_next_attack: 0, backup: Backup);
             }
         }
 
         private Position GetMovementPosition(Position delta_pos)
         {
-            var speed = Controller.Unit[ObjectData.SPEED] / 100d;
-            var pos_mul = 2 * Controller.Unary.GameState.GameTimePerTick.TotalSeconds * speed;
+            var speed = Unit[ObjectData.SPEED] / 100d;
+            var pos_mul = 2 * Unary.GameState.GameTimePerTick.TotalSeconds * speed;
             var avoid_pos = Position.Zero;
 
             if (Threat != null)
@@ -98,7 +98,7 @@ namespace Unary.Behaviours
                 avoid_pos = GetThreatAvoidanceDelta();
             }
 
-            var pos = Controller.Unit.Position + ((delta_pos + avoid_pos).Normalize() * pos_mul);
+            var pos = Unit.Position + ((delta_pos + avoid_pos).Normalize() * pos_mul);
 
             if (!CanMove(pos))
             {
@@ -109,15 +109,15 @@ namespace Unary.Behaviours
                     avoid_pos = GetThreatAvoidanceDelta();
                 }
 
-                pos = Controller.Unit.Position + ((delta_pos + avoid_pos).Normalize() * pos_mul);
+                pos = Unit.Position + ((delta_pos + avoid_pos).Normalize() * pos_mul);
             }
 
             if (!CanMove(pos))
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    avoid_pos = Position.FromPolar(Controller.Unary.Rng.NextDouble() * 2 * Math.PI, 1);
-                    pos = Controller.Unit.Position + ((delta_pos + avoid_pos).Normalize() * pos_mul);
+                    avoid_pos = Position.FromPolar(Unary.Rng.NextDouble() * 2 * Math.PI, 1);
+                    pos = Unit.Position + ((delta_pos + avoid_pos).Normalize() * pos_mul);
 
                     if (CanMove(pos))
                     {
@@ -132,11 +132,11 @@ namespace Unary.Behaviours
         private Position GetThreatAvoidanceDelta()
         {
             var range = Threat[ObjectData.RANGE];
-            var distance = Controller.Unit.Position.DistanceTo(Threat.Position);
+            var distance = Unit.Position.DistanceTo(Threat.Position);
 
             if (distance < range + 1)
             {
-                var pos = (Threat.Position - Controller.Unit.Position).Normalize();
+                var pos = (Threat.Position - Unit.Position).Normalize();
                 pos = pos.Rotate(Math.PI / 2);
 
                 if (Reversed)
@@ -151,7 +151,7 @@ namespace Unary.Behaviours
                     pos *= -1;
                 }
 
-                return Math.Max(0, Controller.Unary.Settings.ThreatAvoidanceFactor) * pos.Normalize();
+                return Math.Max(0, Unary.Settings.ThreatAvoidanceFactor) * pos.Normalize();
             }
             else
             {
@@ -161,9 +161,9 @@ namespace Unary.Behaviours
 
         private bool CanMove(Position position)
         {
-            if (Controller.Unary.GameState.Map.TryGetTile(position, out var tile))
+            if (Unary.GameState.Map.TryGetTile(position, out var tile))
             {
-                if (Controller.Unary.MapManager.CanPass(Controller.Unit, tile))
+                if (Unary.MapManager.CanPass(Unit, tile))
                 {
                     return true;
                 }

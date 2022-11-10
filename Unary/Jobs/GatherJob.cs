@@ -25,8 +25,11 @@ namespace Unary.Jobs
         {
             GatheredResource = resource;
         }
+        protected override void Initialize()
+        {
+        }
 
-        public override double GetPay(Controller worker)
+        protected override double GetResourcePay(Controller worker)
         {
             if (!worker.HasBehaviour<GatheringBehaviour>())
             {
@@ -38,14 +41,7 @@ namespace Unary.Jobs
             }
             else if (HasWorker(worker))
             {
-                if (worker.TryGetBehaviour<GatheringBehaviour>(out var behaviour))
-                {
-                    return GetPay(behaviour.Tile);
-                }
-                else
-                {
-                    return -1;
-                }
+                return 1;
             }
             else if (Vacancies < 1)
             {
@@ -53,16 +49,7 @@ namespace Unary.Jobs
             }
             else
             {
-                var index = Math.Min(WorkerCount / 2, Resources.Count - 1);
-
-                if (index >= 0)
-                {
-                    return GetPay(Resources[index].Key);
-                }
-                else
-                {
-                    return -1;
-                }
+                return 1;
             }
         }
 
@@ -92,14 +79,28 @@ namespace Unary.Jobs
             
             UpdatePathDistances();
             UpdateResources();
-            UpdateWorkers();
+
+            if (Dropsite.Unit[ObjectData.STATUS] == 0)
+            {
+                foreach (var worker in GetWorkers())
+                {
+                    if (worker.TryGetBehaviour<GatheringBehaviour>(out var behaviour))
+                    {
+                        behaviour.Target = Dropsite.Unit;
+                    }
+                }
+            }
+            else
+            {
+                UpdateWorkers();
+            }
         }
 
         private void UpdatePathDistances()
         {
             PathDistances.Clear();
-            var civ = Unary.Mod.GetCivInfo(Unary.GameState.MyPlayer.Civilization);
-            var width = civ.GetUnitWidth(Dropsite.Unit[ObjectData.BASE_TYPE]);
+            var civ = Unary.CivInfo;
+            var width = civ.GetUnitTileWidth(Dropsite.Unit[ObjectData.BASE_TYPE]);
             var footprint = Utils.GetUnitFootprint((int)Dropsite.Unit.Position.PointX, (int)Dropsite.Unit.Position.PointY, width, width, 1);
             var x = footprint.X;
             var y = footprint.Y;
@@ -197,7 +198,7 @@ namespace Unary.Jobs
             {
                 if (worker.TryGetBehaviour<GatheringBehaviour>(out var behaviour))
                 {
-                    if (behaviour.Target == null || !behaviour.Target.Targetable)
+                    if (behaviour.Target == null || behaviour.Tile == null || !behaviour.Target.Targetable)
                     {
                         behaviour.Target = null;
                         behaviour.Tile = null;
@@ -262,20 +263,6 @@ namespace Unary.Jobs
 
                 ObjectPool.Add(occupancy);
             }
-        }
-
-        private double GetPay(Tile tile)
-        {
-            var carry = 10;
-            var rate = 0.4;
-            var speed = 0.8;
-            var distance = Unary.Settings.MaxDropsiteDistance;
-            if (tile != null && PathDistances.TryGetValue(tile, out var d))
-            {
-                distance = d;
-            }
-
-            return Utils.GetGatherRate(rate, 2 * (distance + 0.5), speed, carry);
         }
 
         private int GetMaxOccupancy(Tile tile)

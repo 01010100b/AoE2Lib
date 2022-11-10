@@ -17,7 +17,7 @@ namespace Unary.Behaviours
         public readonly Unit Unit;
         public readonly Unary Unary;
         public string Name => Unit.Id.ToString();
-        public bool CanControl => Unit.Targetable;
+        public bool CanControl => Unit.Targetable && Unit.Player == Unary.GameState.MyPlayer;
         public Job CurrentJob { get; internal set; }
 
         private readonly List<Behaviour> Behaviours = new();
@@ -76,8 +76,6 @@ namespace Unary.Behaviours
                 if (behaviour.TickInternal(perform))
                 {
                     perform = false;
-
-                    Unary.Log.Debug($"Unit {Unit.Id} performed {behaviour.GetType().Name}");
                 }
 
                 sw.Stop();
@@ -97,14 +95,17 @@ namespace Unary.Behaviours
         {
             if (Unit[ObjectData.CMDID] == (int)CmdId.VILLAGER)
             {
+                AddBehaviour(new FightAnimalBehaviour());
                 AddBehaviour(new JobSeekingBehaviour());
                 AddBehaviour(new ConstructingBehaviour());
                 AddBehaviour(new EatingBehaviour());
                 AddBehaviour(new GatheringBehaviour());
+                AddBehaviour(new FarmingBehaviour());
             }
 
             if (Unit[ObjectData.CMDID] == (int)CmdId.MILITARY)
             {
+                AddBehaviour(new FightAnimalBehaviour());
                 AddBehaviour(new JobSeekingBehaviour());
                 AddBehaviour(new FightingBehaviour());
                 AddBehaviour(new ScoutingBehaviour());
@@ -114,6 +115,11 @@ namespace Unary.Behaviours
             {
                 AddBehaviour(new JobSeekingBehaviour());
                 //AddBehaviour(new ScoutingBehaviour());
+            }
+
+            if (Unary.CivInfo.GetDropsiteResources(Unit[ObjectData.BASE_TYPE]).Any())
+            {
+                AddBehaviour(new DropsiteBehaviour());
             }
         }
     }

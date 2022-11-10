@@ -27,10 +27,7 @@ namespace AoE2Lib
         public static AoEInstance StartInstance(string exe, string args = null, double speed = SPEED_FAST, 
             int aimodule_port = DEFAULT_AIMODULE_PORT, int autogame_port = DEFAULT_AUTO_GAME_PORT)
         {
-            if (args == null)
-            {
-                args = "";
-            }
+            args ??= "";
 
             args += $" -multipleinstances -autogameport {autogame_port} -aimoduleport {aimodule_port}";
 

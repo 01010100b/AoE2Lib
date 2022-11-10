@@ -1,7 +1,9 @@
-﻿using AoE2Lib.Bots;
+﻿using AoE2Lib;
+using AoE2Lib.Bots;
 using AoE2Lib.Bots.GameElements;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,36 +15,45 @@ namespace Unary.Jobs
 {
     internal class FarmJob : ResourceGenerationJob
     {
-        private static readonly Point[] TC_FARM_DELTAS = { new Point(2, 3), new Point(-1, 3), new Point(3, 0), new Point(3, -3), new Point(-4, 2), new Point(-4, -1), new Point(0, -4), new Point(-3, -4) };
-        private static readonly Point[] MILL_FARM_DELTAS = { new Point(-1, 2), new Point(2, -1), new Point(2, 2), new Point(-3, -1), new Point(-1, -3) };
-
         public override Resource Resource => Resource.FOOD;
-        public override int MaxWorkers => Assignments.Count;
+        public override int MaxWorkers => FarmTiles.Count;
         public override string Name => $"Farming at {Location}";
 
-        private readonly Dictionary<Tile, Controller> Assignments = new();
+        private readonly List<Tile> FarmTiles = new();
+        private int OpenSpots { get; set; } = 1;
 
         public FarmJob(Unary unary, Controller dropsite) : base(unary, dropsite)
         {
         }
+        protected override void Initialize()
+        {
+        }
 
-        public override double GetPay(Controller worker)
+        protected override double GetResourcePay(Controller worker)
         {
             if (!worker.HasBehaviour<FarmingBehaviour>())
             {
                 return -1;
             }
+            else if (WorkerCount > MaxWorkers)
+            {
+                return -1;
+            }
             else if (HasWorker(worker))
             {
-                return GetPay();
+                return 1;
             }
             else if (Vacancies < 1)
             {
                 return -1;
             }
+            else if (OpenSpots > 0)
+            {
+                return -1;
+            }
             else
             {
-                return GetPay();
+                return 1;
             }
         }
 
@@ -54,7 +65,7 @@ namespace Unary.Jobs
         {
             if (worker.TryGetBehaviour<FarmingBehaviour>(out var behaviour))
             {
-                behaviour.Farm = null;
+                behaviour.Tile = null;
             }
         }
 
@@ -64,127 +75,98 @@ namespace Unary.Jobs
 
         protected override void UpdateResourceGeneration()
         {
-            Assignments.Clear();
+            FarmTiles.Clear();
+            FarmTiles.AddRange(GetFarmTiles());
 
-            var civ = Unary.Mod.GetCivInfo(Unary.GameState.MyPlayer.Civilization);
+            var assignments = ObjectPool.Get(() => new Dictionary<Tile, Controller>(), x => x.Clear());
 
-            if (Unary.GameState.TryGetUnitType(civ.FarmId, out var type))
+            foreach (var worker in GetWorkers())
             {
-                if (!type.Available)
+                if (worker.TryGetBehaviour<FarmingBehaviour>(out var behaviour))
                 {
-                    return;
-                }
-
-                foreach (var tile in GetFarmTiles())
-                {
-                    Assignments.Add(tile, null);
-                }
-
-                foreach (var worker in GetWorkers())
-                {
-                    if (worker.TryGetBehaviour<FarmingBehaviour>(out var behaviour))
+                    if (behaviour.Tile != null)
                     {
-                        if (behaviour.Farm == null)
+                        if (!FarmTiles.Contains(behaviour.Tile))
                         {
-                            foreach (var kvp in Assignments)
+                            behaviour.Tile = null;
+                        }
+                        else if (assignments.ContainsKey(behaviour.Tile))
+                        {
+                            behaviour.Tile = null;
+                        }
+                        else
+                        {
+                            assignments.Add(behaviour.Tile, worker);
+                        }
+                    }
+                }
+            }
+
+            foreach (var worker in GetWorkers())
+            {
+                if (worker.TryGetBehaviour<FarmingBehaviour>(out var behaviour))
+                {
+                    if (behaviour.Tile == null)
+                    {
+                        foreach (var tile in FarmTiles)
+                        {
+                            if (!assignments.ContainsKey(tile))
                             {
-                                if (kvp.Value == null)
-                                {
-                                    Assignments[kvp.Key] = worker;
-                                }
+                                behaviour.Tile = tile;
+                                assignments.Add(tile, worker);
+
+                                break;
                             }
                         }
                     }
                 }
+            }
 
-                foreach (var assignment in Assignments.Where(x => x.Value != null))
+            OpenSpots = 0;
+            var civ = Unary.CivInfo;
+
+            foreach (var tile in assignments.Keys)
+            {
+                var farm = tile.Units.FirstOrDefault(x => x[ObjectData.BASE_TYPE] == civ.FarmId);
+
+                if (farm == null)
                 {
-                    var tile = assignment.Key;
-                    var farm = tile.Units.Where(x => x[ObjectData.BASE_TYPE] == civ.FarmId).FirstOrDefault();
-
-                    if (farm != null)
-                    {
-                        var worker = assignment.Value;
-
-                        if (worker.TryGetBehaviour<FarmingBehaviour>(out var behaviour))
-                        {
-                            behaviour.Farm = farm;
-                        }
-                    }
-                    else
-                    {
-                        Unary.ProductionManager.Build(type, new[] { tile }, 10000, 3, ProductionManager.Priority.FARM);
-                    }
+                    OpenSpots++;
                 }
             }
-        }
 
-        private double GetPay()
-        {
-            var carry = 10;
-            var rate = 0.4;
-            var speed = 0.8;
-            var distance = 4;
-
-            return Utils.GetGatherRate(rate, 2 * (distance + 0.5), speed, carry);
+            ObjectPool.Add(assignments);
         }
 
         private IEnumerable<Tile> GetFarmTiles()
         {
-            var civ = Unary.Mod.GetCivInfo(Unary.GameState.MyPlayer.Civilization);
+            var civ = Unary.CivInfo;
 
             if (Unary.GameState.TryGetUnitType(civ.FarmId, out var farm))
             {
-                var deltas = Dropsite.Unit[ObjectData.BASE_TYPE] == civ.TownCenterId ? TC_FARM_DELTAS : MILL_FARM_DELTAS;
-                var pos = Dropsite.Unit.Position;
-
-                foreach (var delta in deltas)
+                if (!farm.Available)
                 {
-                    var p = pos + Position.FromPoint(delta.X, delta.Y);
+                    yield break;
+                }
 
-                    if (Unary.GameState.Map.TryGetTile(p, out var tile))
+                foreach (var tile in Unary.TownManager.GetFarmTiles(Dropsite.Unit))
+                {
+                    var current = tile.Units.Count(x => x[ObjectData.BASE_TYPE] == civ.FarmId);
+
+                    if (current == 0)
                     {
-                        var current = tile.Units.Count(x => x[ObjectData.BASE_TYPE] == civ.FarmId);
-
-                        if (current == 0)
+                        if (Unary.MapManager.CanBuild(farm, tile, false))
                         {
-                            if (Unary.MapManager.CanBuild(farm, tile, false))
-                            {
-                                current = 1;
-                            }
-                        }
-
-                        if (current > 0)
-                        {
-                            yield return tile;
+                            current = 1;
                         }
                     }
-                }
-            }
-        }
 
-        private IEnumerable<Tile> GetFarmTilesNew()
-        {
-            var civ = Unary.Mod.GetCivInfo(Unary.GameState.MyPlayer.Civilization);
-
-            if (Unary.GameState.TryGetUnitType(civ.FarmId, out var farm))
-            {
-                var size = Math.Max(civ.GetUnitWidth(civ.FarmId), civ.GetUnitHeight(civ.FarmId)) / 2;
-                var dsize = Math.Max(civ.GetUnitWidth(Dropsite.Unit[ObjectData.BASE_TYPE]), civ.GetUnitHeight(Dropsite.Unit[ObjectData.BASE_TYPE]));
-                var footprint = Utils.GetUnitFootprint(Dropsite.Unit.Position.PointX, Dropsite.Unit.Position.PointY, dsize, dsize);
-
-                for (var x = footprint.Right + size; x >= footprint.Left - size; x--)
-                {
-                    var position = Position.FromPoint(x, footprint.Bottom + size);
-
-                    if (Unary.GameState.Map.TryGetTile(position, out var tile))
+                    if (current > 0)
                     {
                         yield return tile;
                     }
                 }
             }
-
-            throw new NotImplementedException();
         }
     }
 }

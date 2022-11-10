@@ -69,7 +69,23 @@ namespace Unary.Jobs
             return total;
         }
 
-        public override sealed void Update()
+        public override sealed double GetPay(Controller worker)
+        {
+            var pay = GetResourcePay(worker);
+
+            if (pay > 0)
+            {
+                var desired = Math.Max(1, Unary.ProductionManager.GetDesiredGatherers(Resource));
+                var current = Math.Max(1, Unary.ProductionManager.GetCurrentGatherers(Resource));
+                var fraction = current / (double)desired;
+
+                pay /= Math.Pow(fraction, Unary.Settings.ResourcePaymentExponent);
+            }
+
+            return pay;
+        }
+
+        protected override sealed void Update()
         {
             if (WorkerCount == 0)
             {
@@ -117,6 +133,7 @@ namespace Unary.Jobs
             UpdateResourceGeneration();
         }
 
+        protected abstract double GetResourcePay(Controller worker);
         protected abstract void UpdateResourceGeneration();
     }
 }

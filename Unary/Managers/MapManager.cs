@@ -95,9 +95,9 @@ namespace Unary.Managers
                 return false;
             }
 
-            var civ = Unary.Mod.GetCivInfo(Unary.GameState.MyPlayer.Civilization);
+            var civ = Unary.CivInfo;
             var id = building[ObjectData.BASE_TYPE];
-            var size = civ.GetUnitWidth(id);
+            var size = civ.GetUnitTileWidth(id);
             var footprint = Utils.GetUnitFootprint(tile.X, tile.Y, size, size);
             var min_all = int.MaxValue;
             var min_left = int.MaxValue;
@@ -186,8 +186,8 @@ namespace Unary.Managers
                 var id = unit[ObjectData.UPGRADE_TYPE];
                 var blocks_construction = unit[ObjectData.SPEED] <= 0;
                 var blocks_passage = civ.BlocksPassage(id);
-                var width = civ.GetUnitWidth(id);
-                var height = civ.GetUnitHeight(id);
+                var width = civ.GetUnitTileWidth(id);
+                var height = civ.GetUnitTileHeight(id);
 
                 if (blocks_construction || blocks_passage)
                 {
@@ -229,9 +229,9 @@ namespace Unary.Managers
 
                         if (Unary.GameState.TryGetUnitType(Unary.Mod.Farm, out var farm))
                         {
-                            civ = Unary.Mod.GetCivInfo(Unary.GameState.MyPlayer.Civilization);
-                            width = civ.GetUnitWidth(farm.Id);
-                            height = civ.GetUnitHeight(farm.Id);
+                            civ = Unary.CivInfo;
+                            width = civ.GetUnitTileWidth(farm.Id);
+                            height = civ.GetUnitTileHeight(farm.Id);
 
                             foreach (var tile in Unary.TownManager.GetFarmTiles(unit))
                             {

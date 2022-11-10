@@ -64,8 +64,8 @@ namespace Unary.Managers
             actions.Add(UpdateResources);
             actions.Add(UpdateDropsitePositions);
             actions.Add(UpdateDropsites);
-            actions.Add(UpdateEatingJob);
-            actions.Add(UpdateGatheringJobs);
+            //actions.Add(UpdateEatingJob);
+            //actions.Add(UpdateGatheringJobs);
             actions.Add(DoStats);
 
             Run(actions);
@@ -192,7 +192,6 @@ namespace Unary.Managers
                         if (controller.Unit.Position.DistanceTo(pos) < 3)
                         {
                             EatingJob = new(Unary, controller);
-                            Unary.JobManager.AddJob(EatingJob);
                         }
                     }
                 }
@@ -238,29 +237,24 @@ namespace Unary.Managers
                         if (!kvp.Value.Select(x => x.Resource).Contains(resource))
                         {
                             var job = new GatherJob(Unary, kvp.Key, resource);
-                            Unary.JobManager.AddJob(job);
                         }
                     }
                 }
                 else if (type == Unary.Mod.Mill && kvp.Value.Count < 1)
                 {
                     var job = new GatherJob(Unary, kvp.Key, Resource.FOOD);
-                    Unary.JobManager.AddJob(job);
                 }
                 else if (type == Unary.Mod.LumberCamp && kvp.Value.Count < 1)
                 {
                     var job = new GatherJob(Unary, kvp.Key, Resource.WOOD);
-                    Unary.JobManager.AddJob(job);
                 }
                 else if (type == Unary.Mod.GoldMiningCamp && kvp.Value.Count < 1)
                 {
                     var job = new GatherJob(Unary, kvp.Key, Resource.GOLD);
-                    Unary.JobManager.AddJob(job);
                 }
                 else if (type == Unary.Mod.StoneMiningCamp && kvp.Value.Count < 1)
                 {
                     var job = new GatherJob(Unary, kvp.Key, Resource.STONE);
-                    Unary.JobManager.AddJob(job);
                 }
             }
 
@@ -339,8 +333,8 @@ namespace Unary.Managers
 
         private double GetScore(UnitType dropsite, Tile tile, List<Unit> resources)
         {
-            var civ = Unary.Mod.GetCivInfo(Unary.GameState.MyPlayer.Civilization);
-            var range = 0.5 * civ.GetUnitWidth(dropsite.Id);
+            var civ = Unary.CivInfo;
+            var range = 0.5 * civ.GetUnitTileWidth(dropsite.Id);
             range += 3;
             var score = 0d;
 

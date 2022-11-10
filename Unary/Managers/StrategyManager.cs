@@ -10,9 +10,7 @@ using static Unary.Managers.ProductionManager;
 
 namespace Unary.Managers
 {
-    // choose strategy
-    // actual strategy implementation in Strategy.cs class
-    class StrategyManager : Manager
+    internal class StrategyManager : Manager
     {
         private Strategy CurrentStrategy { get; set; } = null;
         private readonly List<Strategy> Strategies = new();

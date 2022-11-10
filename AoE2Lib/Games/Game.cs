@@ -233,17 +233,17 @@ namespace AoE2Lib.Games
                 throw new Exception("Game isn't finished yet.");
             }
 
-            var liveteams = new HashSet<int>() { 0 };
+            var liveteams = new HashSet<Team>();
 
             foreach (var player in Players)
             {
-                if (player.Alive)
+                if (player.Alive && player.Team != Team.NO_TEAM)
                 {
-                    liveteams.Add((int)player.Team);
+                    liveteams.Add(player.Team);
                 }
             }
 
-            return Players.Where(p => liveteams.Contains((int)p.Team));
+            return Players.Where(p => liveteams.Contains(p.Team) || (p.Alive && p.Team == Team.NO_TEAM));
         }
 
         private void Call(string method, params object[] arguments)

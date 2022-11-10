@@ -107,12 +107,7 @@ namespace AoE2Lib.Bots.GameElements
                 return;
             }
 
-            if (target == null)
-            {
-                throw new ArgumentNullException(nameof(target));
-            }
-
-            backup ??= target;
+            backup ??= target ?? throw new ArgumentNullException(nameof(target));
 
             RequestUpdate();
             target.RequestUpdate();

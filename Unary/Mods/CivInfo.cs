@@ -18,6 +18,9 @@ namespace Unary.Mods
         public int FarmId { get; } = 50;
         public int TownCenterId { get; } = 109;
         public int MillId { get; } = 68;
+        public int GoldMiningCampId { get; } = 584;
+        public int StoneMiningCampId { get; } = 584;
+        public int LumberCampId { get; } = 562;
 
         private readonly Dictionary<int, DatUnit> AllUnits = new();
         private readonly Mod Mod;
@@ -33,9 +36,9 @@ namespace Unary.Mods
         }
 
         public string GetUnitName(int unit) => Mod.GetString(AllUnits[unit].Name);
-        public Position GetUnitCollisionSize(int unit) => new Position(AllUnits[unit].CollisionSizeX, AllUnits[unit].CollisionSizeY);
-        public int GetUnitWidth(int unit) => Math.Max(1, (int)Math.Round(AllUnits[unit].CollisionSizeX * 2));
-        public int GetUnitHeight(int unit) => Math.Max(1, (int)Math.Round(AllUnits[unit].CollisionSizeY * 2));
+        public Position GetUnitCollisionSize(int unit) => new(AllUnits[unit].CollisionSizeX, AllUnits[unit].CollisionSizeY);
+        public int GetUnitTileWidth(int unit) => Math.Max(1, (int)Math.Round(AllUnits[unit].CollisionSizeX * 2));
+        public int GetUnitTileHeight(int unit) => Math.Max(1, (int)Math.Round(AllUnits[unit].CollisionSizeY * 2));
         public int GetUnitHillMode(int unit) => AllUnits[unit].HillMode;
 
         public IEnumerable<Resource> GetDropsiteResources(int unit)
@@ -59,6 +62,18 @@ namespace Unary.Mods
             {
                 yield return Resource.GOLD;
                 yield return Resource.STONE;
+            }
+        }
+
+        public int GetFoundationId(int building)
+        {
+            if (building == TownCenterId)
+            {
+                return 621;
+            }
+            else
+            {
+                return building;
             }
         }
 

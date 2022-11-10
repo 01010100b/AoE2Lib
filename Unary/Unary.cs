@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Unary.Jobs;
 using Unary.Managers;
 using Unary.Mods;
 using YTY.AocDatLib;
@@ -23,6 +24,7 @@ namespace Unary
         public override int Id => UNARY_ID;
         public readonly Settings Settings;
         public Mod Mod { get; private set; }
+        public CivInfo CivInfo => Mod.GetCivInfo(GameState.MyPlayer.Civilization);
         public UnitsManager UnitsManager => Managers.OfType<UnitsManager>().Single();
         public JobManager JobManager => Managers.OfType<JobManager>().Single();
         public MapManager MapManager => Managers.OfType<MapManager>().Single();
@@ -114,19 +116,18 @@ namespace Unary
                     }
                 }
             }
-            
-            Managers.Add(new UnitsManager(this));
+
             Managers.Add(new JobManager(this));
+            Managers.Add(new UnitsManager(this));
             Managers.Add(new MapManager(this));
             Managers.Add(new TownManager(this));
             Managers.Add(new EconomyManager(this));
             Managers.Add(new MilitaryManager(this));
             StrategyManager = new(this);
             DiplomacyManager = new(this);
-            
             ProductionManager = new(this);
 
-            
+            _ = new SetupJob(this);
         }
 
         protected override IEnumerable<Command> Tick()

@@ -1,4 +1,5 @@
 ﻿using AoE2Lib.Bots;
+using AoE2Lib.Bots.GameElements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace Unary.Behaviours
     internal abstract class Behaviour
     {
         public Controller Controller { get; internal set; } = null;
+        protected Unary Unary => Controller.Unary;
+        protected Unit Unit => Controller.Unit;
 
         public abstract int GetPriority();
 
@@ -19,13 +22,13 @@ namespace Unary.Behaviours
 
         protected void MoveTo(Position position)
         {
-            if (Controller.Unary.GameState.Map.IsOnMap(position))
+            if (Unary.GameState.Map.IsOnMap(position))
             {
-                Controller.Unit.Target(position, stance: UnitStance.NO_ATTACK);
+                Unit.Target(position, stance: UnitStance.NO_ATTACK);
             }
         }
 
-        protected bool ShouldRareTick(int rate) => Controller.Unary.ShouldRareTick(this, rate);
+        protected bool ShouldRareTick(int rate) => Unary.ShouldRareTick(this, rate);
 
         internal bool TickInternal(bool perform) => Tick(perform);
     }

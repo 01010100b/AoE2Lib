@@ -27,7 +27,7 @@ namespace Unary.Behaviours
                 Target = null;
             }
 
-            if (Controller.Unary.Settings.ScoutingTilesPerRegion < 0)
+            if (Unary.Settings.ScoutingTilesPerRegion < 0)
             {
                 Target = null;
 
@@ -43,8 +43,8 @@ namespace Unary.Behaviours
 
                 if (Target != null)
                 {
-                    Controller.Unit.Target(Target.Center);
-                    Controller.Unit.RequestUpdate();
+                    Unit.Target(Target.Center);
+                    Unit.RequestUpdate();
 
                     return true;
                 }
@@ -57,13 +57,13 @@ namespace Unary.Behaviours
 
         private void FindTarget()
         {
-            var map = Controller.Unary.GameState.Map;
+            var map = Unary.GameState.Map;
             var range = 4;
             var area = Math.PI * range * range;
             var regions = map.Width * map.Height / area;
-            var count = (int)Math.Round(Controller.Unary.Settings.ScoutingTilesPerRegion * regions);
-            var mgr = Controller.Unary.MapManager;
-            var rng = Controller.Unary.Rng;
+            var count = (int)Math.Round(Unary.Settings.ScoutingTilesPerRegion * regions);
+            var mgr = Unary.MapManager;
+            var rng = Unary.Rng;
             var best = double.MaxValue;
 
             for (int i = 0; i < count; i++)
@@ -77,7 +77,7 @@ namespace Unary.Behaviours
                     {
                         if (mgr.CanReach(tile))
                         {
-                            var d1 = tile.Position.DistanceTo(Controller.Unit.Position);
+                            var d1 = tile.Position.DistanceTo(Unit.Position);
                             var d2 = Math.Abs(Radius - tile.Position.DistanceTo(Focus.Position));
                             var cost = d1 + d2;
 

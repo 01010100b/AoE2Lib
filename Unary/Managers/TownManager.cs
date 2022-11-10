@@ -14,23 +14,20 @@ namespace Unary.Managers
 {
     internal class TownManager : Manager
     {
-        private static readonly Point[] TC_FARM_DELTAS = { new Point(2, 3), new Point(-1, 3), new Point(3, 0), new Point(3, -3), new Point(-4, 2), new Point(-4, -1), new Point(0, -4), new Point(-3, -4) };
-        private static readonly Point[] MILL_FARM_DELTAS = { new Point(-1, 2), new Point(2, -1), new Point(2, 2), new Point(-3, -1), new Point(-1, -3) };
+        private static readonly Point[] FARM_DELTAS_4 = { new Point(2, 3), new Point(-1, 3), new Point(3, 0), new Point(3, -3), new Point(-4, 2), new Point(-4, -1), new Point(0, -4), new Point(-3, -4) };
+        private static readonly Point[] FARM_DELTAS_2 = { new Point(-1, 2), new Point(2, -1), new Point(2, 2), new Point(-3, -1), new Point(-1, -3) };
 
         public Position MyPosition { get; private set; } = Position.Zero;
 
-        private readonly ConstructionManagementJob Construction;
         private readonly HashSet<Tile> InsideTiles = new();
 
         public TownManager(Unary unary) : base(unary)
         {
-            Construction = new(unary);
-            unary.JobManager.AddJob(Construction);
         }
 
         public bool IsInside(Tile tile) => InsideTiles.Contains(tile);
 
-        public IEnumerable<Tile> GetInsideTiles() => Unary.GetCached(GetSortedInsideTiles);
+        public IReadOnlyList<Tile> GetInsideTiles() => Unary.GetCached(GetSortedInsideTiles);
 
         public IEnumerable<Tile> GetPlacements(UnitType building)
         {
@@ -46,37 +43,47 @@ namespace Unary.Managers
             }
         }
 
-        public IEnumerable<Tile> GetFarmTiles(Unit building)
+        public IEnumerable<Tile> GetFarmTiles(int x, int y, int width, int height)
         {
-            var type = building[ObjectData.BASE_TYPE];
-            Point[] deltas = null;
-
-            if (type == Unary.Mod.TownCenter || type == Unary.Mod.TownCenterFoundation)
+            if (width != height)
             {
-                deltas = TC_FARM_DELTAS;
+                throw new NotImplementedException();
             }
-            else if (type == Unary.Mod.Mill)
-            {
-                deltas = MILL_FARM_DELTAS;
-            }
-
-            if (deltas != null)
-            {
-                foreach (var delta in deltas)
-                {
-                    var x = building.Position.PointX + delta.X;
-                    var y = building.Position.PointY + delta.Y;
-
-                    if (Unary.GameState.Map.TryGetTile(x, y, out var tile))
-                    {
-                        yield return tile;
-                    }
-                }
-            }
-            else
+            else if (width != 2 && width != 4)
             {
                 yield break;
             }
+
+            IEnumerable<Point> deltas = null;
+
+            if (width == 2)
+            {
+                deltas = FARM_DELTAS_2;
+            }
+            else if (width == 4)
+            {
+                deltas = FARM_DELTAS_4;
+            }
+
+            foreach (var delta in deltas)
+            {
+                var sx = x + delta.X;
+                var sy = y + delta.Y;
+
+                if (Unary.GameState.Map.TryGetTile(sx, sy, out var tile))
+                {
+                    yield return tile;
+                }
+            }
+        }
+
+        public IEnumerable<Tile> GetFarmTiles(Unit building)
+        {
+            var civ = Unary.CivInfo;
+            var width = civ.GetUnitTileWidth(building[ObjectData.BASE_TYPE]);
+            var height = civ.GetUnitTileHeight(building[ObjectData.BASE_TYPE]);
+
+            return GetFarmTiles(building.Position.PointX, building.Position.PointY, width, height);
         }
 
         protected internal override void Update()

@@ -14,6 +14,8 @@ namespace Unary
         public double EatAnimalRange { get; set; } = 7;
         public double KillSheepRange { get; set; } = 3;
         public int MaxDropsiteDistance { get; set; } = 3;
+        // economy
+        public double ResourcePaymentExponent { get; set; } = 1;
         // combat
         public double ThreatAvoidanceFactor { get; set; } = 2;
         // scouting

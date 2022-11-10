@@ -17,14 +17,14 @@ namespace Unary.Behaviours
 
         protected override bool Tick(bool perform)
         {
-            var seek = CurrentJob != null ? TimeSpan.FromMinutes(1) : TimeSpan.FromSeconds(3);
+            var seek = CurrentJob != null ? TimeSpan.FromMinutes(1) : TimeSpan.FromSeconds(5);
 
-            if (Controller.Unary.GameState.GameTime - LastSeekTime > seek && ShouldRareTick(3))
+            if (Unary.GameState.GameTime - LastSeekTime > seek && ShouldRareTick(7))
             {
-                if (Controller.Unit[ObjectData.CMDID] != (int)CmdId.VILLAGER || Controller.Unit[ObjectData.CARRY] <= 0)
+                if (Unit[ObjectData.CMDID] != (int)CmdId.VILLAGER || Unit[ObjectData.CARRY] <= 0)
                 {
                     LookForJob();
-                    LastSeekTime = Controller.Unary.GameState.GameTime;
+                    LastSeekTime = Unary.GameState.GameTime;
                 }
             }
 
@@ -33,21 +33,21 @@ namespace Unary.Behaviours
 
         private void LookForJob()
         {
-            var cmdid = (CmdId)Controller.Unit[ObjectData.CMDID];
-            var minutes = Controller.Unary.Settings.CivilianJobLookAheadMinutes;
+            var cmdid = (CmdId)Unit[ObjectData.CMDID];
+            var minutes = Unary.Settings.CivilianJobLookAheadMinutes;
 
             if (cmdid == CmdId.MILITARY || cmdid == CmdId.MONK)
             {
-                minutes = Controller.Unary.Settings.MilitaryJobLookAheadMinutes;
+                minutes = Unary.Settings.MilitaryJobLookAheadMinutes;
             }
 
             var lookahead = TimeSpan.FromMinutes(minutes);
             var best_profit = double.MinValue;
             Job best_job = null;
-            var speed = Math.Max(0, Controller.Unit[ObjectData.SPEED]) / 100d;
-            var position = Controller.Unit.Position;
+            var speed = Math.Max(0, Unit[ObjectData.SPEED]) / 100d;
+            var position = Unit.Position;
 
-            foreach (var job in Controller.Unary.JobManager.GetJobs())
+            foreach (var job in Unary.JobManager.GetJobs())
             {
                 var pay = job.GetPay(Controller);
 

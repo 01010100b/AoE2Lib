@@ -22,8 +22,11 @@ namespace Unary.Jobs
         public EatJob(Unary unary, Controller dropsite) : base(unary, dropsite)
         {
         }
+        protected override void Initialize()
+        {
+        }
 
-        public override double GetPay(Controller worker)
+        protected override double GetResourcePay(Controller worker)
         {
             if (!worker.HasBehaviour<EatingBehaviour>())
             {
