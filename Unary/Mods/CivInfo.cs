@@ -1,5 +1,6 @@
 ﻿using AoE2Lib;
 using AoE2Lib.Bots;
+using AoE2Lib.Bots.GameElements;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace Unary.Mods
         public readonly int Id;
         public readonly HashSet<int> AvailableUnits = new();
         public readonly HashSet<int> AvailableTechs = new();
+        public readonly IEnumerable<Resource> GatheredResources = new[] { Resource.WOOD, Resource.FOOD, Resource.GOLD, Resource.STONE };
         public int FarmId { get; } = 50;
         public int TownCenterId { get; } = 109;
         public int MillId { get; } = 68;
@@ -41,6 +43,30 @@ namespace Unary.Mods
         public int GetUnitTileHeight(int unit) => Math.Max(1, (int)Math.Round(AllUnits[unit].CollisionSizeY * 2));
         public int GetUnitHillMode(int unit) => AllUnits[unit].HillMode;
 
+        public Resource GetResourceGatheredFrom(Unit unit)
+        {
+            return (UnitClass)unit[ObjectData.CLASS] switch
+            {
+                UnitClass.BerryBush => Resource.FOOD,
+                UnitClass.Tree => Resource.WOOD,
+                UnitClass.GoldMine => Resource.GOLD,
+                UnitClass.StoneMine => Resource.STONE,
+                _ => Resource.NONE,
+            };
+        }
+
+        public int GetDropsiteId(Resource resource)
+        {
+            return resource switch
+            {
+                Resource.FOOD => MillId,
+                Resource.WOOD => LumberCampId,
+                Resource.GOLD => GoldMiningCampId,
+                Resource.STONE => StoneMiningCampId,
+                _ =>  -1
+            };
+        }
+
         public IEnumerable<Resource> GetDropsiteResources(int unit)
         {
             if (unit == TownCenterId)
@@ -50,15 +76,15 @@ namespace Unary.Mods
                 yield return Resource.GOLD;
                 yield return Resource.STONE;
             }
-            else if (unit == Mod.Mill) // mill
+            else if (unit == MillId) // mill
             {
                 yield return Resource.FOOD;
             }
-            else if (unit == Mod.LumberCamp)
+            else if (unit == LumberCampId)
             {
                 yield return Resource.WOOD;
             }
-            else if (unit == Mod.GoldMiningCamp)
+            else if (unit == GoldMiningCampId || unit == StoneMiningCampId)
             {
                 yield return Resource.GOLD;
                 yield return Resource.STONE;

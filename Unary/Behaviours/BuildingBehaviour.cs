@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Unary.Behaviours
 {
-    internal class ConstructingBehaviour : Behaviour
+    internal class BuildingBehaviour : Behaviour
     {
         public Unit Construction { get; set; } = null;
 

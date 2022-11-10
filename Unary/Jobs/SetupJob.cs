@@ -20,6 +20,7 @@ namespace Unary.Jobs
             _ = new BuildersManagementJob(Unary);
             _ = new FarmingManagementJob(Unary);
             _ = new ConstructionManagementJob(Unary);
+            _ = new DropsiteManagementJob(Unary);
         }
 
         protected override void OnClosed()

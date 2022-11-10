@@ -13,7 +13,7 @@ namespace Unary.Jobs
     internal class GatherJob : ResourceGenerationJob
     {
         public override Resource Resource => GatheredResource;
-        public override int MaxWorkers => Math.Min(Math.Min(6, Resources.Count * 2), Unary.EconomyManager.GetDesiredGatherers(Resource));
+        public override int MaxWorkers => Math.Min(6, Resources.Count * 2);
         public override string Name => $"Gathering {Resource} at {Location}";
 
         private readonly Resource GatheredResource;

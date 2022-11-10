@@ -350,11 +350,11 @@ namespace AoE2Lib.Bots.GameElements
             {
                 return true;
             }
-            else if (this[ObjectData.SPEED] == 0 && Known)
+            else if (this[ObjectData.SPEED] <= 0 && Known)
             {
                 return true;
             }
-            else if (this[ObjectData.SPEED] == 0 && Player.PlayerNumber == 0 && Tile.Explored)
+            else if (this[ObjectData.SPEED] <= 0 && Player.PlayerNumber == 0 && Tile.Explored)
             {
                 return true;
             }

@@ -61,9 +61,9 @@ namespace Unary.Managers
         protected internal override void Update()
         {
             var actions = ObjectPool.Get(() => new List<Action>(), x => x.Clear());
-            actions.Add(UpdateResources);
-            actions.Add(UpdateDropsitePositions);
-            actions.Add(UpdateDropsites);
+            //actions.Add(UpdateResources);
+            //actions.Add(UpdateDropsitePositions);
+            //actions.Add(UpdateDropsites);
             //actions.Add(UpdateEatingJob);
             //actions.Add(UpdateGatheringJobs);
             actions.Add(DoStats);

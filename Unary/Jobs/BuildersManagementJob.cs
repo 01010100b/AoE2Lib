@@ -50,7 +50,7 @@ namespace Unary.Jobs
 
                 if (Unary.UnitsManager.TryGetController(unit, out var controller))
                 {
-                    if (controller.TryGetBehaviour<ConstructingBehaviour>(out var behaviour))
+                    if (controller.TryGetBehaviour<BuildingBehaviour>(out var behaviour))
                     {
                         if (behaviour.Construction == null)
                         {
@@ -66,7 +66,7 @@ namespace Unary.Jobs
 
             foreach (var builder in current_builders)
             {
-                if (builder.TryGetBehaviour<ConstructingBehaviour>(out var behaviour))
+                if (builder.TryGetBehaviour<BuildingBehaviour>(out var behaviour))
                 {
                     if (remaining_spots.ContainsKey(behaviour.Construction))
                     {
@@ -77,7 +77,7 @@ namespace Unary.Jobs
 
             foreach (var builder in current_builders)
             {
-                if (builder.TryGetBehaviour<ConstructingBehaviour>(out var behaviour))
+                if (builder.TryGetBehaviour<BuildingBehaviour>(out var behaviour))
                 {
                     var retask = true;
 
@@ -155,7 +155,7 @@ namespace Unary.Jobs
                 }
             }
 
-            if (builder.TryGetBehaviour<ConstructingBehaviour>(out var behaviour))
+            if (builder.TryGetBehaviour<BuildingBehaviour>(out var behaviour))
             {
                 behaviour.Construction = best;
             }
@@ -184,7 +184,7 @@ namespace Unary.Jobs
 
             if (best != null)
             {
-                if (best.TryGetBehaviour<ConstructingBehaviour>(out var behaviour))
+                if (best.TryGetBehaviour<BuildingBehaviour>(out var behaviour))
                 {
                     behaviour.Construction = construction;
                 }

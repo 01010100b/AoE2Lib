@@ -97,7 +97,7 @@ namespace Unary.Behaviours
             {
                 AddBehaviour(new FightAnimalBehaviour());
                 AddBehaviour(new JobSeekingBehaviour());
-                AddBehaviour(new ConstructingBehaviour());
+                AddBehaviour(new BuildingBehaviour());
                 AddBehaviour(new EatingBehaviour());
                 AddBehaviour(new GatheringBehaviour());
                 AddBehaviour(new FarmingBehaviour());

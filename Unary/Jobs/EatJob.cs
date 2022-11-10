@@ -13,7 +13,7 @@ namespace Unary.Jobs
     internal class EatJob : ResourceGenerationJob
     {
         public override Resource Resource => Resource.FOOD;
-        public override int MaxWorkers => Math.Min(Target != null ? 7 : 0, Unary.EconomyManager.GetDesiredGatherers(Resource.FOOD));
+        public override int MaxWorkers => Target != null ? 7 : 0;
         public override string Name => $"Eating at {Location}";
         public override Position Location => Dropsite.Unit.Position + new Position(-1, 1);
         private Unit Target { get; set; } = null;
